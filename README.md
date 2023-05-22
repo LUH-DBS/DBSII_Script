@@ -1,6 +1,6 @@
 # DBSII_Script
 
-View current script on [GitHub Pages]().
+View current script on [GitHub Pages](https://luh-dbs.github.io/DBSII_Script/intro.html).
 
 ## Quickstart 
 Install Jupyter Book:
