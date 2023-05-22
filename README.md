@@ -11,3 +11,7 @@ Build book:
 ```
 jupyter-book build DBSII_Script
 ```
+Add to GitHub Pages:
+```
+ghp-import -n -p -f _build/html
+```
