@@ -1,0 +1,8 @@
+root: intro
+format: jb-article
+options: 
+ numbered: true
+    
+sections:  
+ - file: 01/speicherung 
+ - file: 02/repraesentation
