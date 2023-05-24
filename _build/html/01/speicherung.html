@@ -360,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -376,6 +378,33 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtueller-speicher">1.1. Virtueller Speicher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarspeicher-festplatten">1.2. Sekundärspeicher: Festplatten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festplatten-puffer">1.3. Festplatten - Puffer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">1.4. Tertiärspeicher: Magnetbänder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher">1.5. Tertiärspeicher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">1.6. Moore’s Law (Gordon Moore, 1965)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plattenkapazitat">1.7. Plattenkapazität</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssds">1.8. SSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdds-vs-ssds">1.9. HDDs vs. SSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau">1.10. Aufbau</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-bit-recording">1.11. Zone Bit Recording</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-controller">1.12. Disk Controller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-megatron-747-disk">1.13. Beispiel - Megatron 747 disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-zugriffseigenschaften">1.14. Disk-Zugriffseigenschaften</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latenzzeit">1.15. Latenzzeit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">1.16. Schreiben und Ändern von Blöcken</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.17. Beispiel – Megatron 747 Disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubersicht">1.18. Übersicht</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmen-vs-dbms">1.19. Algorithmen vs. DBMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-modell">1.20. I/O-Modell</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -387,7 +416,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="speicherung">
 <h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this heading">#</a></h1>
-<p>Zoom in die interne Ebene: Die 5-Schichten Architektur</p>
+<p>Physische Speicherstrukturen</p>
+<p>Zoom in die interne Ebene: Die 5-Schichten Architektur
+<a class="reference internal" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a></p>
+<p>Übersicht</p>
 <ol class="arabic simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Disks</p></li>
@@ -399,6 +431,516 @@ document.write(`
 <li><p>Zugriffsbeschleunigung</p></li>
 <li><p>Diskausfälle</p></li>
 </ol>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
+<p>Speicherhierachie - Kosten</p>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kosten.png"><img alt="Speicherhierachie-Kosten" src="../_images/Speicherhierachie-Kosten.png" style="width: 500px;" /></a>
+<p>Speicherhierarchie – Zugriffszeiten</p>
+<img src="pictures/Speicherhierachie-Zugriffszeiten.png" alt="Speicherhierachie-Zugriffszeiten" width="500" style="background-color: white;"/>
+Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Speicherhierarchie – Kapazitäten</p>
+<img src="pictures/Speicherhierachie-Kapazitäten.png" alt="Speicherhierachie-Kapazitäten" width="500" style="background-color: white;"/>
+Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
+<a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022_2.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022_2.png" style="width: 500px;" /></a>
+<section id="virtueller-speicher">
+<h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this heading">#</a></h2>
+<p>Jede Anwendung verwaltet einen virtuellen Adressraum</p>
+<ul class="simple">
+<li><p>Kann größer als tatsächlich verfügbarer Hauptspeicher sein</p></li>
+<li><p>32-bit Adressraum -&gt; 2^32 unterschiedliche Adressen darstellbar</p>
+<ul>
+<li><p>Jedes Byte hat eigene Adresse = max. Hauptspeichergröße 4GB</p></li>
+</ul>
+</li>
+<li><p>64-bit Adressraum -&gt; max. 16 Exabyte</p></li>
+<li><p>Aber: meist weniger Hauptspeicher vorhanden</p></li>
+<li><p>Abhilfe: Daten werden auf Disk ausgelagert</p>
+<ul>
+<li><p>Lesen und Schreiben von ganzen Blöcken zwischen Hauptspeicher und Festplatte (Blockgröße 4 – 56 KB) -&gt; Seiten des virtuellen Speichers</p></li>
+<li><p>Verwaltet durch Betriebssystem</p></li>
+</ul>
+</li>
+<li><p>Datenbanken verwalten oft Positionen der Daten auf Festplatte selbst (O_DIRECT).</p></li>
+<li><p>Eigene Bufferpoolmanager</p></li>
+</ul>
+</section>
+<section id="sekundarspeicher-festplatten">
+<h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Nicht nur (magnetische) Festplatten; auch optische (read-only) Speicher</p></li>
+<li><p>Im Wesentlichen wahlfreier Zugriff (random access)</p>
+<ul>
+<li><p>Zugriff auf jedes Datum kostet gleich viel</p></li>
+<li><p>Aber: Erst einmal hinkommen!</p></li>
+</ul>
+</li>
+<li><p>HDDs halten Daten aus Cache / Seiten des virtuellen Speichers von Anwendungsprogrammen</p></li>
+<li><p>HDDs halten Daten aus Dateisystem</p></li>
+<li><p>Operationen</p>
+<ul>
+<li><p>Disk-read (Kopieren eines Blocks in Hauptspeicher)</p></li>
+<li><p>Disk-write (Kopieren eines Blocks aus dem Hauptspeicher)</p></li>
+<li><p>Beides: Disk-I/O</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="festplatten-puffer">
+<h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bufferpool Manager puffert Teile von Dateien</p>
+<ul>
+<li><p>In Blockgröße (z.B. 4 KB)
+<a class="reference internal" href="../_images/Festplatten-Puffer.png"><img alt="Festplatten-Puffer" src="../_images/Festplatten-Puffer.png" style="width: 500px;" /></a></p></li>
+</ul>
+</li>
+<li><p>DBMS verwaltet Positionen der Blöcke innerhalb der Datei selbst!</p></li>
+<li><p>Dauer für Schreiben oder Lesen eines Blocks: 10 - 30 ms</p>
+<ul>
+<li><p>In dieser Zeit viele Millionen Prozessoranweisungen ausführbar</p></li>
+<li><p>I/O-Zeit dominiert Gesamtkosten</p></li>
+<li><p>Deshalb am besten: Block sollte bereits im Hauptspeicher sein!</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tertiarspeicher-magnetbander">
+<h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Viele Terabyte (10^12 Bytes) Verkaufsdaten</p></li>
+<li><p>Viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten</p></li>
+<li><p>Festplatten ungeeignet</p>
+<ul>
+<li><p>Zu teuer (Wartung, Strom)</p></li>
+</ul>
+</li>
+<li><p>Vergleich Tertiärspeicher – Sekundärspeicher</p>
+<ul>
+<li><p>I/O-Zeiten wesentlich höher</p></li>
+<li><p>Kapazitäten wesentlich höher</p></li>
+<li><p>Kosten pro Byte geringer</p></li>
+</ul>
+</li>
+<li><p>Kein wahlfreier Zugriff (random access)</p>
+<ul>
+<li><p>Zugriffszeiten hängen stark von der Position des jeweiligen Datensatzes ab (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes)</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 500px;" /></a>
+</section>
+<section id="tertiarspeicher">
+<h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Ad-hoc Speicherung auf Magnetbändern</p>
+<ul class="simple">
+<li><p>Magnetbandspulen</p></li>
+<li><p>Kassetten</p></li>
+<li><p>Von Menschenhand ins Regal</p></li>
+<li><p>Gut beschriften!</p></li>
+</ul>
+</li>
+<li><p>Magnetbandroboter (Silo)</p>
+<ul class="simple">
+<li><p>Roboter bedient Magnetbänder (Kassetten)</p></li>
+<li><p>10 mal schneller als Mensch</p></li>
+</ul>
+</li>
+<li><p>CD / DVD - Juke-Boxes</p>
+<ul class="simple">
+<li><p>Roboterarm extrahiert jeweiliges Medium (CD oder DVD)</p></li>
+<li><p>Hohe Lebensdauer (30 Jahre)</p></li>
+<li><p>Wahrscheinlicher, dass kein Lesegerät mehr existiert</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Tertiärspeicher.png"><img alt="Tertiärspeicher" src="../_images/Tertiärspeicher.png" style="width: 500px;" /></a>
+</li>
+</ul>
+</section>
+<section id="moores-law-gordon-moore-1965">
+<h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Exponentielles Wachstum vieler Parameter</p></li>
+<li><p>Verdopplung alle 18 Monate</p>
+<ul class="simple">
+<li><p>Prozessorgeschwindigkeit (# instr. per sec.)</p></li>
+<li><p>Hauptspeicherkosten pro Bit</p></li>
+<li><p>Anzahl Bits pro cm² Chipfläche</p></li>
+<li><p>Diskkosten pro Bit (halbiert)</p></li>
+<li><p>Kapazität der größten Disks</p></li>
+</ul>
+</li>
+<li><p>Aber: Sehr langsames Wachstum von</p>
+<ul class="simple">
+<li><p>Zugriffsgeschwindigkeit im Hauptspeicher</p></li>
+<li><p>Rotationsgeschwindigkeit von Festplatten</p></li>
+</ul>
+</li>
+<li><p>Folge: Latenz-Anteil wächst</p>
+<ul class="simple">
+<li><p>Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit)</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/moores-law_1.png"><img alt="moores-law_1" src="../_images/moores-law_1.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/moores-law_2.png"><img alt="moores-law_2" src="../_images/moores-law_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/moores-law_3.png"><img alt="moores-law_3" src="../_images/moores-law_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/moores-law_4.png"><img alt="moores-law_4" src="../_images/moores-law_4.png" style="width: 500px;" /></a>
+</li>
+</ul>
+<p>See also: <a class="reference external" href="http://www.computerhistory.org/timeline/memory-storage/">http://www.computerhistory.org/timeline/memory-storage/</a></p>
+</section>
+<section id="plattenkapazitat">
+<h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/Plattenkapazität.png"><img alt="Plattenkapazität" src="../_images/Plattenkapazität.png" style="width: 500px;" /></a>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Hard_disk_drive">http://en.wikipedia.org/wiki/Hard_disk_drive</a></p>
+<p>But: Access times are leveling</p>
+<p>Maximum sustained bandwidth trend</p>
+<a class="reference internal image-reference" href="../_images/Access_times.png"><img alt="Access_times" src="../_images/Access_times.png" style="width: 500px;" /></a>
+<p>Average seek time trend</p>
+<a class="reference internal image-reference" href="../_images/Seek_times.png"><img alt="Seek_times" src="../_images/Seek_times.png" style="width: 500px;" /></a>
+<p><a class="reference external" href="http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm">http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm</a></p>
+</section>
+<section id="ssds">
+<h2><span class="section-number">1.8. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Persistente Speicherung basierend auf Halbleitern</p></li>
+<li><p>Keine mechanische Bewegung/Rotation</p></li>
+<li><p>Hoher Grad an Parallelität</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/SSDs.png"><img alt="SSDs" src="../_images/SSDs.png" style="width: 500px;" /></a>
+</section>
+<section id="hdds-vs-ssds">
+<h2><span class="section-number">1.9. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this heading">#</a></h2>
+<p>Vorteile von SSDs:</p>
+<ul class="simple">
+<li><p>Schnelles Hochfahren, da keine Drehung erforderlich.</p></li>
+<li><p>Schneller Random Access ohne Suchzeit.</p></li>
+<li><p>Geringe Leselatenz.</p></li>
+<li><p>Lesezeit immer fast gleich.</p></li>
+<li><p>Keine Probleme durch Dateifragmentierung.</p></li>
+<li><p>Stille Operationen.</p></li>
+<li><p>Weniger Stromverbrauch.</p></li>
+<li><p>Mechanische Zuverlässigkeit.</p></li>
+<li><p>Immun gegen Magnete.</p></li>
+<li><p>Weniger Gewicht.</p></li>
+<li><p>Parallele Lesezugriffe.</p></li>
+</ul>
+<p>Nachteile von SSDs:</p>
+<ul class="simple">
+<li><p>Begrenzte Lebenszeit.</p></li>
+<li><p>Verliert Daten nach 2-5 Jahren ohne Strom.</p></li>
+<li><p>Können nicht defragmentiert werden.</p></li>
+<li><p>Teuer.</p></li>
+<li><p>Weniger Kapazität.</p></li>
+<li><p>Asymmetrische Lese/Schreibgeschwindigkeit aufgrund der Flashtechnologie.</p></li>
+<li><p>Leistung von SSDs schwindet mit der Zeit.</p></li>
+<li><p>SATA-basierte SSDs haben sehr langsame Schreiboperationen.</p></li>
+<li><p>DRAM-basierte SSDs benötigen mehr Strom als HDDs.</p></li>
+<li><p>Kein sicheres Überschreiben.</p></li>
+</ul>
+<p><a class="reference external" href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html</a></p>
+<p>Übersicht</p>
+<ol class="arabic simple">
+<li><p>Speicherhierarchie</p></li>
+<li><p>Disks</p></li>
+<li><p>Effiziente Diskoperationen</p>
+<ul class="simple">
+<li><p>TPMMS</p></li>
+</ul>
+</li>
+<li><p>Zugriffsbeschleunigung</p></li>
+<li><p>Diskausfälle</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/Festplatten_Vergleich_Früher_Heute.png"><img alt="Festplatten_Vergleich_Früher_Heute" src="../_images/Festplatten_Vergleich_Früher_Heute.png" style="width: 500px;" /></a>
+</section>
+<section id="aufbau">
+<h2><span class="section-number">1.10. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mehrere (5-10) gleichförmig rotierende Platten (z. B. 3.5” Durchmesser).</p></li>
+<li><p>Für jede Plattenoberfläche (10-20) ein Schreib-/Lese-Kopf.</p>
+<ul>
+<li><p>Gleichförmige Bewegung.</p></li>
+</ul>
+</li>
+<li><p>Die magnetische Plattenoberfläche ist in Spuren eingeteilt.</p></li>
+<li><p>Spuren sind als Sektoren fester Größe formatiert.</p>
+<ul>
+<li><p>Die Anzahl der Sektoren pro Spur kann sich unterscheiden.</p></li>
+</ul>
+</li>
+<li><p>Übereinander angeordnete Spuren bilden einen Zylinder.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Aufbau_1.png"><img alt="Aufbau_1" src="../_images/Aufbau_1.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Aufbau_2.png"><img alt="Aufbau_2" src="../_images/Aufbau_2.png" style="width: 500px;" /></a>
+<ul>
+<li><p>Sektoren (1-8 KB) sind die kleinste physische Leseeinheit.</p>
+<ul class="simple">
+<li><p>Die Größe wird vom Hersteller festgelegt.</p></li>
+<li><p>Auf äußeren Spuren befinden sich mehr Sektoren.</p></li>
+</ul>
+</li>
+<li><p>Lücken zwischen den Sektoren nehmen etwa 10% der Spur ein.</p>
+<ul class="simple">
+<li><p>Diese Bereiche sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge.</p></li>
+</ul>
+</li>
+<li><p>Blöcke sind die logische Übertragungseinheit.</p>
+<ul class="simple">
+<li><p>Sie können aus einem oder mehreren Sektoren bestehen.</p></li>
+</ul>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg"><img alt="Aufbau_3" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Aufbau_4.png"><img alt="Aufbau_4" src="../_images/Aufbau_4.png" style="width: 500px;" /></a>
+</li>
+</ul>
+<p>hier: jede Spur hat gleiche Anzahl an Sektoren</p>
+</section>
+<section id="zone-bit-recording">
+<h2><span class="section-number">1.11. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Äußere Zylinder haben mehr Fläche.</p>
+<ul class="simple">
+<li><p>=&gt; Bei gleichen Radii führt dies zu einer (unnötig) niedrigeren Bitdichte.</p></li>
+</ul>
+</li>
+<li><p>Lösung: Zonen mit unterschiedlichen Sektoreinteilungen.</p></li>
+<li><p>Wir ignorieren dies.</p>
+<a class="reference internal image-reference" href="../_images/ZoneBitRecording.png"><img alt="ZoneBitRecording" src="../_images/ZoneBitRecording.png" style="width: 500px;" /></a>
+</li>
+</ul>
+</section>
+<section id="disk-controller">
+<h2><span class="section-number">1.12. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kontrolliert eine oder mehrere Disks.</p></li>
+<li><p>Kontrolliert Bewegung der Schreib-/Lese-Köpfe.</p>
+<ul>
+<li><p>Spuren, die zu einem Zeitpunkt unter den Schreib-/Lese-Köpfen sind, bilden Zylinder.</p></li>
+</ul>
+</li>
+<li><p>Wählt Plattenoberfläche, auf die zugegriffen werden muss.</p></li>
+<li><p>Wählt Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet.</p>
+<ul>
+<li><p>Kontrolliert Start und Ende eines Sektors.</p></li>
+</ul>
+</li>
+<li><p>Überträgt Bits zwischen Disk und Hauptspeicher bzw. umgekehrt.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/DiskController.png"><img alt="DiskController" src="../_images/DiskController.png" style="width: 500px;" /></a>
+</section>
+<section id="beispiel-megatron-747-disk">
+<h2><span class="section-number">1.13. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Eigenschaften:</p>
+<ul>
+<li><p>8 Platten mit 16 Plattenoberflächen (Durchmesser: 3,5“)</p></li>
+<li><p>2^16 = 65.536 Spuren pro Oberfläche</p></li>
+<li><p>Durchschnittlich 2^8 = 256 Sektoren pro Spur</p></li>
+<li><p>2^12 = 4.096 Byte pro Sektor</p></li>
+</ul>
+</li>
+<li><p>Gesamtkapazität:</p>
+<ul>
+<li><p>16 x 65.536 x 256 x 4.096 = 2^40 Byte = 1 TB</p></li>
+</ul>
+</li>
+<li><p>Blocks:</p>
+<ul>
+<li><p>Z.B. 2^14 Byte (= 16 KB)</p></li>
+<li><p>4 Sektoren pro Block (2^14 / 2^12)</p></li>
+<li><p>64 Blöcke pro Spur (2^8 / 2^2) im Durchschnitt</p></li>
+</ul>
+</li>
+<li><p>Bitdichte (äußerste Spur):</p>
+<ul>
+<li><p>Bits pro Spur: 28 Sektoren x 2^12 Byte = 2^20 = 1024 KB = 8 MBit</p></li>
+<li><p>Spurlänge (äußerste Spur): 3,5“ · p ≈ 11‘‘</p></li>
+<li><p>Ca. 10% Lücken → Spurlänge von 9,9‘‘ hält 8 MBits</p></li>
+<li><p>840.000 Bits pro Zoll</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="disk-zugriffseigenschaften">
+<h2><span class="section-number">1.14. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Voraussetzungen für Zugriff auf einen Block (lesend oder schreibend):</p>
+<ul>
+<li><p>S-/L-Kopf ist bei Zylinder positioniert, der die Spur mit dem Block enthält.</p></li>
+<li><p>Disk rotiert so, dass Sektoren, die der Block enthält, unter den S-/L-Kopf gelangen.</p></li>
+</ul>
+</li>
+<li><p>Latenzzeit:</p>
+<ul>
+<li><p>Zeit zwischen Anweisung, einen Block zu lesen, bis zum Eintreffen des Blocks im Hauptspeicher</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="latenzzeit">
+<h2><span class="section-number">1.15. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Latenzzeit ist Summe aus vier Komponenten:</p>
+<ol class="arabic simple">
+<li><p>Kommunikationszeit zwischen Prozessor und Disk Controller:</p>
+<ul>
+<li><p>Bruchteil einer Millisekunde (ignorieren)</p></li>
+<li><p>Annahme hier: Keine Konkurrenz</p></li>
+</ul>
+</li>
+<li><p>Seektime (Suchzeit) zur Positionierung des Kopfes unter richtigem Zylinder:</p>
+<ul>
+<li><p>Zwischen 0 und 40 ms (Zeit proportional zum zurückgelegten Weg)</p></li>
+<li><p>Startzeit (1 ms), Bewegungszeit (0 – 40 ms), Stopzeit (1 ms)</p></li>
+</ul>
+</li>
+<li><p>Rotationslatenzzeit zur Drehung der Disk bis erster Sektor des Blocks unter S-/L-Kopf:</p>
+<ul>
+<li><p>Durchschnittlich ½ Umdrehung (4 ms)</p></li>
+<li><p>Optimierung durch Spur-Cache im Disk-Controller möglich</p></li>
+</ul>
+</li>
+<li><p>Transferzeit zur Drehung der Disk bis alle Sektoren und die Lücken des Blocks unter S-/L-Kopf passiert sind:</p>
+<ul>
+<li><p>Ca. 16 KB-Block in ¼ ms (gleich genauer)</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="schreiben-und-andern-von-blocken">
+<h2><span class="section-number">1.16. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Schreiben von Blöcken:</p>
+<ul>
+<li><p>Vorgehen und Zeit: Analog zum Lesen</p></li>
+<li><p>Zur Prüfung, ob Schreiboperation erfolgreich war, muss eine Rotation gewartet werden (Nutzung von Checksums (später))</p></li>
+</ul>
+</li>
+<li><p>Ändern von Blöcken:</p>
+<ul>
+<li><p>Nicht direkt möglich</p>
+<ol class="arabic simple">
+<li><p>Lesen des Blocks in Hauptspeicher</p></li>
+<li><p>Ändern der Daten</p></li>
+<li><p>Zurückschreiben auf Festplatte</p></li>
+<li><p>evtl. Korrektheit der Schreiboperation überprüfen</p></li>
+</ol>
+</li>
+<li><p>Zeit: t_read + t_write</p></li>
+<li><p>aber: mit Glück ist Kopf noch in der Nähe (t_write ist billiger)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id1">
+<h2><span class="section-number">1.17. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?</p>
+<p>Here’s the information about the time it takes to read a block with bullet points:</p>
+<ul class="simple">
+<li><p>Umdrehungsgeschwindigkeit: 7200 U · min-1
+-&gt; Eine Umdrehung in 8,33 ms</p></li>
+<li><p>Seektime:</p>
+<ul>
+<li><p>Start und Stopp zusammen: 1ms</p></li>
+<li><p>1ms pro 4000 Zylinder, die überbrückt werden</p>
+<ol class="arabic simple">
+<li><p>Minimum (0 Zylinder): 0 ms</p></li>
+<li><p>1 Track: 1,00025 ms</p></li>
+<li><p>Maximum (65.536 Zylinder): 65536/4000 + 1 = 17,38 ms</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Minimale Zeit, um den Block zu lesen:</p>
+<ul>
+<li><p>S-/L-Kopf steht über richtiger Spur und Platte ist schon richtig rotiert</p></li>
+<li><p>4 Sektoren und 3 Lücken sind zu lesen</p></li>
+<li><p>256 Lücken und 256 Sektoren pro Spur (durchschnittlich)</p></li>
+<li><p>Lücken bedecken 36° (10%), Sektoren bedecken 324° des Kreises (360°)</p></li>
+<li><p>324° x 4 / 256 + 36° x 3 / 256 = 5,48° des Kreises durch Block bedeckt</p></li>
+<li><p>(5,48° / 360°) · 8,33 ms = 0,13 ms</p></li>
+</ul>
+</li>
+<li><p>Maximale Zeit: Präsenzübung (25,84 ms)</p></li>
+<li><p>Durchschnittliche Zeit: selber forschen und nachrechnen (10,76 ms)</p></li>
+</ul>
+</section>
+<section id="ubersicht">
+<h2><span class="section-number">1.18. </span>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Speicherhierarchie</p></li>
+<li><p>Disks</p></li>
+<li><p>Effiziente Diskoperationen</p>
+<ul class="simple">
+<li><p>TPMMS</p></li>
+</ul>
+</li>
+<li><p>Zugriffsbeschleunigung</p></li>
+<li><p>Diskausfälle</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
+</section>
+<section id="algorithmen-vs-dbms">
+<h2><span class="section-number">1.19. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Annahme bei Algorithmen:</p>
+<ul>
+<li><p>RAM-Berechnungsmodell</p>
+<ul>
+<li><p>Gesamte Daten passen in Hauptspeicher</p></li>
+<li><p>Daten befinden sich schon im Hauptspeicher</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Annahme bei Implementierung von DBMS:</p>
+<ul>
+<li><p>I/O-Modell: Gesamte Daten passen nicht in Hauptspeicher</p></li>
+</ul>
+</li>
+<li><p>Externspeicher-Algorithmen funktionieren oft anders:</p>
+<ul>
+<li><p>Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus lt. RAM-Modell sein</p></li>
+<li><p>Entwurfsziel: I/O vermeiden</p></li>
+</ul>
+</li>
+<li><p>Gleiches kann auch für Hauptspeicher-Algorithmen gelten:</p>
+<ul>
+<li><p>Ausnutzen des Caches</p>
+<ul>
+<li><p>Cachegröße berücksichtigen</p></li>
+<li><p>Lokalität beachten („maximiere“ Anzahl der Cache Hits)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="i-o-modell">
+<h2><span class="section-number">1.20. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Beispiel: Einfaches DBMS</p>
+<ul class="simple">
+<li><p>Zu groß für Hauptspeicher</p></li>
+<li><p>Eine Disk, ein Prozessor, viele konkurrierende Nutzer / Anfragen</p></li>
+</ul>
+</li>
+<li><p>Disk-Controller hält Warteschlange mit Zugriffsaufforderungen</p>
+<ul class="simple">
+<li><p>Abarbeitungsprinzip: First-come-first-served</p></li>
+<li><p>Jede Aufforderung erscheint zufällig</p>
+<ul>
+<li><p>Kopf ist also an zufälliger Position</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dominanz der I/O-Kosten</p>
+<ul class="simple">
+<li><p>Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als Kosten der Operationen auf den Daten im Hauptspeicher.</p></li>
+</ul>
+<p>-&gt; Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollten minimiert werden.</p>
+</li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -459,6 +1001,39 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtueller-speicher">1.1. Virtueller Speicher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarspeicher-festplatten">1.2. Sekundärspeicher: Festplatten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festplatten-puffer">1.3. Festplatten - Puffer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">1.4. Tertiärspeicher: Magnetbänder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher">1.5. Tertiärspeicher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">1.6. Moore’s Law (Gordon Moore, 1965)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plattenkapazitat">1.7. Plattenkapazität</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssds">1.8. SSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdds-vs-ssds">1.9. HDDs vs. SSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau">1.10. Aufbau</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-bit-recording">1.11. Zone Bit Recording</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-controller">1.12. Disk Controller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-megatron-747-disk">1.13. Beispiel - Megatron 747 disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-zugriffseigenschaften">1.14. Disk-Zugriffseigenschaften</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latenzzeit">1.15. Latenzzeit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">1.16. Schreiben und Ändern von Blöcken</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.17. Beispiel – Megatron 747 Disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubersicht">1.18. Übersicht</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmen-vs-dbms">1.19. Algorithmen vs. DBMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-modell">1.20. I/O-Modell</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
