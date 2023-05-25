@@ -1,54 +1,43 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>1. Speicherung &#8212; Online-Skript Datenbanksysteme II</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -61,93 +50,61 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '01/speicherung';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Repräsentation" href="../02/repraesentation.html" />
     <link rel="prev" title="Datenbanksysteme II" href="../intro.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -157,265 +114,651 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Speicherung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Speicherung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/repraesentation.html">
+   2. Repräsentation
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
 
 
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/01/speicherung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="btn__text-container">Live Code</span>
+<span class="headerbtn__text-container">Live Code</span>
 </button>
-</li>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F01/speicherung.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/01/speicherung.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Speicherung</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtueller-speicher">1.1. Virtueller Speicher</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarspeicher-festplatten">1.2. Sekundärspeicher: Festplatten</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festplatten-puffer">1.3. Festplatten - Puffer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">1.4. Tertiärspeicher: Magnetbänder</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher">1.5. Tertiärspeicher</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">1.6. Moore’s Law (Gordon Moore, 1965)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plattenkapazitat">1.7. Plattenkapazität</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssds">1.8. SSDs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdds-vs-ssds">1.9. HDDs vs. SSDs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau">1.10. Aufbau</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-bit-recording">1.11. Zone Bit Recording</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-controller">1.12. Disk Controller</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-megatron-747-disk">1.13. Beispiel - Megatron 747 disk</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-zugriffseigenschaften">1.14. Disk-Zugriffseigenschaften</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latenzzeit">1.15. Latenzzeit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">1.16. Schreiben und Ändern von Blöcken</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.17. Beispiel – Megatron 747 Disk</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubersicht">1.18. Übersicht</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmen-vs-dbms">1.19. Algorithmen vs. DBMS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-modell">1.20. I/O-Modell</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F01/speicherung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/01/speicherung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtueller-speicher">
+   1.1. Virtueller Speicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sekundarspeicher-festplatten">
+   1.2. Sekundärspeicher: Festplatten
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#festplatten-puffer">
+   1.3. Festplatten - Puffer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">
+   1.4. Tertiärspeicher: Magnetbänder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiarspeicher">
+   1.5. Tertiärspeicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">
+   1.6. Moore’s Law (Gordon Moore, 1965)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plattenkapazitat">
+   1.7. Plattenkapazität
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssds">
+   1.8. SSDs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hdds-vs-ssds">
+   1.9. HDDs vs. SSDs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufbau">
+   1.10. Aufbau
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zone-bit-recording">
+   1.11. Zone Bit Recording
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-controller">
+   1.12. Disk Controller
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-megatron-747-disk">
+   1.13. Beispiel - Megatron 747 disk
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-zugriffseigenschaften">
+   1.14. Disk-Zugriffseigenschaften
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latenzzeit">
+   1.15. Latenzzeit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">
+   1.16. Schreiben und Ändern von Blöcken
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.17. Beispiel – Megatron 747 Disk
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ubersicht">
+   1.18. Übersicht
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithmen-vs-dbms">
+   1.19. Algorithmen vs. DBMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i-o-modell">
+   1.20. I/O-Modell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-fur-das-i-o-modell-1-indizes">
+   1.21. Beispiel für das I/O-Modell (1): Indizes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-fur-das-i-o-modell-2-sortierung">
+   1.22. Beispiel für das I/O-Modell (2): Sortierung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-sort">
+   1.23. Merge Sort
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-phase-multiway-merge-sort-tpmms">
+   1.24. Two-Phase, Multiway Merge-Sort (TPMMS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-phase-1">
+   1.25. TPMMS - Phase 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-phase-2">
+   1.26. TPMMS - Phase 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bemerkungen-zur-blockgrosze">
+   1.27. Bemerkungen zur Blockgröße
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-grenzen">
+   1.28. TPMMS – Grenzen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zugriffsbeschleunigung">
+   1.29. Zugriffsbeschleunigung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#daten-gemasz-zylinder-organisieren">
+   1.30. Daten gemäß Zylinder organisieren
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zylinderorganisation-beispiel">
+   1.31. Zylinderorganisation – Beispiel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mehrere-disks">
+   1.32. Mehrere Disks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spiegelung">
+   1.33. Spiegelung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-scheduling">
+   1.34. Disk Scheduling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-first-first-servce-vs-elevator-algorithmus">
+   1.35. First-First-First-Servce vs. Elevator Algorithmus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elevator-algorithmus">
+   1.36. Elevator Algorithmus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prefetching">
+   1.37. Prefetching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   1.38. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Speicherung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtueller-speicher">
+   1.1. Virtueller Speicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sekundarspeicher-festplatten">
+   1.2. Sekundärspeicher: Festplatten
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#festplatten-puffer">
+   1.3. Festplatten - Puffer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">
+   1.4. Tertiärspeicher: Magnetbänder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiarspeicher">
+   1.5. Tertiärspeicher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">
+   1.6. Moore’s Law (Gordon Moore, 1965)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plattenkapazitat">
+   1.7. Plattenkapazität
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssds">
+   1.8. SSDs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hdds-vs-ssds">
+   1.9. HDDs vs. SSDs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufbau">
+   1.10. Aufbau
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zone-bit-recording">
+   1.11. Zone Bit Recording
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-controller">
+   1.12. Disk Controller
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-megatron-747-disk">
+   1.13. Beispiel - Megatron 747 disk
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-zugriffseigenschaften">
+   1.14. Disk-Zugriffseigenschaften
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latenzzeit">
+   1.15. Latenzzeit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">
+   1.16. Schreiben und Ändern von Blöcken
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.17. Beispiel – Megatron 747 Disk
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ubersicht">
+   1.18. Übersicht
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithmen-vs-dbms">
+   1.19. Algorithmen vs. DBMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i-o-modell">
+   1.20. I/O-Modell
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-fur-das-i-o-modell-1-indizes">
+   1.21. Beispiel für das I/O-Modell (1): Indizes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-fur-das-i-o-modell-2-sortierung">
+   1.22. Beispiel für das I/O-Modell (2): Sortierung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-sort">
+   1.23. Merge Sort
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-phase-multiway-merge-sort-tpmms">
+   1.24. Two-Phase, Multiway Merge-Sort (TPMMS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-phase-1">
+   1.25. TPMMS - Phase 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-phase-2">
+   1.26. TPMMS - Phase 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bemerkungen-zur-blockgrosze">
+   1.27. Bemerkungen zur Blockgröße
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tpmms-grenzen">
+   1.28. TPMMS – Grenzen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zugriffsbeschleunigung">
+   1.29. Zugriffsbeschleunigung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#daten-gemasz-zylinder-organisieren">
+   1.30. Daten gemäß Zylinder organisieren
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zylinderorganisation-beispiel">
+   1.31. Zylinderorganisation – Beispiel
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mehrere-disks">
+   1.32. Mehrere Disks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spiegelung">
+   1.33. Spiegelung
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disk-scheduling">
+   1.34. Disk Scheduling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-first-first-servce-vs-elevator-algorithmus">
+   1.35. First-First-First-Servce vs. Elevator Algorithmus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elevator-algorithmus">
+   1.36. Elevator Algorithmus
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prefetching">
+   1.37. Prefetching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zusammenfassung">
+   1.38. Zusammenfassung
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="speicherung">
-<h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this headline">#</a></h1>
 <p>Physische Speicherstrukturen</p>
 <p>Zoom in die interne Ebene: Die 5-Schichten Architektur
 <a class="reference internal" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a></p>
@@ -442,7 +785,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022_2.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022_2.png" style="width: 500px;" /></a>
 <section id="virtueller-speicher">
-<h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this headline">#</a></h2>
 <p>Jede Anwendung verwaltet einen virtuellen Adressraum</p>
 <ul class="simple">
 <li><p>Kann größer als tatsächlich verfügbarer Hauptspeicher sein</p></li>
@@ -464,7 +807,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="sekundarspeicher-festplatten">
-<h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Nicht nur (magnetische) Festplatten; auch optische (read-only) Speicher</p></li>
 <li><p>Im Wesentlichen wahlfreier Zugriff (random access)</p>
@@ -485,7 +828,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="festplatten-puffer">
-<h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Bufferpool Manager puffert Teile von Dateien</p>
 <ul>
@@ -504,7 +847,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="tertiarspeicher-magnetbander">
-<h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Viele Terabyte (10^12 Bytes) Verkaufsdaten</p></li>
 <li><p>Viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten</p></li>
@@ -529,7 +872,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 500px;" /></a>
 </section>
 <section id="tertiarspeicher">
-<h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>Ad-hoc Speicherung auf Magnetbändern</p>
 <ul class="simple">
@@ -556,7 +899,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="moores-law-gordon-moore-1965">
-<h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>Exponentielles Wachstum vieler Parameter</p></li>
 <li><p>Verdopplung alle 18 Monate</p>
@@ -587,7 +930,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <p>See also: <a class="reference external" href="http://www.computerhistory.org/timeline/memory-storage/">http://www.computerhistory.org/timeline/memory-storage/</a></p>
 </section>
 <section id="plattenkapazitat">
-<h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Plattenkapazität.png"><img alt="Plattenkapazität" src="../_images/Plattenkapazität.png" style="width: 500px;" /></a>
 <p><a class="reference external" href="http://en.wikipedia.org/wiki/Hard_disk_drive">http://en.wikipedia.org/wiki/Hard_disk_drive</a></p>
 <p>But: Access times are leveling</p>
@@ -598,7 +941,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <p><a class="reference external" href="http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm">http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm</a></p>
 </section>
 <section id="ssds">
-<h2><span class="section-number">1.8. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.8. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Persistente Speicherung basierend auf Halbleitern</p></li>
 <li><p>Keine mechanische Bewegung/Rotation</p></li>
@@ -607,7 +950,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/SSDs.png"><img alt="SSDs" src="../_images/SSDs.png" style="width: 500px;" /></a>
 </section>
 <section id="hdds-vs-ssds">
-<h2><span class="section-number">1.9. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.9. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this headline">#</a></h2>
 <p>Vorteile von SSDs:</p>
 <ul class="simple">
 <li><p>Schnelles Hochfahren, da keine Drehung erforderlich.</p></li>
@@ -651,7 +994,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/Festplatten_Vergleich_Früher_Heute.png"><img alt="Festplatten_Vergleich_Früher_Heute" src="../_images/Festplatten_Vergleich_Früher_Heute.png" style="width: 500px;" /></a>
 </section>
 <section id="aufbau">
-<h2><span class="section-number">1.10. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.10. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Mehrere (5-10) gleichförmig rotierende Platten (z. B. 3.5” Durchmesser).</p></li>
 <li><p>Für jede Plattenoberfläche (10-20) ein Schreib-/Lese-Kopf.</p>
@@ -692,7 +1035,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <p>hier: jede Spur hat gleiche Anzahl an Sektoren</p>
 </section>
 <section id="zone-bit-recording">
-<h2><span class="section-number">1.11. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.11. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>Äußere Zylinder haben mehr Fläche.</p>
 <ul class="simple">
@@ -706,7 +1049,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="disk-controller">
-<h2><span class="section-number">1.12. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.12. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kontrolliert eine oder mehrere Disks.</p></li>
 <li><p>Kontrolliert Bewegung der Schreib-/Lese-Köpfe.</p>
@@ -725,7 +1068,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/DiskController.png"><img alt="DiskController" src="../_images/DiskController.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiel-megatron-747-disk">
-<h2><span class="section-number">1.13. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.13. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Eigenschaften:</p>
 <ul>
@@ -758,7 +1101,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="disk-zugriffseigenschaften">
-<h2><span class="section-number">1.14. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.14. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Voraussetzungen für Zugriff auf einen Block (lesend oder schreibend):</p>
 <ul>
@@ -774,7 +1117,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="latenzzeit">
-<h2><span class="section-number">1.15. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.15. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Latenzzeit ist Summe aus vier Komponenten:</p>
 <ol class="arabic simple">
@@ -806,7 +1149,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="schreiben-und-andern-von-blocken">
-<h2><span class="section-number">1.16. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.16. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Schreiben von Blöcken:</p>
 <ul>
@@ -831,7 +1174,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="id1">
-<h2><span class="section-number">1.17. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.17. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?</p>
 <p>Here’s the information about the time it takes to read a block with bullet points:</p>
 <ul class="simple">
@@ -864,7 +1207,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="ubersicht">
-<h2><span class="section-number">1.18. </span>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.18. </span>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Disks</p></li>
@@ -879,7 +1222,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
 </section>
 <section id="algorithmen-vs-dbms">
-<h2><span class="section-number">1.19. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.19. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Annahme bei Algorithmen:</p>
 <ul>
@@ -915,16 +1258,16 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </section>
 <section id="i-o-modell">
-<h2><span class="section-number">1.20. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p>Beispiel: Einfaches DBMS</p>
+<h2><span class="section-number">1.20. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
+<li><p>Beispiel: Einfaches DBMS</p>
+<ul>
 <li><p>Zu groß für Hauptspeicher</p></li>
 <li><p>Eine Disk, ein Prozessor, viele konkurrierende Nutzer / Anfragen</p></li>
 </ul>
 </li>
 <li><p>Disk-Controller hält Warteschlange mit Zugriffsaufforderungen</p>
-<ul class="simple">
+<ul>
 <li><p>Abarbeitungsprinzip: First-come-first-served</p></li>
 <li><p>Jede Aufforderung erscheint zufällig</p>
 <ul>
@@ -933,11 +1276,649 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </li>
 </ul>
 </li>
-<li><p>Dominanz der I/O-Kosten</p>
+</ul>
+<p>Dominanz der I/O-Kosten</p>
 <ul class="simple">
 <li><p>Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als Kosten der Operationen auf den Daten im Hauptspeicher.</p></li>
 </ul>
 <p>-&gt; Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollten minimiert werden.</p>
+</section>
+<section id="beispiel-fur-das-i-o-modell-1-indizes">
+<h2><span class="section-number">1.21. </span>Beispiel für das I/O-Modell (1): Indizes<a class="headerlink" href="#beispiel-fur-das-i-o-modell-1-indizes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Relation R</p></li>
+<li><p>Anfrage sucht nach dem Tupel t mit Schlüsselwert k</p></li>
+<li><p>Index auf Schlüsselattribut</p>
+<ul>
+<li><p>Datenstruktur, die schnellen Zugriff auf Block ermöglicht, der t enthält</p></li>
+<li><p>Variante A des Index sagt nur, in welchem Block t liegt.</p></li>
+<li><p>Variante B sagt zusätzlich, an welcher Stelle innerhalb des Blocks t liegt.</p></li>
+</ul>
+</li>
+<li><p>Frage: Welche Indexvariante ist besser geeignet?</p></li>
+<li><p>Durchschnittlich 11 ms um 16 KB-Block zu lesen</p>
+<ul>
+<li><p>In dieser Zeit: viele Millionen Prozessoranweisungen möglich</p></li>
+</ul>
+</li>
+<li><p>Suche nach k auf dem Block kostet höchstens Tausende Prozessoranweisungen – selbst mit linearer Suche</p></li>
+<li><p>Aber: Zusätzliche Informationen in Variante B nehmen Platz ein (höhere I/O-Kosten).</p></li>
+</ul>
+</section>
+<section id="beispiel-fur-das-i-o-modell-2-sortierung">
+<h2><span class="section-number">1.22. </span>Beispiel für das I/O-Modell (2): Sortierung<a class="headerlink" href="#beispiel-fur-das-i-o-modell-2-sortierung" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Relation R</p>
+<ul>
+<li><p>10 Millionen Tupel</p></li>
+<li><p>Verschiedene Attribute, eines davon ist Sortierschlüssel</p>
+<ul>
+<li><p>Nicht unbedingt eindeutig (kein Primärschlüssel)</p></li>
+<li><p>Hier vereinfachende Annahme: Sortierschlüssel ist eindeutig</p></li>
+</ul>
+</li>
+<li><p>Gespeichert auf Diskblöcken der Größe 16.384 = 214 Byte</p></li>
+<li><p>Annahme: 100 Tupel passen in einen Block</p>
+<ul>
+<li><p>Tupelgröße ca. 160 Byte</p></li>
+<li><p>R belegt 100.000 Blöcke (1,64 Mrd. Bytes) auf der Festplatte</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Verwendete Festplatte: 1 x Megatron 747</p></li>
+<li><p>Verfügbarer Hauptspeicherpuffer: 100 MB (= 100 · 2^20)</p>
+<ul>
+<li><p>(100*2^20)/(2^14) = 6400 Blöcke von R passen in den Hauptspeicher</p></li>
+</ul>
+</li>
+<li><p>Ziel: Sortierung soll Anzahl der Lese- und Schreiboperationen minimieren</p>
+<ul>
+<li><p>Wenig “Durchläufe” durch die Daten</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="merge-sort">
+<h2><span class="section-number">1.23. </span>Merge Sort<a class="headerlink" href="#merge-sort" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Hauptspeicher-Algorithmus (Divide-and-Conquer Algorithmus)</p></li>
+<li><p>Idee: Merge l ≥ 2 sortierte Listen zu einer größeren sortierten Liste.</p>
+<ul>
+<li><p>Wähle aus den sortierten Listen stets das kleinste Element und füge es der großen Liste hinzu.</p></li>
+</ul>
+</li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Liste 1</p></th>
+<th class="head"><p>Liste 2</p></th>
+<th class="head"><p>Outputliste</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.</p></td>
+<td><p>1,3,4,9</p></td>
+<td><p>2,5,7,8</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.</p></td>
+<td><p>3,4,9</p></td>
+<td><p>2,5,7,8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>3.</p></td>
+<td><p>3,4,9</p></td>
+<td><p>5,7,8</p></td>
+<td><p>1,2</p></td>
+</tr>
+<tr class="row-odd"><td><p>4.</p></td>
+<td><p>4,9</p></td>
+<td><p>5,7,8</p></td>
+<td><p>1,2,3</p></td>
+</tr>
+<tr class="row-even"><td><p>5.</p></td>
+<td><p>9</p></td>
+<td><p>5,7,8</p></td>
+<td><p>1,2,3,4</p></td>
+</tr>
+<tr class="row-odd"><td><p>6.</p></td>
+<td><p>9</p></td>
+<td><p>7,8</p></td>
+<td><p>1,2,3,4,5</p></td>
+</tr>
+<tr class="row-even"><td><p>7.</p></td>
+<td><p>9</p></td>
+<td><p>8</p></td>
+<td><p>1,2,3,4,5,7</p></td>
+</tr>
+<tr class="row-odd"><td><p>8.</p></td>
+<td><p>9</p></td>
+<td><p>-</p></td>
+<td><p>1,2,3,4,5,7,8</p></td>
+</tr>
+<tr class="row-even"><td><p>9.</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>1,2,3,4,5,7,8,9</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Rekursion</p>
+<ul>
+<li><p>Teile eine Liste mit mehr als einem Element beliebig in zwei gleich lange Listen L1 und L2 auf.</p></li>
+<li><p>Sortiere L1 und L2 rekursiv.</p></li>
+<li><p>Merge L1 und L2 zu einer sortierten Liste zusammen.</p></li>
+</ul>
+</li>
+<li><p>Aufwand (Eingabegröße |R| = n)</p>
+<ul>
+<li><p>Mergen zweier sortierter Listen L1, L2: O(|L1| + |L2|) = O(n)</p></li>
+<li><p>Rekursionstiefe: log2 n</p>
+<ul>
+<li><p>In jedem Rekursionsschritt halbiert sich die Listenlänge.</p></li>
+<li><p>Nach i Schritten sind noch n / 2^i Elemente in der Liste.</p></li>
+</ul>
+</li>
+<li><p>Ergo: O(n log n)</p>
+<ul>
+<li><p>Trifft untere Schranke für das vergleichsbasierte Sortieren.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="two-phase-multiway-merge-sort-tpmms">
+<h2><span class="section-number">1.24. </span>Two-Phase, Multiway Merge-Sort (TPMMS)<a class="headerlink" href="#two-phase-multiway-merge-sort-tpmms" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>TPMMS wird in vielen DBMS eingesetzt.</p></li>
+<li><p>Besteht aus zwei Phasen:</p>
+<ul>
+<li><p>Phase 1:</p>
+<ul>
+<li><p>Lade jeweils so viele Tupel, wie in den Hauptspeicher passen.</p></li>
+<li><p>Sortiere die Teilstücke im Hauptspeicher.</p></li>
+<li><p>Schreibe die sortierten Teilstücke zurück auf die Festplatte.</p></li>
+<li><p>Ergebnis: viele sortierte Teillisten auf der Festplatte.</p></li>
+</ul>
+</li>
+<li><p>Phase 2:</p>
+<ul>
+<li><p>Merge alle sortierten Teillisten zu einer einzigen großen Liste.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tpmms-phase-1">
+<h2><span class="section-number">1.25. </span>TPMMS - Phase 1<a class="headerlink" href="#tpmms-phase-1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Rekursionsanfang nun nicht nur mit einem oder zwei Elementen!</p></li>
+<li><p>Sortierung der Teillisten z.B. mit Quicksort (worst-case, sehr selten O(n^2))</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Fülle den verfügbaren Hauptspeicher mit Diskblöcken aus der Originalrelation.</p></li>
+<li><p>Sortiere die Tupel, die sich im Hauptspeicher befinden.</p></li>
+<li><p>Schreibe die sortierten Tupel auf neue Blöcke der Disk.</p>
+<ul class="simple">
+<li><p>Das Ergebnis ist eine sortierte Teilliste.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Beispiel:</p>
+<ul>
+<li><p>6,400 Blöcke im Hauptspeicher; insgesamt 100,000 Blöcke</p></li>
+<li><p>16 Füllungen des Hauptspeichers erforderlich (letzte Füllung ist kleiner)</p></li>
+<li><p>Aufwand: 200,000 I/O-Operationen</p>
+<ul>
+<li><p>100,000 Blöcke lesen</p></li>
+<li><p>100,000 Blöcke schreiben</p></li>
+</ul>
+</li>
+<li><p>Zeit: durchschnittlich 11 ms pro I/O-Operation</p>
+<ul>
+<li><p>11 ms * 200,000 = 2,200 s = 37 min</p></li>
+<li><p>Prozessorzeit für das Sortieren ist vernachlässigbar.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tpmms-phase-2">
+<h2><span class="section-number">1.26. </span>TPMMS - Phase 2<a class="headerlink" href="#tpmms-phase-2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Naive Idee: paarweises Mergen von k sortierten Teillisten</p>
+<ul>
+<li><p>Erfordert 2 * log(k) Mal Lesen und Schreiben jedes Blocks (jedes Tupels)</p></li>
+<li><p>Im Beispiel: Ein Durchlauf für 16 sortierte Teillisten, einer für 8, einer für 4 und ein letzter für 2 sortierte Teillisten</p></li>
+<li><p>Insgesamt ist jeder Block an 8 I/O-Operationen beteiligt</p></li>
+</ul>
+</li>
+<li><p>Bessere Idee: Lesen nur den ersten Block jeder Teilliste</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Suche den kleinsten Schlüssel unter den ersten Tupeln aller Blöcke.</p>
+<ul class="simple">
+<li><p>Lineare Suche (lin.), Priority Queue (log.)</p></li>
+</ul>
+</li>
+<li><p>Bewege dieses Element in den Output-Block (im Hauptspeicher).</p></li>
+<li><p>Falls der Output-Block voll ist, schreibe ihn auf die Festplatte.</p></li>
+<li><p>Falls ein Input-Block leer ist, lese den nächsten Block aus derselben Liste.</p>
+<ul class="simple">
+<li><p>Aufwand: 2 I/O-Operationen pro Block (und Tupel)</p></li>
+<li><p>Ebenfalls 37 Minuten</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Laufzeit für TPMMS insgesamt: 74 Minuten</p></li>
+</ul>
+</section>
+<section id="bemerkungen-zur-blockgrosze">
+<h2><span class="section-number">1.27. </span>Bemerkungen zur Blockgröße<a class="headerlink" href="#bemerkungen-zur-blockgrosze" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Beobachtung</p>
+<ul>
+<li><p>Je größer die Blockgröße, desto weniger I/O-Operationen werden benötigt.</p></li>
+<li><p>Die Transferzeit erhöht sich etwas</p></li>
+</ul>
+</li>
+<li><p>Beispiel bisher</p>
+<ul>
+<li><p>Blockgröße: 16 KB</p></li>
+<li><p>∅ Latenzzeit: 10,88 ms (davon nur 0,253 ms für Transfer)</p></li>
+</ul>
+</li>
+<li><p>Beispiel neu</p>
+<ul>
+<li><p>Blockgröße: 512 KB (16 * 32)</p></li>
+<li><p>∅ Latenzzeit: 20 ms (davon 8 ms für Transfer)</p></li>
+</ul>
+</li>
+<li><p>Es werden nur noch 12.500 I/O-Operationen für die Sortierung benötigt.</p></li>
+<li><p>Die Gesamtzeit beträgt 4,16 Minuten.</p></li>
+<li><p>Es ergibt sich eine 17-fache Beschleunigung!</p></li>
+<li><p>Nachteile der Blockvergrößerung:</p>
+<ul>
+<li><p>Blocks sollten sich nicht über mehrere Spuren erstrecken.</p></li>
+<li><p>Kleine Relationen nutzen nur Bruchteile eines Blocks, was zu Speicherverschwendung führt.</p></li>
+<li><p>Viele Datenstrukturen für Externspeicher bevorzugen die Aufteilung von Daten auf viele kleine Blöcke.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tpmms-grenzen">
+<h2><span class="section-number">1.28. </span>TPMMS – Grenzen<a class="headerlink" href="#tpmms-grenzen" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Notation:</p>
+<ul>
+<li><p>Blockgröße: B Bytes</p></li>
+<li><p>Hauptspeichergröße (für Blocks): M Bytes</p></li>
+<li><p>Tupelgröße: R Bytes</p></li>
+</ul>
+</li>
+<li><p>M / B Blöcke passen in den Hauptspeicher.</p></li>
+<li><p>In Phase 2 wird Platz für einen Outputblock benötigt.</p></li>
+<li><p>Phase 1 kann also genau (M / B) - 1 sortierte Teillisten erzeugen.</p></li>
+<li><p>Ebenso oft kann der Hauptspeicher mit Tupeln gefüllt und sortiert werden (in Phase 1).</p>
+<ul>
+<li><p>Jede Füllung enthält M / R Tupel.</p></li>
+</ul>
+</li>
+<li><p>Maximal (M / R) * ((M / R) - 1) Tupel können sortiert werden.</p></li>
+<li><p>Unser Beispiel:</p>
+<ul>
+<li><p>M = 104,857,600 Bytes</p></li>
+<li><p>B = 16,384 Bytes</p></li>
+<li><p>R = 160 Bytes</p></li>
+<li><p>Zusammen: maximale Eingabegröße von 4.2 Milliarden Tupeln (ca. 0.67 Terabyte)</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/TPMMS-Grenzen-Visualisierung.png"><img alt="TPMMS-Grenzen-Visualisierung" src="../_images/TPMMS-Grenzen-Visualisierung.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>Falls die Eingaberelation noch größer ist:</p>
+<ul>
+<li><p>Füge eine dritte Phase hinzu.</p></li>
+<li><p>Nutze TPMMS, um sortierte Listen der Größe M^2/RB zu erzeugen.</p></li>
+<li><p>Phase 3: Merge maximal M/B - 1 solcher Listen zu einer sortierten Liste zusammen.</p></li>
+</ul>
+</li>
+<li><p>Insgesamt M^3/RB^2 Tupel sind sortierbar.</p></li>
+<li><p>Bezogen auf unser Beispiel: maximale Eingabegröße von 27 Billionen Tupeln (ca. 4.3 Petabytes).</p></li>
+<li><p>Globale Betrachtung: Die zweite Phase ist die zusätzliche Phase.</p></li>
+</ul>
+</section>
+<section id="zugriffsbeschleunigung">
+<h2><span class="section-number">1.29. </span>Zugriffsbeschleunigung<a class="headerlink" href="#zugriffsbeschleunigung" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Annahmen bisher:</p>
+<ul>
+<li><p>Nur eine Disk.</p></li>
+<li><p>Zufällige Blockzugriffe (viele kleine Anfragen).</p></li>
+</ul>
+</li>
+<li><p>Verschiedene Verbesserungsideen:</p>
+<ul>
+<li><p>Blöcke, die gemeinsam gelesen werden, auf dem gleichen Zylinder platzieren, um die Suchzeit zu reduzieren.</p></li>
+<li><p>Verteilung der Daten auf mehrere (kleine) Disks:</p>
+<ul>
+<li><p>Unabhängige Schreib-/Leseköpfe.</p></li>
+<li><p>Dadurch ermöglicht: mehrere (unabhängige) Blockzugriffe gleichzeitig.</p></li>
+</ul>
+</li>
+<li><p>Spiegelung von Daten auf mehrere Disks.</p></li>
+<li><p>Verwendung eines Disk-Scheduling-Algorithmus.</p></li>
+<li><p>Prefetching von Blöcken.</p>
+<ul>
+<li><p>Ablegen von Blöcken im Hauptspeicher, die möglicherweise demnächst benötigt werden</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="daten-gemasz-zylinder-organisieren">
+<h2><span class="section-number">1.30. </span>Daten gemäß Zylinder organisieren<a class="headerlink" href="#daten-gemasz-zylinder-organisieren" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Seek time macht ca. 50% der durchschnittlichen Blockzugriffszeit aus.</p>
+<ul>
+<li><p>Megatron 747: seek time zwischen 0 und 40 ms.</p></li>
+</ul>
+</li>
+<li><p>Idee: Daten, die zusammen gelesen werden, auf dem gleichen Zylinder platzieren.</p>
+<ul>
+<li><p>Z.B. Tupel einer Relation.</p></li>
+<li><p>Falls ein Zylinder nicht ausreicht, werden mehrere nebeneinander liegende Zylinder genutzt.</p></li>
+</ul>
+</li>
+<li><p>Beim Lesen einer Relation fällt im besten Fall nur einmal die seek time und Rotationslatenz an.</p>
+<ul>
+<li><p>Minimale Zugriffszeit der Disk wird erreicht: Zugriffszeit wird nur noch durch die Transferzeit bestimmt.</p></li>
+</ul>
+</li>
+<li><p>Ein Zylinder der Megatron 747 fasst 16 x 64 = 1024 Blöcke.</p>
+<ul>
+<li><p>Dennoch sind 16 Umdrehungen erforderlich (+ 15x seek über je eine Spur).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="zylinderorganisation-beispiel">
+<h2><span class="section-number">1.31. </span>Zylinderorganisation – Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Megatron 747-Festplatte:</p>
+<ul>
+<li><p>Mittlere Transferzeit pro Block: ¼ ms</p></li>
+<li><p>Mittlere seek time: 6,46 ms</p></li>
+<li><p>Mittlere Rotationslatenzzeit: 4,17 ms</p></li>
+<li><p>Jede der 16 Oberflächen mit 65.536 Spuren á 64 Blöcke (durchschnittlich)</p></li>
+</ul>
+</li>
+<li><p>Sortierung von 10 Mio. Tupeln mittels TPMMS-Algorithmus dauerte 74 min</p>
+<ul>
+<li><p>100.000 Blöcke von R belegen 1563 Spuren (98 Zylinder)</p></li>
+</ul>
+</li>
+<li><p>Phase 1 – Lesen der Blöcke</p>
+<ul>
+<li><p>Hauptspeicher (6400 Blöcke) wird 16 mal gefüllt</p></li>
+<li><p>Müssen Blöcke von 6400/1024 = 6-7 Zylindern lesen, die aber direkt nebeneinander liegen</p>
+<ul>
+<li><p>nur 1 ms für Spurwechsel</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Keine Rotationslatenzzeit: Reihenfolge beim Lesen der Tupel egal</p></li>
+<li><p>Zeit pro Füllung:</p>
+<ul>
+<li><p>6,46 ms + 6 ms + 6x8ms + 1,6s ≈ 1,6 s</p></li>
+<li><p>(1.seek) + (ca. 6 Spurwechsel) + (6 Rotationen) + (Transfer 6400 Blöcke)</p></li>
+</ul>
+</li>
+<li><p>1,6s x 16 Füllungen = 26s (&lt;&lt;18min)</p></li>
+<li><p>Phase 1 – Schreiben: analog zum Lesen ® zusammen 52s (vorher: 37 min)</p>
+<ul>
+<li><p>Achtung: Rotationslatenz eigentlich wieder relevant …</p></li>
+</ul>
+</li>
+<li><p>Phase 2 wird nicht beschleunigt</p>
+<ul>
+<li><p>Lesen aus verschiedenen (verteilten) Teillisten</p></li>
+<li><p>Schreiben des Ausgabepuffers zwar sequentiell, aber unterbrochen von Leseoperationen</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mehrere-disks">
+<h2><span class="section-number">1.32. </span>Mehrere Disks<a class="headerlink" href="#mehrere-disks" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Problem: S-/L-Köpfe einer Festplatte bewegen sich stets gemeinsam</p></li>
+<li><p>Lösung: nutze mehrere Festplatten (mit unabhängigen Köpfen)</p>
+<ul>
+<li><p>Annahme: Disk-Controller, Hauptspeicher, Bus kommen mit höheren Transferraten klar</p></li>
+<li><p>Resultat: Division aller Zugriffszeiten durch Festplattenanzahl</p></li>
+</ul>
+</li>
+<li><p>Megatron 737 wie 747, aber nur 2 Platten -&gt; 4 Plattenoberflächen</p>
+<ul>
+<li><p>Ersetze eine Megatron 747 durch vier Megatron 737</p></li>
+<li><p>Verteile R auf vier Festplatten</p></li>
+</ul>
+</li>
+<li><p>TPMMS – Phase 1</p>
+<ul>
+<li><p>Lesen: Von jeder Platte nur ¼ der Daten (1600 Blöcke)</p>
+<ul>
+<li><p>Günstige Zylinderorganisation: seek time und Rotationslatenz ≈ 0</p></li>
+<li><p>1600 Blöcke × 0,25 ms (mittlere Transferzeit)= 400 ms pro Füllung</p></li>
+<li><p>16 Füllungen x 400 ms = 6,4 s</p></li>
+</ul>
+</li>
+<li><p>Schreiben: Jede Teilliste wird auf 4 Disks verteilt</p>
+<ul>
+<li><p>Wie Lesen: 6,4 s</p></li>
+</ul>
+</li>
+<li><p>Zusammen nur 13 s</p>
+<ul>
+<li><p>statt 52 s zuvor; bzw. statt 37 min bei zufälliger Anordnung</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>TPMMS – Phase 2</p>
+<ul class="simple">
+<li><p>Verteilung nützt zunächst nichts</p>
+<ul>
+<li><p>Immer wenn Block einer Teilliste abgearbeitet ist, wird nächster Block dieser Teilliste in Hauptspeicher geladen</p></li>
+<li><p>-&gt; Erst wenn nächster Block vollständig geladen ist, kann Mergen fortgesetzt werden</p></li>
+</ul>
+</li>
+<li><p>Trick für Lesen: Mergen kann fortgesetzt werden, bevor Block vollständig im Hauptspeicher geladen wurde (erstes Element genügt schon)</p>
+<ul>
+<li><p>So können potenziell mehrere Blöcke parallel (jeweils einer pro Teilliste) geladen werden -&gt; Verbesserung, wenn diese auf unterschiedlichen Festplatten sind</p></li>
+<li><p>Vorsicht: Sehr delikate Implementierung</p></li>
+</ul>
+</li>
+<li><p>Schreiben des Outputs</p>
+<ul>
+<li><p>Verwende mehrere Output-Blöcke (hier: 4)</p></li>
+<li><p>Einer wird gefüllt während die anderen drei geschrieben werden (parallel, wenn Schreiben auf unterschiedliche Festplatten)</p></li>
+</ul>
+</li>
+<li><p>Geschätzte Beschleunigung von Phase 2: Faktor 2 bis 3</p>
+<ul>
+<li><p>Immerhin!</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="spiegelung">
+<h2><span class="section-number">1.33. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Idee: Zwei oder mehr Festplatten halten identische Kopien</p>
+<ul>
+<li><p>Mehr Sicherheit vor Datenverlust</p></li>
+<li><p>Beschleunigter Lesezugriff (bei n Festplatten, bis zu n mal so schnell)</p></li>
+</ul>
+</li>
+<li><p>TPMMS, Phase 2, Lesen: Trick wie bei mehreren Disks klappt nicht immer</p>
+<ul>
+<li><p>Keine Verbesserung, falls Blöcke verschiedener Teillisten auf gleicher Festplatte liegen</p></li>
+<li><p>Bei Spiegelung kann garantiert werden, dass immer so viele Blöcke unterschiedlicher Teillisten parallel gefüllt werden wie Spiegelungen vorhanden sind</p></li>
+</ul>
+</li>
+<li><p>Weiterer Vorteil, auch ohne Parallelität (weniger als n Blöcke gleichzeitig)</p>
+<ul>
+<li><p>Auswahl der Festplatte möglich, auf die zugegriffen wird</p></li>
+<li><p>Wähle die Festplatte, deren Kopf am dichtesten an relevanter Spur steht</p></li>
+</ul>
+</li>
+<li><p>Anmerkungen</p>
+<ul>
+<li><p>Teuer</p></li>
+<li><p>Keine Beschleunigung des Schreibzugriffs (aber auch keine Verlangsamung)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="disk-scheduling">
+<h2><span class="section-number">1.34. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Idee: Disk-Controller entscheidet, welche Zugriffsanweisungen zuerst ausgeführt werden.</p>
+<ul>
+<li><p>Nützlich bei vielen kleinen Prozessen, je auf wenigen Blöcken</p></li>
+<li><p>OLTP</p></li>
+<li><p>Ziel: Erhöhung des Durchsatzes</p></li>
+</ul>
+</li>
+<li><p>Elevator Algorithmus</p>
+<ul>
+<li><p>Fahrstuhl fährt in Gebäude hoch und runter</p>
+<ul>
+<li><p>Hält an Stockwerken an, wenn jemand ein- oder aussteigen will.</p></li>
+<li><p>Dreht um, falls weiter oben/unten keiner mehr wartet.</p></li>
+</ul>
+</li>
+<li><p>Diskkopf streicht über Oberfläche einwärts und auswärts</p>
+<ul>
+<li><p>Hält an Zylindern an, wenn es eine (oder mehrere) Zugriffsanweisung(en) gibt.</p></li>
+<li><p>Dreht um, falls in jeweiliger Richtung keine Anweisungen mehr ausstehen.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="first-first-first-servce-vs-elevator-algorithmus">
+<h2><span class="section-number">1.35. </span>First-First-First-Servce vs. Elevator Algorithmus<a class="headerlink" href="#first-first-first-servce-vs-elevator-algorithmus" title="Permalink to this headline">#</a></h2>
+<a class="reference internal image-reference" href="../_images/FFFS-vs-Elevator-Algo.png"><img alt="FFFS-vs-Elevator-Algo" src="../_images/FFFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
+</section>
+<section id="elevator-algorithmus">
+<h2><span class="section-number">1.36. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Verbesserung steigt mit durchschnittlicher Anzahl von wartenden Anweisungen.</p>
+<ul>
+<li><p>So viele wartende Zugriffsanweisungen wie Anzahl Zylinder</p>
+<ul>
+<li><p>Jeder Seek geht über nur wenige Zylinder</p></li>
+<li><p>Durchschnittliche seek time (bezogen auf wartende Zugriffsanweisungen) wird verringert</p></li>
+</ul>
+</li>
+<li><p>Mehr Zugriffsanweisungen als Zylinder</p>
+<ul>
+<li><p>Mehrere Zugriffsanweisungen pro Zylinder</p></li>
+<li><p>Sortierung um den Zylinder herum möglich</p></li>
+<li><p>Dadurch: Reduzierung der Rotationslatenzzeit</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Nachteil (falls Anzahl wartender Anweisungen groß):</p>
+<ul>
+<li><p>Wartezeiten für einzelnen Zugriffsanweisungen können sehr groß werden!</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="prefetching">
+<h2><span class="section-number">1.37. </span>Prefetching<a class="headerlink" href="#prefetching" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Idee: Wenn man voraussagen kann, welche Blöcke in naher Zukunft gebraucht werden, kann man sie früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</p></li>
+<li><p>TPMMS, Phase 2, Lesen: 16 Blöcke für die 16 Teillisten reserviert</p>
+<ul>
+<li><p>Viel Hauptspeicher frei</p></li>
+<li><p>Reserviere zwei Blöcke pro Teilliste</p>
+<ul>
+<li><p>Fülle einen Block, während der andere abgearbeitet wird</p></li>
+<li><p>Wenn einer entleert ist, wechsele zum anderen</p></li>
+</ul>
+</li>
+<li><p>Aber: Laufzeit wird nicht verbessert</p></li>
+</ul>
+</li>
+<li><p>Idee: Kombination mit guter Spur- oder Zylinderorganisation</p>
+<ul>
+<li><p>TPMMS, Phase 1, Schreiben: Schreibe Teillisten auf ganze, aufeinanderfolgende Spuren / Zylinder</p></li>
+<li><p>TPMMS, Phase 2, Lesen: Lese ganze Spuren / Zylinder, wenn aus einer Liste ein neuer Block benötigt wird.</p></li>
+</ul>
+</li>
+<li><p>Idee für das Schreiben analog:</p>
+<ul>
+<li><p>Zögere Schreiboperationen hinaus bis ganz Spur / ganzer Zylinder geschrieben werden kann</p></li>
+<li><p>Verwende mehrere Ausgabepuffer</p>
+<ul>
+<li><p>Während einer auf Festplatte geleert wird, in anderen schreiben</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="zusammenfassung">
+<h2><span class="section-number">1.38. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Speicherhierarchie</p></li>
+<li><p>Aufbau einer Festplatte</p>
+<ul>
+<li><p>Zylinder, Spuren, Sektoren</p></li>
+</ul>
+</li>
+<li><p>Latenzzeit von Diskzugriffen</p>
+<ul>
+<li><p>Kommunikationszeit, Suchzeit, Rotationszeit, Transferzeit</p></li>
+</ul>
+</li>
+<li><p>Berechnung mit IO Modell</p>
+<ul>
+<li><p>Blocklesezeit, Blockgröße, Hauptspeicherkapazität</p></li>
+</ul>
+</li>
+<li><p>Externspeicher-Algorithmen</p>
+<ul>
+<li><p>Minimierung von IO</p></li>
+<li><p>TPMMS</p></li>
+<li><p>Grenzen durch Hauptspeicher festgelegt</p></li>
+</ul>
+</li>
+<li><p>Fünf “Tricks”</p>
+<ul>
+<li><p>Zylinderorganisation</p></li>
+<li><p>Verwendung mehrerer Festplatten</p></li>
+<li><p>Spiegelung</p></li>
+<li><p>Scheduling mit Elevator Algorithmus</p></li>
+<li><p>Prefetching</p></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -955,7 +1936,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./01"
         },
         predefinedOutput: true
@@ -963,124 +1944,50 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Datenbanksysteme II</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Datenbanksysteme II</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="../02/repraesentation.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="../02/repraesentation.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">2. </span>Repräsentation</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtueller-speicher">1.1. Virtueller Speicher</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarspeicher-festplatten">1.2. Sekundärspeicher: Festplatten</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festplatten-puffer">1.3. Festplatten - Puffer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher-magnetbander">1.4. Tertiärspeicher: Magnetbänder</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tertiarspeicher">1.5. Tertiärspeicher</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moores-law-gordon-moore-1965">1.6. Moore’s Law (Gordon Moore, 1965)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plattenkapazitat">1.7. Plattenkapazität</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssds">1.8. SSDs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdds-vs-ssds">1.9. HDDs vs. SSDs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau">1.10. Aufbau</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-bit-recording">1.11. Zone Bit Recording</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-controller">1.12. Disk Controller</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-megatron-747-disk">1.13. Beispiel - Megatron 747 disk</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-zugriffseigenschaften">1.14. Disk-Zugriffseigenschaften</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latenzzeit">1.15. Latenzzeit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schreiben-und-andern-von-blocken">1.16. Schreiben und Ändern von Blöcken</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.17. Beispiel – Megatron 747 Disk</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubersicht">1.18. Übersicht</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmen-vs-dbms">1.19. Algorithmen vs. DBMS</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-modell">1.20. I/O-Modell</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Dr. Ziawasch Abedjan
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
