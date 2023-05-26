@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2. Repräsentation &#8212; Online-Skript Datenbanksysteme II</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,19 +39,20 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="1. Speicherung" href="../01/speicherung.html" />
@@ -60,21 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -83,10 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -104,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Datenbanksysteme II
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Datenbanksysteme II
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../01/speicherung.html">
    1. Speicherung
@@ -126,215 +113,285 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02/repraesentation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F02/repraesentation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/02/repraesentation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2. Repräsentation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufbau">
+   3. Aufbau
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#felder-etc">
+   4. Felder etc.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenelemente">
+   5. Datenelemente
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datentypen">
+     5.1. Datentypen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strings-variabler-lange">
+   6. Strings variabler Länge
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datum-bit-boolean">
+   7. Datum / Bit / Boolean
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datensatze">
+   8. Datensätze
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensatze-fester-lange">
+     8.1. Datensätze fester Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#versatz-zur-effizienz">
+     8.2. Versatz zur Effizienz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speicherung-der-metadaten">
+   9. Speicherung der Metadaten
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aufteilung-in-blocke">
+     9.1. Aufteilung in Blöcke
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adressierung">
+   10. Adressierung
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#virtueller-speicher-vs-festplatte">
+     10.1. Virtueller Speicher vs. Festplatte
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adressraum-des-servers">
+     10.2. Adressraum des Servers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logische-adressen">
+     10.3. Logische Adressen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hybride-adressierung">
+     10.4. Hybride Adressierung
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#columnar-storage">
+     10.5. Columnar Storage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#daten-variabler-lange">
+   11. Daten variabler Länge
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-lange">
+     11.1. Variable Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finden-von-feldern">
+     11.2. Finden von Feldern
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensatze-variabler-lange">
+     11.3. Datensätze variabler Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendungsfalls-sparsedatabeispiel-linkedopen-data">
+     11.4. Anwendungsfalls SparseDataBeispiel: LinkedOpen Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microsoft-sql-server-sparse-columns">
+     11.5. Microsoft SQL Server: SPARSE columns
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zu-grosze-datensatze">
+     11.6. Zu große Datensätze
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blobs">
+     11.7. BLOBs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datensatzanderungen">
+   12. Datensatzänderungen
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-mit-platz">
+     12.1. Einfügen mit Platz
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-ohne-platz">
+     12.2. Einfügen ohne Platz
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen">
+     12.3. Löschen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update">
+     12.4. Update
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
-    <div id="rtd-footer-container"></div>
 </div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/02/repraesentation.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F02/repraesentation.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/02/repraesentation.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Repräsentation</h1>
@@ -342,31 +399,737 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2. Repräsentation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aufbau">
+   3. Aufbau
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#felder-etc">
+   4. Felder etc.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datenelemente">
+   5. Datenelemente
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datentypen">
+     5.1. Datentypen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strings-variabler-lange">
+   6. Strings variabler Länge
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datum-bit-boolean">
+   7. Datum / Bit / Boolean
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datensatze">
+   8. Datensätze
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensatze-fester-lange">
+     8.1. Datensätze fester Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#versatz-zur-effizienz">
+     8.2. Versatz zur Effizienz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speicherung-der-metadaten">
+   9. Speicherung der Metadaten
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aufteilung-in-blocke">
+     9.1. Aufteilung in Blöcke
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adressierung">
+   10. Adressierung
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#virtueller-speicher-vs-festplatte">
+     10.1. Virtueller Speicher vs. Festplatte
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adressraum-des-servers">
+     10.2. Adressraum des Servers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logische-adressen">
+     10.3. Logische Adressen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hybride-adressierung">
+     10.4. Hybride Adressierung
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#columnar-storage">
+     10.5. Columnar Storage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#daten-variabler-lange">
+   11. Daten variabler Länge
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variable-lange">
+     11.1. Variable Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finden-von-feldern">
+     11.2. Finden von Feldern
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensatze-variabler-lange">
+     11.3. Datensätze variabler Länge
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendungsfalls-sparsedatabeispiel-linkedopen-data">
+     11.4. Anwendungsfalls SparseDataBeispiel: LinkedOpen Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microsoft-sql-server-sparse-columns">
+     11.5. Microsoft SQL Server: SPARSE columns
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zu-grosze-datensatze">
+     11.6. Zu große Datensätze
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blobs">
+     11.7. BLOBs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datensatzanderungen">
+   12. Datensatzänderungen
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-mit-platz">
+     12.1. Einfügen mit Platz
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfugen-ohne-platz">
+     12.2. Einfügen ohne Platz
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loschen">
+     12.3. Löschen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update">
+     12.4. Update
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="reprasentation">
-<h1><span class="section-number">2. </span>Repräsentation<a class="headerlink" href="#reprasentation" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="reprasentation">
+<h1><span class="section-number">2. </span>Repräsentation<a class="headerlink" href="#reprasentation" title="Permalink to this headline">¶</a></h1>
+<p>Architektur</p>
 <a class="reference internal image-reference" href="../_images/5-Schichten-Architektur1.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur1.png" style="width: 500px;" /></a>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="aufbau">
+<h1><span class="section-number">3. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Motivation:</p>
+<ul>
+<li><p>Beziehung zwischen Block-Modell des Speichers (Hauptspeicher/Festplatte) und Tupelmodelldes DBMS</p></li>
+</ul>
+</li>
+<li><p>Dateneinheiten:</p>
+<ul>
+<li><p>Attributwerte -&gt; Bytelisten fester oder variabler Länge: „Felder“</p></li>
+<li><p>Tupel-&gt;Feldlisten fester oder variabler Länge: „Datensätze“</p></li>
+<li><p>Physische Blöcke speichern Datensatzmengen / -listen</p></li>
+<li><p>Relation-&gt;Mengen von Blöcken: „Datei“</p>
+<ul>
+<li><p>Plus Indexstrukturen</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="felder-etc">
+<h1><span class="section-number">4. </span>Felder etc.<a class="headerlink" href="#felder-etc" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Kleinste Dateneinheit: Attributwerte</p></li>
+<li><p>Repräsentiert durch „Felder“ (fields)</p></li>
+<li><p>Fragen für heute:</p>
+<ul>
+<li><p>Wie werden Datentypen als Felder repräsentiert?</p></li>
+<li><p>Wie werden Tupelals Datensätze repräsentiert?</p></li>
+<li><p>Wie werden Mengen von Datensätzen oder Tupelnin Blöcken repräsentiert?</p></li>
+<li><p>Wie werden Relationen als Mengen von Blöcken repräsentiert?</p></li>
+<li><p>Was passiert bei variablen Feld-oder Tupellängen?</p></li>
+<li><p>Was passiert wenn ich einen Block nicht einheitlich in Tupeleinteilen kann?</p></li>
+<li><p>Was passiert wenn sich die Größe eines Datensatzes ändert, insbesondere vergrößert?</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="p">(</span>
+    <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">Geburtstag</span> <span class="n">DATE</span> <span class="p">);</span>
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/Datenelemente-meme.png"><img alt="Datenelemente-meme" src="../_images/Datenelemente-meme.png" style="width: 500px;" /></a>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="datenelemente">
+<h1><span class="section-number">5. </span>Datenelemente<a class="headerlink" href="#datenelemente" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="datentypen">
+<h2><span class="section-number">5.1. </span>Datentypen<a class="headerlink" href="#datentypen" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Irgendwann werden alle Daten als Bitsequenzen dargestellt.</p>
+<ul>
+<li><p>Bzw.: Irgendwann werden alle Daten als Bytesequenzen dargestellt.</p></li>
+<li><p>Integer: 2 oder 4 Byte</p></li>
+<li><p>Float: 4 oder 8 Byte</p></li>
+</ul>
+</li>
+<li><p>Strings fester Länge: CHAR(n)</p>
+<ul>
+<li><p>Feld hat n Byte</p></li>
+<li><p>Fehlende Byte-Werte werden mit Nullwerten (<span class="math notranslate nohighlight">\(\perp\)</span>)ge-padded.</p></li>
+<li><p>‚Katze‘ in CHAR(8) wäre also K a t z e <span class="math notranslate nohighlight">\(\perp\)</span><span class="math notranslate nohighlight">\(\perp\)</span><span class="math notranslate nohighlight">\(\perp\)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="strings-variabler-lange">
+<h1><span class="section-number">6. </span>Strings variabler Länge<a class="headerlink" href="#strings-variabler-lange" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>VARCHAR(n)</p></li>
+<li><p>Es werden n+1 Byte reserviert.</p></li>
+<li><p>Variante 1</p>
+<ul>
+<li><p>Byte 1 speichert Länge–=&gt; Länge ist maximal 255 Byte–Oft also VARCHAR(255)</p></li>
+<li><p>Weitere Bytes speichern Attributwert</p></li>
+<li><p>Fehlende Bytes werden ignoriert</p></li>
+<li><p>5 K a t z e</p></li>
+</ul>
+</li>
+<li><p>Variante 2</p>
+<ul>
+<li><p>Erste Bytes speichern Attributwert</p></li>
+<li><p>Hintendran ein null-Wert (<span class="math notranslate nohighlight">\(\perp\)</span>)</p></li>
+<li><p>K a t z e <span class="math notranslate nohighlight">\(\perp\)</span></p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Strings-meme.png"><img alt="Strings-meme" src="../_images/Strings-meme.png" style="width: 500px;" /></a>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="datum-bit-boolean">
+<h1><span class="section-number">7. </span>Datum / Bit / Boolean<a class="headerlink" href="#datum-bit-boolean" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>DATE, TIME</p>
+<ul>
+<li><p>i.d.R. repräsentiert als String fester Länge</p></li>
+<li><p>Problem: Zeit kann mit Bruchteilen von Sekunden gespeichert werden (theoretisch beliebig genau)</p>
+<ul>
+<li><p>Lösung 1: Speicherung als String fester Länge mit maximaler Genauigkeit</p></li>
+<li><p>Lösung 2: Speicherung als String variabler Länge</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BIT(n)</p>
+<ul>
+<li><p>8 Bit pro Byte</p></li>
+<li><p>Letzte Bits ignorieren, falls n nicht durch 8 teilbar ist</p></li>
+<li><p>BIT(12): 010111110011 wird zu 01011111, 00110000</p></li>
+</ul>
+</li>
+<li><p>BOOLEAN</p>
+<ul>
+<li><p>8 Bit:</p>
+<ul>
+<li><p>00000001 und 00000000</p></li>
+<li><p>oder 11111111 und 00000000</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="datensatze">
+<h1><span class="section-number">8. </span>Datensätze<a class="headerlink" href="#datensatze" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="datensatze-fester-lange">
+<h2><span class="section-number">8.1. </span>Datensätze fester Länge<a class="headerlink" href="#datensatze-fester-lange" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Jeder Datensatz hat ein Schema.</p>
+<ul>
+<li><p>Namen und Datentypen der Felder</p></li>
+<li><p>Offset im Datensatz</p></li>
+<li><p>Anmerkung: JEDER Datensatz!–Realisiert i.d.R. als Pointer auf das Schema</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">Schauspieler</span> <span class="p">(</span>
+    <span class="n">Name</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">Adresse</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">Geschlecht</span> <span class="n">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">Geburtstag</span> <span class="n">DATE</span> <span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Alle haben feste Länge</p>
+<ul>
+<li><p>30 Byte + 256 Byte + 1 Byte + 10 Byte = 297 Byte</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="versatz-zur-effizienz">
+<h2><span class="section-number">8.2. </span>Versatz zur Effizienz<a class="headerlink" href="#versatz-zur-effizienz" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Felder beginnen am besten bei Hauptspeicheradressen, die ein Vielfaches von 4 (bzw. 8) sind.</p>
+<ul>
+<li><p>Manchmal sogar Pflicht</p></li>
+</ul>
+</li>
+<li><p>Für Festplatte eigentlich egal</p>
+<ul>
+<li><p>Aber eingelesener Datensatz landet auf einem Speicherplatz mit entsprechender Adresse</p>
+<ul>
+<li><p>Vielfaches von 4</p></li>
+<li><p>Vielfaches von 2n</p></li>
+</ul>
+</li>
+<li><p>Entsprechend versetzt sind die anderen Felder</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Versatz-zur-Effizienz.png"><img alt="Versatz-zur-Effizienz" src="../_images/Versatz-zur-Effizienz.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="speicherung-der-metadaten">
+<h1><span class="section-number">9. </span>Speicherung der Metadaten<a class="headerlink" href="#speicherung-der-metadaten" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Metadaten eines Datensatzes, z.B.</p>
+<ul>
+<li><p>Schema bzw. Pointer auf ein Schema□Länge des Datensatzes</p></li>
+<li><p>Timestampder letzten Änderung bzw. des letzten Lesens</p></li>
+</ul>
+</li>
+<li><p>Lösung: Header vor den Datensatz</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Speicherung_Metadaten.png"><img alt="Speicherung_Metadaten" src="../_images/Speicherung_Metadaten.png" style="width: 500px;" /></a>
+<div class="section" id="aufteilung-in-blocke">
+<h2><span class="section-number">9.1. </span>Aufteilung in Blöcke<a class="headerlink" href="#aufteilung-in-blocke" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Block header(optional)</p>
+<ul>
+<li><p>Links auf andere Blocks (z.B. Index)</p></li>
+<li><p>Rolle dieses Blocks (im Index)</p></li>
+<li><p>Relation der Tupel</p></li>
+<li><p>Verzeichnis der offsetsder Datensätze</p></li>
+<li><p>Block ID (gleich)□Timestampder letzten Änderung / des letzten Lesens</p></li>
+</ul>
+</li>
+<li><p>Einfachster Fall: Alle Datensätze aus gleicher Relation, aller fester Länge</p></li>
+<li><p>Beispiel</p>
+<ul>
+<li><p>Datensatz 316 Byte</p></li>
+<li><p>Block 4096 Byte, 12 davon als Header</p></li>
+<li><p>=&gt; 12 Datensätze und 292 verlorene Byte</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Aufteilung_in_Blöcke.png"><img alt="Aufteilung_in_Blöcke" src="../_images/Aufteilung_in_Blöcke.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="adressierung">
+<h1><span class="section-number">10. </span>Adressierung<a class="headerlink" href="#adressierung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="virtueller-speicher-vs-festplatte">
+<h2><span class="section-number">10.1. </span>Virtueller Speicher vs. Festplatte<a class="headerlink" href="#virtueller-speicher-vs-festplatte" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Block im Hauptspeicher</p>
+<ul>
+<li><p>Block-Adresse ist im virtuellen Adressraum</p></li>
+<li><p>Zeigt auf erstes Byte des Blocks</p></li>
+<li><p>Datensatz-Adresse zeigt auf erstes Byte des Datensatzes</p></li>
+</ul>
+</li>
+<li><p>Block auf Festplatte□Speicherort im gesamten System des DBMS–Disk ID, Zylinder#, Spur#, Sektor, …</p>
+<ul>
+<li><p>Datensatz: Block + offsetdes ersten Bytes</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="adressraum-des-servers">
+<h2><span class="section-number">10.2. </span>Adressraum des Servers<a class="headerlink" href="#adressraum-des-servers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Blocks und Offsets innerhalb von Blocks</p></li>
+<li><p>Variante 1: Physische Adressen</p>
+<ul>
+<li><p>Rechner ID</p></li>
+<li><p>Disk ID 8-16 Byte</p></li>
+<li><p>Zylinder# 8-16 Byte</p></li>
+<li><p>Spur# (bei mehr als einer Oberfläche)</p></li>
+<li><p>Sektor#</p></li>
+<li><p>(Offset innerhalb des Blocks)</p></li>
+</ul>
+</li>
+<li><p>Variante 2: Logische Adressen</p>
+<ul>
+<li><p>Beliebiger Byte String</p></li>
+<li><p>Mapping tableübersetzt diese Adresse in eine physische Adresse.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="logische-adressen">
+<h2><span class="section-number">10.3. </span>Logische Adressen<a class="headerlink" href="#logische-adressen" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Warum die Indirektion?</p>
+<ul>
+<li><p>Flexibilität bei der Umorganisation von Daten–Änderungen nur auf der mappingtable</p></li>
+</ul>
+</li>
+<li><p>Hybride Adressierung</p>
+<ul>
+<li><p>Physische Adresse für einen Block□Logische Adresse für einen Datensatz in dem Block–Z.B. Schlüsselwert</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Logische-Adressen.png"><img alt="Logische-Adressen" src="../_images/Logische-Adressen.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="hybride-adressierung">
+<h2><span class="section-number">10.4. </span>Hybride Adressierung<a class="headerlink" href="#hybride-adressierung" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Idee: Physische Adressen zu einem Block. Block selbst speichert offsettable.</p></li>
+<li><p>Auffüllen des Blocks von hinten bei Datensätzen variabler Länge</p>
+<ul>
+<li><p>Anzahl der Datensätze nicht fix=&gt; Größe des headerskann offen gelassen werden</p></li>
+</ul>
+</li>
+<li><p>Vorteile der Flexibilität (auch ohne Mapping table)</p>
+<ul>
+<li><p>Innerhalb eines Blocks kann umorganisiert werden</p></li>
+<li><p>Datensatz kann sogar Blöcke wechseln–Speicherung der neuen Adresse in der offsettable</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Hybride-Adressierung.png"><img alt="Hybride-Adressierung" src="../_images/Hybride-Adressierung.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="columnar-storage">
+<h2><span class="section-number">10.5. </span>Columnar Storage<a class="headerlink" href="#columnar-storage" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Idee: Datensätze speichern Spalten statt Tupel</p></li>
+<li><p>Überspannen idRmehrere Blöcke</p></li>
+<li><p>Reihenfolge der Werte erlaubt Rekonstruktion</p>
+<ul>
+<li><p>Alternativ: Tupel-Idsmitspeichern</p></li>
+</ul>
+</li>
+<li><p>Beispiel: 2 Datensätze: (4,7,9) und (a,b,c)</p>
+<ul>
+<li><p>Alternativ: ((2,7),(1,4),(3,9)) und ((3,c),(1,a),(2,b))</p></li>
+<li><p>Vorteil: Umsortierung möglich-&gt;Komprimierung</p></li>
+</ul>
+</li>
+<li><p>Anwendungsfall: OLAP (Online analyticalprocessing)</p>
+<ul>
+<li><p>Die meisten Anfragen benötigen alle oder viele Werte einer Spalte</p></li>
+<li><p>Tupelrekonstruktionaufwändig</p></li>
+</ul>
+</li>
+<li><p>Diskussion Komprimierung</p>
+<ul>
+<li><p>Vorteil: Weniger Diskkosten; weniger I/O</p></li>
+<li><p>Nachteile: Funktioniert nur gut auf großen Datenmengen, aber effizienter Tupelzugrifferlaubt nur blockweise Komprimierung; Indizierung schwierig</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="daten-variabler-lange">
+<h1><span class="section-number">11. </span>Daten variabler Länge<a class="headerlink" href="#daten-variabler-lange" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="variable-lange">
+<h2><span class="section-number">11.1. </span>Variable Länge<a class="headerlink" href="#variable-lange" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Bisher: Alles hat feste Länge.</p></li>
+<li><p>Aber es gibt:</p>
+<ul>
+<li><p>Felder variabler Länge</p>
+<ul>
+<li><p>Adresse VARCHAR(255) wird selten voll ausgeschöpft</p></li>
+</ul>
+</li>
+<li><p>Datensätze variabler Länge</p>
+<ul>
+<li><p>Ergänzung von Datensätzen um Felder</p></li>
+<li><p>Schauspieler, die auch Regie führen</p></li>
+</ul>
+</li>
+<li><p>Riesige Felder</p>
+<ul>
+<li><p>GIF, MPEG–Passen nicht mehr auf einen Block</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="finden-von-feldern">
+<h2><span class="section-number">11.2. </span>Finden von Feldern<a class="headerlink" href="#finden-von-feldern" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Datensatz muss Informationen speichern, um jedes Feld aufzufinden.</p></li>
+<li><p>Idee: Felder fester Länge an den Anfang des Datensatzes</p></li>
+<li><p>Header speichert</p>
+<ul>
+<li><p>Länge des Datensatzes</p></li>
+<li><p>Pointer (offsets) zu den Anfängen aller Felder variabler Länge</p>
+<ul>
+<li><p>Pointer zum ersten kann sogar gespart werden.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Finden-von-Fehlern.png"><img alt="Finden-von-Fehlern" src="../_images/Finden-von-Fehlern.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="datensatze-variabler-lange">
+<h2><span class="section-number">11.3. </span>Datensätze variabler Länge<a class="headerlink" href="#datensatze-variabler-lange" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Anwendungsfall: Es ist unbekannt welche undwie viele Felder der Datensatz haben wird.</p></li>
+<li><p>Taggedfields(getaggteFelder)</p>
+<ul>
+<li><p>Feldname (Attributname)</p></li>
+<li><p>Feldtyp</p></li>
+<li><p>Feldlänge</p></li>
+<li><p>Feldwert</p></li>
+</ul>
+</li>
+<li><p>Nützlich bei</p>
+<ul>
+<li><p>Informationsintegration: Es ist noch unbekannt welche Felder von Quellen hinzukommen.</p></li>
+<li><p>Dünn besetzte Datensätze: Tausende Attribute, nur wenige haben Werte</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Datensätze-variabler-Länge.png"><img alt="Datensätze-variabler-Länge" src="../_images/Datensätze-variabler-Länge.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="anwendungsfalls-sparsedatabeispiel-linkedopen-data">
+<h2><span class="section-number">11.4. </span>Anwendungsfalls SparseDataBeispiel: LinkedOpen Data<a class="headerlink" href="#anwendungsfalls-sparsedatabeispiel-linkedopen-data" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/Linked-open-data.png"><img alt="Linked-open-data" src="../_images/Linked-open-data.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="microsoft-sql-server-sparse-columns">
+<h2><span class="section-number">11.5. </span>Microsoft SQL Server: SPARSE columns<a class="headerlink" href="#microsoft-sql-server-sparse-columns" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">DocumentStore</span><span class="p">(</span>
+    <span class="n">DocIDintPRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">Title</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">ProdSpecvarchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="n">SPARSE</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">ProdLocsmallintSPARSE</span> <span class="n">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Betrifft nur physische Ebene (wie Indizes)</p></li>
+<li><p>Benötigt für nicht-NULL Werte mehr Platz</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/SPARSE-columns.png"><img alt="SPARSE-columns" src="../_images/SPARSE-columns.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="zu-grosze-datensatze">
+<h2><span class="section-number">11.6. </span>Zu große Datensätze<a class="headerlink" href="#zu-grosze-datensatze" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Idee: Spannedrecordsüberspannen mehr als einen Block.</p></li>
+<li><p>Für übergroße Felder</p>
+<ul>
+<li><p>„Riesige“ Felder (Mega-oder Gigabyte) gleich</p></li>
+</ul>
+</li>
+<li><p>Für Datensatzgrößen, die viel Platz verschwenden</p>
+<ul>
+<li><p>Z.B. 51% eines Blocks =&gt; 49% verschwendet</p></li>
+</ul>
+</li>
+<li><p>Datensatzfragment</p>
+<ul>
+<li><p>Falls zu einem Datensatz mehr als ein Fragment gehört, ist er spanned.</p></li>
+</ul>
+</li>
+<li><p>Zusätzliche Informationen im Header</p>
+<ul>
+<li><p>Bit sagt ob Fragment oder nicht</p></li>
+<li><p>Bits sagen ob erstes oder letztes Fragment</p></li>
+<li><p>Zeiger zum nächsten und/oder vorigen Fragment–Doppelt verkettet Liste</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="blobs">
+<h2><span class="section-number">11.7. </span>BLOBs<a class="headerlink" href="#blobs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>BLOB = Binary Large Object</p></li>
+<li><p>Bilder/Grafiken: JPEG, GIF</p></li>
+<li><p>Audio: mp3, …</p></li>
+<li><p>Filme: MPEG, …</p></li>
+<li><p>Probleme</p>
+<ul>
+<li><p>Speicherung: Mehr als ein Block nötig–Sequenz von Blöcken/Zylindern</p></li>
+<li><p>Realtime: Lesegeschwindigkeit einer Disk nicht ausreichend =&gt; Verteilung auf mehrere Disks</p></li>
+</ul>
+</li>
+<li><p>Lesen</p>
+<ul>
+<li><p>Anweisung, einen (ganzen) Datensatz zu lesen, ist nicht mehr gültig</p></li>
+<li><p>Stattdessen: Kleiner Teil eines Datensatzes lesen</p></li>
+<li><p>Navigation innerhalb des BLOBs (z.B. „Sprung zur 45ten Minute“) =&gt; spezielle Indexstrukturen</p></li>
+</ul>
+</li>
+<li><p>CLOB = CharacterLarge Object</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="datensatzanderungen">
+<h1><span class="section-number">12. </span>Datensatzänderungen<a class="headerlink" href="#datensatzanderungen" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="einfugen-mit-platz">
+<h2><span class="section-number">12.1. </span>Einfügen mit Platz<a class="headerlink" href="#einfugen-mit-platz" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Einfacher Fall: Keine Ordnung verlangt</p>
+<ul>
+<li><p>Suche freien Platz auf einem Block (oder suche freien Block).</p></li>
+<li><p>Füge Datensatz ein.</p></li>
+</ul>
+</li>
+<li><p>Schwierigerer Fall: Ordnung (z.B. nach Primärschlüssel) ist verlangt.</p>
+<ul>
+<li><p>Suche entsprechenden Block</p></li>
+<li><p>Falls Platz frei ist, bewege Datensätze auf Block, so dass neuer Datensatz an entsprechende Stelle eingefügt werden kann.</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Einfügen-mit-Platz.png"><img alt="Einfügen-mit-Platz" src="../_images/Einfügen-mit-Platz.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="einfugen-ohne-platz">
+<h2><span class="section-number">12.2. </span>Einfügen ohne Platz<a class="headerlink" href="#einfugen-ohne-platz" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Variante 1: Suche Block in der Nähe</p>
+<ul>
+<li><p>Voriger oder nächste Block</p></li>
+<li><p>Bewege ersten oder letzen Datensatz zu jeweils neuem Block</p>
+<ul>
+<li><p>Weiterleitungsadresse in altem Block („Nachsendeauftrag“)</p></li>
+<li><p>Bewege gegebenenfalls Datensätze in beiden Blöcken hin und her.</p></li>
+</ul>
+</li>
+<li><p>Füge neuen Datensatz ein.</p></li>
+</ul>
+</li>
+<li><p>Variante 2: Erzeuge Overflow Block</p>
+<ul>
+<li><p>Designierter Overflow Block</p></li>
+<li><p>Adresse im headerdes ursprünglichen Blocks</p></li>
+<li><p>Overflow Block kann selbst wiederum einen Overflow Block haben.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="loschen">
+<h2><span class="section-number">12.3. </span>Löschen<a class="headerlink" href="#loschen" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Nach Löschen</p>
+<ul>
+<li><p>Datensätze im Block verschieben um freien Platz zu konsolidieren</p></li>
+<li><p>Oder: Im headereine Liste mit freien Plätzen verwalten</p></li>
+<li><p>Oder: Verkette Liste der freien Plätze</p></li>
+</ul>
+</li>
+<li><p>Reorganisation der Overflow Blocks möglich.</p></li>
+<li><p>Grabsteine (tombstones)</p>
+<ul>
+<li><p>Es könnte noch Pointerauf den zu löschenden Datensatz geben.</p></li>
+<li><p>Grabstein hinterlassen (3 Varianten)</p>
+<ul>
+<li><p>Null-Pointer im header</p></li>
+<li><p>Null-Pointer in mappingtable</p></li>
+<li><p>Grabstein am Anfang der Datensätze</p></li>
+</ul>
+</li>
+<li><p>Müssen (im Allgemeinen) ewig erhalten bleiben</p>
+<ul>
+<li><p>Bis Re-Organisation der Datenbank</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Löschen-meme.png"><img alt="Löschen-meme" src="../_images/Löschen-meme.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="update">
+<h2><span class="section-number">12.4. </span>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Bei fester Länge kein Problem</p></li>
+<li><p>Bei variabler Länge</p>
+<ul>
+<li><p>Gleiche Probleme wie beim Einfügen</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/update.png"><img alt="update" src="../_images/update.png" style="width: 500px;" /></a>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -390,11 +1153,9 @@ title="Print to PDF"
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../01/speicherung.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -403,28 +1164,24 @@ title="Print to PDF"
         </div>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Prof. Dr. Ziawasch Abedjan<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

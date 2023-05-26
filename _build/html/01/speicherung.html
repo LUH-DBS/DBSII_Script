@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1. Speicherung &#8212; Online-Skript Datenbanksysteme II</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,21 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -84,10 +71,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +91,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Datenbanksysteme II
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Datenbanksysteme II
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Speicherung
@@ -127,17 +112,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -145,209 +125,97 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/01/speicherung.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F01/speicherung.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/01/speicherung.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01/speicherung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F01/speicherung.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/01/speicherung.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#virtueller-speicher">
    1.1. Virtueller Speicher
@@ -540,11 +408,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Speicherung</h1>
@@ -753,17 +622,16 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="speicherung">
-<h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="speicherung">
+<h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this headline">¶</a></h1>
 <p>Physische Speicherstrukturen</p>
 <p>Zoom in die interne Ebene: Die 5-Schichten Architektur
 <a class="reference internal" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a></p>
 <p>Übersicht</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Disks</p></li>
 <li><p>Effiziente Diskoperationen</p>
@@ -784,8 +652,8 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Speicherhierarchie – Kapazit�
 Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/PatHelland-DEBS2022_2.png"><img alt="PatHelland-DEBS2022" src="../_images/PatHelland-DEBS2022_2.png" style="width: 500px;" /></a>
-<section id="virtueller-speicher">
-<h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this headline">#</a></h2>
+<div class="section" id="virtueller-speicher">
+<h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this headline">¶</a></h2>
 <p>Jede Anwendung verwaltet einen virtuellen Adressraum</p>
 <ul class="simple">
 <li><p>Kann größer als tatsächlich verfügbarer Hauptspeicher sein</p></li>
@@ -805,9 +673,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Datenbanken verwalten oft Positionen der Daten auf Festplatte selbst (O_DIRECT).</p></li>
 <li><p>Eigene Bufferpoolmanager</p></li>
 </ul>
-</section>
-<section id="sekundarspeicher-festplatten">
-<h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="sekundarspeicher-festplatten">
+<h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Nicht nur (magnetische) Festplatten; auch optische (read-only) Speicher</p></li>
 <li><p>Im Wesentlichen wahlfreier Zugriff (random access)</p>
@@ -826,9 +694,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="festplatten-puffer">
-<h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="festplatten-puffer">
+<h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Bufferpool Manager puffert Teile von Dateien</p>
 <ul>
@@ -845,9 +713,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="tertiarspeicher-magnetbander">
-<h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="tertiarspeicher-magnetbander">
+<h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Viele Terabyte (10^12 Bytes) Verkaufsdaten</p></li>
 <li><p>Viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten</p></li>
@@ -870,9 +738,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 500px;" /></a>
-</section>
-<section id="tertiarspeicher">
-<h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="tertiarspeicher">
+<h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Ad-hoc Speicherung auf Magnetbändern</p>
 <ul class="simple">
@@ -897,9 +765,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/Tertiärspeicher.png"><img alt="Tertiärspeicher" src="../_images/Tertiärspeicher.png" style="width: 500px;" /></a>
 </li>
 </ul>
-</section>
-<section id="moores-law-gordon-moore-1965">
-<h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="moores-law-gordon-moore-1965">
+<h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Exponentielles Wachstum vieler Parameter</p></li>
 <li><p>Verdopplung alle 18 Monate</p>
@@ -928,9 +796,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </li>
 </ul>
 <p>See also: <a class="reference external" href="http://www.computerhistory.org/timeline/memory-storage/">http://www.computerhistory.org/timeline/memory-storage/</a></p>
-</section>
-<section id="plattenkapazitat">
-<h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="plattenkapazitat">
+<h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/Plattenkapazität.png"><img alt="Plattenkapazität" src="../_images/Plattenkapazität.png" style="width: 500px;" /></a>
 <p><a class="reference external" href="http://en.wikipedia.org/wiki/Hard_disk_drive">http://en.wikipedia.org/wiki/Hard_disk_drive</a></p>
 <p>But: Access times are leveling</p>
@@ -939,18 +807,18 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <p>Average seek time trend</p>
 <a class="reference internal image-reference" href="../_images/Seek_times.png"><img alt="Seek_times" src="../_images/Seek_times.png" style="width: 500px;" /></a>
 <p><a class="reference external" href="http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm">http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm</a></p>
-</section>
-<section id="ssds">
-<h2><span class="section-number">1.8. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="ssds">
+<h2><span class="section-number">1.8. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Persistente Speicherung basierend auf Halbleitern</p></li>
 <li><p>Keine mechanische Bewegung/Rotation</p></li>
 <li><p>Hoher Grad an Parallelität</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/SSDs.png"><img alt="SSDs" src="../_images/SSDs.png" style="width: 500px;" /></a>
-</section>
-<section id="hdds-vs-ssds">
-<h2><span class="section-number">1.9. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="hdds-vs-ssds">
+<h2><span class="section-number">1.9. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this headline">¶</a></h2>
 <p>Vorteile von SSDs:</p>
 <ul class="simple">
 <li><p>Schnelles Hochfahren, da keine Drehung erforderlich.</p></li>
@@ -980,7 +848,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 <p><a class="reference external" href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html</a></p>
 <p>Übersicht</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Disks</p></li>
 <li><p>Effiziente Diskoperationen</p>
@@ -992,9 +860,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Diskausfälle</p></li>
 </ol>
 <a class="reference internal image-reference" href="../_images/Festplatten_Vergleich_Früher_Heute.png"><img alt="Festplatten_Vergleich_Früher_Heute" src="../_images/Festplatten_Vergleich_Früher_Heute.png" style="width: 500px;" /></a>
-</section>
-<section id="aufbau">
-<h2><span class="section-number">1.10. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="aufbau">
+<h2><span class="section-number">1.10. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Mehrere (5-10) gleichförmig rotierende Platten (z. B. 3.5” Durchmesser).</p></li>
 <li><p>Für jede Plattenoberfläche (10-20) ein Schreib-/Lese-Kopf.</p>
@@ -1033,9 +901,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </li>
 </ul>
 <p>hier: jede Spur hat gleiche Anzahl an Sektoren</p>
-</section>
-<section id="zone-bit-recording">
-<h2><span class="section-number">1.11. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="zone-bit-recording">
+<h2><span class="section-number">1.11. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Äußere Zylinder haben mehr Fläche.</p>
 <ul class="simple">
@@ -1047,9 +915,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <a class="reference internal image-reference" href="../_images/ZoneBitRecording.png"><img alt="ZoneBitRecording" src="../_images/ZoneBitRecording.png" style="width: 500px;" /></a>
 </li>
 </ul>
-</section>
-<section id="disk-controller">
-<h2><span class="section-number">1.12. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="disk-controller">
+<h2><span class="section-number">1.12. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Kontrolliert eine oder mehrere Disks.</p></li>
 <li><p>Kontrolliert Bewegung der Schreib-/Lese-Köpfe.</p>
@@ -1066,9 +934,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Überträgt Bits zwischen Disk und Hauptspeicher bzw. umgekehrt.</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/DiskController.png"><img alt="DiskController" src="../_images/DiskController.png" style="width: 500px;" /></a>
-</section>
-<section id="beispiel-megatron-747-disk">
-<h2><span class="section-number">1.13. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="beispiel-megatron-747-disk">
+<h2><span class="section-number">1.13. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Eigenschaften:</p>
 <ul>
@@ -1099,9 +967,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="disk-zugriffseigenschaften">
-<h2><span class="section-number">1.14. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="disk-zugriffseigenschaften">
+<h2><span class="section-number">1.14. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Voraussetzungen für Zugriff auf einen Block (lesend oder schreibend):</p>
 <ul>
@@ -1115,12 +983,12 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="latenzzeit">
-<h2><span class="section-number">1.15. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="latenzzeit">
+<h2><span class="section-number">1.15. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Latenzzeit ist Summe aus vier Komponenten:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Kommunikationszeit zwischen Prozessor und Disk Controller:</p>
 <ul>
 <li><p>Bruchteil einer Millisekunde (ignorieren)</p></li>
@@ -1147,9 +1015,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ol>
 </li>
 </ul>
-</section>
-<section id="schreiben-und-andern-von-blocken">
-<h2><span class="section-number">1.16. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="schreiben-und-andern-von-blocken">
+<h2><span class="section-number">1.16. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Schreiben von Blöcken:</p>
 <ul>
@@ -1160,7 +1028,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Ändern von Blöcken:</p>
 <ul>
 <li><p>Nicht direkt möglich</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Lesen des Blocks in Hauptspeicher</p></li>
 <li><p>Ändern der Daten</p></li>
 <li><p>Zurückschreiben auf Festplatte</p></li>
@@ -1172,9 +1040,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="id1">
-<h2><span class="section-number">1.17. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">1.17. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?</p>
 <p>Here’s the information about the time it takes to read a block with bullet points:</p>
 <ul class="simple">
@@ -1184,7 +1052,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <ul>
 <li><p>Start und Stopp zusammen: 1ms</p></li>
 <li><p>1ms pro 4000 Zylinder, die überbrückt werden</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Minimum (0 Zylinder): 0 ms</p></li>
 <li><p>1 Track: 1,00025 ms</p></li>
 <li><p>Maximum (65.536 Zylinder): 65536/4000 + 1 = 17,38 ms</p></li>
@@ -1205,10 +1073,10 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Maximale Zeit: Präsenzübung (25,84 ms)</p></li>
 <li><p>Durchschnittliche Zeit: selber forschen und nachrechnen (10,76 ms)</p></li>
 </ul>
-</section>
-<section id="ubersicht">
-<h2><span class="section-number">1.18. </span>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink to this headline">#</a></h2>
-<ol class="arabic simple">
+</div>
+<div class="section" id="ubersicht">
+<h2><span class="section-number">1.18. </span>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Disks</p></li>
 <li><p>Effiziente Diskoperationen</p>
@@ -1220,9 +1088,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Diskausfälle</p></li>
 </ol>
 <a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
-</section>
-<section id="algorithmen-vs-dbms">
-<h2><span class="section-number">1.19. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="algorithmen-vs-dbms">
+<h2><span class="section-number">1.19. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Annahme bei Algorithmen:</p>
 <ul>
@@ -1256,9 +1124,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="i-o-modell">
-<h2><span class="section-number">1.20. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="i-o-modell">
+<h2><span class="section-number">1.20. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Beispiel: Einfaches DBMS</p>
 <ul>
@@ -1282,9 +1150,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als Kosten der Operationen auf den Daten im Hauptspeicher.</p></li>
 </ul>
 <p>-&gt; Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollten minimiert werden.</p>
-</section>
-<section id="beispiel-fur-das-i-o-modell-1-indizes">
-<h2><span class="section-number">1.21. </span>Beispiel für das I/O-Modell (1): Indizes<a class="headerlink" href="#beispiel-fur-das-i-o-modell-1-indizes" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="beispiel-fur-das-i-o-modell-1-indizes">
+<h2><span class="section-number">1.21. </span>Beispiel für das I/O-Modell (1): Indizes<a class="headerlink" href="#beispiel-fur-das-i-o-modell-1-indizes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Relation R</p></li>
 <li><p>Anfrage sucht nach dem Tupel t mit Schlüsselwert k</p></li>
@@ -1304,9 +1172,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Suche nach k auf dem Block kostet höchstens Tausende Prozessoranweisungen – selbst mit linearer Suche</p></li>
 <li><p>Aber: Zusätzliche Informationen in Variante B nehmen Platz ein (höhere I/O-Kosten).</p></li>
 </ul>
-</section>
-<section id="beispiel-fur-das-i-o-modell-2-sortierung">
-<h2><span class="section-number">1.22. </span>Beispiel für das I/O-Modell (2): Sortierung<a class="headerlink" href="#beispiel-fur-das-i-o-modell-2-sortierung" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="beispiel-fur-das-i-o-modell-2-sortierung">
+<h2><span class="section-number">1.22. </span>Beispiel für das I/O-Modell (2): Sortierung<a class="headerlink" href="#beispiel-fur-das-i-o-modell-2-sortierung" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Relation R</p>
 <ul>
@@ -1338,9 +1206,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="merge-sort">
-<h2><span class="section-number">1.23. </span>Merge Sort<a class="headerlink" href="#merge-sort" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="merge-sort">
+<h2><span class="section-number">1.23. </span>Merge Sort<a class="headerlink" href="#merge-sort" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Hauptspeicher-Algorithmus (Divide-and-Conquer Algorithmus)</p></li>
 <li><p>Idee: Merge l ≥ 2 sortierte Listen zu einer größeren sortierten Liste.</p>
@@ -1430,9 +1298,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="two-phase-multiway-merge-sort-tpmms">
-<h2><span class="section-number">1.24. </span>Two-Phase, Multiway Merge-Sort (TPMMS)<a class="headerlink" href="#two-phase-multiway-merge-sort-tpmms" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="two-phase-multiway-merge-sort-tpmms">
+<h2><span class="section-number">1.24. </span>Two-Phase, Multiway Merge-Sort (TPMMS)<a class="headerlink" href="#two-phase-multiway-merge-sort-tpmms" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>TPMMS wird in vielen DBMS eingesetzt.</p></li>
 <li><p>Besteht aus zwei Phasen:</p>
@@ -1453,14 +1321,14 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="tpmms-phase-1">
-<h2><span class="section-number">1.25. </span>TPMMS - Phase 1<a class="headerlink" href="#tpmms-phase-1" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="tpmms-phase-1">
+<h2><span class="section-number">1.25. </span>TPMMS - Phase 1<a class="headerlink" href="#tpmms-phase-1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Rekursionsanfang nun nicht nur mit einem oder zwei Elementen!</p></li>
 <li><p>Sortierung der Teillisten z.B. mit Quicksort (worst-case, sehr selten O(n^2))</p></li>
 </ul>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Fülle den verfügbaren Hauptspeicher mit Diskblöcken aus der Originalrelation.</p></li>
 <li><p>Sortiere die Tupel, die sich im Hauptspeicher befinden.</p></li>
 <li><p>Schreibe die sortierten Tupel auf neue Blöcke der Disk.</p>
@@ -1489,9 +1357,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="tpmms-phase-2">
-<h2><span class="section-number">1.26. </span>TPMMS - Phase 2<a class="headerlink" href="#tpmms-phase-2" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="tpmms-phase-2">
+<h2><span class="section-number">1.26. </span>TPMMS - Phase 2<a class="headerlink" href="#tpmms-phase-2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Naive Idee: paarweises Mergen von k sortierten Teillisten</p>
 <ul>
@@ -1502,7 +1370,7 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </li>
 <li><p>Bessere Idee: Lesen nur den ersten Block jeder Teilliste</p></li>
 </ul>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Suche den kleinsten Schlüssel unter den ersten Tupeln aller Blöcke.</p>
 <ul class="simple">
 <li><p>Lineare Suche (lin.), Priority Queue (log.)</p></li>
@@ -1520,9 +1388,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <ul class="simple">
 <li><p>Laufzeit für TPMMS insgesamt: 74 Minuten</p></li>
 </ul>
-</section>
-<section id="bemerkungen-zur-blockgrosze">
-<h2><span class="section-number">1.27. </span>Bemerkungen zur Blockgröße<a class="headerlink" href="#bemerkungen-zur-blockgrosze" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="bemerkungen-zur-blockgrosze">
+<h2><span class="section-number">1.27. </span>Bemerkungen zur Blockgröße<a class="headerlink" href="#bemerkungen-zur-blockgrosze" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Beobachtung</p>
 <ul>
@@ -1553,9 +1421,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="tpmms-grenzen">
-<h2><span class="section-number">1.28. </span>TPMMS – Grenzen<a class="headerlink" href="#tpmms-grenzen" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="tpmms-grenzen">
+<h2><span class="section-number">1.28. </span>TPMMS – Grenzen<a class="headerlink" href="#tpmms-grenzen" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Notation:</p>
 <ul>
@@ -1595,9 +1463,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 <li><p>Bezogen auf unser Beispiel: maximale Eingabegröße von 27 Billionen Tupeln (ca. 4.3 Petabytes).</p></li>
 <li><p>Globale Betrachtung: Die zweite Phase ist die zusätzliche Phase.</p></li>
 </ul>
-</section>
-<section id="zugriffsbeschleunigung">
-<h2><span class="section-number">1.29. </span>Zugriffsbeschleunigung<a class="headerlink" href="#zugriffsbeschleunigung" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="zugriffsbeschleunigung">
+<h2><span class="section-number">1.29. </span>Zugriffsbeschleunigung<a class="headerlink" href="#zugriffsbeschleunigung" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Annahmen bisher:</p>
 <ul>
@@ -1624,9 +1492,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="daten-gemasz-zylinder-organisieren">
-<h2><span class="section-number">1.30. </span>Daten gemäß Zylinder organisieren<a class="headerlink" href="#daten-gemasz-zylinder-organisieren" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="daten-gemasz-zylinder-organisieren">
+<h2><span class="section-number">1.30. </span>Daten gemäß Zylinder organisieren<a class="headerlink" href="#daten-gemasz-zylinder-organisieren" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Seek time macht ca. 50% der durchschnittlichen Blockzugriffszeit aus.</p>
 <ul>
@@ -1650,9 +1518,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="zylinderorganisation-beispiel">
-<h2><span class="section-number">1.31. </span>Zylinderorganisation – Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="zylinderorganisation-beispiel">
+<h2><span class="section-number">1.31. </span>Zylinderorganisation – Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Megatron 747-Festplatte:</p>
 <ul>
@@ -1697,9 +1565,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="mehrere-disks">
-<h2><span class="section-number">1.32. </span>Mehrere Disks<a class="headerlink" href="#mehrere-disks" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="mehrere-disks">
+<h2><span class="section-number">1.32. </span>Mehrere Disks<a class="headerlink" href="#mehrere-disks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Problem: S-/L-Köpfe einer Festplatte bewegen sich stets gemeinsam</p></li>
 <li><p>Lösung: nutze mehrere Festplatten (mit unabhängigen Köpfen)</p>
@@ -1762,9 +1630,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="spiegelung">
-<h2><span class="section-number">1.33. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="spiegelung">
+<h2><span class="section-number">1.33. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Idee: Zwei oder mehr Festplatten halten identische Kopien</p>
 <ul>
@@ -1791,9 +1659,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="disk-scheduling">
-<h2><span class="section-number">1.34. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="disk-scheduling">
+<h2><span class="section-number">1.34. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Idee: Disk-Controller entscheidet, welche Zugriffsanweisungen zuerst ausgeführt werden.</p>
 <ul>
@@ -1819,13 +1687,13 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="first-first-first-servce-vs-elevator-algorithmus">
-<h2><span class="section-number">1.35. </span>First-First-First-Servce vs. Elevator Algorithmus<a class="headerlink" href="#first-first-first-servce-vs-elevator-algorithmus" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="first-first-first-servce-vs-elevator-algorithmus">
+<h2><span class="section-number">1.35. </span>First-First-First-Servce vs. Elevator Algorithmus<a class="headerlink" href="#first-first-first-servce-vs-elevator-algorithmus" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/FFFS-vs-Elevator-Algo.png"><img alt="FFFS-vs-Elevator-Algo" src="../_images/FFFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
-</section>
-<section id="elevator-algorithmus">
-<h2><span class="section-number">1.36. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="elevator-algorithmus">
+<h2><span class="section-number">1.36. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Verbesserung steigt mit durchschnittlicher Anzahl von wartenden Anweisungen.</p>
 <ul>
@@ -1850,9 +1718,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="prefetching">
-<h2><span class="section-number">1.37. </span>Prefetching<a class="headerlink" href="#prefetching" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="prefetching">
+<h2><span class="section-number">1.37. </span>Prefetching<a class="headerlink" href="#prefetching" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Idee: Wenn man voraussagen kann, welche Blöcke in naher Zukunft gebraucht werden, kann man sie früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</p></li>
 <li><p>TPMMS, Phase 2, Lesen: 16 Blöcke für die 16 Teillisten reserviert</p>
@@ -1884,9 +1752,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-<section id="zusammenfassung">
-<h2><span class="section-number">1.38. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="zusammenfassung">
+<h2><span class="section-number">1.38. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Speicherhierarchie</p></li>
 <li><p>Aufbau einer Festplatte</p>
@@ -1921,8 +1789,8 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 </ul>
 </li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1946,11 +1814,9 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1966,28 +1832,24 @@ Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Pat Helland, DEBS 2022</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Prof. Dr. Ziawasch Abedjan<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
