@@ -6,3 +6,5 @@ options:
 sections:  
  - file: 01/speicherung 
  - file: 02/repraesentation
+ - file: 03/indizes
+
