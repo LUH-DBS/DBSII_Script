@@ -479,43 +479,19 @@ Datenbankensysteme können Begriffe wie ‘O_DIRECT’ verwenden, um doch selbst
 </section>
 <section id="sekundarspeicher-festplatten">
 <h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Nicht nur (magnetische) Festplatten; auch optische (read-only) Speicher</p></li>
-<li><p>Im Wesentlichen wahlfreier Zugriff (random access)</p>
-<ul>
-<li><p>Zugriff auf jedes Datum kostet gleich viel</p></li>
-<li><p>Aber: Erst einmal hinkommen!</p></li>
-</ul>
-</li>
-<li><p>HDDs halten Daten aus Cache / Seiten des virtuellen Speichers von Anwendungsprogrammen</p></li>
-<li><p>HDDs halten Daten aus Dateisystem</p></li>
-<li><p>Operationen</p>
-<ul>
-<li><p>Disk-read (Kopieren eines Blocks in Hauptspeicher)</p></li>
-<li><p>Disk-write (Kopieren eines Blocks aus dem Hauptspeicher)</p></li>
-<li><p>Beides: Disk-I/O</p></li>
-</ul>
-</li>
-</ul>
+<p>Unter Sekundärspeicher fallen nicht nur (magnetische) Festplattens, sondern auch optische (read-only) Speicher.
+Im Wesentlichen gibt es auf Sekundärspeicher wahlfreien Zugriff (random access). Dabei kostet der Zugriff auf jedes Datum gleich viel, aber dafür muss man dort erst einmal hinkommen! <br>
+HDDs halten Daten aus Cache bzw. die Seiten des virtuellen Speichers von Anwendungsprogrammen. Außerdem halten sie Daten aus Dateisystemen. <br>
+Es gibt zwei Operationen auf Festplatten. Zum Einem Disk-read. Darunter versteht man das Kopieren eines Blocks in den Hauptspeicher. Zum Anderen Disk-write, dem Kopieren eines Blocks aus dem Hauptspeicher auf die Festplatte. Beides gilt jeweils als eine Disk-I/O-Operation.</p>
 </section>
 <section id="festplatten-puffer">
 <h2><span class="section-number">1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Bufferpool Manager puffert Teile von Dateien</p>
-<ul>
-<li><p>In Blockgröße (z.B. 4 KB)
-<a class="reference internal" href="../_images/Festplatten-Puffer.png"><img alt="Festplatten-Puffer" src="../_images/Festplatten-Puffer.png" style="width: 500px;" /></a></p></li>
-</ul>
-</li>
-<li><p>DBMS verwaltet Positionen der Blöcke innerhalb der Datei selbst!</p></li>
-<li><p>Dauer für Schreiben oder Lesen eines Blocks: 10 - 30 ms</p>
-<ul>
-<li><p>In dieser Zeit viele Millionen Prozessoranweisungen ausführbar</p></li>
-<li><p>I/O-Zeit dominiert Gesamtkosten</p></li>
-<li><p>Deshalb am besten: Block sollte bereits im Hauptspeicher sein!</p></li>
-</ul>
-</li>
-</ul>
+<p>Ein Bufferpool-Manager puffert Teile von Dateien. In diesem Beispiel mit einer  Blockgröße von 4 KB. Dabei werden immer 4KB in den Pool geladen. Dieser Block kann dann geschrieben oder auch verworfen werden.</p>
+<a class="reference internal image-reference" href="../_images/Festplatten-Puffer.png"><img alt="Festplatten-Puffer" src="../_images/Festplatten-Puffer.png" style="width: 500px;" /></a>
+<p>Das DBMS verwaltet die Positionen der Blöcke innerhalb der Datei selbst! Dafür ist nicht mehr das Betriebssystem zuständig. <br>
+Die Dauer für das Schreiben oder Lesen eines Blocks beträgt 10 bis 30 ms. In dieser kurzen Zeitspanne können viele Millionen Prozessoranweisungen ausgeführt werden. Somit dominiert das Lesen und Schreiben, also die I/O-Zeit, die Gesamtkosten. Die Blöcke sollten daher am besten im Hauptspeicher liegen. Das ist nicht immer möglich, da der Hauptspeicher meist zu klein ist.
+<br><br>
+Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hier aber immer ungefähr im gleichen Skalierungsraum und sollen dabei helfen ein Gefühl für die Zugriffszeiten zu vermitteln.</p>
 </section>
 <section id="tertiarspeicher-magnetbander">
 <h2><span class="section-number">1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this heading">#</a></h2>
