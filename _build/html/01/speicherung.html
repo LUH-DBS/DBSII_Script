@@ -449,46 +449,32 @@ document.write(`
 <p>Physische Speicherstrukturen</p>
 <p>Zoom in die interne Ebene: Die 5-Schichten Architektur
 <a class="reference internal" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a></p>
-<p>Übersicht</p>
-<ol class="arabic simple">
-<li><p>Speicherhierarchie</p></li>
-<li><p>Disks</p></li>
-<li><p>Effiziente Diskoperationen</p>
-<ul class="simple">
-<li><p>TPMMS</p></li>
-</ul>
-</li>
-<li><p>Zugriffsbeschleunigung</p></li>
-<li><p>Diskausfälle</p></li>
-</ol>
+<p>Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen.</p>
+<p>Speicherhierarchie</p>
 <a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
+<p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten.</p>
 <p>Speicherhierachie - Kosten</p>
 <a class="reference internal image-reference" href="../_images/Speicherhierachie-Kosten.png"><img alt="Speicherhierachie-Kosten" src="../_images/Speicherhierachie-Kosten.png" style="width: 500px;" /></a>
+<p>Archivspeicher sind sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen.</p>
 <p>Speicherhierarchie – Zugriffszeiten</p>
 <img src="pictures/Speicherhierachie-Zugriffszeiten.png" alt="Speicherhierachie-Zugriffszeiten" width="500" style="background-color: white;"/>
-Zahlen aus dem Foliensatz von Viktor Leis 2019<p>Speicherhierarchie – Kapazitäten</p>
+~ Zahlen aus dem Foliensatz von Viktor Leis 2019
+<br>
+Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. 
+<p>Speicherhierarchie – Kapazitäten</p>
 <img src="pictures/Speicherhierachie-Kapazitäten.png" alt="Speicherhierachie-Kapazitäten" width="500" style="background-color: white;"/>
-Zahlen aus dem Foliensatz von Viktor Leis 2019<section id="virtueller-speicher">
+~ Zahlen aus dem Foliensatz von Viktor Leis 2019
+<br>
+In Bezug auf die Kapazität betrachtet, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung. <section id="virtueller-speicher">
 <h2><span class="section-number">1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this heading">#</a></h2>
-<p>Jede Anwendung verwaltet einen virtuellen Adressraum</p>
-<ul class="simple">
-<li><p>Kann größer als tatsächlich verfügbarer Hauptspeicher sein</p></li>
-<li><p>32-bit Adressraum -&gt; 2^32 unterschiedliche Adressen darstellbar</p>
-<ul>
-<li><p>Jedes Byte hat eigene Adresse = max. Hauptspeichergröße 4GB</p></li>
-</ul>
-</li>
-<li><p>64-bit Adressraum -&gt; max. 16 Exabyte</p></li>
-<li><p>Aber: meist weniger Hauptspeicher vorhanden</p></li>
-<li><p>Abhilfe: Daten werden auf Disk ausgelagert</p>
-<ul>
-<li><p>Lesen und Schreiben von ganzen Blöcken zwischen Hauptspeicher und Festplatte (Blockgröße 4 – 56 KB) -&gt; Seiten des virtuellen Speichers</p></li>
-<li><p>Verwaltet durch Betriebssystem</p></li>
-</ul>
-</li>
-<li><p>Datenbanken verwalten oft Positionen der Daten auf Festplatte selbst (O_DIRECT).</p></li>
-<li><p>Eigene Bufferpoolmanager</p></li>
-</ul>
+<p>Jede Anwendung verwaltet einen virtuellen Adressraum. Dieser kann größer als der tatsächlich verfügbare Hauptspeicher sein.
+Mit einem 32-bit Adressraum sind 2^32 unterschiedliche Adressen darstellbar.
+Jedes Byte hat dabei eine eigene Adresse. Dadurch lässt sich maximal eine Hauptspeichergröße von 4GB addressieren.<br />
+Heutzutage ist der 64-bit Adressraum der Standard. Damit lassen sich maximal 16 Exabyte addressieren. Dies ist deutlich mehr als ein gewöhlicher Computer/Laptop mit 1 oder 2 TB Speicher. Eine 64-bit Addressierung bietet somit noch deutlich mehr Potenzial. <br>
+Meistens ist aber deutlich weniger Hauptspeicher als Speicher auf der Festplatte vorhanden. Zur Abhilfe werden die Daten auf eine Disk ausgelagert.
+Dazu müssen ganze Blöcke (Blockgröße zwischen 4 bis 56 KB) zwischen Hauptspeicher und Festplatte gelesen und geschrieben werden (Seiten des virtuellen Speichers). Es werden nicht einzelne ASCII-Zeichen, sondern ganze Blöcke, die beispielsweise mehrere ASCII-Zeichen enthalten, gelesen. Die Transferzeiten ändern sich nämlich kaum, wenn Blöcke anstelle von einzelnen Zeichen gelesen und geschreiben werden. Es können nicht beliebig viele Zeichen in einem Block sein. Irgendwann ist auch das zu viel. <br>
+Die Zugriffe werden durch ein Betriebssystem verwaltet und eingeschränkt.
+Datenbankensysteme können Begriffe wie ‘O_DIRECT’ verwenden, um doch selbst die Positionen der Daten auf den Festplatten zu verwalten und eigene Bufferpoolmanager zu verwenden. Ein Betriebssystem hat beispielsweise mehrere Anwendungen für die es den Hauptspeicher verwalten muss. Daher kann es sein, dass das Betriebssystem eine Anwendung vorzieht, bevor es die Daten aus der Datenbank bearbeitet.</p>
 </section>
 <section id="sekundarspeicher-festplatten">
 <h2><span class="section-number">1.2. </span>Sekundärspeicher: Festplatten<a class="headerlink" href="#sekundarspeicher-festplatten" title="Permalink to this heading">#</a></h2>
