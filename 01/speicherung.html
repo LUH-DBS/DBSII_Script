@@ -451,18 +451,18 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a>
 <p>Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen.</p>
 <p>Speicherhierarchie</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 300px;" /></a>
 <p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten.</p>
 <p>Speicherhierachie - Kosten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kosten.png"><img alt="Speicherhierachie-Kosten" src="../_images/Speicherhierachie-Kosten.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kosten.png"><img alt="Speicherhierachie-Kosten" src="../_images/Speicherhierachie-Kosten.png" style="width: 300px;" /></a>
 <p>Archivspeicher sind sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen.</p>
 <p>Speicherhierarchie – Zugriffszeiten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Zugriffszeiten.png"><img alt="Speicherhierachie-Zugriffszeiten" src="../_images/Speicherhierachie-Zugriffszeiten.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie-Zugriffszeiten.png"><img alt="Speicherhierachie-Zugriffszeiten" src="../_images/Speicherhierachie-Zugriffszeiten.png" style="width: 300px;" /></a>
 <p>~ Zahlen aus dem Foliensatz von Viktor Leis 2019
 <br><br>
 Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen.</p>
 <p>Speicherhierarchie – Kapazitäten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kapazitäten.png"><img alt="Speicherhierachie-Kapazitäten" src="../_images/Speicherhierachie-Kapazitäten.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kapazitäten.png"><img alt="Speicherhierachie-Kapazitäten" src="../_images/Speicherhierachie-Kapazitäten.png" style="width: 300px;" /></a>
 <p>~ Zahlen aus dem Foliensatz von Viktor Leis 2019
 <br><br>
 In Bezug auf die Kapazität betrachtet, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung.</p>
@@ -498,19 +498,19 @@ Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hi
 <p>Tertiärspeicher kann viele Terabyte (10^12 Bytes) Verkaufsdaten, sowie viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten speichern. Für diesen Einsatzbereich wären Festplatten ungeeignet. Sie sind zu teuer aufgrund von Wartung und Strom. <br>
 Im Vergleich zum Sekundärspeicher sind zwar die I/O-Zeiten wesentlich höher, aber dafür steigt auch die Kapazität. Ein weiterer Vorteil sind die geringeren Kosten pro Byte gegenüber den Festplatten. <br>
 Auf Tertiärspeicher gibt es keinen wahlfreien, sondern zufälligen Zugriff (random access). Die Zugriffszeiten hängen dabei stark von der Position des jeweiligen Datensatzes (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes) ab.</p>
-<a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 300px;" /></a>
 </section>
 <section id="tertiarspeicher">
 <h2><span class="section-number">1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this heading">#</a></h2>
 <p>Ad-hoc können Daten auf Magnetbändern/Magnetbandspulen und Kasseten gespeichert werden. Die Speichermedien werden oft von Menschenhand in die jeweiligen Regale gelegt und geordnet. Daher der Tertiärspeicher in dem Fall gut beschriftet werden. Durch Magnetbandroboter (Silo) kann dieser Prozess ersetzt bzw. optimiert werden. Der Roboter bedient anstelle des Menschen die Magnetbänder (Kassetten). Der Einsatz von Robotern beschleunigt das Verfahren um das zehnfache. <br>
 Die Idee ist ähnlich zu CDs, DVDs und Juke-Boxes. Ein Roboterarm extrahiert das jeweilige Medium (CD oder DVD). Der Tertiärspeicher hat wieder eine hohe Lebensdauer von ca. 30 Jahren. Somit ist es wahrscheinlicher, dass kein Lesegerät mehr existiert, als dass der Tertiärspeicher nicht mehr funktioniert.</p>
-<a class="reference internal image-reference" href="../_images/Tertiärspeicher.png"><img alt="Tertiärspeicher" src="../_images/Tertiärspeicher.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Tertiärspeicher.png"><img alt="Tertiärspeicher" src="../_images/Tertiärspeicher.png" style="width: 300px;" /></a>
 </section>
 <section id="moores-law-gordon-moore-1965">
 <h2><span class="section-number">1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p>Exponentielles Wachstum vieler Parameter</p></li>
-<li><p>Verdopplung alle 18 Monate</p>
+<a class="reference internal image-reference" href="../_images/moores-law_1.png"><img alt="moores-law_1" src="../_images/moores-law_1.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/moores-law_2.png"><img alt="moores-law_2" src="../_images/moores-law_2.png" style="width: 300px;" /></a>
+<p>Moore’s Law beschreibt das exponentielle Wachstum vieler Parameter. Zu einer Verdopplung kommt es alle 18 Monate. Es können sich beispielsweise die folgenden Parameter verdoppeln bzw. halbieren:</p>
 <ul class="simple">
 <li><p>Prozessorgeschwindigkeit (# instr. per sec.)</p></li>
 <li><p>Hauptspeicherkosten pro Bit</p></li>
@@ -518,33 +518,20 @@ Die Idee ist ähnlich zu CDs, DVDs und Juke-Boxes. Ein Roboterarm extrahiert das
 <li><p>Diskkosten pro Bit (halbiert)</p></li>
 <li><p>Kapazität der größten Disks</p></li>
 </ul>
-</li>
-<li><p>Aber: Sehr langsames Wachstum von</p>
-<ul class="simple">
-<li><p>Zugriffsgeschwindigkeit im Hauptspeicher</p></li>
-<li><p>Rotationsgeschwindigkeit von Festplatten</p></li>
-</ul>
-</li>
-<li><p>Folge: Latenz-Anteil wächst</p>
-<ul class="simple">
-<li><p>Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit)</p></li>
-</ul>
-<a class="reference internal image-reference" href="../_images/moores-law_1.png"><img alt="moores-law_1" src="../_images/moores-law_1.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/moores-law_2.png"><img alt="moores-law_2" src="../_images/moores-law_2.png" style="width: 500px;" /></a>
+<p>Dahingegen kommt es aber zu einer sehr langsamen Verbesserung bei der Zugriffsgeschwindigkeit im Hauptspeicher und der Rotationsgeschwindigkeit von Festplatten, da es physikalisch deutlich schwerer und teurer ist zu realisieren. Als Folge daraus wächst der Latenz-Anteil. Die Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit).</p>
 <a class="reference internal image-reference" href="../_images/moores-law_3.png"><img alt="moores-law_3" src="../_images/moores-law_3.png" style="width: 500px;" /></a>
+<p>In dem Diagramm ist die Anzahl der Transistoren in Abhängigkeit der Zeit dargestellt worden.</p>
 <a class="reference internal image-reference" href="../_images/moores-law_4.png"><img alt="moores-law_4" src="../_images/moores-law_4.png" style="width: 500px;" /></a>
-</li>
-</ul>
 <p>See also: <a class="reference external" href="http://www.computerhistory.org/timeline/memory-storage/">http://www.computerhistory.org/timeline/memory-storage/</a></p>
 </section>
 <section id="plattenkapazitat">
 <h2><span class="section-number">1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Plattenkapazität.png"><img alt="Plattenkapazität" src="../_images/Plattenkapazität.png" style="width: 500px;" /></a>
 <p><a class="reference external" href="http://en.wikipedia.org/wiki/Hard_disk_drive">http://en.wikipedia.org/wiki/Hard_disk_drive</a></p>
-<p>But: Access times are leveling</p>
-<p>Maximum sustained bandwidth trend</p>
+<p>Wie man aus diesem Diagramm entnehmen kann, wächst die Plattenkapazität exponentiell. <br>
+Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der Trend zur maximal anhaltenden Bandbreite gezeigt.</p>
 <a class="reference internal image-reference" href="../_images/Access_times.png"><img alt="Access_times" src="../_images/Access_times.png" style="width: 500px;" /></a>
-<p>Average seek time trend</p>
+<p>Auch die Suchzeiten halbieren sich immer seltener und daher sieht der Trend wie folgt aus:</p>
 <a class="reference internal image-reference" href="../_images/Seek_times.png"><img alt="Seek_times" src="../_images/Seek_times.png" style="width: 500px;" /></a>
 <p><a class="reference external" href="http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm">http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm</a></p>
 </section>
