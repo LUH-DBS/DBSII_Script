@@ -1,0 +1,2051 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>13. Indizes &#8212; Online-Skript Datenbanksysteme II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '13/indizes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. Anfrageausführung" href="../14/anfrageausfuehrung.html" />
+    <link rel="prev" title="2. Repräsentation" href="../02/repraesentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Datenbanksysteme II
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Indizes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14/anfrageausfuehrung.html">14. Anfrageausführung</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F13/indizes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/13/indizes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Indizes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">13.1. Motivation: Platzierung der Tupel in Blöcke</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">13.2. Indizes auf sequenziellen Dateien</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfachste-form-eines-index">13.2.1. Einfachste Form eines Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenzielle-dateien">13.2.2. Sequenzielle Dateien</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dichtbesetzte-indizes">13.2.3. Dichtbesetzte Indizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">13.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dunnbesetzte-indizes">13.2.4. Dünnbesetzte Indizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">13.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index">13.2.5. Mehrstufiger Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">13.2.5.1. Mehrstufiger Index Beispiel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">13.2.6. Indizes für Nicht-eindeutige Suchschlüssel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anderungsoperationen">13.2.7. Änderungsoperationen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">13.3. Sekundärindizes auf nichtsequenziellen Dateien</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">13.3.1. Motivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">13.3.2. Aufbau von Sekundärindizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">13.3.3. Anwedungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">13.3.4. Indirektion für Sekundärindizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">13.3.5. Invertierte Indizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">13.3.6. B-Bäume</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">13.3.6.1. Allgemein</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">13.3.6.2. Struktur</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">13.3.6.3. Einfügen in B-Bäume – Beispiel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hier-b-baum">13.3.6.4. Hier B+ Baum**</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rechenbeispiele">13.3.6.5. Rechenbeispiele</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-definition">13.3.6.6. Alternative Definition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-blattknoten">13.3.6.7. Beispiel Blattknoten</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-innerer-knoten">13.3.6.8. Beispiel innerer Knoten</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-b-baum">13.3.6.9. Beispiel B-Baum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendungen-von-b-baumen">13.3.6.10. Anwendungen von B-Bäumen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">13.3.6.11. B-Bäume auf nicht-Primärschlüsseln</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-suche">13.3.7. B-Bäume Suche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.3.7.1. Allgemein</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">13.3.7.2. Beispiel Suche im B-Baum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bereichsanfragen-range-queries">13.3.7.3. Bereichsanfragen (range queries)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-updates">13.3.8. B-Bäume Updates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume">13.3.8.1. Einfügen in B-Bäume</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loschen-aus-b-baumen">13.3.8.2. Löschen aus B-Bäumen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-von-b-baumen">13.3.9. Effizienz von B-Bäumen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-loading">13.3.9.1. Bulk-loading</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">13.3.10. B-Baum Varianten: B-Baum (ohne „+“)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtabellen">13.3.11. Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemeine-hash-tabellen">13.3.11.1. Allgemeine Hash-Tabellen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau-consistent-hashing">13.3.11.2. Vorschau: Consistent Hashing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">13.3.11.3. Effizienz statischer Hashtabellen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erweiterbare-hashtabellen">13.3.12. Erweiterbare Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">13.3.12.1. Einfügen in erweiterbare Hashtabellen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">13.3.12.2. Analyse erweiterbarer Hashtabellen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen">13.3.13. Lineare Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">13.3.13.1. Lineare Hashtabellen – Einfügen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vs-b-baum">13.3.13.2. Hashing vs. B-Baum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-zeichner">13.4. B-Baum-Zeichner</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="indizes">
+<h1><span class="section-number">13. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this heading">#</a></h1>
+<section id="motivation-platzierung-der-tupel-in-blocke">
+<h2><span class="section-number">13.1. </span>Motivation: Platzierung der Tupel in Blöcke<a class="headerlink" href="#motivation-platzierung-der-tupel-in-blocke" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Naiv: Beliebig verteilen</p>
+<ul>
+<li><p>Aber: SELECT * FROM R</p></li>
+<li><p>Jeden Block untersuchen</p></li>
+</ul>
+</li>
+<li><p>Besser: Tupel einer Relation zusammenhängend speichern</p>
+<ul>
+<li><p>Aber: SELECT * FROM R WHERE a=10</p></li>
+<li><p>Alle Datensätze betrachten</p></li>
+</ul>
+</li>
+<li><p>Noch besser: Index</p>
+<ul>
+<li><p>Input: Eigenschaften von Datensätzen (z.B: Feldwert)</p></li>
+<li><p>„Suchschlüssel“ (Primärschlüssel, Sekundärschlüssel, Sortierschlüssel, Suchschlüssel)</p></li>
+<li><p>Schneller Output: Die entsprechenden Tupel</p></li>
+<li><p>Nur wenige Datensätze werden betrachtet</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="indizes-auf-sequenziellen-dateien">
+<h2><span class="section-number">13.2. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this heading">#</a></h2>
+<section id="einfachste-form-eines-index">
+<h3><span class="section-number">13.2.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gegeben sortierte Datei (data file)</p>
+<ul>
+<li><p>Sequenzielle Datei</p></li>
+</ul>
+</li>
+<li><p>Indexdatei enthält Schlüssel-Pointer Paare</p>
+<ul>
+<li><p>Schlüsselwert K ist mit einem Pointer verbunden</p></li>
+<li><p>Pointer zeigt auf Datensatz, der den Schlüsselwert K hat</p></li>
+</ul>
+</li>
+<li><p>Dichtbesetzter Index</p>
+<ul>
+<li><p>Ein Eintrag im Index für jeden Datensatz</p></li>
+</ul>
+</li>
+<li><p>Dünnbesetzter Index</p>
+<ul>
+<li><p>Nur einige Datensätze sind im Index repräsentiert.</p></li>
+<li><p>Z.B. ein Eintrag pro Block</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sequenzielle-dateien">
+<h3><span class="section-number">13.2.2. </span>Sequenzielle Dateien<a class="headerlink" href="#sequenzielle-dateien" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Index kann sich auf Sortierung des Schlüsselattributs verlassen</p>
+<ul>
+<li><p>Hier: Schlüssel ist Suchschlüssel</p></li>
+<li><p>Oft: Suchschlüssel = Primärschlüssel</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="dichtbesetzte-indizes">
+<h3><span class="section-number">13.2.3. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Blocksequenz mit Schlüssel-Pointer Paaren</p></li>
+<li><p>Jeder Schlüssel der Daten ist durch ein Paar repräsentiert</p>
+<ul>
+<li><p>Aber: Wesentlich kleinere Datenmenge</p></li>
+<li><p>Passt womöglich in den Hauptspeicher</p></li>
+<li><p>Nur ein I/O pro Zugriff</p></li>
+</ul>
+</li>
+</ul>
+<br> 
+<ul class="simple">
+<li><p>Sortierung der Paare = Sortierung der Daten</p></li>
+</ul>
+<section id="anfragebearbeitung-mit-dichtbesetzten-indizes">
+<h4><span class="section-number">13.2.3.1. </span>Anfragebearbeitung mit dichtbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dichtbesetzten-indizes" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gegeben Suchschlüssel K</p></li>
+<li><p>Durchsuche Indexdatei nach K</p></li>
+<li><p>Folge Pointer</p></li>
+<li><p>Lade Block aus Datendatei</p></li>
+<li><p>Beschleunigung</p>
+<ul>
+<li><p>Indexdatei hat nur wenige Blocks</p>
+<ul>
+<li><p>Indexdatei im Hauptspeicher <br></p></li>
+</ul>
+</li>
+<li><p>Binäre Suche um K zu finden <br></p></li>
+</ul>
+</li>
+<li><p>Beispiel: 1.000.000 Tupel</p>
+<ul>
+<li><p>Block: 4096 Byte = 10 Tupel</p></li>
+<li><p>Gesamtgröße 400 MB</p></li>
+<li><p>Schlüsselfeld hat 30 Byte</p></li>
+<li><p>Pointer hat 8 Byte =&gt; 100 Paare pro Block</p></li>
+<li><p>Dichtbesetzter Index: 10.000 Blöcke für Index</p>
+<ul>
+<li><p>40 MB =&gt; vielleicht OK im Hauptspeicher<br></p></li>
+</ul>
+</li>
+<li><p>Binäre Suche: log2(10.000) ≈ 13</p>
+<ul>
+<li><p>=&gt; 13-14 Blocks pro Suche<br></p></li>
+</ul>
+</li>
+<li><p>Wichtigsten Blöcke im Hauptspeicher reichen</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="dunnbesetzte-indizes">
+<h3><span class="section-number">13.2.4. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Schlüsselwert ist immer kleinster Wert des referenzierten Blocks</p></li>
+<li><p>Weniger Speicherbedarf</p></li>
+<li><p>Aber höherer Suchaufwand</p></li>
+<li><p>Nur ein Pointer pro Block</p></li>
+<li><p>Beispiel</p>
+<ul>
+<li><p>100.000 Datenblöcke, 100 Indexpaare pro Block</p></li>
+<li><p>=&gt; 1.000 Blocks für Index</p></li>
+<li><p>= 4MB</p></li>
+</ul>
+</li>
+</ul>
+<section id="anfragebearbeitung-mit-dunnbesetzten-indizes">
+<h4><span class="section-number">13.2.4.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p>
+<ul class="simple">
+<li><p>Binäre Suche (leicht modifiziert)</p></li>
+</ul>
+</li>
+<li><p>Hole assoziierten Datenblock</p></li>
+<li><p>Durchsuche Block nach Datensatz</p></li>
+</ol>
+<ul class="simple">
+<li><p>Was kann ein dünnbesetzter Index nicht?</p>
+<ul>
+<li><p>SELECT ‘TRUE’ FROM R WHERE a=10</p></li>
+<li><p>Kann nicht ausschließlich mit Index beantwortet werden</p>
+<ul>
+<li><p>Im dicht-besetzten Index schon…<br></p></li>
+</ul>
+</li>
+<li><p>Auch: Semi-Join</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="mehrstufiger-index">
+<h3><span class="section-number">13.2.5. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this heading">#</a></h3>
+<p>Auch ein Index kann unangenehm groß sein.</p>
+<ul class="simple">
+<li><p>Nimmt viel Speicher ein</p></li>
+<li><p>Kostet viel I/O</p>
+<ul>
+<li><p>Auch bei binärer Suche</p></li>
+</ul>
+</li>
+<li><p>Idee: Index auf den Index</p>
+<ul>
+<li><p>Zweiter Index macht nur als dünnbesetzter Index Sinn. <br></p></li>
+</ul>
+</li>
+<li><p>Theoretisch auch dritte, vierte, … Ebene</p>
+<ul>
+<li><p>B-Baum aber besser</p></li>
+</ul>
+</li>
+</ul>
+<section id="mehrstufiger-index-beispiel">
+<h4><span class="section-number">13.2.5.1. </span>Mehrstufiger Index Beispiel<a class="headerlink" href="#mehrstufiger-index-beispiel" title="Permalink to this heading">#</a></h4>
+<p>100.000 Datenblöcke, 100 Indexpaare pro Block</p>
+<ul class="simple">
+<li><p>=&gt; 1.000 Blöcke für Index erster Stufe = 4MB</p></li>
+<li><p>=&gt; 10 Blöcke für Index zweiter Stufe = 40KB</p>
+<ul>
+<li><p>Kann mit Sicherheit im Hauptspeicher verbleiben (weiter: liegt im Hauptspeicher)</p></li>
+</ul>
+</li>
+<li><p>Vorgehen zur Anfragebearbeitung</p>
+<ol class="arabic simple">
+<li><p>Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
+<li><p>Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)</p></li>
+<li><p>Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
+<li><p>Hole entsprechenden Datenblock.</p></li>
+<li><p>Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).</p></li>
+</ol>
+</li>
+<li><p>Zusammen: 2 I/Os</p></li>
+</ul>
+</section>
+</section>
+<section id="indizes-fur-nicht-eindeutige-suchschlussel">
+<h3><span class="section-number">13.2.6. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this heading">#</a></h3>
+<p>Annahme bisher: Suchschlüssel ist auch Schlüssel bzw.eindeutig in der Relation</p>
+<ul class="simple">
+<li><p>Annahme weiter: Relation ist nach Suchschlüssel sortiert</p></li>
+<li><p>Idee 1: Dichtbesetzter Index</p>
+<ul>
+<li><p>Ein Paar im Index für jeden Datensatz</p></li>
+<li><p>Anfragebearbeitung:</p>
+<ul>
+<li><p>Suche erstes Paar mit K.</p></li>
+<li><p>Wähle alle weiteren mit K (direkt dahinter)</p></li>
+<li><p>Hole entsprechende Datensätze.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K.</p>
+<ul>
+<li><p>Der zeigt auf ersten Datensatz mit K.</p></li>
+<li><p>Weitere Datensätze mit K folgen direkt.</p></li>
+<li><p>Wichtig: Blöcke haben Pointer auf jeweils nächsten Block</p></li>
+</ul>
+</li>
+<li><p>Idee 3: Dünnbesetzter Index wie gehabt</p>
+<ul>
+<li><p>Datenwert im Index jeweils Datensatz am Blockanfang</p></li>
+</ul>
+</li>
+<li><p>Anfragebearbeitung</p>
+<ul>
+<li><p>Suche letzten Eintrag E1 im Index, dessen Datenwert ≤ K</p></li>
+<li><p>Suche von dort im Index nach vorn bis zu einem Eintrag E2 mit Datenwert &lt; K</p></li>
+<li><p>Hole alle Datenblöcke zwischen und inklusive E1 und E2.</p></li>
+</ul>
+</li>
+<li><p>Beispiel: K = 20: Rückwärtssuche ist nötig <br></p></li>
+<li><p>Idee 4: Dünnbesetzter Index, aber</p>
+<ul>
+<li><p>Datenwert im Index ist der kleinste neue Wert im entsprechenden Datenblock.</p></li>
+<li><p>Hier Grenzfall: Welche Werte hat der Index?</p></li>
+<li><p>Test: K= 20 bzw. K = 30</p></li>
+</ul>
+</li>
+<li><p>Anfragebearbeitung einfacher</p>
+<ul>
+<li><p>Suche im Index nach Paar mit (Datenwert = K) oder (größter Wert mit &lt; K aber nächster Wert ist &gt; K).</p></li>
+<li><p>Hole Datenblock und gegebenenfalls folgende Datenblöcke.</p></li>
+</ul>
+</li>
+<li><p>Statt ⊥ auch „30“</p></li>
+</ul>
+</section>
+<section id="anderungsoperationen">
+<h3><span class="section-number">13.2.7. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this heading">#</a></h3>
+<p>Daten ändern sich (Insert, Update, Delete).</p>
+<ul class="simple">
+<li><p>Annahme bisher: Daten füllen Blöcke perfekt und ändern sich nicht</p></li>
+<li><p>Änderungen im Datenblock: Siehe auch voriger Foliensatz</p>
+<ul>
+<li><p>Overflow Blocks</p>
+<ul>
+<li><p>In dünnbesetzten Indizes nicht repräsentiert</p></li>
+</ul>
+</li>
+<li><p>Neue Blöcke in der Sequenz</p>
+<ul>
+<li><p>Benötigen neuen Indexeintrag</p></li>
+<li><p>Indexänderungen bergen dieselben Probleme wie Datenänderungen: Platzierung der Blöcke; Indizes höherer Stufe</p></li>
+</ul>
+</li>
+<li><p>Tupel verschieben</p>
+<ul>
+<li><p>Index muss angepasst werden.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Generelle Regel: Indizes können wie normale data files behandelt werden. Gleiche Strategien können angewendet werden.</p></li>
+</ul>
+<p><strong>Änderungsoperationen Beispiele</strong></p>
+<p><strong>Beispiel 1</strong></p>
+<ul class="simple">
+<li><p>Datensatz mit K = 30 wird gelöscht.</p></li>
+<li><p>Annahme: Block kann/soll nicht reorganisiert werden.</p>
+<ul>
+<li><p>Ersatz durch tombstone</p></li>
+</ul>
+</li>
+<li><p>Datensatz 40 wird nicht verschoben.</p></li>
+<li><p>Index kann reorganisiert werden.</p>
+<ul>
+<li><p>Main memory</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiel 2</strong></p>
+<ul class="simple">
+<li><p>Datensatz mit K = 30 wird gelöscht.</p>
+<ul>
+<li><p>Annahme: Block kann/soll reorganisiert werden.</p></li>
+<li><p>Datensatz 40 wird verschoben</p></li>
+<li><p>Index wird aktualisiert</p></li>
+</ul>
+</li>
+<li><p>Nun auch Datensatz mit K=40 Löschen</p>
+<ul>
+<li><p>Leerer Block entsteht</p></li>
+<li><p>Index wird aktualisiert (löschen)</p></li>
+<li><p>Index wird reorganisiert</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiel 3</strong></p>
+<ul class="simple">
+<li><p>Einfügen eines Datensatzes 15</p>
+<ul>
+<li><p>Block 1 ist voll.</p></li>
+<li><p>Datensatz 20 wird in nächsten Block verschoben.</p>
+<ul>
+<li><p>Block wird reorganisiert.</p></li>
+</ul>
+</li>
+<li><p>Datensatz 15 wird eingefügt.</p></li>
+<li><p>Index wird aktualisiert.</p>
+<ul>
+<li><p>20 statt 40</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiel 4</strong></p>
+<ul class="simple">
+<li><p>Wieder Datensatz 15 einfügen</p>
+<ul>
+<li><p>Diesmal mit Overflow Blocks</p></li>
+<li><p>Block 1 ist voll.</p></li>
+<li><p>Datensatz 20 wird in Overflow Block verschoben.</p></li>
+<li><p>Datensatz 15 wird eingefügt.</p></li>
+<li><p>Index bleibt gleich</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="sekundarindizes-auf-nichtsequenziellen-dateien">
+<h2><span class="section-number">13.3. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Permalink to this heading">#</a></h2>
+<section id="motivation">
+<h3><span class="section-number">13.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Annahme bisher: Datensätze sind nach Schlüssel sortiert</p>
+<ul>
+<li><p>„Primärindex“</p></li>
+</ul>
+</li>
+<li><p>Oft sinnvoll: Mehrere Indizes pro Relation</p></li>
+<li><p>Schauspieler(Name, Adresse, Geschlecht, Geburtstag)</p>
+<ul>
+<li><p>Name ist Primärschlüssel =&gt; Primärindex</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span>
+<span class="n">FROM</span> <span class="n">Schauspieler</span>
+<span class="n">WHERE</span> <span class="n">Geburtstag</span> <span class="o">=</span> <span class="n">DATE</span> <span class="s1">&#39;1952-01-01&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Sekundärindex auf Geburtstag beschleunigt Anfragebearbeitung.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"> <span class="pre">CREATE</span> <span class="pre">INDEX</span> <span class="pre">GEB_IDX</span> <span class="pre">ON</span> <span class="pre">Schauspieler(Geburtstag)</span></code></p>
+<ul class="simple">
+<li><p>Sekundärindizes bestimmen nicht Platzierung der Datensätze, sondern geben Speicherort an.</p>
+<ul>
+<li><p>Dünnbesetzte Sekundärindizes sind sinnlos.</p></li>
+<li><p>=&gt; Sekundärindizes sind immer dichtbesetzt.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="aufbau-von-sekundarindizes">
+<h3><span class="section-number">13.3.2. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Dichtbesetzt; mit Duplikaten</p></li>
+<li><p>Schlüssel-Pointer Paare</p></li>
+<li><p>Schlüssel sind sortiert</p></li>
+<li><p>Index zweiter Stufe wäre wiederum dünnbesetzt</p></li>
+<li><p>Suche kostet idR mehr I/O</p>
+<ul>
+<li><p>Beispiel: Suche nach „20“ muss 5 Blöcke lesen.</p></li>
+<li><p>Ist nicht zu ändern: Daten sind halt nach einem anderen Schlüssel sortiert.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="anwedungen">
+<h3><span class="section-number">13.3.3. </span>Anwedungen<a class="headerlink" href="#anwedungen" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Unterstützung von Selektionsbedingungen auf Nicht-Primärschlüssel</p></li>
+<li><p>Datensätze liegen nicht sortiert vor.</p>
+<ul>
+<li><p>Sekundärindex auf Primärschlüssel</p></li>
+</ul>
+</li>
+<li><p>Datensätze aus zwei Relationen werden geclustered gespeichert.</p>
+<ul>
+<li><p>N:1 Beziehung zwischen R und S</p></li>
+<li><p>Speichere Datensätze aus R direkt beim entsprechenden Datensatz aus S.</p></li>
+<li><p>Clustered file</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Anwendung: Clustered file</strong></p>
+<ul class="simple">
+<li><p>Filme(Titel, Jahr, Länge, inFarbe, Studioname, Produzent)</p></li>
+<li><p>Studio(Name, Adresse, Präsident)</p></li>
+<li><p>Häufige mögliche Anfrageform:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT Titel, Jahr
+FROM Filme, Studio
+WHERE Filme.Studioname = Studio.Name
+AND Präsident = ?
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Index auf Präsident findet schnell Studio-Datensatz.</p></li>
+<li><p>Entsprechende Filme folgen direkt.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex</p></li>
+</ul>
+</section>
+<section id="indirektion-fur-sekundarindizes">
+<h3><span class="section-number">13.3.4. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this heading">#</a></h3>
+<p>Bisherige Struktur verbraucht Platz: Datenwerte werden im Index mehrfach gespeichert.</p>
+<ul class="simple">
+<li><p>Spart Platz, falls</p>
+<ul>
+<li><p>Suchschlüssel größer sind als Bucketeintrag.</p></li>
+<li><p>Suchschlüssel im Durchschnitt mindestens zweimal auftauchen.</p></li>
+</ul>
+</li>
+<li><p>Weiterer Vorteil: Bestimmte Anfragen können direkt anhand der Buckets beantwortet werden.</p>
+<ul>
+<li><p>Mehrere Selektionsbedingungen, jeweils mit Sekundärindex: Schnittmenge der Pointer in Buckets</p></li>
+</ul>
+</li>
+<li><p>Filme(Titel, Jahr, Länge, inFarbe, Studioname, Produzent)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span> <span class="n">FROM</span> <span class="n">Filme</span>
+<span class="n">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s1">&#39;Disney&#39;</span>
+<span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1995</span>
+</pre></div>
+</div>
+<p><strong>Indirektion im Alltag</strong></p>
+</section>
+<section id="invertierte-indizes">
+<h3><span class="section-number">13.3.5. </span>Invertierte Indizes<a class="headerlink" href="#invertierte-indizes" title="Permalink to this heading">#</a></h3>
+<p>Motivation: Dokumenten-Retrieval</p>
+<ul class="simple">
+<li><p>Sichtweise Dokument als Relation</p>
+<ul>
+<li><p>Dok(hatKatze, hatHund, hatHaus, …)</p></li>
+<li><p>Tausende/Millionen Boolesche Attribute: True bedeutet das Dokument enthält das Wort.</p></li>
+<li><p>Idee 1: Sekundärindex auf jedes Attribut</p>
+<ul>
+<li><p>Aber: Nur die True-Werte werden indiziert</p></li>
+</ul>
+</li>
+<li><p>Idee 2: Alle Indizes in einen kombiniert, die „invertierte Liste“</p>
+<ul>
+<li><p>Verwendet Indirektion</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Pointer in den Buckets</p>
+<ul>
+<li><p>Auf ein Dokument</p></li>
+<li><p>Auf eine Stelle im Dokument</p></li>
+</ul>
+</li>
+<li><p>Erweiterung: Bucket speichert nicht nur Stelle sondern auch Metadaten</p>
+<ul>
+<li><p>Art des Vorkommens (Titel, Abstract, Text, Tabelle, …)</p></li>
+<li><p>Satz (fett, kursiv, …)</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>Anfragen: AND, OR, NOT</p>
+<ul>
+<li><p>Durch Mengenoperationen auf den Pointermengen</p></li>
+</ul>
+</li>
+</ul>
+<p>Suche nach Dokumenten, die Hunde und Katzen vergleichen</p>
+<ul class="simple">
+<li><p>Dokument erwähnt „Hund“ im Titel</p></li>
+<li><p>Dokument erwähnt „Katze“ in einem Anker (Link auf anderes Dokument)</p></li>
+</ul>
+</section>
+<section id="b-baume">
+<h3><span class="section-number">13.3.6. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h3>
+<section id="allgemein">
+<h4><span class="section-number">13.3.6.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this heading">#</a></h4>
+<p>Bisher: Zweistufiger Index zur Beschleunigung des Zugriffs</p>
+<ul class="simple">
+<li><p>Allgemein: B Bäume (hier „B+ Bäume“)</p>
+<ul>
+<li><p>So viele Stufen wie nötig</p></li>
+<li><p>Blöcke sind stets mindestens zur Hälfte gefüllt</p></li>
+<li><p>Overflow blocks nicht notwendig</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="struktur">
+<h4><span class="section-number">13.3.6.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Index-Blöcke in einem Baum organisiert</p></li>
+<li><p>Balanciert</p>
+<ul>
+<li><p>Jeder Weg von Wurzel zu Blatt ist gleich lang.</p></li>
+</ul>
+</li>
+<li><p>Parameter n</p>
+<ul>
+<li><p>Jeder Block enthält bis zu n Suchschlüssel</p></li>
+<li><p>Jeder Block enthält bis zu n+1 Pointer</p></li>
+<li><p>Also wie Indexblock zuvor, aber ein zusätzlicher Pointer</p></li>
+</ul>
+</li>
+<li><p>Wahl von n</p>
+<ul>
+<li><p>n so groß wie möglich entsprechend der Blockgröße</p></li>
+<li><p>4096 Byte pro Block; 4 Byte pro Schlüssel; 8 Byte pro Pointer</p></li>
+<li><p>4n + 8(n+1) ≤ 4096 =&gt; n = 340</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Erinnerung: Datenstrukturen und Algorithmen: B-Bäume</strong></p>
+<ul class="simple">
+<li><p>„Maximale Ausgeglichenheit“</p></li>
+</ul>
+</section>
+<section id="einfugen-in-b-baume-beispiel">
+<h4><span class="section-number">13.3.6.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="hier-b-baum">
+<h4><span class="section-number">13.3.6.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Schlüssel in Blätter sind Schlüssel aus den Daten</p>
+<ul>
+<li><p>Sortiert über alle Blätter verteilt (von links nach rechts)</p></li>
+</ul>
+</li>
+<li><p>Wurzel: mindestens zwei verwendete Pointer.</p>
+<ul>
+<li><p>Alle Pointer zeigen auf einen B-Baum Block in Ebene darunter.</p></li>
+</ul>
+</li>
+<li><p>Blätter: Der letzte Pointer zeigt auf das nächste Blatt (rechts).</p>
+<ul>
+<li><p>Von den übrigen n Pointern werden mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> verwendet.</p></li>
+<li><p>Zeigen auf Datenblöcke</p></li>
+</ul>
+</li>
+<li><p>Innere Knoten: Pointer zeigen auf B-Baum Blöcke darunterliegender Ebenen</p>
+<ul>
+<li><p>Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> sind verwendet</p></li>
+<li><p>Falls j Pointer verwendet werden, gibt es j–1 Schlüssel in dem Block</p>
+<ul>
+<li><p>Keys K1, … , Kj-1</p></li>
+</ul>
+</li>
+<li><p>Erster Pointer zeigt auf Teilbaum mit Schlüsselwerten &lt; K1.</p></li>
+<li><p>Zweiter Pointer auf Teilbaum mit Schlüsselwerten ≥ K1 und &lt; K2 usw</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rechenbeispiele">
+<h4><span class="section-number">13.3.6.5. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Permalink to this heading">#</a></h4>
+<p>n = 3</p>
+<ul class="simple">
+<li><p>Alle Knoten: Maximal 3 Suchschlüssel und 4 Pointer</p></li>
+<li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
+<li><p>Innere Knoten: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
+<li><p>Blätter: Mindestens 2 Suchschlüssel und 3 Pointer</p></li>
+</ul>
+<p>n = 4</p>
+<ul class="simple">
+<li><p>Alle Knoten: Maximal 4 Suchschlüssel und 5 Pointer</p></li>
+<li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
+<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> Pointer = 3 Pointer</p>
+<ul>
+<li><p>=&gt; Mindestens 2 Suchschlüssel</p></li>
+</ul>
+</li>
+<li><p>Blätter:</p>
+<ul>
+<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> weitere Pointer = 3 Pointer</p></li>
+<li><p>=&gt; Mindestens 2 Suchschlüssel
+n = 5</p></li>
+</ul>
+</li>
+<li><p>Alle Knoten: Maximal 5 Suchschlüssel und 6 Pointer</p></li>
+<li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
+<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> Pointer = 3 Pointer</p>
+<ul>
+<li><p>=&gt; Mindestens 2 Suchschlüssel</p></li>
+</ul>
+</li>
+<li><p>Blätter:</p>
+<ul>
+<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> weitere Pointer = 4 Pointer</p></li>
+<li><p>=&gt; Mindestens 3 Suchschlüssel</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="alternative-definition">
+<h4><span class="section-number">13.3.6.6. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Bisher: Parameter n</p>
+<ul>
+<li><p>Block hat mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> Suchschlüssel</p></li>
+<li><p>Block hat höchstens n Suchschlüssel</p></li>
+</ul>
+</li>
+<li><p>Alternativ in Lehrbüchern: Parameter k</p>
+<ul>
+<li><p>Block hat mindestens k Suchschlüssel</p></li>
+<li><p>Block hat höchstens 2k Suchschlüssel</p></li>
+<li><p>Block hat immer x + 1 Pointer (wie bisher)</p></li>
+</ul>
+</li>
+<li><p>Immer</p>
+<ul>
+<li><p>Ein innerer Block hat immer einen Pointer mehr als Anzahl Suchschlüssel</p></li>
+<li><p>Ein Blatt hat immer ebenso viele Pointer wie Suchschlüssel</p>
+<ul>
+<li><p>Plus verkettete Liste</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="beispiel-blattknoten">
+<h4><span class="section-number">13.3.6.7. </span>Beispiel Blattknoten<a class="headerlink" href="#beispiel-blattknoten" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="beispiel-innerer-knoten">
+<h4><span class="section-number">13.3.6.8. </span>Beispiel innerer Knoten<a class="headerlink" href="#beispiel-innerer-knoten" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="beispiel-b-baum">
+<h4><span class="section-number">13.3.6.9. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this heading">#</a></h4>
+<p>Dicht-besetzt: In den Blättern taucht sortiert jeder Schlüssel genau einmal auf.</p>
+</section>
+<section id="anwendungen-von-b-baumen">
+<h4><span class="section-number">13.3.6.10. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Permalink to this heading">#</a></h4>
+<p>B-Bäume können verschiedene Index-Rollen übernehmen.</p>
+<ul class="simple">
+<li><p>Suchschlüssel ist Primärschlüssel; dicht-besetzter Index</p>
+<ul>
+<li><p>Data file sortiert oder nicht</p></li>
+</ul>
+</li>
+<li><p>Dünn-besetzter Index; data file ist sortiert</p></li>
+<li><p>„Dünn-besetzter“ Index; data file ist nicht sortiert</p>
+<ul>
+<li><p>Indirektion</p></li>
+</ul>
+</li>
+<li><p>Suchschlüssel ist nicht Primärschlüssel</p>
+<ul>
+<li><p>Data file ist nach Suchschlüssel sortiert</p></li>
+<li><p>Pointer zeigen auf jeweils ersten Wert</p></li>
+<li><p>Jetzt dazu mehr …</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="b-baume-auf-nicht-primarschlusseln">
+<h4><span class="section-number">13.3.6.11. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Bedeutung der Pointer auf inneren Ebenen ändert sich.</p>
+<ul>
+<li><p>Gegeben: Schlüssel K1, … , Kj</p></li>
+<li><p>=&gt; Ki ist der kleinste neue Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist.</p>
+<ul>
+<li><p>D.h. es gibt keinen Schlüsselwert Ki im linken Teilbaum aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer an.</p></li>
+<li><p>Problem: Es gibt nicht immer einen solchen Schlüssel</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="b-baume-suche">
+<h3><span class="section-number">13.3.7. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h4><span class="section-number">13.3.7.1. </span>Allgemein<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Jetzt wieder: Suchschlüssel = Primärschlüssel</p></li>
+<li><p>Dicht-besetzter Index</p>
+<ul>
+<li><p>Operationen für dünn-besetzte Indizes ähnlich</p></li>
+</ul>
+</li>
+<li><p>Gesucht sei K.</p>
+<ul>
+<li><p>Falls wir an einem Blattknoten sind:</p>
+<ul>
+<li><p>Suche K auf dem Knoten.</p></li>
+</ul>
+</li>
+<li><p>Falls wir an einem inneren Knoten mit K1, K2, … Kn sind:</p></li>
+<li><p>Falls K &lt; K1 gehe zu erstem Kind</p></li>
+<li><p>Falls K1 ≤ K &lt; K2 gehe zu zweitem Kind</p></li>
+<li><p>…</p></li>
+<li><p>Falls Kn ≤ K gehe zu letztem Kind</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="beispiel-suche-im-b-baum">
+<h4><span class="section-number">13.3.7.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="bereichsanfragen-range-queries">
+<h4><span class="section-number">13.3.7.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this heading">#</a></h4>
+<p>Anfragen mit Ungleichheit in WHERE Klausel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
+<span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">40</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
+<span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">25</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Suche nach Bereich [a,b]</p>
+<ol class="arabic simple">
+<li><p>Suche in B-Baum nach a.</p>
+<ul>
+<li><p>Entsprechendes Blatt könnte a speichern.</p></li>
+<li><p>Suche auf dem Blatt alle relevanten Schlüssel.</p></li>
+</ul>
+</li>
+<li><p>Falls auf dem Blatt kein Wert &gt; b</p>
+<ul>
+<li><p>Folge Pointer zu nächstem Blatt.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Bei offenen Bereichen [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p></li>
+</ul>
+</section>
+</section>
+<section id="b-baume-updates">
+<h3><span class="section-number">13.3.8. </span>B-Bäume Updates<a class="headerlink" href="#b-baume-updates" title="Permalink to this heading">#</a></h3>
+<section id="einfugen-in-b-baume">
+<h4><span class="section-number">13.3.8.1. </span>Einfügen in B-Bäume<a class="headerlink" href="#einfugen-in-b-baume" title="Permalink to this heading">#</a></h4>
+<p>Rekursives Vorgehen:</p>
+<ul class="simple">
+<li><p>Suche entsprechendes Blatt.</p>
+<ul>
+<li><p>Falls Platz herrscht, füge Schlüssel und Pointer ein.</p></li>
+</ul>
+</li>
+<li><p>Falls kein Platz: Überlauf</p>
+<ul>
+<li><p>Teile Blatt in zwei Teile und verteile Schlüssel gleichmäßig</p></li>
+<li><p>„split“</p></li>
+</ul>
+</li>
+<li><p>Teilung macht Einfügen eines neuen Schlüssel/Pointer-Paares im Elternknoten erforderlich</p>
+<ul>
+<li><p>Gehe rekursiv aufwärts im Baum vor</p></li>
+</ul>
+</li>
+<li><p>Ausnahme: Falls in Wurzel kein Platz</p>
+<ul>
+<li><p>Teile Wurzel in zwei</p></li>
+<li><p>Erzeuge neue Wurzel (mit nur einem Schlüssel)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Kosten für Einfügen</strong></p>
+<ul class="simple">
+<li><p>Sei h die Höhe des B-Baums</p>
+<ul>
+<li><p>Meist h = 3</p></li>
+</ul>
+</li>
+<li><p>Suche nach Blattknoten: h</p></li>
+<li><p>Falls keine Teilung nötig: Gesamtkosten h + 1</p>
+<ul>
+<li><p>h Blöcke lesen, 1 Index-Block schreiben</p></li>
+</ul>
+</li>
+<li><p>Falls Teilung nötig</p>
+<ul>
+<li><p>Worst-case: Bis zur Wurzel</p></li>
+<li><p>Selbst Caching nützt nichts, da Knoten geschrieben werden müssen</p></li>
+<li><p>Insgesamt: 3 h + 1</p>
+<ul>
+<li><p>Auf jeder Ebene Suche und Überlaufbehandlung</p></li>
+<li><ul>
+<li><p>neue Wurzel schreiben</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="loschen-aus-b-baumen">
+<h4><span class="section-number">13.3.8.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Suche entsprechenden Knoten</p></li>
+<li><p>Lösche Schlüssel</p></li>
+<li><p>Falls immer noch minimale Menge an Schlüsseln im Knoten</p>
+<ul>
+<li><p>Nichts tun</p></li>
+</ul>
+</li>
+<li><p>Falls zu wenig Schlüssel im Knoten: Merge (Verschmelzen)</p>
+<ul>
+<li><p>Falls ein Geschwisterknoten (links oder rechts) mehr als die minimale Schlüsselmenge hat, „klaue“ einen Schlüssel.</p>
+<ul>
+<li><p>Gegebenenfalls (fast immer) Schlüsselwerte der Eltern anpassen</p></li>
+</ul>
+</li>
+<li><p>Falls nicht: Es existieren zwei Geschwister im Baum mit minimaler und sub-minimaler Schlüsselmenge</p>
+<ul>
+<li><p>=&gt; Diese Knoten können vereinigt werden.</p></li>
+<li><p>Schlüsselwerte der Eltern anpassen (gegebenenfalls rekursiv im Baum nach oben löschen)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Kosten für Löschen</strong></p>
+<ul class="simple">
+<li><p>Suche und lokales Löschen: h + 1</p>
+<ul>
+<li><p>Schreibe Blattknoten</p></li>
+</ul>
+</li>
+<li><p>Bei merge mit Geschwisterknoten: h + 5</p>
+<ul>
+<li><p>Prüfe rechts und links</p></li>
+<li><p>Schreibe Block und veränderten Nachbarn</p></li>
+<li><p>Schreibe Elternknoten</p></li>
+</ul>
+</li>
+<li><p>Bei merge bis zur Wurzel: 3h - 2</p></li>
+</ul>
+<p><strong>Löschen aus B-Bäumen?</strong></p>
+<ul class="simple">
+<li><p>Annahme: Tendenziell wachsen Datenmengen</p></li>
+<li><p>Folgerung: Nie Knoten des B-Baum löschen</p>
+<ul>
+<li><p>Knoten, die durch Löschen zu klein werden, werden früher oder später wieder gefüllt.</p></li>
+<li><p>Grabstein auf Datenblock genügt, B-Baum muss nicht geändert werden</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="effizienz-von-b-baumen">
+<h3><span class="section-number">13.3.9. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Permalink to this heading">#</a></h3>
+<p>Suche, Einfügen und Löschen sollen möglichst wenig I/O-Operationen benötigen.</p>
+<ul class="simple">
+<li><p>Je größer n gewählt wird, desto seltener müssen Blöcke verschmolzen oder getrennt werden.</p>
+<ul>
+<li><p>Meist auf Blattknoten beschränkt</p></li>
+</ul>
+</li>
+<li><p>Suche (best case)</p>
+<ul>
+<li><p>Anzahl I/Os entspricht der Höhe des Baums</p></li>
+<li><ul>
+<li><p>1 I/O auf den Daten für Lesen</p></li>
+</ul>
+</li>
+<li><p>oder + 3 I/O auf den Daten für Einfügen oder Löschen</p></li>
+</ul>
+</li>
+<li><p>Typische Höhe eines B-Baums: 3</p>
+<ul>
+<li><p>340 Schlüssel-Pointer-Paare pro Block</p></li>
+<li><p>Annahme: Füllstand durchschnittlich 255</p></li>
+<li><p>=&gt; 255 innere Knoten = &gt; 255² = 65025 Blätter = 255³ Pointer</p></li>
+<li><p>Insgesamt über 16 Mio. Datensätze</p></li>
+<li><p>Maximal: 340³ = 39 Mio. Datensätze</p></li>
+</ul>
+</li>
+<li><p>Zugriff mit 2 I/Os: Nur Wurzel im Hauptspeicher</p></li>
+<li><p>Zugriff mit 1 I/O: Wurzel und 255 innere Knoten im Hauptspeicher</p></li>
+</ul>
+<section id="bulk-loading">
+<h4><span class="section-number">13.3.9.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Einfügevarianten</p>
+<ul>
+<li><p>Einfügen von Daten in Relation, die bereits mit existierendem B-Baum indiziert ist.</p></li>
+<li><p>Erstellung eines neuen B-Baums auf existierenden Daten</p>
+<ul>
+<li><p>Sukzessives Einfügen jedes Datensatzes ist ineffizient.</p></li>
+<li><p>Immer wieder über die Wurzel suchen</p></li>
+<li><p>Viel I/O für Indexblöcke, die nicht im Hauptspeicher sind.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Besser: Vorsortierung</p>
+<ul>
+<li><p>Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke</p></li>
+<li><p>Schritt 2: Sortierung der Paare nach Suchschlüssel</p></li>
+<li><p>Schritt 3: Füge nun sukzessive die Paare ein</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<ul class="simple">
+<li><p>n = 3</p></li>
+<li><p>Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47</p></li>
+<li><p>Erzeuge halbgefüllte Blattknoten</p></li>
+<li><p>Erzeuge Wurzel für erste beiden Blattknoten</p></li>
+<li><p>Füge nächstes Blatt ein</p></li>
+<li><p>Füge nächstes Blatt ein</p></li>
+<li><p>Füge nächstes Blatt ein</p></li>
+<li><p>Füge nächstes Blatt ein</p></li>
+<li><p>Füge letztes Blatt ein</p></li>
+</ul>
+<p><strong>Bulk-Loading mit hohem Füllstand</strong></p>
+<ul class="simple">
+<li><p>Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke</p></li>
+<li><p>Schritt 2: Sortierung der Paare nach Suchschlüssel</p></li>
+<li><p>Schritt 3: Erzeuge volle B-Baum Blätter</p></li>
+<li><p>Schritt 4: Konstruiere innere Knoten aufgrund der Blätter</p></li>
+<li><p>Ergebnis: Perfekter Füllstand</p></li>
+<li><p>Anwendungen:</p>
+<ul>
+<li><p>Read-only Relationen</p></li>
+<li><p>Append-only Relationen</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="b-baum-varianten-b-baum-ohne">
+<h3><span class="section-number">13.3.10. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bisher: B+ Baum</p>
+<ul>
+<li><p>Pointer auf Datensätze nur in Blattknoten</p></li>
+</ul>
+</li>
+<li><p>B-Baum</p>
+<ul>
+<li><p>Pointer auf Datensätze in allen Knoten</p></li>
+</ul>
+</li>
+<li><p>Vorteil: Durchschnittlich schnellere Suche als in B±Bäumen</p></li>
+<li><p>Nachteil: Blätter und innere Knoten haben unterschiedliche Struktur</p>
+<ul>
+<li><p>Verwaltung schwieriger</p></li>
+</ul>
+</li>
+<li><p>Nachteil: Weniger bushy; Platz wird für Pointer auf Datensätze „verschwendet“</p>
+<ul>
+<li><p>Dadurch größere Höhe</p></li>
+</ul>
+</li>
+<li><p>Nachteil: Löschen ist komplizierter</p>
+<ul>
+<li><p>Löschung kann auch in inneren Knoten geschehen.</p></li>
+<li><p>Schlüssel von einem Blatt muss gegebenenfalls nach oben wandern.</p></li>
+</ul>
+</li>
+</ul>
+<p><em><em>B</em>-Bäume</em>*</p>
+<ul class="simple">
+<li><p>B*-Baum</p>
+<ul>
+<li><p>Bei Überlauf werden nicht gleich zwei halb-leere Knoten erzeugt.</p></li>
+<li><p>Stattdessen Neuverteilung über beide Nachbar-Blätter</p></li>
+<li><p>Falls nicht möglich, erzeuge 3 neue Blätter aus 2 alten Blättern</p></li>
+<li><p>Dadurch bessere Speicherausnutzung: Mindestens 66%</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Präfix-B±Baum</strong></p>
+<ul class="simple">
+<li><p>Präfix-B±Baum</p>
+<ul>
+<li><p>Falls Suchschlüssel ein String ist =&gt; Hoher Speicherbedarf</p></li>
+<li><p>Besser: Speichere nur „Trennwert“</p></li>
+<li><p>Was trennt „Korn“ von „Licht“?</p></li>
+<li><p>Am besten: Kleinster Trennwert</p>
+<ul>
+<li><p>„L“</p></li>
+<li><p>Präfix von „Licht“</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>B±Bäume für BLOBs (und CLOBs)</strong></p>
+<ul class="simple">
+<li><p>Idee: Suchschlüssel repräsentiert Offsets im BLOB anstatt Suchschlüssel</p>
+<ul>
+<li><p>Blätter zeigen auf Datenseiten des BLOBs</p></li>
+<li><p>Positional B-Tree</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="hashtabellen">
+<h3><span class="section-number">13.3.11. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Permalink to this heading">#</a></h3>
+<section id="allgemeine-hash-tabellen">
+<h4><span class="section-number">13.3.11.1. </span>Allgemeine Hash-Tabellen<a class="headerlink" href="#allgemeine-hash-tabellen" title="Permalink to this heading">#</a></h4>
+<p><strong>Hashtabellen – Grundprinzip</strong></p>
+<ul class="simple">
+<li><p>Hashfunktion</p>
+<ul>
+<li><p>Input: Suchschlüssel K (Hash-Schlüssel)</p></li>
+<li><p>Output: Integer zwischen 0 und B−1</p>
+<ul>
+<li><p>B = Anzahl Buckets</p></li>
+</ul>
+</li>
+<li><p>Oft z.B. MOD(K/B) („Divisionsrestmethode“)</p>
+<ul>
+<li><p>Bei Strings: Weise jedem Buchstaben Integer zu und summiere diese.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bucketarray</p>
+<ul>
+<li><p>Array aus B Headern für B verkettete Listen</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Hashtabellen auf Festplatten</strong></p>
+<ul class="simple">
+<li><p>Bisher (im Studium): Hashtabellen im Hauptspeicher</p></li>
+<li><p>Nun: Blöcke statt Pointer auf Listen</p>
+<ul>
+<li><p>Datensätze, die auf einen gemeinsamen Wert gehashed werden, werden in dem entsprechenden Block gespeichert.</p></li>
+<li><p>Overflowblocks können ergänzt werden.</p></li>
+</ul>
+</li>
+<li><p>Annahme: Zuordnung eines Hashwerts zur Speicheradresse eines Blocks möglich</p>
+<ul>
+<li><p>Z.B.: Hashwert stellt Offset dar</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Einfügen in Hashtabellen</strong></p>
+<ol class="arabic simple">
+<li><p>Berechne Hashwert</p></li>
+<li><p>Falls Platz, füge Datensatz in entsprechenden Block ein</p></li>
+</ol>
+<ul class="simple">
+<li><p>Oder in einen Overflowblock mit Platz</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Falls nicht, erzeuge neuen Overflowblock und füge dort ein</p></li>
+</ol>
+<ul class="simple">
+<li><p>Beispiel: Füge H ein</p>
+<ul>
+<li><p>h(H) = 2</p></li>
+</ul>
+</li>
+<li><p>Beispiel: Füge G ein</p>
+<ul>
+<li><p>h(G) = 1</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Löschen in Hashtabellen</strong></p>
+<ol class="arabic simple">
+<li><p>Suche Bucket (+ Overflowblocks)</p></li>
+<li><p>Suche Datensatz / Datensätze</p></li>
+<li><p>Lösche sie</p></li>
+<li><p>Gegebenenfalls Reorganisation und Entfernung von Overflowblocks</p>
+<ul class="simple">
+<li><p>Gefahr der Oszillation</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Beispiel: Lösche C</p>
+<ul>
+<li><p>G bewegen</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="vorschau-consistent-hashing">
+<h4><span class="section-number">13.3.11.2. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Problem of hash fragmentation:</p>
+<ul>
+<li><p>Traditional hash functions require remapping of all tuples when a node goes offline</p></li>
+<li><p>Because hash function must map to fewer nodes.</p></li>
+</ul>
+</li>
+<li><p>Consistent hash function:</p>
+<ul>
+<li><p>Minimizes the degree of remapping in case of the addition or removal of locations (nodes, slots)</p></li>
+<li><p>Only K/n keys need to be remapped on average (K … total number of keys, n … number of slots)</p></li>
+<li><p>Distributed Hash Tables (DHT)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="effizienz-statischer-hashtabellen">
+<h4><span class="section-number">13.3.11.3. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Idealerweise: Pro Bucket nur ein Block</p>
+<ul>
+<li><p>Zugriffszeit lesen: 1 I/O</p></li>
+<li><p>Zugriffszeit Einfügen / Löschen: 2 I/O</p></li>
+<li><p>Viel besser als Dicht- oder Dünnbesetzte Indizes</p></li>
+<li><p>Besser als B-Bäume o Aber Nachteil: Bereichsanfragen nicht unterstützt o =&gt; Kein sequentielles Lesen von Disk</p></li>
+</ul>
+</li>
+<li><p>Weiteres Problem: B wird einmalig festgelegt</p>
+<ul>
+<li><p>Lange Listen von Overflowblöcken</p></li>
+<li><p>„Statische Hashtabellen“</p></li>
+</ul>
+</li>
+<li><p>Lösung: „Dynamische Hashtabellen“</p>
+<ul>
+<li><p>Hashtabellen können wachsen</p></li>
+<li><p>Ideal: B ≈ Anzahl Datensätze / Datensätze pro Block o =&gt; Ca. 1 Block pro Bucket</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="erweiterbare-hashtabellen">
+<h3><span class="section-number">13.3.12. </span>Erweiterbare Hashtabellen<a class="headerlink" href="#erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h3>
+<p>Neuerungen</p>
+<ul class="simple">
+<li><p>Indirektion</p>
+<ul>
+<li><p>Bucket besteht aus Pointerarray statt Datenblock(s)</p></li>
+</ul>
+</li>
+<li><p>Wachstum</p>
+<ul>
+<li><p>Größe des Pointerarrays verdoppelt sich bei Bedarf</p></li>
+</ul>
+</li>
+<li><p>Sharing</p>
+<ul>
+<li><p>Buckets können sich Datenblöcke teilen</p></li>
+<li><p>Wenn es passt</p></li>
+</ul>
+</li>
+<li><p>Hashfunktion</p>
+<ul>
+<li><p>Berechnet (zu) großes Bitarray (k bit; z.B. k = 32)</p></li>
+<li><p>Bucketarray verwendet nur die ersten i Bits (i ≤ k)</p></li>
+<li><p>=&gt; <span class="math notranslate nohighlight">\(2^i\)</span> buckets</p></li>
+</ul>
+</li>
+</ul>
+<p><br> <br></p>
+<ul class="simple">
+<li><p>k = 4</p></li>
+</ul>
+<section id="einfugen-in-erweiterbare-hashtabellen">
+<h4><span class="section-number">13.3.12.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Ähnlich wie normale Hashtabelle</p>
+<ul>
+<li><p>Berechne h(K); wähle die ersten i Bits</p></li>
+<li><p>Suche Eintrag im Bucketarray und lade entsprechenden Block</p></li>
+</ul>
+</li>
+<li><p>Falls Platz: Füge neuen Datensatz ein.</p></li>
+<li><p>Falls kein Platz und j &lt; i (j ist aktuelle Bitanzahl des Blocks)</p>
+<ul>
+<li><p>Spalte Block entzwei (split)</p></li>
+<li><p>Verteile Datensätze gemäß des (j+1)ten Bits</p>
+<ul>
+<li><p>Falls 0: Verbleib</p></li>
+<li><p>Falls 1: Verschieben in neuen Block</p></li>
+</ul>
+</li>
+<li><p>Setze j+1 als neue Bitanzahl der beiden neuen Blöcke</p></li>
+<li><p>Pointer im Bucketarray aktualisieren</p></li>
+<li><p>Was wäre Pech?</p>
+<ul>
+<li><p>Alle Datensätze landen wieder im gleichen Block. Dann wieder j++.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Falls kein Platz und j = i (j ist aktuelle Bitanzahl des Buckets)</p>
+<ul>
+<li><p>Global: i++ =&gt; Länge des Bucketarrays verdoppelt sich</p></li>
+<li><p>Datenblöcke bleiben unverändert</p></li>
+<li><p>Zwei neue Pointer zeigen zunächst auf gleichen alten Block</p></li>
+<li><p>Dann: Spalte relevanten Block entzwei (split)</p>
+<ul>
+<li><p>Weiter wie zuvor (denn nun j &lt; i)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="analyse-erweiterbarer-hashtabellen">
+<h4><span class="section-number">13.3.12.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Vorteile</p>
+<ul>
+<li><p>Bei Suche: Nie mehr als ein Datenblock betrachten</p>
+<ul>
+<li><p>Keine Overflow Blocks</p></li>
+</ul>
+</li>
+<li><p>Bucketarray eventl. im Hauptspeicher</p></li>
+</ul>
+</li>
+<li><p>Nachteile</p>
+<ul>
+<li><p>Bei Verdopplung und Split: Viel Arbeit</p>
+<ul>
+<li><p>=&gt; Ab und zu dauert ein Einfügen sehr lang: Planbarkeit!</p></li>
+</ul>
+</li>
+<li><p>Bucketarray wächst schnell</p>
+<ul>
+<li><p>Passt eventuell nicht mehr in Hauptspeicher</p></li>
+</ul>
+</li>
+<li><p>Platzverschwendung bei wenigen Datensätzen pro Block</p>
+<ul>
+<li><p>Beispiel: 2 Datensätze pro Block</p></li>
+<li><p>Datensatz 1: 00000000000000000001</p></li>
+<li><p>Datensatz 2: 00000000000000000010</p></li>
+<li><p>Datensatz 3: 00000000000000000011</p></li>
+<li><p>=&gt; i = 20 (also 220 = 1Mio buckets)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="lineare-hashtabellen">
+<h3><span class="section-number">13.3.13. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Permalink to this heading">#</a></h3>
+<p>Ziel: Anzahl Buckets wachse nur langsam.</p>
+<ul class="simple">
+<li><p>Anzahl n der Buckets so gewählt, dass Datenblocks zu ca. 85% gefüllt sind.</p></li>
+<li><p>Overflow Blocks sind zugelassen.</p>
+<ul>
+<li><p>Durchschnittliche Anzahl Overflow Blocks pro Block: &lt;&lt;1</p></li>
+</ul>
+</li>
+<li><p>log2n Bits zur Identifizierung der Buckets</p>
+<ul>
+<li><p>Wähle die jeweils letzten Bits des Hashwerts</p></li>
+</ul>
+</li>
+</ul>
+<section id="lineare-hashtabellen-einfugen">
+<h4><span class="section-number">13.3.13.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Berechne h(K)</p></li>
+<li><p>Betrachte letzte i Bits; interpretiere als Integer m</p></li>
+<li><p>Falls m &lt; n: Füge Datensatz in Bucket m ein.</p></li>
+<li><p>Falls m ≥ n:</p>
+<ul>
+<li><p>=&gt; Bucket m existiert noch nicht</p></li>
+</ul>
+</li>
+<li><p>Füge Datensatz in Bucket m–2i-1 ein.</p>
+<ul>
+<li><p>D.h. erstes Bit des Schlüssels wird zu 0 (vorher 1).</p></li>
+</ul>
+</li>
+<li><p>Falls kein Platz: Erzeuge Overflow Block</p></li>
+<li><p>Berechne r/n</p>
+<ul>
+<li><p>Falls zu hoch (z.B. ≥ 1,7): Erzeuge einen neuen Bucket (n++)</p></li>
+<li><p>Neuer Bucket hat nichts mit betroffenem Bucket zu tun.</p></li>
+</ul>
+</li>
+<li><p>Falls nun n &gt; 2i: i++</p>
+<ul>
+<li><p>D.h. alle Bitsequenzen erhalten eine 0 am Anfang</p></li>
+<li><p>Physisch ändert sich nichts</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="hashing-vs-b-baum">
+<h4><span class="section-number">13.3.13.2. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Hashing effizient zur Feststellung der Existenz eines Wertes</p>
+<ul>
+<li><p>Overflow blocks nötig bei doppelten Schlüsseln</p></li>
+</ul>
+</li>
+<li><p>B-Baum effizient für Bereichsanfragen und hält Daten sortiert vor</p></li>
+<li><p>Indexerzeugung in SQL:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="p">[</span> <span class="n">UNIQUE</span> <span class="p">]</span> <span class="n">INDEX</span> <span class="n">indexname</span>
+<span class="n">ON</span> <span class="n">table</span> <span class="p">(</span> <span class="n">column</span> <span class="p">[</span> <span class="n">ASC</span> <span class="o">|</span> <span class="n">DESC</span> <span class="p">]</span>
+<span class="p">[</span> <span class="p">,</span> <span class="n">column</span> <span class="p">[</span> <span class="n">ASC</span> <span class="o">|</span> <span class="n">DESC</span> <span class="p">]</span> <span class="o">...</span> <span class="p">]</span> <span class="p">)</span>
+<span class="p">[</span><span class="n">CLUSTER</span><span class="p">]</span>
+<span class="p">[</span><span class="n">PCTFREE</span> <span class="n">integer</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- UNIQUE erlaubt NULL Werte
+- PCTFREE bestimmt Füllgrad
+- Keine Angabe über Art des Index
+- Keine Angabe über Parameter
+- Manchmal Hersteller-spezifische Syntax für Parameter
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="b-baum-zeichner">
+<h2><span class="section-number">13.4. </span>B-Baum-Zeichner<a class="headerlink" href="#b-baum-zeichner" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mithilfe des B-Baum-Zeichners können Sie ihr erlangtes Wissen aus diesem Kapitel vertiefen und praktisch anwenden.</p></li>
+<li><p>Die hier verwendete Version des B-Baum-Zeichners von EILD.nrw wird über GitHub-Pages gehostet und in das Skript eingebunden.</p></li>
+</ul>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="100%"
+            height="1200"
+            src="https://lejuliennn.github.io/b-tree-drawer/"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "LUH-DBS/GDBS_Script",
+            ref: "main/",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./13"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02/repraesentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Repräsentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../14/anfrageausfuehrung.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Anfrageausführung</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">13.1. Motivation: Platzierung der Tupel in Blöcke</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">13.2. Indizes auf sequenziellen Dateien</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfachste-form-eines-index">13.2.1. Einfachste Form eines Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenzielle-dateien">13.2.2. Sequenzielle Dateien</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dichtbesetzte-indizes">13.2.3. Dichtbesetzte Indizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">13.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dunnbesetzte-indizes">13.2.4. Dünnbesetzte Indizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">13.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index">13.2.5. Mehrstufiger Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">13.2.5.1. Mehrstufiger Index Beispiel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">13.2.6. Indizes für Nicht-eindeutige Suchschlüssel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anderungsoperationen">13.2.7. Änderungsoperationen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">13.3. Sekundärindizes auf nichtsequenziellen Dateien</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">13.3.1. Motivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">13.3.2. Aufbau von Sekundärindizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">13.3.3. Anwedungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">13.3.4. Indirektion für Sekundärindizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">13.3.5. Invertierte Indizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">13.3.6. B-Bäume</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">13.3.6.1. Allgemein</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">13.3.6.2. Struktur</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">13.3.6.3. Einfügen in B-Bäume – Beispiel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hier-b-baum">13.3.6.4. Hier B+ Baum**</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rechenbeispiele">13.3.6.5. Rechenbeispiele</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-definition">13.3.6.6. Alternative Definition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-blattknoten">13.3.6.7. Beispiel Blattknoten</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-innerer-knoten">13.3.6.8. Beispiel innerer Knoten</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-b-baum">13.3.6.9. Beispiel B-Baum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendungen-von-b-baumen">13.3.6.10. Anwendungen von B-Bäumen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">13.3.6.11. B-Bäume auf nicht-Primärschlüsseln</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-suche">13.3.7. B-Bäume Suche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.3.7.1. Allgemein</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">13.3.7.2. Beispiel Suche im B-Baum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bereichsanfragen-range-queries">13.3.7.3. Bereichsanfragen (range queries)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-updates">13.3.8. B-Bäume Updates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume">13.3.8.1. Einfügen in B-Bäume</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loschen-aus-b-baumen">13.3.8.2. Löschen aus B-Bäumen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-von-b-baumen">13.3.9. Effizienz von B-Bäumen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-loading">13.3.9.1. Bulk-loading</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">13.3.10. B-Baum Varianten: B-Baum (ohne „+“)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtabellen">13.3.11. Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemeine-hash-tabellen">13.3.11.1. Allgemeine Hash-Tabellen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau-consistent-hashing">13.3.11.2. Vorschau: Consistent Hashing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">13.3.11.3. Effizienz statischer Hashtabellen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erweiterbare-hashtabellen">13.3.12. Erweiterbare Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">13.3.12.1. Einfügen in erweiterbare Hashtabellen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">13.3.12.2. Analyse erweiterbarer Hashtabellen</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen">13.3.13. Lineare Hashtabellen</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">13.3.13.1. Lineare Hashtabellen – Einfügen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vs-b-baum">13.3.13.2. Hashing vs. B-Baum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-zeichner">13.4. B-Baum-Zeichner</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Dr. Ziawasch Abedjan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
