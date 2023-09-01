@@ -607,7 +607,7 @@ Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der
 <li><p>DRAM-basierte SSDs benötigen mehr Strom als HDDs.</p></li>
 <li><p>Kein sicheres Überschreiben.</p></li>
 </ul>
-<p>Über weitere Vor- und Nachteile können sie <a href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">hier</a> weiterlesen.</p>
+<p>Über weitere Vor- und Nachteile können Sie <a href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">hier</a> weiterlesen.</p>
 </section>
 </section>
 <section id="festplatten">
@@ -615,153 +615,76 @@ Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der
 <a class="reference internal image-reference" href="../_images/Festplatten_Vergleich_Früher_Heute.png"><img alt="Festplatten_Vergleich_Früher_Heute" src="../_images/Festplatten_Vergleich_Früher_Heute.png" style="width: 400px;" /></a>
 <section id="aufbau">
 <h3><span class="section-number">1.2.1. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Mehrere (5-10) gleichförmig rotierende Platten (z. B. 3.5” Durchmesser).</p></li>
-<li><p>Für jede Plattenoberfläche (10-20) ein Schreib-/Lese-Kopf.</p>
-<ul>
-<li><p>Gleichförmige Bewegung.</p></li>
-</ul>
-</li>
-<li><p>Die magnetische Plattenoberfläche ist in Spuren eingeteilt.</p></li>
-<li><p>Spuren sind als Sektoren fester Größe formatiert.</p>
-<ul>
-<li><p>Die Anzahl der Sektoren pro Spur kann sich unterscheiden.</p></li>
-</ul>
-</li>
-<li><p>Übereinander angeordnete Spuren bilden einen Zylinder.</p></li>
-</ul>
+<p>Eine Festplatte besteht aus mehreren (5-10) gleichförmig rotierenden Platten (z.B. 3.5” Durchmesser). Für jede Plattenoberfläche (10-20) gibt es einen Schreib-/Lese-Kopf, der sich gleichförmig bewegt. Die magnetische Plattenoberfläche ist in Spuren eingeteilt.
+Spuren sind als Sektoren fester Größe formatiert, wobei sich die Anzahl der Sektoren pro Spur unterscheiden kann. Übereinander angeordnete Spuren bilden einen Zylinder. Die Platten sind übereinander angeordnet, um Zugriffseffizienz zu ermöglichen. Der Kopf kann parallel auch an anderen Stellen lesen und schreiben.</p>
 <a class="reference internal image-reference" href="../_images/Aufbau_1.png"><img alt="Aufbau_1" src="../_images/Aufbau_1.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Aufbau_2.png"><img alt="Aufbau_2" src="../_images/Aufbau_2.png" style="width: 500px;" /></a>
-<ul>
-<li><p>Sektoren (1-8 KB) sind die kleinste physische Leseeinheit.</p>
-<ul class="simple">
-<li><p>Die Größe wird vom Hersteller festgelegt.</p></li>
-<li><p>Auf äußeren Spuren befinden sich mehr Sektoren.</p></li>
-</ul>
-</li>
-<li><p>Lücken zwischen den Sektoren nehmen etwa 10% der Spur ein.</p>
-<ul class="simple">
-<li><p>Diese Bereiche sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge.</p></li>
-</ul>
-</li>
-<li><p>Blöcke sind die logische Übertragungseinheit.</p>
-<ul class="simple">
-<li><p>Sie können aus einem oder mehreren Sektoren bestehen.</p></li>
-</ul>
+<p>Die Sektoren (1-8 KB) sind die kleinste physische Leseeinheit. Die Größe eines Sektors wird vom jeweiligen Hersteller festgelegt. Auf den äußeren Spuren befinden sich mehr Sektoren als auf den inneren.
+Zwischen den Sektoren existieren Lücken. Sie sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge. Diese Lücken nehmen etwa 10% der gesamten Spur ein. </br>
+Aus den Sektoren lesen wir Blöcke. Blöcke sind die logische Übertragungseinheit. Es ist also die Einheit, die wir auf einmal in den Hauptspeicher laden. Ein Block kann auch aus mehreren Sektoren bestehen.</p>
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg"><img alt="Aufbau_3" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Aufbau_4.png"><img alt="Aufbau_4" src="../_images/Aufbau_4.png" style="width: 500px;" /></a>
-</li>
-</ul>
-<p>hier: jede Spur hat gleiche Anzahl an Sektoren</p>
+<p>Hier in dieser Grafik hat jede Spur die gleiche Anzahl an Sektoren. Normalerweise haben die inneren weniger und die äußeren Spuren mehr Sektoren. Eine Ausnahme wäre es, wenn die Sektoren unterschiedlich groß sind.</p>
 </section>
 <section id="zone-bit-recording">
 <h3><span class="section-number">1.2.2. </span>Zone Bit Recording<a class="headerlink" href="#zone-bit-recording" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Äußere Zylinder haben mehr Fläche.</p>
-<ul class="simple">
-<li><p>=&gt; Bei gleichen Radii führt dies zu einer (unnötig) niedrigeren Bitdichte.</p></li>
-</ul>
-</li>
-<li><p>Lösung: Zonen mit unterschiedlichen Sektoreinteilungen.</p></li>
-<li><p>Wir ignorieren dies.</p>
+<p>Mehrere Spuren übereinander betrachtet ergeben einen Zylinder. Die äußeren Zylinder haben einen größeren Radius und somit auch mehr Fläche. Bei gleichen Radii führt dies zu einer (nicht notwendigen) niedrigeren Bitdichte.
+Die Lösung sind Zonen mit unterschiedlichen Sektoreinteilungen.
+Für die folgenden Berechnungen ignorieren wir diesen Fall.</p>
 <a class="reference internal image-reference" href="../_images/ZoneBitRecording.png"><img alt="ZoneBitRecording" src="../_images/ZoneBitRecording.png" style="width: 500px;" /></a>
-</li>
-</ul>
 </section>
 <section id="disk-controller">
 <h3><span class="section-number">1.2.3. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Kontrolliert eine oder mehrere Disks.</p></li>
-<li><p>Kontrolliert Bewegung der Schreib-/Lese-Köpfe.</p>
-<ul>
-<li><p>Spuren, die zu einem Zeitpunkt unter den Schreib-/Lese-Köpfen sind, bilden Zylinder.</p></li>
-</ul>
-</li>
-<li><p>Wählt Plattenoberfläche, auf die zugegriffen werden muss.</p></li>
-<li><p>Wählt Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet.</p>
-<ul>
-<li><p>Kontrolliert Start und Ende eines Sektors.</p></li>
-</ul>
-</li>
-<li><p>Überträgt Bits zwischen Disk und Hauptspeicher bzw. umgekehrt.</p></li>
-</ul>
+<p>Ein Disk Controller kontrolliert eine oder mehrere Disks und die Bewegung der Schreib-/Lese-Köpfe.
+Außerdem wählt er die Plattenoberfläche, auf die zugegriffen werden muss und den Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet. Dadurch kontrolliert er Start und Ende eines Sektors.
+Der Disk Controller überträgt noch Bits zwischen Disk und Hauptspeicher und umgekehrt.</p>
 <a class="reference internal image-reference" href="../_images/DiskController.png"><img alt="DiskController" src="../_images/DiskController.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiel-megatron-747-disk">
 <h3><span class="section-number">1.2.4. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this heading">#</a></h3>
+<p>Ein Beispiel ist die Megatron 747 Disk mit den folgenden Eigenschaften: </br>
+Sie hat 8 Platten mit 16 Plattenoberflächen. Der Durchmesser beträgt 3,5 Zoll.
+Sie hat 2^16 = 65.536 Spuren pro Oberfläche, durchschnittlich 2^8 = 256 Sektoren pro Spur und 2^12 = 4.096 Byte pro Sektor.</br></br>
+Die Gesamtkapazität ergibt sich durch multiplizieren von #Plattenoberflächen, Spuren pro Oberfläche, Sektoren pro Spur und Byte pro Sektor: 16 x 65.536 x 256 x 4.096 = 2^40 Byte = 1 TB. Insgesamt hat die Megatron eine Gesamtkapazität von einem Terrabyte. </br></br>
+Die Blöcke können beispielsweise eine Größe von 2^14 Byte (= 16 KB) haben. Dann passen 4 Sektoren in einen Block (2^14 / 2^12) und es gibt im Durchschnitt 64 Blöcke pro Spur (2^8 / 2^2). </br></br>
+Die Bitdichte für die äußerste Spur wird wie folgt berechnet:</p>
 <ul class="simple">
-<li><p>Eigenschaften:</p>
-<ul>
-<li><p>8 Platten mit 16 Plattenoberflächen (Durchmesser: 3,5“)</p></li>
-<li><p>2^16 = 65.536 Spuren pro Oberfläche</p></li>
-<li><p>Durchschnittlich 2^8 = 256 Sektoren pro Spur</p></li>
-<li><p>2^12 = 4.096 Byte pro Sektor</p></li>
-</ul>
-</li>
-<li><p>Gesamtkapazität:</p>
-<ul>
-<li><p>16 x 65.536 x 256 x 4.096 = 2^40 Byte = 1 TB</p></li>
-</ul>
-</li>
-<li><p>Blocks:</p>
-<ul>
-<li><p>Z.B. 2^14 Byte (= 16 KB)</p></li>
-<li><p>4 Sektoren pro Block (2^14 / 2^12)</p></li>
-<li><p>64 Blöcke pro Spur (2^8 / 2^2) im Durchschnitt</p></li>
-</ul>
-</li>
-<li><p>Bitdichte (äußerste Spur):</p>
-<ul>
 <li><p>Bits pro Spur: 28 Sektoren x 2^12 Byte = 2^20 = 1024 KB = 8 MBit</p></li>
-<li><p>Spurlänge (äußerste Spur): 3,5“ · p ≈ 11‘‘</p></li>
-<li><p>Ca. 10% Lücken → Spurlänge von 9,9‘‘ hält 8 MBits</p></li>
-<li><p>840.000 Bits pro Zoll</p></li>
+<li><p>Die Spurlänge (äußerste Spur) beträgt 3,5“ · p ≈ 11‘‘</p></li>
+<li><p>mit ca. 10% Lücken hat man eine Spurlänge von 9,9‘‘, die 8 MBits hält</p></li>
 </ul>
-</li>
-</ul>
+<p>Somit sind 840.000 Bits pro Zoll vorhanden.</p>
 </section>
 <section id="disk-zugriffseigenschaften">
 <h3><span class="section-number">1.2.5. </span>Disk-Zugriffseigenschaften<a class="headerlink" href="#disk-zugriffseigenschaften" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Voraussetzungen für Zugriff auf einen Block (lesend oder schreibend):</p>
-<ul>
-<li><p>S-/L-Kopf ist bei Zylinder positioniert, der die Spur mit dem Block enthält.</p></li>
-<li><p>Disk rotiert so, dass Sektoren, die der Block enthält, unter den S-/L-Kopf gelangen.</p></li>
-</ul>
-</li>
-<li><p>Latenzzeit:</p>
-<ul>
-<li><p>Zeit zwischen Anweisung, einen Block zu lesen, bis zum Eintreffen des Blocks im Hauptspeicher</p></li>
-</ul>
-</li>
-</ul>
+<p>Eine Voraussetzung für den Zugriff auf einen Block (lesend oder schreibend) ist, dass der S-/L-Kopf auf den richtigen Zylinder positioniert ist, der die Spur mit dem Block enthält. Dann muss die Disk so rotieren, dass Sektoren, die der Block enthält, unter den S-/L-Kopf gelangen. </br>
+Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der Anweisung einen Block zu lesen und bis zum Eintreffen des Blocks im Hauptspeicher.</p>
 </section>
 <section id="latenzzeit">
 <h3><span class="section-number">1.2.6. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Latenzzeit ist Summe aus vier Komponenten:</p>
+<li><p>Latenzzeit setzt sich aus der Summe von vier Komponenten zusammen:</p>
 <ol class="arabic simple">
 <li><p>Kommunikationszeit zwischen Prozessor und Disk Controller:</p>
 <ul>
-<li><p>Bruchteil einer Millisekunde (ignorieren)</p></li>
-<li><p>Annahme hier: Keine Konkurrenz</p></li>
+<li><p>Es beträgt nur den Bruchteil einer Millisekunde und kann daher bei Berechnungen hier ignoriert werden.</p></li>
 </ul>
 </li>
 <li><p>Seektime (Suchzeit) zur Positionierung des Kopfes unter richtigem Zylinder:</p>
 <ul>
-<li><p>Zwischen 0 und 40 ms (Zeit proportional zum zurückgelegten Weg)</p></li>
-<li><p>Startzeit (1 ms), Bewegungszeit (0 – 40 ms), Stopzeit (1 ms)</p></li>
+<li><p>Die Suchzeit ist zwischen 0 und 40 ms ( proportional zum zurückgelegten Weg).</p></li>
+<li><p>Sie setzt sich zusammen aus Startzeit (1 ms), Bewegungszeit (0 – 40 ms) und Stopzeit (1 ms).</p></li>
 </ul>
 </li>
-<li><p>Rotationslatenzzeit zur Drehung der Disk bis erster Sektor des Blocks unter S-/L-Kopf:</p>
+<li><p>Rotationslatenzzeit zur Drehung der Disk bis der erste Sektor des Blocks unter S-/L-Kopf liegt:</p>
 <ul>
-<li><p>Durchschnittlich ½ Umdrehung (4 ms)</p></li>
-<li><p>Optimierung durch Spur-Cache im Disk-Controller möglich</p></li>
+<li><p>Durchschnittlich benötigt es eine halbe Umdrehung (4 ms) bis der erste Sektor des Blocks unter dem S-/L-Kopf liegt.</p></li>
+<li><p>Es ist eine Optimierung durch Spur-Cache im Disk-Controller möglich.</p></li>
 </ul>
 </li>
 <li><p>Transferzeit zur Drehung der Disk bis alle Sektoren und die Lücken des Blocks unter S-/L-Kopf passiert sind:</p>
 <ul>
-<li><p>Ca. 16 KB-Block in ¼ ms (gleich genauer)</p></li>
+<li><p>Es wird ca. ein 16 KB-Block in 0.25 ms passiert.</p></li>
 </ul>
 </li>
 </ol>
