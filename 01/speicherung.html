@@ -442,7 +442,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prefetching">1.4.8. Prefetching</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">1.5. Zusammenfassung</a></li>
 </ul>
             </nav>
         </div>
@@ -693,127 +692,53 @@ Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der An
 </section>
 <section id="schreiben-und-andern-von-blocken">
 <h3><span class="section-number">1.2.7. </span>Schreiben und Ändern von Blöcken<a class="headerlink" href="#schreiben-und-andern-von-blocken" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Schreiben von Blöcken:</p>
-<ul>
-<li><p>Vorgehen und Zeit: Analog zum Lesen</p></li>
-<li><p>Zur Prüfung, ob Schreiboperation erfolgreich war, muss eine Rotation gewartet werden (Nutzung von Checksums (später))</p></li>
-</ul>
-</li>
-<li><p>Ändern von Blöcken:</p>
-<ul>
-<li><p>Nicht direkt möglich</p>
+<p>Das Schreiben von Blöcken ist in Bezug zu Vorgehen und Zeit analog zum Lesen. Um zu überprüfen, ob eine Schreiboperation erfolgreich war, muss eine Rotation gewartet werden. (Die Nutzung von Checksums wird später beschrieben). </br></p>
+<p>Das Ändern von Blöcken ist nicht direkt möglich. Sondern geschieht in 4 Schritten:</p>
 <ol class="arabic simple">
-<li><p>Lesen des Blocks in Hauptspeicher</p></li>
-<li><p>Ändern der Daten</p></li>
-<li><p>Zurückschreiben auf Festplatte</p></li>
-<li><p>evtl. Korrektheit der Schreiboperation überprüfen</p></li>
+<li><p>Der jeweilige Block wird in den Hauptspeicher gelesen.</p></li>
+<li><p>Die Daten auf dem Block werden geändert.</p></li>
+<li><p>Der Block wird auf die Festplatte zurückgeschrieben.</p></li>
+<li><p>Zum Schluss wird eventuell die Korrektheit der Schreiboperation überprüft</p></li>
 </ol>
-</li>
-<li><p>Zeit: t_read + t_write</p></li>
-<li><p>aber: mit Glück ist Kopf noch in der Nähe (t_write ist billiger)</p></li>
-</ul>
-</li>
-</ul>
+<p>Die Zeit für solch eine Operation ergibt sich aus t_read + t_write. Mit ein wenig Glück ist der Kopf noch in der Nähe, wodurch t_write billiger wird.</p>
 </section>
 <section id="id1">
 <h3><span class="section-number">1.2.8. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?</p>
-<p>Here’s the information about the time it takes to read a block with bullet points:</p>
-<ul class="simple">
-<li><p>Umdrehungsgeschwindigkeit: 7200 U · min-1
--&gt; Eine Umdrehung in 8,33 ms</p></li>
-<li><p>Seektime:</p>
-<ul>
-<li><p>Start und Stopp zusammen: 1ms</p></li>
-<li><p>1ms pro 4000 Zylinder, die überbrückt werden</p>
-<ol class="arabic simple">
-<li><p>Minimum (0 Zylinder): 0 ms</p></li>
-<li><p>1 Track: 1,00025 ms</p></li>
-<li><p>Maximum (65.536 Zylinder): 65536/4000 + 1 = 17,38 ms</p></li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>Minimale Zeit, um den Block zu lesen:</p>
-<ul>
-<li><p>S-/L-Kopf steht über richtiger Spur und Platte ist schon richtig rotiert</p></li>
-<li><p>4 Sektoren und 3 Lücken sind zu lesen</p></li>
-<li><p>256 Lücken und 256 Sektoren pro Spur (durchschnittlich)</p></li>
-<li><p>Lücken bedecken 36° (10%), Sektoren bedecken 324° des Kreises (360°)</p></li>
-<li><p>324° x 4 / 256 + 36° x 3 / 256 = 5,48° des Kreises durch Block bedeckt</p></li>
-<li><p>(5,48° / 360°) · 8,33 ms = 0,13 ms</p></li>
-</ul>
-</li>
-<li><p>Maximale Zeit: Präsenzübung (25,84 ms)</p></li>
-<li><p>Durchschnittliche Zeit: selber forschen und nachrechnen (10,76 ms)</p></li>
-</ul>
+<p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?
+Diese Frage soll nun am Beispiel der Megatron 747 Disk beantwortet werden. </br></p>
+<p>Die Umdrehungsgeschwindigkeit beträgt 7200 U · min-1. Somit dauert eine Umdrehung 8,33 ms. </br></p>
+<p>Zunächst wird die Seektime berechnet: </br>
+Die Start- und Stopzeit beträgt zusammen eine Millisekunde. </br>
+Pro 4000 Zylinder wird 1ms benötigt:
+- Minimal werden 0 Zylinder übersprungen und man bleibt an der Stelle an der man ist. Dafür werden 0ms benötigt.
+- Wenn man eine Spur (Track) überspringt, kostet das 1,00025ms (≈1ms).
+- Maximal werden 65.536 Zylinder übersprungen und das kostet 65536/4000 + 1 = 17,38ms.
+</br></p>
+<p>Als nächstes wird die minimale Zeit berechnet, um einen Block zu lesen: </br>
+Dafür muss der S-/L-Kopf über der richtigen Spur stehen und die Platte schon richtig rotiert worden sein. Ein Block (16KB) ist über 4 Sektoren und 3 Lücken verteilt. Diese müssen gelesen werden. Insgesamt gibt es durchschnittlich 256 Lücken und 256 Sektoren pro Spur (wurde in vorherigem Unterkapitel so definiert). Die Lücken bedecken 36° (10%) einer Spur. Die Sektoren bedecken 324° des Kreises (360°). </br>
+Das Verhältnis wird berechnet mit 324° x 4 / 256 + 36° x 3 / 256 = 5,48°. Es sind also 5,48° des Kreises durch einen Block bedeckt.
+5,48° im Verhältnis zur Gesamtrotation (360°) und einer Umdrehung ergeben dann eine Lesezeit von (5,48° / 360°) · 8,33 ms = 0,13 ms.</p>
+<p>Die maximale Zeit zum Lesen eines Blocks wird in der Präsenzübung vertieft. (Kleiner Spoiler: Sie beträgt 25,84 ms).
+Die durchschnittliche Zeit können Sie selber erforschen und nachrechnen. (Dabei sollten sie auf ungefähr 10,76 ms kommen).</p>
 </section>
 </section>
 <section id="effiziente-diskoperationen">
 <h2><span class="section-number">1.3. </span>Effiziente Diskoperationen<a class="headerlink" href="#effiziente-diskoperationen" title="Permalink to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 500px;" /></a>
+<p>Die Kopfbewegungen sollen möglichst minimiert werden, sodass der Kopf nicht die ganze Zeit von Spur zu Spur oder von Block zu Block hin- und herspringt. Dies zieht gewisse Anforderungen mit sich: Zum Einem sollen die Daten auf der Festplatte sinnvoll liegen. Zum Anderen sollte es Indexstrukturen geben, sodass man nicht Suchen muss.</p>
 <section id="algorithmen-vs-dbms">
 <h3><span class="section-number">1.3.1. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Annahme bei Algorithmen:</p>
-<ul>
-<li><p>RAM-Berechnungsmodell</p>
-<ul>
-<li><p>Gesamte Daten passen in Hauptspeicher</p></li>
-<li><p>Daten befinden sich schon im Hauptspeicher</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Annahme bei Implementierung von DBMS:</p>
-<ul>
-<li><p>I/O-Modell: Gesamte Daten passen nicht in Hauptspeicher</p></li>
-</ul>
-</li>
-<li><p>Externspeicher-Algorithmen funktionieren oft anders:</p>
-<ul>
-<li><p>Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus lt. RAM-Modell sein</p></li>
-<li><p>Entwurfsziel: I/O vermeiden</p></li>
-</ul>
-</li>
-<li><p>Gleiches kann auch für Hauptspeicher-Algorithmen gelten:</p>
-<ul>
-<li><p>Ausnutzen des Caches</p>
-<ul>
-<li><p>Cachegröße berücksichtigen</p></li>
-<li><p>Lokalität beachten („maximiere“ Anzahl der Cache Hits)</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Zuvor war die Annahme bei Algorithmen (wie in der Vorlesung ‘Datenstrukturen und Algorithmen’), dass die gesamten Daten in den RAM passen (RAM-Berechnungsmodell) und sie auch bereits dort im Hauptspeicher liegen.</p>
+<p>Die Annahme bei der Implementierung von DBMS ist das I/O-Modell. Die gesamten Daten passen nicht mehr in Hauptspeicher.</p>
+<p>Die Externspeicher-Algorithmen funktionieren oft anders. Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus laut RAM-Modell sein. Sein primäres Entwurfsziel ist es I/O zu vermeiden.</p>
+<p>Das Gleiche kann auch für Hauptspeicher-Algorithmen gelten. Diese nutzen den Cache aus und berücksichtigen die Cachegröße. Es wird versucht die Lokalität zu nutzen und alle fernerliegende Zugriffe zu vermeiden („maximiere“ Anzahl der Cache Hits).</p>
 </section>
 <section id="i-o-modell">
 <h3><span class="section-number">1.3.2. </span>I/O-Modell<a class="headerlink" href="#i-o-modell" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Beispiel: Einfaches DBMS</p>
-<ul>
-<li><p>Zu groß für Hauptspeicher</p></li>
-<li><p>Eine Disk, ein Prozessor, viele konkurrierende Nutzer / Anfragen</p></li>
-</ul>
-</li>
-<li><p>Disk-Controller hält Warteschlange mit Zugriffsaufforderungen</p>
-<ul>
-<li><p>Abarbeitungsprinzip: First-come-first-served</p></li>
-<li><p>Jede Aufforderung erscheint zufällig</p>
-<ul>
-<li><p>Kopf ist also an zufälliger Position</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Dominanz der I/O-Kosten</p>
-<ul class="simple">
-<li><p>Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als Kosten der Operationen auf den Daten im Hauptspeicher.</p></li>
-</ul>
-<p>-&gt; Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollten minimiert werden.</p>
+<p>Als Beispiel sei ein einfaches DBMS gegeben. Dieses ist zu groß für den  Hauptspeicher. Es gibt eine Disk, einen Prozessor und viele konkurrierende Nutzer bzw. Anfragen.</p>
+<p>Der Disk-Controller hält und organisiert eine Warteschlange (Priority Queue) mit Zugriffsaufforderungen auf die Datenbank. Das Abarbeitungsprinzip der Zugriffsaufforderungen ist hierbei first-come-first-served. Generell muss angenommen werden, dass jede Aufforderung zufällig ist. Also der Kopf an einer zufälligen Position ist.</p>
+<p>Außerdem dominieren die I/O-Kosten. Wir berücksichtigen nicht was im Hauptspeicher geschieht. Die Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als die Kosten der Operationen auf den Daten im Hauptspeicher.</p>
+<p>Die Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollte minimiert werden. Anhanddessen kann die Effizienz von Algorithmen beschrieben werden.</p>
+<p>16:05</p>
 </section>
 <section id="beispiel-fur-das-i-o-modell-1-indizes">
 <h3><span class="section-number">1.3.3. </span>Beispiel für das I/O-Modell (1): Indizes<a class="headerlink" href="#beispiel-fur-das-i-o-modell-1-indizes" title="Permalink to this heading">#</a></h3>
@@ -1418,43 +1343,6 @@ Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der An
 </ul>
 </section>
 </section>
-<section id="zusammenfassung">
-<h2><span class="section-number">1.5. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Speicherhierarchie</p></li>
-<li><p>Aufbau einer Festplatte</p>
-<ul>
-<li><p>Zylinder, Spuren, Sektoren</p></li>
-</ul>
-</li>
-<li><p>Latenzzeit von Diskzugriffen</p>
-<ul>
-<li><p>Kommunikationszeit, Suchzeit, Rotationszeit, Transferzeit</p></li>
-</ul>
-</li>
-<li><p>Berechnung mit IO Modell</p>
-<ul>
-<li><p>Blocklesezeit, Blockgröße, Hauptspeicherkapazität</p></li>
-</ul>
-</li>
-<li><p>Externspeicher-Algorithmen</p>
-<ul>
-<li><p>Minimierung von IO</p></li>
-<li><p>TPMMS</p></li>
-<li><p>Grenzen durch Hauptspeicher festgelegt</p></li>
-</ul>
-</li>
-<li><p>Fünf “Tricks”</p>
-<ul>
-<li><p>Zylinderorganisation</p></li>
-<li><p>Verwendung mehrerer Festplatten</p></li>
-<li><p>Spiegelung</p></li>
-<li><p>Scheduling mit Elevator Algorithmus</p></li>
-<li><p>Prefetching</p></li>
-</ul>
-</li>
-</ul>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1571,7 +1459,6 @@ Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der An
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prefetching">1.4.8. Prefetching</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">1.5. Zusammenfassung</a></li>
 </ul>
   </nav></div>
 
