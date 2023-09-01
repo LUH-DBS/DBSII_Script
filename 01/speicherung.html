@@ -462,9 +462,57 @@ document.write(`
 <p>Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen.</p>
 <section id="speicherhierarchie">
 <h2><span class="section-number">1.1. </span>Speicherhierarchie<a class="headerlink" href="#speicherhierarchie" title="Permalink to this heading">#</a></h2>
-<div style="float: left">
-    <img src="pictures/Speicherhierachie.png" alt="Speicherhierachie" width="300" style="background-color: white;"/>
-</div>
+<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 300px;" /></a>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kosten</p></th>
+<th class="head"><p>Zugriffszeiten</p></th>
+<th class="head"><p>Kapazitäten</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sehr teuer</p></td>
+<td><p>&lt; 1ns</p></td>
+<td><p>10KB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sehr teuer</p></td>
+<td><p>1-10ns</p></td>
+<td><p>10MB</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>~ 5€/GB</p></td>
+<td><p>100ns</p></td>
+<td><p>100GB</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>~ 0.05€/GB</p></td>
+<td><p>SSDs 100us </br> Festplatte 8-10ms</p></td>
+<td><p>SSDs 5TB </br> Festplatte 50 TB</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt; 1€/GB</p></td>
+<td><p>sec - min</p></td>
+<td><p>~ 1PB</p></td>
+</tr>
+</tbody>
+</table>
 <p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten. <br>
 In Anbetracht der Kosten sind Archivspeicher sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen. <br>
 Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. <br>
