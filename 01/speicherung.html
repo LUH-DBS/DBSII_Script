@@ -462,21 +462,32 @@ document.write(`
 <p>Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen.</p>
 <section id="speicherhierarchie">
 <h2><span class="section-number">1.1. </span>Speicherhierarchie<a class="headerlink" href="#speicherhierarchie" title="Permalink to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 300px;" /></a>
-<p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten.</p>
-<p>Speicherhierachie - Kosten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kosten.png"><img alt="Speicherhierachie-Kosten" src="../_images/Speicherhierachie-Kosten.png" style="width: 300px;" /></a>
-<p>Archivspeicher sind sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen.</p>
-<p>Speicherhierarchie – Zugriffszeiten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Zugriffszeiten.png"><img alt="Speicherhierachie-Zugriffszeiten" src="../_images/Speicherhierachie-Zugriffszeiten.png" style="width: 300px;" /></a>
-<p>~ Zahlen aus dem Foliensatz von Viktor Leis 2019
-<br><br>
-Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen.</p>
-<p>Speicherhierarchie – Kapazitäten</p>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie-Kapazitäten.png"><img alt="Speicherhierachie-Kapazitäten" src="../_images/Speicherhierachie-Kapazitäten.png" style="width: 300px;" /></a>
-<p>~ Zahlen aus dem Foliensatz von Viktor Leis 2019
-<br><br>
-In Bezug auf die Kapazität betrachtet, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung.</p>
+<div style="float: left">
+    <img src="pictures/Speicherhierachie.png" alt="Speicherhierachie" width="300" style="background-color: white;"/>
+</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kosten</p></th>
+<th class="head"><p>Zugriffszeiten</p></th>
+<th class="head"><p>Kapazitäten</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sehr teuer</p></td>
+<td><p>&lt; 1ns</p></td>
+<td><p>10KB</p></td>
+</tr>
+</tbody>
+</table>
+<p>| Sehr teuer | 1-10ns | 10MB |<br />
+| ~ 5€/GB | 100ns | 100GB |
+| ~ 0.05€/GB | SSDs 100us &amp; Festplatte 8-10ms | SSDs 5TB &amp; Festplatte 50 TB |<br />
+| &lt; 1€/GB | sec - min | ~ 1PB |</p>
+<p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten. <br>
+In Anbetracht der Kosten sind Archivspeicher sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen. <br>
+Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. <br>
+In Bezug auf die Kapazität, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung. <br><br>
+~ Zahlen aus dem Foliensatz von Viktor Leis 2019</p>
 <section id="virtueller-speicher">
 <h3><span class="section-number">1.1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this heading">#</a></h3>
 <p>Jede Anwendung verwaltet einen virtuellen Adressraum. Dieser kann größer als der tatsächlich verfügbare Hauptspeicher sein.
