@@ -6,159 +6,120 @@
 # Physische Speicherstrukturen
 
 # Zoom in die interne Ebene: Die 5-Schichten Architektur
+# 
 # <img src="pictures/5-Schichten-Architektur.png" alt="5-Schichten-Architektur" width="500" style="background-color: white;"/>
-
-# Übersicht
-# 1. Speicherhierarchie
-# 2. Disks
-# 3. Effiziente Diskoperationen
-#     - TPMMS
-# 4. Zugriffsbeschleunigung
-# 5. Diskausfälle
 # 
-# <img src="pictures/Speicherhierachie.png" alt="Speicherhierachie" width="500" style="background-color: white;"/>
-
-# Speicherhierachie - Kosten
+# Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen. 
 # 
-# <img src="pictures/Speicherhierachie-Kosten.png" alt="Speicherhierachie-Kosten" width="500" style="background-color: white;"/>
 
-# Speicherhierarchie – Zugriffszeiten
+# ## Speicherhierarchie
 # 
-# <img src="pictures/Speicherhierachie-Zugriffszeiten.png" alt="Speicherhierachie-Zugriffszeiten" width="500" style="background-color: white;"/>
-# Zahlen aus dem Foliensatz von Viktor Leis 2019
-
-# Speicherhierarchie – Kapazitäten
+# <img src="pictures/Speicherhierachie.png" alt="Speicherhierachie" width="300" style="background-color: white; float: left;"/>
 # 
-# <img src="pictures/Speicherhierachie-Kapazitäten.png" alt="Speicherhierachie-Kapazitäten" width="500" style="background-color: white;"/>
-# Zahlen aus dem Foliensatz von Viktor Leis 2019
+# | Speichermedium | Kosten | Zugriffszeiten | Kapazitäten |
+# |---|---|---|---|
+# | Register | Sehr teuer | < 1ns | 10KB |
+# | Cache | Sehr teuer | 1-10ns | 10MB |  
+# | Hauptspeicher | ~ 5€/GB | 100ns | 100GB | 
+# | Festplatte | ~ 0.05€/GB | SSDs 100us </br> Festplatte 8-10ms | SSDs 5TB </br> Festplatte 50 TB | 
+# | Archivspeicher | < 1€/GB | sec - min | ~ 1PB |
 
-# Pat Helland, DEBS 2022
+# Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten. <br>
+# In Anbetracht der Kosten sind Archivspeicher sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen. <br>
+# Bei den Zugriffszeiten wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. <br>
+# In Bezug auf die Kapazität, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung. <br><br>
+# ~ Zahlen aus dem Foliensatz von Viktor Leis 2019
+
+# ### Virtueller Speicher
+# Jede Anwendung verwaltet einen virtuellen Adressraum. Dieser kann größer als der tatsächlich verfügbare Hauptspeicher sein. 
+# Mit einem 32-bit Adressraum sind 2^32 unterschiedliche Adressen darstellbar.
+# Jedes Byte hat dabei eine eigene Adresse. Dadurch lässt sich maximal eine Hauptspeichergröße von 4GB addressieren.  
+# Heutzutage ist der 64-bit Adressraum der Standard. Damit lassen sich maximal 16 Exabyte addressieren. Dies ist deutlich mehr als ein gewöhlicher Computer/Laptop mit 1 oder 2 TB Speicher. Eine 64-bit Addressierung bietet somit noch deutlich mehr Potenzial. <br>
+# Meistens ist aber deutlich weniger Hauptspeicher als Speicher auf der Festplatte vorhanden. Zur Abhilfe werden die Daten auf eine Disk ausgelagert. 
+# Dazu müssen ganze Blöcke (Blockgröße zwischen 4 bis 56 KB) zwischen Hauptspeicher und Festplatte gelesen und geschrieben werden (Seiten des virtuellen Speichers). Es werden nicht einzelne ASCII-Zeichen, sondern ganze Blöcke, die beispielsweise mehrere ASCII-Zeichen enthalten, gelesen. Die Transferzeiten ändern sich nämlich kaum, wenn Blöcke anstelle von einzelnen Zeichen gelesen und geschreiben werden. Es können nicht beliebig viele Zeichen in einem Block sein. Irgendwann ist auch das zu viel. <br>
+# Die Zugriffe werden durch ein Betriebssystem verwaltet und eingeschränkt. 
+# Datenbankensysteme können Begriffe wie 'O_DIRECT' verwenden, um doch selbst die Positionen der Daten auf den Festplatten zu verwalten und eigene Bufferpoolmanager zu verwenden. Ein Betriebssystem hat beispielsweise mehrere Anwendungen für die es den Hauptspeicher verwalten muss. Daher kann es sein, dass das Betriebssystem eine Anwendung vorzieht, bevor es die Daten aus der Datenbank bearbeitet. 
+
+# ### Sekundärspeicher: Festplatten
+# Unter Sekundärspeicher fallen nicht nur (magnetische) Festplattens, sondern auch optische (read-only) Speicher.
+# Im Wesentlichen gibt es auf Sekundärspeicher wahlfreien Zugriff (random access). Dabei kostet der Zugriff auf jedes Datum gleich viel, aber dafür muss man dort erst einmal hinkommen! <br>
+# HDDs halten Daten aus Cache bzw. die Seiten des virtuellen Speichers von Anwendungsprogrammen. Außerdem halten sie Daten aus Dateisystemen. <br>
+# Es gibt zwei Operationen auf Festplatten. Zum Einem Disk-read. Darunter versteht man das Kopieren eines Blocks in den Hauptspeicher. Zum Anderen Disk-write, dem Kopieren eines Blocks aus dem Hauptspeicher auf die Festplatte. Beides gilt jeweils als eine Disk-I/O-Operation. 
+
+# ### Festplatten - Puffer
+# Ein Bufferpool-Manager puffert Teile von Dateien. In diesem Beispiel mit einer  Blockgröße von 4 KB. Dabei werden immer 4KB in den Pool geladen. Dieser Block kann dann geschrieben oder auch verworfen werden. 
 # 
-# <img src="pictures/PatHelland-DEBS2022.png" alt="PatHelland-DEBS2022" width="500" style="background-color: white;"/>
-# <img src="pictures/PatHelland-DEBS2022_2.png" alt="PatHelland-DEBS2022" width="500" style="background-color: white;"/>
-
-# ## Virtueller Speicher
-# Jede Anwendung verwaltet einen virtuellen Adressraum
-# - Kann größer als tatsächlich verfügbarer Hauptspeicher sein
-# - 32-bit Adressraum -> 2^32 unterschiedliche Adressen darstellbar
-#   - Jedes Byte hat eigene Adresse = max. Hauptspeichergröße 4GB
-# - 64-bit Adressraum -> max. 16 Exabyte
-# - Aber: meist weniger Hauptspeicher vorhanden
-# - Abhilfe: Daten werden auf Disk ausgelagert
-#   - Lesen und Schreiben von ganzen Blöcken zwischen Hauptspeicher und Festplatte (Blockgröße 4 – 56 KB) -> Seiten des virtuellen Speichers
-#   - Verwaltet durch Betriebssystem
-# - Datenbanken verwalten oft Positionen der Daten auf Festplatte selbst (O_DIRECT).
-# - Eigene Bufferpoolmanager
-
-# ## Sekundärspeicher: Festplatten
-# - Nicht nur (magnetische) Festplatten; auch optische (read-only) Speicher
-# - Im Wesentlichen wahlfreier Zugriff (random access)
-#   - Zugriff auf jedes Datum kostet gleich viel
-#   - Aber: Erst einmal hinkommen!
-# - HDDs halten Daten aus Cache / Seiten des virtuellen Speichers von Anwendungsprogrammen
-# - HDDs halten Daten aus Dateisystem
-# - Operationen
-#   - Disk-read (Kopieren eines Blocks in Hauptspeicher)
-#   - Disk-write (Kopieren eines Blocks aus dem Hauptspeicher)
-#   - Beides: Disk-I/O
-
-# ## Festplatten - Puffer
-# - Bufferpool Manager puffert Teile von Dateien
-#   - In Blockgröße (z.B. 4 KB)
 #   <img src="pictures/Festplatten-Puffer.png" alt="Festplatten-Puffer" width="500" style="background-color: white;"/>
-# - DBMS verwaltet Positionen der Blöcke innerhalb der Datei selbst!
-# - Dauer für Schreiben oder Lesen eines Blocks: 10 - 30 ms
-#   - In dieser Zeit viele Millionen Prozessoranweisungen ausführbar
-#   - I/O-Zeit dominiert Gesamtkosten
-#   - Deshalb am besten: Block sollte bereits im Hauptspeicher sein!
+# 
+# Das DBMS verwaltet die Positionen der Blöcke innerhalb der Datei selbst! Dafür ist nicht mehr das Betriebssystem zuständig. <br>
+# Die Dauer für das Schreiben oder Lesen eines Blocks beträgt 10 bis 30 ms. In dieser kurzen Zeitspanne können viele Millionen Prozessoranweisungen ausgeführt werden. Somit dominiert das Lesen und Schreiben, also die I/O-Zeit, die Gesamtkosten. Die Blöcke sollten daher am besten im Hauptspeicher liegen. Das ist nicht immer möglich, da der Hauptspeicher meist zu klein ist. 
+# <br><br>
+# Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hier aber immer ungefähr im gleichen Skalierungsraum und sollen dabei helfen ein Gefühl für die Zugriffszeiten zu vermitteln. 
 
-# ## Tertiärspeicher: Magnetbänder
+# ### Tertiärspeicher: Magnetbänder
 # 
-# - Viele Terabyte (10^12 Bytes) Verkaufsdaten
-# - Viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten
-# - Festplatten ungeeignet
-#     - Zu teuer (Wartung, Strom)
-# - Vergleich Tertiärspeicher – Sekundärspeicher
-#     - I/O-Zeiten wesentlich höher
-#     - Kapazitäten wesentlich höher
-#     - Kosten pro Byte geringer
-# - Kein wahlfreier Zugriff (random access)
-#     - Zugriffszeiten hängen stark von der Position des jeweiligen Datensatzes ab (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes)
+# Tertiärspeicher kann viele Terabyte (10^12 Bytes) Verkaufsdaten, sowie viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten speichern. Für diesen Einsatzbereich wären Festplatten ungeeignet. Sie sind zu teuer aufgrund von Wartung und Strom. <br>
+# Im Vergleich zum Sekundärspeicher sind zwar die I/O-Zeiten wesentlich höher, aber dafür steigt auch die Kapazität. Ein weiterer Vorteil sind die geringeren Kosten pro Byte gegenüber den Festplatten. <br>
+# Auf Tertiärspeicher gibt es keinen wahlfreien, sondern zufälligen Zugriff (random access). Die Zugriffszeiten hängen dabei stark von der Position des jeweiligen Datensatzes (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes) ab.
 # 
-# <img src="pictures/Magnetband.png" alt="Magnetband" width="500" style="background-color: white;"/>
+# <img src="pictures/Magnetband.png" alt="Magnetband" width="300" style="background-color: white;"/>
 
-# ## Tertiärspeicher
+# ### Tertiärspeicher
 # 
-# - Ad-hoc Speicherung auf Magnetbändern
-#   - Magnetbandspulen
-#   - Kassetten
-#   - Von Menschenhand ins Regal
-#   - Gut beschriften!
-# - Magnetbandroboter (Silo)
-#   - Roboter bedient Magnetbänder (Kassetten)
-#   - 10 mal schneller als Mensch
-# - CD / DVD - Juke-Boxes
-#   - Roboterarm extrahiert jeweiliges Medium (CD oder DVD)
-#   - Hohe Lebensdauer (30 Jahre)
-#   - Wahrscheinlicher, dass kein Lesegerät mehr existiert
+# Ad-hoc können Daten auf Magnetbändern/Magnetbandspulen und Kasseten gespeichert werden. Die Speichermedien werden oft von Menschenhand in die jeweiligen Regale gelegt und geordnet. Daher der Tertiärspeicher in dem Fall gut beschriftet werden. Durch Magnetbandroboter (Silo) kann dieser Prozess ersetzt bzw. optimiert werden. Der Roboter bedient anstelle des Menschen die Magnetbänder (Kassetten). Der Einsatz von Robotern beschleunigt das Verfahren um das zehnfache. <br>
+# Die Idee ist ähnlich zu CDs, DVDs und Juke-Boxes. Ein Roboterarm extrahiert das jeweilige Medium (CD oder DVD). Der Tertiärspeicher hat wieder eine hohe Lebensdauer von ca. 30 Jahren. Somit ist es wahrscheinlicher, dass kein Lesegerät mehr existiert, als dass der Tertiärspeicher nicht mehr funktioniert. 
 #   
-#    <img src="pictures/Tertiärspeicher.png" alt="Tertiärspeicher" width="500" style="background-color: white;"/>
+#    <img src="pictures/Tertiärspeicher.png" alt="Tertiärspeicher" width="300" style="background-color: white;"/>
 
-# ## Moore's Law (Gordon Moore, 1965)
-# - Exponentielles Wachstum vieler Parameter
-# - Verdopplung alle 18 Monate
+# ### Moore's Law (Gordon Moore, 1965)
+# 
+#   <img src="pictures/moores-law_1.png" alt="moores-law_1" width="400" style="background-color: white;"/>
+#   <img src="pictures/moores-law_2.png" alt="moores-law_2" width="300" style="background-color: white;"/>
+# 
+# Moore's Law beschreibt das exponentielle Wachstum vieler Parameter. Zu einer Verdopplung kommt es alle 18 Monate. Es können sich beispielsweise die folgenden Parameter verdoppeln bzw. halbieren:
 #   - Prozessorgeschwindigkeit (# instr. per sec.)
 #   - Hauptspeicherkosten pro Bit
 #   - Anzahl Bits pro cm² Chipfläche
 #   - Diskkosten pro Bit (halbiert)
 #   - Kapazität der größten Disks
-# - Aber: Sehr langsames Wachstum von
-#   - Zugriffsgeschwindigkeit im Hauptspeicher
-#   - Rotationsgeschwindigkeit von Festplatten
-# - Folge: Latenz-Anteil wächst
-#   - Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit)
 #   
-#   <img src="pictures/moores-law_1.png" alt="moores-law_1" width="500" style="background-color: white;"/>
-#   <img src="pictures/moores-law_2.png" alt="moores-law_2" width="500" style="background-color: white;"/>
-#     <img src="pictures/moores-law_3.png" alt="moores-law_3" width="500" style="background-color: white;"/>
-#   <img src="pictures/moores-law_4.png" alt="moores-law_4" width="500" style="background-color: white;"/>
+# Dahingegen kommt es aber zu einer sehr langsamen Verbesserung bei der Zugriffsgeschwindigkeit im Hauptspeicher und der Rotationsgeschwindigkeit von Festplatten, da es physikalisch deutlich schwerer und teurer ist zu realisieren. Als Folge daraus wächst der Latenz-Anteil. Die Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit).
+# 
+# <img src="pictures/moores-law_3.png" alt="moores-law_3" width="500" style="background-color: white;"/>
+# 
+# In dem Diagramm ist die Anzahl der Transistoren in Abhängigkeit der Zeit dargestellt worden. 
+# 
+# <img src="pictures/moores-law_4.png" alt="moores-law_4" width="500" style="background-color: white;"/>
 # 
 # See also: http://www.computerhistory.org/timeline/memory-storage/ 
 
-# ## Plattenkapazität
+# ### Plattenkapazität
 # 
 # <img src="pictures/Plattenkapazität.png" alt="Plattenkapazität" width="500" style="background-color: white;"/>
 # 
 # http://en.wikipedia.org/wiki/Hard_disk_drive
 # 
-# 
-# 
-# 
-# But: Access times are leveling
-# 
-# Maximum sustained bandwidth trend
+# Wie man aus diesem Diagramm entnehmen kann, wächst die Plattenkapazität exponentiell. <br>
+# Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der Trend zur maximal anhaltenden Bandbreite gezeigt.
 # 
 # <img src="pictures/Access_times.png" alt="Access_times" width="500" style="background-color: white;"/>
 # 
 # 
-# Average seek time trend
+# Auch die Suchzeiten halbieren sich immer seltener. Daraus ergibt sich der folgende Trend:
 # 
 # <img src="pictures/Seek_times.png" alt="Seek_times" width="500" style="background-color: white;"/>
 # 
 # 
 # http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm
 
-# ## SSDs
-# 
-#   - Persistente Speicherung basierend auf Halbleitern
-#   - Keine mechanische Bewegung/Rotation
-#   - Hoher Grad an Parallelität
+# ### SSDs
+# Die persistente Speicherung von SSDs basiert auf Halbleitern. Sie haben keine mechanische Bewegung oder Rotation. Außerdem bieten SSDs einen hohen Grad an Parallelität. 
 #   
 #   <img src="pictures/SSDs.png" alt="SSDs" width="500" style="background-color: white;"/>
 
-# ## HDDs vs. SSDs
+# ### HDDs vs. SSDs
 # 
-# Vorteile von SSDs:
+# Im Vergleich zu HDDs bieten SSDs einige Vorteile:
 # - Schnelles Hochfahren, da keine Drehung erforderlich.
 # - Schneller Random Access ohne Suchzeit.
 # - Geringe Leselatenz.
@@ -171,7 +132,7 @@
 # - Weniger Gewicht.
 # - Parallele Lesezugriffe.
 # 
-# Nachteile von SSDs:
+# SSDs besitzen aber auch Nachteile, die bei der Wahl zwischen HDD und SSD berücksichtigt werden sollten:
 # - Begrenzte Lebenszeit.
 # - Verliert Daten nach 2-5 Jahren ohne Strom.
 # - Können nicht defragmentiert werden.
@@ -183,204 +144,147 @@
 # - DRAM-basierte SSDs benötigen mehr Strom als HDDs.
 # - Kein sicheres Überschreiben.
 # 
-# https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html
+# Über weitere Vor- und Nachteile können Sie <a href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">hier</a> weiterlesen.
+# 
 # 
 
-# Übersicht
-# 1. Speicherhierarchie
-# 2. Disks
-# 3. Effiziente Diskoperationen
-#     - TPMMS
-# 4. Zugriffsbeschleunigung
-# 5. Diskausfälle
-# 
-# <img src="pictures/Festplatten_Vergleich_Früher_Heute.png" alt="Festplatten_Vergleich_Früher_Heute" width="500" style="background-color: white;"/>
+# ## Festplatten
+# <img src="pictures/Festplatten_Vergleich_Früher_Heute.png" alt="Festplatten_Vergleich_Früher_Heute" width="400" style="background-color: white;"/>
 
-# ## Aufbau
+# ### Aufbau
 # 
-# - Mehrere (5-10) gleichförmig rotierende Platten (z. B. 3.5" Durchmesser).
-# - Für jede Plattenoberfläche (10-20) ein Schreib-/Lese-Kopf.
-#   - Gleichförmige Bewegung.
-# - Die magnetische Plattenoberfläche ist in Spuren eingeteilt.
-# - Spuren sind als Sektoren fester Größe formatiert.
-#   - Die Anzahl der Sektoren pro Spur kann sich unterscheiden.
-# - Übereinander angeordnete Spuren bilden einen Zylinder.
+# Eine Festplatte besteht aus mehreren (5-10) gleichförmig rotierenden Platten (z.B. 3.5" Durchmesser). Für jede Plattenoberfläche (10-20) gibt es einen Schreib-/Lese-Kopf, der sich gleichförmig bewegt. Die magnetische Plattenoberfläche ist in Spuren eingeteilt.
+# Spuren sind als Sektoren fester Größe formatiert, wobei sich die Anzahl der Sektoren pro Spur unterscheiden kann. Übereinander angeordnete Spuren bilden einen Zylinder. Die Platten sind übereinander angeordnet, um Zugriffseffizienz zu ermöglichen. Der Kopf kann parallel auch an anderen Stellen lesen und schreiben. 
 # 
 # <img src="pictures/Aufbau_1.png" alt="Aufbau_1" width="500" style="background-color: white;"/>
 # <img src="pictures/Aufbau_2.png" alt="Aufbau_2" width="500" style="background-color: white;"/>
 # 
-# - Sektoren (1-8 KB) sind die kleinste physische Leseeinheit.
-#   - Die Größe wird vom Hersteller festgelegt.
-#   - Auf äußeren Spuren befinden sich mehr Sektoren.
-# - Lücken zwischen den Sektoren nehmen etwa 10% der Spur ein.
-#   - Diese Bereiche sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge.
-# - Blöcke sind die logische Übertragungseinheit.
-#   - Sie können aus einem oder mehreren Sektoren bestehen.
+# Die Sektoren (1-8 KB) sind die kleinste physische Leseeinheit. Die Größe eines Sektors wird vom jeweiligen Hersteller festgelegt. Auf den äußeren Spuren befinden sich mehr Sektoren als auf den inneren.
+# Zwischen den Sektoren existieren Lücken. Sie sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge. Diese Lücken nehmen etwa 10% der gesamten Spur ein. </br>
+# Aus den Sektoren lesen wir Blöcke. Blöcke sind die logische Übertragungseinheit. Es ist also die Einheit, die wir auf einmal in den Hauptspeicher laden. Ein Block kann auch aus mehreren Sektoren bestehen.
 #   
-#   <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" alt="Aufbau_3" width="500" style="background-color: white;"/>
+# <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" alt="Aufbau_3" width="500" style="background-color: white;"/>
 #   
-#     <img src="pictures/Aufbau_4.png" alt="Aufbau_4" width="500" style="background-color: white;"/>
+# <img src="pictures/Aufbau_4.png" alt="Aufbau_4" width="500" style="background-color: white;"/>
 #     
-# hier: jede Spur hat gleiche Anzahl an Sektoren
+# Hier in dieser Grafik hat jede Spur die gleiche Anzahl an Sektoren. Normalerweise haben die inneren weniger und die äußeren Spuren mehr Sektoren. Eine Ausnahme wäre es, wenn die Sektoren unterschiedlich groß sind. 
 
-# ## Zone Bit Recording
+# ### Zone Bit Recording
 # 
-# - Äußere Zylinder haben mehr Fläche.
-#   - => Bei gleichen Radii führt dies zu einer (unnötig) niedrigeren Bitdichte.
-# - Lösung: Zonen mit unterschiedlichen Sektoreinteilungen.
+# Mehrere Spuren übereinander betrachtet ergeben einen Zylinder. Die äußeren Zylinder haben einen größeren Radius und somit auch mehr Fläche. Bei gleichen Radii führt dies zu einer (nicht notwendigen) niedrigeren Bitdichte.
+# Die Lösung sind Zonen mit unterschiedlichen Sektoreinteilungen.
+# Für die folgenden Berechnungen ignorieren wir diesen Fall.
 # 
-# - Wir ignorieren dies.
-# 
-#     <img src="pictures/ZoneBitRecording.png" alt="ZoneBitRecording" width="500" style="background-color: white;"/>
+# <img src="pictures/ZoneBitRecording.png" alt="ZoneBitRecording" width="500" style="background-color: white;"/>
 # 
 
-# ## Disk Controller
+# ### Disk Controller
 # 
-# - Kontrolliert eine oder mehrere Disks.
-# - Kontrolliert Bewegung der Schreib-/Lese-Köpfe.
-#   - Spuren, die zu einem Zeitpunkt unter den Schreib-/Lese-Köpfen sind, bilden Zylinder.
-# - Wählt Plattenoberfläche, auf die zugegriffen werden muss.
-# - Wählt Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet.
-#   - Kontrolliert Start und Ende eines Sektors.
-# - Überträgt Bits zwischen Disk und Hauptspeicher bzw. umgekehrt.
+# Ein Disk Controller kontrolliert eine oder mehrere Disks und die Bewegung der Schreib-/Lese-Köpfe. 
+# Außerdem wählt er die Plattenoberfläche, auf die zugegriffen werden muss und den Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet. Dadurch kontrolliert er Start und Ende eines Sektors.
+# Der Disk Controller überträgt noch Bits zwischen Disk und Hauptspeicher und umgekehrt.
 # 
 # <img src="pictures/DiskController.png" alt="DiskController" width="500" style="background-color: white;"/>
 
-# ## Beispiel - Megatron 747 disk
+# ### Beispiel - Megatron 747 disk
 # 
-# - Eigenschaften:
-#   - 8 Platten mit 16 Plattenoberflächen (Durchmesser: 3,5“)
-#   - 2^16 = 65.536 Spuren pro Oberfläche
-#   - Durchschnittlich 2^8 = 256 Sektoren pro Spur
-#   - 2^12 = 4.096 Byte pro Sektor
-# - Gesamtkapazität:
-#   - 16 x 65.536 x 256 x 4.096 = 2^40 Byte = 1 TB
-# - Blocks:
-#   - Z.B. 2^14 Byte (= 16 KB)
-#   - 4 Sektoren pro Block (2^14 / 2^12)
-#   - 64 Blöcke pro Spur (2^8 / 2^2) im Durchschnitt
-# - Bitdichte (äußerste Spur):
-#   - Bits pro Spur: 28 Sektoren x 2^12 Byte = 2^20 = 1024 KB = 8 MBit
-#   - Spurlänge (äußerste Spur): 3,5“ · p ≈ 11‘‘
-#   - Ca. 10% Lücken → Spurlänge von 9,9‘‘ hält 8 MBits
-#   - 840.000 Bits pro Zoll
+# Ein Beispiel ist die Megatron 747 Disk mit den folgenden Eigenschaften: </br>
+# Sie hat 8 Platten mit 16 Plattenoberflächen. Der Durchmesser beträgt 3,5 Zoll.
+# Sie hat 2^16 = 65.536 Spuren pro Oberfläche, durchschnittlich 2^8 = 256 Sektoren pro Spur und 2^12 = 4.096 Byte pro Sektor.</br></br>
+# Die Gesamtkapazität ergibt sich durch multiplizieren von #Plattenoberflächen, Spuren pro Oberfläche, Sektoren pro Spur und Byte pro Sektor: 16 x 65.536 x 256 x 4.096 = 2^40 Byte = 1 TB. Insgesamt hat die Megatron eine Gesamtkapazität von einem Terrabyte. </br></br>
+# Die Blöcke können beispielsweise eine Größe von 2^14 Byte (= 16 KB) haben. Dann passen 4 Sektoren in einen Block (2^14 / 2^12) und es gibt im Durchschnitt 64 Blöcke pro Spur (2^8 / 2^2). </br></br>
+# Die Bitdichte für die äußerste Spur wird wie folgt berechnet:
+# - Bits pro Spur: 28 Sektoren x 2^12 Byte = 2^20 = 1024 KB = 8 MBit
+# - Die Spurlänge (äußerste Spur) beträgt 3,5“ · p ≈ 11‘‘
+# - mit ca. 10% Lücken hat man eine Spurlänge von 9,9‘‘, die 8 MBits hält
+# 
+# Somit sind 840.000 Bits pro Zoll vorhanden. 
 
-# ## Disk-Zugriffseigenschaften
+# ### Disk-Zugriffseigenschaften
 # 
-# - Voraussetzungen für Zugriff auf einen Block (lesend oder schreibend):
-#   - S-/L-Kopf ist bei Zylinder positioniert, der die Spur mit dem Block enthält.
-#   - Disk rotiert so, dass Sektoren, die der Block enthält, unter den S-/L-Kopf gelangen.
-# - Latenzzeit:
-#   - Zeit zwischen Anweisung, einen Block zu lesen, bis zum Eintreffen des Blocks im Hauptspeicher
+# Eine Voraussetzung für den Zugriff auf einen Block (lesend oder schreibend) ist, dass der S-/L-Kopf auf den richtigen Zylinder positioniert ist, der die Spur mit dem Block enthält. Dann muss die Disk so rotieren, dass Sektoren, die der Block enthält, unter den S-/L-Kopf gelangen. </br>
+# Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der Anweisung einen Block zu lesen und bis zum Eintreffen des Blocks im Hauptspeicher.
 
-# ## Latenzzeit
+# ### Latenzzeit
 # 
-# - Latenzzeit ist Summe aus vier Komponenten:
+# - Latenzzeit setzt sich aus der Summe von vier Komponenten zusammen:
 #     1. Kommunikationszeit zwischen Prozessor und Disk Controller:
-#        - Bruchteil einer Millisekunde (ignorieren)
-#        - Annahme hier: Keine Konkurrenz
+#        - Es beträgt nur den Bruchteil einer Millisekunde und kann daher bei Berechnungen hier ignoriert werden. 
 # 
 #     2. Seektime (Suchzeit) zur Positionierung des Kopfes unter richtigem Zylinder:
-#        - Zwischen 0 und 40 ms (Zeit proportional zum zurückgelegten Weg)
-#        - Startzeit (1 ms), Bewegungszeit (0 – 40 ms), Stopzeit (1 ms)
+#        - Die Suchzeit ist zwischen 0 und 40 ms ( proportional zum zurückgelegten Weg).
+#        - Sie setzt sich zusammen aus Startzeit (1 ms), Bewegungszeit (0 – 40 ms) und Stopzeit (1 ms).
 # 
-#     3. Rotationslatenzzeit zur Drehung der Disk bis erster Sektor des Blocks unter S-/L-Kopf:
-#        - Durchschnittlich ½ Umdrehung (4 ms)
-#        - Optimierung durch Spur-Cache im Disk-Controller möglich
+#     3. Rotationslatenzzeit zur Drehung der Disk bis der erste Sektor des Blocks unter S-/L-Kopf liegt:
+#        - Durchschnittlich benötigt es eine halbe Umdrehung (4 ms) bis der erste Sektor des Blocks unter dem S-/L-Kopf liegt.
+#        - Es ist eine Optimierung durch Spur-Cache im Disk-Controller möglich.
 # 
 #     4. Transferzeit zur Drehung der Disk bis alle Sektoren und die Lücken des Blocks unter S-/L-Kopf passiert sind:
-#        - Ca. 16 KB-Block in ¼ ms (gleich genauer)
+#        - Es wird ca. ein 16 KB-Block in 0.25 ms passiert.
 
-# ## Schreiben und Ändern von Blöcken
+# ### Schreiben und Ändern von Blöcken
 # 
-# - Schreiben von Blöcken:
-#   - Vorgehen und Zeit: Analog zum Lesen
-#   - Zur Prüfung, ob Schreiboperation erfolgreich war, muss eine Rotation gewartet werden (Nutzung von Checksums (später))
+# Das Schreiben von Blöcken ist in Bezug zu Vorgehen und Zeit analog zum Lesen. Um zu überprüfen, ob eine Schreiboperation erfolgreich war, muss eine Rotation gewartet werden. (Die Nutzung von Checksums wird später beschrieben). </br>
 # 
-# - Ändern von Blöcken:
-#     - Nicht direkt möglich
-#       1. Lesen des Blocks in Hauptspeicher
-#       2. Ändern der Daten
-#       3. Zurückschreiben auf Festplatte
-#       4. evtl. Korrektheit der Schreiboperation überprüfen
-#   - Zeit: t_read + t_write
-#   - aber: mit Glück ist Kopf noch in der Nähe (t_write ist billiger)
+# Das Ändern von Blöcken ist nicht direkt möglich. Sondern geschieht in 4 Schritten:
+# 
+# 1. Der jeweilige Block wird in den Hauptspeicher gelesen. 
+# 2. Die Daten auf dem Block werden geändert.
+# 3. Der Block wird auf die Festplatte zurückgeschrieben.
+# 4. Zum Schluss wird eventuell die Korrektheit der Schreiboperation überprüft
+# 
+# Die Zeit für solch eine Operation ergibt sich aus t_read + t_write. Mit ein wenig Glück ist der Kopf noch in der Nähe, wodurch t_write billiger wird. 
 
-# ## Beispiel – Megatron 747 Disk
+# ### Beispiel – Megatron 747 Disk
 # 
 # Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?
+# Diese Frage soll nun am Beispiel der Megatron 747 Disk beantwortet werden. </br>
 # 
-# Here's the information about the time it takes to read a block with bullet points:
+# Die Umdrehungsgeschwindigkeit beträgt 7200 U · min-1. Somit dauert eine Umdrehung 8,33 ms. </br>
 # 
-# - Umdrehungsgeschwindigkeit: 7200 U · min-1
-#   -> Eine Umdrehung in 8,33 ms
+# Zunächst wird die Seektime berechnet: </br>
+# Die Start- und Stopzeit beträgt zusammen eine Millisekunde. </br>
+# Pro 4000 Zylinder wird 1ms benötigt:
+#     - Minimal werden 0 Zylinder übersprungen und man bleibt an der Stelle an der man ist. Dafür werden 0ms benötigt.
+#     - Wenn man eine Spur (Track) überspringt, kostet das 1,00025ms (≈1ms).
+#     - Maximal werden 65.536 Zylinder übersprungen und das kostet 65536/4000 + 1 = 17,38ms.
+# </br>
 # 
-# - Seektime:
-#   - Start und Stopp zusammen: 1ms
-#   - 1ms pro 4000 Zylinder, die überbrückt werden
-#     1. Minimum (0 Zylinder): 0 ms
-#     2. 1 Track: 1,00025 ms
-#     3. Maximum (65.536 Zylinder): 65536/4000 + 1 = 17,38 ms
+# Als nächstes wird die minimale Zeit berechnet, um einen Block zu lesen: </br>
+# Dafür muss der S-/L-Kopf über der richtigen Spur stehen und die Platte schon richtig rotiert worden sein. Ein Block (16KB) ist über 4 Sektoren und 3 Lücken verteilt. Diese müssen gelesen werden. Insgesamt gibt es durchschnittlich 256 Lücken und 256 Sektoren pro Spur (wurde in vorherigem Unterkapitel so definiert). Die Lücken bedecken 36° (10%) einer Spur. Die Sektoren bedecken 324° des Kreises (360°). </br> 
+# Das Verhältnis wird berechnet mit 324° x 4 / 256 + 36° x 3 / 256 = 5,48°. Es sind also 5,48° des Kreises durch einen Block bedeckt.
+# 5,48° im Verhältnis zur Gesamtrotation (360°) und einer Umdrehung ergeben dann eine Lesezeit von (5,48° / 360°) · 8,33 ms = 0,13 ms.
 # 
-# - Minimale Zeit, um den Block zu lesen:
-#   - S-/L-Kopf steht über richtiger Spur und Platte ist schon richtig rotiert
-#   - 4 Sektoren und 3 Lücken sind zu lesen
-#   - 256 Lücken und 256 Sektoren pro Spur (durchschnittlich)
-#   - Lücken bedecken 36° (10%), Sektoren bedecken 324° des Kreises (360°)
-#   - 324° x 4 / 256 + 36° x 3 / 256 = 5,48° des Kreises durch Block bedeckt
-#   - (5,48° / 360°) · 8,33 ms = 0,13 ms
-# 
-# - Maximale Zeit: Präsenzübung (25,84 ms)
-# - Durchschnittliche Zeit: selber forschen und nachrechnen (10,76 ms)
+# Die maximale Zeit zum Lesen eines Blocks wird in der Präsenzübung vertieft. (Kleiner Spoiler: Sie beträgt 25,84 ms).
+# Die durchschnittliche Zeit können Sie selber erforschen und nachrechnen. (Dabei sollten sie auf ungefähr 10,76 ms kommen).
 
-# ## Übersicht
-# 1. Speicherhierarchie
-# 2. Disks
-# 3. Effiziente Diskoperationen
-#     - TPMMS
-# 4. Zugriffsbeschleunigung
-# 5. Diskausfälle
+# ## Effiziente Diskoperationen
 # 
-# <img src="pictures/Speicherhierachie.png" alt="Speicherhierachie" width="500" style="background-color: white;"/>
+# Die Kopfbewegungen sollen möglichst minimiert werden, sodass der Kopf nicht die ganze Zeit von Spur zu Spur oder von Block zu Block hin- und herspringt. Dies zieht gewisse Anforderungen mit sich: Zum Einem sollen die Daten auf der Festplatte sinnvoll liegen. Zum Anderen sollte es Indexstrukturen geben, sodass man nicht Suchen muss. 
 
-# ## Algorithmen vs. DBMS
+# ### Algorithmen vs. DBMS
 # 
-# - Annahme bei Algorithmen:
-#   - RAM-Berechnungsmodell
-#     - Gesamte Daten passen in Hauptspeicher
-#     - Daten befinden sich schon im Hauptspeicher
+# Zuvor war die Annahme bei Algorithmen (wie in der Vorlesung 'Datenstrukturen und Algorithmen'), dass die gesamten Daten in den RAM passen (RAM-Berechnungsmodell) und sie auch bereits dort im Hauptspeicher liegen. 
 # 
-# - Annahme bei Implementierung von DBMS:
-#   - I/O-Modell: Gesamte Daten passen nicht in Hauptspeicher
+# Die Annahme bei der Implementierung von DBMS ist das I/O-Modell. Die gesamten Daten passen nicht mehr in Hauptspeicher.
 # 
-# - Externspeicher-Algorithmen funktionieren oft anders:
-#   - Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus lt. RAM-Modell sein
-#   - Entwurfsziel: I/O vermeiden
+# Die Externspeicher-Algorithmen funktionieren oft anders. Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus laut RAM-Modell sein. Sein primäres Entwurfsziel ist es I/O zu vermeiden. 
 # 
-# - Gleiches kann auch für Hauptspeicher-Algorithmen gelten:
-#   - Ausnutzen des Caches
-#     - Cachegröße berücksichtigen
-#     - Lokalität beachten („maximiere“ Anzahl der Cache Hits)
+# Das Gleiche kann auch für Hauptspeicher-Algorithmen gelten. Diese nutzen den Cache aus und berücksichtigen die Cachegröße. Es wird versucht die Lokalität zu nutzen und alle fernerliegende Zugriffe zu vermeiden („maximiere“ Anzahl der Cache Hits).
 
-# ## I/O-Modell
+# ### I/O-Modell
 # 
-# - Beispiel: Einfaches DBMS
-#     - Zu groß für Hauptspeicher
-#     - Eine Disk, ein Prozessor, viele konkurrierende Nutzer / Anfragen
+# Als Beispiel sei ein einfaches DBMS gegeben. Dieses ist zu groß für den  Hauptspeicher. Es gibt eine Disk, einen Prozessor und viele konkurrierende Nutzer bzw. Anfragen.
 # 
-# - Disk-Controller hält Warteschlange mit Zugriffsaufforderungen
-#   - Abarbeitungsprinzip: First-come-first-served
-#   - Jede Aufforderung erscheint zufällig
-#     - Kopf ist also an zufälliger Position
+# Der Disk-Controller hält und organisiert eine Warteschlange (Priority Queue) mit Zugriffsaufforderungen auf die Datenbank. Das Abarbeitungsprinzip der Zugriffsaufforderungen ist hierbei first-come-first-served. Generell muss angenommen werden, dass jede Aufforderung zufällig ist. Also der Kopf an einer zufälligen Position ist. 
 # 
-# Dominanz der I/O-Kosten
-#   - Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als Kosten der Operationen auf den Daten im Hauptspeicher.
+# Außerdem dominieren die I/O-Kosten. Wir berücksichtigen nicht was im Hauptspeicher geschieht. Die Kosten des Lesens und Bewegens eines Blocks zwischen Disk und Hauptspeicher sind wesentlich größer als die Kosten der Operationen auf den Daten im Hauptspeicher.
 #   
-#   -> Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollten minimiert werden.
-#   
-#   
+# Die Anzahl der Blockzugriffe (lesend und schreibend) ist eine gute Approximation der Gesamtkosten und sollte minimiert werden. Anhanddessen kann die Effizienz von Algorithmen beschrieben werden. 
 
-# ## Beispiel für das I/O-Modell (1): Indizes
+# 16:05
+
+# ### Beispiel für das I/O-Modell (1): Indizes
 # 
 # - Relation R
 # - Anfrage sucht nach dem Tupel t mit Schlüsselwert k
@@ -395,7 +299,7 @@
 # - Suche nach k auf dem Block kostet höchstens Tausende Prozessoranweisungen – selbst mit linearer Suche
 # - Aber: Zusätzliche Informationen in Variante B nehmen Platz ein (höhere I/O-Kosten).
 
-# ## Beispiel für das I/O-Modell (2): Sortierung
+# ### Beispiel für das I/O-Modell (2): Sortierung
 # 
 # - Relation R
 #   - 10 Millionen Tupel
@@ -412,7 +316,7 @@
 # - Ziel: Sortierung soll Anzahl der Lese- und Schreiboperationen minimieren
 #   - Wenig "Durchläufe" durch die Daten
 
-# ## Merge Sort
+# ### Merge Sort
 # 
 # - Hauptspeicher-Algorithmus (Divide-and-Conquer Algorithmus)
 # - Idee: Merge l ≥ 2 sortierte Listen zu einer größeren sortierten Liste.
@@ -442,7 +346,7 @@
 #   - Ergo: O(n log n)
 #     - Trifft untere Schranke für das vergleichsbasierte Sortieren.
 
-# ## Two-Phase, Multiway Merge-Sort (TPMMS)
+# ### Two-Phase, Multiway Merge-Sort (TPMMS)
 # 
 # - TPMMS wird in vielen DBMS eingesetzt.
 # - Besteht aus zwei Phasen:
@@ -454,7 +358,7 @@
 #   - Phase 2:
 #     - Merge alle sortierten Teillisten zu einer einzigen großen Liste.
 #     
-# ## TPMMS - Phase 1
+# ### TPMMS - Phase 1
 # 
 # - Rekursionsanfang nun nicht nur mit einem oder zwei Elementen!
 # - Sortierung der Teillisten z.B. mit Quicksort (worst-case, sehr selten O(n^2))
@@ -473,7 +377,7 @@
 #      - 11 ms * 200,000 = 2,200 s = 37 min
 #      - Prozessorzeit für das Sortieren ist vernachlässigbar.
 # 
-# ## TPMMS - Phase 2
+# ### TPMMS - Phase 2
 # 
 # - Naive Idee: paarweises Mergen von k sortierten Teillisten
 #    - Erfordert 2 * log(k) Mal Lesen und Schreiben jedes Blocks (jedes Tupels)
@@ -490,7 +394,7 @@
 # - Laufzeit für TPMMS insgesamt: 74 Minuten
 # 
 # 
-# ## Bemerkungen zur Blockgröße
+# ### Bemerkungen zur Blockgröße
 # 
 # - Beobachtung
 #     - Je größer die Blockgröße, desto weniger I/O-Operationen werden benötigt.
@@ -511,7 +415,7 @@
 #     - Viele Datenstrukturen für Externspeicher bevorzugen die Aufteilung von Daten auf viele kleine Blöcke.
 # 
 # 
-# ## TPMMS – Grenzen
+# ### TPMMS – Grenzen
 # 
 # - Notation:
 #   - Blockgröße: B Bytes
@@ -554,7 +458,7 @@
 #   - Prefetching von Blöcken.
 #     - Ablegen von Blöcken im Hauptspeicher, die möglicherweise demnächst benötigt werden
 
-# ## Daten gemäß Zylinder organisieren
+# ### Daten gemäß Zylinder organisieren
 # 
 # - Seek time macht ca. 50% der durchschnittlichen Blockzugriffszeit aus.
 #   - Megatron 747: seek time zwischen 0 und 40 ms.
@@ -566,7 +470,7 @@
 # - Ein Zylinder der Megatron 747 fasst 16 x 64 = 1024 Blöcke.
 #   - Dennoch sind 16 Umdrehungen erforderlich (+ 15x seek über je eine Spur).
 
-# ## Zylinderorganisation – Beispiel
+# ### Zylinderorganisation – Beispiel
 # 
 # - Megatron 747-Festplatte:
 #   - Mittlere Transferzeit pro Block: ¼ ms
@@ -595,7 +499,7 @@
 #     - Lesen aus verschiedenen (verteilten) Teillisten
 #     - Schreiben des Ausgabepuffers zwar sequentiell, aber unterbrochen von Leseoperationen
 
-# ## Mehrere Disks
+# ### Mehrere Disks
 # 
 # - Problem: S-/L-Köpfe einer Festplatte bewegen sich stets gemeinsam
 # - Lösung: nutze mehrere Festplatten (mit unabhängigen Köpfen)
@@ -627,7 +531,7 @@
 # - Geschätzte Beschleunigung von Phase 2: Faktor 2 bis 3
 #   - Immerhin!
 
-# ## Spiegelung
+# ### Spiegelung
 # 
 # - Idee: Zwei oder mehr Festplatten halten identische Kopien
 #   - Mehr Sicherheit vor Datenverlust
@@ -642,7 +546,7 @@
 #   - Teuer
 #   - Keine Beschleunigung des Schreibzugriffs (aber auch keine Verlangsamung)
 
-# ## Disk Scheduling
+# ### Disk Scheduling
 # 
 # - Idee: Disk-Controller entscheidet, welche Zugriffsanweisungen zuerst ausgeführt werden.
 #   - Nützlich bei vielen kleinen Prozessen, je auf wenigen Blöcken
@@ -656,12 +560,12 @@
 #     - Hält an Zylindern an, wenn es eine (oder mehrere) Zugriffsanweisung(en) gibt.
 #     - Dreht um, falls in jeweiliger Richtung keine Anweisungen mehr ausstehen.
 
-# ## First-First-First-Servce vs. Elevator Algorithmus
+# ### First-First-First-Servce vs. Elevator Algorithmus
 # 
 # <img src="pictures/FFFS-vs-Elevator-Algo.png" alt="FFFS-vs-Elevator-Algo" width="500" style="background-color: white;"/>
 # 
 
-# ## Elevator Algorithmus
+# ### Elevator Algorithmus
 # 
 # - Verbesserung steigt mit durchschnittlicher Anzahl von wartenden Anweisungen.
 #   - So viele wartende Zugriffsanweisungen wie Anzahl Zylinder
@@ -674,7 +578,7 @@
 # - Nachteil (falls Anzahl wartender Anweisungen groß):
 #   - Wartezeiten für einzelnen Zugriffsanweisungen können sehr groß werden!
 
-# ## Prefetching
+# ### Prefetching
 # 
 # - Idee: Wenn man voraussagen kann, welche Blöcke in naher Zukunft gebraucht werden, kann man sie früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.
 # - TPMMS, Phase 2, Lesen: 16 Blöcke für die 16 Teillisten reserviert
@@ -690,23 +594,3 @@
 #   - Zögere Schreiboperationen hinaus bis ganz Spur / ganzer Zylinder geschrieben werden kann
 #   - Verwende mehrere Ausgabepuffer
 #     - Während einer auf Festplatte geleert wird, in anderen schreiben
-
-# ## Zusammenfassung
-# 
-# - Speicherhierarchie
-# - Aufbau einer Festplatte
-#   - Zylinder, Spuren, Sektoren
-# - Latenzzeit von Diskzugriffen
-#   - Kommunikationszeit, Suchzeit, Rotationszeit, Transferzeit
-# - Berechnung mit IO Modell
-#   - Blocklesezeit, Blockgröße, Hauptspeicherkapazität
-# - Externspeicher-Algorithmen
-#   - Minimierung von IO
-#   - TPMMS
-#   - Grenzen durch Hauptspeicher festgelegt
-# - Fünf "Tricks"
-#   - Zylinderorganisation
-#   - Verwendung mehrerer Festplatten
-#   - Spiegelung
-#   - Scheduling mit Elevator Algorithmus
-#   - Prefetching
