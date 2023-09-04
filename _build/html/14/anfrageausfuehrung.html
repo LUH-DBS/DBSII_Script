@@ -1,50 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>13. Anfrageausführung &#8212; Online-Skript Datenbanksysteme II</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -53,622 +63,405 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '14/anfrageausfuehrung';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="12. Indizes" href="../13/indizes.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Datenbanksysteme II
-  </a>
- </li>
+    
+    
+    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Datenbanksysteme II
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../13/indizes.html">12. Indizes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Anfrageausführung</a></li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01/speicherung.html">
-   1. Speicherung
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02/repraesentation.html">
-   2. Repräsentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13/indizes.html">
-   12. Indizes
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   13. Anfrageausführung
-  </a>
- </li>
-</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/14/anfrageausfuehrung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F14/anfrageausfuehrung.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/14/anfrageausfuehrung.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F14/anfrageausfuehrung.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/14/anfrageausfuehrung.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Anfrageausführung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#physische-operatoren">
-   13.1. Physische Operatoren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tabellen-scannen">
-     13.1.1. Tabellen Scannen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sortiertes-einlesen">
-     13.1.2. Sortiertes Einlesen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#berechnungsmodell">
-     13.1.3. Berechnungsmodell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kostenparameter-statistiken">
-     13.1.4. Kostenparameter / Statistiken
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iteratoren">
-     13.1.5. Iteratoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-pass-algorithmen">
-   13.2. One-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">
-     13.2.1. Operatorklassen für One-pass Verfahren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">
-     13.2.2. Tupel-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">
-     13.2.3. Relationen-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung">
-     13.2.4. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung">
-     13.2.5. Gruppierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">
-     13.2.6. Relationen-basierte binäre Operatoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nested-loop-join">
-   13.3. Nested Loop Join
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#block-basierter-nlj">
-     13.3.1. Block-basierter NLJ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">
-     13.3.2. Zusammenfassung bisheriger Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">
-   13.4. Sort-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     13.4.1. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation">
-     13.4.2. Gruppierung und Aggregation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vereinigung-binar">
-     13.4.3. Vereinigung (binär)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schnittmenge-und-differenz">
-     13.4.4. Schnittmenge und Differenz
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">
-     13.4.5. Einfacher, Sort-basierter Join Algorithmus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">
-     13.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">
-   13.5. Hash-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitionierung-mittels-hashing">
-     13.5.1. Partitionierung mittels Hashing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung-delta-r">
-     13.5.2. Duplikateliminierung
-     <span class="math notranslate nohighlight">
-      \(\delta(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">
-     13.5.3. Gruppierung und Aggregation
-     <span class="math notranslate nohighlight">
-      \(\gamma_{L}(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mengenoperationen">
-     13.5.4. Mengenoperationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashjoin">
-     13.5.5. Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen">
-     13.5.6. I/O Einsparungen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">
-     13.5.7. I/O Einsparungen – Hybrid Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">
-     13.5.8. Hybrid Hashjoin – Analyse
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">
-     13.5.9. Zusammenfassung Hash-basierter Verfahren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#index-basierte-algorithmen">
-   13.6. Index-basierte Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#index-basierte-selektion">
-     13.6.1. Index-basierte Selektion
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#joining-mit-index">
-     13.6.2. Joining mit Index
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zusammenfassung">
-   13.7. Zusammenfassung
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-operatoren">13.1. Physische Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabellen-scannen">13.1.1. Tabellen Scannen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sortiertes-einlesen">13.1.2. Sortiertes Einlesen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnungsmodell">13.1.3. Berechnungsmodell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenparameter-statistiken">13.1.4. Kostenparameter / Statistiken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratoren">13.1.5. Iteratoren</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-pass-algorithmen">13.2. One-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">13.2.1. Operatorklassen für One-pass Verfahren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">13.2.2. Tupel-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">13.2.3. Relationen-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung">13.2.4. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung">13.2.5. Gruppierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">13.2.6. Relationen-basierte binäre Operatoren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loop-join">13.3. Nested Loop Join</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-basierter-nlj">13.3.1. Block-basierter NLJ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">13.3.2. Zusammenfassung bisheriger Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">13.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">13.4.2. Gruppierung und Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">13.4.3. Vereinigung (binär)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">13.4.4. Schnittmenge und Differenz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">13.4.5. Einfacher, Sort-basierter Join Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">13.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">13.5. Hash-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitionierung-mittels-hashing">13.5.1. Partitionierung mittels Hashing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung-delta-r">13.5.2. Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">13.5.3. Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengenoperationen">13.5.4. Mengenoperationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashjoin">13.5.5. Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen">13.5.6. I/O Einsparungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">13.5.7. I/O Einsparungen – Hybrid Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">13.5.8. Hybrid Hashjoin – Analyse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">13.5.9. Zusammenfassung Hash-basierter Verfahren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-algorithmen">13.6. Index-basierte Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-selektion">13.6.1. Index-basierte Selektion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">13.6.2. Joining mit Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">13.7. Zusammenfassung</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Anfrageausführung</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#physische-operatoren">
-   13.1. Physische Operatoren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tabellen-scannen">
-     13.1.1. Tabellen Scannen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sortiertes-einlesen">
-     13.1.2. Sortiertes Einlesen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#berechnungsmodell">
-     13.1.3. Berechnungsmodell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kostenparameter-statistiken">
-     13.1.4. Kostenparameter / Statistiken
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iteratoren">
-     13.1.5. Iteratoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-pass-algorithmen">
-   13.2. One-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">
-     13.2.1. Operatorklassen für One-pass Verfahren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">
-     13.2.2. Tupel-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">
-     13.2.3. Relationen-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung">
-     13.2.4. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung">
-     13.2.5. Gruppierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">
-     13.2.6. Relationen-basierte binäre Operatoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nested-loop-join">
-   13.3. Nested Loop Join
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#block-basierter-nlj">
-     13.3.1. Block-basierter NLJ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">
-     13.3.2. Zusammenfassung bisheriger Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">
-   13.4. Sort-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     13.4.1. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation">
-     13.4.2. Gruppierung und Aggregation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vereinigung-binar">
-     13.4.3. Vereinigung (binär)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schnittmenge-und-differenz">
-     13.4.4. Schnittmenge und Differenz
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">
-     13.4.5. Einfacher, Sort-basierter Join Algorithmus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">
-     13.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">
-   13.5. Hash-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitionierung-mittels-hashing">
-     13.5.1. Partitionierung mittels Hashing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung-delta-r">
-     13.5.2. Duplikateliminierung
-     <span class="math notranslate nohighlight">
-      \(\delta(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">
-     13.5.3. Gruppierung und Aggregation
-     <span class="math notranslate nohighlight">
-      \(\gamma_{L}(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mengenoperationen">
-     13.5.4. Mengenoperationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashjoin">
-     13.5.5. Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen">
-     13.5.6. I/O Einsparungen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">
-     13.5.7. I/O Einsparungen – Hybrid Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">
-     13.5.8. Hybrid Hashjoin – Analyse
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">
-     13.5.9. Zusammenfassung Hash-basierter Verfahren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#index-basierte-algorithmen">
-   13.6. Index-basierte Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#index-basierte-selektion">
-     13.6.1. Index-basierte Selektion
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#joining-mit-index">
-     13.6.2. Joining mit Index
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#zusammenfassung">
-   13.7. Zusammenfassung
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="anfrageausfuhrung">
-<h1><span class="section-number">13. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="anfrageausfuhrung">
+<h1><span class="section-number">13. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this heading">#</a></h1>
 <p>Zoom in die interne Ebene: Die 5-Schichten Architektur</p>
 <p><br><br></p>
 <p>Ablauf der Anfragebearbeitung</p>
-<div class="section" id="physische-operatoren">
-<h2><span class="section-number">13.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this headline">¶</a></h2>
+<section id="physische-operatoren">
+<h2><span class="section-number">13.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Anfragepläne bestehen aus Operatoren.</p>
 <ul>
@@ -682,8 +475,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<div class="section" id="tabellen-scannen">
-<h3><span class="section-number">13.1.1. </span>Tabellen Scannen<a class="headerlink" href="#tabellen-scannen" title="Permalink to this headline">¶</a></h3>
+<section id="tabellen-scannen">
+<h3><span class="section-number">13.1.1. </span>Tabellen Scannen<a class="headerlink" href="#tabellen-scannen" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Einfachste Operation</p></li>
 <li><p>Gesamte Relation einlesen</p>
@@ -704,16 +497,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="sortiertes-einlesen">
-<h3><span class="section-number">13.1.2. </span>Sortiertes Einlesen<a class="headerlink" href="#sortiertes-einlesen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sortiertes-einlesen">
+<h3><span class="section-number">13.1.2. </span>Sortiertes Einlesen<a class="headerlink" href="#sortiertes-einlesen" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Sortiertes Einlesen von Relationen kann nützlich sein:</p></li>
-<li><ol class="simple">
+<li><ol class="arabic simple">
 <li><p>ORDER BY in der Anfrage</p></li>
 </ol>
 </li>
-<li><ol class="simple">
+<li><ol class="arabic simple" start="2">
 <li><p>Spätere Operatoren nutzen Sortierung aus</p></li>
 </ol>
 </li>
@@ -742,9 +535,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="berechnungsmodell">
-<h3><span class="section-number">13.1.3. </span>Berechnungsmodell<a class="headerlink" href="#berechnungsmodell" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="berechnungsmodell">
+<h3><span class="section-number">13.1.3. </span>Berechnungsmodell<a class="headerlink" href="#berechnungsmodell" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Kosten eines Operators</p>
 <ul>
@@ -774,9 +567,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="kostenparameter-statistiken">
-<h3><span class="section-number">13.1.4. </span>Kostenparameter / Statistiken<a class="headerlink" href="#kostenparameter-statistiken" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="kostenparameter-statistiken">
+<h3><span class="section-number">13.1.4. </span>Kostenparameter / Statistiken<a class="headerlink" href="#kostenparameter-statistiken" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Verfügbarer Hauptspeicher für einen Operator: M Einheiten</p>
 <ul>
@@ -845,9 +638,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="iteratoren">
-<h3><span class="section-number">13.1.5. </span>Iteratoren<a class="headerlink" href="#iteratoren" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="iteratoren">
+<h3><span class="section-number">13.1.5. </span>Iteratoren<a class="headerlink" href="#iteratoren" title="Permalink to this heading">#</a></h3>
 <p>-Viele physische Operatoren werden als Iterator implementiert.</p>
 <ul class="simple">
 <li><p>Open()</p>
@@ -940,12 +733,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="one-pass-algorithmen">
-<h2><span class="section-number">13.2. </span>One-Pass Algorithmen<a class="headerlink" href="#one-pass-algorithmen" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="operatorklassen-fur-one-pass-verfahren">
-<h3><span class="section-number">13.2.1. </span>Operatorklassen für One-pass Verfahren<a class="headerlink" href="#operatorklassen-fur-one-pass-verfahren" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="one-pass-algorithmen">
+<h2><span class="section-number">13.2. </span>One-Pass Algorithmen<a class="headerlink" href="#one-pass-algorithmen" title="Permalink to this heading">#</a></h2>
+<section id="operatorklassen-fur-one-pass-verfahren">
+<h3><span class="section-number">13.2.1. </span>Operatorklassen für One-pass Verfahren<a class="headerlink" href="#operatorklassen-fur-one-pass-verfahren" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Tupel-basierte unäre Operatoren</p>
 <ul>
@@ -968,9 +761,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="tupel-basierte-unare-operatoren">
-<h3><span class="section-number">13.2.2. </span>Tupel-basierte unäre Operatoren<a class="headerlink" href="#tupel-basierte-unare-operatoren" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tupel-basierte-unare-operatoren">
+<h3><span class="section-number">13.2.2. </span>Tupel-basierte unäre Operatoren<a class="headerlink" href="#tupel-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Algorithmus für Selektion und Projektion offensichtlich</p>
 <ul>
@@ -992,9 +785,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="relationen-basierte-unare-operatoren">
-<h3><span class="section-number">13.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="relationen-basierte-unare-operatoren">
+<h3><span class="section-number">13.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Operatoren: Duplikateliminierung und Gruppierung</p>
 <ul>
@@ -1009,9 +802,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="duplikateliminierung">
-<h3><span class="section-number">13.2.4. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="duplikateliminierung">
+<h3><span class="section-number">13.2.4. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Tupel für Tupel einlesen</p>
 <ul>
@@ -1032,9 +825,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li><p>Wahl von M: <span class="math notranslate nohighlight">\(B(\delta(R)) = V(R, [A1, … ,An])\)</span> / Tupel-pro-Block ≤ M</p></li>
 </ul>
-</div>
-<div class="section" id="gruppierung">
-<h3><span class="section-number">13.2.5. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung">
+<h3><span class="section-number">13.2.5. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Idee: Erzeuge im Hauptspeicher einen Eintrag pro Gruppe</p></li>
 <li><p>Also ein Eintrag pro Gruppierungswert</p></li>
@@ -1064,9 +857,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="relationen-basierte-binare-operatoren">
-<h3><span class="section-number">13.2.6. </span>Relationen-basierte binäre Operatoren<a class="headerlink" href="#relationen-basierte-binare-operatoren" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="relationen-basierte-binare-operatoren">
+<h3><span class="section-number">13.2.6. </span>Relationen-basierte binäre Operatoren<a class="headerlink" href="#relationen-basierte-binare-operatoren" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Vereinigung, Schnittmenge, Differenz, Kreuzprodukt, Join</p>
 <ul>
@@ -1239,10 +1032,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="nested-loop-join">
-<h2><span class="section-number">13.3. </span>Nested Loop Join<a class="headerlink" href="#nested-loop-join" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="nested-loop-join">
+<h2><span class="section-number">13.3. </span>Nested Loop Join<a class="headerlink" href="#nested-loop-join" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>1.5-pass Algorithmen</p>
 <ul>
@@ -1267,8 +1060,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<div class="section" id="block-basierter-nlj">
-<h3><span class="section-number">13.3.1. </span>Block-basierter NLJ<a class="headerlink" href="#block-basierter-nlj" title="Permalink to this headline">¶</a></h3>
+<section id="block-basierter-nlj">
+<h3><span class="section-number">13.3.1. </span>Block-basierter NLJ<a class="headerlink" href="#block-basierter-nlj" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Ideen</p>
 <ul>
@@ -1345,13 +1138,13 @@ Drei Schleifen?
 <li><p>Zusammen</p></li>
 <li><p><span class="math notranslate nohighlight">\(\frac{B(S)}{M-1}(M-1+B(R)) = \frac{B(S)(M-1)}{M-1} - \frac{B(S)}{M-1} + \frac{B(S)B(R)}{M-1} \approx B(S)B(R)/M\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="zusammenfassung-bisheriger-algorithmen">
-<h3><span class="section-number">13.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="sort-basierte-two-pass-algorithmen">
-<h2><span class="section-number">13.4. </span>Sort-basierte Two-Pass Algorithmen<a class="headerlink" href="#sort-basierte-two-pass-algorithmen" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="zusammenfassung-bisheriger-algorithmen">
+<h3><span class="section-number">13.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="sort-basierte-two-pass-algorithmen">
+<h2><span class="section-number">13.4. </span>Sort-basierte Two-Pass Algorithmen<a class="headerlink" href="#sort-basierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <p><strong>1-, 2-, Mehr-Phasen</strong></p>
 <ul class="simple">
 <li><p>Bisher: One-Pass Algorithmen; eine Relation passt in Hauptspeicher</p></li>
@@ -1375,8 +1168,8 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-<div class="section" id="id1">
-<h3><span class="section-number">13.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h3><span class="section-number">13.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Idee: Ähnlich wie TPMMS</p></li>
 <li><p>Phase 1 wie bisher</p>
@@ -1409,7 +1202,7 @@ Drei Schleifen?
 <ul class="simple">
 <li><p>Wie TPMMS</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>B® für Einlesen in Phase 1</p></li>
 <li><p>B® für Schreiben der Teillisten</p></li>
 <li><p>B® für Lesen der Teillisten</p>
@@ -1427,13 +1220,13 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="gruppierung-und-aggregation">
-<h3><span class="section-number">13.4.2. </span>Gruppierung und Aggregation<a class="headerlink" href="#gruppierung-und-aggregation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung-und-aggregation">
+<h3><span class="section-number">13.4.2. </span>Gruppierung und Aggregation<a class="headerlink" href="#gruppierung-und-aggregation" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Phase 1</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Lese R ein (jeweils M Blöcke)</p></li>
 <li><p>Sortiere M Blöcke nach Gruppierungsattribut(en)</p></li>
 <li><p>Schreibe sortierte Teillisten</p></li>
@@ -1441,7 +1234,7 @@ Drei Schleifen?
 <ul class="simple">
 <li><p>Phase 2</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Lade jeweils einen Block jeder Teilliste</p></li>
 <li><p>Suche kleinste Schlüssel (neue Gruppe)</p></li>
 <li><p>Aggregiere alle Tupel mit diesem Schlüssel</p>
@@ -1460,10 +1253,10 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="vereinigung-binar">
-<h3><span class="section-number">13.4.3. </span>Vereinigung (binär)<a class="headerlink" href="#vereinigung-binar" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
+</section>
+<section id="vereinigung-binar">
+<h3><span class="section-number">13.4.3. </span>Vereinigung (binär)<a class="headerlink" href="#vereinigung-binar" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
 <li><p>Lese R ein und schreibe sortierte Teillisten</p>
 <ul class="simple">
 <li><p>Sortierschlüssel ist gesamtes Tupel</p></li>
@@ -1496,10 +1289,10 @@ Drei Schleifen?
 <li><p>I/O-Kosten: 3(B® + B(S))</p></li>
 <li><p>Maximale Größe: B® + B(S) ≤ M²</p></li>
 </ul>
-</div>
-<div class="section" id="schnittmenge-und-differenz">
-<h3><span class="section-number">13.4.4. </span>Schnittmenge und Differenz<a class="headerlink" href="#schnittmenge-und-differenz" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
+</section>
+<section id="schnittmenge-und-differenz">
+<h3><span class="section-number">13.4.4. </span>Schnittmenge und Differenz<a class="headerlink" href="#schnittmenge-und-differenz" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
 <li><p>Sortierung und Laden der Teillisten wie bei Vereinigung</p></li>
 <li><p>Suche kleinstes Tupel t</p></li>
 <li><p>Zählen</p>
@@ -1523,9 +1316,9 @@ Drei Schleifen?
 <li><p>I/O-Kosten: 3(B® + B(S))</p></li>
 <li><p>Maximale Größe: B® + B(S) ≤ M²</p></li>
 </ul>
-</div>
-<div class="section" id="einfacher-sort-basierter-join-algorithmus">
-<h3><span class="section-number">13.4.5. </span>Einfacher, Sort-basierter Join Algorithmus<a class="headerlink" href="#einfacher-sort-basierter-join-algorithmus" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="einfacher-sort-basierter-join-algorithmus">
+<h3><span class="section-number">13.4.5. </span>Einfacher, Sort-basierter Join Algorithmus<a class="headerlink" href="#einfacher-sort-basierter-join-algorithmus" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Neues Problem bei Join: Alle Tupel mit gleichem Joinattributwert müssen gleichzeitig im Hauptspeicher sein.</p></li>
 <li><p>Lösungsidee: Reserviere so viel Speicher wie möglich für aktuelle Jointupel</p>
@@ -1541,7 +1334,7 @@ Drei Schleifen?
 </li>
 <li><p>Phase 2: Merge R und S</p></li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Jeweils ein Block</p></li>
 <li><p>Suche insgesamt kleinstes Y in beiden Blocks</p></li>
 <li><p>Falls nicht in anderem Block vorhanden: Entferne alle Tupel mit diesem Y</p></li>
@@ -1599,7 +1392,7 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Erzeuge sortierte Teillisten der Größe M jeweils für R und S mit Y als Sortierschlüssel</p></li>
 <li><p>Lade erste Blöcke aller Teillisten (beider Relationen)</p></li>
 <li><p>Suche kleinste Y-Werte und erzeuge Jointupel</p></li>
@@ -1624,13 +1417,13 @@ Drei Schleifen?
 </li>
 <li><p>Oft sind viele Speicherblöcke übrig, da B®+B(S) &lt;&lt; M²</p></li>
 </ul>
-</div>
-<div class="section" id="zusammenfassung-sortbasierte-two-pass-algorithmen">
-<h3><span class="section-number">13.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="hash-basierte-two-pass-algorithmen">
-<h2><span class="section-number">13.5. </span>Hash-basierte Two-Pass Algorithmen<a class="headerlink" href="#hash-basierte-two-pass-algorithmen" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="zusammenfassung-sortbasierte-two-pass-algorithmen">
+<h3><span class="section-number">13.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="hash-basierte-two-pass-algorithmen">
+<h2><span class="section-number">13.5. </span>Hash-basierte Two-Pass Algorithmen<a class="headerlink" href="#hash-basierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Input passt nicht in Hauptspeicher (wie immer).</p></li>
 <li><p>Hashe alle Inputargumente.</p>
@@ -1649,8 +1442,8 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-<div class="section" id="partitionierung-mittels-hashing">
-<h3><span class="section-number">13.5.1. </span>Partitionierung mittels Hashing<a class="headerlink" href="#partitionierung-mittels-hashing" title="Permalink to this headline">¶</a></h3>
+<section id="partitionierung-mittels-hashing">
+<h3><span class="section-number">13.5.1. </span>Partitionierung mittels Hashing<a class="headerlink" href="#partitionierung-mittels-hashing" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Grundalgorithmus</p></li>
 <li><p>Gegeben M Speicherblöcke, verteile R auf M−1 Buckets</p>
@@ -1686,9 +1479,9 @@ Drei Schleifen?
         
 </pre></div>
 </div>
-</div>
-<div class="section" id="duplikateliminierung-delta-r">
-<h3><span class="section-number">13.5.2. </span>Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span><a class="headerlink" href="#duplikateliminierung-delta-r" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="duplikateliminierung-delta-r">
+<h3><span class="section-number">13.5.2. </span>Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span><a class="headerlink" href="#duplikateliminierung-delta-r" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Algorithmus wie eben:</p>
 <ul>
@@ -1712,9 +1505,9 @@ Drei Schleifen?
 </li>
 <li><p>I/O-Kosten: 3·B®</p></li>
 </ul>
-</div>
-<div class="section" id="gruppierung-und-aggregation-gamma-l-r">
-<h3><span class="section-number">13.5.3. </span>Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span><a class="headerlink" href="#gruppierung-und-aggregation-gamma-l-r" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="gruppierung-und-aggregation-gamma-l-r">
+<h3><span class="section-number">13.5.3. </span>Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span><a class="headerlink" href="#gruppierung-und-aggregation-gamma-l-r" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Grundalgorithmus wie zuvor</p></li>
 <li><p>Aber: Hashfunktion hängt nur von Gruppierungsattributen ab.</p>
@@ -1731,9 +1524,9 @@ Drei Schleifen?
 </li>
 <li><p>I/O-Kosten: 3·B®</p></li>
 </ul>
-</div>
-<div class="section" id="mengenoperationen">
-<h3><span class="section-number">13.5.4. </span>Mengenoperationen<a class="headerlink" href="#mengenoperationen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="mengenoperationen">
+<h3><span class="section-number">13.5.4. </span>Mengenoperationen<a class="headerlink" href="#mengenoperationen" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Bei binären Operationen: Gleiche Hashfunktion für beide Inputs!</p></li>
 <li><p>Mengenvereinigung:</p>
@@ -1752,9 +1545,9 @@ Drei Schleifen?
 </li>
 <li><p>I/O-Kosten: 3·(B® + B(S))</p></li>
 </ul>
-</div>
-<div class="section" id="hashjoin">
-<h3><span class="section-number">13.5.5. </span>Hashjoin<a class="headerlink" href="#hashjoin" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hashjoin">
+<h3><span class="section-number">13.5.5. </span>Hashjoin<a class="headerlink" href="#hashjoin" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Algorithmus wie zuvor</p></li>
 <li><p>Aber: Hashschlüssel sind Joinattribute</p>
@@ -1786,9 +1579,9 @@ Drei Schleifen?
 </li>
 <li><p>Aber es geht noch besser.</p></li>
 </ul>
-</div>
-<div class="section" id="i-o-einsparungen">
-<h3><span class="section-number">13.5.6. </span>I/O Einsparungen<a class="headerlink" href="#i-o-einsparungen" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="i-o-einsparungen">
+<h3><span class="section-number">13.5.6. </span>I/O Einsparungen<a class="headerlink" href="#i-o-einsparungen" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Grundidee: Nutze nicht-verwendeten Speicher</p>
 <ul>
@@ -1815,9 +1608,9 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="i-o-einsparungen-hybrid-hashjoin">
-<h3><span class="section-number">13.5.7. </span>I/O Einsparungen – Hybrid Hashjoin<a class="headerlink" href="#i-o-einsparungen-hybrid-hashjoin" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="i-o-einsparungen-hybrid-hashjoin">
+<h3><span class="section-number">13.5.7. </span>I/O Einsparungen – Hybrid Hashjoin<a class="headerlink" href="#i-o-einsparungen-hybrid-hashjoin" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Beim Hashen von S: Behalte m Buckets komplett im Speicher.</p></li>
 <li><p>Falls k Buckets insgesamt für S nötig sind: Verwende für die übrigen k – m Buckets jeweils nur einen Block im Hauptspeicher beim Hashen.</p></li>
@@ -1846,9 +1639,9 @@ Drei Schleifen?
 </li>
 <li><p>Phase 2 dann nur noch auf den k – m Buckets</p></li>
 </ul>
-</div>
-<div class="section" id="hybrid-hashjoin-analyse">
-<h3><span class="section-number">13.5.8. </span>Hybrid Hashjoin – Analyse<a class="headerlink" href="#hybrid-hashjoin-analyse" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hybrid-hashjoin-analyse">
+<h3><span class="section-number">13.5.8. </span>Hybrid Hashjoin – Analyse<a class="headerlink" href="#hybrid-hashjoin-analyse" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Einsparungen</p>
 <ul>
@@ -1917,9 +1710,9 @@ Drei Schleifen?
 </li>
 <li><p>Warum nur von S (und nicht von R) abhängig?</p></li>
 </ul>
-</div>
-<div class="section" id="zusammenfassung-hash-basierter-verfahren">
-<h3><span class="section-number">13.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="zusammenfassung-hash-basierter-verfahren">
+<h3><span class="section-number">13.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this heading">#</a></h3>
 <p><strong>Wdh.: Sort-basierte, two-pass Algorithmen</strong></p>
 <p><strong>Vergleich Hash-basierte und Sort-basierte Algorithmen</strong></p>
 <ul class="simple">
@@ -1938,10 +1731,10 @@ Drei Schleifen?
 </li>
 <li><p>Gleiches auch bei Hash-basierten Verfahren möglich, falls Anzahl Buckets kleiner als M</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="index-basierte-algorithmen">
-<h2><span class="section-number">13.6. </span>Index-basierte Algorithmen<a class="headerlink" href="#index-basierte-algorithmen" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="index-basierte-algorithmen">
+<h2><span class="section-number">13.6. </span>Index-basierte Algorithmen<a class="headerlink" href="#index-basierte-algorithmen" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Indizes ermöglichen manchmal andere Algorithmen.</p></li>
 <li><p>Insbesondere Selektion</p></li>
@@ -1963,8 +1756,8 @@ Drei Schleifen?
 </li>
 <li><p>Eine clustered Relation kann auch non-Cluster-Indizes haben.</p></li>
 </ul>
-<div class="section" id="index-basierte-selektion">
-<h3><span class="section-number">13.6.1. </span>Index-basierte Selektion<a class="headerlink" href="#index-basierte-selektion" title="Permalink to this headline">¶</a></h3>
+<section id="index-basierte-selektion">
+<h3><span class="section-number">13.6.1. </span>Index-basierte Selektion<a class="headerlink" href="#index-basierte-selektion" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Basisalgorithmus: Lese gesamte Relation ein und prüfe Bedingung</p>
 <ul>
@@ -2034,9 +1827,9 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="joining-mit-index">
-<h3><span class="section-number">13.6.2. </span>Joining mit Index<a class="headerlink" href="#joining-mit-index" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="joining-mit-index">
+<h3><span class="section-number">13.6.2. </span>Joining mit Index<a class="headerlink" href="#joining-mit-index" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Natural Join: R(X,Y) ⋈ S(Y,Z)</p></li>
 <li><p>Algorithmus</p>
@@ -2118,10 +1911,10 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="zusammenfassung">
-<h2><span class="section-number">13.7. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="zusammenfassung">
+<h2><span class="section-number">13.7. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Physische Operatoren</p></li>
 <li><p>One-Pass Algorithmen</p></li>
@@ -2130,8 +1923,8 @@ Drei Schleifen?
 <li><p>Hash-basierte Two-Pass Algorithmen</p></li>
 <li><p>Index-basierte Algorithmen</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2145,7 +1938,7 @@ Drei Schleifen?
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./14"
         },
         predefinedOutput: true
@@ -2153,37 +1946,144 @@ Drei Schleifen?
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../13/indizes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Indizes</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-operatoren">13.1. Physische Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabellen-scannen">13.1.1. Tabellen Scannen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sortiertes-einlesen">13.1.2. Sortiertes Einlesen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnungsmodell">13.1.3. Berechnungsmodell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenparameter-statistiken">13.1.4. Kostenparameter / Statistiken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratoren">13.1.5. Iteratoren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-pass-algorithmen">13.2. One-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">13.2.1. Operatorklassen für One-pass Verfahren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">13.2.2. Tupel-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">13.2.3. Relationen-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung">13.2.4. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung">13.2.5. Gruppierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">13.2.6. Relationen-basierte binäre Operatoren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loop-join">13.3. Nested Loop Join</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-basierter-nlj">13.3.1. Block-basierter NLJ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">13.3.2. Zusammenfassung bisheriger Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">13.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">13.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">13.4.2. Gruppierung und Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">13.4.3. Vereinigung (binär)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">13.4.4. Schnittmenge und Differenz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">13.4.5. Einfacher, Sort-basierter Join Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">13.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">13.5. Hash-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitionierung-mittels-hashing">13.5.1. Partitionierung mittels Hashing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung-delta-r">13.5.2. Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">13.5.3. Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengenoperationen">13.5.4. Mengenoperationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashjoin">13.5.5. Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen">13.5.6. I/O Einsparungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">13.5.7. I/O Einsparungen – Hybrid Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">13.5.8. Hybrid Hashjoin – Analyse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">13.5.9. Zusammenfassung Hash-basierter Verfahren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-algorithmen">13.6. Index-basierte Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-selektion">13.6.1. Index-basierte Selektion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">13.6.2. Joining mit Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">13.7. Zusammenfassung</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../13/indizes.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">12. </span>Indizes</p>
-        </div>
-    </a>
-</div>
+          </div>
+          <footer class="bd-footer-content">
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Prof. Dr. Ziawasch Abedjan<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Dr. Ziawasch Abedjan
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
