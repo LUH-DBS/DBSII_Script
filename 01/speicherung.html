@@ -432,11 +432,11 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zugriffsbeschleunigung">1.4. Zugriffsbeschleunigung</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-gemasz-zylinder-organisieren">1.4.1. Daten gemäß Zylinder organisieren</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zylinderorganisation-beispiel">1.4.2. Zylinderorganisation – Beispiel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zylinderorganisation-beispiel">1.4.2. Zylinderorganisation - Beispiel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrere-disks">1.4.3. Mehrere Disks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spiegelung">1.4.4. Spiegelung</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-scheduling">1.4.5. Disk Scheduling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-first-first-servce-vs-elevator-algorithmus">1.4.6. First-First-First-Servce vs. Elevator Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-come-first-service-vs-elevator-algorithmus">1.4.6. First-Come-First-Service vs. Elevator Algorithmus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elevator-algorithmus">1.4.7. Elevator Algorithmus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prefetching">1.4.8. Prefetching</a></li>
 </ul>
@@ -924,7 +924,7 @@ Die Idee dabei ist es die Daten, die zusammen gelesen werden, auf dem gleichen Z
 Ein Zylinder der Megatron 747 fasst 16 x 64 = 1024 Blöcke. Dennoch sind dann 16 Umdrehungen erforderlich (+ 15x seek über je eine Spur).</p>
 </section>
 <section id="zylinderorganisation-beispiel">
-<h3><span class="section-number">1.4.2. </span>Zylinderorganisation – Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.4.2. </span>Zylinderorganisation - Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this heading">#</a></h3>
 <p>Ein paar Daten zur Megatron 747-Festplatte:</p>
 <ul class="simple">
 <li><p>Mittlere Transferzeit pro Block: ¼ ms.</p></li>
@@ -942,194 +942,59 @@ Im ersten Teil der <strong>Phase 1</strong> kommt es zum <strong>Lesen</strong> 
 Im zweiten Teil der <strong>Phase 1</strong> kommt es zum <strong>Schreiben</strong>: analog zum Lesen ergibt sich beim Schreiben zusammen 52s. Vorher waren es 37 min. Achtung dabei: Die Rotationslatenz ist hier eigentlich wieder relevant…
 </br></br>
 <strong>Phase 2</strong> wird nicht beschleunigt. Es wird aus verschiedenen (verteilten) Teillisten gelesen. Das Schreiben des Ausgabepuffers ist zwar sequentiell, wird aber von Leseoperationen unterbrochen.</p>
-<p>54min</p>
 </section>
 <section id="mehrere-disks">
 <h3><span class="section-number">1.4.3. </span>Mehrere Disks<a class="headerlink" href="#mehrere-disks" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Problem: S-/L-Köpfe einer Festplatte bewegen sich stets gemeinsam</p></li>
-<li><p>Lösung: nutze mehrere Festplatten (mit unabhängigen Köpfen)</p>
-<ul>
-<li><p>Annahme: Disk-Controller, Hauptspeicher, Bus kommen mit höheren Transferraten klar</p></li>
-<li><p>Resultat: Division aller Zugriffszeiten durch Festplattenanzahl</p></li>
-</ul>
-</li>
-<li><p>Megatron 737 wie 747, aber nur 2 Platten -&gt; 4 Plattenoberflächen</p>
-<ul>
-<li><p>Ersetze eine Megatron 747 durch vier Megatron 737</p></li>
-<li><p>Verteile R auf vier Festplatten</p></li>
-</ul>
-</li>
-<li><p>TPMMS – Phase 1</p>
-<ul>
-<li><p>Lesen: Von jeder Platte nur ¼ der Daten (1600 Blöcke)</p>
-<ul>
-<li><p>Günstige Zylinderorganisation: seek time und Rotationslatenz ≈ 0</p></li>
-<li><p>1600 Blöcke × 0,25 ms (mittlere Transferzeit)= 400 ms pro Füllung</p></li>
-<li><p>16 Füllungen x 400 ms = 6,4 s</p></li>
-</ul>
-</li>
-<li><p>Schreiben: Jede Teilliste wird auf 4 Disks verteilt</p>
-<ul>
-<li><p>Wie Lesen: 6,4 s</p></li>
-</ul>
-</li>
-<li><p>Zusammen nur 13 s</p>
-<ul>
-<li><p>statt 52 s zuvor; bzw. statt 37 min bei zufälliger Anordnung</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>TPMMS – Phase 2</p>
-<ul class="simple">
-<li><p>Verteilung nützt zunächst nichts</p>
-<ul>
-<li><p>Immer wenn Block einer Teilliste abgearbeitet ist, wird nächster Block dieser Teilliste in Hauptspeicher geladen</p></li>
-<li><p>-&gt; Erst wenn nächster Block vollständig geladen ist, kann Mergen fortgesetzt werden</p></li>
-</ul>
-</li>
-<li><p>Trick für Lesen: Mergen kann fortgesetzt werden, bevor Block vollständig im Hauptspeicher geladen wurde (erstes Element genügt schon)</p>
-<ul>
-<li><p>So können potenziell mehrere Blöcke parallel (jeweils einer pro Teilliste) geladen werden -&gt; Verbesserung, wenn diese auf unterschiedlichen Festplatten sind</p></li>
-<li><p>Vorsicht: Sehr delikate Implementierung</p></li>
-</ul>
-</li>
-<li><p>Schreiben des Outputs</p>
-<ul>
-<li><p>Verwende mehrere Output-Blöcke (hier: 4)</p></li>
-<li><p>Einer wird gefüllt während die anderen drei geschrieben werden (parallel, wenn Schreiben auf unterschiedliche Festplatten)</p></li>
-</ul>
-</li>
-<li><p>Geschätzte Beschleunigung von Phase 2: Faktor 2 bis 3</p>
-<ul>
-<li><p>Immerhin!</p></li>
-</ul>
-</li>
-</ul>
+<p>Bei der Nutzung von einer Disk gibt es das Problem, dass sich die S-/L-Köpfe einer Festplatte stets gemeinsam bewegen. Als Lösung des Problems kann man mehrere Festplatten (mit unabhängigen Köpfen) nutzen unter der Annahme, dass Disk-Controller, Hauptspeicher und Bus mit höheren Transferraten klarkommen. Das Resultat aus der Nutztung mehrerer Festplatten ist die Division aller Zugriffszeiten durch die Festplattenanzahl.</br>
+Eine Megatron 737 hat im Gegensatz zur Megatron 747 nur 2 Platten (also 4 Plattenoberflächen). Im Vergleich dazu hat die Megatron 747 8 Platten (also 16 Plattenoberflächen). Dementsprechend soll nun eine Megatron 747 durch vier Megatron 737 ersetzt werden, um die Zugriffszeiten zu minimieren. R wird somit auf 4 Festplatten verteilt.
+</br></br>
+<strong>TPMMS - Phase 1</strong></br></p>
+<p>Von jeder Platte müssen nun nur ¼ der Daten (1600 Blöcke) gelesen (<strong>Lesen</strong>) werden. Durch die günstige Zylinderorganisation ist die Seektime und Rotationslatenz ungefähr 0. Die Transferzeit benötigt 600 Blöcke × 0,25 ms (mittlere Transferzeit)= 400 ms pro Füllung. Bei 16 Füllungen und 400 ms pro Füllung dauert dies insgesamt: 16 Füllungen x 400 ms = 6,4 s.
+</br></p>
+<p>Beim <strong>Schreiben</strong> wird jede Teilliste auf 4 Disks verteilt. Dies benötigit so viel Zeit wie beim Lesen: 6,4 s. Zusammen also ungefähr 13s statt 52s zuvor bzw. 37 min bei zufälliger Anordnung.
+</br></br></p>
+<p><strong>TPMMS - Phase 2</strong>
+</br>
+In der zweiten Phase nützt die Verteilung auf 4 Disks zunächst nichts.Immer wenn ein Block einer Teilliste abgearbeitet ist, wird ein nächster Block dieser Teilliste in Hauptspeicher geladen. Erst wenn der nächste Block vollständig geladen ist, kann das Mergen fortgesetzt werden. </br>
+Der Trick beim Lesen ist es, dass das Mergen fortgesetzt werden kann bevor der Block vollständig in den Hauptspeicher geladen wurde. Das erste Element genügt schon. So können potenziell mehrere Blöcke parallel (jeweils einer pro Teilliste) geladen werden. Dabei kommt es zu einer Verbesserung, sofern diese auf unterschiedlichen Festplatten sind. Man sollte Vorsicht walten lassen, da es eine sehr delikate Implementierung ist. Damit befassen sich unter Anderem Datenbank- oder auch Systemingenieure. </br>
+Beim Schreiben des Outputs werden mehrere Output-Blöcke (hier: 4) verwendet. Einer wird gefüllt während die anderen drei geschrieben werden oder parallel, wenn auf unterschiedliche Festplatten geschrieben wird. </br>
+Die geschätzte Beschleunigung von Phase 2 beträgt einen Faktor von 2 bis 3.</p>
 </section>
 <section id="spiegelung">
 <h3><span class="section-number">1.4.4. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Idee: Zwei oder mehr Festplatten halten identische Kopien</p>
-<ul>
-<li><p>Mehr Sicherheit vor Datenverlust</p></li>
-<li><p>Beschleunigter Lesezugriff (bei n Festplatten, bis zu n mal so schnell)</p></li>
-</ul>
-</li>
-<li><p>TPMMS, Phase 2, Lesen: Trick wie bei mehreren Disks klappt nicht immer</p>
-<ul>
-<li><p>Keine Verbesserung, falls Blöcke verschiedener Teillisten auf gleicher Festplatte liegen</p></li>
-<li><p>Bei Spiegelung kann garantiert werden, dass immer so viele Blöcke unterschiedlicher Teillisten parallel gefüllt werden wie Spiegelungen vorhanden sind</p></li>
-</ul>
-</li>
-<li><p>Weiterer Vorteil, auch ohne Parallelität (weniger als n Blöcke gleichzeitig)</p>
-<ul>
-<li><p>Auswahl der Festplatte möglich, auf die zugegriffen wird</p></li>
-<li><p>Wähle die Festplatte, deren Kopf am dichtesten an relevanter Spur steht</p></li>
-</ul>
-</li>
-<li><p>Anmerkungen</p>
-<ul>
-<li><p>Teuer</p></li>
-<li><p>Keine Beschleunigung des Schreibzugriffs (aber auch keine Verlangsamung)</p></li>
-</ul>
-</li>
-</ul>
+<p>Die Idee der Spiegelung ist es, dass zwei oder mehr Festplatten identische Kopien halten. Dadurch entsteht mehr Sicherheit vor Datenverlust und man hat einen beschleunigter Lesezugriff. Bei n Festplatten kann es bis zu n mal so schnell sein. </br>
+Beim Lesen in der 2. Phase von TPMMS klappt der Trick wie bei mehreren Disks nicht immer. Es gibt keine Verbesserung, falls Blöcke verschiedener Teillisten auf der gleichen Festplatte liegen. Bei einer Spiegelung kann garantiert werden, dass immer so viele Blöcke unterschiedlicher Teillisten parallel gefüllt werden, wie Spiegelungen vorhanden sind.</br>
+Ein weiterer Vorteil, auch ohne Parallelität bei weniger als n Blöcke gleichzeitig: Es ist möglich die Festplatte auszuwählen, auf die zugegriffen wird. Man sollte die Festplatte wählen, deren Kopf am dichtesten an der relevanten Spur steht.
+</br>
+Ein paar weitere Anmerkungen zu Spiegelungen: Sie sind teuer und verursachen keine Beschleunigung des Schreibzugriffs, aber auch keine Verlangsamung.</p>
 </section>
 <section id="disk-scheduling">
 <h3><span class="section-number">1.4.5. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Idee: Disk-Controller entscheidet, welche Zugriffsanweisungen zuerst ausgeführt werden.</p>
-<ul>
-<li><p>Nützlich bei vielen kleinen Prozessen, je auf wenigen Blöcken</p></li>
-<li><p>OLTP</p></li>
-<li><p>Ziel: Erhöhung des Durchsatzes</p></li>
-</ul>
-</li>
-<li><p>Elevator Algorithmus</p>
-<ul>
-<li><p>Fahrstuhl fährt in Gebäude hoch und runter</p>
-<ul>
-<li><p>Hält an Stockwerken an, wenn jemand ein- oder aussteigen will.</p></li>
-<li><p>Dreht um, falls weiter oben/unten keiner mehr wartet.</p></li>
-</ul>
-</li>
-<li><p>Diskkopf streicht über Oberfläche einwärts und auswärts</p>
-<ul>
-<li><p>Hält an Zylindern an, wenn es eine (oder mehrere) Zugriffsanweisung(en) gibt.</p></li>
-<li><p>Dreht um, falls in jeweiliger Richtung keine Anweisungen mehr ausstehen.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Beim Disk Scheduling soll der Disk-Controller entscheiden, welche Zugriffsanweisungen zuerst ausgeführt werden. Das ist nützlich bei vielen kleinen Prozessen auf je wenigen Blöcken. Häufig somit der Fall bei <a class="reference external" href="https://www.oracle.com/de/database/what-is-oltp/">OLTP</a> (Online Transaction Processing). Dabei ist die Erhöhung des Durchsatzes das Ziel.
+</br>
+<strong>Elevator Algorithmus</strong>
+Die Idee des Algorithmus kommt von Fahrstühlen. Ein Fahrstuhl fährt in einem Gebäude hoch und runter und hält an Stockwerken an, wenn jemand ein- oder aussteigen will. Er dreht um, falls weiter oben/unten keiner mehr wartet.</br>
+Analog dazu streicht ein Diskkopf über die Oberfläche einwärts und auswärts und hält an Zylindern an, wenn es eine (oder mehrere) Zugriffsanweisung(en) gibt. Er dreht um, falls in der jeweiligen Richtung keine Anweisungen mehr ausstehen.</p>
 </section>
-<section id="first-first-first-servce-vs-elevator-algorithmus">
-<h3><span class="section-number">1.4.6. </span>First-First-First-Servce vs. Elevator Algorithmus<a class="headerlink" href="#first-first-first-servce-vs-elevator-algorithmus" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/FFFS-vs-Elevator-Algo.png"><img alt="FFFS-vs-Elevator-Algo" src="../_images/FFFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
+<section id="first-come-first-service-vs-elevator-algorithmus">
+<h3><span class="section-number">1.4.6. </span>First-Come-First-Service vs. Elevator Algorithmus<a class="headerlink" href="#first-come-first-service-vs-elevator-algorithmus" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/FCFS-vs-Elevator-Algo.png"><img alt="FCFS-vs-Elevator-Algo" src="../_images/FCFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
+<p>Das kleine Beispiel zeigt den Vergleich zwischen FCFS und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei nur etwas schneller. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
 </section>
 <section id="elevator-algorithmus">
 <h3><span class="section-number">1.4.7. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Verbesserung steigt mit durchschnittlicher Anzahl von wartenden Anweisungen.</p>
-<ul>
-<li><p>So viele wartende Zugriffsanweisungen wie Anzahl Zylinder</p>
-<ul>
-<li><p>Jeder Seek geht über nur wenige Zylinder</p></li>
-<li><p>Durchschnittliche seek time (bezogen auf wartende Zugriffsanweisungen) wird verringert</p></li>
-</ul>
-</li>
-<li><p>Mehr Zugriffsanweisungen als Zylinder</p>
-<ul>
-<li><p>Mehrere Zugriffsanweisungen pro Zylinder</p></li>
-<li><p>Sortierung um den Zylinder herum möglich</p></li>
-<li><p>Dadurch: Reduzierung der Rotationslatenzzeit</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Nachteil (falls Anzahl wartender Anweisungen groß):</p>
-<ul>
-<li><p>Wartezeiten für einzelnen Zugriffsanweisungen können sehr groß werden!</p></li>
-</ul>
-</li>
-</ul>
+<p>Die Verbesserung durch den Elevator Algorithmus steigt mit durchschnittlicher Anzahl von wartenden Anweisungen. Bei so vielen wartenden Zugriffsanweisungen wie die Anzahl an Zylindern geht jeder Seek nur über wenige Zylinder. Die durchschnittliche Seektime (bezogen auf die wartenden Zugriffsanweisungen) wird verringert. </br>
+Grundsätzlich gibt es weniger Zylinder als es Zugriffsanweisungen gibt. Es gibt mehrere Zugriffsanweisungen pro Zylinder, die gleichzeitig verarbeitet werden können. Man kann zudem noch die Anweisungen sinnvoll sortieren, sodass man die Blöcke in sinnvoller Reihenfolge von den Zylindern liest. Dadurch reduziert sich die Rotationslatenzzeit.</br>
+Zu einem Nachteil kommt es, falls die Anzahl wartender Anweisungen zu groß ist. Die Wartezeiten für einzelne Zugriffsanweisungen werden dann sehr groß!</p>
 </section>
 <section id="prefetching">
 <h3><span class="section-number">1.4.8. </span>Prefetching<a class="headerlink" href="#prefetching" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Idee: Wenn man voraussagen kann, welche Blöcke in naher Zukunft gebraucht werden, kann man sie früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</p></li>
-<li><p>TPMMS, Phase 2, Lesen: 16 Blöcke für die 16 Teillisten reserviert</p>
-<ul>
-<li><p>Viel Hauptspeicher frei</p></li>
-<li><p>Reserviere zwei Blöcke pro Teilliste</p>
-<ul>
-<li><p>Fülle einen Block, während der andere abgearbeitet wird</p></li>
-<li><p>Wenn einer entleert ist, wechsele zum anderen</p></li>
-</ul>
-</li>
-<li><p>Aber: Laufzeit wird nicht verbessert</p></li>
-</ul>
-</li>
-<li><p>Idee: Kombination mit guter Spur- oder Zylinderorganisation</p>
-<ul>
-<li><p>TPMMS, Phase 1, Schreiben: Schreibe Teillisten auf ganze, aufeinanderfolgende Spuren / Zylinder</p></li>
-<li><p>TPMMS, Phase 2, Lesen: Lese ganze Spuren / Zylinder, wenn aus einer Liste ein neuer Block benötigt wird.</p></li>
-</ul>
-</li>
-<li><p>Idee für das Schreiben analog:</p>
-<ul>
-<li><p>Zögere Schreiboperationen hinaus bis ganz Spur / ganzer Zylinder geschrieben werden kann</p></li>
-<li><p>Verwende mehrere Ausgabepuffer</p>
-<ul>
-<li><p>Während einer auf Festplatte geleert wird, in anderen schreiben</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Die Idee von Prefetching ist es voraussagen zu können, welche Blöcke in naher Zukunft gebraucht werden. Diese kann man dann früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</br>
+Beim Lesen in der 2. Phase von TPMMS werden 16 Blöcke für die 16 Teillisten reserviert. Es ist viel Hauptspeicher frei. Daher können zwei Blöcke pro Teilliste reserviert werden. Man geht bei TPMMS sowieso davon aus, dass der nächste Block irgendwann gelesen wird. Ein Block wird dann gefüllt, während der andere abgearbeitet wird. Wenn einer entleert ist, wird zum Anderen gewechselt. Die Laufzeit wird aber nicht verbessert.</br>
+Daher als Idee zur Verbesserung: Die Kombination mit guter Spur- oder Zylinderorganisation.
+Beim Schreiben in Phase 1 von TPMMS sollen Teillisten auf ganze, aufeinanderfolgende Spuren / Zylinder geschrieben werden.
+Beim Lesen in Phase 2 von TPMMS sollen ganze Spuren / Zylinder gelesen werden, wenn aus einer Liste ein neuer Block benötigt wird. </br>
+Die Idee für das Schreiben ist analog. Nicht jeder Block, der fertig ist, soll direkt auf die Disk geschrieben werden. Die Schreiboperationen sollen hinausgezögert werden bis die ganze Spur / der ganze Zylinder geschrieben werden kann. Außerdem sollen mehrere Ausgabepuffer verwendet werden. Während einer auf die Festplatte geleert wird, wird in den Anderen schreiben</p>
 </section>
 </section>
 </section>
@@ -1239,11 +1104,11 @@ Im zweiten Teil der <strong>Phase 1</strong> kommt es zum <strong>Schreiben</str
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zugriffsbeschleunigung">1.4. Zugriffsbeschleunigung</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-gemasz-zylinder-organisieren">1.4.1. Daten gemäß Zylinder organisieren</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zylinderorganisation-beispiel">1.4.2. Zylinderorganisation – Beispiel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zylinderorganisation-beispiel">1.4.2. Zylinderorganisation - Beispiel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrere-disks">1.4.3. Mehrere Disks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spiegelung">1.4.4. Spiegelung</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disk-scheduling">1.4.5. Disk Scheduling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-first-first-servce-vs-elevator-algorithmus">1.4.6. First-First-First-Servce vs. Elevator Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-come-first-service-vs-elevator-algorithmus">1.4.6. First-Come-First-Service vs. Elevator Algorithmus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elevator-algorithmus">1.4.7. Elevator Algorithmus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prefetching">1.4.8. Prefetching</a></li>
 </ul>
