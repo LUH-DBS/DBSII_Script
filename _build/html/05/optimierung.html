@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '05/optimierung';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -362,7 +364,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -378,6 +382,28 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">5.1. Wiederholung: Anfragebearbeitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundproblem">5.1.1. Grundproblem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">5.1.2. Ablauf der Anfragebearbeitung</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2. Ablauf der Anfragebearbeitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing">5.2.1. Parsing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraische-transformationsregeln">5.3. Algebraische Transformationsregeln</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">5.3.1. Kommutativität und Assoziativität</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -389,10 +415,168 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="optimierung">
 <h1><span class="section-number">5. </span>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this heading">#</a></h1>
-<a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung.png"><img alt="Ablauf-Anfragebearbeitung" src="../_images/Ablauf-Anfragebearbeitung.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Meme-Finish-SQL-Query.png"><img alt="Meme-Finish-SQL-Query" src="../_images/Meme-Finish-SQL-Query.png" style="width: 500px;" /></a>
+<p>In diesem Kapitel wird die Optimierung auf logischer Ebene betrachtet. Es geht mehr um die Daten selbst als um die Speicherabbildung.</p>
+<section id="wiederholung-anfragebearbeitung">
+<h2><span class="section-number">5.1. </span>Wiederholung: Anfragebearbeitung<a class="headerlink" href="#wiederholung-anfragebearbeitung" title="Permalink to this heading">#</a></h2>
+<p>Zunächst eine kleine Wiederholung zur Anfragebearbeitung in Bezug auf das Grundproblem und den Ablauf.</p>
+<section id="grundproblem">
+<h3><span class="section-number">5.1.1. </span>Grundproblem<a class="headerlink" href="#grundproblem" title="Permalink to this heading">#</a></h3>
+<p>Anfragen in SQL und der Relationalen Algebra sind deklarativ. Solche Anfragen müssen in ausführbare (prozedurale) Form transformiert werden. Also in echte ausführbare Programme. Die Ziele dabei sind ein “QEP” (prozeduraler Query Execution Plan) und Effizienz. Eine Anfrage soll schnell und wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite).</p>
+</section>
+<section id="ablauf-der-anfragebearbeitung">
+<h3><span class="section-number">5.1.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#ablauf-der-anfragebearbeitung" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung.png"><img alt="Ablauf-Anfragebearbeitung" src="../_images/Ablauf-Anfragebearbeitung.png" style="width: 250px;" /></a>
+<ol class="arabic simple">
+<li><p><strong>Parsing</strong></br>
+Als erstes wird die Anfrage geparsed und überprüft, ob diese syntaktisch korrekt ist. Danach werden die Elemente semantisch überprüft und ein Parsebaum erstellt.</p></li>
+<li><p><strong>Wahl des logischen Anfrageplans</strong></br>
+Im zweiten Schritt werden exponentiell viele Bäume mit logischen Operatoren erstellt. Darunter wird der optimale Plan ausgewählt, indem vorher logisch, regelbasiert und kostenbasiert optimiert wird.</p></li>
+<li><p><strong>Wahl des physischen Anfrageplans</strong></br>
+Anhand des logischen Plans wird ein ausführbares Programm mit physischen Operatoren erstellt. Das Programm enthält Algorithmen und Scan-Operatoren. Der optimale Plan wird physisch optimiert und dann ausgewählt. Zum Schluss wird der ausgewählte Anfrageplan ausgeführt.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/Meme-Finish-SQL-Query.png"><img alt="Meme-Finish-SQL-Query" src="../_images/Meme-Finish-SQL-Query.png" style="width: 250px;" /></a>
+</section>
+</section>
+<section id="id1">
+<h2><span class="section-number">5.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Die einzelnen Schritte bei der Anfragebearbeitung werden nun genauer betrachtet.</p>
+<section id="parsing">
+<h3><span class="section-number">5.2.1. </span>Parsing<a class="headerlink" href="#parsing" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_2.png"><img alt="Ablauf-Anfragebearbeitung_2" src="../_images/Ablauf-Anfragebearbeitung_2.png" style="width: 500px;" /></a>
+<p>Beginnend beim Parsing wird auf <strong>syntaktische Korrektheit</strong> überprüft. Dafür wird eine Grammatik für einen Teil von SQL betrachtet. (SFW steht für SelectFromWhere): </br></p>
+<ul class="simple">
+<li><p>Anfragen</p>
+<ul>
+<li><p>&lt;Anfrage&gt; :: = &lt;SFW&gt;</p></li>
+<li><p>&lt;Anfrage&gt; :: = ( &lt;SFW&gt; )</p></li>
+<li><p>die Mengenoperatoren fehlen</p></li>
+</ul>
+</li>
+<li><p>SFWs</p>
+<ul>
+<li><p>&lt;SFW&gt; ::= SELECT &lt;SelListe&gt; FROM &lt;FromListe&gt; WHERE &lt;Bedingung&gt;</p></li>
+<li><p>die Gruppierung, Sortierung etc. fehlen</p></li>
+</ul>
+</li>
+<li><p>Listen</p>
+<ul>
+<li><p>&lt;SelListe&gt; ::= &lt;Attribut&gt;, &lt;SelListe&gt;</p></li>
+<li><p>&lt;SelListe&gt; ::= &lt;Attribut&gt;</p></li>
+<li><p>&lt;FromListe&gt; ::= &lt;Relation&gt;, &lt;FromListe&gt;</p></li>
+<li><p>&lt;FromListe&gt; ::= &lt;Relation&gt;</p></li>
+</ul>
+</li>
+<li><p>Bedingungen</p>
+<ul>
+<li><p>&lt;Bedingung&gt; ::= &lt;Bedingung&gt; AND &lt;Bedingung&gt;</p></li>
+<li><p>&lt;Bedingung&gt; ::= &lt;Tupel&gt; IN &lt;Anfrage&gt;</p></li>
+<li><p>&lt;Bedingung&gt; ::= &lt;Attribut&gt; = &lt;Attribut&gt;</p></li>
+<li><p>&lt;Bedingung&gt; ::= &lt;Attribut&gt; LIKE &lt;Muster&gt;</p></li>
+</ul>
+</li>
+<li><p>&lt;Tupel&gt;, &lt;Attribut&gt;, &lt;Relation&gt; und &lt;Muster&gt; sind nicht durch eine grammatische Regel definiert</p></li>
+</ul>
+<p>Die vollständige Grammatik kann man zum Beispiel <a class="reference external" href="http://docs.openlinksw.com/virtuoso/GRAMMAR.html">hier</a> finden.
+</br></br></p>
+<p>Anschließend wird während der Übersetzung die <strong>semantische Korrektheit</strong> überprüft. Beantwortet werden dabei generell Fragen wie:</p>
+<ul class="simple">
+<li><p>Existieren die Relationen und Sichten der FROM Klausel?</p></li>
+<li><p>Existieren die Attribute in den genannten Relationen? Sind sie eindeutig?</p></li>
+<li><p>Sind die Typen für die Vergleiche korrekt?</p></li>
+<li><p>Ist die Aggregation korrekt?</p></li>
+</ul>
+</section>
+</section>
+<section id="algebraische-transformationsregeln">
+<h2><span class="section-number">5.3. </span>Algebraische Transformationsregeln<a class="headerlink" href="#algebraische-transformationsregeln" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_3.png"><img alt="Ablauf-Anfragebearbeitung_3" src="../_images/Ablauf-Anfragebearbeitung_3.png" style="width: 500px;" /></a>
+<p>Das Ziel ist es aus dem Parsebaum einen logischen Anfrageplan zu erstellen. Ohne die Semantik der Anfrage zu ändern, soll sie in eine interne Darstellung verwandelt werden. Um die Anfrage effizienter auszuführen, sollen insbesondere kleine Zwischenergebnisse erzielt werden. </br>
+Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen Algebra heißen äquivalent, falls sie die gleichen Operanden (=Relationen) nutzt und für jede mögliche Instanz der Datenbank stets die gleiche Antwortrelation ausgibt.</p>
+<section id="kommutativitat-und-assoziativitat">
+<h3><span class="section-number">5.3.1. </span>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this heading">#</a></h3>
+<p>Die Gesetze gelten jeweils für Mengen und Multimengen. Die verwendeten Ausdrücke können in beide Richtungen verwendet werden.</p>
+<ul class="simple">
+<li><p>? ist kommutativ und assoziativ</p>
+<ul>
+<li><p>R ? S = S ? R</p></li>
+<li><p>(R ? S) ? T = R ? (S ? T)</p></li>
+</ul>
+</li>
+<li><p>∪ ist kommutativ und assoziativ</p>
+<ul>
+<li><p>R ∪ S = S ∪ R</p></li>
+<li><p>(R ∪ S) ∪ T = R ∪ (S ∪ T)</p></li>
+</ul>
+</li>
+<li><p>∩ ist kommutativ und assoziativ</p>
+<ul>
+<li><p>R ∩ S = S ∩ R</p></li>
+<li><p>(R ∩ S) ∩ T = R ∩ (S ∩ T)</p></li>
+</ul>
+</li>
+<li><p>⨝ ist kommutativ und assoziativ</p>
+<ul>
+<li><p>R ⨝ S = S ⨝ R</p></li>
+<li><p>(R ⨝ S) ⨝ T = R ⨝ (S ⨝ T)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weitere-regeln">
+<h3><span class="section-number">5.3.2. </span>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this heading">#</a></h3>
+<p>Für Selektionen und Projektionen gelten die folgenden Regeln:</p>
+<ul>
+<li><p>Selektion σ</p>
+<ul>
+<li><div class="math notranslate nohighlight">
+\[σ_{c1 AND c2}(R) = σ_{c1}(σ_{c2}(R))\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[σ_{c1 OR c2}(R) = σ_{c1}(R) ∪ σ_{c2}(R)\]</div>
+<ul class="simple">
+<li><p>nicht bei Multimengen</p></li>
+</ul>
+</li>
+<li><div class="math notranslate nohighlight">
+\[ σ_{c1}(σ_{c2}(R)) = σ_{c2}(σ_{c1}(R))\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[ σ_{c}(R Φ S) ≡ (σ_{c}(R)) Φ (σ_{c}(S))\]</div>
+<ul class="simple">
+<li><p>Φ ∈ {∪, ∩, -, ⨝}</p></li>
+</ul>
+</li>
+<li><div class="math notranslate nohighlight">
+\[ σ_{c}(R Φ S) ≡ (σ_{c}(R)) Φ S\]</div>
+<ul class="simple">
+<li><p>Φ ∈ {∪, ∩, -, ⨝}</p></li>
+<li><p>Falls sich c nur auf die Attribute in R bezieht.
+</br></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Projektion π</p>
+<ul>
+<li><div class="math notranslate nohighlight">
+\[π_{L}(R ⨝ S) = π_{L}(π_{M}(R) ⨝ π_{N}(S))\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[π_{L}(R ⨝_{C} S) = π_{L}(π_{M}(R) ⨝_{C} π_{N}(S))\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[π_{L}(R x S) = π_{L}(π_{M}(R) x π_{N}(S))\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[π_{L}(σ_{c}(R)) = π_{L}(σ_{c}(π_{M}(R))\]</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="logische-anfrageplane">
+<h2><span class="section-number">5.4. </span>Logische Anfragepläne<a class="headerlink" href="#logische-anfrageplane" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_4.png"><img alt="Ablauf-Anfragebearbeitung_4" src="../_images/Ablauf-Anfragebearbeitung_4.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-1.png"><img alt="Anfragebearbeitung-Beispiel-1" src="../_images/Anfragebearbeitung-Beispiel-1.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-2.png"><img alt="Anfragebearbeitung-Beispiel-2" src="../_images/Anfragebearbeitung-Beispiel-2.png" style="width: 500px;" /></a>
@@ -433,6 +617,7 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_3.png"><img alt="DP-Beispiel_3" src="../_images/DP-Beispiel_3.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_4.png"><img alt="DP-Beispiel_4" src="../_images/DP-Beispiel_4.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Algorithmus.png"><img alt="DP-Algorithmus" src="../_images/DP-Algorithmus.png" style="width: 500px;" /></a>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -484,6 +669,34 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">5.1. Wiederholung: Anfragebearbeitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundproblem">5.1.1. Grundproblem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">5.1.2. Ablauf der Anfragebearbeitung</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2. Ablauf der Anfragebearbeitung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing">5.2.1. Parsing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraische-transformationsregeln">5.3. Algebraische Transformationsregeln</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">5.3.1. Kommutativität und Assoziativität</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
