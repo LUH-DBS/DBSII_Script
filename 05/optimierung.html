@@ -401,7 +401,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zwei-schritte">5.4.1. Zwei Schritte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">5.4.2. Beispiel - Anfragebearbeitung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">5.4.3. Übergang zum Physischen Anfrageplan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell">5.5. Kostenmodell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">5.5.1. Kostenbasierte Optimierung (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">5.5.2. Problemgröße (Suchraum) (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell-wiederholung">5.5.3. Kostenmodell (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiken-wiederholung">5.5.4. Statistiken (Wiederholung)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -578,12 +590,108 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 <section id="logische-anfrageplane">
 <h2><span class="section-number">5.4. </span>Logische Anfragepläne<a class="headerlink" href="#logische-anfrageplane" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_4.png"><img alt="Ablauf-Anfragebearbeitung_4" src="../_images/Ablauf-Anfragebearbeitung_4.png" style="width: 500px;" /></a>
+<p>Um nun zu einem logischen Anfrageplan zu gelangen, benötigt es zwei Schritte.</p>
+<section id="zwei-schritte">
+<h3><span class="section-number">5.4.1. </span>Zwei Schritte<a class="headerlink" href="#zwei-schritte" title="Permalink to this heading">#</a></h3>
+<p><strong>Schritt 1</strong></br>
+In Schritt 1 wird der Parsebaum in einen Ausdruck der relationalen Algebra übersetzt und dann wieder als Baum dargestellt. Unter anderem werden auch Subanfragen aufgelöst. Letzteres wird aber nicht in dieser Vorlesung weiter thematisiert.
+</br></p>
+<p><strong>Schritt 2</strong></br>
+Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Man kann auch “Vor-Optimierungen” mittels Heuristiken durchführen. Dazu zählt unter Anderem:</p>
+<ul class="simple">
+<li><p>das Pushen von Selektionen,</p></li>
+<li><p>das Einbauen und Pushen von Projektionen,</p></li>
+<li><p>das Zusammenfügen von Selektion und Kreuzprodukt zu einem Join,</p></li>
+<li><p>die Gruppierung von Vereinigungen und Joins,</p></li>
+<li><p>und eventuell das Verschieben und Einbauen von Duplikateliminierungen.</p></li>
+</ul>
+</section>
+<section id="beispiel-anfragebearbeitung">
+<h3><span class="section-number">5.4.2. </span>Beispiel - Anfragebearbeitung<a class="headerlink" href="#beispiel-anfragebearbeitung" title="Permalink to this heading">#</a></h3>
+<p>In diesem Beispiel ist ein Ausdruck der relationalen Algebra in einem Parsebaum dargestellt. Die zugehörige SQL-Anfrage wäre</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Nachname</span>
+<span class="n">FROM</span> <span class="n">mitarbeiter</span> <span class="n">m</span><span class="p">,</span> <span class="n">projekte</span> <span class="n">p</span>
+<span class="n">WHERE</span> <span class="n">p</span><span class="o">.</span><span class="n">Budget</span> <span class="o">&lt;</span> <span class="mi">40000</span>
+<span class="n">AND</span> <span class="n">m</span><span class="o">.</span><span class="n">p_id</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">p_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Man sollte damit beginnen das Kreuzprodukt mit der Selektion zu einem Join zu kombinieren.</p>
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-1.png"><img alt="Anfragebearbeitung-Beispiel-1" src="../_images/Anfragebearbeitung-Beispiel-1.png" style="width: 500px;" /></a>
+<p>Als nächstes sollte man versuchen die andere Selektion weiter nach unten zu pushen (Push-Down). Ziel ist es mit möglichst wenigen Tupeln in jedem Teilschritt zu arbeiten. Die gegebene Selektion kann direkt vor die Projekt-Relation geschoben werden.</p>
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-2.png"><img alt="Anfragebearbeitung-Beispiel-2" src="../_images/Anfragebearbeitung-Beispiel-2.png" style="width: 500px;" /></a>
+<p>In einem weiterem Schritt können die benötigten Attribute aus den Ausgangsrelationen direkt rausprojiziert werden.</p>
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-3.png"><img alt="Anfragebearbeitung-Beispiel-3" src="../_images/Anfragebearbeitung-Beispiel-3.png" style="width: 500px;" /></a>
+</section>
+<section id="ubergang-zum-physischen-anfrageplan">
+<h3><span class="section-number">5.4.3. </span>Übergang zum Physischen Anfrageplan<a class="headerlink" href="#ubergang-zum-physischen-anfrageplan" title="Permalink to this heading">#</a></h3>
+<p>Hierbei gibt es diverse Freiheitsgrade:</p>
+<ol class="arabic simple">
+<li><p>Die Reihenfolge und Gruppierung von assoziativen und kommutativen Operatoren können vertauscht werden. Das ist zum Beispiel der Fall bei Joins, Vereinigungen und Schnittmengen.</p></li>
+<li><p>Für jeden Operator kann ein Algorithmus gewählt werden. Damit sind die aus dem vorherigen Kapitel kennengelernten Hash-basierten, Sort-basierten oder auch One-Pass Algorithmen gemeint.</p></li>
+<li><p>Es können zusätzliche Operatoren (Sort und Projektion), die im logischen Plan selbst nicht auftauchen, hinzugefügt werden.</p></li>
+<li><p>Außerdem kann der Modus des Datentransports zwischen den Operatoren gewählt werden. Modi wären eine temporäre Tabelle oder eine Pipeline mit Iterator.</p></li>
+</ol>
+<p>Dafür braucht man in jedem Fall zunächst eine Kostenabschätzung. Man möchte herausfinden, wann es sinnvoll ist, welche Operationsreihenfolgen zu nutzen und wie viel ein Plan gesamt kostet.</p>
+</section>
+</section>
+<section id="kostenmodell">
+<h2><span class="section-number">5.5. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this heading">#</a></h2>
+<p>Beim Kostenmodell werden die Kardinalitäten abgschätzt. Man möchte wissen wie viele Tupel es gibt und wie viele unterschiedliche Werte in den einzelnen Attributen einer Relation vorhanden sind.</p>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_5.png"><img alt="Ablauf-Anfragebearbeitung_5" src="../_images/Ablauf-Anfragebearbeitung_5.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/TimeCost-Meme.png"><img alt="TimeCost-Meme" src="../_images/TimeCost-Meme.png" style="width: 500px;" /></a>
+<section id="kostenbasierte-optimierung-wiederholung">
+<h3><span class="section-number">5.5.1. </span>Kostenbasierte Optimierung (Wiederholung)<a class="headerlink" href="#kostenbasierte-optimierung-wiederholung" title="Permalink to this heading">#</a></h3>
+<p>Konzeptionell werden alle denkbaren Ausführungspläne generiert. Die Kosten für jeden Plan werden anhand eines Kostenmodells bewertet. Dazu werden Statistiken und Histogramme hinzugezogen. Die Parameter werden anhand der Rechnerarchitektur, auf der die Datenbank aufgesetzt ist, kalibriert. Die Optimierung ist abhängig vom verfügbaren Speicher. Dann wird anhand des Aufwands-Kostenmodell geschaut was und wie optimiert werden soll. Entweder Durchsatz maximierend oder nicht Antwortzeit-minimierend. Entsprechend wird der günstigste Plan ausgeführt. Wichtig ist, dass nicht zu lange optimiert wird, da sich sonst der ganze Aufwand nicht lohnen könnte.</p>
+<a class="reference internal image-reference" href="../_images/TimeCost-Meme.png"><img alt="TimeCost-Meme" src="../_images/TimeCost-Meme.png" style="width: 350px;" /></a>
+</section>
+<section id="problemgrosze-suchraum-wiederholung">
+<h3><span class="section-number">5.5.2. </span>Problemgröße (Suchraum) (Wiederholung)<a class="headerlink" href="#problemgrosze-suchraum-wiederholung" title="Permalink to this heading">#</a></h3>
+<p>Wie zuvor erwähnt, werden konzeptionell alle denkbaren Ausführungspläne generiert. Man berechnet nun die Bushy-Pläne mit n Tabellen. Bushy-Plan bedeutet, dass der Baum immer balanciert ist.</p>
+<div class="math notranslate nohighlight">
+\[\frac{(2(n-1))!}{(n-1)!}\]</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>n</p></th>
+<th class="head"><p>$<span class="math notranslate nohighlight">\(2^n\)</span>$</p></th>
+<th class="head"><p>n!</p></th>
+<th class="head"><p>$<span class="math notranslate nohighlight">\(\frac{(2(n-1))!}{(n-1)!}\)</span>$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>2</strong></p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>5</strong></p></td>
+<td><p>32</p></td>
+<td><p>120</p></td>
+<td><p>1680</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>10</strong></p></td>
+<td><p>1024</p></td>
+<td><p>3628800</p></td>
+<td><p>1,76 * 10^10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>20</strong></p></td>
+<td><p>1048576</p></td>
+<td><p>2,4 * 10^18</p></td>
+<td><p>4,3 * 10^27</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple myst">
+<dt>Die Anzahl der Deep-Pläne mit n Tabellen ist n!. Die Plankosten unterscheiden sich um viele Größenordnungen. Das Optimierungsproblem ist NP-hard (NP-Schwer).</dt><dd><p>Folie: Prof. Alfons Kemper, TU München.</p>
+</dd>
+</dl>
+</section>
+<section id="kostenmodell-wiederholung">
+<h3><span class="section-number">5.5.3. </span>Kostenmodell (Wiederholung)<a class="headerlink" href="#kostenmodell-wiederholung" title="Permalink to this heading">#</a></h3>
+<p>Gegeben ist ein algebraischer Ausdruck z.B. ein Anfrageplan. Das Kostenmodell schätzt die Ausführungskosten für diesen Ausdruck. Im Kostenmodell werden Punkte wie die Indexinformationen, die Ballungs-Informationen (Clustering on disk), die DB-Kardinalitäten und die Attributverteilungen berücksichtigt.</p>
 <a class="reference internal image-reference" href="../_images/Kostenmodell.png"><img alt="Kostenmodell" src="../_images/Kostenmodell.png" style="width: 500px;" /></a>
+<p>20:10</p>
+</section>
+<section id="statistiken-wiederholung">
+<h3><span class="section-number">5.5.4. </span>Statistiken (Wiederholung)<a class="headerlink" href="#statistiken-wiederholung" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Statistiken-Histogram-of-arrivals.png"><img alt="Statistiken-Histogram-of-arrivals" src="../_images/Statistiken-Histogram-of-arrivals.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Selektivität-schätzen.png"><img alt="Selektivität-schätzen" src="../_images/Selektivität-schätzen.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Beispiel-Skew-Graph.png"><img alt="Beispiel-Skew-Graph" src="../_images/Beispiel-Skew-Graph.png" style="width: 500px;" /></a>
@@ -617,6 +725,7 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_3.png"><img alt="DP-Beispiel_3" src="../_images/DP-Beispiel_3.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_4.png"><img alt="DP-Beispiel_4" src="../_images/DP-Beispiel_4.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Algorithmus.png"><img alt="DP-Algorithmus" src="../_images/DP-Algorithmus.png" style="width: 500px;" /></a>
+</section>
 </section>
 </section>
 
@@ -692,7 +801,19 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zwei-schritte">5.4.1. Zwei Schritte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">5.4.2. Beispiel - Anfragebearbeitung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">5.4.3. Übergang zum Physischen Anfrageplan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell">5.5. Kostenmodell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">5.5.1. Kostenbasierte Optimierung (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">5.5.2. Problemgröße (Suchraum) (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell-wiederholung">5.5.3. Kostenmodell (Wiederholung)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiken-wiederholung">5.5.4. Statistiken (Wiederholung)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
