@@ -421,8 +421,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.14. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.15. Kostenschätzung - Weitere Operationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
@@ -910,7 +911,7 @@ Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span cl
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9014</span><span class="o">/</span><span class="mf">59829069.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9328</span><span class="o">/</span><span class="mf">59829069.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Geben sie Ihre Lösung ein: &quot;</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">400000</span><span class="p">:</span>
@@ -931,11 +932,18 @@ Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span cl
 </details>
 </div>
 </section>
+<section id="kostenschatzung-join-mehrere-attribute">
+<h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
+Y enthält nun mehr als ein Attribut. Die Schreibweise ist hier: <span class="math notranslate nohighlight">\(R(X,Y1,Y2) \Join S(Y1,Y2,Z)\)</span></br>
+Die Ergebniskardinalität von  S entspricht dem Produkt der Kardinalitäten von R und S, dividiert durch das
+Produkt des jeweils größeren von V(R,Y) und V(S,Y) für jedes Join-Attribut Y.</p>
+</section>
 <section id="kostenschatzung-mehrfacher-join">
-<h3><span class="section-number">5.5.14. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="kostenschatzung-weitere-operationen">
-<h3><span class="section-number">5.5.15. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.16. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 <section id="histogramme">
@@ -1174,8 +1182,9 @@ Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span cl
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.14. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.15. Kostenschätzung - Weitere Operationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
