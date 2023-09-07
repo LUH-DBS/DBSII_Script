@@ -420,8 +420,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.10. Kostenschätzung - Selektion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.13. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.14. Kostenschätzung - Weitere Operationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
@@ -808,15 +810,140 @@ Im ersten Moment würde man die Ausgabetupel mit <span class="math notranslate n
 </section>
 <section id="kostenschatzung-selektion-mit-disjunktion">
 <h3><span class="section-number">5.5.11. </span>Kostenschätzung - Selektion mit Disjunktion<a class="headerlink" href="#kostenschatzung-selektion-mit-disjunktion" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(Q = \sigma_{C1 OR C2}(R2)\)</span></br></p>
+<p><strong>Idee 1</strong></br>
+Bilde die Summe der Ergebniskardinalitäten mit der Annahme, dass kein Tupel beide Bedingungen erfüllt. Dennoch kann es dazu führen, dass das Ergebnis größer als die Ursprungsrelation ist: T(Q) &gt; T®.
+</br></p>
+<p><strong>Idee 2</strong></br>
+Daher könnte man nun das Minimum unter der Anzahl der Tupel in R und der Summe der Ergebniskardinalitäten wählen: <span class="math notranslate nohighlight">\(min[T(R), Summe der Ergebniskardinalitäten]\)</span>. Es ist keine perfekte Lösung, aber ein erster Versuch sich näher an das richtige Ergebnis heranzutasten.
+</br></p>
+<p><strong>Idee 3</strong></br>
+Nutze die Wahrscheinlichkeitstheorie mit der Annahme, dass C1 und C2 unabhängig voneinander sind. Sei</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T(R) = n\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{C1}(R)) = m_{1}\)</span> und</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{C2}(R)) = m_{2}\)</span>.</p></li>
+</ul>
+<p>Daraus ergibt sich
+<span class="math notranslate nohighlight">\(T(Q) = n(1-(1-\frac{m_{1}}{n})(1-\frac{m_{2}}{n}))\)</span>. Wobei der Term <span class="math notranslate nohighlight">\((1-\frac{m_{1}}{n})\)</span> den Anteil der Tupel, die nicht C1 entsprechen, beschreibt. Der zweite ähnliche Term <span class="math notranslate nohighlight">\((1-\frac{m_{2}}{n})\)</span> beschreibt den Anteil der Tupel, die nicht C2 entsprechen.
+</br></p>
+<p><strong>Beispiel</strong></br>
+Sei die Selektion <span class="math notranslate nohighlight">\(Q = \sigma_{A=10 OR B&lt;20}(R)\)</span> gegeben. Bilde zunächst wie in Idee 1 beschrieben von separat die Ergebniskardinalitäten beider Bedingungen und addiere beide anschließend:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{A=10}(R)) = T(R) / V(R,A) = 10000 / 50 = 200\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{B&lt;20}(R)) = T(R) / 3 = 3333\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(T(Q) = 200 + 3333 = 3533\)</span></p></li>
+</ul>
+<p>Eine bessere Schätzung wäre mit Idee 3 möglich:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T(R) = 10000\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{A=10}(R)) = 200\)</span> und</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(\sigma_{B&lt;20}(R)) = 3333\)</span>.</p></li>
+</ul>
+<p>Setzt man diese Werte in die Formel der Wahrscheinlichkeitstheorie ein, erhält man als Ergebnis 3466:
+<span class="math notranslate nohighlight">\(T(Q) = n(1-(1-\frac{m_{1}}{n})(1-\frac{m_{2}}{n})) = 10000 (1-(1-\frac{200}{10000})(1-\frac{3333}{10000}))\)</span></p>
+<p>Die Formel kann deutlich vereinfacht werden <span class="math notranslate nohighlight">\(m_{1} + m_{2} - n (\frac{m_{1}}{n} * \frac{m_{2}}{n})\)</span></br>
+<span class="math notranslate nohighlight">\(= 200 + 3333 - 10000(\frac{200}{10000} * \frac{3333}{10000})\)</span></br>
+<span class="math notranslate nohighlight">\(= 3533 - (\frac{666600}{10000})\)</span></br>
+<span class="math notranslate nohighlight">\(= 3533 - 67\)</span></br>
+<span class="math notranslate nohighlight">\(= 3466\)</span></br></p>
 </section>
 <section id="kostenschatzung-join">
 <h3><span class="section-number">5.5.12. </span>Kostenschätzung - Join<a class="headerlink" href="#kostenschatzung-join" title="Permalink to this heading">#</a></h3>
+<p>In dieser Vorlesung betrachten wir nur den Natural Join. Das Verfahren beim Equijoin wäre analog dazu. Ein Thetajoin mit “&lt;”, “&gt;” usw. wird wie zuvor geschätzt. Zum Beispiel mit <span class="math notranslate nohighlight">\(1/3 T(R) * 1/3 T(S)\)</span>.</br></p>
+<p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
+Vereinfachend wird hier angenommen, dass wir nur über ein Attribut Y joinen. Ein Problem ist die Beziehung zwischen R.Y und S.Y. Man weiß nicht wie viele Elemente aus R.Y auch in S.Y auftauchen. Theoretisch kann man sagen, dass es disjunkte Mengen und nichts gleich ist. Damit würde man bei einem Join 0 Elemente erhalten: <span class="math notranslate nohighlight">\(T(R \Join S) = 0\)</span>. Eine weitere Möglichkeit wäre eine Fremdschlüsselbeziehung (mit einem Schlüssel in S). Dann wäre das Resultat die Menge an Tupeln in R: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R)\)</span>. Es gibt noch eine dritte Möglichkeit, wenn man davon ausgeht, dass fast alles gleiche Werte sind: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S)\)</span>. </br></p>
+<p>Es müssen also wieder ein paar Annahmen getroffen werden.
+Die erste Annahme sagt, dass die Werte eines Attributs, das in mehreren Relationen auftaucht, vom Beginn einer Liste gewählt wird. Das ist das sogenannte <strong>Containment of Value Sets</strong>. Falls also die Distinct-Werte der Relation R kleiner gleich den Distinct-Werten der anderen Relation S sind (<span class="math notranslate nohighlight">\(V(R,Y) \leq V(S,Y)\)</span>), dann taucht jeder Y-Wert in R auch in S auf. </br>
+Die zweite Annahme besagt, dass die Anzahl der Distinct-Werte eines nicht-Joinattributs erhalten bleiben: <span class="math notranslate nohighlight">\(V(R \Join S, X) = V(R,X)\)</span>. Auch <strong>Preservation of Value Sets</strong> genannt. Es ist realistisch, wenn von Gleichverteilung ausgegangen wird. Insbesondere, wenn die Relation S eine Fremdschlüsselbeziehung hat. Der einzige Fall bei dem es nicht mehr korrekt sein könnte ist, wenn das X ein Schlüssel ist.</br>
+</br></p>
+<p>Sei <span class="math notranslate nohighlight">\(V(R,Y) \leq V(S,Y)\)</span>, dann gilt:</p>
+<ul class="simple">
+<li><p>jedes Tupel aus R hat eine <span class="math notranslate nohighlight">\(1 / V(S,Y)\)</span> Chance, mit einem gegebenen S-Tupel zu joinen.</p></li>
+<li><p>(da T(S) S-Tupel): Ein Tupel aus R hat <span class="math notranslate nohighlight">\(T(S) * 1/V(S,Y)\)</span> Joinpartner in S.</p></li>
+<li><p>(da T® R-Tupel): <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / V(S,Y)\)</span>.
+</br></p></li>
+</ul>
+<p>Falls <span class="math notranslate nohighlight">\(V(R,Y) \leq V(S,Y)\)</span>, dann gilt <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / V(R,Y)\)</span>. </br>
+</br></p>
+<p>Allgemein gilt: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / max[V(R,Y), V(S,Y)]\)</span>.
+</br></p>
+</section>
+<section id="kostenschatzung-join-beispiel">
+<h3><span class="section-number">5.5.13. </span>Kostenschätzung - Join Beispiel<a class="headerlink" href="#kostenschatzung-join-beispiel" title="Permalink to this heading">#</a></h3>
+<p>Seien Joins zwischen drei Relationen gegeben:</br>
+<span class="math notranslate nohighlight">\(R(A,B) \Join S(B,C) \Join U(C,D)\)</span>.</br></p>
+<p>Die Anzahl der Tupel der Relationen ist wie folgt:</p>
+<ul class="simple">
+<li><p>T® = 1.000</p></li>
+<li><p>T(S) = 2.000</p></li>
+<li><p>T(U) = 5.000</p></li>
+</ul>
+<p>Die Selektionsfaktoren sind</p>
+<ul class="simple">
+<li><p>V(R,B) = 20</p></li>
+<li><p>V(S,B)= 50</p></li>
+<li><p>V(S,C) = 100</p></li>
+<li><p>V(U,C)=500</p></li>
+</ul>
+<p>Die Joins werden in der Reihenfolge <span class="math notranslate nohighlight">\((R \Join S) \Join U\)</span> betrachtet.
+Daher kann man zunächst <span class="math notranslate nohighlight">\(T(R \Join S)\)</span> berechnen:
+<span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / max[V(R,B),V(S,B)] = 1.000 * 2.000 / 50 = 40.000\)</span> </br>
+Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span class="math notranslate nohighlight">\(T(R \Join S \Join U) = T(R \Join S) * T(U) / max[V(R \Join S, C), V(U, C)] = 40.000 * 5.000 / max[100, 500] = 400.000\)</span> </br></p>
+<p>Zur Probe können Sie <span class="math notranslate nohighlight">\(T(R \Join (S \Join U))\)</span> nachrechnen.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Geben sie Ihre Lösung ein: &quot;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">400000</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist nicht korrekt. Probieren Sie es erneut.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist korrekt! :)&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9328</span><span class="o">/</span><span class="mf">59829069.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Geben sie Ihre Lösung ein: &quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">400000</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist nicht korrekt. Probieren Sie es erneut.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/usr/lib/python3/dist-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span><span class="s2">         if not self._allow_stdin:</span>
+<span class="ne">-&gt; </span><span class="mi">1041</span><span class="s2">             raise StdinNotImplementedError(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span><span class="s2">             )</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="kostenschatzung-join-mehrere-attribute">
+<h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
+Y enthält nun mehr als ein Attribut. Die Schreibweise ist hier: <span class="math notranslate nohighlight">\(R(X,Y1,Y2) \Join S(Y1,Y2,Z)\)</span></br>
+Die Ergebniskardinalität von  S entspricht dem Produkt der Kardinalitäten von R und S, dividiert durch das
+Produkt des jeweils größeren von V(R,Y) und V(S,Y) für jedes Join-Attribut Y.</p>
 </section>
 <section id="kostenschatzung-mehrfacher-join">
-<h3><span class="section-number">5.5.13. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="kostenschatzung-weitere-operationen">
-<h3><span class="section-number">5.5.14. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.16. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 <section id="histogramme">
@@ -874,15 +1001,15 @@ Im ersten Moment würde man die Ausgabetupel mit <span class="math notranslate n
 </section>
 <section id="dp-fur-knapsack-problem">
 <h3><span class="section-number">5.7.7. </span>DP für Knapsack Problem<a class="headerlink" href="#dp-fur-knapsack-problem" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Knapsach-Zweihander.png"><img alt="Knapsach-Zweihander" src="../_images/Knapsach-Zweihander.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-SaintsChime.png"><img alt="Knapsack-SaintsChime" src="../_images/Knapsack-SaintsChime.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-DragonriderBow.png"><img alt="Knapsack-DragonriderBow" src="../_images/Knapsack-DragonriderBow.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-Rapier.png"><img alt="Knapsack-Rapier" src="../_images/Knapsack-Rapier.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-DragonCrestShield.png"><img alt="Knapsack-DragonCrestShield" src="../_images/Knapsack-DragonCrestShield.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-ShortBow.png"><img alt="Knapsack-ShortBow" src="../_images/Knapsack-ShortBow.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-General.png"><img alt="Knapsack-General" src="../_images/Knapsack-General.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-Ausrüstung.png"><img alt="Knapsack-Ausrüstung" src="../_images/Knapsack-Ausrüstung.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Knapsack-Rüstung.png"><img alt="Knapsack-Rüstung" src="../_images/Knapsack-Rüstung.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsach-Zweihander.png"><img alt="Knapsach-Zweihander" src="../_images/Knapsach-Zweihander.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-SaintsChime.png"><img alt="Knapsack-SaintsChime" src="../_images/Knapsack-SaintsChime.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-DragonriderBow.png"><img alt="Knapsack-DragonriderBow" src="../_images/Knapsack-DragonriderBow.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-Rapier.png"><img alt="Knapsack-Rapier" src="../_images/Knapsack-Rapier.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-DragonCrestShield.png"><img alt="Knapsack-DragonCrestShield" src="../_images/Knapsack-DragonCrestShield.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-ShortBow.png"><img alt="Knapsack-ShortBow" src="../_images/Knapsack-ShortBow.png" style="width: 150px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-General.png"><img alt="Knapsack-General" src="../_images/Knapsack-General.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-Ausrüstung.png"><img alt="Knapsack-Ausrüstung" src="../_images/Knapsack-Ausrüstung.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/Knapsack-Rüstung.png"><img alt="Knapsack-Rüstung" src="../_images/Knapsack-Rüstung.png" style="width: 300px;" /></a>
 </section>
 <section id="beispiel-knapsack-mit-dp">
 <h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
@@ -1054,8 +1181,10 @@ Im ersten Moment würde man die Ausgabetupel mit <span class="math notranslate n
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.10. Kostenschätzung - Selektion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.13. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.14. Kostenschätzung - Weitere Operationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
