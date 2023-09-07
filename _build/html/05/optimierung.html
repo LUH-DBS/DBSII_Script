@@ -891,53 +891,13 @@ Daher kann man zunächst <span class="math notranslate nohighlight">\(T(R \Join 
 <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / max[V(R,B),V(S,B)] = 1.000 * 2.000 / 50 = 40.000\)</span> </br>
 Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span class="math notranslate nohighlight">\(T(R \Join S \Join U) = T(R \Join S) * T(U) / max[V(R \Join S, C), V(U, C)] = 40.000 * 5.000 / max[100, 500] = 400.000\)</span> </br></p>
 <p>Zur Probe können Sie <span class="math notranslate nohighlight">\(T(R \Join (S \Join U))\)</span> nachrechnen.</p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Geben sie Ihre Lösung ein: &quot;</span><span class="p">))</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">400000</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist nicht korrekt. Probieren Sie es erneut.&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist korrekt! :)&quot;</span><span class="p">)</span>
-        <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9328</span><span class="o">/</span><span class="mf">59829069.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Geben sie Ihre Lösung ein: &quot;</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">400000</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ihre Lösung ist nicht korrekt. Probieren Sie es erneut.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">/usr/lib/python3/dist-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span><span class="s2">         if not self._allow_stdin:</span>
-<span class="ne">-&gt; </span><span class="mi">1041</span><span class="s2">             raise StdinNotImplementedError(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1042</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span><span class="s2">             )</span>
-
-<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
-</pre></div>
-</div>
-</div>
-</details>
-</div>
+<p>Lösung: 400000</p>
 </section>
 <section id="kostenschatzung-join-mehrere-attribute">
 <h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
 Y enthält nun mehr als ein Attribut. Die Schreibweise ist hier: <span class="math notranslate nohighlight">\(R(X,Y1,Y2) \Join S(Y1,Y2,Z)\)</span></br>
-Die Ergebniskardinalität von  S entspricht dem Produkt der Kardinalitäten von R und S, dividiert durch das
-Produkt des jeweils größeren von V(R,Y) und V(S,Y) für jedes Join-Attribut Y.</p>
+Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Join S\)</span> entspricht dem Produkt der Kardinalitäten von R und S, dividiert durch das Produkt des jeweils größeren von V(R,Y) und V(S,Y) für jedes Join-Attribut Y: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / ( max[V(R,Y1),V(S,Y1)] * max[V(R,Y2),V(S,Y2)] )\)</span></p>
 </section>
 <section id="kostenschatzung-mehrfacher-join">
 <h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
