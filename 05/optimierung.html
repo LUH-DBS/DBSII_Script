@@ -891,7 +891,10 @@ Daher kann man zunächst <span class="math notranslate nohighlight">\(T(R \Join 
 <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / max[V(R,B),V(S,B)] = 1.000 * 2.000 / 50 = 40.000\)</span> </br>
 Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span class="math notranslate nohighlight">\(T(R \Join S \Join U) = T(R \Join S) * T(U) / max[V(R \Join S, C), V(U, C)] = 40.000 * 5.000 / max[100, 500] = 400.000\)</span> </br></p>
 <p>Zur Probe können Sie <span class="math notranslate nohighlight">\(T(R \Join (S \Join U))\)</span> nachrechnen.</p>
-<p>Lösung: 400000</p>
+<details>
+  <summary><strong>Lösung</strong></summary>
+    Auch wenn man zuerst die anderen Relationen miteinander joint, erhält man wieder das Selbe Ergebnis: 400000. 
+</details>
 </section>
 <section id="kostenschatzung-join-mehrere-attribute">
 <h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this heading">#</a></h3>
@@ -901,63 +904,255 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 </section>
 <section id="kostenschatzung-mehrfacher-join">
 <h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
+<p>Im allgemeinen Fall <span class="math notranslate nohighlight">\( S = R_{1} \Join R_{2} \Join ... \Join R_{n} \)</span> wird in diesem Fall über das selbe Attribut A gejoint. Notiert wird es mit <span class="math notranslate nohighlight">\(V(R_{i}, A) = v_{i}\)</span>. Das Attribut A erscheint in k Relationen. Es gilt <span class="math notranslate nohighlight">\(v_{1} \leq v_{2} \leq ... \leq v_{k}\)</span> mit <span class="math notranslate nohighlight">\( k \leq n \)</span>. Die Frage ist nun wie die Kardinalität des Ergebnisses berechnet wird.</br>
+Dazu eine kleine Gedankenhilfe:
+Gegeben ist ein Tupel aus jeder der k Relationen. Gesucht wird die Wahrscheinlichkeit, dass alle im A-Wert übereinstimmen. Es gibt wieder das Containment of Value Sets: Jeder A-Wert von Tupeln aus <span class="math notranslate nohighlight">\(R_{1}\)</span> taucht in den anderen Relationen auf. Ein Tupel aus <span class="math notranslate nohighlight">\(R_{i}\)</span> hat eine Wahrscheinlichkeit von <span class="math notranslate nohighlight">\(1/v_{i}\)</span> mit einem gegebenen Tupel aus <span class="math notranslate nohighlight">\(R_{1}\)</span> übereinzustimmen. Zusammen ergibt sich <span class="math notranslate nohighlight">\(1 / v_{2} * v_{3} * … * v_{k}\)</span>. Die Wahrscheinlichkeiten der einzelnen Tupel der verschiedenen Relationen müssen nur multipliziert werden. </br>
+Für das Gesamtvorgehen ist der Ausgangspunkt also das Produkt aller Kardinalitäten zu bilden. Betrachtet man die Selektivität muss für jedes Attribut, das mehr als einmal auftaucht, durch das Produkt aller <span class="math notranslate nohighlight">\(v_{i}\)</span> bis auf das kleinste (<span class="math notranslate nohighlight">\(v_{1}\)</span> dividiert werden.</p>
+<p><strong>Beispiel</strong></br></p>
+<ul class="simple">
+<li><p>Die Anfrage ist <span class="math notranslate nohighlight">\(R(A,B,C) \Join S(B,C,D) \Join U(B,E)\)</span>.</p></li>
+<li><p>Die Kardinalitäten sind</p>
+<ul>
+<li><p>T® = 1000;</p></li>
+<li><p>T(S) = 2000;</p></li>
+<li><p>T(U) = 5000.</p></li>
+</ul>
+</li>
+<li><p>Die DISTINCT Werte sind</p>
+<ul>
+<li><p>V(R,B): 20;</p></li>
+<li><p>V(R,C): 200;</p></li>
+<li><p>V(S,B): 50;</p></li>
+<li><p>V(S,C): 100;</p></li>
+<li><p>V(U,B): 200.</p></li>
+</ul>
+</li>
+</ul>
+<p>Vorgehen: Zunächst zählt man alle (Tupel-)Kombinationen der Relationen auf: <span class="math notranslate nohighlight">\(1000 * 2000 * 5000 = 10.000.000.000\)</span>. Dann werden die Wahrscheinlichkeiten für gemeinsame Attribute multipliziert. Die Relation B hat drei- und die Relation C hat zweimal gemeinsame Attribute. Für B ergibt sich: <span class="math notranslate nohighlight">\(1/50 * 1/200\)</span>. Für C wiederrum: <span class="math notranslate nohighlight">\(1/200\)</span>.
+Zusammen ergibt sich: </br>
+<span class="math notranslate nohighlight">\(10.000.000.000 / (50 * 200 * 200)\)</span></br>
+<span class="math notranslate nohighlight">\(= 10.000.000.000 / 2.000.000\)</span></br>
+<span class="math notranslate nohighlight">\(= 5.000\)</span></p>
 </section>
 <section id="kostenschatzung-weitere-operationen">
 <h3><span class="section-number">5.5.16. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
+<p><strong>Vereinigung</strong> <span class="math notranslate nohighlight">\((R \cup S)\)</span></br>
+Bei einer Multimenge bildet man die Summe der Inputs. Bei einer normalen Menge wählt man eine Vereinigung der Relationen, die größer ist als die größte Relation und kleiner als die Summe der Tupel aller Relationen: <span class="math notranslate nohighlight">\(max[T(R), T(S)] \leq T(R \cup S) \leq T(R) + T(S)\)</span>. Z.B könnte man auch den Durchschnitt von Maximum und Summe berechnen: <span class="math notranslate nohighlight">\(AVG[T(R) + T(S), max[T(R), T(S)]]\)</span>.</p>
+<p><strong>Schnittmenge</strong> <span class="math notranslate nohighlight">\((R \cap S)\)</span></br>
+Die Schnittmenge der Relationen muss größer als 0, aber noch kleiner als die kleinste Relation sein: <span class="math notranslate nohighlight">\(0 ≤ T(R \cap S) \leq min[T(R), T(S)]\)</span>. Die erste Idee zur Vereinfachung ist es die kleinste Relation zu halbieren: <span class="math notranslate nohighlight">\(min[T(R), T(S)]/2\)</span>. Die zweite Idee ist es, es als Join aufzufassen. Dabei kommt es häufig zu einer extremen Unterschätzung.</p>
+<p><strong>Differenz</strong></br>
+Die Differenz muss kleiner als die anfängliche Relation und größer als das Maximum von 0 und der Differenz der Anzahl der Tupel der Relationen: <span class="math notranslate nohighlight">\(max[0,T(R) - T(S)] \leq T(R - S) \leq T(R)\)</span>. Hier wählt man z.B. eine Mitte mit <span class="math notranslate nohighlight">\(max[0, T(R) – T(S)/2]\)</span>.</p>
+<p><strong>Duplikateliminierung</strong></br>
+<span class="math notranslate nohighlight">\(T(\delta(R)) = V(R, [A_{1}, ..., A_{n}])\)</span>. Die Anzahl der Tupel muss kleiner gleich der Anzahl der Ausgangsrelation sein. Es darf natürlich nicht weniger als ein Tupel vorhanden sein: <span class="math notranslate nohighlight">\(1 \leq T(\delta(R)) \leq T(R)\)</span>. Man kann auch die Distinct-Werte miteinander multiplizieren <span class="math notranslate nohighlight">\(T(\delta(R)) \leq \prod_{i} V(R, A_{i})\)</span>. Z.B. kann dafür auch <span class="math notranslate nohighlight">\(T(\delta(R)) = min[T(R)/2, \prod_{i} V(R, A_{i})]\)</span> genutzt werden.</p>
+<p><strong>Gruppierung und Aggregation</strong></br>
+Die Anzahl der Tupel muss auf jeden Fall kleiner gleich der Anzahl der Tupel in der Ausgangsrelation sein, aber dennoch muss es mindestens ein Tupel geben: <span class="math notranslate nohighlight">\(1 \leq T(\gamma_{L}(R)) \leq T(R)\)</span>.
+Falls nur ein Gruppierungsattribut gibt, gilt: <span class="math notranslate nohighlight">\(T(\gamma_{L}(R)) \leq V(R,L)\)</span>
+Falls mehrere es mehrere gibt muss multipliziert werden: <span class="math notranslate nohighlight">\(T(\gamma_{L}(R)) \leq \prod_{i} V(R, L_{i})\)</span>. Man kann auch die Formel <span class="math notranslate nohighlight">\(T(\gamma_{L}(R)) = min[T(R)/10, \prod_{i} V(R, A_{i})]\)</span> nutzen.</p>
 </section>
 </section>
 <section id="histogramme">
 <h2><span class="section-number">5.6. </span>Histogramme<a class="headerlink" href="#histogramme" title="Permalink to this heading">#</a></h2>
+<p>Für genauere Berechnung werden Histogramme verwendet. Nun ist nicht mehr nur die Kardinalität bekannt, sondern auch die Verteilung der Werte.</p>
 <section id="id3">
 <h3><span class="section-number">5.6.1. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Im Ablauf befinden sich die Histogramme im Bereich der Kostenschätzung.</p>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_6.png"><img alt="Ablauf-Anfragebearbeitung_6" src="../_images/Ablauf-Anfragebearbeitung_6.png" style="width: 500px;" /></a>
 </section>
 <section id="schatzung-der-statistiken">
 <h3><span class="section-number">5.6.2. </span>Schätzung der Statistiken<a class="headerlink" href="#schatzung-der-statistiken" title="Permalink to this heading">#</a></h3>
+<p>Statistiken sind notwendig, um die Größe von Zwischenergebnissen zu berechnen, insbesondere T® und V(R,A). Statistiken werden auf Befehl des Administrators eingeholt. Zum Beispiel wird T® mittels Scan von R. V(R,A) kann mittels einer der vorigen Algorithmen ermittelt werden. Das ist ähnlich wie bei der Gruppierung auch separat für jedes Attribut. B® wird gezählt, falls R nicht clustered gespeichert ist. Falls es geclustered ist, dann wird <span class="math notranslate nohighlight">\((T(R) / Tupel pro Block)\)</span> berechnet.</p>
 </section>
 <section id="schatzung-der-statistiken-histogramme">
 <h3><span class="section-number">5.6.3. </span>Schätzung der Statistiken - Histogramme<a class="headerlink" href="#schatzung-der-statistiken-histogramme" title="Permalink to this heading">#</a></h3>
+<p>Histogramme stellen speichereffizient Werteverteilungen dar. Die Idee ist es, Gruppen von Werten (zusammenhängende Wertebereiche) in Buckets zusammenzufassen. Varianten von Buckets wären Equal-width und Equal-height. In den Buckets geht Genauigkeit verloren, weswegen man zusätzlich Häufigkeiten für die häufigsten Werte speichern kann.
+Pro Bucket wird die durchschnittliche Anzahl der Tupel pro Einzel-Wert gespeichert. D.h. man nimmt innerhalb des Buckets eine Gleichverteilung an.
+<strong>Vorteile</strong> sind geringere Schätzfehler, da Verteilungsannahmen nur in kleineren Bereichen getroffen werden. Außerdem ist der Speicherverbrauch durch das Zusammenfassen in Gruppen geringer.
+Bei <strong>Design und Wartung</strong> bleiben ein paar Fragen offen:</p>
+<ul class="simple">
+<li><p>Wie werden Bucketgrenzen bestimmt?</p></li>
+<li><p>Was wird pro Bucket gespeichert?</p></li>
+<li><p>Wie werden Histogramme aktuell gehalten?</p></li>
+</ul>
 </section>
 <section id="verteilungen-korpergewicht">
 <h3><span class="section-number">5.6.4. </span>Verteilungen - Körpergewicht<a class="headerlink" href="#verteilungen-korpergewicht" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Verteilungen-Körpergewicht.png"><img alt="Verteilungen-Körpergewicht" src="../_images/Verteilungen-Körpergewicht.png" style="width: 500px;" /></a>
+<p>In der Grafik sind Verteilungen zum Körpergewicht dargestellt. Die <strong>Normalverteilung</strong> hat einen Wertebereich von 120-40=80. Ihr Mittelwert beträgt 80 und die Standardabweichung (stddev) ist 12. Es betrifft 100.000 Personen.
+Bei der <strong>Gleichverteilung</strong> wird angenommen, dass jede Gewichtsklasse mit der gleichen Häufigkeit auftaucht. Somit sind es 100.000/80=1250 Personen für jede Gewichtsklasse. Die Gleichverteilung ist somit in fast jedem Bereich fehleranfällig.
+Die einzigen genauen Punkte sind die Schnittpunkte der beiden Verteilungen. An den anderen Stellen kommt es zu groben Fehlschätzungen.</p>
 </section>
 <section id="equi-width-histogramme">
 <h3><span class="section-number">5.6.5. </span>Equi-Width Histogramme<a class="headerlink" href="#equi-width-histogramme" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Equi-Width-Histogramme.png"><img alt="Equi-Width-Histogramme" src="../_images/Equi-Width-Histogramme.png" style="width: 500px;" /></a>
+<p>Etwas besser ist es, eine feste Anzahl an Buckets mit jeweils gleicher Breite zu erstellen. Der Vorteil ist, dass die Grenzen nicht mitgespeichert werden müssen. Der Startpunkt und die Breite genügen. Es wird eine Gleichverteilung in jedem Bucket angenommen. Ein Histogramm kann mittels eines Scans von R berechnet werden. Quellen für Schätzfehler sind zu wenige Buckets und, wenn sich die Werteverteilung innerhalb der Buckets stark unterscheidet.</p>
 </section>
 <section id="equi-height-histogramme">
 <h3><span class="section-number">5.6.6. </span>Equi-Height-Histogramme<a class="headerlink" href="#equi-height-histogramme" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Equi-Height-Histogramme.png"><img alt="Equi-Height-Histogramme" src="../_images/Equi-Height-Histogramme.png" style="width: 500px;" /></a>
+<p>Eine andere Variation ist das Equi-Height Histogramm. Auch bekannt als Equi-depth-Histogramme bzw. Perzentile. Nun probiert man, dass innerhalb eines Buckets sehr ähnliche Werte gespeichert werden. Es gibt eine feste Anzahl an Buckets. Zum Beispiel 10 Stück für 10%, 20%, usw. Die Bucketgrenzen werden so gewählt, dass jedes Bucket ungefähr die gleiche Anzahl an Tupeln enthält. Hier sind es 10.000 Personen pro Bucket. Die Bucketgrenzen müssen gespeichert werden. Die Berechnung der Histogramme erfolgt durch Sortierung und gleichgroße Sprünge.</p>
 </section>
 <section id="histogramme-zur-schatzung-fur-joins">
 <h3><span class="section-number">5.6.7. </span>Histogramme zur Schätzung für Joins<a class="headerlink" href="#histogramme-zur-schatzung-fur-joins" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Wertebereich Temperator °F</p></th>
+<th class="head"><p>Januar</p></th>
+<th class="head"><p>Juli</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0-9</p></td>
+<td><p>40</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>10-19</p></td>
+<td><p>60</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>20-29</p></td>
+<td><p>80</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>30-39</p></td>
+<td><p>50</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>40-49</p></td>
+<td><p>10</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>50-59</p></td>
+<td><p>5</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>60-69</p></td>
+<td><p>0</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>70-79</p></td>
+<td><p>0</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>80-89</p></td>
+<td><p>0</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>90-99</p></td>
+<td><p>0</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Januar</span><span class="o">.</span><span class="n">Tag</span><span class="p">,</span> <span class="n">Juli</span><span class="o">.</span><span class="n">Tag</span>
+<span class="n">FROM</span> <span class="n">Januar</span><span class="p">,</span> <span class="n">Juli</span>
+<span class="n">WHERE</span> <span class="n">Januar</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">Juli</span><span class="o">.</span><span class="n">temp</span>
+</pre></div>
+</div>
+<p>Die Schätzung pro Wertebereich erfolgt mit <span class="math notranslate nohighlight">\(Histo1 · Histo2 / Breite\)</span>. Besonders interessant sind die Wertebereiche von 40-49 und 50-59, da sowohl im Januar, als auch im Juli ein jeweils ein Wert steht: <span class="math notranslate nohighlight">\(10·5/10 + 5·20/10 = 5 + 10 = 15\)</span>. Insgesamt sind es also 15 gemessene Werte. </br>
+Gibt es kein Histogramm, dann muss eine herkömmliche Schätzung gemacht werden. Man wüsste, dass es 245 Tupel  mit gleichverteilten Temperaturen pro Relation gibt. Die Berechnung für den Join ist dann 245·245/100 = 600 Tupel.
+</br></p>
+<p>Eine neue <strong>Variante</strong> ist es, die Histogramme jeweils die 3 häufigsten Werte auflisten und den Rest gruppieren zu lassen. Besonders ist es für z.B. Zipf-verteilte Daten geeignet.</p>
+<p><strong>Beispiel</strong></p>
+<p>Die Anfrage ist <span class="math notranslate nohighlight">\(R(A,B) \Join S(B,C)\)</span>.</br>
+Das Histogramm für R.B ist</p>
+<ul class="simple">
+<li><p>1: 200;</p></li>
+<li><p>0:150;</p></li>
+<li><p>5: 100;</p></li>
+<li><p>Rest: 550.</p></li>
+</ul>
+<p>Das Histogramm für S.B ist
+0: 100;</p>
+<ul class="simple">
+<li><p>1: 80;</p></li>
+<li><p>2: 70;</p></li>
+<li><p>Rest: 250.</p></li>
+</ul>
+<p>Insgesamt gibt es in R 14 und in S 13 unterschiedlich Werte: V(R,B) = 14 und V(S,B) = 13. Die Resttupel in R (550 Tupel) haben somit 11 verschiedene Werte bei einer Annahme von je 50 Tupeln. Die Resttupel in S (250 Tupel) haben 10 verschiedene Werte bei einer Annahme von je 25 Tupeln. </br>
+Man kann eine genaue Schätzung für die Werte 0 und 1 von B machen: <span class="math notranslate nohighlight">\(150·100 + 200·80=31000\)</span>. Der Wert „2“ kommt geschätzt 50 mal in R und 70 mal in S vor: <span class="math notranslate nohighlight">\(50 · 70 = 3500\)</span>. Insgesamt also 3500 Tupel. Der Wert „5“ kommt geschätzt 25 mal in S und 100 mal in R vor: <span class="math notranslate nohighlight">\(100 · 25 = 2500\)</span>. Für 9 weitere gemeinsame Werte in R und S ergibt sich dann: <span class="math notranslate nohighlight">\(9 · (50 · 25) = 11250\)</span>.</p>
 </section>
 <section id="erhebung-von-statistiken">
 <h3><span class="section-number">5.6.8. </span>Erhebung von Statistiken<a class="headerlink" href="#erhebung-von-statistiken" title="Permalink to this heading">#</a></h3>
+<p>Die Statistiken können nicht dauernd aktuell gehalten werden. Sie werden nur periodisch erhoben werden. Statistiken ändern sich nicht laufend und auch nicht radikal. Auch falsche Statistiken funktionieren, wenn sie konsistent angewendet werden.
+Statistiken sollen selbst nicht zu einem hot-spot werden. Sie sollen nicht dauernd geändert werden, da sie oft gelesen werden.
+Die Erhebung wird durch unterschiedliche Trigger ausgelöst. Sie kann regelmäßig bzw. periodisch ausgeführt werden oder nach einer festen Menge an Updates ausgelöst werden. Möglich wäre auch eine Erhebung, falls Schätzungen während der Anfrageausführung als zu ungenau erkannt werden. Außerdem kann sie auch durch einen Administrator ausgelöst werden. </br>
+Die Berechnung der Statistiken ist sehr aufwändig. Ein Grund, warum sie nicht andauernd aktuell gehalten werden. Eine Lösung, um den Aufwand zu reduzieren ist es, Sampling zu nutzen. Man nimmt eine Teilmenge der Daten und erhebt darauf Statistiken. Sampling wird hier aber nicht weiter vertieft.</p>
 </section>
 </section>
 <section id="joinreihenfolge">
 <h2><span class="section-number">5.7. </span>Joinreihenfolge<a class="headerlink" href="#joinreihenfolge" title="Permalink to this heading">#</a></h2>
 <section id="enumeration-physischer-anfrageplane">
 <h3><span class="section-number">5.7.1. </span>Enumeration Physischer Anfragepläne<a class="headerlink" href="#enumeration-physischer-anfrageplane" title="Permalink to this heading">#</a></h3>
+<p>■ Idee 1: Vollständige Enumeration
+□ Entlang aller Freiheitsgrade
+– Reihenfolge und Gruppierung von assoziativen und kommutativen Operatoren
+– Wahl eines Algorithmus für jeden Operator
+– Zusätzliche Operatoren, die im logischen Plan nicht auftauchen
+– Modus des Datentransports zwischen Operatoren
+□ Jeweils Kostenberechnung
+□ Wahl des Plan mit geringsten Kosten
+□ Problem: Zu viele Pläne
+■ Es gibt diverse bessere Methoden
+□ Heuristische Auswahl, Branch-and-Bound, Hill-Climbing, Dynamische Programmierung/Selinger-Style
+Optimization</p>
 </section>
 <section id="heuristische-auswahl">
 <h3><span class="section-number">5.7.2. </span>Heuristische Auswahl<a class="headerlink" href="#heuristische-auswahl" title="Permalink to this heading">#</a></h3>
+<p>■ Idee: Wende eine Sequenz bekannter Heuristiken an
+■ Z.B. ein Greedy-Verfahren für Joinreihenfolge</p>
+<ol class="arabic simple">
+<li><p>Wähle zuerst Joinpaar mit kleinstem Zwischenergebnis.</p></li>
+<li><p>Joine die Relation hinzu, die wiederum kleinstes Zwischenergebnis erzeugt.</p></li>
+<li><p>usw.
+■ Weitere Heuristiken
+□ Falls Selektion und Index auf Selektionsattribut: Wähle Index-scan
+□ Führe mehrere Selektionen auf gleicher Relation zugleich aus.
+□ Falls Index auf Joinattribut, wähle Index-Join
+□ Falls ein Joininput sortiert ist, wähle sort-merge-join (falls kein Index vorhanden)</p></li>
+</ol>
 </section>
 <section id="branch-and-bound">
 <h3><span class="section-number">5.7.3. </span>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this heading">#</a></h3>
+<p>■ Idee: Verwende Heuristiken zum Finden eines ersten guten Plans
+□ Dessen Kosten bilden obere Schranke, auch für Teilpläne
+□ Enumeriere Pläne für diverse Teile der Anfrage
+o Verwerfe Teilpläne, die mehr als Schranke kosten
+□ Senke Schranke falls besserer Gesamtplan gefunden wird.
+■ Vorteil: Optimierung kann jederzeit abgebrochen werden.</p>
 </section>
 <section id="hill-climbing">
 <h3><span class="section-number">5.7.4. </span>Hill-Climbing<a class="headerlink" href="#hill-climbing" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Hill-Climbing.png"><img alt="Hill-Climbing" src="../_images/Hill-Climbing.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Hill-Climbing.png"><img alt="Hill-Climbing" src="../_images/Hill-Climbing.png" style="width: 250px;" /></a>
+<p>■ Idee: Verwende Heuristiken zum Finden eines ersten guten Plans
+■ Suche schrittweise ähnliche Pläne mit niedrigeren Kosten
+□ Ähnlich hier: Nur eine Änderung
+■ Falls kein ähnlicher Plan besser ist: Fertig
+■ Nachteil: Lokales Optimum vs. Globales Optimum
+■ Varianten zur Verbesserung:
+□ Iterative Improvement: Mit 10 verschiedenen Startplänen loslegen
+□ Simulated Annealing: Lasse auch Verschlechterungen zu</p>
 </section>
 <section id="dynamische-programmierung-selinger-style-optimierung">
 <h3><span class="section-number">5.7.5. </span>Dynamische Programmierung &amp; Selinger-style Optimierung<a class="headerlink" href="#dynamische-programmierung-selinger-style-optimierung" title="Permalink to this heading">#</a></h3>
+<p>■ Dynamische Programmierung
+□ Idee: Bottom-up Vorgehen im Baum
+□ Suche jeweils besten Teilplan und verwende diesen, um höheren Teilplan zu bauen.
+■ Selinger-style
+□ Idee: Erweiterung der Dynamischen Programmierung
+□ Merke nicht nur besten Plan sondern verschiedene Sortiervarianten (interesting order)
+– Dürfen mehr kosten, haben aber später Vorteile
+– Beeinflusst nicht Kardinalitäten von Zwischenergebnissen, aber beeinflusst I/O-Kosten</p>
 </section>
 <section id="richard-bellman">
 <h3><span class="section-number">5.7.6. </span>Richard Bellman<a class="headerlink" href="#richard-bellman" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Richard-Bellman.png"><img alt="Richard-Bellman" src="../_images/Richard-Bellman.png" style="width: 300px;" /></a>
+<p>■ 1920 – 1984
+■ PhD Princeton (3 Monate)
+■ Los Alamos (1944-1946)
+■ 1953 Rand Corporation: Erfindung der Dynamischen Programmierung
+■ Viele andere Beiträge zur Mathematik
+□ Bellman-Ford Algorithmus:
+Alle kürzesten Wege für einen Startknoten</p>
 </section>
 <section id="dp-fur-knapsack-problem">
 <h3><span class="section-number">5.7.7. </span>DP für Knapsack Problem<a class="headerlink" href="#dp-fur-knapsack-problem" title="Permalink to this heading">#</a></h3>
@@ -970,10 +1165,14 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 <a class="reference internal image-reference" href="../_images/Knapsack-General.png"><img alt="Knapsack-General" src="../_images/Knapsack-General.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Knapsack-Ausrüstung.png"><img alt="Knapsack-Ausrüstung" src="../_images/Knapsack-Ausrüstung.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Knapsack-Rüstung.png"><img alt="Knapsack-Rüstung" src="../_images/Knapsack-Rüstung.png" style="width: 300px;" /></a>
+<p><a class="reference external" href="https://darksouls3.wiki.fextralife.com/PvP+Builds">https://darksouls3.wiki.fextralife.com/PvP+Builds</a></p>
+<p>I can carry 15 KG at most.
+How can I maximize my damage (dps)?</p>
 </section>
 <section id="beispiel-knapsack-mit-dp">
 <h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Knapsack-mit-DP.png"><img alt="Knapsack-mit-DP" src="../_images/Knapsack-mit-DP.png" style="width: 500px;" /></a>
+<p>Lösung durch Rückwärtslauf ermitteln</p>
 </section>
 <section id="dp-traveling-salesman-problem">
 <h3><span class="section-number">5.7.9. </span>DP: Traveling Salesman Problem<a class="headerlink" href="#dp-traveling-salesman-problem" title="Permalink to this heading">#</a></h3>
@@ -981,10 +1180,52 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 </section>
 <section id="dynamic-programming-heldkarp-algorithmus">
 <h3><span class="section-number">5.7.10. </span>Dynamic Programming (Held–Karp Algorithmus)<a class="headerlink" href="#dynamic-programming-heldkarp-algorithmus" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 200px;" /></a>
+<p>§ Wir betrachten a als Anfang- und Endpunkt
+§ Für alle anderen Knoten i:
+§ Finde den Pfad mit den Minimalkosten von a nach i, welcher alle anderen Knoten enthält
+§ Sei cost(i) definiert als Kosten des Pfades; cost(i) + dist(i, a) entspricht dann der
+Rundreise mit dist(i, a) als Distanz von i nach a.
+§ Das Ergebnis ist das Minimum der [cost(i) + dist(i, a)] Pfade.
+§ Wir berechnen cost(i) mit DP:
+§ Sei C(S, i) die Minimalkosten für ein Pfad von a nach i, welcher jeden Knoten in S genau
+einmal besucht
+§ Wir starten mit allen Teilmengen S der Größe 2 und berechnen C(S, i) für diese. Dann
+betrachten wir Stufenweise die Teilmengen der Größe 3, 4 u.s.w.</p>
+<ol class="arabic simple">
+<li><p>Für |S| = 2 gilt S ={a, i} und C(S, i) = dist(a, i)</p></li>
+<li><p>Für |S| &gt; 2 gilt C(S, i) = min { C(S-{i}, j) + dist(j, i)}, wenn j != i and j != a.</p></li>
+</ol>
+<p>§ C({a,b},b) = 3
+§ C({a,c} ,c) = 4
+§ C({a,d} ,d) = 2
+§ C({a,e} ,e) = 7
+§ C({a,b,c},c) = min{C({a,b},b)+dist(b,c)}=3+4=7
+§ C({a,b,d},d) = min{C({a,b},b)+dist(b,d)}=3+6=9
+§ C({a,b,e},e) = min{C({a,b},e)+dist(b,e)}=3+3=6
+§ C({a,b,c},b) = min{C({a,c},c)+dist(c,b)}=4+4=8
+§ C({a,b,d},b) = min{C({a,d},d)+dist(d,b)}=2+6=8
+§…
+§ C({a,b,c,d},c) = min{C({a,b,d},d)+dist(d,c), C({a,b,d},b)+dist(b,c)
+}=min{9+5,8+4}=12
+§…</p>
+<p>Komplexität: O(n22n)
+Besser als Backtracking aber
+noch zu schwer</p>
 </section>
 <section id="dynamische-programmierung">
 <h3><span class="section-number">5.7.11. </span>Dynamische Programmierung<a class="headerlink" href="#dynamische-programmierung" title="Permalink to this heading">#</a></h3>
+<p>■ Optimaler Algorithmus
+■ „Schwierigkeiten“
+□ Prinzip der Optimalität muss gelten.
+□ Geschickte Aufteilung des Problems in Teilprobleme
+■ Aufwand kann exponentiell sein
+■ Klassische Anwendungen
+□ Knapsack Problem
+□ Traveling Salesman Problem
+□ Maschinenbelegung
+□ Transportproblem
+■ Nun: Anwendung auf die Anfrageplanung</p>
 </section>
 <section id="anwendung-fur-left-deep-baume">
 <h3><span class="section-number">5.7.12. </span>Anwendung für Left-Deep Bäume<a class="headerlink" href="#anwendung-fur-left-deep-baume" title="Permalink to this heading">#</a></h3>
@@ -992,17 +1233,57 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 <section id="anfrageplanung">
 <h3><span class="section-number">5.7.13. </span>Anfrageplanung<a class="headerlink" href="#anfrageplanung" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Anfrageplanung.png"><img alt="Anfrageplanung" src="../_images/Anfrageplanung.png" style="width: 500px;" /></a>
+<p>■ Heuristische Einschränkung des Suchraums
+□ Keine Kreuzprodukte
+– Außer explizite Kreuzprodukte in der Anfrage
+□ Selektionsbedingungen so früh wie möglich
+□ Nur links-tiefe (left-deep) Bäume</p>
 </section>
 <section id="anfragebearbeitung-optimierung">
 <h3><span class="section-number">5.7.14. </span>Anfragebearbeitung – Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this heading">#</a></h3>
+<p>Joinreihenfolge
+■ Hier: nur Joinreihenfolge, nicht Parallelität!
+□ Bei mehr-Prozessor Systemen nicht nur Reihenfolge sondern auch Parallelisierung.
+□ Bei verteilten System außerdem Speicherorte der Zwischenergebnisse berücksichtigen
+■ Join ist i.d.R. teuerster Operator.
+■ Optimierung konzentriert sich auf beste Reihenfolge.
+□ Weitere Optimierungsschritte (Selektionen nach unten, etc.) später
+■ Bei n Relationen n! Alternativen
+□ Aber: Die meisten Alternativen enthalten ein kartesisches Produkt.</p>
 </section>
 <section id="dynamische-programmierung-optimierung-im-system-r">
 <h3><span class="section-number">5.7.15. </span>Dynamische Programmierung: Optimierung im System-R<a class="headerlink" href="#dynamische-programmierung-optimierung-im-system-r" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Selinger.png"><img alt="Selinger" src="../_images/Selinger.png" style="width: 200px;" /></a>
+<p>■ A.k.a. “Selinger-style query optimization”
+□ Der klassische Artikel zur Anfrageoptimierung: [SAC+79]
+□ Ursprünglich im IBM System-R
+□ Heutzutage weit verbreitet
+■ Grundidee:
+□ Nur “Left-deep” Anfragebäume
+o D.h. nur Joinreihenfolge interessant
+o Innere und äußere Relation unberücksichtigt
+□ Bottom-up Generierung von Anfrageplänen
+o Dynamische Programmierung (DP)
+□ Zusätzlich: interesting orders (interessante Sortierungen)
+□ (Zusätzlich: interesting sites (interessante Ausführungsorte))</p>
 <a class="reference internal image-reference" href="../_images/AccessPathSelection-IBM.png"><img alt="AccessPathSelection-IBM" src="../_images/AccessPathSelection-IBM.png" style="width: 500px;" /></a>
 </section>
 <section id="bottom-up-anfrageplangenerierung">
 <h3><span class="section-number">5.7.16. </span>Bottom-up Anfrageplangenerierung<a class="headerlink" href="#bottom-up-anfrageplangenerierung" title="Permalink to this heading">#</a></h3>
+<p>■ Annahme 1:
+Nach dem Join über k Relationen ist die Wahl der Join-Methode die k+1te Relation hinzuzujoinen unabhängig
+von den vorigen Join-Methoden.
+□ Joinmethoden: Nested Loops, Hashjoin, Sort-Merge Join usw.
+■ Annahme 2:
+Jeder Teilplan eines optimalen Plans ist ebenfalls optimal.
+□ Entspricht dem Prinzip der Optimalität
+□ Anders: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan
+auch der bessere Gesamtplan
+■ Bottom-up Anfrageplangenerierung:
+□ Berechne die optimalen Pläne für den Join über (jede Kombination von) k Relationen
+o Suboptimale Pläne werden verworfen
+o Erweitere diese Pläne zu optimalen Plänen für k+1 Relationen.
+o usw. bis k = n</p>
 </section>
 <section id="id4">
 <h3><span class="section-number">5.7.17. </span>Dynamische Programmierung<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
@@ -1010,42 +1291,171 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 </section>
 <section id="dp-grundidee-fur-anfrageoptimierung">
 <h3><span class="section-number">5.7.18. </span>DP – Grundidee für Anfrageoptimierung<a class="headerlink" href="#dp-grundidee-fur-anfrageoptimierung" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Dynamische-Programmierung_2.png"><img alt="Dynamische-Programmierung_2" src="../_images/Dynamische-Programmierung_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Dynamische-Programmierung_2.png"><img alt="Dynamische-Programmierung_2" src="../_images/Dynamische-Programmierung_2.png" style="width: 400px;" /></a>
+<p>■ Für jede Kombination merke (in einer Hilfstabelle):
+□ Geschätzte Größe des Ergebnisses (Kardinalität)
+□ Geschätzte minimale Kosten
+– Hier zur Vereinfachung: Größe des Zwischenergebnisses
+□ Joinreihenfolge, die diese Kosten verursacht (= optimaler Teilplan)
+■ Induktion über Anzahl der Relationen im Plan
+□ N=1: Für jede Relation
+– Kardinalität = Kardinalität der Relation
+– Kosten = 0 (zur Vereinfachung)
+– Joinreihenfolge: n/a
+□ N=2: Für jedes Relationenpaar R, S
+– Kardinalität = |R| x |S| x sf
+– Kosten = 0
+– Joinreihenfolge: kleinere Relation links
+– Clou: R und S jeweils mit besten access-path
+□ N=3: Für jedes Tripel R, S, T
+– Clou: Nur bestes Relationenpaar aus dem Tripel wird um dritte Relation ergänzt</p>
 </section>
 <section id="dp-beispiel">
 <h3><span class="section-number">5.7.19. </span>DP – Beispiel<a class="headerlink" href="#dp-beispiel" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/DP-Beispiel.png"><img alt="DP-Beispiel" src="../_images/DP-Beispiel.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/DP-Beispiel.png"><img alt="DP-Beispiel" src="../_images/DP-Beispiel.png" style="width: 200px;" /></a>
+<p>■ Anfrage über Relationen R, S, T, U.
+■ Vier Join-Bedingungen</p>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_2.png"><img alt="DP-Beispiel_2" src="../_images/DP-Beispiel_2.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_3.png"><img alt="DP-Beispiel_3" src="../_images/DP-Beispiel_3.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel_4.png"><img alt="DP-Beispiel_4" src="../_images/DP-Beispiel_4.png" style="width: 500px;" /></a>
 </section>
 <section id="dp-interesting-orders-interessante-sortierung">
 <h3><span class="section-number">5.7.20. </span>DP - interesting orders (Interessante Sortierung)<a class="headerlink" href="#dp-interesting-orders-interessante-sortierung" title="Permalink to this heading">#</a></h3>
+<p>■ WdH.: Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan
+auch der bessere Gesamtplan.
+■ Gegenbeispiel?
+□ R(A,B) ⋈ S(A,C) ⋈ T(A,D)
+□ Bester (lokaler) Plan für R ⋈ S: Hash-Join
+□ Best (globaler) Gesamtplan:
+– 1. Sort-merge Join über R und S
+– 2. Sort-merge Join mit T
+■ Warum könnte dies so sein?
+□ Das Zwischenergebnis von R ⋈sort-mergeS ist nach Join-Attribut A sortiert.
+□ Dies ist eine interesting order, die später ausgenutzt werden kann:
+– Spätere sort-merge Joins
+– Gruppierung (GROUP BY)
+– Sortierung (ORDER BY)
+– Eindeutige Tupel (DISTINCT)</p>
+<p>■ Bei Auswahl des besten Teilplans:
+□ Kostenvergleich genügt nicht.
+– Es gibt keine vollständige Ordnung der Teilpläne nach Kosten.
+□ Auch Sortierungen müssen berücksichtigt werden.
+■ Lösung: Für jede Kombination von Relationen, speichere mehrere Sortiervarianten:
+□ Nach jeder Variante der beteiligten Teilpläne
+□ Die “leere” Sortierung
+□ DP Tabellen werden „breiter“.
+■ Kostenmodell muss verfeinert werden
+□ Echte I/O Kosten, statt Größe des Zwischenergebnisses
+■ Merke außerdem Join- und Sortieroperationen, die diese Sortierung erzeugen.
+□ Also der Plan</p>
 </section>
 <section id="dp-algorithmus">
 <h3><span class="section-number">5.7.21. </span>DP – Algorithmus<a class="headerlink" href="#dp-algorithmus" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/DP-Algorithmus.png"><img alt="DP-Algorithmus" src="../_images/DP-Algorithmus.png" style="width: 500px;" /></a>
+<p>Quelle: <a class="reference external" href="http://dx.doi.org/10.1145/371578.371598">http://dx.doi.org/10.1145/371578.371598</a></p>
 </section>
 </section>
 <section id="physische-anfrageplane">
 <h2><span class="section-number">5.8. </span>Physische Anfragepläne<a class="headerlink" href="#physische-anfrageplane" title="Permalink to this heading">#</a></h2>
 <section id="letzte-schritte">
 <h3><span class="section-number">5.8.1. </span>Letzte Schritte<a class="headerlink" href="#letzte-schritte" title="Permalink to this heading">#</a></h3>
+<p>■ Wahl des jeweiligen Algorithmus
+□ Wenn nicht schon zuvor (z.B. bei DP) geschehen
+□ Hier nur beispielhaft: Selektion und Join
+■ Pipelining vs. Blocking
+■ Zugriffsmethoden für Relationen</p>
+<p>■ Pipelining vs. Blocking</p>
+<p>■ Zugriffsmethoden für Relationen</p>
 </section>
 <section id="wahl-der-selektionsmethode">
 <h3><span class="section-number">5.8.2. </span>Wahl der Selektionsmethode<a class="headerlink" href="#wahl-der-selektionsmethode" title="Permalink to this heading">#</a></h3>
+<p>Wahl der Selektionsmethode
+■ Schon kennengelernt
+□ Variante 1: Ganz R lesen und Selektionsbedingung auf jedes Tupel anwenden
+□ Variante 2: Falls Index auf Selektionsattribut vorhanden: Zugriff über Index
+– Voraussetzung: Index und Gleichheitsbedingung
+■ Jetzt: Verallgemeinerung auf mehrere Selektionen auf verschiedenen Attributen
+□ Mit oder ohne Index
+□ Gleichheit oder Ungleichheit (&lt;, &gt;, ≤, ≥, ≠)</p>
+<p>■ Annahme: Mindestens eine Selektionsbedingung kann einen Index verwenden.
+■ Vorgehen mit Indizes (jeweils viele Alternativen):
+□ Verwende Indizes um Schnittmenge der Pointermengen zu ermitteln
+□ Lese diese Tupel ein (Index-scan)
+□ Wende darauf „Filter“-Operator an: Prüft alle übrigen Bedingungen
+■ Vorgehen ohne Indizes
+□ Table-scan für ganz R
+□ Wende Filter-Operator für alle Bedingungen an
+■ Filter-Operator findet nur im Hauptspeicher statt: Keine Kosten
+■ Jetzt: Kostenvergleich der Alternativen</p>
 </section>
 <section id="kostenvergleich-der-selektionsmethoden">
 <h3><span class="section-number">5.8.3. </span>Kostenvergleich der Selektionsmethoden<a class="headerlink" href="#kostenvergleich-der-selektionsmethoden" title="Permalink to this heading">#</a></h3>
+<p>■ Bisher: Kostenschätzung durch Schätzung der Ergebnisgröße
+□ Kardinalität des Zwischenergebnisses
+■ Jetzt: Nur Implementierungsvarianten mit jeweils gleichem Ergebnis
+□ Deshalb wieder: Disk I/O
+□ Annahme: Indizes kosten nichts (da sehr kleine Datenmengen)
+■ Beispiel: sA=10, B&lt;20®
+□ Variante 1: Tablescan
+– B® falls R clustered
+– T® falls R nicht clustered
+□ Variante 2: Index auf A verwenden
+– B®/V(R,A) falls Index clustering
+– T®/V(R,A) falls Index nicht clustering
+□ Variante 3: Index auf B verwenden
+– B®/3 falls Index clustering
+– T®/3 falls Index nicht clustering
+□ Variante 4 …</p>
 </section>
 <section id="kostenvergleich-der-selektionsmethoden-beispiel">
 <h3><span class="section-number">5.8.4. </span>Kostenvergleich der Selektionsmethoden – Beispiel<a class="headerlink" href="#kostenvergleich-der-selektionsmethoden-beispiel" title="Permalink to this heading">#</a></h3>
+<p>■ sX=1, Y=2, Z&lt;5®
+□ T® = 5.000, B® = 200, V(R,X)=100, V(R,Y)=500
+□ R sei clustered
+□ Indizes auf X und Y nicht clustering
+□ Index auf Z clustering (B-Baum)
+■ Variante 1: Table-scan und Filter
+□ Kosten: B® = 200 I/O
+■ Variante 2: Index-scan mit X-Index; Filter für den Rest
+□ Kosten: T®/V(R,X) = 5.000/100 = 50 I/O
+■ Variante 3: Index-scan mit Y-Index; Filter für den Rest
+□ Kosten: T®/V(R,Y) = 5.000/500 = 10 I/O
+■ Variante 4: Index-scan mit (clustering) Z-Index; Filter für den Rest
+□ Kosten: B®/3= 200/3 = 67 I/O</p>
 </section>
 <section id="wahl-der-join-methode">
 <h3><span class="section-number">5.8.5. </span>Wahl der Join-Methode<a class="headerlink" href="#wahl-der-join-methode" title="Permalink to this heading">#</a></h3>
+<p>■ Kosten je nach Joinmethode (siehe voriger Foliensatz)
+□ Annahme: Man kennt M (verfügbarer Hauptspeicher)
+– Und M ändert sich nicht während der Ausführung
+□ Annahme: Man kennt B®, T®, V(R, …)
+■ Ideen falls Annahmen nicht stimmen
+□ One-pass oder Nested-loop Algorithmus als default
+– Prinzip „Hoffnung“
+□ Wähle Sort-merge-join falls mindestens ein Input bereits nach Joinattribut sortiert ist.
+□ Wähle Sort-merge-join bei mehr als einem Join auf gleichem Attribut
+– (R(A,B) ⋈ S(B,C)) ⋈ T(B,D)
+□ R(A,B) ⋈ S(B,C): Falls R klein und Index auf S.B: Wähle Index-Join
+□ Falls weder Sortierung noch Indizes vorhanden sind: Wähle Hash-Join
+– Kosten hängen nur von kleinerem Input ab, nicht von beiden Inputs
+■ Analoge Überlegungen für Mengenoperationen</p>
 </section>
 <section id="pipelining-vs-blocking">
 <h3><span class="section-number">5.8.6. </span>Pipelining vs. Blocking<a class="headerlink" href="#pipelining-vs-blocking" title="Permalink to this heading">#</a></h3>
+<p>■ Naiv: Blocking (auch „Materialisierend“)
+□ Jeder Operator speichert sein Zwischenergebnis auf Disk
+■ Besser: Vermischung der Ausführung verschiedener Operatoren
+□ Pipelining
+□ Kette von Iteratoren
+■ Vorteile von Pipelining
+□ Weniger I/O
+□ Frühe Ergebnisse bei der Anwendung
+■ Nachteile des Pipelining?
+□ Nicht jeder Operator funktioniert
+□ Anzahl CPUs zu gering
+□ Jeder Operator hat weniger Hauptspeicher
+□ =&gt; Ungünstigere Algorithmen müssen gewählt werden
+■ Pipelining also nicht immer besser!</p>
 </section>
 </section>
 </section>
