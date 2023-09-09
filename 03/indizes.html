@@ -499,6 +499,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/Überblick-meme.png" style="width: 500px;" /></a>
 </section>
 <section id="indizes-auf-sequenziellen-dateien">
 <h2><span class="section-number">3.2. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this heading">#</a></h2>
@@ -539,6 +540,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Sequentielle-Dateien.png"><img alt="Sequentielle-Dateien" src="../_images/Sequentielle-Dateien.png" style="width: 500px;" /></a>
 </section>
 <section id="dichtbesetzte-indizes">
 <h3><span class="section-number">3.2.3. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Permalink to this heading">#</a></h3>
@@ -593,6 +595,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Dichtbesetzte-Indizes.png"><img alt="Dichtbesetzte-Indizes" src="../_images/Dichtbesetzte-Indizes.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="dunnbesetzte-indizes">
@@ -634,6 +637,8 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Dünnbesetzte-Indizes.png"><img alt="Dünnbesetzte-Indizes" src="../_images/Dünnbesetzte-Indizes.png" style="width: 500px;" /></a>
+<p><a class="reference internal" href="../_images/Mehrstufiger-Index-meme1.png"><img alt="Mehrstufiger-Index-meme1" src="../_images/Mehrstufiger-Index-meme1.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/Mehrstufiger-Index-meme2.png"><img alt="Mehrstufiger-Index-meme2" src="../_images/Mehrstufiger-Index-meme2.png" style="width: 500px;" /></a></p>
 </section>
 </section>
 <section id="mehrstufiger-index">
@@ -678,6 +683,7 @@ document.write(`
 </li>
 <li><p>Zusammen: 2 I/Os</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Mehrstufiger-Index.png"><img alt="Mehrstufiger-Index" src="../_images/Mehrstufiger-Index.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="indizes-fur-nicht-eindeutige-suchschlussel">
@@ -701,7 +707,9 @@ document.write(`
 <ul>
 <li><p>Der zeigt auf ersten Datensatz mit K.</p></li>
 <li><p>Weitere Datensätze mit K folgen direkt.</p></li>
-<li><p>Wichtig: Blöcke haben Pointer auf jeweils nächsten Block</p></li>
+<li><p>Wichtig: Blöcke haben Pointer auf jeweils nächsten Block
+<br> <br>
+<a class="reference internal" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png" style="width: 500px;" /></a></p></li>
 </ul>
 </li>
 <li><p>Idee 3: Dünnbesetzter Index wie gehabt</p>
@@ -717,6 +725,9 @@ document.write(`
 </ul>
 </li>
 <li><p>Beispiel: K = 20: Rückwärtssuche ist nötig <br></p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Idee 4: Dünnbesetzter Index, aber</p>
 <ul>
 <li><p>Datenwert im Index ist der kleinste neue Wert im entsprechenden Datenblock.</p></li>
@@ -732,6 +743,7 @@ document.write(`
 </li>
 <li><p>Statt ⊥ auch „30“</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" style="width: 500px;" /></a>
 </section>
 <section id="anderungsoperationen">
 <h3><span class="section-number">3.2.7. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this heading">#</a></h3>
@@ -776,6 +788,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen.png"><img alt="Änderungsoperationen" src="../_images/Änderungsoperationen.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 2</strong></p>
 <ul class="simple">
 <li><p>Datensatz mit K = 30 wird gelöscht.</p>
@@ -793,6 +806,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_2.png"><img alt="Änderungsoperationen_2" src="../_images/Änderungsoperationen_2.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 3</strong></p>
 <ul class="simple">
 <li><p>Einfügen eines Datensatzes 15</p>
@@ -812,6 +826,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_3.png"><img alt="Änderungsoperationen_3" src="../_images/Änderungsoperationen_3.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 4</strong></p>
 <ul class="simple">
 <li><p>Wieder Datensatz 15 einfügen</p>
@@ -824,6 +839,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_4.png"><img alt="Änderungsoperationen_4" src="../_images/Änderungsoperationen_4.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="sekundarindizes-auf-nichtsequenziellen-dateien">
@@ -860,6 +876,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/Überblick-meme.png" style="width: 500px;" /></a>
 </section>
 <section id="aufbau-von-sekundarindizes">
 <h3><span class="section-number">3.3.2. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
@@ -875,6 +892,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Aufbau-Sekundärindizes.png"><img alt="Aufbau-Sekundärindizes" src="../_images/Aufbau-Sekundärindizes.png" style="width: 500px;" /></a>
 </section>
 <section id="anwedungen">
 <h3><span class="section-number">3.3.3. </span>Anwedungen<a class="headerlink" href="#anwedungen" title="Permalink to this heading">#</a></h3>
@@ -912,6 +930,7 @@ AND Präsident = ?
 <ul class="simple">
 <li><p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/cluster-file.png"><img alt="cluster-file" src="../_images/cluster-file.png" style="width: 500px;" /></a>
 </section>
 <section id="indirektion-fur-sekundarindizes">
 <h3><span class="section-number">3.3.4. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this heading">#</a></h3>
@@ -935,7 +954,9 @@ AND Präsident = ?
 <span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1995</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="../_images/Indirektion-Sekundärindizes.png"><img alt="Indirektion-Sekunderindizes" src="../_images/Indirektion-Sekundärindizes.png" style="width: 500px;" /></a>
 <p><strong>Indirektion im Alltag</strong></p>
+<a class="reference internal image-reference" href="../_images/Indirektion-Alltag.png"><img alt="Indirektion-Alltag" src="../_images/Indirektion-Alltag.png" style="width: 500px;" /></a>
 </section>
 <section id="invertierte-indizes">
 <h3><span class="section-number">3.3.5. </span>Invertierte Indizes<a class="headerlink" href="#invertierte-indizes" title="Permalink to this heading">#</a></h3>
@@ -981,7 +1002,9 @@ AND Präsident = ?
 <li><p>Dokument erwähnt „Hund“ im Titel</p></li>
 <li><p>Dokument erwähnt „Katze“ in einem Anker (Link auf anderes Dokument)</p></li>
 </ul>
-</section>
+<img src="pictures/Invertierte-Indizes.png" alt="Invertierte.Indizes" width="500" style="background-color: white;"/>
+<br> <br>
+<img src="pictures/Invertierte-Indizes_2.png" alt="Invertierte.Indizes_2" width="500" style="background-color: white;"/></section>
 <section id="b-baume">
 <h3><span class="section-number">3.3.6. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h3>
 <section id="allgemein">
@@ -996,6 +1019,8 @@ AND Präsident = ?
 </ul>
 </li>
 </ul>
+<p><a class="reference internal" href="../_images/B-Bäume.png"><img alt="B-Bäume" src="../_images/B-Bäume.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/B-Bäume_2.png"><img alt="B-Bäume" src="../_images/B-Bäume_2.png" style="width: 500px;" /></a></p>
+<a class="reference internal image-reference" href="../_images/Organization-and-Maintenance-Of-Large-Ordered-Indexes.png"><img alt="Organization-and-Maintenance-Of-Large-Ordered-Indexes" src="../_images/Organization-and-Maintenance-Of-Large-Ordered-Indexes.png" style="width: 500px;" /></a>
 </section>
 <section id="struktur">
 <h4><span class="section-number">3.3.6.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this heading">#</a></h4>
@@ -1028,6 +1053,7 @@ AND Präsident = ?
 </section>
 <section id="einfugen-in-b-baume-beispiel">
 <h4><span class="section-number">3.3.6.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this heading">#</a></h4>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume.png"><img alt="Einfügen-in-B-Bäume" src="../_images/Einfügen-in-B-Bäume.png" style="width: 500px;" /></a>
 </section>
 <section id="hier-b-baum">
 <h4><span class="section-number">3.3.6.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this heading">#</a></h4>
@@ -1101,6 +1127,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Rechenbeispiele.png"><img alt="Rechenbeispiele" src="../_images/Rechenbeispiele.png" style="width: 500px;" /></a>
 </section>
 <section id="alternative-definition">
 <h4><span class="section-number">3.3.6.6. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this heading">#</a></h4>
@@ -1132,13 +1159,22 @@ n = 5</p></li>
 </section>
 <section id="beispiel-blattknoten">
 <h4><span class="section-number">3.3.6.7. </span>Beispiel Blattknoten<a class="headerlink" href="#beispiel-blattknoten" title="Permalink to this heading">#</a></h4>
+<p><strong>Volles Blatt</strong></p>
+<a class="reference internal image-reference" href="../_images/Beispiel-Blattknoten.png"><img alt="Beispiel-Blattknoten" src="../_images/Beispiel-Blattknoten.png" style="width: 500px;" /></a>
+<p><strong>Teilweise gefülltes Blatt</strong></p>
+<a class="reference internal image-reference" href="../_images/Beispiel-Blattknoten_2.png"><img alt="Beispiel-Blattknoten_2" src="../_images/Beispiel-Blattknoten_2.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiel-innerer-knoten">
 <h4><span class="section-number">3.3.6.8. </span>Beispiel innerer Knoten<a class="headerlink" href="#beispiel-innerer-knoten" title="Permalink to this heading">#</a></h4>
+<p><strong>Voller innerer Knoten</strong></p>
+<a class="reference internal image-reference" href="../_images/Beispiel-Innerer-Knoten.png"><img alt="Beispiel-Innerer-Knoten" src="../_images/Beispiel-Innerer-Knoten.png" style="width: 500px;" /></a>
+<p><strong>Teilweise gefüllter innerer Knoten</strong></p>
+<a class="reference internal image-reference" href="../_images/Beispiel-Innerer-Knoten_2.png"><img alt="Beispiel-Innerer-Knoten_2" src="../_images/Beispiel-Innerer-Knoten_2.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiel-b-baum">
 <h4><span class="section-number">3.3.6.9. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this heading">#</a></h4>
 <p>Dicht-besetzt: In den Blättern taucht sortiert jeder Schlüssel genau einmal auf.</p>
+<a class="reference internal image-reference" href="../_images/Beispiel-B-Baum.png"><img alt="Beispiel-B-Baum" src="../_images/Beispiel-B-Baum.png" style="width: 500px;" /></a>
 </section>
 <section id="anwendungen-von-b-baumen">
 <h4><span class="section-number">3.3.6.10. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Permalink to this heading">#</a></h4>
@@ -1179,6 +1215,8 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="b-baume-suche">
@@ -1210,6 +1248,8 @@ n = 5</p></li>
 </section>
 <section id="beispiel-suche-im-b-baum">
 <h4><span class="section-number">3.3.7.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Permalink to this heading">#</a></h4>
+<a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum.png"><img alt="Beispiel-Suche-im-B-Baum" src="../_images/Beispiel-Suche-im-B-Baum.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum_2.png"><img alt="Beispiel-Suche-im-B-Baum_2" src="../_images/Beispiel-Suche-im-B-Baum_2.png" style="width: 500px;" /></a>
 </section>
 <section id="bereichsanfragen-range-queries">
 <h4><span class="section-number">3.3.7.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this heading">#</a></h4>
@@ -1240,6 +1280,7 @@ n = 5</p></li>
 </li>
 <li><p>Bei offenen Bereichen [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Bereichsanfragen.png"><img alt="Bereichsanfragen" src="../_images/Bereichsanfragen.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="b-baume-updates">
@@ -1300,6 +1341,10 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel.png"><img alt="Einfügen-in-B-Bäume-Beispiel" src="../_images/Einfügen-in-B-Bäume-Beispiel.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_2.png"><img alt="Einfügen-in-B-Bäume-Beispiel_2" src="../_images/Einfügen-in-B-Bäume-Beispiel_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_3.png"><img alt="Einfügen-in-B-Bäume-Beispiel_3" src="../_images/Einfügen-in-B-Bäume-Beispiel_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_4.png"><img alt="Einfügen-in-B-Bäume-Beispiel_4" src="../_images/Einfügen-in-B-Bäume-Beispiel_4.png" style="width: 500px;" /></a>
 </section>
 <section id="loschen-aus-b-baumen">
 <h4><span class="section-number">3.3.8.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this heading">#</a></h4>
@@ -1353,6 +1398,13 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel.png"><img alt="Löschen-aus-B-Bäumen-Beispiel" src="../_images/Löschen-aus-B-Bäumen-Beispiel.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_2" src="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_3" src="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_4" src="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="effizienz-von-b-baumen">
@@ -1414,13 +1466,32 @@ n = 5</p></li>
 <li><p>n = 3</p></li>
 <li><p>Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47</p></li>
 <li><p>Erzeuge halbgefüllte Blattknoten</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel.png"><img alt="bulk-loading-Beispiel" src="../_images/bulk-loading-Beispiel.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Erzeuge Wurzel für erste beiden Blattknoten</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_2.png"><img alt="bulk-loading-Beispiel_2" src="../_images/bulk-loading-Beispiel_2.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Füge nächstes Blatt ein</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_3.png"><img alt="bulk-loading-Beispiel_3" src="../_images/bulk-loading-Beispiel_3.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Füge nächstes Blatt ein</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_4.png"><img alt="bulk-loading-Beispiel_4" src="../_images/bulk-loading-Beispiel_4.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Füge nächstes Blatt ein</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_5.png"><img alt="bulk-loading-Beispiel_5" src="../_images/bulk-loading-Beispiel_5.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Füge nächstes Blatt ein</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_6.png"><img alt="bulk-loading-Beispiel_6" src="../_images/bulk-loading-Beispiel_6.png" style="width: 500px;" /></a>
+<ul class="simple">
 <li><p>Füge letztes Blatt ein</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_7.png"><img alt="bulk-loading-Beispiel_7" src="../_images/bulk-loading-Beispiel_7.png" style="width: 500px;" /></a>
 <p><strong>Bulk-Loading mit hohem Füllstand</strong></p>
 <ul class="simple">
 <li><p>Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke</p></li>
@@ -1468,6 +1539,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/B-Baum-Varianten.png"><img alt="B-Baum-Varianten" src="../_images/B-Baum-Varianten.png" style="width: 500px;" /></a>
 <p><em><em>B</em>-Bäume</em>*</p>
 <ul class="simple">
 <li><p>B*-Baum</p>
@@ -1495,6 +1567,9 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/B-Baum-Varianten_2.png"><img alt="B-Baum-Varianten_2" src="../_images/B-Baum-Varianten_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Bücher.png"><img alt="Bücher" src="../_images/Bücher.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Bücher_2.png"><img alt="Bücher_2" src="../_images/Bücher_2.png" style="width: 500px;" /></a>
 <p><strong>B±Bäume für BLOBs (und CLOBs)</strong></p>
 <ul class="simple">
 <li><p>Idee: Suchschlüssel repräsentiert Offsets im BLOB anstatt Suchschlüssel</p>
@@ -1504,6 +1579,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/B-Bäume_für_BLOBs.png"><img alt="B-Bäume_für_BLOBs" src="../_images/B-Bäume_für_BLOBs.png" style="width: 500px;" /></a>
 </section>
 <section id="hashtabellen">
 <h3><span class="section-number">3.3.11. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Permalink to this heading">#</a></h3>
@@ -1547,6 +1623,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Hashtabelle-auf-Festplatten.png"><img alt="Hashtabelle-auf-Festplatten" src="../_images/Hashtabelle-auf-Festplatten.png" style="width: 500px;" /></a>
 <p><strong>Einfügen in Hashtabellen</strong></p>
 <ol class="arabic simple">
 <li><p>Berechne Hashwert</p></li>
@@ -1570,6 +1647,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-Hashtabelle.png"><img alt="Einfügen-in-Hashtabelle" src="../_images/Einfügen-in-Hashtabelle.png" style="width: 500px;" /></a>
 <p><strong>Löschen in Hashtabellen</strong></p>
 <ol class="arabic simple">
 <li><p>Suche Bucket (+ Overflowblocks)</p></li>
@@ -1588,6 +1666,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-Hashtabelle.png"><img alt="Löschen-aus-Hashtabelle" src="../_images/Löschen-aus-Hashtabelle.png" style="width: 500px;" /></a>
 </section>
 <section id="vorschau-consistent-hashing">
 <h4><span class="section-number">3.3.11.2. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Permalink to this heading">#</a></h4>
@@ -1606,6 +1685,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/consistent-hashing.png"><img alt="consistent-hashing" src="../_images/consistent-hashing.png" style="width: 500px;" /></a>
 </section>
 <section id="effizienz-statischer-hashtabellen">
 <h4><span class="section-number">3.3.11.3. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Permalink to this heading">#</a></h4>
@@ -1665,6 +1745,7 @@ n = 5</p></li>
 <ul class="simple">
 <li><p>k = 4</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Erweiterbare-Hashtabellen.png"><img alt="Erweiterbare-Hashtabellen" src="../_images/Erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
 <section id="einfugen-in-erweiterbare-hashtabellen">
 <h4><span class="section-number">3.3.12.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
@@ -1706,7 +1787,11 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
+<img src="pictures/Einfügen-erweiterbare-Hashtabellen.png" alt="Einfügen-erweiterbare-Hashtabellen" width="500" style="background-color: white;"/>
+<br> <br>
+<img src="pictures/Einfügen-erweiterbare-Hashtabellen_2.png" alt="Einfügen-erweiterbare-Hashtabellen_2" width="500" style="background-color: white;"/>
+<br> <br>
+<img src="pictures/Einfügen-erweiterbare-Hashtabellen_3.png" alt="Einfügen-erweiterbare-Hashtabellen_3" width="500" style="background-color: white;"/></section>
 <section id="analyse-erweiterbarer-hashtabellen">
 <h4><span class="section-number">3.3.12.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
@@ -1762,6 +1847,7 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Lineare-Hashtabellen.png"><img alt="Lineare-Hashtabellen" src="../_images/Lineare-Hashtabellen.png" style="width: 500px;" /></a>
 <section id="lineare-hashtabellen-einfugen">
 <h4><span class="section-number">3.3.13.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
@@ -1792,6 +1878,9 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
+<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einfügen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br> <br>
+<a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br> <br> <br>
+<a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a></p>
 </section>
 <section id="hashing-vs-b-baum">
 <h4><span class="section-number">3.3.13.2. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this heading">#</a></h4>
