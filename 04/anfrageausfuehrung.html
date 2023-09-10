@@ -164,6 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../03/indizes.html">3. Indizes</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Anfrageausführung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05/optimierung.html">5. Optimierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06/large-scale-data-management.html">6. Large Scale Data Management</a></li>
 </ul>
 
     </div>
@@ -451,8 +452,12 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="anfrageausfuhrung">
 <h1><span class="section-number">4. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this heading">#</a></h1>
 <p>Zoom in die interne Ebene: Die 5-Schichten Architektur</p>
+<a class="reference internal image-reference" href="../_images/5-Schichten-Architektur2.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur2.png" style="width: 500px;" /></a>
 <p><br><br></p>
 <p>Ablauf der Anfragebearbeitung</p>
+<a class="reference internal image-reference" href="../_images/Ablauf-Anfragenbearbeitung.png"><img alt="Ablauf-Anfragenbearbeitung" src="../_images/Ablauf-Anfragenbearbeitung.png" style="width: 500px;" /></a>
+<p><br> <br>
+<a class="reference internal" href="../_images/Überblick-meme1.png"><img alt="Überblick-meme" src="../_images/Überblick-meme1.png" style="width: 500px;" /></a></p>
 <section id="physische-operatoren">
 <h2><span class="section-number">4.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
@@ -658,8 +663,12 @@ document.write(`
 </li>
 </ul>
 <p><strong>Pull-basierte Anfrageauswertung</strong></p>
+<a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
 <p><strong>Iterator – Beispiel</strong></p>
+<a class="reference internal image-reference" href="../_images/Iterator-Beispiele.png"><img alt="Iterator-Beispiele" src="../_images/Iterator-Beispiele.png" style="width: 500px;" /></a>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
+<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker.png"><img alt="Pipelining-vs-Pipelin-Breaker" src="../_images/Pipelining-vs-Pipelin-Breaker.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
 <p><strong>Pipelining versus Blocking</strong></p>
 <ul class="simple">
 <li><p>Pipelining ist im allgemeinen sehr vorteilhaft.</p>
@@ -693,7 +702,8 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p><strong>Iterator – Beispiele</strong></p>
+<p><strong>Iterator – Beispiel</strong></p>
+<a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
 <p><strong>Überblick über das Weitere</strong></p>
 <ul class="simple">
 <li><p>Drei Klassen von Algorithmen</p>
@@ -778,6 +788,7 @@ document.write(`
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Tupel-basierte-unäre-Operatoren.png"><img alt="Tupel-basierte-unäre-Operatoren" src="../_images/Tupel-basierte-unäre-Operatoren.png" style="width: 500px;" /></a>
 </section>
 <section id="relationen-basierte-unare-operatoren">
 <h3><span class="section-number">4.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
@@ -818,6 +829,7 @@ document.write(`
 </li>
 <li><p>Wahl von M: <span class="math notranslate nohighlight">\(B(\delta(R)) = V(R, [A1, … ,An])\)</span> / Tupel-pro-Block ≤ M</p></li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Duplikateliminierung.png"><img alt="Duplikateliminierung" src="../_images/Duplikateliminierung.png" style="width: 500px;" /></a>
 </section>
 <section id="gruppierung">
 <h3><span class="section-number">4.2.5. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this heading">#</a></h3>
@@ -1134,6 +1146,7 @@ Drei Schleifen?
 </section>
 <section id="zusammenfassung-bisheriger-algorithmen">
 <h3><span class="section-number">4.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/Zusammenfassung-Algorithmen.png"><img alt="Zusammenfassung-Algorithmen" src="../_images/Zusammenfassung-Algorithmen.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="sort-basierte-two-pass-algorithmen">
@@ -1413,6 +1426,7 @@ Drei Schleifen?
 </section>
 <section id="zusammenfassung-sortbasierte-two-pass-algorithmen">
 <h3><span class="section-number">4.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="hash-basierte-two-pass-algorithmen">
@@ -1706,7 +1720,9 @@ Drei Schleifen?
 </section>
 <section id="zusammenfassung-hash-basierter-verfahren">
 <h3><span class="section-number">4.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/Zusammenfassung-Hashbasierte-Verfahren.png"><img alt="Zusammenfassung-Hashbasierte-Verfahren" src="../_images/Zusammenfassung-Hashbasierte-Verfahren.png" style="width: 500px;" /></a>
 <p><strong>Wdh.: Sort-basierte, two-pass Algorithmen</strong></p>
+<a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
 <p><strong>Vergleich Hash-basierte und Sort-basierte Algorithmen</strong></p>
 <ul class="simple">
 <li><p>Speicherbedarf und I/O-Kosten ähnlich</p></li>
@@ -1878,6 +1894,8 @@ Drei Schleifen?
 </ul>
 </li>
 </ul>
+<a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index.png"><img alt="Joining-mit-sortiertem-Index" src="../_images/Joining-mit-sortiertem-Index.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index-meme.png"><img alt="Joining-mit-sortiertem-Index-meme" src="../_images/Joining-mit-sortiertem-Index-meme.png" style="width: 500px;" /></a>
 <p><strong>Joining mit Indizes – Beispiel</strong></p>
 <ul class="simple">
 <li><p>B® = 1000, B(S) = 500, T® = 10000, T(S) = 5000, M = 100</p></li>
