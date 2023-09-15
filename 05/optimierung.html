@@ -1085,76 +1085,50 @@ Die Berechnung der Statistiken ist sehr aufwändig. Ein Grund, warum sie nicht a
 <h2><span class="section-number">5.7. </span>Joinreihenfolge<a class="headerlink" href="#joinreihenfolge" title="Permalink to this heading">#</a></h2>
 <section id="enumeration-physischer-anfrageplane">
 <h3><span class="section-number">5.7.1. </span>Enumeration Physischer Anfragepläne<a class="headerlink" href="#enumeration-physischer-anfrageplane" title="Permalink to this heading">#</a></h3>
-<p>■ Idee 1: Vollständige Enumeration
-□ Entlang aller Freiheitsgrade
-– Reihenfolge und Gruppierung von assoziativen und kommutativen Operatoren
-– Wahl eines Algorithmus für jeden Operator
-– Zusätzliche Operatoren, die im logischen Plan nicht auftauchen
-– Modus des Datentransports zwischen Operatoren
-□ Jeweils Kostenberechnung
-□ Wahl des Plan mit geringsten Kosten
-□ Problem: Zu viele Pläne
-■ Es gibt diverse bessere Methoden
-□ Heuristische Auswahl, Branch-and-Bound, Hill-Climbing, Dynamische Programmierung/Selinger-Style
-Optimization</p>
+<p>Die erste Idee wäre es, eine <strong>vollständige Enumeration</strong> entlang aller Freiheitsgrade durchzuführen. Die Reihenfolge und die Gruppierung von assoziativen und kommutativen Operatoren kann abgeändert werden. Außerdem lässt sich der Algorithmus für jeden Operator und der Modus des Datentransports zwischen den Operatoren frei wählen.
+Zu jedem Anfrageplan wird ein Kostenplan berechnet und daraus der Plan mit den geringsten Kosten ausgewählt. Durch das Ausführen einer vollständigen Enumeration enstehen zu viele Anfragepläne. Beispielsweise werden Abschnitte in den Plänen mehrfach berechnet. Die Anzahl der Pläne muss reduziert werden. Daher werden diverse bessere Methoden wie die Heuristische Auswahl, Branch-and-Bound, Hill-Climbing und Dynamische Programmierung/Selinger-Style Optimization verwendet.</p>
 </section>
 <section id="heuristische-auswahl">
 <h3><span class="section-number">5.7.2. </span>Heuristische Auswahl<a class="headerlink" href="#heuristische-auswahl" title="Permalink to this heading">#</a></h3>
-<p>■ Idee: Wende eine Sequenz bekannter Heuristiken an
-■ Z.B. ein Greedy-Verfahren für Joinreihenfolge</p>
+<p>Bei der Heuristischen Auswahl soll eine Sequenz bekannter Heuristiken angewendet werden, wie zum Beispiel ein Greedy-Verfahren für die Joinreihenfolge:</p>
 <ol class="arabic simple">
-<li><p>Wähle zuerst Joinpaar mit kleinstem Zwischenergebnis.</p></li>
-<li><p>Joine die Relation hinzu, die wiederum kleinstes Zwischenergebnis erzeugt.</p></li>
-<li><p>usw.
-■ Weitere Heuristiken
-□ Falls Selektion und Index auf Selektionsattribut: Wähle Index-scan
-□ Führe mehrere Selektionen auf gleicher Relation zugleich aus.
-□ Falls Index auf Joinattribut, wähle Index-Join
-□ Falls ein Joininput sortiert ist, wähle sort-merge-join (falls kein Index vorhanden)</p></li>
+<li><p>Wähle zuerst das Joinpaar mit dem kleinstem Zwischenergebnis.</p></li>
+<li><p>Joine die Relation hinzu, die wiederum das kleinste Zwischenergebnis erzeugt.</p></li>
+<li><p>usw.</p></li>
 </ol>
+<p>Weitere Heuristiken wären unter Anderem:</p>
+<ul class="simple">
+<li><p>Falls eine Selektion und ein Index auf ein Selektionsattribut gegeben sind, sollte man den Index-Scan wählen.</p></li>
+<li><p>Führe mehrere Selektionen auf der selben Relation zugleich aus.</p></li>
+<li><p>Falls der Index auf dem Joinattribut ist, soll ein Index-Join gewählt werden.</p></li>
+<li><p>Falls ein Joininput sortiert ist, soll man den Sort-Merge-Join wählen, sofern kein Index vorhanden ist.</p></li>
+</ul>
 </section>
 <section id="branch-and-bound">
 <h3><span class="section-number">5.7.3. </span>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this heading">#</a></h3>
-<p>■ Idee: Verwende Heuristiken zum Finden eines ersten guten Plans
-□ Dessen Kosten bilden obere Schranke, auch für Teilpläne
-□ Enumeriere Pläne für diverse Teile der Anfrage
-o Verwerfe Teilpläne, die mehr als Schranke kosten
-□ Senke Schranke falls besserer Gesamtplan gefunden wird.
-■ Vorteil: Optimierung kann jederzeit abgebrochen werden.</p>
+<p>Eine weitere Idee ist Branch and Bound. Heuristiken werden zum Finden eines ersten guten Plans verwendet. Die Kosten des ersten guten Plans bilden sowohl eine obere Schranke für alle anderen Pläne, als auch für die Teilpläne. Für diverse Teile der Anfrage werden Pläne enumeriert. Es wird versucht einen Teil der Anfrage zu verbessern. Teilpläne, die mehr als die Schranke kosten, werden verworfen. Wenn ein besserer Gesamtplan gefunden wird, wird die Schranke gesenkt. Der Vorteil von Branch and Bound ist, dass die Optimierung jederzeit abgebrochen werden kann.</p>
 </section>
 <section id="hill-climbing">
 <h3><span class="section-number">5.7.4. </span>Hill-Climbing<a class="headerlink" href="#hill-climbing" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Hill-Climbing.png"><img alt="Hill-Climbing" src="../_images/Hill-Climbing.png" style="width: 250px;" /></a>
-<p>■ Idee: Verwende Heuristiken zum Finden eines ersten guten Plans
-■ Suche schrittweise ähnliche Pläne mit niedrigeren Kosten
-□ Ähnlich hier: Nur eine Änderung
-■ Falls kein ähnlicher Plan besser ist: Fertig
-■ Nachteil: Lokales Optimum vs. Globales Optimum
-■ Varianten zur Verbesserung:
-□ Iterative Improvement: Mit 10 verschiedenen Startplänen loslegen
-□ Simulated Annealing: Lasse auch Verschlechterungen zu</p>
+<a class="reference internal image-reference" href="../_images/Hill-Climbing.png"><img alt="Hill-Climbing" src="../_images/Hill-Climbing.png" style="width: 200px;" /></a>
+<p>Hill Climbing beschreibt wie man einen ersten guten Plan mittels Heuristiken findet.
+Dazu werden schrittweise ähnliche Pläne mit niedrigeren Kosten gesucht. Unter ähnlich versteht man hier, dass sich ein anderer Plan nur um eine Änderung unterscheidet. Sobald kein ähnlicher Plan mehr besser ist, ist das Verfahren fertig.
+Der Nachteil von Hill-Climbing ist, dass es sich um ein Lokales Optimum handelt. Global hätte es eventuell noch einen besseren Plan gegeben. Ein globales Optimum zu finden benötigt zu viel Zeit. </br>
+Es gibt verschiedene Varianten, um das Verfahren zu verbessern. Zum Einem das Iterative Improvement bei dem mit 10 verschiedenen Startplänen losgelegt wird. Zum Anderen das Simulated Annealing bei dem auch Verschlechterungen zugelassen werden.</p>
 </section>
 <section id="dynamische-programmierung-selinger-style-optimierung">
 <h3><span class="section-number">5.7.5. </span>Dynamische Programmierung &amp; Selinger-style Optimierung<a class="headerlink" href="#dynamische-programmierung-selinger-style-optimierung" title="Permalink to this heading">#</a></h3>
-<p>■ Dynamische Programmierung
-□ Idee: Bottom-up Vorgehen im Baum
-□ Suche jeweils besten Teilplan und verwende diesen, um höheren Teilplan zu bauen.
-■ Selinger-style
-□ Idee: Erweiterung der Dynamischen Programmierung
-□ Merke nicht nur besten Plan sondern verschiedene Sortiervarianten (interesting order)
-– Dürfen mehr kosten, haben aber später Vorteile
-– Beeinflusst nicht Kardinalitäten von Zwischenergebnissen, aber beeinflusst I/O-Kosten</p>
+<p>Ein Verfahren zur Berechnung ist die Dynamische Programmierung.
+Es wird jeweils der beste Teilplan gesucht und verwendet, um einen höheren Teilplan zu bauen. Der Baum wird von unten nach oben (bottom-up) durchlaufen. </br>
+Selinger hat die Dynamische Programmierung erweitert und abgeändert (Selinger-Style). Es wird nicht nur der beste Plan, sondern auch verschiedene, interessante Sortiervarianten (interesting order) gemerkt. Die Kosten einiger Pläne dürfen höher sein, sofern sie andere Vorteile mit sich bringen. Das Verfahren beeinflusst nicht die Kardinalitäten von Zwischenergebnissen, sondern die I/O-Kosten.</p>
 </section>
 <section id="richard-bellman">
 <h3><span class="section-number">5.7.6. </span>Richard Bellman<a class="headerlink" href="#richard-bellman" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Richard-Bellman.png"><img alt="Richard-Bellman" src="../_images/Richard-Bellman.png" style="width: 300px;" /></a>
-<p>■ 1920 – 1984
-■ PhD Princeton (3 Monate)
-■ Los Alamos (1944-1946)
-■ 1953 Rand Corporation: Erfindung der Dynamischen Programmierung
-■ Viele andere Beiträge zur Mathematik
-□ Bellman-Ford Algorithmus:
-Alle kürzesten Wege für einen Startknoten</p>
+<p>Ein kurzer Exkurs zur Historie der Dynamischen Programmierung und dessen Erfinder. Richard Bellman (1920 – 1984) erhielt seinen PhD in Princeton. Er arbeitete unter Anderem von 1944 bis 1946 in Los Alamos.
+Während Bellman bei der Rand Corporation arbeitete, erfand er 1953 die Dynamische Programmierung.
+Zur Mathematik hat er viele Beiträge zugesteuert wie z.B. den Bellman-Ford Algorithmus:
+Ein Algorithmus zum Berechnen aller kürzesten Wege für einen Startknoten.</p>
 </section>
 <section id="dp-fur-knapsack-problem">
 <h3><span class="section-number">5.7.7. </span>DP für Knapsack Problem<a class="headerlink" href="#dp-fur-knapsack-problem" title="Permalink to this heading">#</a></h3>
@@ -1168,66 +1142,54 @@ Alle kürzesten Wege für einen Startknoten</p>
 <a class="reference internal image-reference" href="../_images/Knapsack-Ausrüstung.png"><img alt="Knapsack-Ausrüstung" src="../_images/Knapsack-Ausrüstung.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="../_images/Knapsack-Rüstung.png"><img alt="Knapsack-Rüstung" src="../_images/Knapsack-Rüstung.png" style="width: 300px;" /></a>
 <p><a class="reference external" href="https://darksouls3.wiki.fextralife.com/PvP+Builds">https://darksouls3.wiki.fextralife.com/PvP+Builds</a></p>
-<p>I can carry 15 KG at most.
+<p>Bei dem Knapsack Problem ist ein Rucksack mit begrenzten Gewicht gegeben. In den Rucksack möchte man möglichst gute Items ablegen. Die Items haben ein Gewicht und einen Nutzen. Das Gewicht des Rucksacks soll nicht überschritten werden.</p>
+<p>Die Problemformulierung bei Knapsack lautet zum Beispiel wie folgt:</p>
+<blockquote>
+<div><p>I can carry 15 KG at most.</br>
 How can I maximize my damage (dps)?</p>
+</div></blockquote>
 </section>
 <section id="beispiel-knapsack-mit-dp">
 <h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Knapsack-mit-DP.png"><img alt="Knapsack-mit-DP" src="../_images/Knapsack-mit-DP.png" style="width: 500px;" /></a>
-<p>Lösung durch Rückwärtslauf ermitteln</p>
+<p>Die Lösung des Problems wird durch einen Rückwärtslauf ermittelt. Durch eine Tabelle werden nach und nach Items ausgewählt. Die Kapazität wird fortlaufend notiert und berechnet. Das Resultat ist der maximale Nutzen.</p>
 </section>
 <section id="dp-traveling-salesman-problem">
 <h3><span class="section-number">5.7.9. </span>DP: Traveling Salesman Problem<a class="headerlink" href="#dp-traveling-salesman-problem" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/DP-Traveling-Salesman-Problem.png"><img alt="DP-Traveling-Salesman-Problem" src="../_images/DP-Traveling-Salesman-Problem.png" style="width: 500px;" /></a>
+<p>Ein ähnliches Verfahren wird beim Traveling Salesman Problem verwendet. Beim Traveling Salesman Problem sollen alle Städte besucht werden, ohne einen Pfad mehrmals zu betreten. Gesucht ist der kürzeste Pfad, der es ermöglicht.</p>
 </section>
 <section id="dynamic-programming-heldkarp-algorithmus">
 <h3><span class="section-number">5.7.10. </span>Dynamic Programming (Held–Karp Algorithmus)<a class="headerlink" href="#dynamic-programming-heldkarp-algorithmus" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 200px;" /></a>
-<p>§ Wir betrachten a als Anfang- und Endpunkt
-§ Für alle anderen Knoten i:
-§ Finde den Pfad mit den Minimalkosten von a nach i, welcher alle anderen Knoten enthält
-§ Sei cost(i) definiert als Kosten des Pfades; cost(i) + dist(i, a) entspricht dann der
-Rundreise mit dist(i, a) als Distanz von i nach a.
-§ Das Ergebnis ist das Minimum der [cost(i) + dist(i, a)] Pfade.
-§ Wir berechnen cost(i) mit DP:
-§ Sei C(S, i) die Minimalkosten für ein Pfad von a nach i, welcher jeden Knoten in S genau
-einmal besucht
-§ Wir starten mit allen Teilmengen S der Größe 2 und berechnen C(S, i) für diese. Dann
-betrachten wir Stufenweise die Teilmengen der Größe 3, 4 u.s.w.</p>
+<p>Zunächst wird a als Anfangs- und Endpunkt betrachtet. Für alle anderen Knoten i wird der Pfad mit den Minimalkosten von a nach i, welcher alle anderen Knoten enthält, gesucht. Sei <span class="math notranslate nohighlight">\(cost(i)\)</span> definiert als Kosten des Pfades. <span class="math notranslate nohighlight">\(cost(i) + dist(i, a)\)</span> entspricht dann der Rundreise mit <span class="math notranslate nohighlight">\(dist(i, a)\)</span> als Distanz von i nach a. Das Ergebnis ist das Minimum der <span class="math notranslate nohighlight">\([cost(i) + dist(i, a)]\)</span> Pfade.</br>
+Mittels DP wird cost(i) berechnet:
+Sei <span class="math notranslate nohighlight">\(C(S, i)\)</span> die Minimalkosten für ein Pfad von a nach i, der jeden Knoten in S genau
+einmal besucht. Gestartet wird mit allen Teilmengen S der Größe 2. Für diese werden <span class="math notranslate nohighlight">\(C(S, i)\)</span> berechnet. Im nächsten Schritt werden Stufenweise die Teilmengen der Größe 3, 4 u.s.w. betrachtet.</p>
 <ol class="arabic simple">
-<li><p>Für |S| = 2 gilt S ={a, i} und C(S, i) = dist(a, i)</p></li>
-<li><p>Für |S| &gt; 2 gilt C(S, i) = min { C(S-{i}, j) + dist(j, i)}, wenn j != i and j != a.</p></li>
+<li><p>Für <span class="math notranslate nohighlight">\(|S| = 2\)</span> gilt: <span class="math notranslate nohighlight">\(S ={a, i}\)</span> und <span class="math notranslate nohighlight">\(C(S, i) = dist(a, i)\)</span>.</p></li>
+<li><p>Für <span class="math notranslate nohighlight">\(|S| &gt; 2\)</span> gilt:  <span class="math notranslate nohighlight">\(C(S, i) = min{ C(S-\{i\}, j) + dist(j, i)}\)</span>, wenn <span class="math notranslate nohighlight">\(j \neq i\)</span> und <span class="math notranslate nohighlight">\(j \neq a\)</span>.</p></li>
 </ol>
-<p>§ C({a,b},b) = 3
-§ C({a,c} ,c) = 4
-§ C({a,d} ,d) = 2
-§ C({a,e} ,e) = 7
-§ C({a,b,c},c) = min{C({a,b},b)+dist(b,c)}=3+4=7
-§ C({a,b,d},d) = min{C({a,b},b)+dist(b,d)}=3+6=9
-§ C({a,b,e},e) = min{C({a,b},e)+dist(b,e)}=3+3=6
-§ C({a,b,c},b) = min{C({a,c},c)+dist(c,b)}=4+4=8
-§ C({a,b,d},b) = min{C({a,d},d)+dist(d,b)}=2+6=8
-§…
-§ C({a,b,c,d},c) = min{C({a,b,d},d)+dist(d,c), C({a,b,d},b)+dist(b,c)
-}=min{9+5,8+4}=12
-§…</p>
-<p>Komplexität: O(n22n)
-Besser als Backtracking aber
-noch zu schwer</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b\},b) = 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,c\} ,c) = 4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,d\} ,d) = 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,e\} ,e) = 7\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,c\},c) = min\{C(\{a,b\},b)+dist(b,c)\}=3+4=7\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,d\},d) = min\{C(\{a,b\},b)+dist(b,d)\}=3+6=9\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,e\},e) = min\{C(\{a,b\},e)+dist(b,e)\}=3+3=6\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,c\},b) = min\{C(\{a,c\},c)+dist(c,b)\}=4+4=8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,d\},b) = min\{C(\{a,d\},d)+dist(d,b)\}=2+6=8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(...\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C(\{a,b,c,d\},c) = min\{C(\{a,b,d\},d)+dist(d,c), C(\{a,b,d\},b)+dist(b,c)\}=min\{9+5,8+4\}=12\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(...\)</span></p></li>
+</ul>
+<p>Die Komplexität ist mit <span class="math notranslate nohighlight">\(O(n^{2}2^{n})\)</span> immernoch sehr hoch, aber vieles muss nicht mehr doppelt berechnet werden. Das Verfahren ist zwar besser als Backtracking aber noch zu schwer.</p>
 </section>
 <section id="dynamische-programmierung">
 <h3><span class="section-number">5.7.11. </span>Dynamische Programmierung<a class="headerlink" href="#dynamische-programmierung" title="Permalink to this heading">#</a></h3>
-<p>■ Optimaler Algorithmus
-■ „Schwierigkeiten“
-□ Prinzip der Optimalität muss gelten.
-□ Geschickte Aufteilung des Problems in Teilprobleme
-■ Aufwand kann exponentiell sein
-■ Klassische Anwendungen
-□ Knapsack Problem
-□ Traveling Salesman Problem
-□ Maschinenbelegung
-□ Transportproblem
-■ Nun: Anwendung auf die Anfrageplanung</p>
+<p>Die Dynamische Programmierung ist ein Optimaler Algorithmus. Schwierigkeiten dabei sind die Annahmen. Zum Einem muss das Prinzip der Optimalität gelten. Ein optimaler Teilplan führt immer zu einem optimalen Gesamtplan. Zum Anderen muss das Problem geschickt in Teilprobleme aufgeteilt werden. Der Aufwand kann zwar immernoch exponentiell sein, aber es können sich Operationen und Verdopplungen gespart werden.
+Klassische Anwendungen für die Dynamische Programmierung sind das Knapsack Problem, das Traveling Salesman Problem, die Maschinenbelegung und das Transportproblem.</p>
 </section>
 <section id="anwendung-fur-left-deep-baume">
 <h3><span class="section-number">5.7.12. </span>Anwendung für Left-Deep Bäume<a class="headerlink" href="#anwendung-fur-left-deep-baume" title="Permalink to this heading">#</a></h3>
@@ -1235,40 +1197,26 @@ noch zu schwer</p>
 <section id="anfrageplanung">
 <h3><span class="section-number">5.7.13. </span>Anfrageplanung<a class="headerlink" href="#anfrageplanung" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Anfrageplanung.png"><img alt="Anfrageplanung" src="../_images/Anfrageplanung.png" style="width: 500px;" /></a>
-<p>■ Heuristische Einschränkung des Suchraums
-□ Keine Kreuzprodukte
-– Außer explizite Kreuzprodukte in der Anfrage
-□ Selektionsbedingungen so früh wie möglich
-□ Nur links-tiefe (left-deep) Bäume</p>
+<p>Bei der heuristischen Einschränkung des Suchraums gibt es bei den Anfragen keine Kreuzprodukte. Diese werden aussortiert. Das gilt nicht bei expliziten Kreuzprodukten in der Anfrage. Die Selektionsbedingungen sollen so früh wie möglich eingesetzt werden.
+Betrachtet werden nur links-tiefe (left-deep) Bäume. Es wird nie die parallele Ausführung von Joins betrachtet. Es wird immer davon ausgegangen, dass ein Join nach dem Andern ausgeführt wird.</p>
 </section>
 <section id="anfragebearbeitung-optimierung">
 <h3><span class="section-number">5.7.14. </span>Anfragebearbeitung – Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this heading">#</a></h3>
-<p>Joinreihenfolge
-■ Hier: nur Joinreihenfolge, nicht Parallelität!
-□ Bei mehr-Prozessor Systemen nicht nur Reihenfolge sondern auch Parallelisierung.
-□ Bei verteilten System außerdem Speicherorte der Zwischenergebnisse berücksichtigen
-■ Join ist i.d.R. teuerster Operator.
-■ Optimierung konzentriert sich auf beste Reihenfolge.
-□ Weitere Optimierungsschritte (Selektionen nach unten, etc.) später
-■ Bei n Relationen n! Alternativen
-□ Aber: Die meisten Alternativen enthalten ein kartesisches Produkt.</p>
+<p>Bei der Optimierung wird nur die Joinreihenfolge und nicht die Parallelität betrachtet. Bei mehr-Prozessor Systemen wiederrum wird nicht nur die Reihenfolge, sondern auch die Parallelisierung berücksichtigt. Bei verteilten System kommen noch die Speicherorte der Zwischenergebnisse hinzu. Der Join ist i.d.R. der teuerste Operator.
+Die Optimierung konzentriert sich auf die beste Reihenfolge. Ziel sind möglichst geringe Zwischenkosten.
+Weitere Optimierungsschritte, wie das Schieben der Selektionen nach unten, werden später angewandt.
+Bei n Relationen gibt es <span class="math notranslate nohighlight">\(n!\)</span> Alternativen, aber meistens enthalten die Alternativen ein kartesisches Produkt.</p>
 </section>
 <section id="dynamische-programmierung-optimierung-im-system-r">
 <h3><span class="section-number">5.7.15. </span>Dynamische Programmierung: Optimierung im System-R<a class="headerlink" href="#dynamische-programmierung-optimierung-im-system-r" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Selinger.png"><img alt="Selinger" src="../_images/Selinger.png" style="width: 200px;" /></a>
-<p>■ A.k.a. “Selinger-style query optimization”
-□ Der klassische Artikel zur Anfrageoptimierung: [SAC+79]
-□ Ursprünglich im IBM System-R
-□ Heutzutage weit verbreitet
-■ Grundidee:
-□ Nur “Left-deep” Anfragebäume
-o D.h. nur Joinreihenfolge interessant
-o Innere und äußere Relation unberücksichtigt
-□ Bottom-up Generierung von Anfrageplänen
-o Dynamische Programmierung (DP)
-□ Zusätzlich: interesting orders (interessante Sortierungen)
-□ (Zusätzlich: interesting sites (interessante Ausführungsorte))</p>
+<p>Das Verfahren von Selinger ist auch bekannt unter dem Namen: “Selinger-style query optimization”. Selinger ist eine Pionierin im Bereich von Datenbanksystemen. Ein klassischer Artikel zur Anfrageoptimierung ist [SAC+79]. Ursprünglich wurde das Verfahren bei IBM im System-R eingesetzt und ist heutzutage weit verbreitet.
+</br></br>
+Die Grundidee der Optimierung ist es, nur “Left-deep” Anfragebäume zu verwenden. D.h. nur die Joinreihenfolge ist von Bedeutung. Die innere und die äußere Relation bleibt unberücksichtigt.
+Anfragepläne werden durch dynamische Programmierung (DP) von unten nach oben (bottom-up) generiert.
+Zusätzlich sind auch interesting orders (interessante Sortierungen) und interesting sites (interessante Ausführungsorte) wichtig, werden aber in anderen Veranstaltungen behandelt.</p>
 <a class="reference internal image-reference" href="../_images/AccessPathSelection-IBM.png"><img alt="AccessPathSelection-IBM" src="../_images/AccessPathSelection-IBM.png" style="width: 500px;" /></a>
+<p>Das Paper der IBM Research Division zu “Access Path Selection in a Relational Database Management System.”</p>
 </section>
 <section id="bottom-up-anfrageplangenerierung">
 <h3><span class="section-number">5.7.16. </span>Bottom-up Anfrageplangenerierung<a class="headerlink" href="#bottom-up-anfrageplangenerierung" title="Permalink to this heading">#</a></h3>
