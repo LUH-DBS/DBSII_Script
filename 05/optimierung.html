@@ -1125,7 +1125,7 @@ Selinger hat die Dynamische Programmierung erweitert und abgeändert (Selinger-S
 <section id="richard-bellman">
 <h3><span class="section-number">5.7.6. </span>Richard Bellman<a class="headerlink" href="#richard-bellman" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Richard-Bellman.png"><img alt="Richard-Bellman" src="../_images/Richard-Bellman.png" style="width: 300px;" /></a>
-<p>Ein kurzer Exkurs zur Historie der Dynamischen Programmierung und dessen Erfinder. Richard Bellman (1920 – 1984) erhielt seinen PhD in Princeton. Er arbeitete unter Anderem von 1944 bis 1946 in Los Alamos.
+<p>Ein kurzer Exkurs zur Historie der Dynamischen Programmierung und dessen Erfinder. Richard Bellman (1920 - 1984) erhielt seinen PhD in Princeton. Er arbeitete unter Anderem von 1944 bis 1946 in Los Alamos.
 Während Bellman bei der Rand Corporation arbeitete, erfand er 1953 die Dynamische Programmierung.
 Zur Mathematik hat er viele Beiträge zugesteuert wie z.B. den Bellman-Ford Algorithmus:
 Ein Algorithmus zum Berechnen aller kürzesten Wege für einen Startknoten.</p>
@@ -1143,7 +1143,7 @@ Ein Algorithmus zum Berechnen aller kürzesten Wege für einen Startknoten.</p>
 <a class="reference internal image-reference" href="../_images/Knapsack-Rüstung.png"><img alt="Knapsack-Rüstung" src="../_images/Knapsack-Rüstung.png" style="width: 300px;" /></a>
 <p><a class="reference external" href="https://darksouls3.wiki.fextralife.com/PvP+Builds">https://darksouls3.wiki.fextralife.com/PvP+Builds</a></p>
 <p>Bei dem Knapsack Problem ist ein Rucksack mit begrenzten Gewicht gegeben. In den Rucksack möchte man möglichst gute Items ablegen. Die Items haben ein Gewicht und einen Nutzen. Das Gewicht des Rucksacks soll nicht überschritten werden.</p>
-<p>Die Problemformulierung bei Knapsack lautet zum Beispiel wie folgt:</p>
+<p>Ein Beispiel zur Problemformulierung:</p>
 <blockquote>
 <div><p>I can carry 15 KG at most.</br>
 How can I maximize my damage (dps)?</p>
@@ -1248,16 +1248,16 @@ o usw. bis k = n</p>
 – Hier zur Vereinfachung: Größe des Zwischenergebnisses
 □ Joinreihenfolge, die diese Kosten verursacht (= optimaler Teilplan)
 ■ Induktion über Anzahl der Relationen im Plan
-□ N=1: Für jede Relation
+□ <span class="math notranslate nohighlight">\(N=1\)</span>: Für jede Relation
 – Kardinalität = Kardinalität der Relation
 – Kosten = 0 (zur Vereinfachung)
 – Joinreihenfolge: n/a
-□ N=2: Für jedes Relationenpaar R, S
-– Kardinalität = |R| x |S| x sf
+□ <span class="math notranslate nohighlight">\(N=2\)</span>: Für jedes Relationenpaar R, S
+– Kardinalität = <span class="math notranslate nohighlight">\(|R| \times |S| \times sf\)</span>
 – Kosten = 0
 – Joinreihenfolge: kleinere Relation links
 – Clou: R und S jeweils mit besten access-path
-□ N=3: Für jedes Tripel R, S, T
+□ <span class="math notranslate nohighlight">\(N=3\)</span>: Für jedes Tripel R, S, T
 – Clou: Nur bestes Relationenpaar aus dem Tripel wird um dritte Relation ergänzt</p>
 </section>
 <section id="dp-beispiel">
@@ -1274,7 +1274,7 @@ o usw. bis k = n</p>
 <p>■ WdH.: Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan
 auch der bessere Gesamtplan.
 ■ Gegenbeispiel?
-□ R(A,B) ⋈ S(A,C) ⋈ T(A,D)
+□ <span class="math notranslate nohighlight">\(R(A,B) \Join S(A,C) \Join T(A,D)\)</span>
 □ Bester (lokaler) Plan für R ⋈ S: Hash-Join
 □ Best (globaler) Gesamtplan:
 – 1. Sort-merge Join über R und S
@@ -1283,9 +1283,9 @@ auch der bessere Gesamtplan.
 □ Das Zwischenergebnis von R ⋈sort-mergeS ist nach Join-Attribut A sortiert.
 □ Dies ist eine interesting order, die später ausgenutzt werden kann:
 – Spätere sort-merge Joins
-– Gruppierung (GROUP BY)
-– Sortierung (ORDER BY)
-– Eindeutige Tupel (DISTINCT)</p>
+– Gruppierung (<code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>)
+– Sortierung (<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)
+– Eindeutige Tupel (<code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>)</p>
 <p>■ Bei Auswahl des besten Teilplans:
 □ Kostenvergleich genügt nicht.
 – Es gibt keine vollständige Ordnung der Teilpläne nach Kosten.
@@ -1326,7 +1326,7 @@ auch der bessere Gesamtplan.
 – Voraussetzung: Index und Gleichheitsbedingung
 ■ Jetzt: Verallgemeinerung auf mehrere Selektionen auf verschiedenen Attributen
 □ Mit oder ohne Index
-□ Gleichheit oder Ungleichheit (&lt;, &gt;, ≤, ≥, ≠)</p>
+□ Gleichheit oder Ungleichheit (<span class="math notranslate nohighlight">\(&lt;\)</span>, <span class="math notranslate nohighlight">\(&gt;\)</span>, <span class="math notranslate nohighlight">\(\leq\)</span>, <span class="math notranslate nohighlight">\(\geq\)</span>, <span class="math notranslate nohighlight">\(\neq\)</span>)</p>
 <p>■ Annahme: Mindestens eine Selektionsbedingung kann einen Index verwenden.
 ■ Vorgehen mit Indizes (jeweils viele Alternativen):
 □ Verwende Indizes um Schnittmenge der Pointermengen zu ermitteln
@@ -1345,33 +1345,33 @@ auch der bessere Gesamtplan.
 ■ Jetzt: Nur Implementierungsvarianten mit jeweils gleichem Ergebnis
 □ Deshalb wieder: Disk I/O
 □ Annahme: Indizes kosten nichts (da sehr kleine Datenmengen)
-■ Beispiel: sA=10, B&lt;20®
+■ Beispiel: <span class="math notranslate nohighlight">\(sA=10\)</span>, <span class="math notranslate nohighlight">\(B&lt;20(R)\)</span>
 □ Variante 1: Tablescan
-– B® falls R clustered
-– T® falls R nicht clustered
+– <span class="math notranslate nohighlight">\(B(R)\)</span> falls R clustered
+– <span class="math notranslate nohighlight">\(T(R)\)</span> falls R nicht clustered
 □ Variante 2: Index auf A verwenden
-– B®/V(R,A) falls Index clustering
-– T®/V(R,A) falls Index nicht clustering
+– <span class="math notranslate nohighlight">\(B(R)/V(R,A)\)</span> falls Index clustering
+– <span class="math notranslate nohighlight">\(T(R)/V(R,A)\)</span> falls Index nicht clustering
 □ Variante 3: Index auf B verwenden
-– B®/3 falls Index clustering
-– T®/3 falls Index nicht clustering
+– <span class="math notranslate nohighlight">\(B(R)/3\)</span> falls Index clustering
+– <span class="math notranslate nohighlight">\(T(R)/3\)</span> falls Index nicht clustering
 □ Variante 4 …</p>
 </section>
 <section id="kostenvergleich-der-selektionsmethoden-beispiel">
 <h3><span class="section-number">5.8.4. </span>Kostenvergleich der Selektionsmethoden – Beispiel<a class="headerlink" href="#kostenvergleich-der-selektionsmethoden-beispiel" title="Permalink to this heading">#</a></h3>
-<p>■ sX=1, Y=2, Z&lt;5®
-□ T® = 5.000, B® = 200, V(R,X)=100, V(R,Y)=500
+<p>■ <span class="math notranslate nohighlight">\(sX=1\)</span>, <span class="math notranslate nohighlight">\(Y=2\)</span>, <span class="math notranslate nohighlight">\(Z&lt;5(R)\)</span>
+□ <span class="math notranslate nohighlight">\(T(R) = 5.000\)</span>, <span class="math notranslate nohighlight">\(B(R) = 200\)</span>, <span class="math notranslate nohighlight">\(V(R,X)=100\)</span>, <span class="math notranslate nohighlight">\(V(R,Y)=500\)</span>
 □ R sei clustered
 □ Indizes auf X und Y nicht clustering
 □ Index auf Z clustering (B-Baum)
 ■ Variante 1: Table-scan und Filter
-□ Kosten: B® = 200 I/O
+□ Kosten: <span class="math notranslate nohighlight">\(B(R) = 200 I/O\)</span>
 ■ Variante 2: Index-scan mit X-Index; Filter für den Rest
-□ Kosten: T®/V(R,X) = 5.000/100 = 50 I/O
+□ Kosten: <span class="math notranslate nohighlight">\(T(R)/V(R,X) = 5.000/100 = 50 I/O\)</span>
 ■ Variante 3: Index-scan mit Y-Index; Filter für den Rest
-□ Kosten: T®/V(R,Y) = 5.000/500 = 10 I/O
+□ Kosten: <span class="math notranslate nohighlight">\(T(R)/V(R,Y) = 5.000/500 = 10 I/O\)</span>
 ■ Variante 4: Index-scan mit (clustering) Z-Index; Filter für den Rest
-□ Kosten: B®/3= 200/3 = 67 I/O</p>
+□ Kosten: <span class="math notranslate nohighlight">\(B(R)/3= 200/3 = 67 I/O\)</span></p>
 </section>
 <section id="wahl-der-join-methode">
 <h3><span class="section-number">5.8.5. </span>Wahl der Join-Methode<a class="headerlink" href="#wahl-der-join-methode" title="Permalink to this heading">#</a></h3>
@@ -1384,8 +1384,8 @@ auch der bessere Gesamtplan.
 – Prinzip „Hoffnung“
 □ Wähle Sort-merge-join falls mindestens ein Input bereits nach Joinattribut sortiert ist.
 □ Wähle Sort-merge-join bei mehr als einem Join auf gleichem Attribut
-– (R(A,B) ⋈ S(B,C)) ⋈ T(B,D)
-□ R(A,B) ⋈ S(B,C): Falls R klein und Index auf S.B: Wähle Index-Join
+– <span class="math notranslate nohighlight">\((R(A,B) \Join S(B,C)) \Join T(B,D)\)</span>
+□ <span class="math notranslate nohighlight">\(R(A,B) \Join S(B,C)\)</span>: Falls R klein und Index auf S.B: Wähle Index-Join
 □ Falls weder Sortierung noch Indizes vorhanden sind: Wähle Hash-Join
 – Kosten hängen nur von kleinerem Input ab, nicht von beiden Inputs
 ■ Analoge Überlegungen für Mengenoperationen</p>
