@@ -1,60 +1,50 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3. Indizes &#8212; Online-Skript Datenbanksysteme II</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,421 +53,772 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '03/indizes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Anfrageausführung" href="../04/anfrageausfuehrung.html" />
     <link rel="prev" title="2. Repräsentation" href="../02/repraesentation.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Datenbanksysteme II
-                </a>
-            </li>
-        </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Indizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04/anfrageausfuehrung.html">4. Anfrageausführung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05/optimierung.html">5. Optimierung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../06/large-scale-data-management.html">6. Large Scale Data Management</a></li>
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Datenbanksysteme II
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/speicherung.html">
+   1. Speicherung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/repraesentation.html">
+   2. Repräsentation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Indizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/anfrageausfuehrung.html">
+   4. Anfrageausführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/optimierung.html">
+   5. Optimierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/large-scale-data-management.html">
+   6. Large Scale Data Management
+  </a>
+ </li>
 </ul>
 
     </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
 
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
 </div>
 
 
+          
 
 
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F03/indizes.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/03/indizes.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-  </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
-
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Indizes</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div>
-                <h2> Contents </h2>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03/indizes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/LUH-DBS/GDBS_Script"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F03/indizes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/03/indizes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            <nav aria-label="Page">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">3.1. Motivation: Platzierung der Tupel in Blöcke</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">3.2. Indizes auf sequenziellen Dateien</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfachste-form-eines-index">3.2.1. Einfachste Form eines Index</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenzielle-dateien">3.2.2. Sequenzielle Dateien</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dichtbesetzte-indizes">3.2.3. Dichtbesetzte Indizes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">3.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes</a></li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">
+   3.1. Motivation: Platzierung der Tupel in Blöcke
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">
+   3.2. Indizes auf sequenziellen Dateien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfachste-form-eines-index">
+     3.2.1. Einfachste Form eines Index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequenzielle-dateien">
+     3.2.2. Sequenzielle Dateien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dichtbesetzte-indizes">
+     3.2.3. Dichtbesetzte Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">
+       3.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dunnbesetzte-indizes">
+     3.2.4. Dünnbesetzte Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">
+       3.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrstufiger-index">
+     3.2.5. Mehrstufiger Index
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">
+       3.2.5.1. Mehrstufiger Index Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">
+     3.2.6. Indizes für Nicht-eindeutige Suchschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anderungsoperationen">
+     3.2.7. Änderungsoperationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">
+   3.3. Sekundärindizes auf nichtsequenziellen Dateien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     3.3.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">
+     3.3.2. Aufbau von Sekundärindizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwedungen">
+     3.3.3. Anwedungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">
+     3.3.4. Indirektion für Sekundärindizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#invertierte-indizes">
+     3.3.5. Invertierte Indizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume">
+     3.3.6. B-Bäume
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#allgemein">
+       3.3.6.1. Allgemein
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#struktur">
+       3.3.6.2. Struktur
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">
+       3.3.6.3. Einfügen in B-Bäume – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hier-b-baum">
+       3.3.6.4. Hier B+ Baum**
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rechenbeispiele">
+       3.3.6.5. Rechenbeispiele
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alternative-definition">
+       3.3.6.6. Alternative Definition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-blattknoten">
+       3.3.6.7. Beispiel Blattknoten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-innerer-knoten">
+       3.3.6.8. Beispiel innerer Knoten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-b-baum">
+       3.3.6.9. Beispiel B-Baum
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anwendungen-von-b-baumen">
+       3.3.6.10. Anwendungen von B-Bäumen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">
+       3.3.6.11. B-Bäume auf nicht-Primärschlüsseln
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume-suche">
+     3.3.7. B-Bäume Suche
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.3.7.1. Allgemein
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">
+       3.3.7.2. Beispiel Suche im B-Baum
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bereichsanfragen-range-queries">
+       3.3.7.3. Bereichsanfragen (range queries)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume-updates">
+     3.3.8. B-Bäume Updates
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-b-baume">
+       3.3.8.1. Einfügen in B-Bäume
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loschen-aus-b-baumen">
+       3.3.8.2. Löschen aus B-Bäumen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#effizienz-von-b-baumen">
+     3.3.9. Effizienz von B-Bäumen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bulk-loading">
+       3.3.9.1. Bulk-loading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">
+     3.3.10. B-Baum Varianten: B-Baum (ohne „+“)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hashtabellen">
+     3.3.11. Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#allgemeine-hash-tabellen">
+       3.3.11.1. Allgemeine Hash-Tabellen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vorschau-consistent-hashing">
+       3.3.11.2. Vorschau: Consistent Hashing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">
+       3.3.11.3. Effizienz statischer Hashtabellen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erweiterbare-hashtabellen">
+     3.3.12. Erweiterbare Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">
+       3.3.12.1. Einfügen in erweiterbare Hashtabellen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">
+       3.3.12.2. Analyse erweiterbarer Hashtabellen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lineare-hashtabellen">
+     3.3.13. Lineare Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">
+       3.3.13.1. Lineare Hashtabellen – Einfügen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hashing-vs-b-baum">
+       3.3.13.2. Hashing vs. B-Baum
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
 </ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dunnbesetzte-indizes">3.2.4. Dünnbesetzte Indizes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">3.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index">3.2.5. Mehrstufiger Index</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">3.2.5.1. Mehrstufiger Index Beispiel</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">3.2.6. Indizes für Nicht-eindeutige Suchschlüssel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anderungsoperationen">3.2.7. Änderungsoperationen</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">3.3. Sekundärindizes auf nichtsequenziellen Dateien</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">3.3.1. Motivation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">3.3.2. Aufbau von Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">3.3.3. Anwedungen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">3.3.4. Indirektion für Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">3.3.5. Invertierte Indizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">3.3.6. B-Bäume</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">3.3.6.1. Allgemein</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">3.3.6.2. Struktur</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">3.3.6.3. Einfügen in B-Bäume – Beispiel</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hier-b-baum">3.3.6.4. Hier B+ Baum**</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rechenbeispiele">3.3.6.5. Rechenbeispiele</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-definition">3.3.6.6. Alternative Definition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-blattknoten">3.3.6.7. Beispiel Blattknoten</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-innerer-knoten">3.3.6.8. Beispiel innerer Knoten</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-b-baum">3.3.6.9. Beispiel B-Baum</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendungen-von-b-baumen">3.3.6.10. Anwendungen von B-Bäumen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">3.3.6.11. B-Bäume auf nicht-Primärschlüsseln</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-suche">3.3.7. B-Bäume Suche</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.3.7.1. Allgemein</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">3.3.7.2. Beispiel Suche im B-Baum</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bereichsanfragen-range-queries">3.3.7.3. Bereichsanfragen (range queries)</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-updates">3.3.8. B-Bäume Updates</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume">3.3.8.1. Einfügen in B-Bäume</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loschen-aus-b-baumen">3.3.8.2. Löschen aus B-Bäumen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-von-b-baumen">3.3.9. Effizienz von B-Bäumen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-loading">3.3.9.1. Bulk-loading</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">3.3.10. B-Baum Varianten: B-Baum (ohne „+“)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtabellen">3.3.11. Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemeine-hash-tabellen">3.3.11.1. Allgemeine Hash-Tabellen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau-consistent-hashing">3.3.11.2. Vorschau: Consistent Hashing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">3.3.11.3. Effizienz statischer Hashtabellen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erweiterbare-hashtabellen">3.3.12. Erweiterbare Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">3.3.12.1. Einfügen in erweiterbare Hashtabellen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">3.3.12.2. Analyse erweiterbarer Hashtabellen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen">3.3.13. Lineare Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">3.3.13.1. Lineare Hashtabellen – Einfügen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vs-b-baum">3.3.13.2. Hashing vs. B-Baum</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+
             </nav>
         </div>
     </div>
 </div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Indizes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">
+   3.1. Motivation: Platzierung der Tupel in Blöcke
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">
+   3.2. Indizes auf sequenziellen Dateien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#einfachste-form-eines-index">
+     3.2.1. Einfachste Form eines Index
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequenzielle-dateien">
+     3.2.2. Sequenzielle Dateien
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dichtbesetzte-indizes">
+     3.2.3. Dichtbesetzte Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">
+       3.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dunnbesetzte-indizes">
+     3.2.4. Dünnbesetzte Indizes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">
+       3.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mehrstufiger-index">
+     3.2.5. Mehrstufiger Index
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">
+       3.2.5.1. Mehrstufiger Index Beispiel
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">
+     3.2.6. Indizes für Nicht-eindeutige Suchschlüssel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anderungsoperationen">
+     3.2.7. Änderungsoperationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">
+   3.3. Sekundärindizes auf nichtsequenziellen Dateien
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     3.3.1. Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">
+     3.3.2. Aufbau von Sekundärindizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwedungen">
+     3.3.3. Anwedungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">
+     3.3.4. Indirektion für Sekundärindizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#invertierte-indizes">
+     3.3.5. Invertierte Indizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume">
+     3.3.6. B-Bäume
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#allgemein">
+       3.3.6.1. Allgemein
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#struktur">
+       3.3.6.2. Struktur
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">
+       3.3.6.3. Einfügen in B-Bäume – Beispiel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hier-b-baum">
+       3.3.6.4. Hier B+ Baum**
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rechenbeispiele">
+       3.3.6.5. Rechenbeispiele
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alternative-definition">
+       3.3.6.6. Alternative Definition
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-blattknoten">
+       3.3.6.7. Beispiel Blattknoten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-innerer-knoten">
+       3.3.6.8. Beispiel innerer Knoten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-b-baum">
+       3.3.6.9. Beispiel B-Baum
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#anwendungen-von-b-baumen">
+       3.3.6.10. Anwendungen von B-Bäumen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">
+       3.3.6.11. B-Bäume auf nicht-Primärschlüsseln
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume-suche">
+     3.3.7. B-Bäume Suche
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.3.7.1. Allgemein
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">
+       3.3.7.2. Beispiel Suche im B-Baum
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bereichsanfragen-range-queries">
+       3.3.7.3. Bereichsanfragen (range queries)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baume-updates">
+     3.3.8. B-Bäume Updates
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-b-baume">
+       3.3.8.1. Einfügen in B-Bäume
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loschen-aus-b-baumen">
+       3.3.8.2. Löschen aus B-Bäumen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#effizienz-von-b-baumen">
+     3.3.9. Effizienz von B-Bäumen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bulk-loading">
+       3.3.9.1. Bulk-loading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">
+     3.3.10. B-Baum Varianten: B-Baum (ohne „+“)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hashtabellen">
+     3.3.11. Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#allgemeine-hash-tabellen">
+       3.3.11.1. Allgemeine Hash-Tabellen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vorschau-consistent-hashing">
+       3.3.11.2. Vorschau: Consistent Hashing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">
+       3.3.11.3. Effizienz statischer Hashtabellen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erweiterbare-hashtabellen">
+     3.3.12. Erweiterbare Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">
+       3.3.12.1. Einfügen in erweiterbare Hashtabellen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">
+       3.3.12.2. Analyse erweiterbarer Hashtabellen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lineare-hashtabellen">
+     3.3.13. Lineare Hashtabellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">
+       3.3.13.1. Lineare Hashtabellen – Einfügen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hashing-vs-b-baum">
+       3.3.13.2. Hashing vs. B-Baum
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-              
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
-  <section class="tex2jax_ignore mathjax_ignore" id="indizes">
-<h1><span class="section-number">3. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this heading">#</a></h1>
-<section id="motivation-platzierung-der-tupel-in-blocke">
-<h2><span class="section-number">3.1. </span>Motivation: Platzierung der Tupel in Blöcke<a class="headerlink" href="#motivation-platzierung-der-tupel-in-blocke" title="Permalink to this heading">#</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="indizes">
+<h1><span class="section-number">3. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation-platzierung-der-tupel-in-blocke">
+<h2><span class="section-number">3.1. </span>Motivation: Platzierung der Tupel in Blöcke<a class="headerlink" href="#motivation-platzierung-der-tupel-in-blocke" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Naiv: Beliebig verteilen</p>
 <ul>
@@ -501,11 +842,11 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/Überblick-meme.png" style="width: 500px;" /></a>
-</section>
-<section id="indizes-auf-sequenziellen-dateien">
-<h2><span class="section-number">3.2. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this heading">#</a></h2>
-<section id="einfachste-form-eines-index">
-<h3><span class="section-number">3.2.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="indizes-auf-sequenziellen-dateien">
+<h2><span class="section-number">3.2. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="einfachste-form-eines-index">
+<h3><span class="section-number">3.2.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Gegeben sortierte Datei (data file)</p>
 <ul>
@@ -530,9 +871,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-</section>
-<section id="sequenzielle-dateien">
-<h3><span class="section-number">3.2.2. </span>Sequenzielle Dateien<a class="headerlink" href="#sequenzielle-dateien" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="sequenzielle-dateien">
+<h3><span class="section-number">3.2.2. </span>Sequenzielle Dateien<a class="headerlink" href="#sequenzielle-dateien" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Index kann sich auf Sortierung des Schlüsselattributs verlassen</p>
 <ul>
@@ -542,9 +883,9 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Sequentielle-Dateien.png"><img alt="Sequentielle-Dateien" src="../_images/Sequentielle-Dateien.png" style="width: 500px;" /></a>
-</section>
-<section id="dichtbesetzte-indizes">
-<h3><span class="section-number">3.2.3. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="dichtbesetzte-indizes">
+<h3><span class="section-number">3.2.3. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Blocksequenz mit Schlüssel-Pointer Paaren</p></li>
 <li><p>Jeder Schlüssel der Daten ist durch ein Paar repräsentiert</p>
@@ -559,8 +900,8 @@ document.write(`
 <ul class="simple">
 <li><p>Sortierung der Paare = Sortierung der Daten</p></li>
 </ul>
-<section id="anfragebearbeitung-mit-dichtbesetzten-indizes">
-<h4><span class="section-number">3.2.3.1. </span>Anfragebearbeitung mit dichtbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dichtbesetzten-indizes" title="Permalink to this heading">#</a></h4>
+<div class="section" id="anfragebearbeitung-mit-dichtbesetzten-indizes">
+<h4><span class="section-number">3.2.3.1. </span>Anfragebearbeitung mit dichtbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dichtbesetzten-indizes" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Gegeben Suchschlüssel K</p></li>
 <li><p>Durchsuche Indexdatei nach K</p></li>
@@ -597,10 +938,10 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Dichtbesetzte-Indizes.png"><img alt="Dichtbesetzte-Indizes" src="../_images/Dichtbesetzte-Indizes.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="dunnbesetzte-indizes">
-<h3><span class="section-number">3.2.4. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="dunnbesetzte-indizes">
+<h3><span class="section-number">3.2.4. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schlüsselwert ist immer kleinster Wert des referenzierten Blocks</p></li>
 <li><p>Weniger Speicherbedarf</p></li>
@@ -614,9 +955,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-<section id="anfragebearbeitung-mit-dunnbesetzten-indizes">
-<h4><span class="section-number">3.2.4.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this heading">#</a></h4>
-<ol class="arabic simple">
+<div class="section" id="anfragebearbeitung-mit-dunnbesetzten-indizes">
+<h4><span class="section-number">3.2.4.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
 <li><p>Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p>
 <ul class="simple">
 <li><p>Binäre Suche (leicht modifiziert)</p></li>
@@ -640,10 +981,10 @@ document.write(`
 </ul>
 <a class="reference internal image-reference" href="../_images/Dünnbesetzte-Indizes.png"><img alt="Dünnbesetzte-Indizes" src="../_images/Dünnbesetzte-Indizes.png" style="width: 500px;" /></a>
 <p><a class="reference internal" href="../_images/Mehrstufiger-Index-meme1.png"><img alt="Mehrstufiger-Index-meme1" src="../_images/Mehrstufiger-Index-meme1.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/Mehrstufiger-Index-meme2.png"><img alt="Mehrstufiger-Index-meme2" src="../_images/Mehrstufiger-Index-meme2.png" style="width: 500px;" /></a></p>
-</section>
-</section>
-<section id="mehrstufiger-index">
-<h3><span class="section-number">3.2.5. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="mehrstufiger-index">
+<h3><span class="section-number">3.2.5. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this headline">¶</a></h3>
 <p>Auch ein Index kann unangenehm groß sein.</p>
 <ul class="simple">
 <li><p>Nimmt viel Speicher ein</p></li>
@@ -663,8 +1004,8 @@ document.write(`
 </ul>
 </li>
 </ul>
-<section id="mehrstufiger-index-beispiel">
-<h4><span class="section-number">3.2.5.1. </span>Mehrstufiger Index Beispiel<a class="headerlink" href="#mehrstufiger-index-beispiel" title="Permalink to this heading">#</a></h4>
+<div class="section" id="mehrstufiger-index-beispiel">
+<h4><span class="section-number">3.2.5.1. </span>Mehrstufiger Index Beispiel<a class="headerlink" href="#mehrstufiger-index-beispiel" title="Permalink to this headline">¶</a></h4>
 <p>100.000 Datenblöcke, 100 Indexpaare pro Block</p>
 <ul class="simple">
 <li><p>=&gt; 1.000 Blöcke für Index erster Stufe = 4MB</p></li>
@@ -674,7 +1015,7 @@ document.write(`
 </ul>
 </li>
 <li><p>Vorgehen zur Anfragebearbeitung</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
 <li><p>Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)</p></li>
 <li><p>Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
@@ -685,10 +1026,10 @@ document.write(`
 <li><p>Zusammen: 2 I/Os</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Mehrstufiger-Index.png"><img alt="Mehrstufiger-Index" src="../_images/Mehrstufiger-Index.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="indizes-fur-nicht-eindeutige-suchschlussel">
-<h3><span class="section-number">3.2.6. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="indizes-fur-nicht-eindeutige-suchschlussel">
+<h3><span class="section-number">3.2.6. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this headline">¶</a></h3>
 <p>Annahme bisher: Suchschlüssel ist auch Schlüssel bzw.eindeutig in der Relation</p>
 <ul class="simple">
 <li><p>Annahme weiter: Relation ist nach Suchschlüssel sortiert</p></li>
@@ -745,9 +1086,9 @@ document.write(`
 <li><p>Statt ⊥ auch „30“</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" style="width: 500px;" /></a>
-</section>
-<section id="anderungsoperationen">
-<h3><span class="section-number">3.2.7. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="anderungsoperationen">
+<h3><span class="section-number">3.2.7. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this headline">¶</a></h3>
 <p>Daten ändern sich (Insert, Update, Delete).</p>
 <ul class="simple">
 <li><p>Annahme bisher: Daten füllen Blöcke perfekt und ändern sich nicht</p></li>
@@ -841,12 +1182,12 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Änderungsoperationen_4.png"><img alt="Änderungsoperationen_4" src="../_images/Änderungsoperationen_4.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="sekundarindizes-auf-nichtsequenziellen-dateien">
-<h2><span class="section-number">3.3. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Permalink to this heading">#</a></h2>
-<section id="motivation">
-<h3><span class="section-number">3.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="sekundarindizes-auf-nichtsequenziellen-dateien">
+<h2><span class="section-number">3.3. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h3><span class="section-number">3.3.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Annahme bisher: Datensätze sind nach Schlüssel sortiert</p>
 <ul>
@@ -878,9 +1219,9 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/Überblick-meme.png" style="width: 500px;" /></a>
-</section>
-<section id="aufbau-von-sekundarindizes">
-<h3><span class="section-number">3.3.2. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="aufbau-von-sekundarindizes">
+<h3><span class="section-number">3.3.2. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Dichtbesetzt; mit Duplikaten</p></li>
 <li><p>Schlüssel-Pointer Paare</p></li>
@@ -894,9 +1235,9 @@ document.write(`
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Aufbau-Sekundärindizes.png"><img alt="Aufbau-Sekundärindizes" src="../_images/Aufbau-Sekundärindizes.png" style="width: 500px;" /></a>
-</section>
-<section id="anwedungen">
-<h3><span class="section-number">3.3.3. </span>Anwedungen<a class="headerlink" href="#anwedungen" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="anwedungen">
+<h3><span class="section-number">3.3.3. </span>Anwedungen<a class="headerlink" href="#anwedungen" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Unterstützung von Selektionsbedingungen auf Nicht-Primärschlüssel</p></li>
 <li><p>Datensätze liegen nicht sortiert vor.</p>
@@ -924,7 +1265,7 @@ WHERE Filme.Studioname = Studio.Name
 AND Präsident = ?
 </pre></div>
 </div>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Index auf Präsident findet schnell Studio-Datensatz.</p></li>
 <li><p>Entsprechende Filme folgen direkt.</p></li>
 </ol>
@@ -932,9 +1273,9 @@ AND Präsident = ?
 <li><p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/cluster-file.png"><img alt="cluster-file" src="../_images/cluster-file.png" style="width: 500px;" /></a>
-</section>
-<section id="indirektion-fur-sekundarindizes">
-<h3><span class="section-number">3.3.4. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="indirektion-fur-sekundarindizes">
+<h3><span class="section-number">3.3.4. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this headline">¶</a></h3>
 <p>Bisherige Struktur verbraucht Platz: Datenwerte werden im Index mehrfach gespeichert.</p>
 <ul class="simple">
 <li><p>Spart Platz, falls</p>
@@ -958,9 +1299,9 @@ AND Präsident = ?
 <a class="reference internal image-reference" href="../_images/Indirektion-Sekundärindizes.png"><img alt="Indirektion-Sekunderindizes" src="../_images/Indirektion-Sekundärindizes.png" style="width: 500px;" /></a>
 <p><strong>Indirektion im Alltag</strong></p>
 <a class="reference internal image-reference" href="../_images/Indirektion-Alltag.png"><img alt="Indirektion-Alltag" src="../_images/Indirektion-Alltag.png" style="width: 500px;" /></a>
-</section>
-<section id="invertierte-indizes">
-<h3><span class="section-number">3.3.5. </span>Invertierte Indizes<a class="headerlink" href="#invertierte-indizes" title="Permalink to this heading">#</a></h3>
+</div>
+<div class="section" id="invertierte-indizes">
+<h3><span class="section-number">3.3.5. </span>Invertierte Indizes<a class="headerlink" href="#invertierte-indizes" title="Permalink to this headline">¶</a></h3>
 <p>Motivation: Dokumenten-Retrieval</p>
 <ul class="simple">
 <li><p>Sichtweise Dokument als Relation</p>
@@ -1005,11 +1346,11 @@ AND Präsident = ?
 </ul>
 <img src="pictures/Invertierte-Indizes.png" alt="Invertierte.Indizes" width="500" style="background-color: white;"/>
 <br> <br>
-<img src="pictures/Invertierte-Indizes_2.png" alt="Invertierte.Indizes_2" width="500" style="background-color: white;"/></section>
-<section id="b-baume">
-<h3><span class="section-number">3.3.6. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h3>
-<section id="allgemein">
-<h4><span class="section-number">3.3.6.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this heading">#</a></h4>
+<img src="pictures/Invertierte-Indizes_2.png" alt="Invertierte.Indizes_2" width="500" style="background-color: white;"/></div>
+<div class="section" id="b-baume">
+<h3><span class="section-number">3.3.6. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="allgemein">
+<h4><span class="section-number">3.3.6.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this headline">¶</a></h4>
 <p>Bisher: Zweistufiger Index zur Beschleunigung des Zugriffs</p>
 <ul class="simple">
 <li><p>Allgemein: B Bäume (hier „B+ Bäume“)</p>
@@ -1022,9 +1363,9 @@ AND Präsident = ?
 </ul>
 <p><a class="reference internal" href="../_images/B-Bäume.png"><img alt="B-Bäume" src="../_images/B-Bäume.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/B-Bäume_2.png"><img alt="B-Bäume" src="../_images/B-Bäume_2.png" style="width: 500px;" /></a></p>
 <a class="reference internal image-reference" href="../_images/Organization-and-Maintenance-Of-Large-Ordered-Indexes.png"><img alt="Organization-and-Maintenance-Of-Large-Ordered-Indexes" src="../_images/Organization-and-Maintenance-Of-Large-Ordered-Indexes.png" style="width: 500px;" /></a>
-</section>
-<section id="struktur">
-<h4><span class="section-number">3.3.6.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="struktur">
+<h4><span class="section-number">3.3.6.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Index-Blöcke in einem Baum organisiert</p></li>
 <li><p>Balanciert</p>
@@ -1051,13 +1392,13 @@ AND Präsident = ?
 <ul class="simple">
 <li><p>„Maximale Ausgeglichenheit“</p></li>
 </ul>
-</section>
-<section id="einfugen-in-b-baume-beispiel">
-<h4><span class="section-number">3.3.6.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="einfugen-in-b-baume-beispiel">
+<h4><span class="section-number">3.3.6.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this headline">¶</a></h4>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume.png"><img alt="Einfügen-in-B-Bäume" src="../_images/Einfügen-in-B-Bäume.png" style="width: 500px;" /></a>
-</section>
-<section id="hier-b-baum">
-<h4><span class="section-number">3.3.6.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="hier-b-baum">
+<h4><span class="section-number">3.3.6.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Schlüssel in Blätter sind Schlüssel aus den Daten</p>
 <ul>
@@ -1088,9 +1429,9 @@ AND Präsident = ?
 </ul>
 </li>
 </ul>
-</section>
-<section id="rechenbeispiele">
-<h4><span class="section-number">3.3.6.5. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="rechenbeispiele">
+<h4><span class="section-number">3.3.6.5. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Permalink to this headline">¶</a></h4>
 <p>n = 3</p>
 <ul class="simple">
 <li><p>Alle Knoten: Maximal 3 Suchschlüssel und 4 Pointer</p></li>
@@ -1129,9 +1470,9 @@ n = 5</p></li>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Rechenbeispiele.png"><img alt="Rechenbeispiele" src="../_images/Rechenbeispiele.png" style="width: 500px;" /></a>
-</section>
-<section id="alternative-definition">
-<h4><span class="section-number">3.3.6.6. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="alternative-definition">
+<h4><span class="section-number">3.3.6.6. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Bisher: Parameter n</p>
 <ul>
@@ -1157,28 +1498,28 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="beispiel-blattknoten">
-<h4><span class="section-number">3.3.6.7. </span>Beispiel Blattknoten<a class="headerlink" href="#beispiel-blattknoten" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="beispiel-blattknoten">
+<h4><span class="section-number">3.3.6.7. </span>Beispiel Blattknoten<a class="headerlink" href="#beispiel-blattknoten" title="Permalink to this headline">¶</a></h4>
 <p><strong>Volles Blatt</strong></p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Blattknoten.png"><img alt="Beispiel-Blattknoten" src="../_images/Beispiel-Blattknoten.png" style="width: 500px;" /></a>
 <p><strong>Teilweise gefülltes Blatt</strong></p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Blattknoten_2.png"><img alt="Beispiel-Blattknoten_2" src="../_images/Beispiel-Blattknoten_2.png" style="width: 500px;" /></a>
-</section>
-<section id="beispiel-innerer-knoten">
-<h4><span class="section-number">3.3.6.8. </span>Beispiel innerer Knoten<a class="headerlink" href="#beispiel-innerer-knoten" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="beispiel-innerer-knoten">
+<h4><span class="section-number">3.3.6.8. </span>Beispiel innerer Knoten<a class="headerlink" href="#beispiel-innerer-knoten" title="Permalink to this headline">¶</a></h4>
 <p><strong>Voller innerer Knoten</strong></p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Innerer-Knoten.png"><img alt="Beispiel-Innerer-Knoten" src="../_images/Beispiel-Innerer-Knoten.png" style="width: 500px;" /></a>
 <p><strong>Teilweise gefüllter innerer Knoten</strong></p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Innerer-Knoten_2.png"><img alt="Beispiel-Innerer-Knoten_2" src="../_images/Beispiel-Innerer-Knoten_2.png" style="width: 500px;" /></a>
-</section>
-<section id="beispiel-b-baum">
-<h4><span class="section-number">3.3.6.9. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="beispiel-b-baum">
+<h4><span class="section-number">3.3.6.9. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this headline">¶</a></h4>
 <p>Dicht-besetzt: In den Blättern taucht sortiert jeder Schlüssel genau einmal auf.</p>
 <a class="reference internal image-reference" href="../_images/Beispiel-B-Baum.png"><img alt="Beispiel-B-Baum" src="../_images/Beispiel-B-Baum.png" style="width: 500px;" /></a>
-</section>
-<section id="anwendungen-von-b-baumen">
-<h4><span class="section-number">3.3.6.10. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="anwendungen-von-b-baumen">
+<h4><span class="section-number">3.3.6.10. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Permalink to this headline">¶</a></h4>
 <p>B-Bäume können verschiedene Index-Rollen übernehmen.</p>
 <ul class="simple">
 <li><p>Suchschlüssel ist Primärschlüssel; dicht-besetzter Index</p>
@@ -1200,9 +1541,9 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="b-baume-auf-nicht-primarschlusseln">
-<h4><span class="section-number">3.3.6.11. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="b-baume-auf-nicht-primarschlusseln">
+<h4><span class="section-number">3.3.6.11. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Bedeutung der Pointer auf inneren Ebenen ändert sich.</p>
 <ul>
@@ -1218,12 +1559,12 @@ n = 5</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="b-baume-suche">
-<h3><span class="section-number">3.3.7. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Permalink to this heading">#</a></h3>
-<section id="id1">
-<h4><span class="section-number">3.3.7.1. </span>Allgemein<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+</div>
+</div>
+<div class="section" id="b-baume-suche">
+<h3><span class="section-number">3.3.7. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4><span class="section-number">3.3.7.1. </span>Allgemein<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Jetzt wieder: Suchschlüssel = Primärschlüssel</p></li>
 <li><p>Dicht-besetzter Index</p>
@@ -1246,14 +1587,14 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="beispiel-suche-im-b-baum">
-<h4><span class="section-number">3.3.7.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="beispiel-suche-im-b-baum">
+<h4><span class="section-number">3.3.7.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Permalink to this headline">¶</a></h4>
 <a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum.png"><img alt="Beispiel-Suche-im-B-Baum" src="../_images/Beispiel-Suche-im-B-Baum.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum_2.png"><img alt="Beispiel-Suche-im-B-Baum_2" src="../_images/Beispiel-Suche-im-B-Baum_2.png" style="width: 500px;" /></a>
-</section>
-<section id="bereichsanfragen-range-queries">
-<h4><span class="section-number">3.3.7.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="bereichsanfragen-range-queries">
+<h4><span class="section-number">3.3.7.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this headline">¶</a></h4>
 <p>Anfragen mit Ungleichheit in WHERE Klausel</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">40</span>
@@ -1265,7 +1606,7 @@ n = 5</p></li>
 </div>
 <ul class="simple">
 <li><p>Suche nach Bereich [a,b]</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Suche in B-Baum nach a.</p>
 <ul>
 <li><p>Entsprechendes Blatt könnte a speichern.</p></li>
@@ -1282,12 +1623,12 @@ n = 5</p></li>
 <li><p>Bei offenen Bereichen [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Bereichsanfragen.png"><img alt="Bereichsanfragen" src="../_images/Bereichsanfragen.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="b-baume-updates">
-<h3><span class="section-number">3.3.8. </span>B-Bäume Updates<a class="headerlink" href="#b-baume-updates" title="Permalink to this heading">#</a></h3>
-<section id="einfugen-in-b-baume">
-<h4><span class="section-number">3.3.8.1. </span>Einfügen in B-Bäume<a class="headerlink" href="#einfugen-in-b-baume" title="Permalink to this heading">#</a></h4>
+</div>
+</div>
+<div class="section" id="b-baume-updates">
+<h3><span class="section-number">3.3.8. </span>B-Bäume Updates<a class="headerlink" href="#b-baume-updates" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="einfugen-in-b-baume">
+<h4><span class="section-number">3.3.8.1. </span>Einfügen in B-Bäume<a class="headerlink" href="#einfugen-in-b-baume" title="Permalink to this headline">¶</a></h4>
 <p>Rekursives Vorgehen:</p>
 <ul class="simple">
 <li><p>Suche entsprechendes Blatt.</p>
@@ -1346,9 +1687,9 @@ n = 5</p></li>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_2.png"><img alt="Einfügen-in-B-Bäume-Beispiel_2" src="../_images/Einfügen-in-B-Bäume-Beispiel_2.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_3.png"><img alt="Einfügen-in-B-Bäume-Beispiel_3" src="../_images/Einfügen-in-B-Bäume-Beispiel_3.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_4.png"><img alt="Einfügen-in-B-Bäume-Beispiel_4" src="../_images/Einfügen-in-B-Bäume-Beispiel_4.png" style="width: 500px;" /></a>
-</section>
-<section id="loschen-aus-b-baumen">
-<h4><span class="section-number">3.3.8.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="loschen-aus-b-baumen">
+<h4><span class="section-number">3.3.8.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Suche entsprechenden Knoten</p></li>
 <li><p>Lösche Schlüssel</p></li>
@@ -1406,10 +1747,10 @@ n = 5</p></li>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
-</section>
-</section>
-<section id="effizienz-von-b-baumen">
-<h3><span class="section-number">3.3.9. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="effizienz-von-b-baumen">
+<h3><span class="section-number">3.3.9. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Permalink to this headline">¶</a></h3>
 <p>Suche, Einfügen und Löschen sollen möglichst wenig I/O-Operationen benötigen.</p>
 <ul class="simple">
 <li><p>Je größer n gewählt wird, desto seltener müssen Blöcke verschmolzen oder getrennt werden.</p>
@@ -1439,8 +1780,8 @@ n = 5</p></li>
 <li><p>Zugriff mit 2 I/Os: Nur Wurzel im Hauptspeicher</p></li>
 <li><p>Zugriff mit 1 I/O: Wurzel und 255 innere Knoten im Hauptspeicher</p></li>
 </ul>
-<section id="bulk-loading">
-<h4><span class="section-number">3.3.9.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Permalink to this heading">#</a></h4>
+<div class="section" id="bulk-loading">
+<h4><span class="section-number">3.3.9.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Einfügevarianten</p>
 <ul>
@@ -1507,10 +1848,10 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-</section>
-<section id="b-baum-varianten-b-baum-ohne">
-<h3><span class="section-number">3.3.10. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="b-baum-varianten-b-baum-ohne">
+<h3><span class="section-number">3.3.10. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Bisher: B+ Baum</p>
 <ul>
@@ -1581,11 +1922,11 @@ n = 5</p></li>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/B-Bäume_für_BLOBs.png"><img alt="B-Bäume_für_BLOBs" src="../_images/B-Bäume_für_BLOBs.png" style="width: 500px;" /></a>
-</section>
-<section id="hashtabellen">
-<h3><span class="section-number">3.3.11. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Permalink to this heading">#</a></h3>
-<section id="allgemeine-hash-tabellen">
-<h4><span class="section-number">3.3.11.1. </span>Allgemeine Hash-Tabellen<a class="headerlink" href="#allgemeine-hash-tabellen" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="hashtabellen">
+<h3><span class="section-number">3.3.11. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="allgemeine-hash-tabellen">
+<h4><span class="section-number">3.3.11.1. </span>Allgemeine Hash-Tabellen<a class="headerlink" href="#allgemeine-hash-tabellen" title="Permalink to this headline">¶</a></h4>
 <p><strong>Hashtabellen – Grundprinzip</strong></p>
 <ul class="simple">
 <li><p>Hashfunktion</p>
@@ -1626,14 +1967,14 @@ n = 5</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Hashtabelle-auf-Festplatten.png"><img alt="Hashtabelle-auf-Festplatten" src="../_images/Hashtabelle-auf-Festplatten.png" style="width: 500px;" /></a>
 <p><strong>Einfügen in Hashtabellen</strong></p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Berechne Hashwert</p></li>
 <li><p>Falls Platz, füge Datensatz in entsprechenden Block ein</p></li>
 </ol>
 <ul class="simple">
 <li><p>Oder in einen Overflowblock mit Platz</p></li>
 </ul>
-<ol class="arabic simple" start="3">
+<ol class="simple">
 <li><p>Falls nicht, erzeuge neuen Overflowblock und füge dort ein</p></li>
 </ol>
 <ul class="simple">
@@ -1650,7 +1991,7 @@ n = 5</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-Hashtabelle.png"><img alt="Einfügen-in-Hashtabelle" src="../_images/Einfügen-in-Hashtabelle.png" style="width: 500px;" /></a>
 <p><strong>Löschen in Hashtabellen</strong></p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Suche Bucket (+ Overflowblocks)</p></li>
 <li><p>Suche Datensatz / Datensätze</p></li>
 <li><p>Lösche sie</p></li>
@@ -1668,9 +2009,9 @@ n = 5</p></li>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-Hashtabelle.png"><img alt="Löschen-aus-Hashtabelle" src="../_images/Löschen-aus-Hashtabelle.png" style="width: 500px;" /></a>
-</section>
-<section id="vorschau-consistent-hashing">
-<h4><span class="section-number">3.3.11.2. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="vorschau-consistent-hashing">
+<h4><span class="section-number">3.3.11.2. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Problem of hash fragmentation:</p>
 <ul>
@@ -1687,9 +2028,9 @@ n = 5</p></li>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/consistent-hashing.png"><img alt="consistent-hashing" src="../_images/consistent-hashing.png" style="width: 500px;" /></a>
-</section>
-<section id="effizienz-statischer-hashtabellen">
-<h4><span class="section-number">3.3.11.3. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="effizienz-statischer-hashtabellen">
+<h4><span class="section-number">3.3.11.3. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Idealerweise: Pro Bucket nur ein Block</p>
 <ul>
@@ -1712,10 +2053,10 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-</section>
-<section id="erweiterbare-hashtabellen">
-<h3><span class="section-number">3.3.12. </span>Erweiterbare Hashtabellen<a class="headerlink" href="#erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="erweiterbare-hashtabellen">
+<h3><span class="section-number">3.3.12. </span>Erweiterbare Hashtabellen<a class="headerlink" href="#erweiterbare-hashtabellen" title="Permalink to this headline">¶</a></h3>
 <p>Neuerungen</p>
 <ul class="simple">
 <li><p>Indirektion</p>
@@ -1747,8 +2088,8 @@ n = 5</p></li>
 <li><p>k = 4</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Erweiterbare-Hashtabellen.png"><img alt="Erweiterbare-Hashtabellen" src="../_images/Erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
-<section id="einfugen-in-erweiterbare-hashtabellen">
-<h4><span class="section-number">3.3.12.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h4>
+<div class="section" id="einfugen-in-erweiterbare-hashtabellen">
+<h4><span class="section-number">3.3.12.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Ähnlich wie normale Hashtabelle</p>
 <ul>
@@ -1792,9 +2133,9 @@ n = 5</p></li>
 <br> <br>
 <img src="pictures/Einfügen-erweiterbare-Hashtabellen_2.png" alt="Einfügen-erweiterbare-Hashtabellen_2" width="500" style="background-color: white;"/>
 <br> <br>
-<img src="pictures/Einfügen-erweiterbare-Hashtabellen_3.png" alt="Einfügen-erweiterbare-Hashtabellen_3" width="500" style="background-color: white;"/></section>
-<section id="analyse-erweiterbarer-hashtabellen">
-<h4><span class="section-number">3.3.12.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this heading">#</a></h4>
+<img src="pictures/Einfügen-erweiterbare-Hashtabellen_3.png" alt="Einfügen-erweiterbare-Hashtabellen_3" width="500" style="background-color: white;"/></div>
+<div class="section" id="analyse-erweiterbarer-hashtabellen">
+<h4><span class="section-number">3.3.12.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Vorteile</p>
 <ul>
@@ -1830,10 +2171,10 @@ n = 5</p></li>
 </ul>
 </li>
 </ul>
-</section>
-</section>
-<section id="lineare-hashtabellen">
-<h3><span class="section-number">3.3.13. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Permalink to this heading">#</a></h3>
+</div>
+</div>
+<div class="section" id="lineare-hashtabellen">
+<h3><span class="section-number">3.3.13. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Permalink to this headline">¶</a></h3>
 <p>Ziel: Anzahl Buckets wachse nur langsam.</p>
 <ul class="simple">
 <li><p>Anzahl n der Buckets so gewählt, dass Datenblocks zu ca. 85% gefüllt sind.</p></li>
@@ -1849,8 +2190,8 @@ n = 5</p></li>
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Lineare-Hashtabellen.png"><img alt="Lineare-Hashtabellen" src="../_images/Lineare-Hashtabellen.png" style="width: 500px;" /></a>
-<section id="lineare-hashtabellen-einfugen">
-<h4><span class="section-number">3.3.13.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this heading">#</a></h4>
+<div class="section" id="lineare-hashtabellen-einfugen">
+<h4><span class="section-number">3.3.13.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Berechne h(K)</p></li>
 <li><p>Betrachte letzte i Bits; interpretiere als Integer m</p></li>
@@ -1882,9 +2223,9 @@ n = 5</p></li>
 <p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einfügen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br> <br>
 <a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br> <br> <br>
 <a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a></p>
-</section>
-<section id="hashing-vs-b-baum">
-<h4><span class="section-number">3.3.13.2. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this heading">#</a></h4>
+</div>
+<div class="section" id="hashing-vs-b-baum">
+<h4><span class="section-number">3.3.13.2. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Hashing effizient zur Feststellung der Existenz eines Wertes</p>
 <ul>
@@ -1908,10 +2249,10 @@ n = 5</p></li>
 - Manchmal Hersteller-spezifische Syntax für Parameter
 </pre></div>
 </div>
-</section>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1925,7 +2266,7 @@ n = 5</p></li>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./03"
         },
         predefinedOutput: true
@@ -1933,178 +2274,44 @@ n = 5</p></li>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../02/repraesentation.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Repräsentation</p>
-      </div>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../02/repraesentation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Repräsentation</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="../04/anfrageausfuehrung.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="../04/anfrageausfuehrung.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">4. </span>Anfrageausführung</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-platzierung-der-tupel-in-blocke">3.1. Motivation: Platzierung der Tupel in Blöcke</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-auf-sequenziellen-dateien">3.2. Indizes auf sequenziellen Dateien</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfachste-form-eines-index">3.2.1. Einfachste Form eines Index</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequenzielle-dateien">3.2.2. Sequenzielle Dateien</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dichtbesetzte-indizes">3.2.3. Dichtbesetzte Indizes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dichtbesetzten-indizes">3.2.3.1. Anfragebearbeitung mit dichtbesetzten Indizes</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dunnbesetzte-indizes">3.2.4. Dünnbesetzte Indizes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-mit-dunnbesetzten-indizes">3.2.4.1. Anfragebearbeitung mit dünnbesetzten Indizes</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index">3.2.5. Mehrstufiger Index</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">3.2.5.1. Mehrstufiger Index Beispiel</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">3.2.6. Indizes für Nicht-eindeutige Suchschlüssel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anderungsoperationen">3.2.7. Änderungsoperationen</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sekundarindizes-auf-nichtsequenziellen-dateien">3.3. Sekundärindizes auf nichtsequenziellen Dateien</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">3.3.1. Motivation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">3.3.2. Aufbau von Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">3.3.3. Anwedungen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">3.3.4. Indirektion für Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">3.3.5. Invertierte Indizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">3.3.6. B-Bäume</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">3.3.6.1. Allgemein</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">3.3.6.2. Struktur</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume-beispiel">3.3.6.3. Einfügen in B-Bäume – Beispiel</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hier-b-baum">3.3.6.4. Hier B+ Baum**</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rechenbeispiele">3.3.6.5. Rechenbeispiele</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-definition">3.3.6.6. Alternative Definition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-blattknoten">3.3.6.7. Beispiel Blattknoten</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-innerer-knoten">3.3.6.8. Beispiel innerer Knoten</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-b-baum">3.3.6.9. Beispiel B-Baum</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendungen-von-b-baumen">3.3.6.10. Anwendungen von B-Bäumen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-auf-nicht-primarschlusseln">3.3.6.11. B-Bäume auf nicht-Primärschlüsseln</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-suche">3.3.7. B-Bäume Suche</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.3.7.1. Allgemein</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-suche-im-b-baum">3.3.7.2. Beispiel Suche im B-Baum</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bereichsanfragen-range-queries">3.3.7.3. Bereichsanfragen (range queries)</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume-updates">3.3.8. B-Bäume Updates</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-b-baume">3.3.8.1. Einfügen in B-Bäume</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loschen-aus-b-baumen">3.3.8.2. Löschen aus B-Bäumen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-von-b-baumen">3.3.9. Effizienz von B-Bäumen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-loading">3.3.9.1. Bulk-loading</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baum-varianten-b-baum-ohne">3.3.10. B-Baum Varianten: B-Baum (ohne „+“)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashtabellen">3.3.11. Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemeine-hash-tabellen">3.3.11.1. Allgemeine Hash-Tabellen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau-consistent-hashing">3.3.11.2. Vorschau: Consistent Hashing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#effizienz-statischer-hashtabellen">3.3.11.3. Effizienz statischer Hashtabellen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erweiterbare-hashtabellen">3.3.12. Erweiterbare Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einfugen-in-erweiterbare-hashtabellen">3.3.12.1. Einfügen in erweiterbare Hashtabellen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-erweiterbarer-hashtabellen">3.3.12.2. Analyse erweiterbarer Hashtabellen</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen">3.3.13. Lineare Hashtabellen</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineare-hashtabellen-einfugen">3.3.13.1. Lineare Hashtabellen – Einfügen</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing-vs-b-baum">3.3.13.2. Hashing vs. B-Baum</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Dr. Ziawasch Abedjan
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
     </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Prof. Dr. Ziawasch Abedjan<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
-  <footer class="bd-footer">
-  </footer>
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
   </body>
 </html>
