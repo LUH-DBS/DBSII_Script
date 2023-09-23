@@ -6,10 +6,16 @@
 # 
 # Zoom in die interne Ebene: Die 5-Schichten Architektur
 # 
+# <img src="pictures/5-Schichten-Architektur.png" alt="5-Schichten-Architektur" width="500" style="background-color: white;"/>
+# 
 # <br><br>
 # 
-# Ablauf der Anfragebearbeitung
+# Ablauf der Anfragebearbeitung 
 # 
+# <img src="pictures/Ablauf-Anfragenbearbeitung.png" alt="Ablauf-Anfragenbearbeitung" width="500" style="background-color: white;"/>
+
+# <br> <br>
+# <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
 
 # ## Physische Operatoren
 # 
@@ -115,9 +121,16 @@
 #     
 # **Pull-basierte Anfrageauswertung**
 # 
+# <img src="pictures/Pull-basierte-Anfragenauswertung.png" alt="Pull-basierte-Anfragenauswertung" width="500" style="background-color: white;"/>
+# 
 # **Iterator – Beispiel**
 # 
+# <img src="pictures/Iterator-Beispiele.png" alt="Iterator-Beispiele" width="500" style="background-color: white;"/>
+# 
 # **Pipelining vs. Pipeline-Breaker**
+# 
+# <img src="pictures/Pipelining-vs-Pipelin-Breaker.png" alt="Pipelining-vs-Pipelin-Breaker" width="500" style="background-color: white;"/>
+# <img src="pictures/Pipelining-vs-Pipelin-Breaker_2.png" alt="Pipelining-vs-Pipelin-Breaker_2" width="500" style="background-color: white;"/>
 # 
 # **Pipelining versus Blocking**
 # 
@@ -137,7 +150,9 @@
 #     - next() kann früh Ergebnisse weiterreichen (Sortierung nicht nötig)
 #     - Aber: Man muss sich alle bereits gelieferten Ergebnisse merken (großer Zwischenspeicher)
 #     
-# **Iterator – Beispiele**
+# **Iterator – Beispiel**
+# 
+# <img src="pictures/Iterator-Beispiele_2.png" alt="Iterator-Beispiele_2" width="500" style="background-color: white;"/>
 # 
 # **Überblick über das Weitere**
 # - Drei Klassen von Algorithmen
@@ -187,7 +202,9 @@
 # - Puffer > 1 nützlich. Wieso?
 #     - „Daten gemäß Zylinder organisieren“
 #     - Alle Blocks eines Zylinders gleichzeitig lesen.
-#     
+# 
+# <img src="pictures/Tupel-basierte-unäre-Operatoren.png" alt="Tupel-basierte-unäre-Operatoren" width="500" style="background-color: white;"/>
+# 
 # ### Relationen-basierte unäre Operatoren
 # 
 # - Operatoren: Duplikateliminierung und Gruppierung
@@ -208,6 +225,8 @@
 #         - Z.B. Hashtabelle, balancierter Binärbaum
 #         - Geringer Speicher-overhead
 # - Wahl von M: $B(\delta(R)) = V(R, [A1, … ,An])$ / Tupel-pro-Block ≤ M
+# 
+# <img src="pictures/Duplikateliminierung.png" alt="Duplikateliminierung" width="500" style="background-color: white;"/>
 # 
 # ### Gruppierung
 # 
@@ -418,6 +437,7 @@
 # 
 # ### Zusammenfassung bisheriger Algorithmen
 # 
+# <img src="pictures/Zusammenfassung-Algorithmen.png" alt="Zusammenfassung-Algorithmen" width="500" style="background-color: white;"/>
 
 # ## Sort-basierte Two-Pass Algorithmen
 # 
@@ -572,6 +592,8 @@
 # - Oft sind viele Speicherblöcke übrig, da B(R)+B(S) << M²
 # 
 # ### Zusammenfassung – sortbasierte, two-pass Algorithmen
+# 
+# <img src="pictures/Zusammenfassung-sort-basierte-Algorithmen_2.png" alt="Zusammenfassung-sort-basierte-Algorithmen_2" width="500" style="background-color: white;"/>
 
 # ## Hash-basierte Two-Pass Algorithmen
 # 
@@ -744,7 +766,11 @@
 
 # ### Zusammenfassung Hash-basierter Verfahren
 # 
+# <img src="pictures/Zusammenfassung-Hashbasierte-Verfahren.png" alt="Zusammenfassung-Hashbasierte-Verfahren" width="500" style="background-color: white;"/>
+# 
 # **Wdh.: Sort-basierte, two-pass Algorithmen**
+# 
+# <img src="pictures/Zusammenfassung-sort-basierte-Algorithmen_2.png" alt="Zusammenfassung-sort-basierte-Algorithmen_2" width="500" style="background-color: white;"/>
 # 
 # **Vergleich Hash-basierte und Sort-basierte Algorithmen**
 # - Speicherbedarf und I/O-Kosten ähnlich
@@ -841,7 +867,11 @@
 # - Idee 2: Falls beide Relationen sortierten Index auf Y haben: Nur noch Merge-Phase
 #     - „Zig-Zag-Join“
 #     - Tupel aus R ohne Joinpartner in S werden nie gelesen (und umgekehrt)
-#     
+# 
+# <img src="pictures/Joining-mit-sortiertem-Index.png" alt="Joining-mit-sortiertem-Index" width="500" style="background-color: white;"/>
+# 
+# <img src="pictures/Joining-mit-sortiertem-Index-meme.png" alt="Joining-mit-sortiertem-Index-meme" width="500" style="background-color: white;"/>
+# 
 # **Joining mit Indizes – Beispiel**
 # 
 # -  B(R) = 1000, B(S) = 500, T(R) = 10000, T(S) = 5000, M = 100

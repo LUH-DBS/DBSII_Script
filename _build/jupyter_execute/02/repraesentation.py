@@ -11,7 +11,7 @@
 
 # In diesem Kapitel befinden wir uns in der Systempufferschnittstelle. Hier geht es hauptsächlich um Seiten-/ und Blockverwaltung, Puffermanagment, sowie Cashing. Für uns ist die relevante Fragestellung, ob unsere gesuchten Tupel im Hauptspeicher sind oder nicht.
 
-# # Aufbau
+# ## Aufbau
 # 
 # Es gibt folgende Dateneinheiten:
 # 
@@ -21,7 +21,7 @@
 # - **Relation** sind Mengen von Blöcken und bilden eine „Datei“, dazu gehören auch Indexstrukturen, wenn z.B ein ```PRIMARY KEY``` vorhanden ist
 #         
 
-# # Felder etc.
+# ## Felder etc.
 # 
 # Die kleinste Dateneinheit sind Attributwerte, diese werden durch „Felder“ (fields) repräsentiert. Die Fragestellungen die in diesem Themenabschnitt thematisiert werden sind:
 # 
@@ -43,9 +43,9 @@
 
 # <img src="pictures/Datenelemente-meme.png" alt="Datenelemente-meme" width="500" style="background-color: white;"/>
 
-# # Datenelemente
+# ## Datenelemente
 
-# ## Datentypen
+# ### Datentypen
 # Alle Daten werden letzendlich als Bitsequenzen dargestellt bzw. werden alle Daten irgendwann als Bytesequenzen dargestellt. Aus GDBS sollten die folgenden Datentypen bekannt sein:
 # 
 # - **Integer** belegen im Speicher 2 oder 4 Byte 
@@ -55,7 +55,7 @@
 
 # <img src="pictures/Strings-meme.png" alt="Strings-meme" width="500" style="background-color: white;"/>
 
-# # Datum / Bit / Boolean
+# ## Datum / Bit / Boolean
 # 
 # **DATE, TIME** werden i.d.R. als String fester Länge repräsentiert. Ein Problem ist jedoch, dass die Zeit mit Bruchteilen von Sekunden gespeichert werden kann (theoretisch beliebig genau). Eine Lösung ist die Speicherung als String fester Länge mit maximaler Genauigkeit eine andere ist die Speicherung als String variabler Länge.
 #         
@@ -64,12 +64,12 @@
 #     
 # **BOOLEAN** setzt sich aus 8 Bits zusammen: Entweder 00000001 und 00000000 oder 11111111 und 00000000.
 
-# # Datensätze
+# ## Datensätze
 # 
 # Mithilfe den thematisierten Datentypen, lassen sich nun Datensätze zusammenstellen.
 # 
 
-# ## Datensätze fester Länge
+# ### Datensätze fester Länge
 # 
 # Jeder Datensatz hat ein Schema bestehend aus Namen und Datentypen der Felder, sowie Offset im Datensatz (Anmerkung: JEDER Datensatz!–Realisiert i.d.R. als Pointer auf das Schema). Betrachten wir das untere Schema für ein Relation Schauspieler, auf relationaler Ebene gibt es vier Attribute, die als Zeichenketten gespeichert werden. Eine sehr einfache Variante um die Größen der Tupel zu berechnen ist immer das Maximum zu wählen.
 # <br><br>
@@ -85,19 +85,19 @@
 # 
 # 
 
-# ## Versatz zur Effizienz
+# ### Versatz zur Effizienz
 # 
 # In der Realität gibt es je nach System noch zusätzliche Anforderungen, wie z.B das Felder am besten bei Hauptspeicheradressen beginnen, die ein Vielfaches von 4 (bzw. 8) sind. Manchmal ist das sogar Pflicht. Dementsprechend müssen die Felder versetzt werden. Für die Festplatte ist das eigentlich egal, aber der eingelesene Datensatz landet auf einem Speicherplatz mit entsprechender Adresse: Vielfaches von 4 oder Vielfaches von 2n. Entsprechend versetzt sind die anderen Felder auch. Im unteren Beispielbild sehen wir zuerst das Feld ohne Versatz und dann mit einem Versatz von zwei.
 
 # <img src="pictures/Versatz-zur-Effizienz.png" alt="Versatz-zur-Effizienz" width="500" style="background-color: white;"/>
 
-# # Speicherung der Metadaten
+# ## Speicherung der Metadaten
 # 
 # Die Metadaten eines Datensatzes,sind z.B. das Schema bzw. Pointer auf ein Schema, Länge des Datensatzes oder Timestamp der letzten Änderung bzw. des letzten Lesens. Diese werden als Header vor dem Datensatz gespeichert. In dem Bild unten reichen 12 Bytes an Speicher für die Metadaten.
 
 # <img src="pictures/Speicherung_Metadaten.png" alt="Speicherung_Metadaten" width="500" style="background-color: white;"/>
 
-# ## Aufteilung in Blöcke
+# ### Aufteilung in Blöcke
 # Um die Datensätze in Blöcke aufzuteilen kann ein Block header benutzt werden, dieser besteht aus:
 # - Links auf andere Blocks (z.B. Index)
 # - Rolle dieses Blocks (im Index)
@@ -115,12 +115,12 @@
 
 # <img src="pictures/Aufteilung_in_Blöcke.png" alt="Aufteilung_in_Blöcke" width="500" style="background-color: white;"/>
 
-# # Adressierung
+# ## Adressierung
 
 # Die Adressierung findet zuerst im Hauptspeicher statt, hier wird die Adresse zuerst angefragt, welche auf die Adresse auf der Festplatte abgebildet wird. Bei einem Block im Hauptspeicher befindet sich die Block-Adresse im virtuellen Adressraum, diese Adresse zeigt auf das erste Byte des Blocks. Wenn ein konkreter Datensatz gesucht wir gibt es zusätzlich es noch eine Datensatz-Adresse, die zeigt auf das erste Byte des Datensatzes.
 # Der Block auf der Festplatte ist unser Speicherort. Der genaue Speicherort im ganzen System wird bestimmt wird bestimmt durch die DBMS–Disk ID, Zylinder#(falls HDD vorhanden), Spur#, Sektor, usw.. Unser gefundene Datensatz ist dann der Block und der Offset des ersten Bytes.
 
-# ## Adressraum des Servers
+# ### Adressraum des Servers
 # Es gibt zwei Möglichkeiten um den Adressraum für die Spezifizierung des Blocks zu benutzen:
 # 
 # - Variante 1: Es werden nur **Physische Adressen** im Hauptspeicher angegeben, bestehend aus folgenden Informationen:
@@ -136,18 +136,18 @@
 # 
 # 
 
-# ## Logische Adressen
+# ### Logische Adressen
 # Durch die Indirektion der logischen Adressen, ist die Umorganisation von Daten–Änderungen flexibler, da sie nur auf der Mappingtable stattfindet. Eine logische Adresse bleibt zudem gleich, unabhängig davon ob es sich um eine HDD oder SDD handelt. Eine Hybride Adressierung ist auch möglich, indem es eine physische Adresse für einen Block und eine logische Adresse für einen Datensatz in dem Block, z.B. ein Schlüsselwert gibt.
 
 # <img src="pictures/Logische-Adressen.png" alt="Logische-Adressen" width="500" style="background-color: white;"/>
 
-# ## Hybride Adressierung
+# ### Hybride Adressierung
 # 
-# Die Idee bei der hybriden Adressierung ist, dass wir zunächst durch physische Adressen zu einem Block gelangen. Der Block selbst speichert die Offsettable. Das Problem welches hierbei auftreten kann, ist dass Datensätze entfernt und hinzugefügt werden und es zu Fragmentierung kommt. Um dagegen zu wirken, werden Blocksbei Datensätzen variabler Länge von hinten aufgefüllt. Da die Anzahl der Datensätze nicht fix ist, kann die Größe des Headersoffen gelassen werden. Vorteile der Flexibilität (auch ohne Mapping table) sind, dass innerhalb eines Blocks umorganisiert werden kann. Und ein Datensatz sogar Blöke wechseln kann, folglich wird die neue Adresse in der Offsettable gespeichert.
+# Die Idee bei der hybriden Adressierung ist, dass wir zunächst durch physische Adressen zu einem Block gelangen. Der Block selbst speichert die Offsettable. Das Problem welches hierbei auftreten kann, ist dass Datensätze entfernt und hinzugefügt werden und es zu Fragmentierung kommt. Um dagegen zu wirken, werden Blocksbei Datensätzen variabler Länge von hinten aufgefüllt. Da die Anzahl der Datensätze nicht fix ist, kann die Größe des Headers offen gelassen werden. Vorteile der Flexibilität (auch ohne Mapping table) sind, dass innerhalb eines Blocks umorganisiert werden kann. Und ein Datensatz sogar Blöke wechseln kann, folglich wird die neue Adresse in der Offsettable gespeichert.
 
 # <img src="pictures/Hybride-Adressierung.png" alt="Hybride-Adressierung" width="500" style="background-color: white;"/>
 
-# ## Columnar Storage
+# ### Columnar Storage
 # 
 # Bei Columnar Storages ist die Idee, dass die Datensätze Spalten speichern statt Tupel, diese überspannen i.d.R mehrere Blöcke. Die Reihenfolge der Attributwerterte erlaubt die Tupelrekonstruktion alternativ können Tupel-Id's mitgespeichert werden.
 # <br><br>
@@ -155,50 +155,31 @@
 # <br><br>
 # Ein Anwendungsfall ist OLAP (Online analyticalprocessing). Hierbei benötigen die meisten Anfragen alle oder viele Werte einer Spalte und die Tupelrekonstruktion ist aufwändig.Was die Komprimierung angeht sind ein Vorteil die geringeren Disk- und I/O-Kosten. Ein Nachteil ist, dass Columnar Storages nur gut auf großen Datenmengen funktionieren, aber effizienter Tupelzugriff erlaubt nur blockweise Komprimierung. Letztlich ist die Indizierung auch schwieriger.
 
-# # Daten variabler Länge
+# ## Variable Längen
 
-# ## Variable Länge
-# 
-# - Bisher: Alles hat feste Länge.
-# - Aber es gibt:
-#     - Felder variabler Länge
-#         - Adresse VARCHAR(255) wird selten voll ausgeschöpft
-#     - Datensätze variabler Länge
-#         - Ergänzung von Datensätzen um Felder
-#         - Schauspieler, die auch Regie führen
-#      - Riesige Felder
-#         - GIF, MPEG–Passen nicht mehr auf einen Block
+# Daten können auch variabler Länge sein. Z.B gibt es Felder variabler Länge, wie VARCHAR(255), wo die Adresse selten voll ausgeschöpft wird. Es kann auch Datensätze variabler Länge geben, wo bei einem sehr großen Schema nur wenige Attribute belegt sind und Datensätzen um Felder ergänzt werden. Ebenso kann es zu riesigen Feldern kommen, verursacht durch z.B GIFs, MPEG–Passen ,die nicht mehr auf einen Block passen. 
 
-# ## Finden von Feldern
-# 
-# - Datensatz muss Informationen speichern, um jedes Feld aufzufinden.
-# - Idee: Felder fester Länge an den Anfang des Datensatzes
-# - Header speichert
-#     - Länge des Datensatzes
-#     - Pointer (offsets) zu den Anfängen aller Felder variabler Länge
-#         - Pointer zum ersten kann sogar gespart werden.
+# ### Finden von Feldern variabler Länge
+# Datensätze müssen Informationen speichern, damit jedes Feld aufzufinden ist, wie z.B ein Header. Um das Löschen und Hinzufügen von Tupeln zu vereinfachen, ist die Idee Felder fester Länge an den Anfang des Datensatzes und folgend alle Tupel variabler Längen. Dadurch müssen die Tupel fester Länge nicht umorganierst werden, wenn Tupel variabler Länge verändert werden. Eine weitere Idee ist, dass der Header speichert die Länge des Datensatzes speicher, somit weiß man wann der aktuelle Datensatz aufhört und ein anderer beginnt. Zusätzlich können Pointer (offsets) zu den Anfängen aller Felder variabler Länge gespeichert werden.
+# <br><br>
+# In der Abbildung unten, ist so ein Beispielblock dargestellt. Zuerst kommt der Header, welcher die Länge des Datensatzes speichert, danach ein Pointer der zu dem dem Attribut mit variabler Länge Adresse zeigt. Falls Adresse NULL ist, dann wird ein Null-Pointer gespeichert.
 
 # <img src="pictures/Finden-von-Fehlern.png" alt="Finden-von-Fehlern" width="500" style="background-color: white;"/>
 
-# ## Datensätze variabler Länge
+# ### Datensätze variabler Länge
 # 
-# - Anwendungsfall: Es ist unbekannt welche undwie viele Felder der Datensatz haben wird.
-# - Taggedfields(getaggteFelder)
-#     - Feldname (Attributname)
-#     - Feldtyp
-#     - Feldlänge
-#     - Feldwert
-# - Nützlich bei
-#     - Informationsintegration: Es ist noch unbekannt welche Felder von Quellen hinzukommen.
-#     - Dünn besetzte Datensätze: Tausende Attribute, nur wenige haben Werte
+# Es kann sein, dass unbekannt ist welche und wie viele Felder der Datensatz haben wird. Z.B bei der Informationsintegration, wo es noch unbekannt ist welche Felder von Quellen hinzukommen. Die Idee ist sich die Felder zu merken, welche vorhanden sind oder nicht. Das sind sogenannte Taggedfields(getaggteFelder), es werden die Informationen Feldname (Attributname), Feldtyp, Feldlänge und Feldwert gespeichert. Das Speichern dieses Overheads ist ebenfalls nützlich  bei dünn besetzten Datensätze, wo es tausende Attribute gibt,  aber nur wenige haben Werte.
 
 # <img src="pictures/Datensätze-variabler-Länge.png" alt="Datensätze-variabler-Länge" width="500" style="background-color: white;"/>
 
-# ## Anwendungsfalls SparseDataBeispiel: LinkedOpen Data
+# ### Anwendungsfalls SparseDataBeispiel: LinkedOpen Data
 
 # <img src="pictures/Linked-open-data.png" alt="Linked-open-data" width="500" style="background-color: white;"/>
 
-# ## Microsoft SQL Server: SPARSE columns
+# LinkedOpenData ist ein Phänomen, wo Daten offen und verfügbar dargestellt werden, s.d. Informationen semantisch aussagefähig sind. Insbesondere geht es darum Entitäten aus der realen Welt, Informationen und Webseiten so miteinander zu verlinken, s.d. semantische Informationen herleitbar sind. Es kann dazukommen, dass eine Entität über 2000 Attribute hat, weshalb getaggte Felder hier zum Einsatz kommen.
+
+# ### Microsoft SQL Server: SPARSE columns
+# Ein Beispiel aus der realen Welt sind SPARSE columns auf Microsoft SQL Servern. Diese können wie im Code-Beispiel unten zu sehen ist, mit dem Keyword ```SPARSE``` deklariert werden. So wird dem System vermittelt, dass diese Spalten nicht immer gefüllt sind und es werden getaggte Felder für diese Spalten hinzugefügt. Hierfür gibt es eine Tabelle die angibt, bei wie viel Prozent an Null-Werten, sich das Speichern dieses Overheads kostentechnisch lohnen würde, für den jeweiligen Datentyp. 
 # 
 # ```
 # CREATE TABLE DocumentStore(
@@ -208,88 +189,50 @@
 #     ProdLocsmallintSPARSE NULL)
 # ```
 # 
-# - Betrifft nur physische Ebene (wie Indizes)
-# - Benötigt für nicht-NULL Werte mehr Platz
 
 # <img src="pictures/SPARSE-columns.png" alt="SPARSE-columns" width="500" style="background-color: white;"/>
 
-# ## Zu große Datensätze
-# 
-# - Idee: Spannedrecordsüberspannen mehr als einen Block.
-# - Für übergroße Felder
-#     - „Riesige“ Felder (Mega-oder Gigabyte) gleich
-# - Für Datensatzgrößen, die viel Platz verschwenden
-#     - Z.B. 51% eines Blocks => 49% verschwendet
-# - Datensatzfragment
-#     - Falls zu einem Datensatz mehr als ein Fragment gehört, ist er spanned.
-# - Zusätzliche Informationen im Header
-#     - Bit sagt ob Fragment oder nicht
-#     - Bits sagen ob erstes oder letztes Fragment
-#     - Zeiger zum nächsten und/oder vorigen Fragment–Doppelt verkettet Liste
+# ### Zu große Datensätze
+# Es kann Datensatzgrößen geben, die viel Platz verschwenden z.B. 51% eines Blocks ist nur belegt und die restlichen 49% werden verschwendet. Ebenso kann es übergroße Felder mit Mega-oder Gigabytegrößen geben. Beim Speichern solch großer Datensätze entstehen Datensatzfragmente, da ein Datensatz über mehr als einen Datensatz verteilt wird. Hierfür werden zusätzliche Informationen im Header
+# - Bit sagt ob Fragment oder nicht
+# - Bits sagen ob erstes oder letztes Fragment
+# - Zeiger zum nächsten und/oder vorigen Fragment–Doppelt verkettet Liste
 
-# ## BLOBs
-# 
-# - BLOB = Binary Large Object
+# Beispiel für große Datensätze sind BLOBs = Binary Large Objects und CLOB = Character Large Objects. Diese beinhalten:
 # - Bilder/Grafiken: JPEG, GIF
 # - Audio: mp3, ..
 # - Filme: MPEG, ...
-# - Probleme
-#     - Speicherung: Mehr als ein Block nötig–Sequenz von Blöcken/Zylindern
-#     - Realtime: Lesegeschwindigkeit einer Disk nicht ausreichend => Verteilung auf mehrere Disks
-# - Lesen 
-#     - Anweisung, einen (ganzen) Datensatz zu lesen, ist nicht mehr gültig
-#     - Stattdessen: Kleiner Teil eines Datensatzes lesen
-#     - Navigation innerhalb des BLOBs (z.B. „Sprung zur 45ten Minute“) => spezielle Indexstrukturen
-# - CLOB = CharacterLarge Object
-
-# # Datensatzänderungen
-
-# ## Einfügen mit Platz
+# Wenn nun BLOBs oder CLOBs gelesen werden sollen, dann wird nicht mehr der ganze Datensatz aufeinmal gelesen, stattdessen wird ein Datenfragment gefunden und gelesen und je nach der Anfrage werden die restlichen Datenfragment folgen auch ermittelt und gelesen. Ein spannendes Thema ist die Navigation innerhalb des BLOBs (z.B. Sprung zur 45ten Minute bei einem Film auf einem Streamingdienst), da dies spezielle Indexstrukturen fordert.
 # 
-# - Einfacher Fall: Keine Ordnung verlangt
-#      - Suche freien Platz auf einem Block (oder suche freien Block).
-#      - Füge Datensatz ein.
-# - Schwierigerer Fall: Ordnung (z.B. nach Primärschlüssel) ist verlangt.
-#      - Suche entsprechenden Block
-#      - Falls Platz frei ist, bewege Datensätze auf Block, so dass neuer Datensatz an entsprechende Stelle eingefügt werden kann.
+
+# ## Datensatzänderungen
+
+# **Einfügen mit Platz**
+# <br><br>
+# Wenn wir einen neuen Datensatz in unseren Speicher einfügen wollen und keine Ordnung verlangt wird, dann suchen wir nach einem freien Platz auf einem Block (oder suchen einen freien Block)und fügen diesen Datensatz dort ein. Falls eine Ordnung (z.B. nach Primärschlüssel) verlangt ist, wird nach dem entsprechenden Block gesucht. Falls dort Platz frei ist, werden die Datensätze auf dem Block bewegt, so dass der neue Datensatz an der entsprechenden Stelle eingefügt werden kann.
 
 # <img src="pictures/Einfügen-mit-Platz.png" alt="Einfügen-mit-Platz" width="500" style="background-color: white;"/>
 
-# ## Einfügen ohne Platz
-# 
-# - Variante 1: Suche Block in der Nähe
-#     - Voriger oder nächste Block 
-#     - Bewege ersten oder letzen Datensatz zu jeweils neuem Block
-#         - Weiterleitungsadresse in altem Block („Nachsendeauftrag“)
-#         - Bewege gegebenenfalls Datensätze in beiden Blöcken hin und her.
-#     - Füge neuen Datensatz ein.
-# - Variante 2: Erzeuge Overflow Block
-#     - Designierter Overflow Block
-#     - Adresse im headerdes ursprünglichen Blocks
-#     - Overflow Block kann selbst wiederum einen Overflow Block haben.
+# **Einfügen ohne Platz**
+# Wenn in dem eigentlichen Block kein Platz mehr ist, um einen weiteren Datensatz einzufügen gibt es zwei Varianten:
+# - Variante 1: Es wird ein Block in der Nähe gesucht, meist ist das der vorige oder nächste Block. Dann wird der erste oder letze Datensatz zu dem jeweils neuen Block bewegt und eine Weiterleitungsadresse wird im alten Block hinterlegt(„Nachsendeauftrag“). Gegebenenfalls müssen die Datensätze in beiden Blöcken noch hin und her bewegt werden. Zuletzt wir der neue Datensatz an der richtigen Stelle im neu gesuchten Block eingefügt.
+# <br><br>
+# - Variante 2:  Es wir ein designierter Overflow Block erzeugt, dessen Adresse im Header des ursprünglichen Blocks gespeichert wird. Der neue Datensatz wird dann in den neu erzeugten Overflow Block eingefügt. Ein Overflow Block kann selbst wiederum einen Overflow Block haben.
 
-# ## Löschen
+# **Löschen**
 # 
-# - Nach Löschen 
-#     - Datensätze im Block verschieben um freien Platz zu konsolidieren
-#     - Oder: Im headereine Liste mit freien Plätzen verwalten
-#     - Oder: Verkette Liste der freien Plätze
-# - Reorganisation der Overflow Blocks möglich.
-# - Grabsteine (tombstones)
-#     - Es könnte noch Pointerauf den zu löschenden Datensatz geben.
-#     - Grabstein hinterlassen (3 Varianten)
-#         - Null-Pointer im header
-#         - Null-Pointer in mappingtable
-#         - Grabstein am Anfang der Datensätze
-#     - Müssen (im Allgemeinen) ewig erhalten bleiben
-#         - Bis Re-Organisation der Datenbank
+# Der zu löschende Datensatz wird gelöscht. Danach werden die Datensätze im Block verschoben, um den enstandenen freien Platz zu konsolidieren. Eine andere Möglichkeit ist, dass im Header eine Liste mit freien Plätzen verwaltet wird oder eine verkette Liste der freien Plätze. Je nach dem ob es zu dem Block noch Overflow Blöcke gibt, müssen diese reorganisatiert werden. An der gelöschten Stelle befindet sich häufig ein sogenannter Grabstein(tombstones). Auch nachdem Löschen kann es noch einen Pointer auf den zu löschenden Datensatz geben. Es gibt drei Varianten einen Grabstein zu hinterlassen:
+# - Null-Pointer im Header
+# - Null-Pointer in der Mappingtable
+# - Grabstein am Anfang der Datensätze
+# 
+# <br>
+# Diese Grabsteine müssen (im Allgemeinen) ewig erhalten bleiben, bis die Datenbank re-organisiert wird.
 
 # <img src="pictures/Löschen-meme.png" alt="Löschen-meme" width="500" style="background-color: white;"/>
 
-# ## Update
+# **Update**
 # 
-# - Bei fester Länge kein Problem
-# - Bei variabler Länge
-#     - Gleiche Probleme wie beim Einfügen
+# Bei fester Länge gibt es kein Problem beim Aktualisieren eines Datensatzes. Der alte Wert wird entfernt under neue eingefügt. Bei variabler Länge treten dieselben Probleme auf wie beim Einfügen. Falls der neue Wert zu groß ist wird z.B ein Overflow Block erzeugt usw. 
 
 # <img src="pictures/update.png" alt="update" width="500" style="background-color: white;"/>

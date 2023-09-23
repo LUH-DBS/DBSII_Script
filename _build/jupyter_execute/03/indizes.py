@@ -16,6 +16,8 @@
 #      - Schneller Output: Die entsprechenden Tupel
 #      - Nur wenige Datensätze werden betrachtet
 
+# <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
+
 # ## Indizes auf sequenziellen Dateien
 # 
 # ### Einfachste Form eines Index
@@ -41,6 +43,8 @@
 # - Index kann sich auf Sortierung des Schlüsselattributs verlassen
 #      - Hier: Schlüssel ist Suchschlüssel
 #      - Oft: Suchschlüssel = Primärschlüssel
+
+# <img src="pictures/Sequentielle-Dateien.png" alt="Sequentielle-Dateien" width="500" style="background-color: white;"/>
 
 # ### Dichtbesetzte Indizes
 # 
@@ -78,6 +82,8 @@
 #          - => 13-14 Blocks pro Suche<br>
 #      - Wichtigsten Blöcke im Hauptspeicher reichen
 
+# <img src="pictures/Dichtbesetzte-Indizes.png" alt="Dichtbesetzte-Indizes" width="500" style="background-color: white;"/>
+
 # ### Dünnbesetzte Indizes
 # - Schlüsselwert ist immer kleinster Wert des referenzierten Blocks
 # - Weniger Speicherbedarf 
@@ -100,6 +106,10 @@
 #         - Im dicht-besetzten Index schon…<br>
 #     - Auch: Semi-Join
 # 
+
+# <img src="pictures/Dünnbesetzte-Indizes.png" alt="Dünnbesetzte-Indizes" width="500" style="background-color: white;"/>
+
+# <img src="pictures/Mehrstufiger-Index-meme1.png" alt="Mehrstufiger-Index-meme1" width="500" style="background-color: white;"/> <img src="pictures/Mehrstufiger-Index-meme2.png" alt="Mehrstufiger-Index-meme2" width="500" style="background-color: white;"/>
 
 # ### Mehrstufiger Index
 # Auch ein Index kann unangenehm groß sein.
@@ -125,6 +135,8 @@
 #     5. Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).
 # - Zusammen: 2 I/Os
 
+# <img src="pictures/Mehrstufiger-Index.png" alt="Mehrstufiger-Index" width="500" style="background-color: white;"/>
+
 # ### Indizes für Nicht-eindeutige Suchschlüssel
 # 
 # Annahme bisher: Suchschlüssel ist auch Schlüssel bzw.eindeutig in der Relation
@@ -139,7 +151,9 @@
 # - Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K.
 #      - Der zeigt auf ersten Datensatz mit K.
 #      - Weitere Datensätze mit K folgen direkt. 
-#      - Wichtig: Blöcke haben Pointer auf jeweils nächsten Block     
+#      - Wichtig: Blöcke haben Pointer auf jeweils nächsten Block
+# <br> <br>
+# <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel" width="500" style="background-color: white;"/>
 #      
 # - Idee 3: Dünnbesetzter Index wie gehabt 
 #      - Datenwert im Index jeweils Datensatz am Blockanfang
@@ -149,6 +163,8 @@
 #      - Hole alle Datenblöcke zwischen und inklusive E1 und E2.
 # - Beispiel: K = 20: Rückwärtssuche ist nötig <br>
 # 
+# <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" width="500" style="background-color: white;"/>
+# 
 # - Idee 4: Dünnbesetzter Index, aber
 #      - Datenwert im Index ist der kleinste neue Wert im entsprechenden Datenblock.
 #      - Hier Grenzfall: Welche Werte hat der Index? 
@@ -157,6 +173,8 @@
 #      - Suche im Index nach Paar mit (Datenwert = K) oder (größter Wert mit < K aber nächster Wert ist > K).
 #      - Hole Datenblock und gegebenenfalls folgende Datenblöcke.
 # - Statt ⊥ auch „30“
+# 
+# <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" width="500" style="background-color: white;"/>
 
 # ### Änderungsoperationen
 # 
@@ -183,6 +201,8 @@
 # - Datensatz 40 wird nicht verschoben.
 # - Index kann reorganisiert werden. 
 #      - Main memory
+# 
+# <img src="pictures/Änderungsoperationen.png" alt="Änderungsoperationen" width="500" style="background-color: white;"/>
 #      
 # **Beispiel 2**
 # 
@@ -194,6 +214,8 @@
 #      - Leerer Block entsteht 
 #      - Index wird aktualisiert (löschen) 
 #      - Index wird reorganisiert
+# 
+# <img src="pictures/Änderungsoperationen_2.png" alt="Änderungsoperationen_2" width="500" style="background-color: white;"/>
 #      
 # **Beispiel 3**  
 # 
@@ -205,6 +227,8 @@
 #      - Index wird aktualisiert.
 #          - 20 statt 40
 # 
+# <img src="pictures/Änderungsoperationen_3.png" alt="Änderungsoperationen_3" width="500" style="background-color: white;"/>
+# 
 # **Beispiel 4**
 # 
 # - Wieder Datensatz 15 einfügen 
@@ -213,6 +237,8 @@
 #      - Datensatz 20 wird in Overflow Block verschoben.
 #      - Datensatz 15 wird eingefügt. 
 #      - Index bleibt gleich
+#  
+# <img src="pictures/Änderungsoperationen_4.png" alt="Änderungsoperationen_4" width="500" style="background-color: white;"/>
 
 # ## Sekundärindizes auf nichtsequenziellen Dateien
 # 
@@ -236,6 +262,8 @@
 #      - Dünnbesetzte Sekundärindizes sind sinnlos.
 #      - => Sekundärindizes sind immer dichtbesetzt.
 
+# <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
+
 # ### Aufbau von Sekundärindizes
 # 
 # - Dichtbesetzt; mit Duplikaten
@@ -247,6 +275,8 @@
 #      - Ist nicht zu ändern: Daten sind halt nach einem anderen Schlüssel sortiert.
 #      
 # 
+
+# <img src="pictures/Aufbau-Sekundärindizes.png" alt="Aufbau-Sekundärindizes" width="500" style="background-color: white;"/>
 
 # ### Anwedungen
 # 
@@ -275,7 +305,7 @@
 # 2. Entsprechende Filme folgen direkt.
 # - Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex
 # 
-# 
+# <img src="pictures/cluster-file.png" alt="cluster-file" width="500" style="background-color: white;"/>
 
 # ### Indirektion für Sekundärindizes
 # 
@@ -294,7 +324,11 @@
 # AND Jahr = 1995
 # ```
 # 
+# <img src="pictures/Indirektion-Sekundärindizes.png" alt="Indirektion-Sekunderindizes" width="500" style="background-color: white;"/>
+
 # **Indirektion im Alltag**
+# 
+# <img src="pictures/Indirektion-Alltag.png" alt="Indirektion-Alltag" width="500" style="background-color: white;"/>
 
 # ### Invertierte Indizes
 # 
@@ -321,6 +355,10 @@
 # - Dokument erwähnt „Hund“ im Titel
 # - Dokument erwähnt „Katze“ in einem Anker (Link auf anderes Dokument)
 
+# <img src="pictures/Invertierte-Indizes.png" alt="Invertierte.Indizes" width="500" style="background-color: white;"/>
+# <br> <br>
+# <img src="pictures/Invertierte-Indizes_2.png" alt="Invertierte.Indizes_2" width="500" style="background-color: white;"/>
+
 # ### B-Bäume
 # 
 # ####  Allgemein
@@ -329,7 +367,11 @@
 #     - So viele Stufen wie nötig
 #     - Blöcke sind stets mindestens zur Hälfte gefüllt
 #     - Overflow blocks nicht notwendig
-#     
+# 
+# <img src="pictures/B-Bäume.png" alt="B-Bäume" width="500" style="background-color: white;"/> <img src="pictures/B-Bäume_2.png" alt="B-Bäume" width="500" style="background-color: white;"/>
+# 
+# <img src="pictures/Organization-and-Maintenance-Of-Large-Ordered-Indexes.png" alt="Organization-and-Maintenance-Of-Large-Ordered-Indexes" width="500" style="background-color: white;"/>
+# 
 # #### Struktur
 # - Index-Blöcke in einem Baum organisiert
 # - Balanciert
@@ -348,6 +390,8 @@
 # * „Maximale Ausgeglichenheit“
 # 
 # #### Einfügen in B-Bäume – Beispiel
+# 
+# <img src="pictures/Einfügen-in-B-Bäume.png" alt="Einfügen-in-B-Bäume" width="500" style="background-color: white;"/>
 # 
 # #### Hier B+ Baum**
 # 
@@ -391,7 +435,7 @@
 #      - => Mindestens 3 Suchschlüssel
 # 
 # 
-# 
+# <img src="pictures/Rechenbeispiele.png" alt="Rechenbeispiele" width="500" style="background-color: white;"/>
 # 
 
 # #### Alternative Definition
@@ -409,9 +453,30 @@
 #         - Plus verkettete Liste
 
 # #### Beispiel Blattknoten
+# 
+# **Volles Blatt**
+# 
+# <img src="pictures/Beispiel-Blattknoten.png" alt="Beispiel-Blattknoten" width="500" style="background-color: white;"/>
+# 
+# **Teilweise gefülltes Blatt**
+# 
+# <img src="pictures/Beispiel-Blattknoten_2.png" alt="Beispiel-Blattknoten_2" width="500" style="background-color: white;"/>
+# 
 # #### Beispiel innerer Knoten
+# 
+# **Voller innerer Knoten**
+# 
+# <img src="pictures/Beispiel-Innerer-Knoten.png" alt="Beispiel-Innerer-Knoten" width="500" style="background-color: white;"/>
+# 
+# **Teilweise gefüllter innerer Knoten**
+# 
+# <img src="pictures/Beispiel-Innerer-Knoten_2.png" alt="Beispiel-Innerer-Knoten_2" width="500" style="background-color: white;"/>
+# 
 # #### Beispiel B-Baum
 # Dicht-besetzt: In den Blättern taucht sortiert jeder Schlüssel genau einmal auf.
+# 
+# <img src="pictures/Beispiel-B-Baum.png" alt="Beispiel-B-Baum" width="500" style="background-color: white;"/>
+# 
 
 # #### Anwendungen von B-Bäumen
 # B-Bäume können verschiedene Index-Rollen übernehmen.
@@ -431,6 +496,9 @@
 #      - => Ki ist der kleinste neue Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist.
 #          - D.h. es gibt keinen Schlüsselwert Ki im linken Teilbaum aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer an.
 #         - Problem: Es gibt nicht immer einen solchen Schlüssel
+#       
+# <img src="pictures/B-Bäume-auf-nicht-Primärschlüsseln.png" alt="B-Bäume-auf-nicht-Primärschlüsseln" width="500" style="background-color: white;"/>
+# <img src="pictures/B-Bäume-auf-nicht-Primärschlüsseln_2.png" alt="B-Bäume-auf-nicht-Primärschlüsseln_2" width="500" style="background-color: white;"/>
 
 # ### B-Bäume Suche
 # 
@@ -449,6 +517,9 @@
 #     - Falls Kn ≤ K gehe zu letztem Kind
 #     
 # #### Beispiel Suche im B-Baum
+# 
+# <img src="pictures/Beispiel-Suche-im-B-Baum.png" alt="Beispiel-Suche-im-B-Baum" width="500" style="background-color: white;"/>
+# <img src="pictures/Beispiel-Suche-im-B-Baum_2.png" alt="Beispiel-Suche-im-B-Baum_2" width="500" style="background-color: white;"/>
 # 
 # #### Bereichsanfragen (range queries)
 # Anfragen mit Ungleichheit in WHERE Klausel
@@ -470,6 +541,7 @@
 #         - Folge Pointer zu nächstem Blatt.
 # - Bei offenen Bereichen [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.
 # 
+# <img src="pictures/Bereichsanfragen.png" alt="Bereichsanfragen" width="500" style="background-color: white;"/>
 
 # ### B-Bäume Updates
 # 
@@ -500,6 +572,11 @@
 #         - + neue Wurzel schreiben
 #         
 
+# <img src="pictures/Einfügen-in-B-Bäume-Beispiel.png" alt="Einfügen-in-B-Bäume-Beispiel" width="500" style="background-color: white;"/>
+# <img src="pictures/Einfügen-in-B-Bäume-Beispiel_2.png" alt="Einfügen-in-B-Bäume-Beispiel_2" width="500" style="background-color: white;"/>
+# <img src="pictures/Einfügen-in-B-Bäume-Beispiel_3.png" alt="Einfügen-in-B-Bäume-Beispiel_3" width="500" style="background-color: white;"/>
+# <img src="pictures/Einfügen-in-B-Bäume-Beispiel_4.png" alt="Einfügen-in-B-Bäume-Beispiel_4" width="500" style="background-color: white;"/>
+
 # #### Löschen aus B-Bäumen
 # - Suche entsprechenden Knoten
 # - Lösche Schlüssel
@@ -527,6 +604,14 @@
 # - Folgerung: Nie Knoten des B-Baum löschen
 #     - Knoten, die durch Löschen zu klein werden, werden früher oder später wieder gefüllt.
 #     - Grabstein auf Datenblock genügt, B-Baum muss nicht geändert werden
+
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel.png" alt="Löschen-aus-B-Bäumen-Beispiel" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_2.png" alt="Löschen-aus-B-Bäumen-Beispiel_2" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_3.png" alt="Löschen-aus-B-Bäumen-Beispiel_3" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_4.png" alt="Löschen-aus-B-Bäumen-Beispiel_4" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_5.png" alt="Löschen-aus-B-Bäumen-Beispiel_5" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_6.png" alt="Löschen-aus-B-Bäumen-Beispiel_6" width="500" style="background-color: white;"/>
+# <img src="pictures/Löschen-aus-B-Bäumen-Beispiel_7.png" alt="Löschen-aus-B-Bäumen-Beispiel_7" width="500" style="background-color: white;"/>
 
 # ### Effizienz von B-Bäumen
 # 
@@ -564,17 +649,31 @@
 # - Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47
 # - Erzeuge halbgefüllte Blattknoten
 # 
+# <img src="pictures/bulk-loading-Beispiel.png" alt="bulk-loading-Beispiel" width="500" style="background-color: white;"/>
+# 
 # - Erzeuge Wurzel für erste beiden Blattknoten
 # 
-# - Füge nächstes Blatt ein
+# <img src="pictures/bulk-loading-Beispiel_2.png" alt="bulk-loading-Beispiel_2" width="500" style="background-color: white;"/>
 # 
 # - Füge nächstes Blatt ein
 # 
-# - Füge nächstes Blatt ein
+# <img src="pictures/bulk-loading-Beispiel_3.png" alt="bulk-loading-Beispiel_3" width="500" style="background-color: white;"/>
 # 
 # - Füge nächstes Blatt ein
+# 
+# <img src="pictures/bulk-loading-Beispiel_4.png" alt="bulk-loading-Beispiel_4" width="500" style="background-color: white;"/>
+# 
+# - Füge nächstes Blatt ein
+# 
+# <img src="pictures/bulk-loading-Beispiel_5.png" alt="bulk-loading-Beispiel_5" width="500" style="background-color: white;"/>
+# 
+# - Füge nächstes Blatt ein
+# 
+# <img src="pictures/bulk-loading-Beispiel_6.png" alt="bulk-loading-Beispiel_6" width="500" style="background-color: white;"/>
 # 
 # - Füge letztes Blatt ein
+# 
+# <img src="pictures/bulk-loading-Beispiel_7.png" alt="bulk-loading-Beispiel_7" width="500" style="background-color: white;"/>
 # 
 # **Bulk-Loading mit hohem Füllstand**
 # - Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke
@@ -601,7 +700,9 @@
 # - Nachteil: Löschen ist komplizierter
 #     - Löschung kann auch in inneren Knoten geschehen.
 #     - Schlüssel von einem Blatt muss gegebenenfalls nach oben wandern.
-#     
+# 
+# <img src="pictures/B-Baum-Varianten.png" alt="B-Baum-Varianten" width="500" style="background-color: white;"/>
+# 
 # **B*-Bäume**
 # - B*-Baum
 #     - Bei Überlauf werden nicht gleich zwei halb-leere Knoten erzeugt.
@@ -617,11 +718,17 @@
 #     - Am besten: Kleinster Trennwert
 #         - „L“
 #         - Präfix von „Licht“
-#         
+# 
+# <img src="pictures/B-Baum-Varianten_2.png" alt="B-Baum-Varianten_2" width="500" style="background-color: white;"/>
+# <img src="pictures/Bücher.png" alt="Bücher" width="500" style="background-color: white;"/>
+# <img src="pictures/Bücher_2.png" alt="Bücher_2" width="500" style="background-color: white;"/>
+# 
 # **B+-Bäume für BLOBs (und CLOBs)**
 # - Idee: Suchschlüssel repräsentiert Offsets im BLOB anstatt Suchschlüssel
 #     - Blätter zeigen auf Datenseiten des BLOBs
 #     - Positional B-Tree
+#  
+# <img src="pictures/B-Bäume_für_BLOBs.png" alt="B-Bäume_für_BLOBs" width="500" style="background-color: white;"/>
 
 # ### Hashtabellen
 # 
@@ -643,7 +750,9 @@
 #     - Overflowblocks können ergänzt werden.
 # - Annahme: Zuordnung eines Hashwerts zur Speicheradresse eines Blocks möglich
 #     - Z.B.: Hashwert stellt Offset dar
-#     
+# 
+# <img src="pictures/Hashtabelle-auf-Festplatten.png" alt="Hashtabelle-auf-Festplatten" width="500" style="background-color: white;"/>
+# 
 # **Einfügen in Hashtabellen**
 # 1. Berechne Hashwert
 # 2. Falls Platz, füge Datensatz in entsprechenden Block ein
@@ -653,6 +762,8 @@
 #     - h(H) = 2
 # - Beispiel: Füge G ein
 #     - h(G) = 1
+# 
+# <img src="pictures/Einfügen-in-Hashtabelle.png" alt="Einfügen-in-Hashtabelle" width="500" style="background-color: white;"/>
 #     
 # **Löschen in Hashtabellen** 
 # 1. Suche Bucket (+ Overflowblocks)
@@ -662,6 +773,8 @@
 #     - Gefahr der Oszillation
 # - Beispiel: Lösche C
 #     - G bewegen
+#  
+# <img src="pictures/Löschen-aus-Hashtabelle.png" alt="Löschen-aus-Hashtabelle" width="500" style="background-color: white;"/>
 
 # #### Vorschau: Consistent Hashing
 # 
@@ -672,6 +785,8 @@
 #     - Minimizes the degree of remapping in case of the addition or removal of locations (nodes, slots)
 #     - Only K/n keys need to be remapped on average (K ... total number of keys, n ... number of slots)
 #     - Distributed Hash Tables (DHT)
+# 
+# <img src="pictures/consistent-hashing.png" alt="consistent-hashing" width="500" style="background-color: white;"/>
 #     
 # #### Effizienz statischer Hashtabellen
 # 
@@ -706,6 +821,8 @@
 # 
 # - k = 4
 # 
+# <img src="pictures/Erweiterbare-Hashtabellen.png" alt="Erweiterbare-Hashtabellen" width="500" style="background-color: white;"/>
+# 
 # #### Einfügen in erweiterbare Hashtabellen
 # 
 # - Ähnlich wie normale Hashtabelle
@@ -728,6 +845,12 @@
 #     - Zwei neue Pointer zeigen zunächst auf gleichen alten Block
 #     - Dann: Spalte relevanten Block entzwei (split)
 #         - Weiter wie zuvor (denn nun j < i)
+
+# <img src="pictures/Einfügen-erweiterbare-Hashtabellen.png" alt="Einfügen-erweiterbare-Hashtabellen" width="500" style="background-color: white;"/>
+# <br> <br>
+# <img src="pictures/Einfügen-erweiterbare-Hashtabellen_2.png" alt="Einfügen-erweiterbare-Hashtabellen_2" width="500" style="background-color: white;"/>
+# <br> <br>
+# <img src="pictures/Einfügen-erweiterbare-Hashtabellen_3.png" alt="Einfügen-erweiterbare-Hashtabellen_3" width="500" style="background-color: white;"/>
 
 # #### Analyse erweiterbarer Hashtabellen
 # 
@@ -755,6 +878,8 @@
 #     - Durchschnittliche Anzahl Overflow Blocks pro Block: <<1
 # - log2n Bits zur Identifizierung der Buckets
 #     - Wähle die jeweils letzten Bits des Hashwerts
+# 
+# <img src="pictures/Lineare-Hashtabellen.png" alt="Lineare-Hashtabellen" width="500" style="background-color: white;"/>
 #     
 # #### Lineare Hashtabellen – Einfügen
 # 
@@ -772,6 +897,10 @@
 # - Falls nun n > 2i: i++
 #     - D.h. alle Bitsequenzen erhalten eine 0 am Anfang
 #     - Physisch ändert sich nichts
+#  
+# <img src="pictures/Einfügen-Lineare-Hashtabellen.png" alt="Einfügen-Lineare-Hashtabellen" width="500" style="background-color: white;"/> <br> <br>
+# <img src="pictures/Einfügen-Lineare-Hashtabellen_2.png" alt="Einfügen-Lineare-Hashtabellen_2" width="500" style="background-color: white;"/> <br> <br> <br>
+# <img src="pictures/Einfügen-Lineare-Hashtabellen_3.png" alt="Einfügen-Lineare-Hashtabellen_3" width="500" style="background-color: white;"/>
 
 # #### Hashing vs. B-Baum
 # 
@@ -793,3 +922,5 @@
 #     - Keine Angabe über Art des Index
 #     - Keine Angabe über Parameter
 #     - Manchmal Hersteller-spezifische Syntax für Parameter
+
+# 
