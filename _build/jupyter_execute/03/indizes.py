@@ -2,85 +2,34 @@
 # coding: utf-8
 
 # # Indizes
-# ## Motivation: Platzierung der Tupel in Blöcke
-# 
-# - Naiv: Beliebig verteilen
-#      - Aber: SELECT * FROM R
-#      - Jeden Block untersuchen
-# - Besser: Tupel einer Relation zusammenhängend speichern
-#      - Aber: SELECT * FROM R WHERE a=10
-#      - Alle Datensätze betrachten
-# - Noch besser: Index
-#      - Input: Eigenschaften von Datensätzen (z.B: Feldwert)
-#      - „Suchschlüssel“ (Primärschlüssel, Sekundärschlüssel, Sortierschlüssel, Suchschlüssel)
-#      - Schneller Output: Die entsprechenden Tupel
-#      - Nur wenige Datensätze werden betrachtet
+# **Motivation**
+# <br><br>
+# Im vorherigen Kapitel wurde schon erwähnt, dass der Zugriff auf Daten durch Indizes beschleunigt werden kann. Nach einem **naiven** Ansatz, wo die Datensätze beliebig verteilt sind, muss jeder Block untersucht werden, wenn wir die Anfrage ```SELECT * FROM R``` ausführen. Eine Verbesserung davon wäre es, die Tupel einer Relation zusammenhängend zu speichern. Wenn wir die Anfrage ```SELECT * FROM R WHERE a=10``` ausführen wollen, müssen jefoch alle Datensätze betrachtet werden.
+# <br><br>
+# Noch besser im Gegensatz dazu, ist die Benutzung von **Indizes**. Es werden Eigenschaften von Datensätzen (z.B: Feldwert), wie z.B „Suchschlüssel“ (nicht zu verwechseln mit Primärschlüssel, Sekundärschlüssel, Sortierschlüssel)festgelegt. Der Suchschlüssel ist der Wert, nach welchem gesucht werden soll. Das Ziel ist unteranderem I/O-Kosten zu minimieren und nur möglichst wenige Datensätze zu betrachten. Durch richtiges Verwenden von Indizes, kommt es zu einem schnelleren Output der entsprechenden Tupel.
 
 # <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
 
 # ## Indizes auf sequenziellen Dateien
-# 
 # ### Einfachste Form eines Index
-# 
-# - Gegeben sortierte Datei (data file)
-#      - Sequenzielle Datei
-#      
-# - Indexdatei enthält Schlüssel-Pointer Paare
-#      - Schlüsselwert K ist mit einem Pointer verbunden
-#      - Pointer zeigt auf Datensatz, der den Schlüsselwert K hat
-#      
-# - Dichtbesetzter Index
-#      - Ein Eintrag im Index für jeden Datensatz
-#          
-# - Dünnbesetzter Index
-#     - Nur einige Datensätze sind im Index repräsentiert.
-#     - Z.B. ein Eintrag pro Block
-# 
-# 
+# Je nachdem wie die Tupel organisiert sind, gibt es verschiedene Varianten Indizes anzulegen. Die einfachste From davon ist wenn eine nach unserem Suchschlüssel sortierte Datei gegeben ist. Dazu gibt es eine Indexdatei, welche  Schlüssel-Pointer Paare enthält. Jeder Schlüsselwert K ist mit einem Pointer verbunden, welcher auf den Datensatz zeigt, der den Schlüsselwert K enthält. Davon gibt es zwei Varianten, einmal den dichtbestzten und einmal den dünnbesetzten Index. Im dichtbesetzten Index gibt es für jeden Datensatz einen Eintrag im Index. Im dünnbesetzten Index, werden nur einige Datensätze im Index repräsentiert, z.B ein Eintrag pro Block.
 
-# ### Sequenzielle Dateien
-# 
-# - Index kann sich auf Sortierung des Schlüsselattributs verlassen
-#      - Hier: Schlüssel ist Suchschlüssel
-#      - Oft: Suchschlüssel = Primärschlüssel
+# **Sequenzielle Dateien: Index Beispiel**
+# In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweils zwei Tupel pro Block gespeichert und es werden insgesamt 5 Blöcke, für unsere 10 Tupel benötigt. In unserem Beispiel ist der Schlüssel eine Zahl, häufig ist der Suchschlüssel auch der Primärschlüssel. Das Schlüsselfeld steht einfachkeitshalber an erster Stelle. Um beispielsweise den Wert 70 zu finden, müssen 4 Blöcke gelesen werden. Im folgenden sehen wir, wie das mit Indizes verbessert werden kann.
 
 # <img src="pictures/Sequentielle-Dateien.png" alt="Sequentielle-Dateien" width="500" style="background-color: white;"/>
 
 # ### Dichtbesetzte Indizes
 # 
-# - Blocksequenz mit Schlüssel-Pointer Paaren
-# - Jeder Schlüssel der Daten ist durch ein Paar repräsentiert
-#      - Aber: Wesentlich kleinere Datenmenge
-#      - Passt womöglich in den Hauptspeicher
-#      - Nur ein I/O pro Zugriff
+# Ein dichtbesetzter Index, bildet sich aus einer Blocksequenz mit Schlüssel-Pointer Paaren. Jeder Schlüssel der Daten ist durch ein Paar repräsentiert. Aber die Datenmenge ist wesentlich kleiner, da im Index nur auf bestimmte Attribute gezeigt wird. Daher passt der Index womöglich in den Hauptspeicher und braucht nur einen I/O pro Zugriff. Die Sortierung der Paare entspricht der Sortierung der Daten.
+# 
+# **Anfragebearbeitung mit dichtbesetzten Indizes**
+# 
+# Es ist ein Suchschlüssel K Gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sich die Indexdatei schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.
+# 
 #      
-# <br> 
-# 
-# - Sortierung der Paare = Sortierung der Daten
-# 
-# #### Anfragebearbeitung mit dichtbesetzten Indizes
-# 
-# - Gegeben Suchschlüssel K
-# - Durchsuche Indexdatei nach K
-# - Folge Pointer
-# - Lade Block aus Datendatei
-# - Beschleunigung
-#      - Indexdatei hat nur wenige Blocks
-#          - Indexdatei im Hauptspeicher <br>
-# 
-#      - Binäre Suche um K zu finden <br>
-#      
-# - Beispiel: 1.000.000 Tupel
-#     - Block: 4096 Byte = 10 Tupel
-#      - Gesamtgröße 400 MB
-#      - Schlüsselfeld hat 30 Byte
-#      - Pointer hat 8 Byte => 100 Paare pro Block
-#      - Dichtbesetzter Index: 10.000 Blöcke für Index
-#          - 40 MB => vielleicht OK im Hauptspeicher<br>
-#          
-#      - Binäre Suche: log2(10.000) ≈ 13
-#          - => 13-14 Blocks pro Suche<br>
-#      - Wichtigsten Blöcke im Hauptspeicher reichen
+# **Beispiel**: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
+# Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet(log2(10.000) ≈ 13). Es reicht wenn die wichtigsten Blöcke im Hauptspeicher sind.
 
 # <img src="pictures/Dichtbesetzte-Indizes.png" alt="Dichtbesetzte-Indizes" width="500" style="background-color: white;"/>
 
