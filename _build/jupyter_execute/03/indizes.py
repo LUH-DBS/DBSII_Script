@@ -28,32 +28,27 @@
 # Es ist ein Suchschlüssel K Gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sich die Indexdatei schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.
 # 
 #      
-# **Beispiel**: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
+# **Beispiel**: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
 # Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet(log2(10.000) ≈ 13). Es reicht wenn die wichtigsten Blöcke im Hauptspeicher sind.
 
 # <img src="pictures/Dichtbesetzte-Indizes.png" alt="Dichtbesetzte-Indizes" width="500" style="background-color: white;"/>
 
 # ### Dünnbesetzte Indizes
-# - Schlüsselwert ist immer kleinster Wert des referenzierten Blocks
-# - Weniger Speicherbedarf 
-# - Aber höherer Suchaufwand 
-# - Nur ein Pointer pro Block 
-# - Beispiel 
-#      - 100.000 Datenblöcke, 100 Indexpaare pro Block 
-#      - => 1.000 Blocks für Index 
-#      - = 4MB
+# Da wir eine sortierte Liste gegeben haben, kann auch ein dünnbesetzter Index eingesetzt werden. Hierbei ist der Schlüsselwert der kleinste Wert des referenzierten Blocks und es gibt nur einen Pointer pro Block. Der Vorteil ist weniger Speicherbedarf, jedoch erhöht sich der Suchaufwand. 
+# <br><br>
+# **Beispiel**:
+# Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Demnach sind für einen dünnbesetzten Index 1.000 Blocks = 4MB notwendig, welches erheblich weniger als 400MB ist.
 #      
 # #### Anfragebearbeitung mit dünnbesetzten Indizes
 # 
-# 1. Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
-#      - Binäre Suche (leicht modifiziert)
+# 1. Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist(leicht modifizierte binäre Suche)
 # 2. Hole assoziierten Datenblock
 # 3. Durchsuche Block nach Datensatz
-# -  Was kann ein dünnbesetzter Index nicht?
-#     - SELECT 'TRUE' FROM R WHERE a=10
-#     - Kann nicht ausschließlich mit Index beantwortet werden
-#         - Im dicht-besetzten Index schon…<br>
-#     - Auch: Semi-Join
+# 
+# 
+# <br><br>
+# Was kann ein dünnbesetzter Index nicht?
+# Mit ausschließlich einem dünnbesetzten Index kann nicht überprüft werden, ob ein bestimmter Wert vorhanden ist oder nicht. Beispiel: ```SELECT 'TRUE' FROM R WHERE a=10```. Mit einem dicht-besetzten Index ist das möglich. Gleiches gilt für einen Semi-Join.
 # 
 
 # <img src="pictures/Dünnbesetzte-Indizes.png" alt="Dünnbesetzte-Indizes" width="500" style="background-color: white;"/>
@@ -61,68 +56,65 @@
 # <img src="pictures/Mehrstufiger-Index-meme1.png" alt="Mehrstufiger-Index-meme1" width="500" style="background-color: white;"/> <img src="pictures/Mehrstufiger-Index-meme2.png" alt="Mehrstufiger-Index-meme2" width="500" style="background-color: white;"/>
 
 # ### Mehrstufiger Index
-# Auch ein Index kann unangenehm groß sein.
-# - Nimmt viel Speicher ein 
-# - Kostet viel I/O 
-#      - Auch bei binärer Suche
-# - Idee: Index auf den Index 
-#     - Zweiter Index macht nur als dünnbesetzter Index Sinn. <br>
-# - Theoretisch auch dritte, vierte, … Ebene 
-#     - B-Baum aber besser
+# Auch ein Index kann unangenehm groß sein, z.B GB groß oder sogar größer als die Datensätze selbst. Das nimmt viel Speicher ein und kostet viel I/O, auch bei binärer Suche. In diesem Fall lohnt es sich die Indexdatei auch zu indexieren. Der zweite Index macht nur als dünnbesetzten Index Sinn. Theoretisch sind auch dritte, vierte, … Ebenen möglich, in diesen Fällen ist ein B-Baum besser geeignet (dazu später).
 #     
-# #### Mehrstufiger Index Beispiel
+# **Mehrstufiger Index Beispiel**
+# <br><br>
+# Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4MB und für den Index zweiter Stufe = 40KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.
 # 
-# 100.000 Datenblöcke, 100 Indexpaare pro Block
-# - => 1.000 Blöcke für Index erster Stufe = 4MB
-# - => 10 Blöcke für Index zweiter Stufe = 40KB
-#      - Kann mit Sicherheit im Hauptspeicher verbleiben (weiter: liegt im Hauptspeicher)
-# - Vorgehen zur Anfragebearbeitung
-#     1. Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
-#     2. Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)
-#     3. Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
-#     4. Hole entsprechenden Datenblock.
-#     5. Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).
-# - Zusammen: 2 I/Os
+# **Vorgehen zur Anfragebearbeitung**
+# 1. Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
+# 2. Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)
+# 3. Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
+# 4. Hole entsprechenden Datenblock.
+# 5. Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).
+# <br><br>
+# 
+# => Für das Beispiel oben sind zusammen nur 2 I/Os nötig
 
 # <img src="pictures/Mehrstufiger-Index.png" alt="Mehrstufiger-Index" width="500" style="background-color: white;"/>
 
 # ### Indizes für Nicht-eindeutige Suchschlüssel
 # 
-# Annahme bisher: Suchschlüssel ist auch Schlüssel bzw.eindeutig in der Relation
-# - Annahme weiter: Relation ist nach Suchschlüssel sortiert 
-# - Idee 1: Dichtbesetzter Index 
-#     - Ein Paar im Index für jeden Datensatz 
-#     - Anfragebearbeitung: 
-#          - Suche erstes Paar mit K. 
-#          - Wähle alle weiteren mit K (direkt dahinter) 
-#          - Hole entsprechende Datensätze. 
-#          
-# - Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K.
-#      - Der zeigt auf ersten Datensatz mit K.
-#      - Weitere Datensätze mit K folgen direkt. 
-#      - Wichtig: Blöcke haben Pointer auf jeweils nächsten Block
-# <br> <br>
+# Bisher haben wir angenommen, das unser Suchschlüssel auch ein Schlüssel ist bzw. nur maximal einmal in unserer Relation vorkommt. Jetzt betrachten wir die Indexwahl, wenn der Suchschlüssel nicht-eindeutig ist. Wir nehmen weiterhin an, dass die Relation nach unserem Suchschlüssel sortiert ist.
+# <br><br>
+# **Idee 1: Dichtbesetzter Index** 
+# <br>
+# Es gibt ein Paar im Index für jeden Datensatz. Die Anfragebearbeitung verläuft wie folgt:
+# - Suche erstes Paar mit K. 
+# - Wähle alle weiteren mit K (direkt dahinter) 
+# - Hole entsprechende Datensätze. 
+# 
+# **Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K**
+# <br>
+# Der Index zeigt auf den ersten Datensatz mit K. Alle weiteren Datensätze mit K folgen direkt. Wichtig zu beachten ist hier, dass die Blöcke Pointer auf den jeweils nächsten Block haben.
+
 # <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel" width="500" style="background-color: white;"/>
-#      
-# - Idee 3: Dünnbesetzter Index wie gehabt 
-#      - Datenwert im Index jeweils Datensatz am Blockanfang
-# - Anfragebearbeitung 
-#      - Suche letzten Eintrag E1 im Index, dessen Datenwert ≤ K
-#      - Suche von dort im Index nach vorn bis zu einem Eintrag E2 mit Datenwert < K
-#      - Hole alle Datenblöcke zwischen und inklusive E1 und E2.
-# - Beispiel: K = 20: Rückwärtssuche ist nötig <br>
-# 
+#    
+
+# **Idee 3: Dünnbesetzter Index wie gehabt**
+# Der Datenwert wird jeweils am Blockanfang des Datensatzes indexiert.
+# Die Anfragebearbeitung ist wie folgt:
+#  - Suche letzten Eintrag E1 im Index, dessen Datenwert ≤ K
+#  - Suche von dort im Index nach vorn bis zu einem Eintrag E2 mit Datenwert < K
+#  - Hole alle Datenblöcke zwischen und inklusive E1 und E2.
+#  <br><br>
+#  
+# Beispiel: Wir suchen K = 20. Zuerst muss im "10er-Block" gesucht werden ,da womöglich auch in diesem Block eine 20 ist. Rückwärtssuche ist nötig
+
 # <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" width="500" style="background-color: white;"/>
+
+# **Idee 4: Dünnbesetzter Index, aber...**
+# <br>
+# ...der im Index gespeicherte Datenwert ist der kleinste neue Wert im entsprechenden Datenblock.
+# <br>
+# Die Anfragebearbeitung ist so einfacher:
+# - Suche im Index nach Paar mit (Datenwert = K) oder (größter Wert mit < K aber nächster Wert ist > K).
+# - Hole Datenblock und gegebenenfalls folgende Datenblöcke.
+# <br><br>
 # 
-# - Idee 4: Dünnbesetzter Index, aber
-#      - Datenwert im Index ist der kleinste neue Wert im entsprechenden Datenblock.
-#      - Hier Grenzfall: Welche Werte hat der Index? 
-#      - Test: K= 20 bzw. K = 30
-# - Anfragebearbeitung einfacher 
-#      - Suche im Index nach Paar mit (Datenwert = K) oder (größter Wert mit < K aber nächster Wert ist > K).
-#      - Hole Datenblock und gegebenenfalls folgende Datenblöcke.
-# - Statt ⊥ auch „30“
-# 
+# Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr kommt.
+
 # <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" width="500" style="background-color: white;"/>
 
 # ### Änderungsoperationen
@@ -138,8 +130,7 @@
 #      - Tupel verschieben
 #          - Index muss angepasst werden.
 # - Generelle Regel: Indizes können wie normale data files behandelt werden. Gleiche Strategien können angewendet werden.
-# 
-# 
+
 # **Änderungsoperationen Beispiele**
 # 
 # **Beispiel 1**
@@ -150,9 +141,10 @@
 # - Datensatz 40 wird nicht verschoben.
 # - Index kann reorganisiert werden. 
 #      - Main memory
-# 
+
 # <img src="pictures/Änderungsoperationen.png" alt="Änderungsoperationen" width="500" style="background-color: white;"/>
-#      
+#    
+
 # **Beispiel 2**
 # 
 # - Datensatz mit K = 30 wird gelöscht. 
@@ -163,9 +155,9 @@
 #      - Leerer Block entsteht 
 #      - Index wird aktualisiert (löschen) 
 #      - Index wird reorganisiert
-# 
+
 # <img src="pictures/Änderungsoperationen_2.png" alt="Änderungsoperationen_2" width="500" style="background-color: white;"/>
-#      
+
 # **Beispiel 3**  
 # 
 # - Einfügen eines Datensatzes 15
@@ -175,9 +167,9 @@
 #      - Datensatz 15 wird eingefügt.
 #      - Index wird aktualisiert.
 #          - 20 statt 40
-# 
+
 # <img src="pictures/Änderungsoperationen_3.png" alt="Änderungsoperationen_3" width="500" style="background-color: white;"/>
-# 
+
 # **Beispiel 4**
 # 
 # - Wieder Datensatz 15 einfügen 
@@ -187,6 +179,7 @@
 #      - Datensatz 15 wird eingefügt. 
 #      - Index bleibt gleich
 #  
+
 # <img src="pictures/Änderungsoperationen_4.png" alt="Änderungsoperationen_4" width="500" style="background-color: white;"/>
 
 # ## Sekundärindizes auf nichtsequenziellen Dateien

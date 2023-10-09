@@ -269,13 +269,6 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#mehrstufiger-index">
      3.1.4. Mehrstufiger Index
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">
-       3.1.4.1. Mehrstufiger Index Beispiel
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">
@@ -546,13 +539,6 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#mehrstufiger-index">
      3.1.4. Mehrstufiger Index
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mehrstufiger-index-beispiel">
-       3.1.4.1. Mehrstufiger Index Beispiel
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#indizes-fur-nicht-eindeutige-suchschlussel">
@@ -803,155 +789,86 @@ In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweil
 <p>Ein dichtbesetzter Index, bildet sich aus einer Blocksequenz mit Schlüssel-Pointer Paaren. Jeder Schlüssel der Daten ist durch ein Paar repräsentiert. Aber die Datenmenge ist wesentlich kleiner, da im Index nur auf bestimmte Attribute gezeigt wird. Daher passt der Index womöglich in den Hauptspeicher und braucht nur einen I/O pro Zugriff. Die Sortierung der Paare entspricht der Sortierung der Daten.</p>
 <p><strong>Anfragebearbeitung mit dichtbesetzten Indizes</strong></p>
 <p>Es ist ein Suchschlüssel K Gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sich die Indexdatei schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.</p>
-<p><strong>Beispiel</strong>: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
+<p><strong>Beispiel</strong>: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
 Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet(log2(10.000) ≈ 13). Es reicht wenn die wichtigsten Blöcke im Hauptspeicher sind.</p>
 <a class="reference internal image-reference" href="../_images/Dichtbesetzte-Indizes.png"><img alt="Dichtbesetzte-Indizes" src="../_images/Dichtbesetzte-Indizes.png" style="width: 500px;" /></a>
 </div>
 <div class="section" id="dunnbesetzte-indizes">
 <h3><span class="section-number">3.1.3. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Schlüsselwert ist immer kleinster Wert des referenzierten Blocks</p></li>
-<li><p>Weniger Speicherbedarf</p></li>
-<li><p>Aber höherer Suchaufwand</p></li>
-<li><p>Nur ein Pointer pro Block</p></li>
-<li><p>Beispiel</p>
-<ul>
-<li><p>100.000 Datenblöcke, 100 Indexpaare pro Block</p></li>
-<li><p>=&gt; 1.000 Blocks für Index</p></li>
-<li><p>= 4MB</p></li>
-</ul>
-</li>
-</ul>
+<p>Da wir eine sortierte Liste gegeben haben, kann auch ein dünnbesetzter Index eingesetzt werden. Hierbei ist der Schlüsselwert der kleinste Wert des referenzierten Blocks und es gibt nur einen Pointer pro Block. Der Vorteil ist weniger Speicherbedarf, jedoch erhöht sich der Suchaufwand.
+<br><br>
+<strong>Beispiel</strong>:
+Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Demnach sind für einen dünnbesetzten Index 1.000 Blocks = 4MB notwendig, welches erheblich weniger als 400MB ist.</p>
 <div class="section" id="anfragebearbeitung-mit-dunnbesetzten-indizes">
 <h4><span class="section-number">3.1.3.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this headline">¶</a></h4>
 <ol class="simple">
-<li><p>Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p>
-<ul class="simple">
-<li><p>Binäre Suche (leicht modifiziert)</p></li>
-</ul>
-</li>
+<li><p>Suche im Index größten Schlüssel, der kleiner/gleich als Suchschlüssel ist(leicht modifizierte binäre Suche)</p></li>
 <li><p>Hole assoziierten Datenblock</p></li>
 <li><p>Durchsuche Block nach Datensatz</p></li>
 </ol>
-<ul class="simple">
-<li><p>Was kann ein dünnbesetzter Index nicht?</p>
-<ul>
-<li><p>SELECT ‘TRUE’ FROM R WHERE a=10</p></li>
-<li><p>Kann nicht ausschließlich mit Index beantwortet werden</p>
-<ul>
-<li><p>Im dicht-besetzten Index schon…<br></p></li>
-</ul>
-</li>
-<li><p>Auch: Semi-Join</p></li>
-</ul>
-</li>
-</ul>
+<p><br><br>
+Was kann ein dünnbesetzter Index nicht?
+Mit ausschließlich einem dünnbesetzten Index kann nicht überprüft werden, ob ein bestimmter Wert vorhanden ist oder nicht. Beispiel: <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">'TRUE'</span> <span class="pre">FROM</span> <span class="pre">R</span> <span class="pre">WHERE</span> <span class="pre">a=10</span></code>. Mit einem dicht-besetzten Index ist das möglich. Gleiches gilt für einen Semi-Join.</p>
 <a class="reference internal image-reference" href="../_images/Dünnbesetzte-Indizes.png"><img alt="Dünnbesetzte-Indizes" src="../_images/Dünnbesetzte-Indizes.png" style="width: 500px;" /></a>
 <p><a class="reference internal" href="../_images/Mehrstufiger-Index-meme1.png"><img alt="Mehrstufiger-Index-meme1" src="../_images/Mehrstufiger-Index-meme1.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/Mehrstufiger-Index-meme2.png"><img alt="Mehrstufiger-Index-meme2" src="../_images/Mehrstufiger-Index-meme2.png" style="width: 500px;" /></a></p>
 </div>
 </div>
 <div class="section" id="mehrstufiger-index">
 <h3><span class="section-number">3.1.4. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this headline">¶</a></h3>
-<p>Auch ein Index kann unangenehm groß sein.</p>
-<ul class="simple">
-<li><p>Nimmt viel Speicher ein</p></li>
-<li><p>Kostet viel I/O</p>
-<ul>
-<li><p>Auch bei binärer Suche</p></li>
-</ul>
-</li>
-<li><p>Idee: Index auf den Index</p>
-<ul>
-<li><p>Zweiter Index macht nur als dünnbesetzter Index Sinn. <br></p></li>
-</ul>
-</li>
-<li><p>Theoretisch auch dritte, vierte, … Ebene</p>
-<ul>
-<li><p>B-Baum aber besser</p></li>
-</ul>
-</li>
-</ul>
-<div class="section" id="mehrstufiger-index-beispiel">
-<h4><span class="section-number">3.1.4.1. </span>Mehrstufiger Index Beispiel<a class="headerlink" href="#mehrstufiger-index-beispiel" title="Permalink to this headline">¶</a></h4>
-<p>100.000 Datenblöcke, 100 Indexpaare pro Block</p>
-<ul class="simple">
-<li><p>=&gt; 1.000 Blöcke für Index erster Stufe = 4MB</p></li>
-<li><p>=&gt; 10 Blöcke für Index zweiter Stufe = 40KB</p>
-<ul>
-<li><p>Kann mit Sicherheit im Hauptspeicher verbleiben (weiter: liegt im Hauptspeicher)</p></li>
-</ul>
-</li>
-<li><p>Vorgehen zur Anfragebearbeitung</p>
+<p>Auch ein Index kann unangenehm groß sein, z.B GB groß oder sogar größer als die Datensätze selbst. Das nimmt viel Speicher ein und kostet viel I/O, auch bei binärer Suche. In diesem Fall lohnt es sich die Indexdatei auch zu indexieren. Der zweite Index macht nur als dünnbesetzten Index Sinn. Theoretisch sind auch dritte, vierte, … Ebenen möglich, in diesen Fällen ist ein B-Baum besser geeignet (dazu später).</p>
+<p><strong>Mehrstufiger Index Beispiel</strong>
+<br><br>
+Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4MB und für den Index zweiter Stufe = 40KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.</p>
+<p><strong>Vorgehen zur Anfragebearbeitung</strong></p>
 <ol class="simple">
 <li><p>Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
 <li><p>Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)</p></li>
 <li><p>Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
 <li><p>Hole entsprechenden Datenblock.</p></li>
-<li><p>Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).</p></li>
+<li><p>Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).
+<br><br></p></li>
 </ol>
-</li>
-<li><p>Zusammen: 2 I/Os</p></li>
-</ul>
+<p>=&gt; Für das Beispiel oben sind zusammen nur 2 I/Os nötig</p>
 <a class="reference internal image-reference" href="../_images/Mehrstufiger-Index.png"><img alt="Mehrstufiger-Index" src="../_images/Mehrstufiger-Index.png" style="width: 500px;" /></a>
-</div>
 </div>
 <div class="section" id="indizes-fur-nicht-eindeutige-suchschlussel">
 <h3><span class="section-number">3.1.5. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this headline">¶</a></h3>
-<p>Annahme bisher: Suchschlüssel ist auch Schlüssel bzw.eindeutig in der Relation</p>
+<p>Bisher haben wir angenommen, das unser Suchschlüssel auch ein Schlüssel ist bzw. nur maximal einmal in unserer Relation vorkommt. Jetzt betrachten wir die Indexwahl, wenn der Suchschlüssel nicht-eindeutig ist. Wir nehmen weiterhin an, dass die Relation nach unserem Suchschlüssel sortiert ist.
+<br><br>
+<strong>Idee 1: Dichtbesetzter Index</strong>
+<br>
+Es gibt ein Paar im Index für jeden Datensatz. Die Anfragebearbeitung verläuft wie folgt:</p>
 <ul class="simple">
-<li><p>Annahme weiter: Relation ist nach Suchschlüssel sortiert</p></li>
-<li><p>Idee 1: Dichtbesetzter Index</p>
-<ul>
-<li><p>Ein Paar im Index für jeden Datensatz</p></li>
-<li><p>Anfragebearbeitung:</p>
-<ul>
 <li><p>Suche erstes Paar mit K.</p></li>
 <li><p>Wähle alle weiteren mit K (direkt dahinter)</p></li>
 <li><p>Hole entsprechende Datensätze.</p></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K.</p>
-<ul>
-<li><p>Der zeigt auf ersten Datensatz mit K.</p></li>
-<li><p>Weitere Datensätze mit K folgen direkt.</p></li>
-<li><p>Wichtig: Blöcke haben Pointer auf jeweils nächsten Block
-<br> <br>
-<a class="reference internal" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png" style="width: 500px;" /></a></p></li>
-</ul>
-</li>
-<li><p>Idee 3: Dünnbesetzter Index wie gehabt</p>
-<ul>
-<li><p>Datenwert im Index jeweils Datensatz am Blockanfang</p></li>
-</ul>
-</li>
-<li><p>Anfragebearbeitung</p>
-<ul>
+<p><strong>Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K</strong>
+<br>
+Der Index zeigt auf den ersten Datensatz mit K. Alle weiteren Datensätze mit K folgen direkt. Wichtig zu beachten ist hier, dass die Blöcke Pointer auf den jeweils nächsten Block haben.</p>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png" style="width: 500px;" /></a>
+<p><strong>Idee 3: Dünnbesetzter Index wie gehabt</strong>
+Der Datenwert wird jeweils am Blockanfang des Datensatzes indexiert.
+Die Anfragebearbeitung ist wie folgt:</p>
+<ul class="simple">
 <li><p>Suche letzten Eintrag E1 im Index, dessen Datenwert ≤ K</p></li>
 <li><p>Suche von dort im Index nach vorn bis zu einem Eintrag E2 mit Datenwert &lt; K</p></li>
-<li><p>Hole alle Datenblöcke zwischen und inklusive E1 und E2.</p></li>
+<li><p>Hole alle Datenblöcke zwischen und inklusive E1 und E2.
+<br><br></p></li>
 </ul>
-</li>
-<li><p>Beispiel: K = 20: Rückwärtssuche ist nötig <br></p></li>
-</ul>
+<p>Beispiel: Wir suchen K = 20. Zuerst muss im “10er-Block” gesucht werden ,da womöglich auch in diesem Block eine 20 ist. Rückwärtssuche ist nötig</p>
 <a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" style="width: 500px;" /></a>
+<p><strong>Idee 4: Dünnbesetzter Index, aber…</strong>
+<br>
+…der im Index gespeicherte Datenwert ist der kleinste neue Wert im entsprechenden Datenblock.
+<br>
+Die Anfragebearbeitung ist so einfacher:</p>
 <ul class="simple">
-<li><p>Idee 4: Dünnbesetzter Index, aber</p>
-<ul>
-<li><p>Datenwert im Index ist der kleinste neue Wert im entsprechenden Datenblock.</p></li>
-<li><p>Hier Grenzfall: Welche Werte hat der Index?</p></li>
-<li><p>Test: K= 20 bzw. K = 30</p></li>
-</ul>
-</li>
-<li><p>Anfragebearbeitung einfacher</p>
-<ul>
 <li><p>Suche im Index nach Paar mit (Datenwert = K) oder (größter Wert mit &lt; K aber nächster Wert ist &gt; K).</p></li>
-<li><p>Hole Datenblock und gegebenenfalls folgende Datenblöcke.</p></li>
+<li><p>Hole Datenblock und gegebenenfalls folgende Datenblöcke.
+<br><br></p></li>
 </ul>
-</li>
-<li><p>Statt ⊥ auch „30“</p></li>
-</ul>
+<p>Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr kommt.</p>
 <a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" style="width: 500px;" /></a>
 </div>
 <div class="section" id="anderungsoperationen">
