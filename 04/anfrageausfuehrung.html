@@ -527,10 +527,8 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <br>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
 <p>Wir sehen hier die Relationen <em>R</em>, <em>S</em> und <em>T</em>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
-<a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
 <br>
-<img src="pictures/Pull-basierte-Anfragenauswertung.png" alt="Pull-basierte-Anfragenauswertung" width="500" style="background-color: white;"/>
 <a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker.png"><img alt="Pipelining-vs-Pipelin-Breaker" src="../_images/Pipelining-vs-Pipelin-Breaker.png" style="width: 500px;" /></a>
 <p><strong>Pipelining versus Blocking</strong></p>
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.</p>
@@ -573,7 +571,7 @@ Bei der Gruppierung würde man nur Gruppierungsattribute und aggregierte Teilerg
 Der Puffer merkt sich, welche Tupel schon einmal gesehen wurden. Da man Tupel sofort finden möchte, sollte man sich eine geeignete Datenstruktur überlegen. Hier bieten sich am besten Hashtabellen oder balancierte Binärbäume an.
 Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzahl der duplizierten Tupel (alle DISTINCT Werte der Relation) geteilt durch die Anzahl der Tupel pro Block. Das Ergebnis muss dann kleiner sein als M, damit man die Duplikateliminierung mit einem One-Pass Algorithmus durchführen kann.</p>
 <ul class="simple">
-<li><p>Wahl von M: <span class="math notranslate nohighlight">\(B(\delta(R)) = V(R, [A1, … ,An])\)</span> / Tupel-pro-Block ≤ M</p></li>
+<li><p>Wahl von M: <span class="math notranslate nohighlight">\(B(\delta(R)) = \frac {V(R, [A1, … ,An])} {Tupel-pro-Block}\)</span> ≤ M</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/Duplikateliminierung.png"><img alt="Duplikateliminierung" src="../_images/Duplikateliminierung.png" style="width: 500px;" /></a>
 <br>
