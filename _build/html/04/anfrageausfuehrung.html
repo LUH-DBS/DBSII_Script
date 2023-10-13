@@ -524,12 +524,14 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <p><strong>Iterator – Beispiel</strong></p>
 <p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
 <a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
-<p><br><br></p>
+<br>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
 <p>Wir sehen hier die Relationen <em>R</em>, <em>S</em> und <em>T</em>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
-<img src="pictures/Pipelining-vs-Pipelin-Breaker_2.png" alt="Pipelining-vs-Pipelin-Breaker_2" width="500" style="background-color: white;"/>
+<a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
 <br>
-<img src="pictures/Pipelining-vs-Pipelin-Breaker.png" alt="Pipelining-vs-Pipelin-Breaker" width="500" style="background-color: white;"/>
+<img src="pictures/Pull-basierte-Anfragenauswertung.png" alt="Pull-basierte-Anfragenauswertung" width="500" style="background-color: white;"/>
+<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker.png"><img alt="Pipelining-vs-Pipelin-Breaker" src="../_images/Pipelining-vs-Pipelin-Breaker.png" style="width: 500px;" /></a>
 <p><strong>Pipelining versus Blocking</strong></p>
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.</p>
 <p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht.
@@ -573,7 +575,7 @@ Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzah
 <ul class="simple">
 <li><p>Wahl von M: <span class="math notranslate nohighlight">\(B(\delta(R)) = V(R, [A1, … ,An])\)</span> / Tupel-pro-Block ≤ M</p></li>
 </ul>
-<img src="pictures/Duplikateliminierung.png" alt="Duplikateliminierung" width="500" style="background-color: white;"/>
+<a class="reference internal image-reference" href="../_images/Duplikateliminierung.png"><img alt="Duplikateliminierung" src="../_images/Duplikateliminierung.png" style="width: 500px;" /></a>
 <br>
 </section>
 <section id="gruppierung">
