@@ -3,439 +3,278 @@
 
 # # Anfrageausführung
 # 
-# 
 # Zoom in die interne Ebene: Die 5-Schichten Architektur
 # 
 # <img src="pictures/5-Schichten-Architektur.png" alt="5-Schichten-Architektur" width="500" style="background-color: white;"/>
 # 
+# <br>
+# 
+# In den vorherigen Kapiteln haben wir die Anfragesprache bereits kennengelernt. Wir wissen jetzt, wie man Anfragen formulieren kann, wie Daten auf der Festplatte gespeichert werden und wie man den Zugriff auf die Daten mit Indizes beschleunigt.
+# 
+# Jetzt ist die Frage: Wie kommt man von der Anfrage bis zur Ausführung?
+# <br><br>
+# Zunächst haben wir eine SQL-Anfrage. Diese wird geparsed und daraus entsteht ein Parsebaum der prüft, ob diese Anfrage korrekt ist. Der Parsebaum wird dann in einen logischen Anfrageplan umgewandelt, der durch die Abschätzung der Kardinalitäten zeigt, wie eine logische Ausführung aussehen würde. Man versucht so die Operationen und ihre Reihenfolge auf logischer Ebene zu optimieren. Dann werden physische Pläne entworfen und man schaut, welche konkreten Implementierungen für einen bestimmten Operator Sinn machen würden. Für jeden Operator gibt es verschiedene Implementierungen, den Join Operator kann man beispielsweise als Loop Join oder auch Hash Join implementieren. Im nächsten Schritt werden die Pläne noch einmal begutachtet und die Kosten ein weiteres Mal geschätzt, damit der beste Plan ausgewählt werden kann. Führt man diesen dann aus, gibt es ein Anfrageergebnis zurück. Da man die Kardinalitäten nur abschätzt, hat man nicht die genauen Zahlen. Bei der Ausführung der Anfrage sieht man dann, wie lange diese tatsächlich braucht, ob sie vielleicht länger gebraucht hat, als erwartet, oder ob die Ausgabemenge sogar viel größer ist als geschätzt. 
 # <br><br>
 # 
 # Ablauf der Anfragebearbeitung 
 # 
 # <img src="pictures/Ablauf-Anfragenbearbeitung.png" alt="Ablauf-Anfragenbearbeitung" width="500" style="background-color: white;"/>
+# 
+# <br>
+# Mit diesem Kapitel befinden wir uns in der Anfrageausführung und schauen uns konkret an, wie Operatoren umgesetzt werden.
+# 
 
-# <br> <br>
+# <br> <br> <br>
 # <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
 
 # ## Physische Operatoren
 # 
-# - Anfragepläne bestehen aus Operatoren.
-#     - Oft Operatoren der Relationalen Algebra (RA)
-#     - Aber auch: Scan einer Tabelle
-# - Physische Operatoren implementieren einen logischen Operator
-#     - Oft mehrere Implementierungen pro Operator
+# Anfragepläne bestehen aus Operatoren. Bevor wir Kosten schätzen können müssen wir diese Operatoren kennen. Wir kennen bereits die Operatoren der Relationalen Algebra, welche auf physische Operatoren abgebildet werden. 
+# Was jetzt als neuer Operator dazu kommt, ist die Art und Weise, wie man eine Tabelle scannt.
+# <br>
+# Für jeden logischen Operator hat man mindestens einen physischen Operator der diesen implementiert.
+# Später können noch Varianten von logischen Operatoren hinzukommen. Ein Join lässt sich beispielsweise unterschiedlich ausführen.
 #     
 # ### Tabellen Scannen
-# - Einfachste Operation
-# - Gesamte Relation einlesen
-#     - Join, Union, …
-# - Gegebenenfalls kombiniert mit Selektionsbedingung
-# - Zwei Varianten
-#     - Table-scan: Blöcke liegen in einer (bekannten) Region der Festplatte.
-#         - Einlesen aller Blöcke
-#         - Index-scan: Index besagt, welche Blöcke zur Relation gehören und wo diese liegen.
-#         - Hier Kombination mit Selektionen besonders effizient (-> später)
+# 
+# Eine Tabelle zu scannen ist die einfachste Operation. Dabei wird die gesamte Relation eingelesen, was man unter anderem für Joins und Unions braucht. Den Scan kann man ggf. auch anpassen, indem man diesen mit Selektionsbedingungen kombiniert, um zum Beispiel nur die Blöcke zu suchen, die einen bestimmten Wert enthalten.
+# <br><br>
+# Es gibt zwei Scan Varianten, den *Table-scan* und den *Index-scan*.
+# Beim *Table-scan*, werden alle Blöcke eingelesen, die in einer (bekannten) Region der Festplatte liegen. Dies bietet sich an, wenn man alle Operationen lesen will und die Tupelreihenfolge keine Rolle spielt. <br>
+# Beim *Index-scan* gibt es einen Index, der angibt, welche Blöcke zur Relation gehören und wo diese liegen. Hat man eine Selektionsbedingung bietet sich der *Index-scan* hier am ehesten an, da wir direkt zu den bestimmten Werten springen können. Dieser steht außerdem stellvertretend für u.a. den B-Baum Index und den Hash Index.
+# 
 # 
 # ### Sortiertes Einlesen
-# - Sortiertes Einlesen von Relationen kann nützlich sein:
-# - 1. ORDER BY in der Anfrage
-# - 2. Spätere Operatoren nutzen Sortierung aus
-# - Sort-scan:
-#     - Gegeben Sortierschlüssel (ein oder mehr Attribute + Sortierreihenfolge)
-#     - Gegeben Relation
-#     - Gebe gesamte Relation sortiert zurück
-# - Implementierungsvarianten
-#     - B-Baum mit Sortierschlüssel als Suchschlüssel
-#     - Sequentielle Datei, sortiert nach Sortierschlüssel
-#     - Relation ist klein und kann im Hauptspeicher sortiert werden
-#         - Table-scan + Sortierung
-#         - Index-scan + Sortierung
-#     - Relation ist groß: TPMMS
-#         - Ausgabe nicht auf Festplatte sondern als Iterator im Ausführungsplan
+# 
+# Eine weitere besondere Variante des Scans ist der *Sort-scan* - das sortierte Einlesen. Dies ist nützlich, wenn man in der Anfrage mit Order By sortiert oder wenn man bestimmte Operation, wie zum Beispiel Bereichsanfragen, ausführen will. Dann kann man mit *Sort-scan*, basierend auf einem gegeben Sortierschüssel, welcher aus einem oder mehreren Attributen und einer Sortierreihenfolge besteht, die Relation sortiert zurückgeben.
+# 
+# Es gibt unterschiedliche Implementierungsvarianten. Man kann zum Beispiel einen B-Baum haben der einen Sortierschlüssel als Suchschlüssel hat oder eine sequentielle Datei, die nach einem Sortierschlüssel sortiert ist. Ist die Relation klein kann diese im Hauptspeicher sortiert werden. Dann nutzt man entweder den *Table-scan* oder den *Index-scan* plus eine Sortierung. Ist die Relation hingegen sehr groß, muss man den TPMMS durchführen. Damit ist die Ausgabe nicht auf der Festplatte sondern als Iterator im Ausführungsplan.
+# 
 
 # ### Berechnungsmodell
-# - Kosten eines Operators
-#     - Nur I/O-Kosten werden gezählt
-#     - CPU-Kosten werden von I/O-Kosten dominiert
-#     - Ausnahme: Netzwerkübertragung -> nicht hier
-# - Annahme
-#     - Input eines Operators wird von Disk gelesen
-# - Output eines Operators muss nicht auf Disk geschrieben werden.
-#     - Falls letzter Operator im Baum:
-#         - Anwendung verarbeitet Tupel einzeln
-#         - Diese I/O Kosten hängen von Anfrage ab, sowieso nicht vom Plan
-#     - Falls innerer Operator:
-#         - Pipelining möglich
-#         
-# ### Kostenparameter / Statistiken
-# - Verfügbarer Hauptspeicher für einen Operator: M Einheiten
-#     - Eine Einheit entspricht Blockgröße auf Festplatte
-#     - Hauptspeicherverbrauch nur für Input und Operator, nicht für Output
-#     - Kann dynamisch (während Anfragebearbeitung) bestimmt werden
-# - Deswegen: M ist nur Schätzung
-#     - -> Gesamtkosten sind nur geschätzt
-#     - -> Gewählter Plan nicht unbedingt optimal
-#         - Dies hat auch andere Gründe. Welche?
 # 
-# - Anzahl Blocks: B
-#     - Anzahl benötigter Blocks einer Relation: B(R)
-#     - Annahme: B(R) = Anzahl tatsächlich belegter Blocks
-# - Anzahl Tupel: T
-#     - Anzahl Tupel einer Relation: T(R)
-#     - T/B = Anzahl Tupel pro Block
-# - Anzahl unterschiedlicher Werte: V
-#     - Anzahl unterschiedlicher Werte einer Relation R im Attribut a: V(R,a)
-#     - DISTINCT values
-#     - $V(R, [a1,a2,…,an]) = |\delta(\sigma_{a1,a2,…,an}(R))|$
+# Bei der Ermittlung der Kosten eines Operators werden nur die I/O-Kosten berechnet, da diese die CPU-Kosten dominieren. Nehmen wir an, der Input eines Operators wird von der Disk gelesen, während der Output nicht auf die Disk geschrieben werden muss. Handelt es sich bei dem Operator um den letzten im Baum, verarbeitet die Anwendung die Tupel einzeln. Die I/O-Kosten hängen in diesem Fall von der Anfrage ab, nicht vom Plan. Handelt es sich aber um einen inneren Operator, kann man Pipelining durchführen, d.h. ein Tupel wird gelesen, zum nächsten Operator gegeben und immer so weiter. Damit hat man immer dieselben I/O-Kosten verbraucht, da das Tupel wie am Fließband von Operator zu Operator gereicht wird.
+# 
+# 
+# ### Kostenparameter / Statistiken
+# 
+# Der verfügbare Hauptspeicher für einen Operator beträgt M Einheiten. Eine Einheit ist eine Blockgröße die wir auf der Festplatte haben. Den Hauptspeicherverbrauch messen wir nur für den Input der Operatoren, nicht für den Output. Wie viel Hauptspeicher man braucht, kann man dynamisch während der Anfragebearbeitung bestimmen. Wir gehen davon aus, dass M eine Schätzung ist und die Kosten, die wir schätzen können, nie genau sind. Der gewählte Plan, den wir als besten Plan ausgeben, ist nicht unbedingt auch der beste Plan. Basierend auf den Schätzungen ist es der Beste, dieser kann aber auch suboptimal sein.
+# 
+# *B* ist die Anzahl der Blöcke, *B(R)* ist die Anzahl aller Blöcke der Relation. Wir nehmen sogar an, dass *B(R)* die Anzahl der **tatsächlich** belegten Blöcke ist.
+# 
+# *T* ist die Anzahl der Tupel, *T(R)* ist die Anzahl der Tupel einer Relation. Mit *T/B* können wir die ungefähre Anzahl der Tupel pro Block berechnen.
+# 
+# *V* ist die Anzahl unterschiedlicher Werte (DISTINCT values) , d.h. die Kardinalität jeder Spalte. *V(R,a)* ist die Anzahl unterschiedlicher Werte einer Relation R im Attribut a.
+# 
+#  - $V(R, [a1,a2,…,an]) = |\delta(\pi_{a1,a2,…,an}(R))|$ --> Betrag der Duplikatentfernung = Anzahl unterschiedlicher Werte
+# 
+#  <br>
+# 
 #     
 # **Scan-Kosten Beispiele**
 # 
-# - R clustered
-#     - Table-scan: Kosten B(R)
-#     - Sort-scan
-#         - Kosten B falls R in Hauptspeicher passt
-#         - Kosten 3B, falls TPMMS nötig
-# - R nicht clustered (also verteilt und gemischt mit Tupeln anderer Relationen)
-#     - Table-Scan: Kosten T(R)
-#     - Sort-scan
-#         - Kosten T falls R in Hauptspeicher passt
-#         - Kosten T + 2B falls TPMMS nötig
-# - Index-scan
-#     - Annahme: Kosten B bzw. T, auch wenn Index selbst einige Blöcke groß ist
+# Nun gibt es zusätzlich noch zu berücksichtigen, ob eine Relation **geclustered** ist oder nicht. Ist R clustered gespeichert, liegen alle relevanten Tupel nebeneinander. Bei einem *Table-scan* werden alle Blöcke gelesen, also betragen die Kosten *B(R)*. Wenn sortiert werden soll und R in den Hauptspeicher passt, betragen die Kosten für einen *Sort-scan B*. Passt R nicht, müssen wir TPMMS anwenden und die Kosten betragen dann *3B*. <br>
+# Ist R **nicht geclustered**, also die Blöcke nicht nebeneinanderliegend, sondern gemischt mit Tupeln anderer Relationen, betragen die Kosten für einen *Table-scan* im schlimmsten Fall *T(R)*. Soll wieder sortiert werden, und R passt in den Hauptspeicher, liegen die Kosten für einen *Sort-scan* bei *T*. Passt R aber nicht und wir müssen wieder TPMMS anwenden, betragen die Kosten *T+2B*.
+# 
+# Die Kosten für einen *Index-scan* sind *B* oder *T*. Ist der Index selbst einige Blöcke groß, handelt es sich meistens um kleinere Zahlen. Bei einem Baum beispielsweise rechnet man plus die Höhe, denn je nach dem was schon im Hauptspeicher liegt, ob es die Wurzel ist oder mehrere Ebenen, hat man mehr I/O-Operationen.
+# 
+# 
+# 
 # 
 
 # ### Iteratoren 
-# -Viele physische Operatoren werden als Iterator implementiert.
-# - Open()
-#     - Öffnet Iterator, initialisiert Datenstrukturen
-#     - Ruft wiederum Open für Input-Operator(en) auf
-#     - Holt noch kein Tupel
-# - GetNext()
-#     - Holt nächstes Tupel
-#     - Ruft wiederum GetNext für Input-Operator(en) auf
-#     - Falls kein Tupel mehr vorhanden: NotFound
-# - Close()
-#     - Beendet und schließt Iterator
-#     - Ruft wiederum Close für Input-Operator(en) auf
-#     
-#     
+# 
+# Viele physische Operatoren werden als Iterator implementiert. Für jede Operation haben wir drei bestimmte Grundfunktionen: Open(), GetNext() und Close(). <br>
+# Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für eine Operation. Diese kann zum Beispiel ein Scan sein oder auch ein Join und diese Operation ruft dann die Open-Funktionen für alle anderen Operationen auf, die im Baum darunter liegen. Auf jeder Ebene des Baumes wird Open() aufgerufen. Die Funktion holt aber noch keine Tupel nach oben.
+# 
+# Mit der GetNext-Funktion holt man das nächste Tupel. Wendet man die Funktion auf den obersten Iterator an, ruft dieser wiederrum GetNext() für die Iteratoren darunter auf und geht dabei so tief wie nötig. Ist kein Tupel mehr vorhanden bekommt man ein *NotFound* zurück. 
+# 
+# Close() beendet und schließt den Iterator und ruft Close() auch für die anderen Iteratoren auf.
+# 
+# 
 # **Pull-basierte Anfrageauswertung**
+# 
+# In dem Beispiel lässt sich gut erkennen, wie Open() und GetNext() funktionieren. Wird hier in dem obersten Iterator Open() aufgerufen, wird auch in allen darunterliegenden Iteratoren Open() aufgerufen. R1-R4 symbolisieren die Scan Operationen. Mit GetNext() geht man die Iteratoren durch, bis ganz nach unten und holt dann das Ergebnis nach oben. 
 # 
 # <img src="pictures/Pull-basierte-Anfragenauswertung.png" alt="Pull-basierte-Anfragenauswertung" width="500" style="background-color: white;"/>
 # 
 # **Iterator – Beispiel**
 # 
+# In diesem Iterator Beispiel sieht man unten die beiden Relationen *StarsIn* und *MovieStar*. Aus der Relation *MovieStar* werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. *StarsIn* und *MovieStar* werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.
+# 
+# 
+# 
 # <img src="pictures/Iterator-Beispiele.png" alt="Iterator-Beispiele" width="500" style="background-color: white;"/>
+# <br><br>
 # 
 # **Pipelining vs. Pipeline-Breaker**
 # 
-# <img src="pictures/Pipelining-vs-Pipelin-Breaker.png" alt="Pipelining-vs-Pipelin-Breaker" width="500" style="background-color: white;"/>
+# Wir sehen hier die Relationen *R*, *S* und *T*. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).
+# 
 # <img src="pictures/Pipelining-vs-Pipelin-Breaker_2.png" alt="Pipelining-vs-Pipelin-Breaker_2" width="500" style="background-color: white;"/>
+# <br>
+# <img src="pictures/Pipelining-vs-Pipelin-Breaker.png" alt="Pipelining-vs-Pipelin-Breaker" width="500" style="background-color: white;"/>
+# 
+# 
 # 
 # **Pipelining versus Blocking**
 # 
-# - Pipelining ist im allgemeinen sehr vorteilhaft.
-#     - Kein Puffern großer Zwischenergebnisse auf Festplatte
-#     - Operationen können auf Threads und CPUs verteilt werden
-# - Pipeline breaker
-#     - Sortierung:
-#         - next() kann erst ausgeführt werden wenn gesamte Relation gesehen wurde.
-#         - Ausnahme: Input ist bereits sortiert
-#     - Gruppierung und Aggregation
-#         - Implementiert durch Sortierung oder Hashing
-#         - Dann führt next() die Aggregation für eine Gruppe aus
-#     - Minus, Schnittmenge
-# - Union und Projektion mit Duplikateliminierung
-#     - Nicht unbedingt pipeline breaker
-#     - next() kann früh Ergebnisse weiterreichen (Sortierung nicht nötig)
-#     - Aber: Man muss sich alle bereits gelieferten Ergebnisse merken (großer Zwischenspeicher)
-#     
+# Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.
+# 
+# Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht. 
+# **Aber:** Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).
+# 
 # **Iterator – Beispiel**
 # 
 # <img src="pictures/Iterator-Beispiele_2.png" alt="Iterator-Beispiele_2" width="500" style="background-color: white;"/>
+# <br>
 # 
 # **Überblick über das Weitere**
-# - Drei Klassen von Algorithmen
-#     - Sort-basierte, Hash-basierte und Index-basierte Algorithmen
-# - Drei Schwierigkeitsgrade von Algorithmen
-#     - One-Pass Algorithmen
-#         - Daten nur einmal von Disk lesen
-#         - Mindestens ein Argument passt in Hauptspeicher (außer Selektion und Projektion)
-#     - Two-Pass Algorithmen
-#         - Meist einmal lesen, einmal schreiben, nochmal lesen
-#         - TPMMS
-#         - Gewisse Größenbeschränkung auf Input
-#     - Multipass Algorithmen
-#         - Unbeschränkt in Inputgröße
-#         - Rekursive Erweiterungen von Two-Pass Algorithmen
-#     - U.a. abhängig vom Operator
 # 
+# Es gibt **drei Klassen** von Algorithmen: *Sort-basierte, Hash-basierte und Index-basierte Algorithmen*. Diese sind entweder *One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen* und haben somit **drei Schwierigkeitsgrade** die sich darin unterscheiden, wie oft über die Daten gelesen wird. 
+# <br><br>
+# Die einfachsten Operatoren erfordern, dass nur einmal über die Daten gelesen wird. Das ist meist bei einem Scan der Fall, deshalb würde man hier einen *One-Pass Algorithmus* verwenden. Hier passt mindestens ein Argument in den Hauptspeicher, Selektion und Projektion ausgenommen.
 # 
+# *Two-Pass Algorithmen*, wie zum Beispiel TPMMS, finden meist Anwendung, wenn es eine Größenbeschränkung für den Input gibt. Hierbei wir meist erst einmal gelesen, dann wird zwischengespeichert und dieses Zwischenergebnis wird dann noch einmal gelesen.
 # 
+# Hat man zu wenig Speicherplatz für den Two-Pass Algorithmus kann man den *Multipass Algorithmus* verwenden. Dieser ist eine rekursive Erweiterung des Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.
 # 
 
 # ## One-Pass Algorithmen
 # 
 # ### Operatorklassen für One-pass Verfahren
 # 
-# - Tupel-basierte unäre Operatoren
-#     - Benötigen jeweils nur sehr kleinen Teil des Input gleichzeitig im Hauptspeicher
-#     - Projektion, Selektion, (Multimengen-Vereinigung)
-# - Relationen-basierte unäre Operatoren
-#     - Benötigen gesamte Relation im Hauptspeicher
-#     - Deshalb Beschränkung der Inputgröße auf Hauptspeichergröße
-#     - Gruppierung, Duplikateliminierung, Sortierung
-# - Relationen-basierte binäre Operatoren
-#     - Benötigen mindestens eine gesamte Relation im Hauptspeicher (falls sie one-pass sein sollen)
-#     - Alle Mengenoperatoren (außer Multimengen-Vereinigung)
-#     - Join
-#     
+# Wir gehen immer davon aus, dass die Operationen und der Input in den Speicher passt. <br> Hat man *Tupel-basierte unäre Operatoren* braucht man nur einen sehr kleinen Teil des Inputs gleichzeitig im Hauptspeicher. Meist wenn Projektionen, Selektionen oder Multimengen-Vereinigungen durchführt.
+# 
+# *Relationen-basierte unäre Operatoren* benötigen meist die gesamte Relation gleichzeitig im Hauptspeicher. Deshalb darf die Inputgröße die Hauptspeichergröße nicht überschreiten. 
+# Dies ist der Fall bei Gruppierungen, Duplikateliminierungen und Sortierungen.
+# 
+# *Relationen-basierte binäre Operatoren* benötigen mindestens eine gesamte Relation im Hauptspeicher. Außerdem braucht man dann noch ein wenig Speicher für ein Element aus einer anderen Relation. Das gilt für alle Mengenoperationen außer Multimengen-Vereinigungen, aber vor allem für den Join.
+# 
 # ### Tupel-basierte unäre Operatoren
 # 
-# - Algorithmus für Selektion und Projektion offensichtlich
-#     - Unabhängig von Hauptspeichergröße
-# - Speicherkosten: 1
-# - I/O Kosten: Wie table-scan oder index-scan
-#     - B, falls geclustert
-#     - T, falls nicht geclustert
-#     - Weniger, falls Selektion auf Suchschlüssel eines Index
-# - Puffer > 1 nützlich. Wieso?
-#     - „Daten gemäß Zylinder organisieren“
-#     - Alle Blocks eines Zylinders gleichzeitig lesen.
+# Für Selektionen und Projektionen verwendet man Tupel-basierte unäre Operatoren, denn diese sind unabhängig von der Hauptspeichergröße. Die Speicherkosten betragen nur eine Einheit, da man immer nur ein Tupel auf einmal liest. Die I/O-Kosten hängen wie beim *Table-scan* oder *Index-scan* davon ab, ob R geclustered ist oder nicht. Ist R geclustered, betragen die Kosten B, ist R nicht geclustered betragen die Kosten T. Falls es einen Suchschlüssel im Index gibt, sind die Kosten noch geringer. 
 # 
 # <img src="pictures/Tupel-basierte-unäre-Operatoren.png" alt="Tupel-basierte-unäre-Operatoren" width="500" style="background-color: white;"/>
 # 
+# 
 # ### Relationen-basierte unäre Operatoren
 # 
-# - Operatoren: Duplikateliminierung und Gruppierung
-#     - Ganze Relation muss in den Hauptspeicher passen
-# - Genereller „Trick“: Bewahre nur „Repräsentanten“ im Hauptspeicher
-#     - Duplikateliminierung: Eindeutige Repräsentation schon gesehener Tupel
-#     - Gruppierung: Gruppierungsattribute und aggregierte Teilergebnisse
-#     - Dadurch können auch größere Relationen verarbeitet werden.
-#     
+# Relationen-basierte unäre Operatoren verwendet man bei Duplikateliminierungen und Gruppierungen. Hier ist zu beachten, dass die ganze Relation in den Hauptspeicher passen muss. Um dies zu bewältigen und um den Hauptspeicher ein wenig zu entlasten, ist es sinnvoll, nur die "Repräsentanten" zu speichern. 
+# Für die Duplikateliminierung bedeutet das, nicht alle Attribute eines Tupels zu speichern, sondern nur die, die die Tupel voneinander unterscheiden. 
+# Bei der Gruppierung würde man nur Gruppierungsattribute und aggregierte Teilergebnisse speichern und nicht das gesamte Tupel. Mit diesem "Trick" können dann auch größere Relationen verarbeitet werden. 
+# 
 # ### Duplikateliminierung
 # 
-# - Tupel für Tupel einlesen
-#     - Erstes Mal dieses Tupel gesehen -> Ausgabe
-#     - Schon mal gesehen -> nix tun
-# - Puffer merkt sich welche Tupel bereits gesehen wurden
-#     - Datenstruktur wichtig (trotz I/O Dominanz)
-#         - Einfügen eines Tupels und Finden eines Tupels in fast konstanter Zeit
-#         - Z.B. Hashtabelle, balancierter Binärbaum
-#         - Geringer Speicher-overhead
+# Bei der Duplikateliminierung wird Tupel für Tupel eingelesen. Wurde das Tupel zuvor noch nicht gesehen, wird es einfach ausgegeben, andernfalls passiert nichts. 
+# Der Puffer merkt sich, welche Tupel schon einmal gesehen wurden. Da man Tupel sofort finden möchte, sollte man sich eine geeignete Datenstruktur überlegen. Hier bieten sich am besten Hashtabellen oder balancierte Binärbäume an. 
+# Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzahl der duplizierten Tupel (alle DISTINCT Werte der Relation) geteilt durch die Anzahl der Tupel pro Block. Das Ergebnis muss dann kleiner sein als M, damit man die Duplikateliminierung mit einem One-Pass Algorithmus durchführen kann.
+# 
 # - Wahl von M: $B(\delta(R)) = V(R, [A1, … ,An])$ / Tupel-pro-Block ≤ M
 # 
 # <img src="pictures/Duplikateliminierung.png" alt="Duplikateliminierung" width="500" style="background-color: white;"/>
+# <br>
 # 
 # ### Gruppierung
 # 
-# - Idee: Erzeuge im Hauptspeicher einen Eintrag pro Gruppe
-# - Also ein Eintrag pro Gruppierungswert
-# - Dazu: Kumulierte Werte für aggregierte Attribute
-#     - Einfach: MIN/MAX, COUNT, SUM
-#     - Schwerer: AVG (Warum?)
-#         - AVG ist nicht assoziativ.
-#         - Merke COUNT und SUM
-#         - AVG erst am Ende berechnen
-# - Wieder: Datenstruktur im Hauptspeicher ist wichtig.
-# - Output: Ein Tupel pro Eintrag
-#     - Output erst nachdem letzter Input gesehen wurde (Blockierend)
-# - Hautspeicherkosten: Schwer abzuschätzen
-#     - Einträge selbst können größer oder kleiner als Tupel sein
-#     - Anzahl der Einträge höchstens so groß wie T
-#     - Meistens M << B
+# Bei der Gruppierung wird ein Eintrag pro Gruppe im Hauptspeicher, bzw. ein Eintrag pro Gruppierungswert erzeugt. Dazu nimmt man noch kumulierte Werte für aggregierte Attribute, wie zum Beispiel MIN/MAX, COUNT oder SUM. AVG ist etwas schwieriger, da sich der Wert ändern kann. Hierfür muss man sich zusätzlich noch COUNT und SUM merken, damit man dann am Ende AVG berechnen kann.
+# <br><br>
+# Der Output ist ein Tupel pro Eintrag und wird erst nach dem letzten Input ausgegeben, denn erst dann kann man sicher sein, dass jede Gruppe vollständig betrachtet wurde.
+# Da die Einträge selbst größer oder kleiner als das Tupel sein können, sind die Hauptspeicherkosten schwer abzuschätzen. Die Anzahl der Einträge ist aber höchstens so groß wie *T*. Meistens wird sogar weniger Speicher verwendet, als man Blöcke hat.
+# 
 
 # ### Relationen-basierte binäre Operatoren
 # 
-# - Vereinigung, Schnittmenge, Differenz, Kreuzprodukt, Join
-#     - Außer $\cup_{B}$
-#     
-#     
-# - Annahme: Eine Inputmenge passt in Hauptspeicher
-#     - Wieder: Effiziente Datenstruktur sinnvoll
-#     - Hauptspeicherbedarf: M ≥ min(B(R), B(S))
-#         - Hier: B(S) < B(R)
-#         
-#         
-# - Unterscheidung: Multimengensemantik (z.B. $\cup_{B}$) vs. Mengensemantik ($\cup_{S}$)
+# Zu den Relationen-basierte binäre Operatoren gehören alle mengenbasierten Operatoren sowie Join und das Kreuzprodukt. Bei den mengenbasierten Operationen müssen wir die Multimengenvereinigung ausschließen. Hier ist anzumerken, das Multimengensemantik immer mit einem B ("Bag") abgekürzt ist und Mengensemantik mit einem S ("Set"). 
 # 
-# - R $\cup_{B}$ S trivial
-#     - I/O-Kosten: B(R) + B(S)
-#     - Hauptspeicherbedarf: 1
-#     
-#     
-# - R  $\cup_{S}$ S
-#     - Lese alle Tupel aus S und baue Datenstruktur auf
-#         - Schlüssel ist gesamtes Tupel
-#     - Gebe alle diese Tupel aus
-#     - Lese R ein
-#         - Falls schon vorhanden: Nix tun
-#         - Fall nicht: Ausgeben (Falls R Duplikate enthält muss man im schlimmsten Fall auch R in Speicher halten)
-# - R $\cap_{S}$ S
-#     - Lese alle Tupel aus S und baue Datenstruktur auf
-#         - Schlüssel ist gesamtes Tupel
-#         - Noch keine Tupel ausgeben
-#     - Lese R ein
-#         - Falls vorhanden: Ausgabe
-#         - Falls nicht vorhanden: Nix tun
-#     - Annahme: R und S sind Mengen
-#     
-#     
-# - Mengen-Differenz
-#     - Nicht kommutativ!
-#     - Annahmen
-#         - R und S sind Mengen
-#         - S ist kleiner als R
-#         
-#         
-# - Zunächst immer: Lese S in effiziente Datenstruktur ein
-#     - Gesamtes Tupel ist Schlüssel
-#     
-#     
-# - R $-_{S}$ S
-#     - Lese R ein
-#         - Falls Tupel schon vorhanden: Nix tun
-#         - Falls nicht vorhanden: Ausgabe
-#         
-#         
-# - S $-_{S}$ R
-#     - Lese R ein
-#         - Falls Tupel schon vorhanden: Lösche aus Datenstruktur
-#         - Falls nicht vorhanden: Nix tun
-#     - Gebe übrig gebliebenen Tupel aus.
-#     
-#     
-# - R $\cap_{B}$ S
-#     - Lese S ein
-#         - Merke einen COUNT-Wert pro Tupel
-#     - Lese R ein
-#         - Falls nicht bereits vorhanden: Nix tun
-#         - Falls vorhanden und COUNT > 0: Ausgabe und COUNT reduzieren
-#         - Sonst: Nix tun
-#         
-#         
-# - Multimengendifferenz
-#     - S -B R
-#         - Lese S ein und speichere einen COUNT-Wert
-#         - Lese R ein
-#             - Falls Tupel schon vorhanden: Verringere COUNT
-#             - Falls nicht vorhanden: Nix tun
-#         - Gebe Tupel mit COUNT > 0 entsprechend oft aus.
-#         
-#     - R -B S
-#         - Lese S ein und speichere einen COUNT-Wert (c)
-#             - c Gründe ein Tupel aus R nicht auszugeben
-#     - Lese R ein
-#         - Falls Tupel schon vorhanden und COUNT > 0: COUNT verringern
-#         - Falls Tupel schon vorhanden und COUNT = 0: Ausgabe
-#         - Falls nicht vorhanden: Ausgabe
-#         
-# - R x S
-#     - Lese S in Hauptspeicher ein
-#         - Datenstruktur egal
-#     - Lese R ein
-#         - Konkateniere mit jedem Tupel aus S
-#         - Ausgabe
-#     - Rechenzeit pro Tupel lang: Ausgabe ist eben groß
-# - R(X,Y) ⋈ S(Y,Z) (natural join)
-#     - Lese S in Hauptspeicher ein: Y als Suchschlüssel
-#     - Lese R ein
-#         - Für jedes Tupel, suche passende Tupel aus S und gebe aus
-#     - I/O Kosten: B(S) + B(R)
-#     - Annahme: B(S) ≤ M-1 bzw. vereinfacht: B(S) ≤ M
-#     - Equi-join analog
-#     - Theta-join: analog
+# Es wird angenommen, dass immer eine Relation in den Hauptspeicher passt. Je nachdem, welche Operation man durchführen möchte, muss hier wieder eine sinnvolle Datenstruktur gewählt werden. Sollte nur eine Relation in den Hauptspeicher passen, nimmt man hier die kleinere. Wir gehen davon aus, dass B(S) kleiner als B(R) ist und die Kosten somit ungefähr B(S) + 1 betragen. Deshalb würde man hier B(S) wählen.
+# 
+# ##### Vereinigung
+# Führt man die Vereinigung von R und S in Multimengensemantik durch ( **R $\cup_{B}$ S** ), ist das Tupel-basiert möglich. Die I/O-Kosten betragen B(R) + B(S), da beide Relationen gelesen werden müssen, und der Hauptspeicherbedarf beträgt genau 1.
+# 
+# Bei der Vereinigung von R und S in der Mengensemantik ( **R $\cap_{S}$ S** ) werden erst alle Tupel aus S eingelesen. Über diese Tupel wird dann eine Datenstruktur aufgebaut (Schlüssel ist ein gesamtes Tupel). Diese eingelesenen Tupel werden dann alle ausgegeben und als nächstes wird R eingelesen. Bei jedem Tupel, dass es auch in S gibt, wird nichts gemacht, die anderen werden auch ausgegeben.
+# 
+# ##### Schnittmenge
+# Nimmt man die Schnittmenge von R und S ( **R $\cap_{S}$ S** ), ist der Ablauf ähnlich wie bei der Vereinigung in Mengensemantik. Nach dem Einlesen von S gibt man aber noch keine Tupel aus, da man noch nicht weiß, ob diese in der Schnittmenge enthalten sind. Liest man dann R ein, werden die Tupel, die auch in S vorkommen, ausgegeben, für die anderen wird nichts getan. Voraussetzung für die Schnittmenge ist, dass R und S Mengen sind.
+# 
+# Bei der Schnittmenge von R und S in der Multimengensemantik ( **R $\cap_{B}$ S** ) wird S eingelesen und für jedes Tupel ein COUNT-Wert gespeichert, damit man sehen kann, wie oft ein Tupel gelesen wurde. Dann wird R eingelesen. Kommt ein Tupel aus R in S vor und der COUNT-Wert ist größer als Null, wird dieses Tupel ausgegeben und der COUNT-Wert um eins reduziert. In allen anderen Fällen wird nichts getan.
+# 
+# ##### Mengen-Differenz
+# 
+# Die Mengen-Differenz ist nicht kommutativ, deshalb ist es wichtig, dass man die Relation, von der man etwas abziehen möchte, zuerst nimmt. Auch hier ist wieder vorausgesetzt, dass R und S Mengen sind. Für die beiden folgenden Beispiele angenommen, dass S kleiner als R ist.
+# 
+# Im ersten Schritt wird immer die kleinere Relation, hier S, in eine effiziente Datenstruktur eingelesen. Der Schlüssel ist ein gesamtes Tupel. 
+# 
+# Nimmt man **R $-_{S}$ S**, liest man R ein und gibt jedes nicht in S vorkommende Tupel aus. Die anderen Tupel werden ignoriert. <br>
+# Nimmt man **S $-_{S}$ R**, liest man R ein und löscht alle auch in S vorkommenden Tupel aus der Datenstruktur. Kommt ein Tupel nicht in S vor, wird nichts getan. Alle übrigen Tupel werden einfach ausgegeben.
+# 
+# ##### Multimengen-Differenz
+# 
+# Auch die Multimengendifferenz ist nicht kommutativ und auch hier ist es wichtig, die Relation, von der man etwas abziehen möchte, zuerst zu nehmen. <br>
+# Nimmt man **S $-_{B}$ R** in der Multimengensemantik, liest man auch hier zuerst S ein und speichert wieder für jedes Tupel einen COUNT-Wert. Dann wird wieder R eingelesen und geschaut, ob es in der Relation Tupel gibt die auch in S vorkommen. Falls ja, wird der COUNT-Wert verringert, falls nein, wird nichts getan. Die Tupel werden dem COUNT-Wert entsprechend oft ausgegeben. 
+# 
+# Bei **R $-_{B}$ S** wird für jedes Tupel in S ein COUNT-Wert c gespeichert, welcher c Gründe liefert, ein Tupel aus R nicht auszugeben. Wird dann R eingelesen und ein Tupel ist bereits vorhanden und COUNT ist größer als Null, wird COUNT verringert. Ist COUNT gleich Null oder das Tupel noch nicht vorhanden, wird es ausgegeben.
+# 
+# ##### Kreuzprodukt
+# Bei dem Kreuzprodukt von R und S (**R x S**) wird S wieder zuerst in den Hauptspeicher eingelesen, hierbei ist die Datenstruktur egal. Wird dann R eingelesen, konkatenieren wir mit jedem Tupel aus S und geben das Ergebnis aus. Die Rechenzeit pro Tupel ist sehr lang und die Ausgabe dementsprechend groß.
+# ##### Natural Join
+# Beim Natural Join **R(X,Y) ⋈ S(Y,Z)** wird zuerst S in den Hauptspeicher eingelesen. Y ist hier unser Suchschlüssel - das Join Attribut. Dann wird R eingelesen und man sucht für jedes Tupel der Relation ein passendes Tupel aus S und gibt es aus. Die I/O-Kosten betragen B(S) + B(R). Es wird angenommen, dass B(S) <= M-1 bzw. <= M ist.
+# 
+# Equi-join und Theta-join funktionieren analog.
+# 
 
 # ## Nested Loop Join
 # 
-# - 1.5-pass Algorithmen
-#     - Eine Relation nur einmal einlesen
-#     - Die andere Relation mehrfach einlesen
-# - Größe beider Relationen beliebig
-# - Tupel-basierte Variante – Naïv
+# Zuvor haben wir uns mit Algorithmen und Operatoren beschäftigt, bei denen es ausgereicht hat, eine Relation nur einmal einzulesen, da diese als Ganzes in den Hauptspeicher passte. Nun schauen wir uns Algorithmen an, bei denen nicht mehr davon ausgegangen werden kann, dass der Hauptspeicher ausreichend groß ist.
+# 
+# Der Nested-Loop-Join-Algorithmus ist ein operationsabhängiges Verfahren und ein 1.5-Pass Algorithmus. Die Idee ist, dass eine Relation nur einmal eingelesen wird und die andere Relation mehrfach. Dabei kann die Größe der beiden Relationen beliebig sein. 
+# 
+# Man könnte hier eine Tupel-basierte, naive Variante des Algorithmus durchführen. Dafür holt man sich jeweils ein Tupel aus der Relation S und ein Tupel aus der Relation R und prüft, ob man diese verjoinen kann. Falls ja, wird das Ergebnis ausgegeben. 
 # 
 # ```
 # FOR EACH TUPLE s IN S DO
 #     FOR EACH TUPLE r IN R DO
 #     IF (r.Y = s.Y) THEN OUTPUT (r ⋈ s)
-# ```
+# ``` 
 # 
-# - I/O-Kosten: T(S) + T(S) · T(R)
-# - Verbesserungen
-#     - Index auf Joinattribut in R (später)
-#     - Aufteilung der Tupel auf Blöcke berücksichtigen (gleich)
-#     
+# Die I/O-Kosten sind T(S) + T(S) · T(R), denn man muss jedes Tupel aus S herausfinden und dann für jedes dieser Tupel R-mal alle Tupel aus R lesen. Das lässt sich optimieren, indem man zum Beispiel einen Index für das Joinattribut in R hat oder die Tupel auf Blöcke verteilt.
+# 
 # ### Block-basierter NLJ
+#      
+# Beim Block-basierten Nested Loop Join werden die Tupel nach Blöcken organisiert, was besondern sinnvoll für die innere Schleife ist. Wir versuchen den Hauptspeicher so gut es geht zu nutzen, indem wir ein R-Tupel nicht nur mit einem, sondern mit vielen S-Tupeln verjoinen. Idealerweise ist die äußere Schleife für die kleinere Relation (hier S), damit weniger Vergleiche gemacht werden müssen. Dennoch ist dies schwieriger als im One-Pass, da B(S) größer als M ist. Aus dem Grund brauchen wir auch hier eine effiziente Datenstruktur für S im Hauptspeicher.
 # 
-# - Ideen
-#     - Organisiere Tupel nach Blöcken
-#         - Sinnvoll für innere Schleife
-#     - Nutze Hauptspeicher
-#         - So viel wie möglich von S (äußere Schleife) halten
-#         - -> Ein R-Tupel wird nicht nur mit einem, sondern mit vielen S-Tupeln verjoint.
-#     - Hinweise
-#         - Empfehlung: B(S) ≤ B(R) (wie bisher)
-#         - B(S) > M (schwieriger als bisher in 1-pass)
-#         - Effiziente Datenstruktur für S im Hauptspeicher
-#      
-#      
-#         
+# Im folgenden Codebeispiel sehen wir, wie so ein Block-basierter Nested Loop Join aussieht. Wir holen uns einen chunk von Blöcken aus S und lesen die Blöcke in den Hauptspeicher. Dann organisieren wir die Tupel in effiziente Datenstrukturen, sodass wir die Join Attribute besser als Schlüssel darstellen können. In der nächsten Schleife holen wir dann jeweils einen Block aus R und lesen für jeden Block die Tupel aus. Es werden drei Schleifen benötigt. Die ersten beiden sind für das blockweise Vorgehen zuständig und die Dritte wird gebraucht, weil im Block selber die Tupel im Hauptspeicher noch einmal gelesen werden müssen.
+#        
 # ```
 # FOR EACH chunk of M-1 blocks of S DO BEGIN
-# read blocks into main memory;
-# organize tuples into efficient data structure;
-# FOR EACH block b of R DO BEGIN
-# read b into main memory;
-# FOR EACH tuple t of b DO BEGIN
-# find tuples of S in main memory that join;
-# output those joined tuples;
-# END;
-# END;
+#     read blocks into main memory;
+#     organize tuples into efficient data structure;
+#     FOR EACH block b of R DO BEGIN
+#         read b into main memory;
+#         FOR EACH tuple t of b DO BEGIN
+#             find tuples of S in main memory that join;
+#             output those joined tuples;
+#         END;
+#     END;
 # END;
 # ```
-# 
-# Eigentlich: M – 2 wg. Outputbuffer
-# <br><br>
-# Drei Schleifen?
-# <br><br>
-# 
 # 
 # **Block-basierter NLJ – Kosten**
 # 
-# - B(R) = 1.000
-# - B(S) = 500
-# - M = 101
-# - -> 5x äußere Schleife á 100 I/O
-# - -> jeweils 1.000 I/O für R
-# - = 5.500 I/O
-# - Nun: R in äußerer Schleife
-#     - -> 10x äußere Schleife á 100 I/O
-#     - -> jeweils 500 I/O für S
-#     - = 6.000 I/O
-# - -> Kleinere Relation sollte außen sein.
+# Sagen wir, wir haben eine Relation R mit 1000 Blöcken (**B(R) = 1000**), eine Relation S mit 500 Blöcken (**B(S) = 500**) und 101 Einheiten Platz im Hauptspeicher (**M = 101**). Damit können wir im Hauptspeicher jeweils 100 Blöcke abbilden und jeweils einen Block für R merken, vorausgesetzt es werden keine weiteren Einheiten benötigt. Nun muss die äußere Schleife **fünf Mal** durchlaufen werden (**5 · 100 I/O-Operationen = 500**). Dazu kommen jeweils **1000 I/O-Operationen** für R, womit wir auf insgesamt **5.500 I/O-Operationen** kommen.
 # 
+# Wäre R jetzt in der äußeren Schleife, würde diese Relation zuerst gelesen werden und die Schleife müsste **10 Mal** durchlaufen werden (**10 · 100 I/O-Operationen = 1000**). Dazu würden wieder pro Schleifendurchlauf jeweils **500 I/O-Operationen** für S hinzukommen und ein Ergebnis von **6000 I/O-Operationen** liefern. Wie man sieht, ist es also sinnvoller wenn die kleinere Relation außen ist.
 # 
-# - B(S) = 100
-# - B(R) = 1.000.000
-# - Extremfall 1 (R außen)
-# - 10.000x äußere Schleife á (100 + 100 I/O)
-# - = 10.000 x 200 = 2.000.000 I/O
-# - Extremfall 2 (S außen)
-# - 1x äußere Schleife á (100 + 1.000.000 I/O)
-# - = 1x 1.000.100 I/O
+# In einem weiteren Beispiel haben wir **B(S) = 100** und **B(R) = 1.000.000**. Ist die Relation R außen, muss die Schleife **10.000 Mal** laufen und bei jedem Durchlauf kommen **100 I/O-Operationen** für S hinzu, sodass man am Ende **2.000.000 I/O-Operationen** hat. Ist S in diesem Szenario außen, muss die Schleife nur einmal durchlaufen werden und man hat am Ende **1.000.100 I/O-Operationen**. Also auch hier wieder deutlich, dass es sinnvoller ist, die kleinere Relation außen zu haben.
 # 
+# Im folgenden einmal eine allgemeinere Berechnung. Mit der äußeren Schleife werden so viele Blöcke gelesen, wie in den Hauptspeicher passen. Also wird hierfür die Anzahl der Blöcke von S durch den Platz im Hauptspeicher geteilt. Das wird multipliziert mit M-1 Blöcken von S, addiert mit der Anzahl der Blöcke von R, für die innere Schleife. Das Ergebnis ist nur eine Abschätzung.
+# Die Formel sieht wie folgt aus: 
 # 
-# - Allgemeinere Berechnung
-# -  Äußere Schleife: B(S)/(M − 1)-fach
-# - Jeweils
-#     - M−1 Blöcke von S
-#     - B(R) Blöcke von R
-# - Zusammen
-# 
-# - $\frac{B(S)}{M-1}(M-1+B(R)) = \frac{B(S)(M-1)}{M-1} - \frac{B(S)}{M-1} + \frac{B(S)B(R)}{M-1} \approx B(S)B(R)/M$
+# $\frac{B(S)}{M-1}(M-1+B(R)) = \frac{B(S)(M-1)}{M-1} - \frac{B(S)}{M-1} + \frac{B(S)B(R)}{M-1} \approx\frac {B(S)B(R)}{M}$
 # 
 # ### Zusammenfassung bisheriger Algorithmen
+# 
+# Hier einmal eine Übersicht darüber, wie viel Hauptspeicher die verschiedenen Operationen in den verschiedenen Varianten benötigen und wie viel I/O dabei verbraucht wird.
 # 
 # <img src="pictures/Zusammenfassung-Algorithmen.png" alt="Zusammenfassung-Algorithmen" width="500" style="background-color: white;"/>
 

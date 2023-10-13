@@ -6,7 +6,7 @@
 # <br><br>
 # Im vorherigen Kapitel wurde schon erwähnt, dass der Zugriff auf Daten durch Indizes beschleunigt werden kann. Nach einem **naiven** Ansatz, wo die Datensätze beliebig verteilt sind, muss jeder Block untersucht werden, wenn wir die Anfrage ```SELECT * FROM R``` ausführen. Eine Verbesserung davon wäre es, die Tupel einer Relation zusammenhängend zu speichern. Wenn wir die Anfrage ```SELECT * FROM R WHERE a=10``` ausführen wollen, müssen jefoch alle Datensätze betrachtet werden.
 # <br><br>
-# Noch besser im Gegensatz dazu, ist die Benutzung von **Indizes**. Es werden Eigenschaften von Datensätzen (z.B: Feldwert), wie z.B „Suchschlüssel“ (nicht zu verwechseln mit Primärschlüssel, Sekundärschlüssel, Sortierschlüssel)festgelegt. Der Suchschlüssel ist der Wert, nach welchem gesucht werden soll. Das Ziel ist unteranderem I/O-Kosten zu minimieren und nur möglichst wenige Datensätze zu betrachten. Durch richtiges Verwenden von Indizes, kommt es zu einem schnelleren Output der entsprechenden Tupel.
+# Noch besser im Gegensatz dazu, ist die Benutzung von **Indizes**. Es werden Eigenschaften von Datensätzen, wie z.B „Suchschlüssel“ (nicht zu verwechseln mit Primärschlüssel, Sekundärschlüssel, Sortierschlüssel) festgelegt. Der Suchschlüssel ist der Wert, nach welchem gesucht werden soll. Das Ziel ist unteranderem I/O-Kosten zu minimieren und nur möglichst wenige Datensätze zu betrachten. Durch richtiges Verwenden von Indizes, kommt es zu einem schnelleren Output der entsprechenden Tupel.
 
 # <img src="pictures/Überblick-meme.png" alt="Überblick-meme" width="500" style="background-color: white;"/>
 
@@ -15,7 +15,8 @@
 # Je nachdem wie die Tupel organisiert sind, gibt es verschiedene Varianten Indizes anzulegen. Die einfachste From davon ist wenn eine nach unserem Suchschlüssel sortierte Datei gegeben ist. Dazu gibt es eine Indexdatei, welche  Schlüssel-Pointer Paare enthält. Jeder Schlüsselwert K ist mit einem Pointer verbunden, welcher auf den Datensatz zeigt, der den Schlüsselwert K enthält. Davon gibt es zwei Varianten, einmal den dichtbestzten und einmal den dünnbesetzten Index. Im dichtbesetzten Index gibt es für jeden Datensatz einen Eintrag im Index. Im dünnbesetzten Index, werden nur einige Datensätze im Index repräsentiert, z.B ein Eintrag pro Block.
 
 # **Sequenzielle Dateien: Index Beispiel**
-# In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweils zwei Tupel pro Block gespeichert und es werden insgesamt 5 Blöcke, für unsere 10 Tupel benötigt. In unserem Beispiel ist der Schlüssel eine Zahl, häufig ist der Suchschlüssel auch der Primärschlüssel. Das Schlüsselfeld steht einfachkeitshalber an erster Stelle. Um beispielsweise den Wert 70 zu finden, müssen 4 Blöcke gelesen werden. Im folgenden sehen wir, wie das mit Indizes verbessert werden kann.
+# <br>
+# In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweils zwei Tupel pro Block gespeichert und es werden insgesamt 5 Blöcke, für unsere 10 Tupel benötigt. In unserem Beispiel ist der Schlüssel eine Zahl. Häufig ist der Suchschlüssel auch der Primärschlüssel. Das Schlüsselfeld steht einfachkeitshalber an erster Stelle. Um beispielsweise den Wert 70 zu finden, müssen 4 Blöcke gelesen werden. Im folgenden sehen wir, wie das mit Indizes verbessert werden kann.
 
 # <img src="pictures/Sequentielle-Dateien.png" alt="Sequentielle-Dateien" width="500" style="background-color: white;"/>
 
@@ -25,7 +26,7 @@
 # 
 # **Anfragebearbeitung mit dichtbesetzten Indizes**
 # 
-# Es ist ein Suchschlüssel K Gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sich die Indexdatei schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.
+# Es ist ein Suchschlüssel K gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sich die Indexdatei schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.
 # 
 #      
 # **Beispiel**: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB(vielleicht OK im Hauptspeicher).
@@ -47,7 +48,8 @@
 # 
 # 
 # <br><br>
-# Was kann ein dünnbesetzter Index nicht?
+# **Was kann ein dünnbesetzter Index nicht?**
+# <br>
 # Mit ausschließlich einem dünnbesetzten Index kann nicht überprüft werden, ob ein bestimmter Wert vorhanden ist oder nicht. Beispiel: ```SELECT 'TRUE' FROM R WHERE a=10```. Mit einem dicht-besetzten Index ist das möglich. Gleiches gilt für einen Semi-Join.
 # 
 
@@ -63,11 +65,11 @@
 # Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4MB und für den Index zweiter Stufe = 40KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.
 # 
 # **Vorgehen zur Anfragebearbeitung**
-# 1. Suche im Index zweiter Stufe größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
+# 1. Suche im Index zweiter Stufe den größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
 # 2. Hole entsprechenden Block im Index erster Stufe (eventuell schon im Hauptspeicher)
-# 3. Suche in dem Block größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
-# 4. Hole entsprechenden Datenblock.
-# 5. Suche Datensatz (falls Index erster Stufe dünnbesetzt ist).
+# 3. Suche in dem Block den größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.
+# 4. Hole den entsprechenden Datenblock.
+# 5. Suche den Datensatz (falls Index erster Stufe dünnbesetzt ist).
 # <br><br>
 # 
 # => Für das Beispiel oben sind zusammen nur 2 I/Os nötig
@@ -93,6 +95,7 @@
 #    
 
 # **Idee 3: Dünnbesetzter Index wie gehabt**
+# <br>
 # Der Datenwert wird jeweils am Blockanfang des Datensatzes indexiert.
 # Die Anfragebearbeitung ist wie folgt:
 #  - Suche letzten Eintrag E1 im Index, dessen Datenwert ≤ K
@@ -100,7 +103,7 @@
 #  - Hole alle Datenblöcke zwischen und inklusive E1 und E2.
 #  <br><br>
 #  
-# Beispiel: Wir suchen K = 20. Zuerst muss im "10er-Block" gesucht werden ,da womöglich auch in diesem Block eine 20 ist. Rückwärtssuche ist nötig
+# Beispiel: Wir suchen K = 20. Zuerst muss im "10er-Block" gesucht werden ,da womöglich auch in diesem Block eine 20 ist. Eine Rückwärtssuche ist nötig
 
 # <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" width="500" style="background-color: white;"/>
 
@@ -113,72 +116,47 @@
 # - Hole Datenblock und gegebenenfalls folgende Datenblöcke.
 # <br><br>
 # 
-# Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr kommt.
+# Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr folgt.
 
 # <img src="pictures/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" width="500" style="background-color: white;"/>
 
 # ### Änderungsoperationen
 # 
-# Daten ändern sich (Insert, Update, Delete).
-# - Annahme bisher: Daten füllen Blöcke perfekt und ändern sich nicht
-# - Änderungen im Datenblock: Siehe auch voriger Foliensatz
-#      - Overflow Blocks
-#          - In dünnbesetzten Indizes nicht repräsentiert
-#      - Neue Blöcke in der Sequenz
-#          - Benötigen neuen Indexeintrag
-#          - Indexänderungen bergen dieselben Probleme wie Datenänderungen: Platzierung der Blöcke; Indizes höherer Stufe
-#      - Tupel verschieben
-#          - Index muss angepasst werden.
-# - Generelle Regel: Indizes können wie normale data files behandelt werden. Gleiche Strategien können angewendet werden.
+# Daten ändern sich durch Insert-, Update-, und Deleteoperationen. Unsere bisherige Annahme ist, dass die Daten die Blöcke perfekt füllen und sich nicht ändern. Wenn jedoch Änderungen im Datenblock passieren, verändern sich die Indizes wie folgt:
+#  - Overflow Blocks 
+#      - In dünnbesetzten Indizes nicht repräsentiert
+#  - Neue Blöcke in der Sequenz 
+#      - Benötigen neuen Indexeintrag
+#      - Indexänderungen bergen dieselben Probleme wie Datenänderungen: Platzierung der Blöcke; Indizes höherer Stufe
+#  - Tupel verschieben
+#      - Index muss angepasst werden.
+#      
+# Generell könne Indizes wie normale data files behandelt werden und dieselben Strategien angewendet werden.
 
 # **Änderungsoperationen Beispiele**
 # 
-# **Beispiel 1**
-# 
-# - Datensatz mit K = 30 wird gelöscht.
-# - Annahme: Block kann/soll nicht reorganisiert werden. 
-#      - Ersatz durch tombstone
-# - Datensatz 40 wird nicht verschoben.
-# - Index kann reorganisiert werden. 
-#      - Main memory
+# **Beispiel 1: Dichtbesetzter Index**
+# <br>
+# Der Datensatz mit K = 30 wird gelöscht. Wir nehmen an der Block kann/soll **nicht** reorganisiert werden und an der gelöschten Stell wird ein Grabstein gesetzt. Der Datensatz 40 wird nicht verschoben und der Index wird reorganisiert werden, wenn er sich im Hauptspeicher befindet.
 
 # <img src="pictures/Änderungsoperationen.png" alt="Änderungsoperationen" width="500" style="background-color: white;"/>
 #    
 
-# **Beispiel 2**
-# 
-# - Datensatz mit K = 30 wird gelöscht. 
-#     - Annahme: Block kann/soll reorganisiert werden.
-#     - Datensatz 40 wird verschoben
-#     - Index wird aktualisiert
-# - Nun auch Datensatz mit K=40 Löschen 
-#      - Leerer Block entsteht 
-#      - Index wird aktualisiert (löschen) 
-#      - Index wird reorganisiert
+# **Beispiel 2: Dünnbesetzter Index**
+# <br>
+# Der Datensatz mit K = 30 wird gelöscht.  Wir nehmen an der Block kann/soll reorganisiert werden. Der Datensatz 40 wird nach dem Löschen der 30 verschoben und der Index wird aktualisiert. Wenn nun auch Datensatz mit K=40 gelöscht werden soll entsteht ein leerer Block und die 50 und 70 schieben sich nach oben.
 
 # <img src="pictures/Änderungsoperationen_2.png" alt="Änderungsoperationen_2" width="500" style="background-color: white;"/>
 
-# **Beispiel 3**  
-# 
-# - Einfügen eines Datensatzes 15
-#      - Block 1 ist voll.
-#      - Datensatz 20 wird in nächsten Block verschoben.
-#          - Block wird reorganisiert.
-#      - Datensatz 15 wird eingefügt.
-#      - Index wird aktualisiert.
-#          - 20 statt 40
+# **Beispiel 3: Dünnbesetzter Index**  
+# <br>
+# Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Block 1 ist voll. Demnach wird der Datensatz 20 in den nächsten Block verschoben und der Block wird reorganisiert. Der Datensatz 15 wird eingefügt und der Index wird aktualisiert.
 
 # <img src="pictures/Änderungsoperationen_3.png" alt="Änderungsoperationen_3" width="500" style="background-color: white;"/>
 
-# **Beispiel 4**
+# **Beispiel 4: Dünnbesetzter Index**
 # 
-# - Wieder Datensatz 15 einfügen 
-#      - Diesmal mit Overflow Blocks 
-#      - Block 1 ist voll. 
-#      - Datensatz 20 wird in Overflow Block verschoben.
-#      - Datensatz 15 wird eingefügt. 
-#      - Index bleibt gleich
-#  
+# Eine weitere Möglichkeit die 15 einzufügen ist mit einem Overflow Block. Der Block 1 ist weiterhin voll. Der Datensatz 20 wird in einen Overflow Block verschoben und der Datensatz 15 wird eingefügt. Der Index bleibt in diesem Fall gleich. 
 
 # <img src="pictures/Änderungsoperationen_4.png" alt="Änderungsoperationen_4" width="500" style="background-color: white;"/>
 
