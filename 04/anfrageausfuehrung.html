@@ -535,7 +535,7 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht.
 <strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).</p>
 <p><strong>Iterator – Beispiel</strong></p>
-<a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
+<img src="pictures/Iterator-Beispiele_2.png" alt="Iterator-Beispiele_2" width="500" style="background-color: white;"/>
 <br>
 <p><strong>Überblick über das Weitere</strong></p>
 <p>Es gibt <strong>drei Klassen</strong> von Algorithmen: <em>Sort-basierte, Hash-basierte und Index-basierte Algorithmen</em>. Diese sind entweder <em>One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen</em> und haben somit <strong>drei Schwierigkeitsgrade</strong> die sich darin unterscheiden, wie oft über die Daten gelesen wird.
