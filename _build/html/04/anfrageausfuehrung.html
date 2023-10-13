@@ -523,8 +523,9 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
 <p><strong>Iterator – Beispiel</strong></p>
 <p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
-<img src="pictures/Iterator-Beispiel.png" alt="Iterator-Beispiel" width="500" style="background-color: white;"/>
-<br><br>
+<a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
+<p><br><br></p>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
 <p>Wir sehen hier die Relationen <em>R</em>, <em>S</em> und <em>T</em>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
 <img src="pictures/Pipelining-vs-Pipelin-Breaker_2.png" alt="Pipelining-vs-Pipelin-Breaker_2" width="500" style="background-color: white;"/>
