@@ -3,13 +3,11 @@
 
 # # Speicherung
 
-# Physische Speicherstrukturen
-
-# Zoom in die interne Ebene: Die 5-Schichten Architektur
+# ## Zoom in die interne Ebene: Die 5-Schichten Architektur
 # 
 # <img src="pictures/5-Schichten-Architektur.png" alt="5-Schichten-Architektur" width="500" style="background-color: white;"/>
 # 
-# Auf der Datenmodellebene können Relationen definiert und die Relationale Algebra verwendet werden. Darunter liegt die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie diese verteilt sind. Die nächsten Ebenen kümmeren sich um die Speicherstrukturen, also wo die Daten physisch abgelegt wurden und über welche Puffer bzw. Schnittstellen auf diese zugegriffen werden kann. Unter diesen Ebenen liegt noch eine weitere Schnittstelle zum Betriebssystem. Dabei gibt es zwei Varianten wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zusammenzuarbeiten, bei der anderen versucht man es zu umgehen. 
+# Auf der Datenmodellebene können Relationen definiert und die relationale Algebra verwendet werden. Darunter befindet sich die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie sie verteilt sind. Die nächsten Ebenen beschäftigen sich mit den Speicherstrukturen. Also wo die Daten physisch abgelegt sind und über welche Puffer bzw. Schnittstellen darauf zugegriffen werden kann. Unterhalb dieser Ebenen befindet sich noch eine weitere Schnittstelle zum Betriebssystem. Es gibt zwei Varianten, wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zu arbeiten, bei der anderen Variante versucht man es zu umgehen. 
 # 
 
 # ## Speicherhierarchie
@@ -76,10 +74,10 @@
 #   <img src="pictures/moores-law_1.png" alt="moores-law_1" width="400" style="background-color: white;"/>
 #   <img src="pictures/moores-law_2.png" alt="moores-law_2" width="300" style="background-color: white;"/>
 # 
-# Moore's Law beschreibt das exponentielle Wachstum vieler Parameter. Zu einer Verdopplung kommt es alle 18 Monate. Es können sich beispielsweise die folgenden Parameter verdoppeln bzw. halbieren:
+# Moore's Law beschreibt das exponentielle Wachstum vieler Parameter. Alle 18 Monate findet eine Verdoppelung statt. Zum Beispiel können sich folgende Parameter verdoppeln oder halbieren:
 #   - Prozessorgeschwindigkeit (# instr. per sec.)
 #   - Hauptspeicherkosten pro Bit
-#   - Anzahl Bits pro cm² Chipfläche
+#   - Anzahl der Bits pro cm² Chipfläche
 #   - Diskkosten pro Bit (halbiert)
 #   - Kapazität der größten Disks
 #   
@@ -87,11 +85,11 @@
 # 
 # <img src="pictures/moores-law_3.png" alt="moores-law_3" width="500" style="background-color: white;"/>
 # 
-# In dem Diagramm ist die Anzahl der Transistoren in Abhängigkeit der Zeit dargestellt worden. 
+# Das Diagramm zeigt die Anzahl der Transistoren als Funktion der Zeit. 
 # 
 # <img src="pictures/moores-law_4.png" alt="moores-law_4" width="500" style="background-color: white;"/>
 # 
-# See also: http://www.computerhistory.org/timeline/memory-storage/ 
+# Siehe auch: http://www.computerhistory.org/timeline/memory-storage/ 
 
 # ### Plattenkapazität
 # 
@@ -113,35 +111,35 @@
 # http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm
 
 # ### SSDs
-# Die persistente Speicherung von SSDs basiert auf Halbleitern. Sie haben keine mechanische Bewegung oder Rotation. Außerdem bieten SSDs einen hohen Grad an Parallelität. 
+# Die persistente Speicherung von SSDs basiert auf Halbleitern. Es gibt keine mechanische Bewegung oder Rotation. Außerdem bieten SSDs einen hohen Grad an Parallelität. 
 #   
 #   <img src="pictures/SSDs.png" alt="SSDs" width="500" style="background-color: white;"/>
 
 # ### HDDs vs. SSDs
 # 
 # Im Vergleich zu HDDs bieten SSDs einige Vorteile:
-# - Schnelles Hochfahren, da keine Drehung erforderlich.
-# - Schneller Random Access ohne Suchzeit.
+# - Schnelles Hochfahren, da keine Drehung erforderlich ist.
+# - Schneller Random Access ohne Suchzeiten.
 # - Geringe Leselatenz.
-# - Lesezeit immer fast gleich.
+# - Immer nahezu gleiche Lesezeit.
 # - Keine Probleme durch Dateifragmentierung.
-# - Stille Operationen.
-# - Weniger Stromverbrauch.
+# - Stille Operationen und leiser Betrieb.
+# - Geringer Stromverbrauch.
 # - Mechanische Zuverlässigkeit.
 # - Immun gegen Magnete.
-# - Weniger Gewicht.
+# - Geringeres Gewicht.
 # - Parallele Lesezugriffe.
 # 
-# SSDs besitzen aber auch Nachteile, die bei der Wahl zwischen HDD und SSD berücksichtigt werden sollten:
-# - Begrenzte Lebenszeit.
-# - Verliert Daten nach 2-5 Jahren ohne Strom.
+# SSDs haben jedoch auch Nachteile, die bei der Entscheidung zwischen HDD und SSD berücksichtigt werden sollten:
+# - Begrenzte Lebensdauer.
+# - Datenverlust nach 2-5 Jahren ohne Strom.
 # - Können nicht defragmentiert werden.
 # - Teuer.
-# - Weniger Kapazität.
-# - Asymmetrische Lese/Schreibgeschwindigkeit aufgrund der Flashtechnologie.
-# - Leistung von SSDs schwindet mit der Zeit.
-# - SATA-basierte SSDs haben sehr langsame Schreiboperationen.
-# - DRAM-basierte SSDs benötigen mehr Strom als HDDs.
+# - Geringere Kapazität.
+# - Asymmetrische Lese/Schreibgeschwindigkeit aufgrund der Flash-Technologie.
+# - Leistung von SSDs nimmt mit der Zeit ab.
+# - SATA-basierte SSDs haben sehr langsame Schreibvorgänge.
+# - DRAM-basierte SSDs verbrauchen mehr Strom als HDDs.
 # - Kein sicheres Überschreiben.
 # 
 # Über weitere Vor- und Nachteile können Sie <a href="https://databasearchitects.blogspot.com/2021/06/what-every-programmer-should-know-about.html">hier</a> weiterlesen.
@@ -153,7 +151,7 @@
 
 # ### Aufbau
 # 
-# Eine Festplatte besteht aus mehreren (5-10) gleichförmig rotierenden Platten (z.B. 3.5" Durchmesser). Für jede Plattenoberfläche (10-20) gibt es einen Schreib-/Lese-Kopf, der sich gleichförmig bewegt. Die magnetische Plattenoberfläche ist in Spuren eingeteilt.
+# Eine Festplatte besteht aus mehreren (5-10) gleichförmig rotierenden Platten (z.B. 3.5" Durchmesser). Für jede Plattenoberfläche (10-20) gibt es einen Schreib-/Lesekopf, der sich gleichmäßig bewegt. Die magnetische Plattenoberfläche ist in Spuren unterteilt.
 # Spuren sind als Sektoren fester Größe formatiert, wobei sich die Anzahl der Sektoren pro Spur unterscheiden kann. Übereinander angeordnete Spuren bilden einen Zylinder. Die Platten sind übereinander angeordnet, um Zugriffseffizienz zu ermöglichen. Der Kopf kann parallel auch an anderen Stellen lesen und schreiben. 
 # 
 # <img src="pictures/Aufbau_1.png" alt="Aufbau_1" width="500" style="background-color: white;"/>
@@ -171,17 +169,17 @@
 
 # ### Zone Bit Recording
 # 
-# Mehrere Spuren übereinander betrachtet ergeben einen Zylinder. Die äußeren Zylinder haben einen größeren Radius und somit auch mehr Fläche. Bei gleichen Radii führt dies zu einer (nicht notwendigen) niedrigeren Bitdichte.
+# Mehrere Spuren übereinander betrachtet bilden einen Zylinder. Die äußeren Zylinder haben einen größeren Radius und damit eine größere Fläche. Bei gleichen Radien führt dies zu einer (nicht notwendigen) geringeren Bitdichte.
 # Die Lösung sind Zonen mit unterschiedlichen Sektoreinteilungen.
-# Für die folgenden Berechnungen ignorieren wir diesen Fall.
+# Für die folgenden Berechnungen wird dieser Fall vernachlässigt.
 # 
 # <img src="pictures/ZoneBitRecording.png" alt="ZoneBitRecording" width="500" style="background-color: white;"/>
 # 
 
 # ### Disk Controller
 # 
-# Ein Disk Controller kontrolliert eine oder mehrere Disks und die Bewegung der Schreib-/Lese-Köpfe. 
-# Außerdem wählt er die Plattenoberfläche, auf die zugegriffen werden muss und den Sektor innerhalb der Spur, die sich aktuell unter dem Schreib-/Lese-Kopf befindet. Dadurch kontrolliert er Start und Ende eines Sektors.
+# Ein Disk Controller steuert eine oder mehrere Disks und die Bewegung der Schreib-/Lese-Köpfe. 
+# Außerdem wählt er die Plattenoberfläche aus, auf die zugegriffen werden soll und den Sektor innerhalb der Spur, die sich gerade unter dem Schreib-/Lese-Kopf befindet. Auf diese Weise kontrolliert er den Start und das Ende eines Sektors.
 # Der Disk Controller überträgt noch Bits zwischen Disk und Hauptspeicher und umgekehrt.
 # 
 # <img src="pictures/DiskController.png" alt="DiskController" width="500" style="background-color: white;"/>
@@ -207,20 +205,20 @@
 
 # ### Latenzzeit
 # 
-# - Latenzzeit setzt sich aus der Summe von vier Komponenten zusammen:
-#     1. Kommunikationszeit zwischen Prozessor und Disk Controller:
-#        - Es beträgt nur den Bruchteil einer Millisekunde und kann daher bei Berechnungen hier ignoriert werden. 
+# Die Latenzzeit setzt sich aus der Summe von vier Komponenten zusammen:
+# 1. Kommunikationszeit zwischen Prozessor und Disk Controller:
+#     - Sie beträgt nur Bruchteile einer Millisekunde und kann daher bei Berechnungen hier vernachlässigt werden. 
 # 
-#     2. Seektime (Suchzeit) zur Positionierung des Kopfes unter richtigem Zylinder:
-#        - Die Suchzeit ist zwischen 0 und 40 ms ( proportional zum zurückgelegten Weg).
-#        - Sie setzt sich zusammen aus Startzeit (1 ms), Bewegungszeit (0 – 40 ms) und Stopzeit (1 ms).
+# 2. Seektime (Suchzeit), um den Kopf unter dem richtigen Zylinder zu positionieren:
+#     - Die Suchzeit ist zwischen 0 und 40 ms ( proportional zum zurückgelegten Weg).
+#     - Sie setzt sich zusammen aus Startzeit (1 ms), Bewegungszeit (0 – 40 ms) und Stopzeit (1 ms).
 # 
-#     3. Rotationslatenzzeit zur Drehung der Disk bis der erste Sektor des Blocks unter S-/L-Kopf liegt:
-#        - Durchschnittlich benötigt es eine halbe Umdrehung (4 ms) bis der erste Sektor des Blocks unter dem S-/L-Kopf liegt.
-#        - Es ist eine Optimierung durch Spur-Cache im Disk-Controller möglich.
+# 3. Rotationslatenzzeit für die Drehung der Disk, bis sich der erste Sektor des Blocks unter S-/L-Kopf befindet:
+#     - Durchschnittlich benötigt es eine halbe Umdrehung (4 ms) bis der erste Sektor des Blocks unter dem S-/L-Kopf liegt.
+#     - Eine Optimierung durch Spur-Cache im Disk-Controller ist möglich.
 # 
-#     4. Transferzeit zur Drehung der Disk bis alle Sektoren und die Lücken des Blocks unter S-/L-Kopf passiert sind:
-#        - Es wird ca. ein 16 KB-Block in 0.25 ms passiert.
+# 4. Die Transferzeit für die Drehung der Disk, bis alle Sektoren und die Lücken des Blocks unter dem S-/L-Kopf durchlaufen sind:
+#     - Etwa ein 16 KB-Block in 0.25 ms durchlaufen.
 
 # ### Schreiben und Ändern von Blöcken
 # 
@@ -492,7 +490,7 @@
 
 # ### Prefetching
 # 
-# Die Idee von Prefetching ist es voraussagen zu können, welche Blöcke in naher Zukunft gebraucht werden. Diese kann man dann früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</br>
+# Die Idee von Prefetching ist es, voraussagen zu können, welche Blöcke in naher Zukunft gebraucht werden. Diese kann man dann früh (bzw. während man sie sowieso passiert) in den Hauptspeicher laden.</br>
 # Beim Lesen in der 2. Phase von TPMMS werden 16 Blöcke für die 16 Teillisten reserviert. Es ist viel Hauptspeicher frei. Daher können zwei Blöcke pro Teilliste reserviert werden. Man geht bei TPMMS sowieso davon aus, dass der nächste Block irgendwann gelesen wird. Ein Block wird dann gefüllt, während der andere abgearbeitet wird. Wenn einer entleert ist, wird zum Anderen gewechselt. Die Laufzeit wird aber nicht verbessert.</br>
 # Daher als Idee zur Verbesserung: Die Kombination mit guter Spur- oder Zylinderorganisation.
 # Beim Schreiben in Phase 1 von TPMMS sollen Teillisten auf ganze, aufeinanderfolgende Spuren / Zylinder geschrieben werden. 

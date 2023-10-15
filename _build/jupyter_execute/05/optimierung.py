@@ -706,201 +706,137 @@
 
 # ### Bottom-up Anfrageplangenerierung
 # 
-# ■ Annahme 1:
-# Nach dem Join über k Relationen ist die Wahl der Join-Methode die k+1te Relation hinzuzujoinen unabhängig
-# von den vorigen Join-Methoden.
-# □ Joinmethoden: Nested Loops, Hashjoin, Sort-Merge Join usw.
-# ■ Annahme 2:
-# Jeder Teilplan eines optimalen Plans ist ebenfalls optimal.
-# □ Entspricht dem Prinzip der Optimalität
-# □ Anders: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan
-# auch der bessere Gesamtplan
-# ■ Bottom-up Anfrageplangenerierung:
-# □ Berechne die optimalen Pläne für den Join über (jede Kombination von) k Relationen
-# o Suboptimale Pläne werden verworfen
-# o Erweitere diese Pläne zu optimalen Plänen für k+1 Relationen.
-# o usw. bis k = n
+# Bei der Bottom-up Anfrageplangenerierung müssen zunächst zwei Annahmen getroffen werden. 
+# Bei der ersten Annahme ist nach dem Join über k Relationen die Wahl der Join-Methode die k+1te Relation hinzuzujoinen unabhängig von den vorigen Join-Methoden. 
+# von den vorigen Join-Methoden. Joinmethoden sind unter Anderem Nested Loops, Hashjoin, Sort-Merge Join usw.</br>
+# Bei der zweiten Annahme wird angenommen, dass jeder Teilplan eines optimalen Plans ebenfalls optimal ist. Dies entspricht dem **Prinzip der Optimalität**.
+# Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan auch der bessere Gesamtplan. </br>
+# Die **Bottom-up Anfrageplangenerierung** berechnet die optimalen Pläne für den Join über (jede Kombination von) k Relationen. Dabei werden die suboptimale Pläne verworfen. Alle anderen Pläne werden zu optimalen Plänen für k+1 Relationen erweitert (usw. bis k = n).
 
 # ### Dynamische Programmierung
 # 
 # <img src="pictures/Dynamische-Programmierung.png" alt="Dynamische-Programmierung" width="500" style="background-color: white;"/>
+# 
+# Begonnen wird in der Dynamischen Programmierung bei der leeren Menge. Danach werden die Relationen (R, S, T, U) einzeln und in Kombination miteinander betrachtet bis man eine Kombination aller möglichen Relationen erhält ({R,S,T,U}). 
 
 # ### DP – Grundidee für Anfrageoptimierung
-# 
-# <img src="pictures/Dynamische-Programmierung_2.png" alt="Dynamische-Programmierung_2" width="400" style="background-color: white;"/>
-# 
-# ■ Für jede Kombination merke (in einer Hilfstabelle):
-# □ Geschätzte Größe des Ergebnisses (Kardinalität)
-# □ Geschätzte minimale Kosten
-# – Hier zur Vereinfachung: Größe des Zwischenergebnisses
-# □ Joinreihenfolge, die diese Kosten verursacht (= optimaler Teilplan)
-# ■ Induktion über Anzahl der Relationen im Plan
-# □ $N=1$: Für jede Relation
-# – Kardinalität = Kardinalität der Relation
-# – Kosten = 0 (zur Vereinfachung)
-# – Joinreihenfolge: n/a
-# □ $N=2$: Für jedes Relationenpaar R, S
-# – Kardinalität = $|R| \times |S| \times sf$
-# – Kosten = 0
-# – Joinreihenfolge: kleinere Relation links
-# – Clou: R und S jeweils mit besten access-path
-# □ $N=3$: Für jedes Tripel R, S, T
-# – Clou: Nur bestes Relationenpaar aus dem Tripel wird um dritte Relation ergänzt
+# Für jede Kombination der verschiedenen Relationen muss man sich in einer Hilfstabelle die geschätzte Größe des Ergebnisses (Kardinalität) und die geschätzten minimalen Kosten notieren. Hier wird zur Vereinfachung die Größe des Zwischenergebnisses gemerkt. Die Joinreihenfolge, die diese Kosten verursacht entspricht dem optimalen Teilplan. </br>
+# </br>
+# Es wird eine Induktion über die Anzahl der Relationen im Plan durchgeführt.
+# Beginnend bei $N=1$ wird Für jede Relation die Kardinalität notiert. Sie ist gleich der Kardinalität der Relation. Ein weiterer Punkt sind die Kosten. Sie sind im ersten Schritt (zur Vereinfachung) gleich 0, da noch kein Join ausgeführt wurde. Die Joinreihenfolge ist n/a, da in diesem Schritt nur einzelne Relationen betrachtet werden. 
+# Ist $N=2$ wird für jedes Relationenpaar wie R, S die Kardinalität mit $Kardinalität = |R| \times |S| \times sf$ berechnet. Die Kosten bleiben weiterhin bei 0, weil noch immernoch kein Join ausgeführt wurde. Für die Joinreihenfolge ist noch zu beachten, dass die kleinere Relation links ist. Der Clou dabei ist, dass R und S jeweils mit besten access-path gejoint werden. 
+# Für $N=3$ wird jedes Tripel R, S, T betrachtet. Clou ist, dass nur das beste Relationenpaar aus dem Tripel um eine dritte Relation ergänzt wird
 
 # ### DP – Beispiel
 # 
 # <img src="pictures/DP-Beispiel.png" alt="DP-Beispiel" width="200" style="background-color: white;"/>
 # 
-# ■ Anfrage über Relationen R, S, T, U.
-# ■ Vier Join-Bedingungen
+# Im Beispiel wird eine Anfrage über die vier Relationen R, S, T, U gestellt. 
+# Es gibt vier Join-Bedingungen. In der Tabelle werden Kardinalität, Kosten und der optimale Plan festgehalten. Im ersten Schritt ist der optimale Plan ein Scan der jeweiligen Relation. 
 
 # <img src="pictures/DP-Beispiel_2.png" alt="DP-Beispiel_2" width="500" style="background-color: white;"/>
 
 # <img src="pictures/DP-Beispiel_3.png" alt="DP-Beispiel_3" width="500" style="background-color: white;"/>
+# 
+# Zwischen den Relationen, die kein Joinattribut haben, muss ein Kreuzprodukt gebildet werden. Das wäre der Fall bei S, T und T, R. Die Kreuzprodukte werden im weiteren Verlauf nicht weiter berücksichtigt. Alle anderen Kombinationen an Relationen werden über die jeweiligen Joinattriubte miteinander gejoint. </br>
+# Um Joins mit drei Relationen zu bilden, müssen die Joins zwischen zwei Relationen mit den günstigsten Kardinalitäten ausgewählt werden. Für die Kombination {R, S, T} würden {R, S}, {R, T} und {S, T} in Frage kommen. Da aber {R, T} eine sehr hohe Kardnalität hat und auch vorher bereits aussortiert wurde, wählt man die anderen beiden: {R, S} und {S, T}. Die Kosten sind dann die Kardinalität der günstigeren Relationen. In dem Fall {S, T} mit 2000.
 
 # <img src="pictures/DP-Beispiel_4.png" alt="DP-Beispiel_4" width="500" style="background-color: white;"/>
+# 
+# Zum Schluss berechnet man die Summe aus Kardinalität und Kosten. Somit ist der Joinplan mit Kosten von 3000 der optimale Plan.
 
 # ### DP - interesting orders (Interessante Sortierung)
 # 
-# ■ WdH.: Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan
-# auch der bessere Gesamtplan.
-# ■ Gegenbeispiel?
-# □ $R(A,B) \Join S(A,C) \Join T(A,D)$
-# □ Bester (lokaler) Plan für R ⋈ S: Hash-Join
-# □ Best (globaler) Gesamtplan:
-# – 1. Sort-merge Join über R und S
-# – 2. Sort-merge Join mit T
-# ■ Warum könnte dies so sein?
-# □ Das Zwischenergebnis von R ⋈sort-mergeS ist nach Join-Attribut A sortiert.
-# □ Dies ist eine interesting order, die später ausgenutzt werden kann:
-# – Spätere sort-merge Joins
-# – Gruppierung (`GROUP BY`)
-# – Sortierung (`ORDER BY`)
-# – Eindeutige Tupel (`DISTINCT`)
+# ```{note}
+# Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan.
+# ```
+# 
+# Ein Gegenbeispiel zu dem Prinzip der Optimalität ist das Beispiel mit dem Plan $R(A,B) \Join S(A,C) \Join T(A,D)$. Der beste lokale Plan für $R \Join S$ ist ein Hash-Join. Aber für den globalen Plan wäre zunächst ein Sort-merge Join über R und S
+# und dann ein Sort-merge Join mit T besser geeignet. </br>
+# Der Grund dafür ist, dass das Zwischenergebnis von $R \Join _{sort-merge} S$ nach dem Join-Attribut A sortiert ist. Dies ist eine sogenannte **interesting order**, die später ausgenutzt werden kann durch:
+# - Spätere sort-merge Joins
+# - Gruppierung (`GROUP BY`)
+# - Sortierung (`ORDER BY`)
+# - Eindeutige Tupel (`DISTINCT`)
 # 
 # 
 # 
-# ■ Bei Auswahl des besten Teilplans:
-# □ Kostenvergleich genügt nicht.
-# – Es gibt keine vollständige Ordnung der Teilpläne nach Kosten.
-# □ Auch Sortierungen müssen berücksichtigt werden.
-# ■ Lösung: Für jede Kombination von Relationen, speichere mehrere Sortiervarianten:
-# □ Nach jeder Variante der beteiligten Teilpläne
-# □ Die “leere” Sortierung
-# □ DP Tabellen werden „breiter“.
-# ■ Kostenmodell muss verfeinert werden
-# □ Echte I/O Kosten, statt Größe des Zwischenergebnisses
-# ■ Merke außerdem Join- und Sortieroperationen, die diese Sortierung erzeugen.
-# □ Also der Plan
+# Bei der Auswahl des besten Teilplans genügt ein Kostenvergleich nicht, da es keine vollständige Ordnung der Teilpläne nach Kosten gibt. Auch Sortierungen müssen hierbei berücksichtigt werden. </br>
+# Gelöst wird das Problem, indem man für jede Kombination von Relationen, mehrere Sortiervarianten speichert. Das kann nach jeder Variante der beteiligten Teilpläne sein. Die “leere” Sortierung ist der Ausgangspunkt. Also die Variante, die der anfänglichen Sortierung entspricht. Die ursprünglichen DP Tabellen werden somit immer größer, da jede Kombination noch unterschiedliche Joinvarianten beinhaltet. </br>
+# Das Kostenmodell muss auch verfeinert werden. Es werden echte I/O Kosten, statt der Größe des Zwischenergebnisses, genommen. Außerdem werden die Join- und Sortieroperationen (der Plan), die diese Sortierung erzeugen, gemerkt. 
 
 # ### DP – Algorithmus
 # 
 # <img src="pictures/DP-Algorithmus.png" alt="DP-Algorithmus" width="500" style="background-color: white;"/>
 # 
-# Quelle: http://dx.doi.org/10.1145/371578.371598
+# Ein DP Algorithmus kann beispielsweise wie der aus dem Paper [The state of the art in distributed query processing](http://dx.doi.org/10.1145/371578.371598) von Donald Kossmann ausehen. 
 
 # ## Physische Anfragepläne
 # 
-# ### Letzte Schritte
-# 
-# ■ Wahl des jeweiligen Algorithmus
-# □ Wenn nicht schon zuvor (z.B. bei DP) geschehen
-# □ Hier nur beispielhaft: Selektion und Join
-# ■ Pipelining vs. Blocking
-# ■ Zugriffsmethoden für Relationen
-# 
-# ■ Pipelining vs. Blocking
-# 
-# ■ Zugriffsmethoden für Relationen
+# Bei den Physischen Anfrageplänen müssen noch einige letzte Schritte vollführt werden. 
+# Dazu gehört die Wahl des jeweiligen Algorithmus, wenn das nicht schon zuvor (z.B. bei DP) geschehen ist. Hier werden nur beispielhaft Selektions- und Joinmethoden angeschnitten. Außerdem muss zwischen Pipelining und Blocking, sowie die Zugriffsmethoden für Relationen gewählt werden. 
 
 # ### Wahl der Selektionsmethode
 # 
-# Wahl der Selektionsmethode
-# ■ Schon kennengelernt
-# □ Variante 1: Ganz R lesen und Selektionsbedingung auf jedes Tupel anwenden
-# □ Variante 2: Falls Index auf Selektionsattribut vorhanden: Zugriff über Index
-# – Voraussetzung: Index und Gleichheitsbedingung
-# ■ Jetzt: Verallgemeinerung auf mehrere Selektionen auf verschiedenen Attributen
-# □ Mit oder ohne Index
-# □ Gleichheit oder Ungleichheit ($<$, $>$, $\leq$, $\geq$, $\neq$)
-# 
-# 
-# ■ Annahme: Mindestens eine Selektionsbedingung kann einen Index verwenden.
-# ■ Vorgehen mit Indizes (jeweils viele Alternativen):
-# □ Verwende Indizes um Schnittmenge der Pointermengen zu ermitteln
-# □ Lese diese Tupel ein (Index-scan)
-# □ Wende darauf „Filter“-Operator an: Prüft alle übrigen Bedingungen
-# ■ Vorgehen ohne Indizes
-# □ Table-scan für ganz R
-# □ Wende Filter-Operator für alle Bedingungen an
-# ■ Filter-Operator findet nur im Hauptspeicher statt: Keine Kosten
-# ■ Jetzt: Kostenvergleich der Alternativen
+# Zuvor wurden schon zwei Varianten behandelt. Bei der Ersten muss R ganz gelesen und die Selektionsbedingung auf jedes Tupel angewendet werden. Bei der zweiten Variante wird über den Index zugegriffen, falls der Index auf dem Selektionsattribut vorhanden ist. Die Voraussetzungen dafür sind die Index- und Gleichheitsbedingung. </br>
+# </br>
+# Jetzt wird eine Verallgemeinerung auf mehrere Selektionen auf verschiedenen Attributen betrachtet. Sowohl mit, als auch ohne Index. Bei Gleichheit oder eben auch bei Ungleichheit ($<$, $>$, $\leq$, $\geq$, $\neq$). </br>
+# </br>
+# Es muss eine Annahme vorweg gelten: Mindestens eine Selektionsbedingung kann einen Index verwenden. </br>
+# Das Vorgehen mit Indizes (jeweils viele Alternativen hierzu) beginnt mit dem Ermitteln der Schnittmenge der Pointermengen unter Verwendung von Indizes. Dann werden die Tupel eingelesen (Index-scan). Darauf wird ein „Filter“-Operator angewandt, der alle übrigen Bedingungen prüft.</br>
+# Beim Vorgehen ohne Indizes wird zunächst ein Table-scan für ganz R ausgeführt. Es wird dann ein Filter-Operator für alle Bedingungen angewandt. Der Filter-Operator findet nur im Hauptspeicher statt, sodass dieser keine Kosten verursacht. 
 
 # ### Kostenvergleich der Selektionsmethoden
 # 
-# ■ Bisher: Kostenschätzung durch Schätzung der Ergebnisgröße
-# □ Kardinalität des Zwischenergebnisses
-# ■ Jetzt: Nur Implementierungsvarianten mit jeweils gleichem Ergebnis
-# □ Deshalb wieder: Disk I/O
-# □ Annahme: Indizes kosten nichts (da sehr kleine Datenmengen)
-# ■ Beispiel: $sA=10$, $B<20(R)$
-# □ Variante 1: Tablescan
-# – $B(R)$ falls R clustered
-# – $T(R)$ falls R nicht clustered
-# □ Variante 2: Index auf A verwenden
-# – $B(R)/V(R,A)$ falls Index clustering
-# – $T(R)/V(R,A)$ falls Index nicht clustering
-# □ Variante 3: Index auf B verwenden
-# – $B(R)/3$ falls Index clustering
-# – $T(R)/3$ falls Index nicht clustering
-# □ Variante 4 …
-
-# ### Kostenvergleich der Selektionsmethoden – Beispiel
+# Bisher wurde die Kostenschätzung durch die Schätzung der Ergebnisgröße durchgeführt, also durch die Kardinalität des Zwischenergebnisses. Jetzt werden nur Implementierungsvarianten mit jeweils gleichem Ergebnis verwendet. Deshalb wieder mit Disk I/O. Es gilt die Annahme, dass Indizes nichts kosten, da es sehr kleine Datenmengen sind. </br>
+# </br>
 # 
-# ■ $sX=1$, $Y=2$, $Z<5(R)$
-# □ $T(R) = 5.000$, $B(R) = 200$, $V(R,X)=100$, $V(R,Y)=500$
-# □ R sei clustered
-# □ Indizes auf X und Y nicht clustering
-# □ Index auf Z clustering (B-Baum)
-# ■ Variante 1: Table-scan und Filter
-# □ Kosten: $B(R) = 200 I/O$
-# ■ Variante 2: Index-scan mit X-Index; Filter für den Rest
-# □ Kosten: $T(R)/V(R,X) = 5.000/100 = 50 I/O$
-# ■ Variante 3: Index-scan mit Y-Index; Filter für den Rest
-# □ Kosten: $T(R)/V(R,Y) = 5.000/500 = 10 I/O$
-# ■ Variante 4: Index-scan mit (clustering) Z-Index; Filter für den Rest
-# □ Kosten: $B(R)/3= 200/3 = 67 I/O$
+# **Beispiel 1**</br>
+# - $sA=10$, $B<20(R)$
+# - Variante 1: Tablescan
+#     - $B(R)$ falls R clustered
+#     - $T(R)$ falls R nicht clustered
+# - Variante 2: Index auf A verwenden
+#     - $B(R)/V(R,A)$ falls Index clustering
+#     - $T(R)/V(R,A)$ falls Index nicht clustering
+# - Variante 3: Index auf B verwenden
+#     - $B(R)/3$ falls Index clustering
+#     - $T(R)/3$ falls Index nicht clustering
+# - Variante 4 ...
+
+# **Beispiel 2**</br>
+# - $sX=1$, $Y=2$, $Z<5(R)$
+# - $T(R) = 5.000$, $B(R) = 200$, $V(R,X)=100$, $V(R,Y)=500$
+# - Sei R clustered. Die Indizes auf X und Y haben kein, aber der Index auf Z hat clustering (B-Baum).
+# - Variante 1: Table-scan und Filter
+#     - Kosten: $B(R) = 200 I/O$
+# - Variante 2: Index-scan mit X-Index; Filter für den Rest
+#     - Kosten: $T(R)/V(R,X) = 5.000/100 = 50 I/O$
+# - Variante 3: Index-scan mit Y-Index; Filter für den Rest
+#     - Kosten: $T(R)/V(R,Y) = 5.000/500 = 10 I/O$
+#     - Variante 4: Index-scan mit (clustering) Z-Index; Filter für den Rest
+#     - Kosten: $B(R)/3= 200/3 = 67 I/O$
 
 # ### Wahl der Join-Methode
 # 
-# ■ Kosten je nach Joinmethode (siehe voriger Foliensatz)
-# □ Annahme: Man kennt M (verfügbarer Hauptspeicher)
-# – Und M ändert sich nicht während der Ausführung
-# □ Annahme: Man kennt B(R), T(R), V(R, …)
-# ■ Ideen falls Annahmen nicht stimmen
-# □ One-pass oder Nested-loop Algorithmus als default
-# – Prinzip „Hoffnung“
-# □ Wähle Sort-merge-join falls mindestens ein Input bereits nach Joinattribut sortiert ist.
-# □ Wähle Sort-merge-join bei mehr als einem Join auf gleichem Attribut
-# – $(R(A,B) \Join S(B,C)) \Join T(B,D)$
-# □ $R(A,B) \Join S(B,C)$: Falls R klein und Index auf S.B: Wähle Index-Join
-# □ Falls weder Sortierung noch Indizes vorhanden sind: Wähle Hash-Join
-# – Kosten hängen nur von kleinerem Input ab, nicht von beiden Inputs
-# ■ Analoge Überlegungen für Mengenoperationen
+# Man kann die Join-Methode je nach Kosten wählen (siehe voriger Foliensatz). Unter den Annahmen, dass man M (verfügbarer Hauptspeicher) kennt und M sich nicht während der Ausführung ändert. Außerdem gilt die Annahme, dass man B(R), T(R) und V(R, ...) kennt.
+# </br>
+# </br>
+# Mögliche Ideen, falls die Annahmen nicht stimmen, sind One-pass oder Nested-loop Algorithmen als default. Dabei gilt das Prinzip der „Hoffnung“. </br>
+# </br>
+# Der **Sort-merge-join** wird gewählt, falls mindestens ein Input bereits nach einem Joinattribut sortiert ist oder auch, falls es mehr als ein Join auf dem gleichem Attribut gibt: $(R(A,B) \Join S(B,C)) \Join T(B,D)$.</br>
+# 
+# Der **Index-Join** wird gewählt, falls die Relation R klein ist und es einen Index auf S.B gibt: $R(A,B) \Join S(B,C)$. </br>
+# 
+# Falls weder Sortierung noch Indizes vorhanden sind, wird der **Hash-Join** gewählt. Die Kosten hängen nur vom kleinerem Input ab, nicht von den beiden Inputs. </br>
+# Analoge Überlegungen gelten auch für die Mengenoperationen.
 
 # ### Pipelining vs. Blocking
 # 
-# ■ Naiv: Blocking (auch „Materialisierend“)
-# □ Jeder Operator speichert sein Zwischenergebnis auf Disk
-# ■ Besser: Vermischung der Ausführung verschiedener Operatoren
-# □ Pipelining
-# □ Kette von Iteratoren
-# ■ Vorteile von Pipelining
-# □ Weniger I/O
-# □ Frühe Ergebnisse bei der Anwendung
-# ■ Nachteile des Pipelining?
-# □ Nicht jeder Operator funktioniert
-# □ Anzahl CPUs zu gering
-# □ Jeder Operator hat weniger Hauptspeicher
-# □ => Ungünstigere Algorithmen müssen gewählt werden
-# ■ Pipelining also nicht immer besser!
+# Ein naiver Versuch ist das Blocking (auch „Materialisierend“). Jeder Operator speichert sein Zwischenergebnis auf der Disk. Besser ist eine Vermischung der Ausführung verschiedener Operatoren wie es beim Pipelining und den Ketten von Iteratoren der Fall ist. Die Vorteile von Pipelining sind ein geringerer I/O Verbrauch und frühe Ergebnisse bei der Anwendung. Nachteile des Pipelining sind, dass nicht jeder Operator funktioniert, die Anzahl der CPUs zu gering oder jeder Operator weniger Hauptspeicher. Somit müssen ungünstigere Algorithmen gewählt werden. Pipelining ist also nicht immer besser!
+
+# In[ ]:
+
+
+
+

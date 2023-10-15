@@ -102,17 +102,20 @@
 # 
 # In diesem Iterator Beispiel sieht man unten die beiden Relationen *StarsIn* und *MovieStar*. Aus der Relation *MovieStar* werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. *StarsIn* und *MovieStar* werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.
 # 
+# <img src="pictures/Iterator-Beispiel.png" alt="Iterator-Beispiel" width="500" style="background-color: white;"/>
 # 
-# 
-# <img src="pictures/Iterator-Beispiele.png" alt="Iterator-Beispiele" width="500" style="background-color: white;"/>
-# <br><br>
+# <br>
 # 
 # **Pipelining vs. Pipeline-Breaker**
 # 
 # Wir sehen hier die Relationen *R*, *S* und *T*. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).
 # 
+# 
 # <img src="pictures/Pipelining-vs-Pipelin-Breaker_2.png" alt="Pipelining-vs-Pipelin-Breaker_2" width="500" style="background-color: white;"/>
+# 
 # <br>
+# 
+# 
 # <img src="pictures/Pipelining-vs-Pipelin-Breaker.png" alt="Pipelining-vs-Pipelin-Breaker" width="500" style="background-color: white;"/>
 # 
 # 
@@ -127,6 +130,7 @@
 # **Iterator – Beispiel**
 # 
 # <img src="pictures/Iterator-Beispiele_2.png" alt="Iterator-Beispiele_2" width="500" style="background-color: white;"/>
+# 
 # <br>
 # 
 # **Überblick über das Weitere**
@@ -170,9 +174,10 @@
 # Der Puffer merkt sich, welche Tupel schon einmal gesehen wurden. Da man Tupel sofort finden möchte, sollte man sich eine geeignete Datenstruktur überlegen. Hier bieten sich am besten Hashtabellen oder balancierte Binärbäume an. 
 # Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzahl der duplizierten Tupel (alle DISTINCT Werte der Relation) geteilt durch die Anzahl der Tupel pro Block. Das Ergebnis muss dann kleiner sein als M, damit man die Duplikateliminierung mit einem One-Pass Algorithmus durchführen kann.
 # 
-# - Wahl von M: $B(\delta(R)) = V(R, [A1, … ,An])$ / Tupel-pro-Block ≤ M
+# - Wahl von M: $B(\delta(R)) = \frac {V(R, [A1, … ,An])} {Tupel-pro-Block}$ ≤ M
 # 
 # <img src="pictures/Duplikateliminierung.png" alt="Duplikateliminierung" width="500" style="background-color: white;"/>
+# 
 # <br>
 # 
 # ### Gruppierung
