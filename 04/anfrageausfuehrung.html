@@ -51,8 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Optimierung" href="../05/optimierung.html" />
@@ -746,8 +746,6 @@ Zunächst haben wir eine SQL-Anfrage. Diese wird geparsed und daraus entsteht ei
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragenbearbeitung.png"><img alt="Ablauf-Anfragenbearbeitung" src="../_images/Ablauf-Anfragenbearbeitung.png" style="width: 500px;" /></a>
 <br>
 Mit diesem Kapitel befinden wir uns in der Anfrageausführung und schauen uns konkret an, wie Operatoren umgesetzt werden.
-<p><br> <br> <br>
-<a class="reference internal" href="../_images/Überblick-meme1.png"><img alt="Überblick-meme" src="../_images/Überblick-meme1.png" style="width: 500px;" /></a></p>
 <div class="section" id="physische-operatoren">
 <h2><span class="section-number">4.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this headline">¶</a></h2>
 <p>Anfragepläne bestehen aus Operatoren. Bevor wir Kosten schätzen können müssen wir diese Operatoren kennen. Wir kennen bereits die Operatoren der Relationalen Algebra, welche auf physische Operatoren abgebildet werden.
