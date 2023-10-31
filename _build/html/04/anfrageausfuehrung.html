@@ -521,52 +521,36 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <p><strong>Iterator Beispiel - Table-scan</strong></p>
 <p>Im folgenden sehen wir einen Table scan:</p>
 <ul class="simple">
-<li><p>Open()
-b := the first block of R;
-t := the first tuple of block b;</p></li>
+<li><p>Open() <br>
+b := the first block of R; <br>
+t := the first tuple of block b; <br></p></li>
 </ul>
 <p>Wir können einen Parameter b auf den ersten Block aus R setzen oder auf das erste Tupel.</p>
 <ul class="simple">
-<li><p>GetNext()
-IF (t is past the last tuple on block b)
-Increment b to the next block;
-IF (there is no next block)
-RETURN NotFound;
-ELSE
-t := the first tuple of block b;
-oldt := t;
-Increment t to the next tuple of b;
-RETURN oldt;</p></li>
+<li><p>GetNext() <br>
+IF (t is past the last tuple on block b) <br>
+Increment b to the next block;<br>
+IF (there is no next block)<br>
+RETURN NotFound;<br>
+ELSE<br>
+t := the first tuple of block b;<br>
+oldt := t;<br>
+Increment t to the next tuple of b;<br>
+RETURN oldt;<br></p></li>
 </ul>
 <p>Falls t das letzte Tupel war, gehen wir zum nächsten Block. Gibt es keinen weiteren Block wird NotFound ausgegeben. Andernfalls gibt uns die Funktion das erste Tupel dieses Blocks aus und setzt den Zeiger dann auf das nächste Tupel.</p>
 <ul class="simple">
-<li><p>Close()
+<li><p>Close()<br>
 Do Nothing</p></li>
 </ul>
+<br>
 <p><strong>Iterator Beispiel - Union all</strong></p>
 <p>Das Beispiel zeigt ein Union all:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Open(R,S) {
     
 R.open();    
 CurRel := R;
-
-}
-GetNext(R,S    ) {
-IF (CurRel =         R) {
-t := R.GetNe        xt();
-IF(t &lt;&gt; NotFound) /*R ist nicht ersch            öpft*/
-RE        TURN t;
-ELSE /*R ist ersch            öpft*/ {
-            S.Open();
-Cu        r
-    Re    l := S;
-}}
-RETURN S
-
-.GetNext();
-}    
-Close(R,S    ) {
-R.Close;```.
+;```.
 In der Open-Funktion werden die beiden Relationen R und S geöffnet, angefangen mit R. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.
 
 Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein NotFound ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.
