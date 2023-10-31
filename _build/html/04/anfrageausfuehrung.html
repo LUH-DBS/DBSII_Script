@@ -635,7 +635,7 @@ Class join {
 </pre></div>
 </div>
 <p>Mit p = projection.open() starten wir die Projektion. Solange das Tupel nicht gefunden wurde, holen wir mit t = p.GetNext() das nächste Tupel aus der Projektion und schließen diese mit p.Close().</p>
-<p>Die Implementierung der Open()-Funktion in der projection Klasse lädt bereits alle Tupel in den Hauptspeicher. Mit der GetNext()-Funktion bedienen wir uns nur noch an diesen Tupel. Wir können also nicht mit GetNext() weiter machen bevor mit Open() nicht schon alles geladen wurde. Dieser Vorgang nennt sich <em>Blocking</em>.</p>
+<p>Die Implementierung der Open()-Funktion in der projection Klasse lädt alle Tupel in den Hauptspeicher. Mit der GetNext()-Funktion bedienen wir uns nur noch an diesen Tupel. Wir können also nicht mit GetNext() weiter machen bevor mit Open() nicht alles geladen wurde. Dieser Vorgang nennt sich <em>Blocking</em>.</p>
 <p>Mit der Zeile j = join.Open() wird dann Open() in der join Klasse aufgerufen. Hier wird für jedes Tupel, dass mit der äußeren while-Schleife aus der linken Tabelle genommen wird, mit der inneren while-Schleife ein Tupel aus der rechten Tabelle gelesen.</p>
 <p>Auch hier blockiert die Open()-Funktion und lädt die ganzen Tupel in den Hauptspeicher, sodass wir uns mit GetNext() wieder einfach nur daran bedienen müssen.</p>
 <br>
@@ -644,14 +644,15 @@ Class join {
 <a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
 <br>
 <a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker.png"><img alt="Pipelining-vs-Pipelin-Breaker" src="../_images/Pipelining-vs-Pipelin-Breaker.png" style="width: 500px;" /></a>
+<br>
 <p><strong>Pipelining versus Blocking</strong></p>
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.</p>
-<p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht.
+<p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht. <br>
 <strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).</p>
 <p><strong>Iterator – Beispiel</strong></p>
-<p>Hier noch einmal das selbe Beispiel wie zuvor schon. Diesmal pipelinen wir aber.</p>
+<p>Hier noch einmal das selbe Beispiel wie zuvor. Diesmal pipelinen wir.</p>
 <a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
-<p>Schauen wir uns dafür den Code an:</p>
+<br>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 p = projection.Open();
 while (t &lt;&gt; NotFound)
@@ -679,6 +680,7 @@ Class join {
         r = projection.Open()
         tl = l.GetNext();
     }
+
     GetNext() {
         repeat{
             tr = r.GetNext();
