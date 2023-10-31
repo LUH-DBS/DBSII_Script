@@ -520,120 +520,124 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
 <p><strong>Iterator Beispiel - Table-scan</strong></p>
 <p>Im folgenden sehen wir einen Table scan:</p>
-<ul class="simple">
-<li><p>Open() <br>
-b := the first block of R; <br>
-t := the first tuple of block b; <br></p></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Open</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">:=</span> <span class="n">the</span> <span class="n">first</span> <span class="n">block</span> <span class="n">of</span> <span class="n">R</span><span class="p">;</span>
+    <span class="n">t</span> <span class="o">:=</span> <span class="n">the</span> <span class="n">first</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">block</span> <span class="n">b</span><span class="p">;</span> 
+</pre></div>
+</div>
 <p>Wir können einen Parameter b auf den ersten Block aus R setzen oder auf das erste Tupel.</p>
-<ul class="simple">
-<li><p>GetNext() <br>
-IF (t is past the last tuple on block b) <br>
-Increment b to the next block;<br>
-IF (there is no next block)<br>
-RETURN NotFound;<br>
-ELSE<br>
-t := the first tuple of block b;<br>
-oldt := t;<br>
-Increment t to the next tuple of b;<br>
-RETURN oldt;<br></p></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GetNext</span><span class="p">()</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">t</span> <span class="ow">is</span> <span class="n">past</span> <span class="n">the</span> <span class="n">last</span> <span class="nb">tuple</span> <span class="n">on</span> <span class="n">block</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">Increment</span> <span class="n">b</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">block</span><span class="p">;</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="nb">next</span> <span class="n">block</span><span class="p">)</span>
+        <span class="n">RETURN</span> <span class="n">NotFound</span><span class="p">;</span>
+    <span class="n">ELSE</span>
+        <span class="n">t</span> <span class="o">:=</span> <span class="n">the</span> <span class="n">first</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">block</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">oldt</span> <span class="o">:=</span> <span class="n">t</span><span class="p">;</span>
+    <span class="n">Increment</span> <span class="n">t</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">RETURN</span> <span class="n">oldt</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>Falls t das letzte Tupel war, gehen wir zum nächsten Block. Gibt es keinen weiteren Block wird NotFound ausgegeben. Andernfalls gibt uns die Funktion das erste Tupel dieses Blocks aus und setzt den Zeiger dann auf das nächste Tupel.</p>
-<ul class="simple">
-<li><p>Close()<br>
-Do Nothing</p></li>
-</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Close</span><span class="p">()</span>
+    <span class="n">Do</span> <span class="n">Nothing</span>
+</pre></div>
+</div>
 <br>
 <p><strong>Iterator Beispiel - Union all</strong></p>
 <p>Das Beispiel zeigt ein Union all:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Open(R,S) {
-    
-R.open();    
-CurRel := R;
-;```.
-In der Open-Funktion werden die beiden Relationen R und S geöffnet, angefangen mit R. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Open</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">R</span><span class="o">.</span><span class="n">open</span><span class="p">();</span>
+    <span class="n">CurRel</span> <span class="o">:=</span> <span class="n">R</span><span class="p">;</span>
+<span class="p">}</span>
 
-Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein NotFound ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.
-se**Iterator Beispiel**()
-}
+<span class="n">GetNext</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">CurRel</span> <span class="o">=</span> <span class="n">R</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">t</span> <span class="o">:=</span> <span class="n">R</span><span class="o">.</span><span class="n">GetNext</span><span class="p">();</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">t</span> <span class="o">&lt;&gt;</span> <span class="n">NotFound</span><span class="p">)</span> <span class="o">/*</span><span class="n">R</span> <span class="n">ist</span> <span class="n">nicht</span> <span class="n">erschöpft</span><span class="o">*/</span>
+            <span class="n">RETURN</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">ELSE</span> <span class="o">/*</span><span class="n">R</span> <span class="n">ist</span> <span class="n">erschöpft</span><span class="o">*/</span> <span class="p">{</span>
+            <span class="n">S</span><span class="o">.</span><span class="n">Open</span><span class="p">();</span>
+            <span class="n">CurRel</span> <span class="o">:=</span> <span class="n">S</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">RETURN</span> <span class="n">S</span><span class="o">.</span><span class="n">GetNext</span><span class="p">();</span>
+<span class="p">}</span>
 
 
-
-
+<span class="n">Close</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">R</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
+    <span class="n">S</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="p">}</span>
 
 </pre></div>
 </div>
-<p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die</p>
-<p><a class="reference internal" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>u
-<br></p>
+<p>In der Open-Funktion werden die beiden Relationen R und S geöffnet, angefangen mit R. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.</p>
+<p>Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein NotFound ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.</p>
+<p><strong>Iterator Beispiel</strong></p>
+<p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
+<a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
+<br>
 <p>Schauen wir uns einmal den Code zu diesem Beispiel an:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
-while (t &lt;&gt; NotFound)    
-t = p.GetNext(    )
-return t;
-p.Close(Class projection {
-    
-Open() {        
-j = join.Open()        ;
-while (t &lt;&gt; NotFoun            d)
-t:=j.GetNex            t()
-tmp[i++]=t.ti        tle;
-j.Clo    s
-e    ();
-}
-GetNe        xt( ) {
-if (cnt &lt; tmp            .size())
-return tm        p[cnt++];
-else return     
-N    otFound;
-        }
-Close() {
-    disca
-Class join {
-    
-Open() {        
-l = table.open()        ;
-while (tl &lt;&gt; NotFoun            d)
-t1 = l.GetNext            ();
-r = projection.Ope            n();
-while (tr &lt;&gt; NotF                ound)
-tr = r.GetN                ext();
-if tl.starname=                    tr.name
-tmp[i++            ]=tl⋈tr;
-e            nd while;
-        l.Close();
-        
-end while;    
+while (t &lt;&gt; NotFound)
+    t = p.GetNext()
+    return t;
+p.Close();
 
-    r.Close();
-}        
-GetNext( ) {
-if (cn            t &lt; tmp.size())
-re        turn tmp[cnt++];
-else     
-r    eturn NotF        ound;
-}
-Clos    e() {
-```c
-Mit p = projection.open() starten wir die Projektion. Solange das Tupel nicht gefunden wurde, holen wir mit t = p.GetNext() das nächste Tupel aus der Projektion und schließen diese mit p.Close().
+Class projection {
+    Open() {
+        j = join.Open();
+        while (t &lt;&gt; NotFound)
+            t:=j.GetNext()
+            tmp[i++]=t.title;
+        j.Close();
+    }
 
-Die Implementierung der Open()-Funktion in der projection Klasse lädt bereits alle Tupel in den Hauptspeicher. Mit der GetNext()-Funktion bedienen wir uns nur noch an diesen Tupel. Wir können also nicht mit GetNext() weiter machen bevor mit Open() nicht schon alles geladen wurde. Dieser Vorgang nennt sich *Blocking*.
+    GetNext( ) {
+        if (cnt &lt; tmp.size())
+            return tmp[cnt++];
+        else return NotFound;
+    }
 
-Mit der Zeile j = join.Open() wird dann Open() in der join Klasse aufgerufen. Hier wird für jedes Tupel, dass mit der äußeren while-Schleife aus der linken Tabelle genommen wird, mit der inneren while-Schleife ein Tupel aus der rechten Tabelle gelesen. 
-
-Auch hier blockiert die Open()-Funktion und lädt die ganzen Tupel in den Hauptspeicher, sodass wir uns mit GetNext() wieder einfach nur daran bedienen müssen.
-ard(tmp);
-}
+    Close() {
+        discard(tmp);
+    }
 } 
 
-rd(tmp);
-}
-} );
+Class join {
+    Open() {
+        l = table.open();
+        while (tl &lt;&gt; NotFound)
+            t1 = l.GetNext();
+            r = projection.Open();
+            while (tr &lt;&gt; NotFound)
+                tr = r.GetNext();
+                if tl.starname=tr.name
+                    tmp[i++]=tl⋈tr;
+            end while;
+            l.Close();
+        end while;
+        r.Close();
+    }
 
+    GetNext( ) {
+        if (cnt &lt; tmp.size())
+            return tmp[cnt++];
+        else return NotFound;
+    }
+
+    Close() {
+        discard(tmp);
+    }
+} 
 
 </pre></div>
 </div>
-<p>nd-color: white;”/&gt;</p>
+<p>Mit p = projection.open() starten wir die Projektion. Solange das Tupel nicht gefunden wurde, holen wir mit t = p.GetNext() das nächste Tupel aus der Projektion und schließen diese mit p.Close().</p>
+<p>Die Implementierung der Open()-Funktion in der projection Klasse lädt bereits alle Tupel in den Hauptspeicher. Mit der GetNext()-Funktion bedienen wir uns nur noch an diesen Tupel. Wir können also nicht mit GetNext() weiter machen bevor mit Open() nicht schon alles geladen wurde. Dieser Vorgang nennt sich <em>Blocking</em>.</p>
+<p>Mit der Zeile j = join.Open() wird dann Open() in der join Klasse aufgerufen. Hier wird für jedes Tupel, dass mit der äußeren while-Schleife aus der linken Tabelle genommen wird, mit der inneren while-Schleife ein Tupel aus der rechten Tabelle gelesen.</p>
+<p>Auch hier blockiert die Open()-Funktion und lädt die ganzen Tupel in den Hauptspeicher, sodass wir uns mit GetNext() wieder einfach nur daran bedienen müssen.</p>
 <br>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
 <p>Wir sehen hier die Relationen <em>R</em>, <em>S</em> und <em>T</em>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
@@ -643,87 +647,71 @@ rd(tmp);
 <p><strong>Pipelining versus Blocking</strong></p>
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.</p>
 <p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht.
-<strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss ma
-Hier noch einmal das selbe Beispiel wie zuvor schon. Diesmal pipelinen wir aber.
-n die Operationen blocken (Blocking).</p>
+<strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).</p>
 <p><strong>Iterator – Beispiel</strong></p>
-<p>&lt;img src=“pictures/Iterator-Beispiele_2.png” alt=”Iterat
-Schauen wir uns dafür den Code an:</p>
+<p>Hier noch einmal das selbe Beispiel wie zuvor schon. Diesmal pipelinen wir aber.</p>
+<a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
+<p>Schauen wir uns dafür den Code an:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-p = 
-projection.Open();§ while (t  &gt;
-NotFoun    d)
-t = p.GetNex)
-§ return t; § p.Clo
+p = projection.Open();
+while (t &lt;&gt; NotFound)
+    t = p.GetNext()
+return t; § p.Close();
 
-); § Class project
-     { § Open        () {
-j = join.Op    e
-n    ;
-}
-§ GetN        ext() {
-t = j.Ge        tNext();
-retur    n
-     Citle
-}
-        § close() {    
-j.C
-Class join {
-    
-Open() {        
-l = table.Open()        ;
-r = projection.Open        ()
-tl = l.GetNext    ()    ;
-}
-GetNex        t() {
-r            epeat{
-tr = r.Get            Next();
-if (tr = No                tFound){
-r                .close();
-tl = l.                GetNext();
-if (t =                     NotFound
-)
-rtu                rn NotFoun                d
-;
-r.open();
-t            r         =         r.GetNext();
-}
-}
-until(t        l.starnam=trna    m
-    e    )
-return         tl
-⋈tr
-;
-        
-}
-Close()     {
-l.Clo
+Class projection {
+    Open() {
+        j = join.Open();
+    }
 
-In der Open()-Funktion wird jetzt nur noch der join geöffnet und keine Tupel mehr geladen, wie es beim *Blocking* der Fall war. In der Klasse join öffnen wir mit Open() nur die Relationen und GetNext() schaut was gelesen werden kann und was nicht.
+    GetNext() {
+        t = j.GetNext();
+        return t.title
+    }
 
-se();
-r.Close();
-}
-} lose();
-}
+    Close() {
+        j.Close();
+    }
 } 
 
+Class join {
+    Open() {
+        l = table.Open();
+        r = projection.Open()
+        tl = l.GetNext();
+    }
+    GetNext() {
+        repeat{
+            tr = r.GetNext();
+            if (tr = NotFound){
+                r.close();
+                tl = l.GetNext();
+                if (tl = NotFound)
+                    return NotFound;
+                r.open();
+                tr = r.GetNext();
+            }
+        }
+        until(tl.starname=tr.name)
+        return tl⋈tr;
+    }
+    
+    Close() {
+        l.Close();
+        r.Close();
+    }
+} 
 
-```or-Beispiele_2&quot; width=&quot;500&quot; style=&quot;background-color: white;&quot;/&gt;
-
-&lt;br&gt;
-
-**Überblick über das Weitere**
-
-Es gibt **drei Klassen** von Algorithmen: *Sort-basierte, Hash-basierte und Index-basierte Algorithmen*. Diese sind entweder *One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen* und haben somit **drei Schwierigkeitsgrade** die sich darin unterscheiden, wie oft über die Daten gelesen wird. 
-&lt;br&gt;&lt;br&gt;
-Die einfachsten Operatoren erfordern, dass nur einmal über die Daten gelesen wird. Das ist meist bei einem Scan der Fall, deshalb würde man hier einen *One-Pass Algorithmus* verwenden. Hier passt mindestens ein Argument in den Hauptspeicher, Selektion und Projektion ausgenommen.
-
-*Two-Pass Algorithmen*, wie zum Beispiel TPMMS, finden meist Anwendung, wenn es eine Größenbeschränkung für den Input gibt. Hierbei wir meist erst einmal gelesen, dann wird zwischengespeichert und dieses Zwischenergebnis wird dann noch einmal gelesen.
-
-Hat man zu wenig Speicherplatz für den Two-Pass Algorithmus kann man den *Multipass Algorithmus* verwenden. Dieser ist eine rekursive Erweiterung des Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.
 </pre></div>
 </div>
+<p>In der Open()-Funktion wird jetzt nur noch der join geöffnet und keine Tupel mehr geladen, wie es beim <em>Blocking</em> der Fall war. In der Klasse join öffnen wir mit Open() nur die Relationen und GetNext() schaut was gelesen werden kann und was nicht.</p>
+<br>
+<p><strong>Überblick über das Weitere</strong></p>
+<p>Es gibt <strong>drei Klassen</strong> von Algorithmen: <em>Sort-basierte, Hash-basierte und Index-basierte Algorithmen</em>. Diese sind entweder <em>One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen</em> und haben somit <strong>drei Schwierigkeitsgrade</strong> die sich darin unterscheiden, wie oft über die Daten gelesen wird.
+<br><br>
+Die einfachsten Operatoren erfordern, dass nur einmal über die Daten gelesen wird. Das ist meist bei einem Scan der Fall, deshalb würde man hier einen <em>One-Pass Algorithmus</em> verwenden. Hier passt mindestens ein Argument in den Hauptspeicher, Selektion und Projektion ausgenommen.</p>
+<p><em>Two-Pass Algorithmen</em>, wie zum Beispiel TPMMS, finden meist Anwendung, wenn es eine Größenbeschränkung für den Input gibt. Hierbei wir meist erst einmal gelesen, dann wird zwischengespeichert und dieses Zwischenergebnis wird dann noch einmal gelesen.</p>
+<p>Hat man zu wenig Speicherplatz für den Two-Pass Algorithmus kann man den <em>Multipass Algorithmus</em> verwenden. Dieser ist eine rekursive Erweiterung des Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.
+Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.</p>
 </section>
 </section>
 <section id="one-pass-algorithmen">
