@@ -704,38 +704,6 @@ Bei der Schnittmenge von R und S in Mengensemantik ( <span class="math notransla
 <p><strong>Erweiterung</strong></p>
 <p>Vorausgesetzt wird immer, das alle Tupel beider Relationen mit einem bestimmten Y-Wert in den Hauptspeicher passen. Ist das nicht der Fall und diese Tupel passen nur in M-1 Blöcke, müssen wir den One-Pass join für diesen Y-Wert verwenden. Andernfalls können wir den Nested loop join durchführen. Eine Fallunterscheidung kann hier überflüssige I/O-Operationen vermeiden.</p>
 <p><strong>Verbesserung des Sort-basierter Join Algorithmus</strong></p>
-<ul class="simple">
-<li><p>Idee: Kombiniere 2te Phase des TPMMS mit dem Joinen</p>
-<ul>
-<li><p>=&gt; („sort-join“, „merge-join“) „sort-merge-join“</p></li>
-</ul>
-</li>
-</ul>
-<ol class="arabic simple">
-<li><p>Erzeuge sortierte Teillisten der Größe M jeweils für R und S mit Y als Sortierschlüssel</p></li>
-<li><p>Lade erste Blöcke aller Teillisten (beider Relationen)</p></li>
-<li><p>Suche kleinste Y-Werte und erzeuge Jointupel</p></li>
-</ol>
-<ul class="simple">
-<li><p>Annahmen</p>
-<ul>
-<li><p>Anzahl aller Teillisten (aus R und S) ≤ M</p></li>
-<li><p>Tupel mit gemeinsamen Y-Werten passen zusammen in verbleibenden Hauptspeicher</p></li>
-</ul>
-</li>
-<li><p>R: 1000 Blocks; S: 500 Blocks; M = 101</p>
-<ul>
-<li><p>Phase 1: 10 Teillisten für R, 5 Teillisten für S</p></li>
-<li><p>Phase 2: 15 Blöcke gleichzeitig im Hauptspeicher</p>
-<ul>
-<li><p>=&gt; 86 freie Blöcke für aktuelle Join-Tupel</p></li>
-</ul>
-</li>
-<li><p>Zusammen 3(B® + B(S)) = 4500 I/O</p></li>
-</ul>
-</li>
-<li><p>Oft sind viele Speicherblöcke übrig, da B®+B(S) &lt;&lt; M²</p></li>
-</ul>
 <p>Kommen wir nun zu der Optimierung des sort-basierten Join Algorithmus. Die Idee hierbei ist, die zweite Phase des TPMMS mit dem Joinen zu verknüpfen. Das heißt, wir führen nur die erste Phase aus. Wir generieren also wieder Teillisten der Größe M für R und S mit Y als Sortiertschlüssel. Dann laden wir die ersten Blöcke aller Teillisten, suchen den kleinsten Y-Wert und erzeugen ein Jointupel.
 Die Annahme hierbei ist, dass alle Teillisten und auch alle Tupel mit gemeinsamen Y-Werten in den Hauptspeicher passen.</p>
 <p>Schauen wir uns wieder ein bekanntes Beispiel an. Wir haben 1000 Blöcke in R, 500 Blöcke in S und 101 Einheiten Platz im Hauptspeicher. In Phase 1 bekommen wir 10 Teillisten für R und 5 Teillisten für S. Damit haben wir dann in Phase 2 15 Blöcke im Hauptspeicher und noch 86 Blöcke frei. Zusammen ergeben sich daraus 3(B® + B(S)) = 4500 I/O-Operationen. Oft sind noch viele Speicherblöcke übrig, da B®+B(S) &lt;&lt; M².</p>
@@ -820,37 +788,6 @@ Hier sind aber unsere Joinattribute die Hashschlüssel. Die Idee ist, dass Tupel
 </section>
 <section id="hybrid-hashjoin-analyse">
 <h3><span class="section-number">4.5.8. </span>Hybrid Hashjoin – Analyse<a class="headerlink" href="#hybrid-hashjoin-analyse" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Einsparungen</p>
-<ul>
-<li><p>Spare 2 I/Os für jeden Block, der im Hauptspeicher gehalten werden kann (nämlich m/k aller Buckets)</p></li>
-<li><p>Einsparung also 2(m/k) (B® + B(S))</p></li>
-</ul>
-</li>
-<li><p>=&gt; Maximiere (m/k), gegeben ( m · B(S)/k ) + k – m ≤ M</p>
-<ul>
-<li><p>Lösung: Wähle m = 1 und minimiere k.</p>
-<ul>
-<li><p>Intuition: Alle Puffer bis auf k – m werden verwendet, um Tupel im Hauptspeicher zu halten; davon bitte möglichst viele.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Minimierung von k (gesamte Anzahl der Buckets): Wähle Bucketgröße so, dass ein Bucket gerade eben in Hauptspeicher passt.</p>
-<ul>
-<li><p>Bucketgröße M</p></li>
-<li><p>=&gt; k = B(S) / M</p>
-<ul>
-<li><p>=&gt; nur ein Bucket passt in Hauptspeicher (=&gt; m = 1)</p></li>
-</ul>
-</li>
-<li><p>Bucketgröße eigentlich etwas kleiner, damit die übrigen (wenigen) Buckets durch mindestens einen Block repräsentiert werden können</p></li>
-</ul>
-</li>
-<li><p>=&gt; Einsparungen 2(m/k) (B® + B(S)) = 2 (1/ (B(S)/M) ) · (B® + B(S)) = (2M / B(S)) · (B® + B(S))</p></li>
-<li><p>=&gt; I/O-Kosten: (3 – (2M/B(S))) · (B® + B(S))</p></li>
-</ul>
-<p>=&gt; Wähle wenige große Buckets statt viele kleine</p>
 <p>Wie viel spart man nun tatsächlich mit dem Hybrid Join ein? Für jeden Block den wir im Hauptspeicher halten sparen wir 2 I/O-Operationen pro Relation und das bei <span class="math notranslate nohighlight">\(\frac{m}{k}\)</span> Buckets. Wir wollen <em>m</em> Buckets im Hauptspeicher halten und haben insgesamt <em>k</em> Buckets. Wir haben dann eine Einsparung von 2 (<span class="math notranslate nohighlight">\(\frac{m}{k}\)</span>) · (B® + B(S)).</p>
 <p>Da wir unsere Einsparung möglichst maximieren wollen müssen wir uns fragen, wie <em>m</em> und <em>k</em> zu wählen sind. Wir müssen uns also überlegen, wie viele Buckets wir erlauben und wie viele wir davon im Hauptspeicher halten können, während wir gleichzeitig darauf achten müssen, dass die Relation in den Hauptspeicher passt. Dafür gibt es einen Trick. Wir wählen <em>m = 1</em> und minimieren <em>k</em>. Das heißt, ein Bucket soll vollständig in den Hauptspeicher passen, dementsprechend dürfen es aber nicht zu viele Buckets sein. Um Repräsentanten zu haben, müssen <em>k - m</em> Blöcke verwendet werden, während wir den Rest für ein Bucket verwenden.</p>
 <p>Nun aber zu der Frage, wie man überhaupt die Gesamtanzahl der Buckets minimiert, also die Bucketgröße so wählt, dass nur ein Bucket in den Hauptspeicher passt. Bei einer Bucketgröße von <em>M</em> rechnen wir <em>k =</em> <span class="math notranslate nohighlight">\(\frac{B(S)}{M}\)</span>. Damit ist nur Platz für ein Bucket im Hauptspeicher (<em>m</em> = 1).
