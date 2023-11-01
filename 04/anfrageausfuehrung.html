@@ -574,10 +574,9 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 </div>
 <p>In der Open-Funktion werden die beiden Relationen R und S geöffnet, angefangen mit R. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.</p>
 <p>Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein NotFound ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.</p>
-<p><strong>Iterator Beispiel</strong></p>
+<p><strong>Iterator Beispiel - Blocking</strong></p>
 <p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
 <a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
-<br>
 <p>Schauen wir uns einmal den Code zu diesem Beispiel an:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
 while (t &lt;&gt; NotFound)
@@ -649,12 +648,10 @@ Class join {
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Sortiert man beispielsweise, muss man die gesamte Relation gesehen haben, andernfalls kann next() nicht ausgeführt werden. Das ist vor allem auch wichtig, wenn man gruppieren und aggregieren möchte. Ist die Relation sortiert oder gehashed kann next() diese dann aggregieren.</p>
 <p>Union und Projektionen mit Duplikateliminierung scheinen auf den ersten Blick wie Pipeline-Breaker zu sein, da man alle Tupel miteinander vergleichen muss. Das ist aber nicht zwingend der Fall, denn die beiden Operatoren können die Tupel die sie bekommen in der GetNext-Funktion vermerken. Beim nächsten Aufruf kann dann geprüft werden, ob dieses Tupel schon einmal gesehen wurde. Eine Sortierung ist hierfür nicht notwendig, da next() die Ergebnisse schon früh weiterreichen kann. Die effizienteste Methode ist dies nicht, da man für das merken der Tupel einen großen Zwischenspeicher braucht. <br>
 <strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).</p>
-<p><strong>Iterator – Beispiel</strong></p>
+<p><strong>Iterator Beispiel - Pipelining</strong></p>
 <p>Hier noch einmal das selbe Beispiel wie zuvor. Diesmal pipelinen wir.</p>
 <a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
-<br>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-p = projection.Open();
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
 while (t &lt;&gt; NotFound)
     t = p.GetNext()
 return t; § p.Close();
