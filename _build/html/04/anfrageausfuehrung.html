@@ -984,69 +984,19 @@ Wir haben 1000 Blöcke in R, 500 Blöcke in S und 101 Einheiten Platz im Hauptsp
 <p>Zum Vergleich haben wir hier noch einmal eine Übersicht über die verschiedenen Operatoren der Sort-basierten Two-Pass Algorithmen, sowie auch hier deren Hauptspeicherbedarf und I/O-Kosten. Man kann insbesondere sehen, dass der sort-merge join (letzte Zeile) die gleiche Laufzeit wie der Hash-join hat und beide damit dem Hybrid Hashjoin unterlegen sind.</p>
 <a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
 <p><strong>Vergleich Hash-basierte und Sort-basierte Algorithmen</strong></p>
-<p>Der Speicherbedarf sowie die I/O-Kosten sind bei beiden Algorithmen ähnlich. Hash-basierte Algorithmen sind in der Regel aber platzsparender als Sort-basierte, da der Speicherbedarf nur vom kleineren der beiden Inputs abhängt. Die I/O-Kosten hängen beim Hash-basierten Verfahren von der Anzahl der Buckets und der Verteilung der Daten ab. Hat man Buckets die groß genug sind und gleichmäßig verteilte Daten, so kann dieser Algorithmus effizient sein. Sort-basierte Algorithmen produzieren oft einen sortierten Output, sodass sortierte Teillisten hintereinander auf die Disk geschrieben werden können. Das spart bei einer I/O-Operation Seektime. Bei einem großen M können auch mehrere Blöcke einer Liste auf einmal gelesen werden. Gleiches gilt auch bei Hash-basierten Verfahren, falls die Anzahl der Buckets kleiner ist als M.</p>
+<p>Der Speicherbedarf sowie die I/O-Kosten sind bei beiden Algorithmen ähnlich. Hash-basierte Algorithmen sind in der Regel aber platzsparender als Sort-basierte, da der Speicherbedarf nur vom kleineren der beiden Inputs abhängt. Die I/O-Kosten hängen beim Hash-basierten Verfahren von der Anzahl der Buckets und der Verteilung der Daten ab. Hat man Buckets die groß genug sind und gleichmäßig verteilte Daten, so kann dieser Algorithmus effizient sein. Sort-basierte Algorithmen produzieren oft einen sortierten Output, sodass sortierte Teillisten hintereinander auf die Disk geschrieben werden können. Das spart bei einer I/O-Operation Seektime. Haben wir viel Platz im Hauptspeicher, können auch mehrere Blöcke einer Liste auf einmal gelesen werden. Gleiches gilt auch bei Hash-basierten Verfahren, falls die Anzahl der Buckets nicht die im Hauptspeicher verfügbare Anzahl an Einheiten überschreitet.</p>
 </section>
 </section>
 <section id="index-basierte-algorithmen">
 <h2><span class="section-number">4.6. </span>Index-basierte Algorithmen<a class="headerlink" href="#index-basierte-algorithmen" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Indizes ermöglichen manchmal andere Algorithmen.</p></li>
-<li><p>Insbesondere Selektion</p></li>
-<li><p>Aber auch: Joins und andere binäre Operatoren</p></li>
-<li><p>Clustered Relation</p>
-<ul>
-<li><p>Tupel auf so wenig wie möglich Blöcken auf Disk</p></li>
-</ul>
-</li>
-<li><p>Clustering Index</p>
-<ul>
-<li><p>Tupel mit gleichem Schlüsselwert sind auf so wenig wie möglich Blöcken</p>
-<ul>
-<li><p>Eventuell +1 Block wegen Layout</p></li>
-</ul>
-</li>
-<li><p>Oft: Relation ist bereits clustered und clustering index ist auf dem Primärschlüssel</p></li>
-</ul>
-</li>
-<li><p>Eine clustered Relation kann auch non-Cluster-Indizes haben.</p></li>
-</ul>
+<p>Mit Index-basierten Verfahren haben wir die Möglichkeit unterschiedlich zu rechnen und zwar je nachdem ob wir eine clustered relation haben oder einen clustering index. Dies gilt insbesondere für Selektionen aber auch Joins und binäre Operationen. Ist unsere Relation geclustered gespeichert, haben wir Tupel auf möglichst wenig Blöcken auf der Disk. Diese Tupel sind in der Regel anhand ihres Primärschlüssels geclustered. Beim clustering index haben wir einen Index, der versucht, die Tupel so zu organisieren, dass Tupel mit gleichen Attributwerten möglichst zusammen sind, also auf möglichst wenig Blöcken. Das hat den Vorteil, dass man weniger Blöcke lesen und nicht zu jedem mehrmals springen muss. Eventuell kommt ein weiterer Block für das Layout hinzu. Oft liegt die Relation bereits geclustered vor, mit einem clustering index auf dem Primärschlüssel. Da nur anhand eines Attributs sortiert und gruppiert werden kann, kann man nur einen clustering index haben. Alle anderen Indizes müssen non-clustering indexes sein, denn diese speichern nur Pointer zu den Tupeln.</p>
 <section id="index-basierte-selektion">
 <h3><span class="section-number">4.6.1. </span>Index-basierte Selektion<a class="headerlink" href="#index-basierte-selektion" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Basisalgorithmus: Lese gesamte Relation ein und prüfe Bedingung</p>
-<ul>
-<li><p>Ohne Index ist dies die beste Methode</p></li>
-<li><p>I/O-Kosten: B® bzw. T® falls R nicht clustered</p></li>
-</ul>
-</li>
-<li><p>Besser: Selektionsbedingung a=v und a ist Suchschlüssel eines Cluster-Indexes</p>
-<ul>
-<li><p>I/O-Kosten: <span class="math notranslate nohighlight">\(\lceil B(R)/V(R,a)\rceil\)</span></p>
-<ul>
-<li><p>Reminder: V(R,L) = Anzahl distinct Werte von pL®</p></li>
-</ul>
-</li>
-<li><p>Eventuell mehr</p>
-<ul>
-<li><p>I/O-Kosten für Index</p></li>
-<li><p>Tupel nicht perfekt auf Blöcke verteilt: 1 Block extra</p></li>
-<li><p>Blöcke nicht absolut vollgepackt</p></li>
-<li><p>Fremde Tupel auf Blöcken</p></li>
-<li><p>Aufrunden: a ist Schlüssel =&gt; V(R,a) = T® &gt;&gt; B®</p></li>
-<li><p>Dennoch mindestens 1 Block</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Selektionsbedingung a=v und a ist Suchschlüssel eines nicht-Cluster-Indexes</p></li>
-<li><p>=&gt; Jedes Tupel auf anderen Block (vermutlich)</p></li>
-<li><p>I/O-Kosten: <span class="math notranslate nohighlight">\(\lceil T(R) / V(R,a)\rceil\)</span></p>
-<ul>
-<li><p>Wieder zusätzliche I/O-Kosten: Indizes</p></li>
-<li><p>Etwas besser, falls zufällig mehr als ein Tupel auf dem Block</p></li>
-</ul>
-</li>
-</ul>
+<p>Mit dem Basisalgorithmus lesen wir die gesamte Relation ein und überprüfen die Bedingung. Ohne Index ist das die beste Methode. Liegt die Relation geclustered vor, betragen die I/O-Kosten B®, ansonsten T®.
+Haben wir jedoch einen Index, gehen wir davon aus, dass bei den Berechnungen die Werte gleich verteilt sind. Rechnen wir die Anzahl der distinct Werte geteilt durch die Anzahl der Blöcke, bekommen wir als Ergebnis die Anzahl der Blöcke die wir lesen müssen und damit unsere I/O-Kosten ( <span class="math notranslate nohighlight">\(\lceil\frac{B(R)}{V(R,a)}\rceil \)</span> ). Diese können unter Umstände höher sein. Für den Index selbst zum Beispiel oder vielleicht weil die Tupel nicht perfekt auf die Blöcke verteilt sind, die Blöcke nicht vollgepackt wurden oder weil fremde Tupel auf den Blöcken sind.</p>
+<p>Wichtig ist aufzurunden. Das machen wir insbesondere, wenn die Anzahl der distinct Werte der Anzahl der Tupel entspricht. Dann bekommen wir ein Ergebnis, dass kleiner als 1 ist und müssen aufrunden, um mindestens einen Block zu bekommen.</p>
+<p>Haben wir nicht-Cluster Indizes ist im schlimmsten Fall jedes Tupel auf einen anderen Block verteilt. Unsere I/O-Kosten basieren dann auf T® und nicht B®. Dann sieht die Formel wie folgt aus: <span class="math notranslate nohighlight">\(\lceil\frac{T(R)}{V(R,a)}\rceil\)</span>.
+Auch hier können wieder zusätzliche I/O-Kosten für beispielsweise die Indizes anfallen. Besser wäre es, wenn zufällig mehr als ein Tupel auf dem Block wären.</p>
 <p><strong>Index-basierte Selektion – Beispiel</strong></p>
 <ul class="simple">
 <li><p>Beispiel: B® = 1000, T® = 20000 (=&gt; 20 Tupel pro Block)</p>
