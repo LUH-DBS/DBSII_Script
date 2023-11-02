@@ -444,7 +444,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">4.6.2. Joining mit Index</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">4.7. Zusammenfassung</a></li>
 </ul>
             </nav>
         </div>
@@ -995,137 +994,25 @@ Haben wir jedoch einen Index, gehen wir davon aus, dass bei den Berechnungen die
 <p>Haben wir nicht-Cluster Indizes ist im schlimmsten Fall jedes Tupel auf einen anderen Block verteilt. Unsere I/O-Kosten basieren dann auf T® und nicht B®. Dann sieht die Formel wie folgt aus: <span class="math notranslate nohighlight">\(\lceil\frac{T(R)}{V(R,a)}\rceil\)</span>.
 Auch hier können wieder zusätzliche I/O-Kosten für beispielsweise die Indizes anfallen. Besser wäre es, wenn zufällig mehr als ein Tupel auf dem Block wären.</p>
 <p><strong>Index-basierte Selektion – Beispiel</strong></p>
-<ul class="simple">
-<li><p>Beispiel: B® = 1000, T® = 20000 (=&gt; 20 Tupel pro Block)</p>
-<ul>
-<li><p>Anfrage: sa=0®; Index auf a</p></li>
-<li><p>R ist clustered; Index wird nicht verwendet:</p>
-<ul>
-<li><p>1000 I/Os</p></li>
-</ul>
-</li>
-<li><p>R nicht clustered; Index wird nicht verwendet:</p>
-<ul>
-<li><p>20000 I/Os</p></li>
-</ul>
-</li>
-<li><p>V(R,a)=100; Index ist clustering:</p>
-<ul>
-<li><p>1000/100 = 10 I/Os</p></li>
-</ul>
-</li>
-<li><p>V(R,a) = 10; Index ist nicht clustering:</p>
-<ul>
-<li><p>20000/10 = 2000 I/Os</p></li>
-<li><p>Falls R clustered: Lieber ganz R einlesen (1000 I/O)</p></li>
-</ul>
-</li>
-<li><p>V(R,a) = 20000 (d.h. a ist Schlüssel):</p>
-<ul>
-<li><p>1 I/O</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Schauen wir uns die Index-basierte Selektion an einem Beispiel an. Wir haben 1000 Blöcke und 20000 Tupel in R. Wir suchen nach dem Attribut <em>a</em>, welches den Wert 0 hat. Verwenden wir <strong>keinen</strong> Index und ist R geclustered, müssen wir die ganze Relation lesen. Also brauchen wir <strong>1000 I/O-Operationen</strong>. Ist R nicht geclustered brauchen wir sogar <strong>20000 I/O-Operationen</strong>. <br>
+Haben wir einen clustering index und 100 distinct Werte benötigen wir <span class="math notranslate nohighlight">\(\frac{1000}{100}\)</span> = <strong>10 I/O-Operationen</strong>. Bei einem non-clustering Index und 10 distinct Werten sind wir bei <span class="math notranslate nohighlight">\(\frac{20000}{10}\)</span> = <strong>2000 I/O-Operationen</strong>. Es wird deutlich, dass es am besten ist eine clustered relation komplett einzulesen.
+Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräuchten wir nur <strong>eine I/O-Operation</strong>.</p>
 </section>
 <section id="joining-mit-index">
 <h3><span class="section-number">4.6.2. </span>Joining mit Index<a class="headerlink" href="#joining-mit-index" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Natural Join: R(X,Y) ⋈ S(Y,Z)</p></li>
-<li><p>Algorithmus</p>
-<ul>
-<li><p>S habe Index auf Y.</p></li>
-<li><p>Lese jeden Block in R.</p></li>
-<li><p>Für jedes Tupel: Extrahiere Y-Wert und verwende Index um entsprechendes S-Tupel zu finden</p></li>
-</ul>
-</li>
-<li><p>Kosten</p>
-<ul>
-<li><p>Falls R clustered: B®</p></li>
-<li><p>Für jedes der T® Tupel muss man durchschnittlichT(S)/V(S,Y) Tupel lesen.</p>
-<ul>
-<li><p>Falls Index nicht clustering ist: T® · T(S)/V(S,Y)</p></li>
-<li><p>Falls Index clustering: T® · B(S)/V(S,Y) bzw. genauer: T® · max[ 1 , B(S) / V(S,Y)]</p></li>
-<li><p>Dominiert Kosten B® bzw. T®</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Wir haben folgenden Natural Join: R(X,Y) ⋈ S(Y,Z). Y ist das Joinattribut und wir können davon ausgehen, das S einen Index auf Y hat. Zunächst müssen wir jeden Block aus R lesen. Für jedes Tupel extrahieren wir dann den Y-Wert und verwenden den Index um das entsprechende S-Tupel zu finden.</p>
+<p>Auch hier gibt es wieder verschiedene Möglichkeiten die Kosten zu betrachten. Ist R geclustered, haben wir B® Kosten für das Lesen von R. Für jedes Tupel von R muss man durchschnittlich <span class="math notranslate nohighlight">\(\frac{T(S)}{V(S,Y)}\)</span> Tupel aus S lesen. Falls der Index nicht clustering ist, berechnet man die Kosten mit T® · <span class="math notranslate nohighlight">\(\frac{T(S)}{V(S,Y)}\)</span>. Ist der Index clustering rechnet man mit T® · <span class="math notranslate nohighlight">\(\frac{B(S)}{V(S,Y)}\)</span>, bzw. um es genauer zu nehmen, mit T® · max[ 1 , <span class="math notranslate nohighlight">\(\frac{B(S)}{V(S,Y)}\)</span>]. Das domniert die Kosten von B®, bzw. T®.</p>
 <p><strong>Joining mit Index – Beispiel</strong></p>
-<ul class="simple">
-<li><p>B® = 1000, B(S) = 500, T® = 10000, T(S) = 5000</p>
-<ul>
-<li><p>10 Tupel pro Block</p></li>
-</ul>
-</li>
-<li><p>V(S,Y) = 100 (also 100 distinct Y-Werte in S)</p></li>
-<li><p>R sei clustered; Index auf S[Y] sei clustering</p></li>
-<li><p>I/O-Kosten:</p>
-<ul>
-<li><p>1000 zum Lesen von R</p></li>
-<li><p>10000 · 500/100 = 50000 I/Os zum Vergleich mit S</p></li>
-</ul>
-</li>
-<li><p>Diskussion</p>
-<ul>
-<li><p>Klappt besser falls R sehr klein =&gt; Viele Blöcke von S werden nie angefasst</p></li>
-<li><p>Bei Hash- und Sort-basierten Methoden werden hingegen immer ganz R und ganz S betrachtet</p></li>
-</ul>
-</li>
-</ul>
+<p>Wir haben 1000 Blöcke und 10000 Tupel in R und 500 Blöcke und 5000 Tupel in S. Das sind jeweils 10 Tupel pro Block. Außerdem haben wir 100 distinct Y-Werte in S ( V(S,Y) ). Die Relation R ist geclustered und der Index auf Y in S ist clustering. Zunächst müssen wir R lesen und da die Relation geclustered vorliegt, brauchen wir 1000 I/O-Operationen. Nun müssen wir für jeded Tupel aus R ein passendes Tupel in S finden. Dafür brauchen wir 10000 · <span class="math notranslate nohighlight">\(\frac{500}{100}\)</span> = <strong>50000 I/O-Operationen</strong>.</p>
+<p>Dies klappt besser, falls R sehr klein ist. Dann werden viele Blöcke von S gar nicht erst besucht und man muss nicht so viel lesen. Das ist ein Vorteil gegenüber Hash- und Sort-basierten Methoden, da dort immer alles betrachtet wird.</p>
 <p><strong>Joining mit sortiertem Index</strong></p>
-<ul class="simple">
-<li><p>Sortierter, dichtbesetzter Index, z.B. B-Baum</p></li>
-<li><p>Idee 1: Sort-Merge-Join, aber nur eine Relation muss vorher sortiert werden.</p></li>
-<li><p>Idee 2: Falls beide Relationen sortierten Index auf Y haben: Nur noch Merge-Phase</p>
-<ul>
-<li><p>„Zig-Zag-Join“</p></li>
-<li><p>Tupel aus R ohne Joinpartner in S werden nie gelesen (und umgekehrt)</p></li>
-</ul>
-</li>
-</ul>
+<p>Eine weitere Variante des Joins ist das joinen mit einem sortierten, dichtbesetzten Index. Damit müssten wir, wenn wir beispielsweise einen sort-merge join verwenden, vorher nur eine Relation sortieren. Haben beide Relationen einen sortierten Index auf Y, müssen wir nur noch die Merge-Phase ausführen und können einen „Zig-Zag-Join“ verwenden. Dabei würden Tupel aus R ohne Joinpartner in S nie gelesen werden und umgekehrt.</p>
 <a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index.png"><img alt="Joining-mit-sortiertem-Index" src="../_images/Joining-mit-sortiertem-Index.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index-meme.png"><img alt="Joining-mit-sortiertem-Index-meme" src="../_images/Joining-mit-sortiertem-Index-meme.png" style="width: 500px;" /></a>
 <p><strong>Joining mit Indizes – Beispiel</strong></p>
-<ul class="simple">
-<li><p>B® = 1000, B(S) = 500, T® = 10000, T(S) = 5000, M = 100</p></li>
-<li><p>Idee 1: Seien R und S clustered; S habe sortierten Index auf Y; R habe keinen Index</p>
-<ul>
-<li><p>10 sortierte Teillisten für R: 2000 I/Os</p></li>
-<li><p>Nun 11 Puffer: Einen für jede Teilliste, einen für Blöcke aus S</p>
-<ul>
-<li><p>Ganz R und ganz S werden gelesen: 1500 I/Os</p></li>
-</ul>
-</li>
-<li><p>Zusammen 3500 I/O</p>
-<ul>
-<li><p>Wieder weniger als bisher! Aber sortierter Index wird vorausgesetzt…</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Idee 2: Nun habe R auch einen Index</p>
-<ul>
-<li><p>Sortierung der Relationen ist unnötig: Zig-Zag-Join</p></li>
-<li><p>Schlimmstenfalls nur ganz R und ganz S lesen: 1500 I/O</p></li>
-<li><p>Bei wenigen Joinpartnern: Viel weniger I/Os</p></li>
-</ul>
-</li>
-</ul>
+<p>Wir verwenden wieder die Werte aus dem vorherigen Beispiel und haben B® = 1000, B(S) = 500, T® = 10000, T(S) = 5000 und M = 100. R und S sind beide geclustered, aber nur S hat einen sortierten Index auf Y. Das bedeutet, wir müssen zuerst R vorsortieren. Da 10 Tupel in jeden Block passen, können wir R in 10 Teillisten sortieren. Dafür benötigen wir 2000 I/O-Operationen. Nun nehmen wir aus jeder Teilliste einen Block und noch einen Block aus S. Dafür müssen wir R und S noch einmal komplett lesen und brauchen dafür 1500 I/O-Operationen. Insgesamt kommen wir auf 3500 I/O-Operationen. Immer noch weniger als zuvor, jedoch wird hier ein sortierter Index vorausgesetzt.</p>
+<p>Hat R nun auch einen Index, ist das Sortieren der Relationen unnötig, da wir den Zig-Zag-Join anwenden können. Im schlimmsten Fall müssen wir aber trotzdem R und S komplett lesen und brauchen dann wieder 1500 I/O-Operationen. Bei wenigen Joinpartnern benötigen wir dann aber viel weniger I/O-Operationen.</p>
+<a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index-meme.png"><img alt="Joining-mit-sortiertem-Index-meme" src="../_images/Joining-mit-sortiertem-Index-meme.png" style="width: 500px;" /></a>
 </section>
-</section>
-<section id="zusammenfassung">
-<h2><span class="section-number">4.7. </span>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Physische Operatoren</p></li>
-<li><p>One-Pass Algorithmen</p></li>
-<li><p>Nested Loop Join</p></li>
-<li><p>Sort-basierte Two-Pass Algorithmen</p></li>
-<li><p>Hash-basierte Two-Pass Algorithmen</p></li>
-<li><p>Index-basierte Algorithmen</p></li>
-</ul>
 </section>
 </section>
 
@@ -1252,7 +1139,6 @@ Auch hier können wieder zusätzliche I/O-Kosten für beispielsweise die Indizes
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">4.6.2. Joining mit Index</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">4.7. Zusammenfassung</a></li>
 </ul>
   </nav></div>
 
