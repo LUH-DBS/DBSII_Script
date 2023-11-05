@@ -1,54 +1,43 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>5. Optimierung &#8212; Online-Skript Datenbanksysteme II</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -63,92 +52,61 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05/optimierung';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Large Scale Data Management" href="../06/large-scale-data-management.html" />
     <link rel="prev" title="4. Anfrageausführung" href="../04/anfrageausfuehrung.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -158,339 +116,983 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03/indizes.html">3. Indizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04/anfrageausfuehrung.html">4. Anfrageausführung</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Optimierung</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/speicherung.html">
+   1. Speicherung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/repraesentation.html">
+   2. Repräsentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/indizes.html">
+   3. Indizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/anfrageausfuehrung.html">
+   4. Anfrageausführung
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Optimierung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06/large-scale-data-management.html">
+   6. Large Scale Data Management
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
 
 
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/05/optimierung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="btn__text-container">Live Code</span>
+<span class="headerbtn__text-container">Live Code</span>
 </button>
-</li>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F05/optimierung.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/05/optimierung.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Optimierung</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">5.1. Wiederholung: Anfragebearbeitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundproblem">5.1.1. Grundproblem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">5.1.2. Ablauf der Anfragebearbeitung</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2. Ablauf der Anfragebearbeitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing">5.2.1. Parsing</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraische-transformationsregeln">5.3. Algebraische Transformationsregeln</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">5.3.1. Kommutativität und Assoziativität</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zwei-schritte">5.4.1. Zwei Schritte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">5.4.2. Beispiel - Anfragebearbeitung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">5.4.3. Übergang zum Physischen Anfrageplan</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell">5.5. Kostenmodell</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">5.5.1. Kostenbasierte Optimierung (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">5.5.2. Problemgröße (Suchraum) (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell-wiederholung">5.5.3. Kostenmodell (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiken-wiederholung">5.5.4. Statistiken (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kosten-von-operationen">5.5.5. Kosten von Operationen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-projektion">5.5.6. Kostenschätzung - Projektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion">5.5.7. Kostenschätzung - Selektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selektivitat-schatzen">5.5.8. Selektivität schätzen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-fur-skew-zipf-verteilung">5.5.9. Beispiel für Skew: Zipf-Verteilung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.10. Kostenschätzung - Selektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.6.1. Ablauf der Anfragebearbeitung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schatzung-der-statistiken">5.6.2. Schätzung der Statistiken</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schatzung-der-statistiken-histogramme">5.6.3. Schätzung der Statistiken - Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verteilungen-korpergewicht">5.6.4. Verteilungen - Körpergewicht</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equi-width-histogramme">5.6.5. Equi-Width Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equi-height-histogramme">5.6.6. Equi-Height-Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme-zur-schatzung-fur-joins">5.6.7. Histogramme zur Schätzung für Joins</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erhebung-von-statistiken">5.6.8. Erhebung von Statistiken</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joinreihenfolge">5.7. Joinreihenfolge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration-physischer-anfrageplane">5.7.1. Enumeration Physischer Anfragepläne</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heuristische-auswahl">5.7.2. Heuristische Auswahl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-and-bound">5.7.3. Branch and Bound</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hill-climbing">5.7.4. Hill-Climbing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung-selinger-style-optimierung">5.7.5. Dynamische Programmierung &amp; Selinger-style Optimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#richard-bellman">5.7.6. Richard Bellman</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-fur-knapsack-problem">5.7.7. DP für Knapsack Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-knapsack-mit-dp">5.7.8. Beispiel: Knapsack mit DP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-traveling-salesman-problem">5.7.9. DP: Traveling Salesman Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming-heldkarp-algorithmus">5.7.10. Dynamic Programming (Held–Karp Algorithmus)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung">5.7.11. Dynamische Programmierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendung-fur-left-deep-baume">5.7.12. Anwendung für Left-Deep Bäume</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anfrageplanung">5.7.13. Anfrageplanung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-optimierung">5.7.14. Anfragebearbeitung – Optimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung-optimierung-im-system-r">5.7.15. Dynamische Programmierung: Optimierung im System-R</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bottom-up-anfrageplangenerierung">5.7.16. Bottom-up Anfrageplangenerierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.7.17. Dynamische Programmierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-grundidee-fur-anfrageoptimierung">5.7.18. DP – Grundidee für Anfrageoptimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-beispiel">5.7.19. DP – Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-interesting-orders-interessante-sortierung">5.7.20. DP - interesting orders (Interessante Sortierung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-algorithmus">5.7.21. DP – Algorithmus</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-anfrageplane">5.8. Physische Anfragepläne</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wahl-der-selektionsmethode">5.8.1. Wahl der Selektionsmethode</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenvergleich-der-selektionsmethoden">5.8.2. Kostenvergleich der Selektionsmethoden</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wahl-der-join-methode">5.8.3. Wahl der Join-Methode</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelining-vs-blocking">5.8.4. Pipelining vs. Blocking</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F05/optimierung.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/05/optimierung.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">
+   5.1. Wiederholung: Anfragebearbeitung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundproblem">
+     5.1.1. Grundproblem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">
+     5.1.2. Ablauf der Anfragebearbeitung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   5.2. Ablauf der Anfragebearbeitung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parsing">
+     5.2.1. Parsing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebraische-transformationsregeln">
+   5.3. Algebraische Transformationsregeln
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">
+     5.3.1. Kommutativität und Assoziativität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-regeln">
+     5.3.2. Weitere Regeln
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logische-anfrageplane">
+   5.4. Logische Anfragepläne
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zwei-schritte">
+     5.4.1. Zwei Schritte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">
+     5.4.2. Beispiel - Anfragebearbeitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">
+     5.4.3. Übergang zum Physischen Anfrageplan
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kostenmodell">
+   5.5. Kostenmodell
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">
+     5.5.1. Kostenbasierte Optimierung (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">
+     5.5.2. Problemgröße (Suchraum) (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenmodell-wiederholung">
+     5.5.3. Kostenmodell (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statistiken-wiederholung">
+     5.5.4. Statistiken (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kosten-von-operationen">
+     5.5.5. Kosten von Operationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-projektion">
+     5.5.6. Kostenschätzung - Projektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-selektion">
+     5.5.7. Kostenschätzung - Selektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektivitat-schatzen">
+     5.5.8. Selektivität schätzen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-fur-skew-zipf-verteilung">
+     5.5.9. Beispiel für Skew: Zipf-Verteilung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     5.5.10. Kostenschätzung - Selektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">
+     5.5.11. Kostenschätzung - Selektion mit Disjunktion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join">
+     5.5.12. Kostenschätzung - Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">
+     5.5.13. Kostenschätzung - Join Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">
+     5.5.14. Kostenschätzung Join - Mehrere Attribute
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">
+     5.5.15. Kostenschätzung - Mehrfacher Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">
+     5.5.16. Kostenschätzung - Weitere Operationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#histogramme">
+   5.6. Histogramme
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     5.6.1. Ablauf der Anfragebearbeitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schatzung-der-statistiken">
+     5.6.2. Schätzung der Statistiken
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schatzung-der-statistiken-histogramme">
+     5.6.3. Schätzung der Statistiken - Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verteilungen-korpergewicht">
+     5.6.4. Verteilungen - Körpergewicht
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equi-width-histogramme">
+     5.6.5. Equi-Width Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equi-height-histogramme">
+     5.6.6. Equi-Height-Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#histogramme-zur-schatzung-fur-joins">
+     5.6.7. Histogramme zur Schätzung für Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erhebung-von-statistiken">
+     5.6.8. Erhebung von Statistiken
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#joinreihenfolge">
+   5.7. Joinreihenfolge
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enumeration-physischer-anfrageplane">
+     5.7.1. Enumeration Physischer Anfragepläne
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristische-auswahl">
+     5.7.2. Heuristische Auswahl
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branch-and-bound">
+     5.7.3. Branch and Bound
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hill-climbing">
+     5.7.4. Hill-Climbing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung-selinger-style-optimierung">
+     5.7.5. Dynamische Programmierung &amp; Selinger-style Optimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#richard-bellman">
+     5.7.6. Richard Bellman
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-fur-knapsack-problem">
+     5.7.7. DP für Knapsack Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-knapsack-mit-dp">
+     5.7.8. Beispiel: Knapsack mit DP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-traveling-salesman-problem">
+     5.7.9. DP: Traveling Salesman Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-programming-heldkarp-algorithmus">
+     5.7.10. Dynamic Programming (Held–Karp Algorithmus)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung">
+     5.7.11. Dynamische Programmierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendung-fur-left-deep-baume">
+     5.7.12. Anwendung für Left-Deep Bäume
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfrageplanung">
+     5.7.13. Anfrageplanung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfragebearbeitung-optimierung">
+     5.7.14. Anfragebearbeitung – Optimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung-optimierung-im-system-r">
+     5.7.15. Dynamische Programmierung: Optimierung im System-R
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottom-up-anfrageplangenerierung">
+     5.7.16. Bottom-up Anfrageplangenerierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     5.7.17. Dynamische Programmierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-grundidee-fur-anfrageoptimierung">
+     5.7.18. DP – Grundidee für Anfrageoptimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-beispiel">
+     5.7.19. DP – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-interesting-orders-interessante-sortierung">
+     5.7.20. DP - interesting orders (Interessante Sortierung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-algorithmus">
+     5.7.21. DP – Algorithmus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physische-anfrageplane">
+   5.8. Physische Anfragepläne
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahl-der-selektionsmethode">
+     5.8.1. Wahl der Selektionsmethode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenvergleich-der-selektionsmethoden">
+     5.8.2. Kostenvergleich der Selektionsmethoden
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahl-der-join-methode">
+     5.8.3. Wahl der Join-Methode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipelining-vs-blocking">
+     5.8.4. Pipelining vs. Blocking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Optimierung</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">
+   5.1. Wiederholung: Anfragebearbeitung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundproblem">
+     5.1.1. Grundproblem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">
+     5.1.2. Ablauf der Anfragebearbeitung
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   5.2. Ablauf der Anfragebearbeitung
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parsing">
+     5.2.1. Parsing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebraische-transformationsregeln">
+   5.3. Algebraische Transformationsregeln
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">
+     5.3.1. Kommutativität und Assoziativität
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-regeln">
+     5.3.2. Weitere Regeln
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logische-anfrageplane">
+   5.4. Logische Anfragepläne
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zwei-schritte">
+     5.4.1. Zwei Schritte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">
+     5.4.2. Beispiel - Anfragebearbeitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">
+     5.4.3. Übergang zum Physischen Anfrageplan
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kostenmodell">
+   5.5. Kostenmodell
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">
+     5.5.1. Kostenbasierte Optimierung (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">
+     5.5.2. Problemgröße (Suchraum) (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenmodell-wiederholung">
+     5.5.3. Kostenmodell (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statistiken-wiederholung">
+     5.5.4. Statistiken (Wiederholung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kosten-von-operationen">
+     5.5.5. Kosten von Operationen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-projektion">
+     5.5.6. Kostenschätzung - Projektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-selektion">
+     5.5.7. Kostenschätzung - Selektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selektivitat-schatzen">
+     5.5.8. Selektivität schätzen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-fur-skew-zipf-verteilung">
+     5.5.9. Beispiel für Skew: Zipf-Verteilung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     5.5.10. Kostenschätzung - Selektion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">
+     5.5.11. Kostenschätzung - Selektion mit Disjunktion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join">
+     5.5.12. Kostenschätzung - Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">
+     5.5.13. Kostenschätzung - Join Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">
+     5.5.14. Kostenschätzung Join - Mehrere Attribute
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">
+     5.5.15. Kostenschätzung - Mehrfacher Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">
+     5.5.16. Kostenschätzung - Weitere Operationen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#histogramme">
+   5.6. Histogramme
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     5.6.1. Ablauf der Anfragebearbeitung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schatzung-der-statistiken">
+     5.6.2. Schätzung der Statistiken
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#schatzung-der-statistiken-histogramme">
+     5.6.3. Schätzung der Statistiken - Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verteilungen-korpergewicht">
+     5.6.4. Verteilungen - Körpergewicht
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equi-width-histogramme">
+     5.6.5. Equi-Width Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equi-height-histogramme">
+     5.6.6. Equi-Height-Histogramme
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#histogramme-zur-schatzung-fur-joins">
+     5.6.7. Histogramme zur Schätzung für Joins
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erhebung-von-statistiken">
+     5.6.8. Erhebung von Statistiken
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#joinreihenfolge">
+   5.7. Joinreihenfolge
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enumeration-physischer-anfrageplane">
+     5.7.1. Enumeration Physischer Anfragepläne
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristische-auswahl">
+     5.7.2. Heuristische Auswahl
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branch-and-bound">
+     5.7.3. Branch and Bound
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hill-climbing">
+     5.7.4. Hill-Climbing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung-selinger-style-optimierung">
+     5.7.5. Dynamische Programmierung &amp; Selinger-style Optimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#richard-bellman">
+     5.7.6. Richard Bellman
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-fur-knapsack-problem">
+     5.7.7. DP für Knapsack Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beispiel-knapsack-mit-dp">
+     5.7.8. Beispiel: Knapsack mit DP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-traveling-salesman-problem">
+     5.7.9. DP: Traveling Salesman Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-programming-heldkarp-algorithmus">
+     5.7.10. Dynamic Programming (Held–Karp Algorithmus)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung">
+     5.7.11. Dynamische Programmierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anwendung-fur-left-deep-baume">
+     5.7.12. Anwendung für Left-Deep Bäume
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfrageplanung">
+     5.7.13. Anfrageplanung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anfragebearbeitung-optimierung">
+     5.7.14. Anfragebearbeitung – Optimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamische-programmierung-optimierung-im-system-r">
+     5.7.15. Dynamische Programmierung: Optimierung im System-R
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottom-up-anfrageplangenerierung">
+     5.7.16. Bottom-up Anfrageplangenerierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     5.7.17. Dynamische Programmierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-grundidee-fur-anfrageoptimierung">
+     5.7.18. DP – Grundidee für Anfrageoptimierung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-beispiel">
+     5.7.19. DP – Beispiel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-interesting-orders-interessante-sortierung">
+     5.7.20. DP - interesting orders (Interessante Sortierung)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dp-algorithmus">
+     5.7.21. DP – Algorithmus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physische-anfrageplane">
+   5.8. Physische Anfragepläne
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahl-der-selektionsmethode">
+     5.8.1. Wahl der Selektionsmethode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kostenvergleich-der-selektionsmethoden">
+     5.8.2. Kostenvergleich der Selektionsmethoden
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wahl-der-join-methode">
+     5.8.3. Wahl der Join-Methode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipelining-vs-blocking">
+     5.8.4. Pipelining vs. Blocking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="optimierung">
-<h1><span class="section-number">5. </span>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">5. </span>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">#</a></h1>
 <p>In diesem Kapitel wird die Optimierung auf logischer Ebene betrachtet. Es geht mehr um die Daten selbst als um die Speicherabbildung.</p>
 <section id="wiederholung-anfragebearbeitung">
-<h2><span class="section-number">5.1. </span>Wiederholung: Anfragebearbeitung<a class="headerlink" href="#wiederholung-anfragebearbeitung" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Wiederholung: Anfragebearbeitung<a class="headerlink" href="#wiederholung-anfragebearbeitung" title="Permalink to this headline">#</a></h2>
 <p>Zunächst eine kleine Wiederholung zur Anfragebearbeitung in Bezug auf das Grundproblem und den Ablauf.</p>
 <section id="grundproblem">
-<h3><span class="section-number">5.1.1. </span>Grundproblem<a class="headerlink" href="#grundproblem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.1.1. </span>Grundproblem<a class="headerlink" href="#grundproblem" title="Permalink to this headline">#</a></h3>
 <p>Anfragen in SQL und der Relationalen Algebra sind deklarativ. Solche Anfragen müssen in ausführbare (prozedurale) Form transformiert werden. Also in echte ausführbare Programme. Die Ziele dabei sind ein “QEP” (prozeduraler Query Execution Plan) und Effizienz. Eine Anfrage soll schnell und wenige Ressourcen verbrauchen (CPU, I/O, RAM, Bandbreite).</p>
 </section>
 <section id="ablauf-der-anfragebearbeitung">
-<h3><span class="section-number">5.1.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#ablauf-der-anfragebearbeitung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.1.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#ablauf-der-anfragebearbeitung" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung.png"><img alt="Ablauf-Anfragebearbeitung" src="../_images/Ablauf-Anfragebearbeitung.png" style="width: 250px;" /></a>
 <ol class="arabic simple">
 <li><p><strong>Parsing</strong></br>
@@ -504,10 +1106,10 @@ Anhand des logischen Plans wird ein ausführbares Programm mit physischen Operat
 </section>
 </section>
 <section id="id1">
-<h2><span class="section-number">5.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Die einzelnen Schritte bei der Anfragebearbeitung werden nun genauer betrachtet.</p>
 <section id="parsing">
-<h3><span class="section-number">5.2.1. </span>Parsing<a class="headerlink" href="#parsing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.2.1. </span>Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_2.png"><img alt="Ablauf-Anfragebearbeitung_2" src="../_images/Ablauf-Anfragebearbeitung_2.png" style="width: 500px;" /></a>
 <p>Beginnend beim Parsing wird auf <strong>syntaktische Korrektheit</strong> überprüft. Dafür wird eine Grammatik für einen Teil von SQL betrachtet. (SFW steht für SelectFromWhere): </br></p>
 <ul class="simple">
@@ -554,12 +1156,12 @@ Anhand des logischen Plans wird ein ausführbares Programm mit physischen Operat
 </section>
 </section>
 <section id="algebraische-transformationsregeln">
-<h2><span class="section-number">5.3. </span>Algebraische Transformationsregeln<a class="headerlink" href="#algebraische-transformationsregeln" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Algebraische Transformationsregeln<a class="headerlink" href="#algebraische-transformationsregeln" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_3.png"><img alt="Ablauf-Anfragebearbeitung_3" src="../_images/Ablauf-Anfragebearbeitung_3.png" style="width: 500px;" /></a>
 <p>Das Ziel ist es aus dem Parsebaum einen logischen Anfrageplan zu erstellen. Ohne die Semantik der Anfrage zu ändern, soll sie in eine interne Darstellung verwandelt werden. Um die Anfrage effizienter auszuführen, sollen insbesondere kleine Zwischenergebnisse erzielt werden. </br>
 Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen Algebra heißen äquivalent, falls sie die gleichen Operanden (=Relationen) nutzt und für jede mögliche Instanz der Datenbank stets die gleiche Antwortrelation ausgibt.</p>
 <section id="kommutativitat-und-assoziativitat">
-<h3><span class="section-number">5.3.1. </span>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1. </span>Kommutativität und Assoziativität<a class="headerlink" href="#kommutativitat-und-assoziativitat" title="Permalink to this headline">#</a></h3>
 <p>Die Gesetze gelten jeweils für Mengen und Multimengen. Die verwendeten Ausdrücke können in beide Richtungen verwendet werden.</p>
 <ul class="simple">
 <li><p>? ist kommutativ und assoziativ</p>
@@ -589,7 +1191,7 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 </ul>
 </section>
 <section id="weitere-regeln">
-<h3><span class="section-number">5.3.2. </span>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.3.2. </span>Weitere Regeln<a class="headerlink" href="#weitere-regeln" title="Permalink to this headline">#</a></h3>
 <p>Für Selektionen und Projektionen gelten die folgenden Regeln:</p>
 <ul class="simple">
 <li><p>Selektion σ</p>
@@ -627,11 +1229,11 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 </section>
 </section>
 <section id="logische-anfrageplane">
-<h2><span class="section-number">5.4. </span>Logische Anfragepläne<a class="headerlink" href="#logische-anfrageplane" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span>Logische Anfragepläne<a class="headerlink" href="#logische-anfrageplane" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_4.png"><img alt="Ablauf-Anfragebearbeitung_4" src="../_images/Ablauf-Anfragebearbeitung_4.png" style="width: 500px;" /></a>
 <p>Um nun zu einem logischen Anfrageplan zu gelangen, benötigt es zwei Schritte.</p>
 <section id="zwei-schritte">
-<h3><span class="section-number">5.4.1. </span>Zwei Schritte<a class="headerlink" href="#zwei-schritte" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.4.1. </span>Zwei Schritte<a class="headerlink" href="#zwei-schritte" title="Permalink to this headline">#</a></h3>
 <p><strong>Schritt 1</strong></br>
 In Schritt 1 wird der Parsebaum in einen Ausdruck der relationalen Algebra übersetzt und dann wieder als Baum dargestellt. Unter anderem werden auch Subanfragen aufgelöst. Letzteres wird aber nicht in dieser Vorlesung weiter thematisiert.
 </br></p>
@@ -646,7 +1248,7 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 </ul>
 </section>
 <section id="beispiel-anfragebearbeitung">
-<h3><span class="section-number">5.4.2. </span>Beispiel - Anfragebearbeitung<a class="headerlink" href="#beispiel-anfragebearbeitung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.4.2. </span>Beispiel - Anfragebearbeitung<a class="headerlink" href="#beispiel-anfragebearbeitung" title="Permalink to this headline">#</a></h3>
 <p>In diesem Beispiel ist ein Ausdruck der relationalen Algebra in einem Parsebaum dargestellt. Die zugehörige SQL-Anfrage wäre</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Nachname</span>
 <span class="n">FROM</span> <span class="n">mitarbeiter</span> <span class="n">m</span><span class="p">,</span> <span class="n">projekte</span> <span class="n">p</span>
@@ -662,7 +1264,7 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 <a class="reference internal image-reference" href="../_images/Anfragebearbeitung-Beispiel-3.png"><img alt="Anfragebearbeitung-Beispiel-3" src="../_images/Anfragebearbeitung-Beispiel-3.png" style="width: 500px;" /></a>
 </section>
 <section id="ubergang-zum-physischen-anfrageplan">
-<h3><span class="section-number">5.4.3. </span>Übergang zum Physischen Anfrageplan<a class="headerlink" href="#ubergang-zum-physischen-anfrageplan" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.4.3. </span>Übergang zum Physischen Anfrageplan<a class="headerlink" href="#ubergang-zum-physischen-anfrageplan" title="Permalink to this headline">#</a></h3>
 <p>Hierbei gibt es diverse Freiheitsgrade:</p>
 <ol class="arabic simple">
 <li><p>Die Reihenfolge und Gruppierung von assoziativen und kommutativen Operatoren können vertauscht werden. Das ist zum Beispiel der Fall bei Joins, Vereinigungen und Schnittmengen.</p></li>
@@ -674,20 +1276,20 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 </section>
 </section>
 <section id="kostenmodell">
-<h2><span class="section-number">5.5. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>Kostenmodell<a class="headerlink" href="#kostenmodell" title="Permalink to this headline">#</a></h2>
 <p>Beim Kostenmodell werden die Kardinalitäten abgschätzt. Man möchte wissen wie viele Tupel es gibt und wie viele unterschiedliche Werte in den einzelnen Attributen einer Relation vorhanden sind.</p>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_5.png"><img alt="Ablauf-Anfragebearbeitung_5" src="../_images/Ablauf-Anfragebearbeitung_5.png" style="width: 500px;" /></a>
 <section id="kostenbasierte-optimierung-wiederholung">
-<h3><span class="section-number">5.5.1. </span>Kostenbasierte Optimierung (Wiederholung)<a class="headerlink" href="#kostenbasierte-optimierung-wiederholung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.1. </span>Kostenbasierte Optimierung (Wiederholung)<a class="headerlink" href="#kostenbasierte-optimierung-wiederholung" title="Permalink to this headline">#</a></h3>
 <p>Konzeptionell werden alle denkbaren Ausführungspläne generiert. Die Kosten für jeden Plan werden anhand eines Kostenmodells bewertet. Dazu werden Statistiken und Histogramme hinzugezogen. Die Parameter werden anhand der Rechnerarchitektur, auf der die Datenbank aufgesetzt ist, kalibriert. Die Optimierung ist abhängig vom verfügbaren Speicher. Dann wird anhand des Aufwands-Kostenmodell geschaut was und wie optimiert werden soll. Entweder Durchsatz maximierend oder nicht Antwortzeit-minimierend. Entsprechend wird der günstigste Plan ausgeführt. Wichtig ist, dass nicht zu lange optimiert wird, da sich sonst der ganze Aufwand nicht lohnen könnte.</p>
 <a class="reference internal image-reference" href="../_images/TimeCost-Meme.png"><img alt="TimeCost-Meme" src="../_images/TimeCost-Meme.png" style="width: 350px;" /></a>
 </section>
 <section id="problemgrosze-suchraum-wiederholung">
-<h3><span class="section-number">5.5.2. </span>Problemgröße (Suchraum) (Wiederholung)<a class="headerlink" href="#problemgrosze-suchraum-wiederholung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.2. </span>Problemgröße (Suchraum) (Wiederholung)<a class="headerlink" href="#problemgrosze-suchraum-wiederholung" title="Permalink to this headline">#</a></h3>
 <p>Wie zuvor erwähnt, werden konzeptionell alle denkbaren Ausführungspläne generiert. Man berechnet nun die Bushy-Pläne mit n Tabellen. Bushy-Plan bedeutet, dass der Baum immer balanciert ist.</p>
 <div class="math notranslate nohighlight">
 \[\frac{(2(n-1))!}{(n-1)!}\]</div>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>n</p></th>
 <th class="head"><p><span class="math notranslate nohighlight">\(2^n\)</span></p></th>
@@ -724,12 +1326,12 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 <p>Folie: Prof. Alfons Kemper, TU München.</p>
 </section>
 <section id="kostenmodell-wiederholung">
-<h3><span class="section-number">5.5.3. </span>Kostenmodell (Wiederholung)<a class="headerlink" href="#kostenmodell-wiederholung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.3. </span>Kostenmodell (Wiederholung)<a class="headerlink" href="#kostenmodell-wiederholung" title="Permalink to this headline">#</a></h3>
 <p>Gegeben ist ein algebraischer Ausdruck z.B. ein Anfrageplan. Das Kostenmodell schätzt die Ausführungskosten für diesen Ausdruck. Im Kostenmodell werden Punkte wie die Indexinformationen, die Ballungs-Informationen (Clustering on disk), die DB-Kardinalitäten und die Attributverteilungen berücksichtigt.</p>
 <a class="reference internal image-reference" href="../_images/Kostenmodell.png"><img alt="Kostenmodell" src="../_images/Kostenmodell.png" style="width: 500px;" /></a>
 </section>
 <section id="statistiken-wiederholung">
-<h3><span class="section-number">5.5.4. </span>Statistiken (Wiederholung)<a class="headerlink" href="#statistiken-wiederholung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.4. </span>Statistiken (Wiederholung)<a class="headerlink" href="#statistiken-wiederholung" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Statistiken-Histogram-of-arrivals.png"><img alt="Statistiken-Histogram-of-arrivals" src="../_images/Statistiken-Histogram-of-arrivals.png" style="width: 500px;" /></a>
 <p>Man kann unterschiedliche Statistiken für das Kostenmodell nutzen. Für die Statistiken kann man verschiedene Werte berücksichtigen. Zu jeder Basisrelation gibt es die Anzahl der tupel und die Größe der einzelnen Tupel.
 Zu (jedem) Attribut gibt es den minimalen und maximalen Wert, eine Werteverteilung (Histogramm) und die Anzahl der distinct Werte. Zum System sind die Speichergröße, die Bandbreite, I/O- und CPU-Zeiten angegeben.
@@ -737,7 +1339,7 @@ Zu (jedem) Attribut gibt es den minimalen und maximalen Wert, eine Werteverteilu
 <p>Das eigentliche Problem ist das Erstellen und Updaten der Statistiken. Wenn man eine Datenbank hat, die sich sehr schnell immer wieder verändert, müssen die Statistiken dazu auch häufig neu erstellt werden (<code class="docutils literal notranslate"><span class="pre">runstats()</span></code>). Dies kostet weitere Ressourcen. Man sollte sich überlegen wie genau man die Statistiken haben möchte und dementsprechend viel Zeit in das Optimieren investieren. Aus diesem Grund initiiert man meist nur explizit/manuell die Erstellung und das Update der Statistiken.</p>
 </section>
 <section id="kosten-von-operationen">
-<h3><span class="section-number">5.5.5. </span>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.5. </span>Kosten von Operationen<a class="headerlink" href="#kosten-von-operationen" title="Permalink to this headline">#</a></h3>
 <p>Das wesentliche Kostenmerkmal bei Operationen ist die Anzahl der Tupel im Input. Insbesondere ist die Frage, ob die Relation in den Hauptspeicher passt und man darauf Operationen wie Selektion, Projektion, Sortierung und Join ausführen kann.  </br>
 Der Output ist immer der Input des nächsten Operators. Deshalb schätzt ein Kostenmodell unter anderem für jede Operation die Anzahl der Ausgabetupel.
 Zum Schätzen wird die „Selektivität“ in Bezug auf Inputgröße herangezogen. Sie gibt an wie viele Eingabetupel ein Operator herausselektiert und wie viele Ausgabetupel dann erwartet werden können. Es wird auch „Selektivitätsfaktor“ (selectivity factor, sf) genannt.</p>
@@ -746,7 +1348,7 @@ Zum Schätzen wird die „Selektivität“ in Bezug auf Inputgröße herangezoge
 </ul>
 </section>
 <section id="kostenschatzung-projektion">
-<h3><span class="section-number">5.5.6. </span>Kostenschätzung - Projektion<a class="headerlink" href="#kostenschatzung-projektion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.6. </span>Kostenschätzung - Projektion<a class="headerlink" href="#kostenschatzung-projektion" title="Permalink to this headline">#</a></h3>
 <p>Die Größe des Zwischenergebnisses kann bei der Projektion exakt ausgerechnet werden. </br>
 </br>
 <strong>Beispiele</strong></br>
@@ -764,7 +1366,7 @@ Daraus ergeben sich 116 Byte pro Tupel. Bei 8 Tupeln pro Block hat man wieder 12
 Man erhält 20 Byte pro Tupel. Insgesamt also 50 Tupel pro block und B(<span class="math notranslate nohighlight">\(Q_{2}\)</span>) = 200.</p>
 </section>
 <section id="kostenschatzung-selektion">
-<h3><span class="section-number">5.5.7. </span>Kostenschätzung - Selektion<a class="headerlink" href="#kostenschatzung-selektion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.7. </span>Kostenschätzung - Selektion<a class="headerlink" href="#kostenschatzung-selektion" title="Permalink to this headline">#</a></h3>
 <p>Im Gegensatz zur Projektion bleibt zwar die Tupelgröße, aber die Anzahl der Tupel sinkt bei der Selektion. </br>
 <span class="math notranslate nohighlight">\(Q=\sigma_{A=c}(R)\)</span> </br>
 Die Formel zur Selektion zeigt einen Vergleich zwischen dem Attribut A und der Konstante c. Basierend auf Annahmen kann man die Anzahl der Ausgabetupel berechnen. Die erste Annahme ist, dass die Werte gleich verteilt sind. Die zweite, dass c einer dieser Werte ist. Zur Berechnung nutzt man die Formel <span class="math notranslate nohighlight">\(T(Q) = T(R) / V(R,A)\)</span>. <span class="math notranslate nohighlight">\(V(R,A)\)</span> ist die Anzahl der distinct Werte in Spalte A. D.h. der Selektivitäsfaktor ist <span class="math notranslate nohighlight">\(1 / V(R,A)\)</span>. Bessere Abschätzungen sind mittels Histogrammen möglich.<br />
@@ -778,12 +1380,12 @@ Man möchte in der Selektion nicht die Attribute haben, die der Konstante c ents
 <p>Hat man Konjunktionen bei mehreren Selektionsbedingungen, multipliziert man die Selektivitätsfaktoren. Die Annahme dafür ist die Unabhängigkeit der Bedingungen.</p>
 </section>
 <section id="selektivitat-schatzen">
-<h3><span class="section-number">5.5.8. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.8. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Selektivität-schätzen.png"><img alt="Selektivität-schätzen" src="../_images/Selektivität-schätzen.png" style="width: 500px;" /></a>
 <p>Das Bild ist aus dem Werk für das System R von Selinger et al. aus dem Jahre 1979. Man sieht die Möglichkeiten zur Einschätzung der Selektivität. Beim Schätzen wird fast immer eine Gleichverteilung angenommen.</p>
 </section>
 <section id="beispiel-fur-skew-zipf-verteilung">
-<h3><span class="section-number">5.5.9. </span>Beispiel für Skew: Zipf-Verteilung<a class="headerlink" href="#beispiel-fur-skew-zipf-verteilung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.9. </span>Beispiel für Skew: Zipf-Verteilung<a class="headerlink" href="#beispiel-fur-skew-zipf-verteilung" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/George-Kingsley-Zipf.png"><img alt="George-Kingsley-Zipf" src="../_images/George-Kingsley-Zipf.png" style="width: 200px;" /></a>
 <p>Eine sehr bekannte Verteilung ist die Zipf-Verteilung von George Kingsley Zipf (1902 - 1950). Sie modelliert Worthäufigkeiten in den Texten einer Sprache. Die Wörter werden nach ihren Häufigkeiten sortiert. Die Häufigkeit des häufigsten Wortes sei dabei h. Wenn alles sortiert ist kann man beispielsweise für den i-ten Wert die Häufigkeit berechnen. Der i-te Wert tauch dann genau <span class="math notranslate nohighlight">\(h / i^{1/2}\)</span> mal auf. Der zughörige Graph sieht wie folgt aus:</p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Skew-Graph.png"><img alt="Beispiel-Skew-Graph" src="../_images/Beispiel-Skew-Graph.png" style="width: 500px;" /></a>
@@ -793,7 +1395,7 @@ Man möchte in der Selektion nicht die Attribute haben, die der Konstante c ents
 <p>Das Beispiel zeigt das Prinzip von Zipf’s law. Außerdem ist es unabhängig von der jeweils gewählten Sprache.</p>
 </section>
 <section id="id2">
-<h3><span class="section-number">5.5.10. </span>Kostenschätzung - Selektion<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.10. </span>Kostenschätzung - Selektion<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p><strong>Beispiele</strong></br>
 Gegeben ist eine Relation R mit T® = 10000 und V(R,A) = 50.
 </br></p>
@@ -807,7 +1409,7 @@ Im ersten Moment würde man die Ausgabetupel mit <span class="math notranslate n
 </br></p>
 </section>
 <section id="kostenschatzung-selektion-mit-disjunktion">
-<h3><span class="section-number">5.5.11. </span>Kostenschätzung - Selektion mit Disjunktion<a class="headerlink" href="#kostenschatzung-selektion-mit-disjunktion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.11. </span>Kostenschätzung - Selektion mit Disjunktion<a class="headerlink" href="#kostenschatzung-selektion-mit-disjunktion" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(Q = \sigma_{C1 OR C2}(R2)\)</span></br></p>
 <p><strong>Idee 1</strong></br>
 Bilde die Summe der Ergebniskardinalitäten mit der Annahme, dass kein Tupel beide Bedingungen erfüllt. Dennoch kann es dazu führen, dass das Ergebnis größer als die Ursprungsrelation ist: T(Q) &gt; T®.
@@ -847,7 +1449,7 @@ Sei die Selektion <span class="math notranslate nohighlight">\(Q = \sigma_{A=10 
 <span class="math notranslate nohighlight">\(= 3466\)</span></br></p>
 </section>
 <section id="kostenschatzung-join">
-<h3><span class="section-number">5.5.12. </span>Kostenschätzung - Join<a class="headerlink" href="#kostenschatzung-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.12. </span>Kostenschätzung - Join<a class="headerlink" href="#kostenschatzung-join" title="Permalink to this headline">#</a></h3>
 <p>In dieser Vorlesung betrachten wir nur den Natural Join. Das Verfahren beim Equijoin wäre analog dazu. Ein Thetajoin mit “&lt;”, “&gt;” usw. wird wie zuvor geschätzt. Zum Beispiel mit <span class="math notranslate nohighlight">\(1/3 T(R) * 1/3 T(S)\)</span>.</br></p>
 <p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
 Vereinfachend wird hier angenommen, dass wir nur über ein Attribut Y joinen. Ein Problem ist die Beziehung zwischen R.Y und S.Y. Man weiß nicht wie viele Elemente aus R.Y auch in S.Y auftauchen. Theoretisch kann man sagen, dass es disjunkte Mengen und nichts gleich ist. Damit würde man bei einem Join 0 Elemente erhalten: <span class="math notranslate nohighlight">\(T(R \Join S) = 0\)</span>. Eine weitere Möglichkeit wäre eine Fremdschlüsselbeziehung (mit einem Schlüssel in S). Dann wäre das Resultat die Menge an Tupeln in R: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R)\)</span>. Es gibt noch eine dritte Möglichkeit, wenn man davon ausgeht, dass fast alles gleiche Werte sind: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S)\)</span>. </br></p>
@@ -868,7 +1470,7 @@ Die zweite Annahme besagt, dass die Anzahl der Distinct-Werte eines nicht-Joinat
 </br></p>
 </section>
 <section id="kostenschatzung-join-beispiel">
-<h3><span class="section-number">5.5.13. </span>Kostenschätzung - Join Beispiel<a class="headerlink" href="#kostenschatzung-join-beispiel" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.13. </span>Kostenschätzung - Join Beispiel<a class="headerlink" href="#kostenschatzung-join-beispiel" title="Permalink to this headline">#</a></h3>
 <p>Seien Joins zwischen drei Relationen gegeben:</br>
 <span class="math notranslate nohighlight">\(R(A,B) \Join S(B,C) \Join U(C,D)\)</span>.</br></p>
 <p>Die Anzahl der Tupel der Relationen ist wie folgt:</p>
@@ -895,13 +1497,13 @@ Aber man kann die Relation U auch direkt hinzujoin/heranmultiplizieren: <span cl
 </details>
 </section>
 <section id="kostenschatzung-join-mehrere-attribute">
-<h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.14. </span>Kostenschätzung Join - Mehrere Attribute<a class="headerlink" href="#kostenschatzung-join-mehrere-attribute" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(R(X,Y) \Join S(Y,Z)\)</span></br>
 Y enthält nun mehr als ein Attribut. Die Schreibweise ist hier: <span class="math notranslate nohighlight">\(R(X,Y1,Y2) \Join S(Y1,Y2,Z)\)</span></br>
 Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Join S\)</span> entspricht dem Produkt der Kardinalitäten von R und S, dividiert durch das Produkt des jeweils größeren von V(R,Y) und V(S,Y) für jedes Join-Attribut Y: <span class="math notranslate nohighlight">\(T(R \Join S) = T(R) * T(S) / ( max[V(R,Y1),V(S,Y1)] * max[V(R,Y2),V(S,Y2)] )\)</span></p>
 </section>
 <section id="kostenschatzung-mehrfacher-join">
-<h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this headline">#</a></h3>
 <p>Im allgemeinen Fall <span class="math notranslate nohighlight">\( S = R_{1} \Join R_{2} \Join ... \Join R_{n} \)</span> wird in diesem Fall über das selbe Attribut A gejoint. Notiert wird es mit <span class="math notranslate nohighlight">\(V(R_{i}, A) = v_{i}\)</span>. Das Attribut A erscheint in k Relationen. Es gilt <span class="math notranslate nohighlight">\(v_{1} \leq v_{2} \leq ... \leq v_{k}\)</span> mit <span class="math notranslate nohighlight">\( k \leq n \)</span>. Die Frage ist nun wie die Kardinalität des Ergebnisses berechnet wird.</br>
 Dazu eine kleine Gedankenhilfe:
 Gegeben ist ein Tupel aus jeder der k Relationen. Gesucht wird die Wahrscheinlichkeit, dass alle im A-Wert übereinstimmen. Es gibt wieder das Containment of Value Sets: Jeder A-Wert von Tupeln aus <span class="math notranslate nohighlight">\(R_{1}\)</span> taucht in den anderen Relationen auf. Ein Tupel aus <span class="math notranslate nohighlight">\(R_{i}\)</span> hat eine Wahrscheinlichkeit von <span class="math notranslate nohighlight">\(1/v_{i}\)</span> mit einem gegebenen Tupel aus <span class="math notranslate nohighlight">\(R_{1}\)</span> übereinzustimmen. Zusammen ergibt sich <span class="math notranslate nohighlight">\(1 / v_{2} * v_{3} * … * v_{k}\)</span>. Die Wahrscheinlichkeiten der einzelnen Tupel der verschiedenen Relationen müssen nur multipliziert werden. </br>
@@ -933,7 +1535,7 @@ Zusammen ergibt sich: </br>
 <span class="math notranslate nohighlight">\(= 5.000\)</span></p>
 </section>
 <section id="kostenschatzung-weitere-operationen">
-<h3><span class="section-number">5.5.16. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.5.16. </span>Kostenschätzung - Weitere Operationen<a class="headerlink" href="#kostenschatzung-weitere-operationen" title="Permalink to this headline">#</a></h3>
 <p><strong>Vereinigung</strong> <span class="math notranslate nohighlight">\((R \cup S)\)</span></br>
 Bei einer Multimenge bildet man die Summe der Inputs. Bei einer normalen Menge wählt man eine Vereinigung der Relationen, die größer ist als die größte Relation und kleiner als die Summe der Tupel aller Relationen: <span class="math notranslate nohighlight">\(max[T(R), T(S)] \leq T(R \cup S) \leq T(R) + T(S)\)</span>. Z.B könnte man auch den Durchschnitt von Maximum und Summe berechnen: <span class="math notranslate nohighlight">\(AVG[T(R) + T(S), max[T(R), T(S)]]\)</span>.</p>
 <p><strong>Schnittmenge</strong> <span class="math notranslate nohighlight">\((R \cap S)\)</span></br>
@@ -949,19 +1551,19 @@ Falls mehrere es mehrere gibt muss multipliziert werden: <span class="math notra
 </section>
 </section>
 <section id="histogramme">
-<h2><span class="section-number">5.6. </span>Histogramme<a class="headerlink" href="#histogramme" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.6. </span>Histogramme<a class="headerlink" href="#histogramme" title="Permalink to this headline">#</a></h2>
 <p>Für genauere Berechnung werden Histogramme verwendet. Nun ist nicht mehr nur die Kardinalität bekannt, sondern auch die Verteilung der Werte.</p>
 <section id="id3">
-<h3><span class="section-number">5.6.1. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.1. </span>Ablauf der Anfragebearbeitung<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>Im Ablauf befinden sich die Histogramme im Bereich der Kostenschätzung.</p>
 <a class="reference internal image-reference" href="../_images/Ablauf-Anfragebearbeitung_6.png"><img alt="Ablauf-Anfragebearbeitung_6" src="../_images/Ablauf-Anfragebearbeitung_6.png" style="width: 500px;" /></a>
 </section>
 <section id="schatzung-der-statistiken">
-<h3><span class="section-number">5.6.2. </span>Schätzung der Statistiken<a class="headerlink" href="#schatzung-der-statistiken" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.2. </span>Schätzung der Statistiken<a class="headerlink" href="#schatzung-der-statistiken" title="Permalink to this headline">#</a></h3>
 <p>Statistiken sind notwendig, um die Größe von Zwischenergebnissen zu berechnen, insbesondere T® und V(R,A). Statistiken werden auf Befehl des Administrators eingeholt. Zum Beispiel wird T® mittels Scan von R. V(R,A) kann mittels einer der vorigen Algorithmen ermittelt werden. Das ist ähnlich wie bei der Gruppierung auch separat für jedes Attribut. B® wird gezählt, falls R nicht clustered gespeichert ist. Falls es geclustered ist, dann wird <span class="math notranslate nohighlight">\((T(R) / Tupel pro Block)\)</span> berechnet.</p>
 </section>
 <section id="schatzung-der-statistiken-histogramme">
-<h3><span class="section-number">5.6.3. </span>Schätzung der Statistiken - Histogramme<a class="headerlink" href="#schatzung-der-statistiken-histogramme" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.3. </span>Schätzung der Statistiken - Histogramme<a class="headerlink" href="#schatzung-der-statistiken-histogramme" title="Permalink to this headline">#</a></h3>
 <p>Histogramme stellen speichereffizient Werteverteilungen dar. Die Idee ist es, Gruppen von Werten (zusammenhängende Wertebereiche) in Buckets zusammenzufassen. Varianten von Buckets wären Equal-width und Equal-height. In den Buckets geht Genauigkeit verloren, weswegen man zusätzlich Häufigkeiten für die häufigsten Werte speichern kann.
 Pro Bucket wird die durchschnittliche Anzahl der Tupel pro Einzel-Wert gespeichert. D.h. man nimmt innerhalb des Buckets eine Gleichverteilung an.
 <strong>Vorteile</strong> sind geringere Schätzfehler, da Verteilungsannahmen nur in kleineren Bereichen getroffen werden. Außerdem ist der Speicherverbrauch durch das Zusammenfassen in Gruppen geringer.
@@ -973,25 +1575,25 @@ Bei <strong>Design und Wartung</strong> bleiben ein paar Fragen offen:</p>
 </ul>
 </section>
 <section id="verteilungen-korpergewicht">
-<h3><span class="section-number">5.6.4. </span>Verteilungen - Körpergewicht<a class="headerlink" href="#verteilungen-korpergewicht" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.4. </span>Verteilungen - Körpergewicht<a class="headerlink" href="#verteilungen-korpergewicht" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Verteilungen-Körpergewicht.png"><img alt="Verteilungen-Körpergewicht" src="../_images/Verteilungen-Körpergewicht.png" style="width: 500px;" /></a>
 <p>In der Grafik sind Verteilungen zum Körpergewicht dargestellt. Die <strong>Normalverteilung</strong> hat einen Wertebereich von 120-40=80. Ihr Mittelwert beträgt 80 und die Standardabweichung (stddev) ist 12. Es betrifft 100.000 Personen.
 Bei der <strong>Gleichverteilung</strong> wird angenommen, dass jede Gewichtsklasse mit der gleichen Häufigkeit auftaucht. Somit sind es 100.000/80=1250 Personen für jede Gewichtsklasse. Die Gleichverteilung ist somit in fast jedem Bereich fehleranfällig.
 Die einzigen genauen Punkte sind die Schnittpunkte der beiden Verteilungen. An den anderen Stellen kommt es zu groben Fehlschätzungen.</p>
 </section>
 <section id="equi-width-histogramme">
-<h3><span class="section-number">5.6.5. </span>Equi-Width Histogramme<a class="headerlink" href="#equi-width-histogramme" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.5. </span>Equi-Width Histogramme<a class="headerlink" href="#equi-width-histogramme" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Equi-Width-Histogramme.png"><img alt="Equi-Width-Histogramme" src="../_images/Equi-Width-Histogramme.png" style="width: 500px;" /></a>
 <p>Etwas besser ist es, eine feste Anzahl an Buckets mit jeweils gleicher Breite zu erstellen. Der Vorteil ist, dass die Grenzen nicht mitgespeichert werden müssen. Der Startpunkt und die Breite genügen. Es wird eine Gleichverteilung in jedem Bucket angenommen. Ein Histogramm kann mittels eines Scans von R berechnet werden. Quellen für Schätzfehler sind zu wenige Buckets und, wenn sich die Werteverteilung innerhalb der Buckets stark unterscheidet.</p>
 </section>
 <section id="equi-height-histogramme">
-<h3><span class="section-number">5.6.6. </span>Equi-Height-Histogramme<a class="headerlink" href="#equi-height-histogramme" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.6. </span>Equi-Height-Histogramme<a class="headerlink" href="#equi-height-histogramme" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Equi-Height-Histogramme.png"><img alt="Equi-Height-Histogramme" src="../_images/Equi-Height-Histogramme.png" style="width: 500px;" /></a>
 <p>Eine andere Variation ist das Equi-Height Histogramm. Auch bekannt als Equi-depth-Histogramme bzw. Perzentile. Nun probiert man, dass innerhalb eines Buckets sehr ähnliche Werte gespeichert werden. Es gibt eine feste Anzahl an Buckets. Zum Beispiel 10 Stück für 10%, 20%, usw. Die Bucketgrenzen werden so gewählt, dass jedes Bucket ungefähr die gleiche Anzahl an Tupeln enthält. Hier sind es 10.000 Personen pro Bucket. Die Bucketgrenzen müssen gespeichert werden. Die Berechnung der Histogramme erfolgt durch Sortierung und gleichgroße Sprünge.</p>
 </section>
 <section id="histogramme-zur-schatzung-fur-joins">
-<h3><span class="section-number">5.6.7. </span>Histogramme zur Schätzung für Joins<a class="headerlink" href="#histogramme-zur-schatzung-fur-joins" title="Permalink to this heading">#</a></h3>
-<table class="table">
+<h3><span class="section-number">5.6.7. </span>Histogramme zur Schätzung für Joins<a class="headerlink" href="#histogramme-zur-schatzung-fur-joins" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Wertebereich Temperator °F</p></th>
 <th class="head"><p>Januar</p></th>
@@ -1070,7 +1672,7 @@ Das Histogramm für R.B ist</p>
 Man kann eine genaue Schätzung für die Werte 0 und 1 von B machen: <span class="math notranslate nohighlight">\(150·100 + 200·80=31000\)</span>. Der Wert „2“ kommt geschätzt 50 mal in R und 70 mal in S vor: <span class="math notranslate nohighlight">\(50 · 70 = 3500\)</span>. Insgesamt also 3500 Tupel. Der Wert „5“ kommt geschätzt 25 mal in S und 100 mal in R vor: <span class="math notranslate nohighlight">\(100 · 25 = 2500\)</span>. Für 9 weitere gemeinsame Werte in R und S ergibt sich dann: <span class="math notranslate nohighlight">\(9 · (50 · 25) = 11250\)</span>.</p>
 </section>
 <section id="erhebung-von-statistiken">
-<h3><span class="section-number">5.6.8. </span>Erhebung von Statistiken<a class="headerlink" href="#erhebung-von-statistiken" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.6.8. </span>Erhebung von Statistiken<a class="headerlink" href="#erhebung-von-statistiken" title="Permalink to this headline">#</a></h3>
 <p>Die Statistiken können nicht dauernd aktuell gehalten werden. Sie werden nur periodisch erhoben werden. Statistiken ändern sich nicht laufend und auch nicht radikal. Auch falsche Statistiken funktionieren, wenn sie konsistent angewendet werden.
 Statistiken sollen selbst nicht zu einem hot-spot werden. Sie sollen nicht dauernd geändert werden, da sie oft gelesen werden.
 Die Erhebung wird durch unterschiedliche Trigger ausgelöst. Sie kann regelmäßig bzw. periodisch ausgeführt werden oder nach einer festen Menge an Updates ausgelöst werden. Möglich wäre auch eine Erhebung, falls Schätzungen während der Anfrageausführung als zu ungenau erkannt werden. Außerdem kann sie auch durch einen Administrator ausgelöst werden. </br>
@@ -1078,14 +1680,14 @@ Die Berechnung der Statistiken ist sehr aufwändig. Ein Grund, warum sie nicht a
 </section>
 </section>
 <section id="joinreihenfolge">
-<h2><span class="section-number">5.7. </span>Joinreihenfolge<a class="headerlink" href="#joinreihenfolge" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.7. </span>Joinreihenfolge<a class="headerlink" href="#joinreihenfolge" title="Permalink to this headline">#</a></h2>
 <section id="enumeration-physischer-anfrageplane">
-<h3><span class="section-number">5.7.1. </span>Enumeration Physischer Anfragepläne<a class="headerlink" href="#enumeration-physischer-anfrageplane" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.1. </span>Enumeration Physischer Anfragepläne<a class="headerlink" href="#enumeration-physischer-anfrageplane" title="Permalink to this headline">#</a></h3>
 <p>Die erste Idee wäre es, eine <strong>vollständige Enumeration</strong> entlang aller Freiheitsgrade durchzuführen. Die Reihenfolge und die Gruppierung von assoziativen und kommutativen Operatoren kann abgeändert werden. Außerdem lässt sich der Algorithmus für jeden Operator und der Modus des Datentransports zwischen den Operatoren frei wählen.
 Zu jedem Anfrageplan wird ein Kostenplan berechnet und daraus der Plan mit den geringsten Kosten ausgewählt. Durch das Ausführen einer vollständigen Enumeration enstehen zu viele Anfragepläne. Beispielsweise werden Abschnitte in den Plänen mehrfach berechnet. Die Anzahl der Pläne muss reduziert werden. Daher werden diverse bessere Methoden wie die Heuristische Auswahl, Branch-and-Bound, Hill-Climbing und Dynamische Programmierung/Selinger-Style Optimization verwendet.</p>
 </section>
 <section id="heuristische-auswahl">
-<h3><span class="section-number">5.7.2. </span>Heuristische Auswahl<a class="headerlink" href="#heuristische-auswahl" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.2. </span>Heuristische Auswahl<a class="headerlink" href="#heuristische-auswahl" title="Permalink to this headline">#</a></h3>
 <p>Bei der Heuristischen Auswahl soll eine Sequenz bekannter Heuristiken angewendet werden, wie zum Beispiel ein Greedy-Verfahren für die Joinreihenfolge:</p>
 <ol class="arabic simple">
 <li><p>Wähle zuerst das Joinpaar mit dem kleinstem Zwischenergebnis.</p></li>
@@ -1101,11 +1703,11 @@ Zu jedem Anfrageplan wird ein Kostenplan berechnet und daraus der Plan mit den g
 </ul>
 </section>
 <section id="branch-and-bound">
-<h3><span class="section-number">5.7.3. </span>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.3. </span>Branch and Bound<a class="headerlink" href="#branch-and-bound" title="Permalink to this headline">#</a></h3>
 <p>Eine weitere Idee ist Branch and Bound. Heuristiken werden zum Finden eines ersten guten Plans verwendet. Die Kosten des ersten guten Plans bilden sowohl eine obere Schranke für alle anderen Pläne, als auch für die Teilpläne. Für diverse Teile der Anfrage werden Pläne enumeriert. Es wird versucht einen Teil der Anfrage zu verbessern. Teilpläne, die mehr als die Schranke kosten, werden verworfen. Wenn ein besserer Gesamtplan gefunden wird, wird die Schranke gesenkt. Der Vorteil von Branch and Bound ist, dass die Optimierung jederzeit abgebrochen werden kann.</p>
 </section>
 <section id="hill-climbing">
-<h3><span class="section-number">5.7.4. </span>Hill-Climbing<a class="headerlink" href="#hill-climbing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.4. </span>Hill-Climbing<a class="headerlink" href="#hill-climbing" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Hill-Climbing.png"><img alt="Hill-Climbing" src="../_images/Hill-Climbing.png" style="width: 200px;" /></a>
 <p>Hill Climbing beschreibt wie man einen ersten guten Plan mittels Heuristiken findet.
 Dazu werden schrittweise ähnliche Pläne mit niedrigeren Kosten gesucht. Unter ähnlich versteht man hier, dass sich ein anderer Plan nur um eine Änderung unterscheidet. Sobald kein ähnlicher Plan mehr besser ist, ist das Verfahren fertig.
@@ -1113,13 +1715,13 @@ Der Nachteil von Hill-Climbing ist, dass es sich um ein Lokales Optimum handelt.
 Es gibt verschiedene Varianten, um das Verfahren zu verbessern. Zum Einem das Iterative Improvement bei dem mit 10 verschiedenen Startplänen losgelegt wird. Zum Anderen das Simulated Annealing bei dem auch Verschlechterungen zugelassen werden.</p>
 </section>
 <section id="dynamische-programmierung-selinger-style-optimierung">
-<h3><span class="section-number">5.7.5. </span>Dynamische Programmierung &amp; Selinger-style Optimierung<a class="headerlink" href="#dynamische-programmierung-selinger-style-optimierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.5. </span>Dynamische Programmierung &amp; Selinger-style Optimierung<a class="headerlink" href="#dynamische-programmierung-selinger-style-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Ein Verfahren zur Berechnung ist die Dynamische Programmierung.
 Es wird jeweils der beste Teilplan gesucht und verwendet, um einen höheren Teilplan zu bauen. Der Baum wird von unten nach oben (bottom-up) durchlaufen. </br>
 Selinger hat die Dynamische Programmierung erweitert und abgeändert (Selinger-Style). Es wird nicht nur der beste Plan, sondern auch verschiedene, interessante Sortiervarianten (interesting order) gemerkt. Die Kosten einiger Pläne dürfen höher sein, sofern sie andere Vorteile mit sich bringen. Das Verfahren beeinflusst nicht die Kardinalitäten von Zwischenergebnissen, sondern die I/O-Kosten.</p>
 </section>
 <section id="richard-bellman">
-<h3><span class="section-number">5.7.6. </span>Richard Bellman<a class="headerlink" href="#richard-bellman" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.6. </span>Richard Bellman<a class="headerlink" href="#richard-bellman" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Richard-Bellman.png"><img alt="Richard-Bellman" src="../_images/Richard-Bellman.png" style="width: 300px;" /></a>
 <p>Ein kurzer Exkurs zur Historie der Dynamischen Programmierung und dessen Erfinder. Richard Bellman (1920 - 1984) erhielt seinen PhD in Princeton. Er arbeitete unter Anderem von 1944 bis 1946 in Los Alamos.
 Während Bellman bei der Rand Corporation arbeitete, erfand er 1953 die Dynamische Programmierung.
@@ -1127,7 +1729,7 @@ Zur Mathematik hat er viele Beiträge zugesteuert wie z.B. den Bellman-Ford Algo
 Ein Algorithmus zum Berechnen aller kürzesten Wege für einen Startknoten.</p>
 </section>
 <section id="dp-fur-knapsack-problem">
-<h3><span class="section-number">5.7.7. </span>DP für Knapsack Problem<a class="headerlink" href="#dp-fur-knapsack-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.7. </span>DP für Knapsack Problem<a class="headerlink" href="#dp-fur-knapsack-problem" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Knapsach-Zweihander.png"><img alt="Knapsach-Zweihander" src="../_images/Knapsach-Zweihander.png" style="width: 150px;" /></a>
 <a class="reference internal image-reference" href="../_images/Knapsack-SaintsChime.png"><img alt="Knapsack-SaintsChime" src="../_images/Knapsack-SaintsChime.png" style="width: 150px;" /></a>
 <a class="reference internal image-reference" href="../_images/Knapsack-DragonriderBow.png"><img alt="Knapsack-DragonriderBow" src="../_images/Knapsack-DragonriderBow.png" style="width: 150px;" /></a>
@@ -1146,17 +1748,17 @@ How can I maximize my damage (dps)?</p>
 </div></blockquote>
 </section>
 <section id="beispiel-knapsack-mit-dp">
-<h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Knapsack-mit-DP.png"><img alt="Knapsack-mit-DP" src="../_images/Knapsack-mit-DP.png" style="width: 500px;" /></a>
 <p>Die Lösung des Problems wird durch einen Rückwärtslauf ermittelt. Durch eine Tabelle werden nach und nach Items ausgewählt. Die Kapazität wird fortlaufend notiert und berechnet. Das Resultat ist der maximale Nutzen.</p>
 </section>
 <section id="dp-traveling-salesman-problem">
-<h3><span class="section-number">5.7.9. </span>DP: Traveling Salesman Problem<a class="headerlink" href="#dp-traveling-salesman-problem" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.9. </span>DP: Traveling Salesman Problem<a class="headerlink" href="#dp-traveling-salesman-problem" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/DP-Traveling-Salesman-Problem.png"><img alt="DP-Traveling-Salesman-Problem" src="../_images/DP-Traveling-Salesman-Problem.png" style="width: 500px;" /></a>
 <p>Ein ähnliches Verfahren wird beim Traveling Salesman Problem verwendet. Beim Traveling Salesman Problem sollen alle Städte besucht werden, ohne einen Pfad mehrmals zu betreten. Gesucht ist der kürzeste Pfad, der es ermöglicht.</p>
 </section>
 <section id="dynamic-programming-heldkarp-algorithmus">
-<h3><span class="section-number">5.7.10. </span>Dynamic Programming (Held–Karp Algorithmus)<a class="headerlink" href="#dynamic-programming-heldkarp-algorithmus" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.10. </span>Dynamic Programming (Held–Karp Algorithmus)<a class="headerlink" href="#dynamic-programming-heldkarp-algorithmus" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 200px;" /></a>
 <p>Zunächst wird a als Anfangs- und Endpunkt betrachtet. Für alle anderen Knoten i wird der Pfad mit den Minimalkosten von a nach i, welcher alle anderen Knoten enthält, gesucht. Sei <span class="math notranslate nohighlight">\(cost(i)\)</span> definiert als Kosten des Pfades. <span class="math notranslate nohighlight">\(cost(i) + dist(i, a)\)</span> entspricht dann der Rundreise mit <span class="math notranslate nohighlight">\(dist(i, a)\)</span> als Distanz von i nach a. Das Ergebnis ist das Minimum der <span class="math notranslate nohighlight">\([cost(i) + dist(i, a)]\)</span> Pfade.</br>
 Mittels DP wird cost(i) berechnet:
@@ -1183,28 +1785,28 @@ einmal besucht. Gestartet wird mit allen Teilmengen S der Größe 2. Für diese 
 <p>Die Komplexität ist mit <span class="math notranslate nohighlight">\(O(n^{2}2^{n})\)</span> immernoch sehr hoch, aber vieles muss nicht mehr doppelt berechnet werden. Das Verfahren ist zwar besser als Backtracking aber noch zu schwer.</p>
 </section>
 <section id="dynamische-programmierung">
-<h3><span class="section-number">5.7.11. </span>Dynamische Programmierung<a class="headerlink" href="#dynamische-programmierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.11. </span>Dynamische Programmierung<a class="headerlink" href="#dynamische-programmierung" title="Permalink to this headline">#</a></h3>
 <p>Die Dynamische Programmierung ist ein Optimaler Algorithmus. Schwierigkeiten dabei sind die Annahmen. Zum Einem muss das Prinzip der Optimalität gelten. Ein optimaler Teilplan führt immer zu einem optimalen Gesamtplan. Zum Anderen muss das Problem geschickt in Teilprobleme aufgeteilt werden. Der Aufwand kann zwar immernoch exponentiell sein, aber es können sich Operationen und Verdopplungen gespart werden.
 Klassische Anwendungen für die Dynamische Programmierung sind das Knapsack Problem, das Traveling Salesman Problem, die Maschinenbelegung und das Transportproblem.</p>
 </section>
 <section id="anwendung-fur-left-deep-baume">
-<h3><span class="section-number">5.7.12. </span>Anwendung für Left-Deep Bäume<a class="headerlink" href="#anwendung-fur-left-deep-baume" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.12. </span>Anwendung für Left-Deep Bäume<a class="headerlink" href="#anwendung-fur-left-deep-baume" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="anfrageplanung">
-<h3><span class="section-number">5.7.13. </span>Anfrageplanung<a class="headerlink" href="#anfrageplanung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.13. </span>Anfrageplanung<a class="headerlink" href="#anfrageplanung" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Anfrageplanung.png"><img alt="Anfrageplanung" src="../_images/Anfrageplanung.png" style="width: 500px;" /></a>
 <p>Bei der heuristischen Einschränkung des Suchraums gibt es bei den Anfragen keine Kreuzprodukte. Diese werden aussortiert. Das gilt nicht bei expliziten Kreuzprodukten in der Anfrage. Die Selektionsbedingungen sollen so früh wie möglich eingesetzt werden.
 Betrachtet werden nur links-tiefe (left-deep) Bäume. Es wird nie die parallele Ausführung von Joins betrachtet. Es wird immer davon ausgegangen, dass ein Join nach dem Andern ausgeführt wird.</p>
 </section>
 <section id="anfragebearbeitung-optimierung">
-<h3><span class="section-number">5.7.14. </span>Anfragebearbeitung – Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.14. </span>Anfragebearbeitung – Optimierung<a class="headerlink" href="#anfragebearbeitung-optimierung" title="Permalink to this headline">#</a></h3>
 <p>Bei der Optimierung wird nur die Joinreihenfolge und nicht die Parallelität betrachtet. Bei mehr-Prozessor Systemen wiederrum wird nicht nur die Reihenfolge, sondern auch die Parallelisierung berücksichtigt. Bei verteilten System kommen noch die Speicherorte der Zwischenergebnisse hinzu. Der Join ist i.d.R. der teuerste Operator.
 Die Optimierung konzentriert sich auf die beste Reihenfolge. Ziel sind möglichst geringe Zwischenkosten.
 Weitere Optimierungsschritte, wie das Schieben der Selektionen nach unten, werden später angewandt.
 Bei n Relationen gibt es <span class="math notranslate nohighlight">\(n!\)</span> Alternativen, aber meistens enthalten die Alternativen ein kartesisches Produkt.</p>
 </section>
 <section id="dynamische-programmierung-optimierung-im-system-r">
-<h3><span class="section-number">5.7.15. </span>Dynamische Programmierung: Optimierung im System-R<a class="headerlink" href="#dynamische-programmierung-optimierung-im-system-r" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.15. </span>Dynamische Programmierung: Optimierung im System-R<a class="headerlink" href="#dynamische-programmierung-optimierung-im-system-r" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Selinger.png"><img alt="Selinger" src="../_images/Selinger.png" style="width: 200px;" /></a>
 <p>Das Verfahren von Selinger ist auch bekannt unter dem Namen: “Selinger-style query optimization”. Selinger ist eine Pionierin im Bereich von Datenbanksystemen. Ein klassischer Artikel zur Anfrageoptimierung ist [SAC+79]. Ursprünglich wurde das Verfahren bei IBM im System-R eingesetzt und ist heutzutage weit verbreitet.
 </br></br>
@@ -1215,7 +1817,7 @@ Zusätzlich sind auch interesting orders (interessante Sortierungen) und interes
 <p>Das Paper der IBM Research Division zu “Access Path Selection in a Relational Database Management System.”</p>
 </section>
 <section id="bottom-up-anfrageplangenerierung">
-<h3><span class="section-number">5.7.16. </span>Bottom-up Anfrageplangenerierung<a class="headerlink" href="#bottom-up-anfrageplangenerierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.16. </span>Bottom-up Anfrageplangenerierung<a class="headerlink" href="#bottom-up-anfrageplangenerierung" title="Permalink to this headline">#</a></h3>
 <p>Bei der Bottom-up Anfrageplangenerierung müssen zunächst zwei Annahmen getroffen werden.
 Bei der ersten Annahme ist nach dem Join über k Relationen die Wahl der Join-Methode die k+1te Relation hinzuzujoinen unabhängig von den vorigen Join-Methoden.
 von den vorigen Join-Methoden. Joinmethoden sind unter Anderem Nested Loops, Hashjoin, Sort-Merge Join usw.</br>
@@ -1224,12 +1826,12 @@ Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit d
 Die <strong>Bottom-up Anfrageplangenerierung</strong> berechnet die optimalen Pläne für den Join über (jede Kombination von) k Relationen. Dabei werden die suboptimale Pläne verworfen. Alle anderen Pläne werden zu optimalen Plänen für k+1 Relationen erweitert (usw. bis k = n).</p>
 </section>
 <section id="id4">
-<h3><span class="section-number">5.7.17. </span>Dynamische Programmierung<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.17. </span>Dynamische Programmierung<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Dynamische-Programmierung.png"><img alt="Dynamische-Programmierung" src="../_images/Dynamische-Programmierung.png" style="width: 500px;" /></a>
 <p>Begonnen wird in der Dynamischen Programmierung bei der leeren Menge. Danach werden die Relationen (R, S, T, U) einzeln und in Kombination miteinander betrachtet bis man eine Kombination aller möglichen Relationen erhält ({R,S,T,U}).</p>
 </section>
 <section id="dp-grundidee-fur-anfrageoptimierung">
-<h3><span class="section-number">5.7.18. </span>DP – Grundidee für Anfrageoptimierung<a class="headerlink" href="#dp-grundidee-fur-anfrageoptimierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.18. </span>DP – Grundidee für Anfrageoptimierung<a class="headerlink" href="#dp-grundidee-fur-anfrageoptimierung" title="Permalink to this headline">#</a></h3>
 <p>Für jede Kombination der verschiedenen Relationen muss man sich in einer Hilfstabelle die geschätzte Größe des Ergebnisses (Kardinalität) und die geschätzten minimalen Kosten notieren. Hier wird zur Vereinfachung die Größe des Zwischenergebnisses gemerkt. Die Joinreihenfolge, die diese Kosten verursacht entspricht dem optimalen Teilplan. </br>
 </br>
 Es wird eine Induktion über die Anzahl der Relationen im Plan durchgeführt.
@@ -1238,7 +1840,7 @@ Ist <span class="math notranslate nohighlight">\(N=2\)</span> wird für jedes Re
 Für <span class="math notranslate nohighlight">\(N=3\)</span> wird jedes Tripel R, S, T betrachtet. Clou ist, dass nur das beste Relationenpaar aus dem Tripel um eine dritte Relation ergänzt wird</p>
 </section>
 <section id="dp-beispiel">
-<h3><span class="section-number">5.7.19. </span>DP – Beispiel<a class="headerlink" href="#dp-beispiel" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.19. </span>DP – Beispiel<a class="headerlink" href="#dp-beispiel" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/DP-Beispiel.png"><img alt="DP-Beispiel" src="../_images/DP-Beispiel.png" style="width: 200px;" /></a>
 <p>Im Beispiel wird eine Anfrage über die vier Relationen R, S, T, U gestellt.
 Es gibt vier Join-Bedingungen. In der Tabelle werden Kardinalität, Kosten und der optimale Plan festgehalten. Im ersten Schritt ist der optimale Plan ein Scan der jeweiligen Relation.</p>
@@ -1250,7 +1852,7 @@ Um Joins mit drei Relationen zu bilden, müssen die Joins zwischen zwei Relation
 <p>Zum Schluss berechnet man die Summe aus Kardinalität und Kosten. Somit ist der Joinplan mit Kosten von 3000 der optimale Plan.</p>
 </section>
 <section id="dp-interesting-orders-interessante-sortierung">
-<h3><span class="section-number">5.7.20. </span>DP - interesting orders (Interessante Sortierung)<a class="headerlink" href="#dp-interesting-orders-interessante-sortierung" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.20. </span>DP - interesting orders (Interessante Sortierung)<a class="headerlink" href="#dp-interesting-orders-interessante-sortierung" title="Permalink to this headline">#</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan.</p>
@@ -1269,17 +1871,17 @@ Gelöst wird das Problem, indem man für jede Kombination von Relationen, mehrer
 Das Kostenmodell muss auch verfeinert werden. Es werden echte I/O Kosten, statt der Größe des Zwischenergebnisses, genommen. Außerdem werden die Join- und Sortieroperationen (der Plan), die diese Sortierung erzeugen, gemerkt.</p>
 </section>
 <section id="dp-algorithmus">
-<h3><span class="section-number">5.7.21. </span>DP – Algorithmus<a class="headerlink" href="#dp-algorithmus" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.7.21. </span>DP – Algorithmus<a class="headerlink" href="#dp-algorithmus" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/DP-Algorithmus.png"><img alt="DP-Algorithmus" src="../_images/DP-Algorithmus.png" style="width: 500px;" /></a>
 <p>Ein DP Algorithmus kann beispielsweise wie der aus dem Paper <a class="reference external" href="http://dx.doi.org/10.1145/371578.371598">The state of the art in distributed query processing</a> von Donald Kossmann ausehen.</p>
 </section>
 </section>
 <section id="physische-anfrageplane">
-<h2><span class="section-number">5.8. </span>Physische Anfragepläne<a class="headerlink" href="#physische-anfrageplane" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.8. </span>Physische Anfragepläne<a class="headerlink" href="#physische-anfrageplane" title="Permalink to this headline">#</a></h2>
 <p>Bei den Physischen Anfrageplänen müssen noch einige letzte Schritte vollführt werden.
 Dazu gehört die Wahl des jeweiligen Algorithmus, wenn das nicht schon zuvor (z.B. bei DP) geschehen ist. Hier werden nur beispielhaft Selektions- und Joinmethoden angeschnitten. Außerdem muss zwischen Pipelining und Blocking, sowie die Zugriffsmethoden für Relationen gewählt werden.</p>
 <section id="wahl-der-selektionsmethode">
-<h3><span class="section-number">5.8.1. </span>Wahl der Selektionsmethode<a class="headerlink" href="#wahl-der-selektionsmethode" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.8.1. </span>Wahl der Selektionsmethode<a class="headerlink" href="#wahl-der-selektionsmethode" title="Permalink to this headline">#</a></h3>
 <p>Zuvor wurden schon zwei Varianten behandelt. Bei der Ersten muss R ganz gelesen und die Selektionsbedingung auf jedes Tupel angewendet werden. Bei der zweiten Variante wird über den Index zugegriffen, falls der Index auf dem Selektionsattribut vorhanden ist. Die Voraussetzungen dafür sind die Index- und Gleichheitsbedingung. </br>
 </br>
 Jetzt wird eine Verallgemeinerung auf mehrere Selektionen auf verschiedenen Attributen betrachtet. Sowohl mit, als auch ohne Index. Bei Gleichheit oder eben auch bei Ungleichheit (<span class="math notranslate nohighlight">\(&lt;\)</span>, <span class="math notranslate nohighlight">\(&gt;\)</span>, <span class="math notranslate nohighlight">\(\leq\)</span>, <span class="math notranslate nohighlight">\(\geq\)</span>, <span class="math notranslate nohighlight">\(\neq\)</span>). </br>
@@ -1289,7 +1891,7 @@ Das Vorgehen mit Indizes (jeweils viele Alternativen hierzu) beginnt mit dem Erm
 Beim Vorgehen ohne Indizes wird zunächst ein Table-scan für ganz R ausgeführt. Es wird dann ein Filter-Operator für alle Bedingungen angewandt. Der Filter-Operator findet nur im Hauptspeicher statt, sodass dieser keine Kosten verursacht.</p>
 </section>
 <section id="kostenvergleich-der-selektionsmethoden">
-<h3><span class="section-number">5.8.2. </span>Kostenvergleich der Selektionsmethoden<a class="headerlink" href="#kostenvergleich-der-selektionsmethoden" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.8.2. </span>Kostenvergleich der Selektionsmethoden<a class="headerlink" href="#kostenvergleich-der-selektionsmethoden" title="Permalink to this headline">#</a></h3>
 <p>Bisher wurde die Kostenschätzung durch die Schätzung der Ergebnisgröße durchgeführt, also durch die Kardinalität des Zwischenergebnisses. Jetzt werden nur Implementierungsvarianten mit jeweils gleichem Ergebnis verwendet. Deshalb wieder mit Disk I/O. Es gilt die Annahme, dass Indizes nichts kosten, da es sehr kleine Datenmengen sind. </br>
 </br></p>
 <p><strong>Beispiel 1</strong></br></p>
@@ -1340,7 +1942,7 @@ Beim Vorgehen ohne Indizes wird zunächst ein Table-scan für ganz R ausgeführt
 </ul>
 </section>
 <section id="wahl-der-join-methode">
-<h3><span class="section-number">5.8.3. </span>Wahl der Join-Methode<a class="headerlink" href="#wahl-der-join-methode" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.8.3. </span>Wahl der Join-Methode<a class="headerlink" href="#wahl-der-join-methode" title="Permalink to this headline">#</a></h3>
 <p>Man kann die Join-Methode je nach Kosten wählen (siehe voriger Foliensatz). Unter den Annahmen, dass man M (verfügbarer Hauptspeicher) kennt und M sich nicht während der Ausführung ändert. Außerdem gilt die Annahme, dass man B®, T® und V(R, …) kennt.
 </br>
 </br>
@@ -1352,7 +1954,7 @@ Der <strong>Sort-merge-join</strong> wird gewählt, falls mindestens ein Input b
 Analoge Überlegungen gelten auch für die Mengenoperationen.</p>
 </section>
 <section id="pipelining-vs-blocking">
-<h3><span class="section-number">5.8.4. </span>Pipelining vs. Blocking<a class="headerlink" href="#pipelining-vs-blocking" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.8.4. </span>Pipelining vs. Blocking<a class="headerlink" href="#pipelining-vs-blocking" title="Permalink to this headline">#</a></h3>
 <p>Ein naiver Versuch ist das Blocking (auch „Materialisierend“). Jeder Operator speichert sein Zwischenergebnis auf der Disk. Besser ist eine Vermischung der Ausführung verschiedener Operatoren wie es beim Pipelining und den Ketten von Iteratoren der Fall ist. Die Vorteile von Pipelining sind ein geringerer I/O Verbrauch und frühe Ergebnisse bei der Anwendung. Nachteile des Pipelining sind, dass nicht jeder Operator funktioniert, die Anzahl der CPUs zu gering oder jeder Operator weniger Hauptspeicher. Somit müssen ungünstigere Algorithmen gewählt werden. Pipelining ist also nicht immer besser!</p>
 </section>
 </section>
@@ -1370,7 +1972,7 @@ Analoge Überlegungen gelten auch für die Mengenoperationen.</p>
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./05"
         },
         predefinedOutput: true
@@ -1378,176 +1980,50 @@ Analoge Überlegungen gelten auch für die Mengenoperationen.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../04/anfrageausfuehrung.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Anfrageausführung</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../04/anfrageausfuehrung.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Anfrageausführung</p>
+        </div>
     </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wiederholung-anfragebearbeitung">5.1. Wiederholung: Anfragebearbeitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundproblem">5.1.1. Grundproblem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ablauf-der-anfragebearbeitung">5.1.2. Ablauf der Anfragebearbeitung</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.2. Ablauf der Anfragebearbeitung</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing">5.2.1. Parsing</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algebraische-transformationsregeln">5.3. Algebraische Transformationsregeln</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kommutativitat-und-assoziativitat">5.3.1. Kommutativität und Assoziativität</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-regeln">5.3.2. Weitere Regeln</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logische-anfrageplane">5.4. Logische Anfragepläne</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zwei-schritte">5.4.1. Zwei Schritte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-anfragebearbeitung">5.4.2. Beispiel - Anfragebearbeitung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubergang-zum-physischen-anfrageplan">5.4.3. Übergang zum Physischen Anfrageplan</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell">5.5. Kostenmodell</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenbasierte-optimierung-wiederholung">5.5.1. Kostenbasierte Optimierung (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemgrosze-suchraum-wiederholung">5.5.2. Problemgröße (Suchraum) (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenmodell-wiederholung">5.5.3. Kostenmodell (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiken-wiederholung">5.5.4. Statistiken (Wiederholung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kosten-von-operationen">5.5.5. Kosten von Operationen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-projektion">5.5.6. Kostenschätzung - Projektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion">5.5.7. Kostenschätzung - Selektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selektivitat-schatzen">5.5.8. Selektivität schätzen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-fur-skew-zipf-verteilung">5.5.9. Beispiel für Skew: Zipf-Verteilung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5.5.10. Kostenschätzung - Selektion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-selektion-mit-disjunktion">5.5.11. Kostenschätzung - Selektion mit Disjunktion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join">5.5.12. Kostenschätzung - Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-beispiel">5.5.13. Kostenschätzung - Join Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-join-mehrere-attribute">5.5.14. Kostenschätzung Join - Mehrere Attribute</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-mehrfacher-join">5.5.15. Kostenschätzung - Mehrfacher Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenschatzung-weitere-operationen">5.5.16. Kostenschätzung - Weitere Operationen</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme">5.6. Histogramme</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.6.1. Ablauf der Anfragebearbeitung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schatzung-der-statistiken">5.6.2. Schätzung der Statistiken</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schatzung-der-statistiken-histogramme">5.6.3. Schätzung der Statistiken - Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verteilungen-korpergewicht">5.6.4. Verteilungen - Körpergewicht</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equi-width-histogramme">5.6.5. Equi-Width Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equi-height-histogramme">5.6.6. Equi-Height-Histogramme</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogramme-zur-schatzung-fur-joins">5.6.7. Histogramme zur Schätzung für Joins</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erhebung-von-statistiken">5.6.8. Erhebung von Statistiken</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joinreihenfolge">5.7. Joinreihenfolge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration-physischer-anfrageplane">5.7.1. Enumeration Physischer Anfragepläne</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heuristische-auswahl">5.7.2. Heuristische Auswahl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branch-and-bound">5.7.3. Branch and Bound</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hill-climbing">5.7.4. Hill-Climbing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung-selinger-style-optimierung">5.7.5. Dynamische Programmierung &amp; Selinger-style Optimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#richard-bellman">5.7.6. Richard Bellman</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-fur-knapsack-problem">5.7.7. DP für Knapsack Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-knapsack-mit-dp">5.7.8. Beispiel: Knapsack mit DP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-traveling-salesman-problem">5.7.9. DP: Traveling Salesman Problem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-programming-heldkarp-algorithmus">5.7.10. Dynamic Programming (Held–Karp Algorithmus)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung">5.7.11. Dynamische Programmierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwendung-fur-left-deep-baume">5.7.12. Anwendung für Left-Deep Bäume</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anfrageplanung">5.7.13. Anfrageplanung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anfragebearbeitung-optimierung">5.7.14. Anfragebearbeitung – Optimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamische-programmierung-optimierung-im-system-r">5.7.15. Dynamische Programmierung: Optimierung im System-R</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bottom-up-anfrageplangenerierung">5.7.16. Bottom-up Anfrageplangenerierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.7.17. Dynamische Programmierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-grundidee-fur-anfrageoptimierung">5.7.18. DP – Grundidee für Anfrageoptimierung</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-beispiel">5.7.19. DP – Beispiel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-interesting-orders-interessante-sortierung">5.7.20. DP - interesting orders (Interessante Sortierung)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dp-algorithmus">5.7.21. DP – Algorithmus</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-anfrageplane">5.8. Physische Anfragepläne</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wahl-der-selektionsmethode">5.8.1. Wahl der Selektionsmethode</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenvergleich-der-selektionsmethoden">5.8.2. Kostenvergleich der Selektionsmethoden</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wahl-der-join-methode">5.8.3. Wahl der Join-Methode</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelining-vs-blocking">5.8.4. Pipelining vs. Blocking</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Dr. Ziawasch Abedjan
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+    <a class='right-next' id="next-link" href="../06/large-scale-data-management.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Large Scale Data Management</p>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
