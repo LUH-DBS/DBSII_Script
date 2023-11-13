@@ -1,43 +1,54 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>4. Anfrageausführung &#8212; Online-Skript Datenbanksysteme II</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-    
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -52,61 +63,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04/anfrageausfuehrung';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Optimierung" href="../05/optimierung.html" />
     <link rel="prev" title="3. Indizes" href="../03/indizes.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -116,751 +159,307 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01/speicherung.html">
-   1. Speicherung
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02/repraesentation.html">
-   2. Repräsentation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03/indizes.html">
-   3. Indizes
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   4. Anfrageausführung
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05/optimierung.html">
-   5. Optimierung
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../06/large-scale-data-management.html">
-   6. Large Scale Data Management
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03/indizes.html">3. Indizes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Anfrageausführung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05/optimierung.html">5. Optimierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06/large-scale-data-management.html">6. Large Scale Data Management</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/04/anfrageausfuehrung.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
+  <ul class="dropdown-menu">
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F04/anfrageausfuehrung.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/04/anfrageausfuehrung.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F04/anfrageausfuehrung.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/04/anfrageausfuehrung.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#physische-operatoren">
-   4.1. Physische Operatoren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tabellen-scannen">
-     4.1.1. Tabellen Scannen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sortiertes-einlesen">
-     4.1.2. Sortiertes Einlesen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#berechnungsmodell">
-     4.1.3. Berechnungsmodell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kostenparameter-statistiken">
-     4.1.4. Kostenparameter / Statistiken
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iteratoren">
-     4.1.5. Iteratoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-pass-algorithmen">
-   4.2. One-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">
-     4.2.1. Operatorklassen für One-pass Verfahren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">
-     4.2.2. Tupel-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">
-     4.2.3. Relationen-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung">
-     4.2.4. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung">
-     4.2.5. Gruppierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">
-     4.2.6. Relationen-basierte binäre Operatoren
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vereinigung">
-       4.2.6.1. Vereinigung
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#schnittmenge">
-       4.2.6.2. Schnittmenge
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mengen-differenz">
-       4.2.6.3. Mengen-Differenz
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multimengen-differenz">
-       4.2.6.4. Multimengen-Differenz
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#kreuzprodukt">
-       4.2.6.5. Kreuzprodukt
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#natural-join">
-       4.2.6.6. Natural Join
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nested-loop-join">
-   4.3. Nested Loop Join
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#block-basierter-nlj">
-     4.3.1. Block-basierter NLJ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">
-     4.3.2. Zusammenfassung bisheriger Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">
-   4.4. Sort-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     4.4.1. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation">
-     4.4.2. Gruppierung und Aggregation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vereinigung-binar">
-     4.4.3. Vereinigung (binär)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schnittmenge-und-differenz">
-     4.4.4. Schnittmenge und Differenz
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">
-     4.4.5. Einfacher, Sort-basierter Join Algorithmus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">
-     4.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">
-   4.5. Hash-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitionierung-mittels-hashing">
-     4.5.1. Partitionierung mittels Hashing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung-delta-r">
-     4.5.2. Duplikateliminierung
-     <span class="math notranslate nohighlight">
-      \(\delta(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">
-     4.5.3. Gruppierung und Aggregation
-     <span class="math notranslate nohighlight">
-      \(\gamma_{L}(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mengenoperationen">
-     4.5.4. Mengenoperationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashjoin">
-     4.5.5. Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen">
-     4.5.6. I/O Einsparungen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">
-     4.5.7. I/O Einsparungen – Hybrid Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">
-     4.5.8. Hybrid Hashjoin – Analyse
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">
-     4.5.9. Zusammenfassung Hash-basierter Verfahren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#index-basierte-algorithmen">
-   4.6. Index-basierte Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#index-basierte-selektion">
-     4.6.1. Index-basierte Selektion
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#joining-mit-index">
-     4.6.2. Joining mit Index
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Anfrageausführung</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#physische-operatoren">
-   4.1. Physische Operatoren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tabellen-scannen">
-     4.1.1. Tabellen Scannen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sortiertes-einlesen">
-     4.1.2. Sortiertes Einlesen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#berechnungsmodell">
-     4.1.3. Berechnungsmodell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kostenparameter-statistiken">
-     4.1.4. Kostenparameter / Statistiken
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iteratoren">
-     4.1.5. Iteratoren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-pass-algorithmen">
-   4.2. One-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">
-     4.2.1. Operatorklassen für One-pass Verfahren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">
-     4.2.2. Tupel-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">
-     4.2.3. Relationen-basierte unäre Operatoren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung">
-     4.2.4. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung">
-     4.2.5. Gruppierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">
-     4.2.6. Relationen-basierte binäre Operatoren
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vereinigung">
-       4.2.6.1. Vereinigung
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#schnittmenge">
-       4.2.6.2. Schnittmenge
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mengen-differenz">
-       4.2.6.3. Mengen-Differenz
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multimengen-differenz">
-       4.2.6.4. Multimengen-Differenz
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#kreuzprodukt">
-       4.2.6.5. Kreuzprodukt
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#natural-join">
-       4.2.6.6. Natural Join
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nested-loop-join">
-   4.3. Nested Loop Join
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#block-basierter-nlj">
-     4.3.1. Block-basierter NLJ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">
-     4.3.2. Zusammenfassung bisheriger Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">
-   4.4. Sort-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     4.4.1. Duplikateliminierung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation">
-     4.4.2. Gruppierung und Aggregation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#vereinigung-binar">
-     4.4.3. Vereinigung (binär)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#schnittmenge-und-differenz">
-     4.4.4. Schnittmenge und Differenz
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">
-     4.4.5. Einfacher, Sort-basierter Join Algorithmus
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">
-     4.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">
-   4.5. Hash-basierte Two-Pass Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#partitionierung-mittels-hashing">
-     4.5.1. Partitionierung mittels Hashing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#duplikateliminierung-delta-r">
-     4.5.2. Duplikateliminierung
-     <span class="math notranslate nohighlight">
-      \(\delta(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">
-     4.5.3. Gruppierung und Aggregation
-     <span class="math notranslate nohighlight">
-      \(\gamma_{L}(R)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mengenoperationen">
-     4.5.4. Mengenoperationen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashjoin">
-     4.5.5. Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen">
-     4.5.6. I/O Einsparungen
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">
-     4.5.7. I/O Einsparungen – Hybrid Hashjoin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">
-     4.5.8. Hybrid Hashjoin – Analyse
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">
-     4.5.9. Zusammenfassung Hash-basierter Verfahren
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#index-basierte-algorithmen">
-   4.6. Index-basierte Algorithmen
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#index-basierte-selektion">
-     4.6.1. Index-basierte Selektion
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#joining-mit-index">
-     4.6.2. Joining mit Index
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Anfrageausführung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-operatoren">4.1. Physische Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabellen-scannen">4.1.1. Tabellen Scannen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sortiertes-einlesen">4.1.2. Sortiertes Einlesen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnungsmodell">4.1.3. Berechnungsmodell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenparameter-statistiken">4.1.4. Kostenparameter / Statistiken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratoren">4.1.5. Iteratoren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-pass-algorithmen">4.2. One-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">4.2.1. Operatorklassen für One-pass Verfahren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">4.2.2. Tupel-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">4.2.3. Relationen-basierte unäre Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung">4.2.3.1. Duplikateliminierung</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung">4.2.3.2. Gruppierung</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">4.2.4. Relationen-basierte binäre Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung">4.2.4.1. Vereinigung</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge">4.2.4.2. Schnittmenge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengen-differenz">4.2.4.3. Mengen-Differenz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multimengen-differenz">4.2.4.4. Multimengen-Differenz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kreuzprodukt">4.2.4.5. Kreuzprodukt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-join">4.2.4.6. Natural Join</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loop-join">4.3. Nested Loop Join</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-basierter-nlj">4.3.1. Block-basierter NLJ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">4.3.2. Zusammenfassung bisheriger Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">4.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">4.4.2. Gruppierung und Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">4.4.3. Vereinigung (binär)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">4.4.4. Schnittmenge und Differenz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">4.4.5. Einfacher, Sort-basierter Join Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">4.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">4.5. Hash-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitionierung-mittels-hashing">4.5.1. Partitionierung mittels Hashing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung-delta-r">4.5.2. Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">4.5.3. Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengenoperationen">4.5.4. Mengenoperationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashjoin">4.5.5. Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen">4.5.6. I/O Einsparungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">4.5.7. I/O Einsparungen – Hybrid Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">4.5.8. Hybrid Hashjoin – Analyse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">4.5.9. Zusammenfassung Hash-basierter Verfahren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-algorithmen">4.6. Index-basierte Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-selektion">4.6.1. Index-basierte Selektion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">4.6.2. Joining mit Index</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="anfrageausfuhrung">
-<h1><span class="section-number">4. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this heading">#</a></h1>
 <p><strong>Zoom in die interne Ebene: Die 5-Schichten Architektur</strong></p>
 <a class="reference internal image-reference" href="../_images/5-Schichten-Architektur2.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur2.png" style="width: 500px;" /></a>
 <br>
@@ -874,34 +473,34 @@ Zunächst haben wir eine SQL-Anfrage. Diese wird geparsed und daraus entsteht ei
 <p><br><br>
 Mit diesem Kapitel befinden wir uns in der Anfrageausführung und schauen uns konkret an, wie Operatoren umgesetzt werden.</p>
 <section id="physische-operatoren">
-<h2><span class="section-number">4.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Physische Operatoren<a class="headerlink" href="#physische-operatoren" title="Permalink to this heading">#</a></h2>
 <p>Anfragepläne bestehen aus Operatoren. Bevor wir Kosten schätzen können müssen wir diese Operatoren kennen. Wir kennen bereits die Operatoren der Relationalen Algebra, welche auf physische Operatoren abgebildet werden.
 Was jetzt als neuer Operator dazu kommt, ist die Art und Weise, wie man eine Tabelle scannt.
 <br>
 Für jeden logischen Operator hat man mindestens einen physischen Operator der diesen implementiert.
 Später können noch Varianten von logischen Operatoren hinzukommen. Ein Join lässt sich beispielsweise unterschiedlich ausführen.</p>
 <section id="tabellen-scannen">
-<h3><span class="section-number">4.1.1. </span>Tabellen Scannen<a class="headerlink" href="#tabellen-scannen" title="Permalink to this headline">#</a></h3>
-<p>Eine Tabelle zu scannen ist die einfachste Operation. Dabei wird die gesamte Relation eingelesen, was man unter anderem für Joins und Unions braucht. Den Scan kann man ggf. auch anpassen, indem man diesen mit Selektionsbedingungen kombiniert, um zum Beispiel nur die Blöcke zu suchen, die einen bestimmten Wert enthalten.
+<h3><span class="section-number">4.1.1. </span>Tabellen Scannen<a class="headerlink" href="#tabellen-scannen" title="Permalink to this heading">#</a></h3>
+<p>Eine Tabelle zu scannen ist die einfachste Operation. Dabei wird die gesamte Relation eingelesen, was unter anderem bei Joins und Unions erforderlich ist. Den Scan kann man ggf. auch anpassen, indem man diesen mit Selektionsbedingungen kombiniert, um zum Beispiel nur die Blöcke zu suchen, die einen bestimmten Wert enthalten.
 <br><br>
 Es gibt zwei Scan Varianten, den <em>Table-scan</em> und den <em>Index-scan</em>.
 Beim <em>Table-scan</em>, werden alle Blöcke eingelesen, die in einer (bekannten) Region der Festplatte liegen. Dies bietet sich an, wenn man alle Operationen lesen will und die Tupelreihenfolge keine Rolle spielt. <br>
 Beim <em>Index-scan</em> gibt es einen Index, der angibt, welche Blöcke zur Relation gehören und wo diese liegen. Hat man eine Selektionsbedingung bietet sich der <em>Index-scan</em> hier am ehesten an, da wir direkt zu den bestimmten Werten springen können. Dieser steht außerdem stellvertretend für u.a. den B-Baum Index und den Hash Index.</p>
 </section>
 <section id="sortiertes-einlesen">
-<h3><span class="section-number">4.1.2. </span>Sortiertes Einlesen<a class="headerlink" href="#sortiertes-einlesen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.1.2. </span>Sortiertes Einlesen<a class="headerlink" href="#sortiertes-einlesen" title="Permalink to this heading">#</a></h3>
 <p>Eine weitere besondere Variante des Scans ist der <em>Sort-scan</em> - das sortierte Einlesen. Dies ist nützlich, wenn man in der Anfrage mit Order By sortiert oder wenn man bestimmte Operation, wie zum Beispiel Bereichsanfragen, ausführen will. Dann kann man mit <em>Sort-scan</em>, basierend auf einem gegeben Sortierschüssel, welcher aus einem oder mehreren Attributen und einer Sortierreihenfolge besteht, die Relation sortiert zurückgeben.</p>
 <p>Es gibt unterschiedliche Implementierungsvarianten. Man kann zum Beispiel einen B-Baum haben der einen Sortierschlüssel als Suchschlüssel hat oder eine sequentielle Datei, die nach einem Sortierschlüssel sortiert ist. Ist die Relation klein kann diese im Hauptspeicher sortiert werden. Dann nutzt man entweder den <em>Table-scan</em> oder den <em>Index-scan</em> plus eine Sortierung. Ist die Relation hingegen sehr groß, muss man den TPMMS durchführen. Damit ist die Ausgabe nicht auf der Festplatte sondern als Iterator im Ausführungsplan.</p>
 </section>
 <section id="berechnungsmodell">
-<h3><span class="section-number">4.1.3. </span>Berechnungsmodell<a class="headerlink" href="#berechnungsmodell" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.1.3. </span>Berechnungsmodell<a class="headerlink" href="#berechnungsmodell" title="Permalink to this heading">#</a></h3>
 <p>Bei der Ermittlung der Kosten eines Operators werden nur die I/O-Kosten berechnet, da diese die CPU-Kosten dominieren. Nehmen wir an, der Input eines Operators wird von der Disk gelesen, während der Output nicht auf die Disk geschrieben werden muss. Handelt es sich bei dem Operator um den letzten im Baum, verarbeitet die Anwendung die Tupel einzeln. Die I/O-Kosten hängen in diesem Fall von der Anfrage ab, nicht vom Plan. Handelt es sich aber um einen inneren Operator, kann man Pipelining durchführen, d.h. ein Tupel wird gelesen, zum nächsten Operator gegeben und immer so weiter. Damit hat man immer dieselben I/O-Kosten verbraucht, da das Tupel wie am Fließband von Operator zu Operator gereicht wird.</p>
 </section>
 <section id="kostenparameter-statistiken">
-<h3><span class="section-number">4.1.4. </span>Kostenparameter / Statistiken<a class="headerlink" href="#kostenparameter-statistiken" title="Permalink to this headline">#</a></h3>
-<p>Der verfügbare Hauptspeicher für einen Operator beträgt M Einheiten. Eine Einheit ist eine Blockgröße die wir auf der Festplatte haben. Den Hauptspeicherverbrauch messen wir nur für den Input der Operatoren, nicht für den Output. Wie viel Hauptspeicher man braucht, kann man dynamisch während der Anfragebearbeitung bestimmen. Wir gehen davon aus, dass M eine Schätzung ist und die Kosten, die wir schätzen können, nie genau sind. Der gewählte Plan, den wir als besten Plan ausgeben, ist nicht unbedingt auch der beste Plan. Basierend auf den Schätzungen ist es der Beste, dieser kann aber auch suboptimal sein.</p>
+<h3><span class="section-number">4.1.4. </span>Kostenparameter / Statistiken<a class="headerlink" href="#kostenparameter-statistiken" title="Permalink to this heading">#</a></h3>
+<p>Der verfügbare Hauptspeicher für einen Operator beträgt M Einheiten. Eine Einheit ist eine Blockgröße die wir auf der Festplatte haben. Den Hauptspeicherverbrauch messen wir nur für den Input der Operatoren, nicht für den Output. Wie viel Hauptspeicher man braucht, kann man dynamisch während der Anfragebearbeitung bestimmen. Wir gehen davon aus, dass M eine Schätzung ist und die Kosten, die wir schätzen können, nie genau sind. Der gewählte Plan, den wir als besten Plan ausgeben, ist somit nicht unbedingt auch der beste Plan. Basierend auf den Schätzungen ist es der Beste, dieser kann aber auch suboptimal sein.</p>
 <p><em>B</em> ist die Anzahl der Blöcke, <em>B®</em> ist die Anzahl aller Blöcke der Relation. Wir nehmen sogar an, dass <em>B®</em> die Anzahl der <strong>tatsächlich</strong> belegten Blöcke ist.</p>
-<p><em>T</em> ist die Anzahl der Tupel, <em>T®</em> ist die Anzahl der Tupel einer Relation. Mit <em>T/B</em> können wir die ungefähre Anzahl der Tupel pro Block berechnen.</p>
+<p><em>T</em> ist die Anzahl der Tupel, <em>T®</em> ist die Anzahl der Tupel einer Relation. Mit <span class="math notranslate nohighlight">\(\frac{T}{B}\)</span> können wir die ungefähre Anzahl der Tupel pro Block berechnen.</p>
 <p><em>V</em> ist die Anzahl unterschiedlicher Werte (DISTINCT values) , d.h. die Kardinalität jeder Spalte. <em>V(R,a)</em> ist die Anzahl unterschiedlicher Werte einer Relation R im Attribut a.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(V(R, [a1,a2,…,an]) = |\delta(\pi_{a1,a2,…,an}(R))|\)</span> –&gt; Betrag der Duplikatentfernung = Anzahl unterschiedlicher Werte</p></li>
@@ -913,22 +512,23 @@ Ist R <strong>nicht geclustered</strong>, also die Blöcke nicht nebeneinanderli
 <p>Die Kosten für einen <em>Index-scan</em> sind <em>B</em> oder <em>T</em>. Ist der Index selbst einige Blöcke groß, handelt es sich meistens um kleinere Zahlen. Bei einem Baum beispielsweise rechnet man plus die Höhe, denn je nach dem was schon im Hauptspeicher liegt, ob es die Wurzel ist oder mehrere Ebenen, hat man mehr I/O-Operationen.</p>
 </section>
 <section id="iteratoren">
-<h3><span class="section-number">4.1.5. </span>Iteratoren<a class="headerlink" href="#iteratoren" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.1.5. </span>Iteratoren<a class="headerlink" href="#iteratoren" title="Permalink to this heading">#</a></h3>
 <p>Viele physische Operatoren werden als Iterator implementiert. Für jede Operation haben wir drei bestimmte Grundfunktionen: Open(), GetNext() und Close(). <br>
 Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für eine Operation. Diese kann zum Beispiel ein Scan sein oder auch ein Join und diese Operation ruft dann die Open-Funktionen für alle anderen Operationen auf, die im Baum darunter liegen. Auf jeder Ebene des Baumes wird Open() aufgerufen. Die Funktion holt aber noch keine Tupel nach oben.</p>
-<p>Mit der GetNext-Funktion holt man das nächste Tupel. Wendet man die Funktion auf den obersten Iterator an, ruft dieser wiederrum GetNext() für die Iteratoren darunter auf und geht dabei so tief wie nötig. Ist kein Tupel mehr vorhanden bekommt man ein <em>NotFound</em> zurück.</p>
+<p>Mit der GetNext-Funktion holt man das nächste Tupel. Wendet man die Funktion auf den obersten Iterator an, ruft dieser wiederrum GetNext() für die Iteratoren darunter auf und geht dabei so tief wie nötig. Ist kein Tupel mehr vorhanden, bekommt man ein <em>NotFound</em> zurück.</p>
 <p>Close() beendet und schließt den Iterator und ruft Close() auch für die anderen Iteratoren auf.</p>
 <p><strong>Pull-basierte Anfrageauswertung</strong></p>
-<p>In dem Beispiel lässt sich gut erkennen, wie Open() und GetNext() funktionieren. Wird hier in dem obersten Iterator Open() aufgerufen, wird auch in allen darunterliegenden Iteratoren Open() aufgerufen. R1-R4 symbolisieren die Scan Operationen. Mit GetNext() geht man die Iteratoren durch, bis ganz nach unten und holt dann das Ergebnis nach oben.</p>
+<p>In dem folgenden Beispiel lässt sich gut erkennen, wie Open() und GetNext() funktionieren. Wird hier in dem obersten Iterator Open() aufgerufen, wird auch in allen darunterliegenden Iteratoren Open() aufgerufen. R1-R4 symbolisieren die Scan Operationen. Mit GetNext() geht man die Iteratoren durch, bis ganz nach unten und holt dann das Ergebnis nach oben.</p>
 <a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
 <p><strong>Iterator Beispiel - Table-scan</strong></p>
 <p>Im folgenden sehen wir einen Table scan:</p>
+<p>Wir können einen Parameter b auf den ersten Block aus R setzen oder auf das erste Tupel.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Open</span><span class="p">()</span>
     <span class="n">b</span> <span class="o">:=</span> <span class="n">the</span> <span class="n">first</span> <span class="n">block</span> <span class="n">of</span> <span class="n">R</span><span class="p">;</span>
     <span class="n">t</span> <span class="o">:=</span> <span class="n">the</span> <span class="n">first</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">block</span> <span class="n">b</span><span class="p">;</span> 
 </pre></div>
 </div>
-<p>Wir können einen Parameter b auf den ersten Block aus R setzen oder auf das erste Tupel.</p>
+<p>Falls t das letzte Tupel war, gehen wir zum nächsten Block. Gibt es keinen weiteren Block, wird <em>NotFound</em> ausgegeben. Andernfalls gibt uns die Funktion das erste Tupel dieses Blocks aus und setzt den Zeiger dann auf das nächste Tupel.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GetNext</span><span class="p">()</span>
     <span class="n">IF</span> <span class="p">(</span><span class="n">t</span> <span class="ow">is</span> <span class="n">past</span> <span class="n">the</span> <span class="n">last</span> <span class="nb">tuple</span> <span class="n">on</span> <span class="n">block</span> <span class="n">b</span><span class="p">)</span>
     <span class="n">Increment</span> <span class="n">b</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">block</span><span class="p">;</span>
@@ -941,7 +541,6 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
     <span class="n">RETURN</span> <span class="n">oldt</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Falls t das letzte Tupel war, gehen wir zum nächsten Block. Gibt es keinen weiteren Block wird NotFound ausgegeben. Andernfalls gibt uns die Funktion das erste Tupel dieses Blocks aus und setzt den Zeiger dann auf das nächste Tupel.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Close</span><span class="p">()</span>
     <span class="n">Do</span> <span class="n">Nothing</span>
 </pre></div>
@@ -976,11 +575,11 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 </pre></div>
 </div>
 <p>In der Open-Funktion werden die beiden Relationen R und S geöffnet, angefangen mit R. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.</p>
-<p>Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein NotFound ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.</p>
+<p>Die GetNext() Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein <em>NotFound</em> ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir S und initialisieren CurRel mit S. Danach führen wir S.GetNext() aus.</p>
 <p><strong>Iterator Beispiel - Blocking</strong></p>
-<p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe, einer Selektion und einer Projektion alle Namen der Filmstars die 1960 geboren wurden herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint und um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
+<p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe einer Selektion und einer Projektion alle Namen der Filmstars, die 1960 geboren wurden, herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint, um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
 <a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
-<p>Schauen wir uns einmal den Code zu diesem Beispiel an:</p>
+<p>Hier der Code zu diesem Beispiel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
 while (t &lt;&gt; NotFound)
     t = p.GetNext()
@@ -988,6 +587,7 @@ while (t &lt;&gt; NotFound)
 p.Close();
 
 Class projection {
+
     Open() {
         j = join.Open();
         while (t &lt;&gt; NotFound)
@@ -1008,6 +608,7 @@ Class projection {
 } 
 
 Class join {
+
     Open() {
         l = table.open();
         while (tl &lt;&gt; NotFound)
@@ -1040,7 +641,6 @@ Class join {
 <p>Die Implementierung der Open()-Funktion in der projection Klasse lädt alle Tupel in den Hauptspeicher. Mit der GetNext()-Funktion bedienen wir uns nur noch an diesen Tupel. Wir können also nicht mit GetNext() weiter machen bevor mit Open() nicht alles geladen wurde. Dieser Vorgang nennt sich <em>Blocking</em>.</p>
 <p>Mit der Zeile j = join.Open() wird dann Open() in der join Klasse aufgerufen. Hier wird für jedes Tupel, dass mit der äußeren while-Schleife aus der linken Tabelle genommen wird, mit der inneren while-Schleife ein Tupel aus der rechten Tabelle gelesen.</p>
 <p>Auch hier blockiert die Open()-Funktion und lädt die ganzen Tupel in den Hauptspeicher, sodass wir uns mit GetNext() wieder einfach nur daran bedienen müssen.</p>
-<br>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
 <p>Wir sehen hier die Relationen <em>R</em>, <em>S</em> und <em>T</em>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
 <a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
@@ -1060,6 +660,7 @@ while (t &lt;&gt; NotFound)
 return t; § p.Close();
 
 Class projection {
+
     Open() {
         j = join.Open();
     }
@@ -1106,38 +707,35 @@ Class join {
 </pre></div>
 </div>
 <p>In der Open()-Funktion wird jetzt nur noch der join geöffnet und keine Tupel mehr geladen, wie es beim <em>Blocking</em> der Fall war. In der Klasse join öffnen wir mit Open() nur die Relationen und GetNext() schaut was gelesen werden kann und was nicht.</p>
-<br>
 <p><strong>Überblick über das Weitere</strong></p>
-<p>Es gibt <strong>drei Klassen</strong> von Algorithmen: <em>Sort-basierte, Hash-basierte und Index-basierte Algorithmen</em>. Diese sind entweder <em>One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen</em> und haben somit <strong>drei Schwierigkeitsgrade</strong> die sich darin unterscheiden, wie oft über die Daten gelesen wird.
-<br><br>
-Die einfachsten Operatoren erfordern, dass nur einmal über die Daten gelesen wird. Das ist meist bei einem Scan der Fall, deshalb würde man hier einen <em>One-Pass Algorithmus</em> verwenden. Hier passt mindestens ein Argument in den Hauptspeicher, Selektion und Projektion ausgenommen.</p>
+<p>Es gibt <strong>drei Klassen</strong> von Algorithmen: <em>Sort-basierte, Hash-basierte und Index-basierte Algorithmen</em>. Diese sind entweder <em>One-Pass Algorithmen, Two-Pass Algorithmen oder Multipass Algorithmen</em> und haben somit <strong>drei Schwierigkeitsgrade</strong> die sich darin unterscheiden, wie oft über die Daten gelesen wird. <br></p>
+<p>Die einfachsten Operatoren erfordern, dass nur einmal über die Daten gelesen wird. Das ist meist bei einem Scan der Fall, deshalb würde man hier einen <em>One-Pass Algorithmus</em> verwenden. Hier passt mindestens ein Argument in den Hauptspeicher, Selektion und Projektion ausgenommen.</p>
 <p><em>Two-Pass Algorithmen</em>, wie zum Beispiel TPMMS, finden meist Anwendung, wenn es eine Größenbeschränkung für den Input gibt. Hierbei wir meist erst einmal gelesen, dann wird zwischengespeichert und dieses Zwischenergebnis wird dann noch einmal gelesen.</p>
-<p>Hat man zu wenig Speicherplatz für den Two-Pass Algorithmus kann man den <em>Multipass Algorithmus</em> verwenden. Dieser ist eine rekursive Erweiterung des Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.
-Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.</p>
+<p>Hat man zu wenig Speicherplatz für den Two-Pass Algorithmus kann man den <em>Multipass Algorithmus</em> verwenden. Dieser ist eine rekursive Erweiterung des Two-Pass Algorithmus und unbeschränkt in der Inputgröße, dafür aber unter anderem abhängig vom Operator.</p>
 </section>
 </section>
 <section id="one-pass-algorithmen">
-<h2><span class="section-number">4.2. </span>One-Pass Algorithmen<a class="headerlink" href="#one-pass-algorithmen" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>One-Pass Algorithmen<a class="headerlink" href="#one-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <section id="operatorklassen-fur-one-pass-verfahren">
-<h3><span class="section-number">4.2.1. </span>Operatorklassen für One-pass Verfahren<a class="headerlink" href="#operatorklassen-fur-one-pass-verfahren" title="Permalink to this headline">#</a></h3>
-<p>Wir gehen immer davon aus, dass die Operationen und der Input in den Speicher passt. <br> Hat man <em>Tupel-basierte unäre Operatoren</em> braucht man nur einen sehr kleinen Teil des Inputs gleichzeitig im Hauptspeicher. Meist wenn Projektionen, Selektionen oder Multimengen-Vereinigungen durchführt.</p>
+<h3><span class="section-number">4.2.1. </span>Operatorklassen für One-pass Verfahren<a class="headerlink" href="#operatorklassen-fur-one-pass-verfahren" title="Permalink to this heading">#</a></h3>
+<p>Wir gehen immer davon aus, dass die Operationen und der Input in den Speicher passen. <br>
+Hat man <em>Tupel-basierte unäre Operatoren</em> braucht man nur einen sehr kleinen Teil des Inputs gleichzeitig im Hauptspeicher. Meist wenn Projektionen, Selektionen oder Multimengen-Vereinigungen durchgeführt werden.</p>
 <p><em>Relationen-basierte unäre Operatoren</em> benötigen meist die gesamte Relation gleichzeitig im Hauptspeicher. Deshalb darf die Inputgröße die Hauptspeichergröße nicht überschreiten.
 Dies ist der Fall bei Gruppierungen, Duplikateliminierungen und Sortierungen.</p>
 <p><em>Relationen-basierte binäre Operatoren</em> benötigen mindestens eine gesamte Relation im Hauptspeicher. Außerdem braucht man dann noch ein wenig Speicher für ein Element aus einer anderen Relation. Das gilt für alle Mengenoperationen außer Multimengen-Vereinigungen, aber vor allem für den Join.</p>
 </section>
 <section id="tupel-basierte-unare-operatoren">
-<h3><span class="section-number">4.2.2. </span>Tupel-basierte unäre Operatoren<a class="headerlink" href="#tupel-basierte-unare-operatoren" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>Tupel-basierte unäre Operatoren<a class="headerlink" href="#tupel-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
 <p>Für Selektionen und Projektionen verwendet man Tupel-basierte unäre Operatoren, denn diese sind unabhängig von der Hauptspeichergröße. Die Speicherkosten betragen nur eine Einheit, da man immer nur ein Tupel auf einmal liest. Die I/O-Kosten hängen wie beim <em>Table-scan</em> oder <em>Index-scan</em> davon ab, ob R geclustered ist oder nicht. Ist R geclustered, betragen die Kosten B, ist R nicht geclustered betragen die Kosten T. Falls es einen Suchschlüssel im Index gibt, sind die Kosten noch geringer.</p>
 <a class="reference internal image-reference" href="../_images/Tupel-basierte-unäre-Operatoren.png"><img alt="Tupel-basierte-unäre-Operatoren" src="../_images/Tupel-basierte-unäre-Operatoren.png" style="width: 500px;" /></a>
 </section>
 <section id="relationen-basierte-unare-operatoren">
-<h3><span class="section-number">4.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
 <p>Relationen-basierte unäre Operatoren verwendet man bei Duplikateliminierungen und Gruppierungen. Hier ist zu beachten, dass die ganze Relation in den Hauptspeicher passen muss. Um dies zu bewältigen und um den Hauptspeicher ein wenig zu entlasten, ist es sinnvoll, nur die “Repräsentanten” zu speichern.
 Für die Duplikateliminierung bedeutet das, nicht alle Attribute eines Tupels zu speichern, sondern nur die, die die Tupel voneinander unterscheiden.
 Bei der Gruppierung würde man nur Gruppierungsattribute und aggregierte Teilergebnisse speichern und nicht das gesamte Tupel. Mit diesem “Trick” können dann auch größere Relationen verarbeitet werden.</p>
-</section>
 <section id="duplikateliminierung">
-<h3><span class="section-number">4.2.4. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this headline">#</a></h3>
+<h4><span class="section-number">4.2.3.1. </span>Duplikateliminierung<a class="headerlink" href="#duplikateliminierung" title="Permalink to this heading">#</a></h4>
 <p>Bei der Duplikateliminierung wird Tupel für Tupel eingelesen. Wurde das Tupel zuvor noch nicht gesehen, wird es einfach ausgegeben, andernfalls passiert nichts.
 Der Puffer merkt sich, welche Tupel schon einmal gesehen wurden. Da man Tupel sofort finden möchte, sollte man sich eine geeignete Datenstruktur überlegen. Hier bieten sich am besten Hashtabellen oder balancierte Binärbäume an.
 Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzahl der duplizierten Tupel (alle DISTINCT Werte der Relation) geteilt durch die Anzahl der Tupel pro Block. Das Ergebnis muss dann kleiner sein als M, damit man die Duplikateliminierung mit einem One-Pass Algorithmus durchführen kann.</p>
@@ -1149,52 +747,53 @@ Bei der Wahl von M, also wie groß der Speicher sein muss, rechnet man die Anzah
 <br>
 </section>
 <section id="gruppierung">
-<h3><span class="section-number">4.2.5. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this headline">#</a></h3>
+<h4><span class="section-number">4.2.3.2. </span>Gruppierung<a class="headerlink" href="#gruppierung" title="Permalink to this heading">#</a></h4>
 <p>Bei der Gruppierung wird ein Eintrag pro Gruppe im Hauptspeicher, bzw. ein Eintrag pro Gruppierungswert erzeugt. Dazu nimmt man noch kumulierte Werte für aggregierte Attribute, wie zum Beispiel MIN/MAX, COUNT oder SUM. AVG ist etwas schwieriger, da sich der Wert ändern kann. Hierfür muss man sich zusätzlich noch COUNT und SUM merken, damit man dann am Ende AVG berechnen kann.
 <br><br>
 Der Output ist ein Tupel pro Eintrag und wird erst nach dem letzten Input ausgegeben, denn erst dann kann man sicher sein, dass jede Gruppe vollständig betrachtet wurde.
 Da die Einträge selbst größer oder kleiner als das Tupel sein können, sind die Hauptspeicherkosten schwer abzuschätzen. Die Anzahl der Einträge ist aber höchstens so groß wie <em>T</em>. Meistens wird sogar weniger Speicher verwendet, als man Blöcke hat.</p>
 </section>
+</section>
 <section id="relationen-basierte-binare-operatoren">
-<h3><span class="section-number">4.2.6. </span>Relationen-basierte binäre Operatoren<a class="headerlink" href="#relationen-basierte-binare-operatoren" title="Permalink to this headline">#</a></h3>
-<p>Zu den Relationen-basierte binäre Operatoren gehören alle mengenbasierten Operatoren sowie Join und das Kreuzprodukt. Bei den mengenbasierten Operationen müssen wir die Multimengenvereinigung ausschließen. Hier ist anzumerken, das Multimengensemantik immer mit einem B (“Bag”) abgekürzt ist und Mengensemantik mit einem S (“Set”).</p>
+<h3><span class="section-number">4.2.4. </span>Relationen-basierte binäre Operatoren<a class="headerlink" href="#relationen-basierte-binare-operatoren" title="Permalink to this heading">#</a></h3>
+<p>Zu den Relationen-basierten binären Operatoren gehören alle mengenbasierten Operatoren sowie Join und das Kreuzprodukt. Bei den mengenbasierten Operationen müssen wir die Multimengenvereinigung ausschließen. Hier ist anzumerken, das Multimengensemantik immer mit einem B (“Bag”) abgekürzt ist und Mengensemantik mit einem S (“Set”).</p>
 <p>Es wird angenommen, dass immer eine Relation in den Hauptspeicher passt. Je nachdem, welche Operation man durchführen möchte, muss hier wieder eine sinnvolle Datenstruktur gewählt werden. Sollte nur eine Relation in den Hauptspeicher passen, nimmt man hier die kleinere. Wir gehen davon aus, dass B(S) kleiner als B® ist und die Kosten somit ungefähr B(S) + 1 betragen. Deshalb würde man hier B(S) wählen.</p>
 <section id="vereinigung">
-<h4><span class="section-number">4.2.6.1. </span>Vereinigung<a class="headerlink" href="#vereinigung" title="Permalink to this headline">#</a></h4>
-<p>Führt man die Vereinigung von R und S in Multimengensemantik durch ( <span class="math notranslate nohighlight">\( R \cup_{B} S \)</span> ), ist das Tupel-basiert möglich. Die I/O-Kosten betragen B® + B(S), da beide Relationen gelesen werden müssen, und der Hauptspeicherbedarf beträgt genau 1.</p>
+<h4><span class="section-number">4.2.4.1. </span>Vereinigung<a class="headerlink" href="#vereinigung" title="Permalink to this heading">#</a></h4>
+<p>Führt man die Vereinigung von R und S in Multimengensemantik durch ( <span class="math notranslate nohighlight">\( R \cup_{B} S \)</span> ), ist das Tupel-basiert möglich. Die I/O-Kosten betragen B® + B(S), da beide Relationen gelesen werden müssen und der Hauptspeicherbedarf genau 1 beträgt.</p>
 <p>Bei der Vereinigung von R und S in der Mengensemantik ( <span class="math notranslate nohighlight">\( R \cup_{S} S \)</span> ) werden erst alle Tupel aus S eingelesen. Über diese Tupel wird dann eine Datenstruktur aufgebaut (Schlüssel ist ein gesamtes Tupel). Diese eingelesenen Tupel werden dann alle ausgegeben und als nächstes wird R eingelesen. Bei jedem Tupel, dass es auch in S gibt, wird nichts gemacht, die anderen werden auch ausgegeben.</p>
 </section>
 <section id="schnittmenge">
-<h4><span class="section-number">4.2.6.2. </span>Schnittmenge<a class="headerlink" href="#schnittmenge" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.2.4.2. </span>Schnittmenge<a class="headerlink" href="#schnittmenge" title="Permalink to this heading">#</a></h4>
 <p>Nimmt man die Schnittmenge von R und S ( <span class="math notranslate nohighlight">\( R \cap_{S} S\)</span> ), ist der Ablauf ähnlich wie bei der Vereinigung in Mengensemantik. Nach dem Einlesen von S gibt man aber noch keine Tupel aus, da man noch nicht weiß, ob diese in der Schnittmenge enthalten sind. Liest man dann R ein, werden die Tupel, die auch in S vorkommen, ausgegeben, für die anderen wird nichts getan. Voraussetzung für die Schnittmenge ist, dass R und S Mengen sind.</p>
 <p>Bei der Schnittmenge von R und S in der Multimengensemantik ( <span class="math notranslate nohighlight">\(R\cap_{B}S\)</span> ) wird S eingelesen und für jedes Tupel ein COUNT-Wert gespeichert, damit man sehen kann, wie oft ein Tupel gelesen wurde. Dann wird R eingelesen. Kommt ein Tupel aus R in S vor und der COUNT-Wert ist größer als Null, wird dieses Tupel ausgegeben und der COUNT-Wert um eins reduziert. In allen anderen Fällen wird nichts getan.</p>
 </section>
 <section id="mengen-differenz">
-<h4><span class="section-number">4.2.6.3. </span>Mengen-Differenz<a class="headerlink" href="#mengen-differenz" title="Permalink to this headline">#</a></h4>
-<p>Die Mengen-Differenz ist nicht kommutativ, deshalb ist es wichtig, dass man die Relation, von der man etwas abziehen möchte, zuerst nimmt. Auch hier ist wieder vorausgesetzt, dass R und S Mengen sind. Für die beiden folgenden Beispiele angenommen, dass S kleiner als R ist.</p>
+<h4><span class="section-number">4.2.4.3. </span>Mengen-Differenz<a class="headerlink" href="#mengen-differenz" title="Permalink to this heading">#</a></h4>
+<p>Die Mengen-Differenz ist nicht kommutativ, deshalb ist es wichtig, dass man die Relation, von der man etwas abziehen möchte, zuerst nimmt. Auch hier ist wieder vorausgesetzt, dass R und S Mengen sind. Für die beiden folgenden Beispiele wird angenommen, dass S kleiner als R ist.</p>
 <p>Im ersten Schritt wird immer die kleinere Relation, hier S, in eine effiziente Datenstruktur eingelesen. Der Schlüssel ist ein gesamtes Tupel.</p>
 <p>Nimmt man <span class="math notranslate nohighlight">\(R-_{S}S\)</span> , liest man R ein und gibt jedes nicht in S vorkommende Tupel aus. Die anderen Tupel werden ignoriert. <br>
 Nimmt man <span class="math notranslate nohighlight">\(S-_{S}R\)</span>, liest man R ein und löscht alle auch in S vorkommenden Tupel aus der Datenstruktur. Kommt ein Tupel nicht in S vor, wird nichts getan. Alle übrigen Tupel werden einfach ausgegeben.</p>
 </section>
 <section id="multimengen-differenz">
-<h4><span class="section-number">4.2.6.4. </span>Multimengen-Differenz<a class="headerlink" href="#multimengen-differenz" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.2.4.4. </span>Multimengen-Differenz<a class="headerlink" href="#multimengen-differenz" title="Permalink to this heading">#</a></h4>
 <p>Auch die Multimengendifferenz ist nicht kommutativ und auch hier ist es wichtig, die Relation, von der man etwas abziehen möchte, zuerst zu nehmen. <br>
 Nimmt man <span class="math notranslate nohighlight">\(S-_{B}R\)</span> in der Multimengensemantik, liest man auch hier zuerst S ein und speichert wieder für jedes Tupel einen COUNT-Wert. Dann wird wieder R eingelesen und geschaut, ob es in der Relation Tupel gibt die auch in S vorkommen. Falls ja, wird der COUNT-Wert verringert, falls nein, wird nichts getan. Die Tupel werden dem COUNT-Wert entsprechend oft ausgegeben.</p>
 <p>Bei <span class="math notranslate nohighlight">\(R-_{B}S\)</span> wird für jedes Tupel in S ein COUNT-Wert c gespeichert, welcher c Gründe liefert, ein Tupel aus R nicht auszugeben. Wird dann R eingelesen und ein Tupel ist bereits vorhanden und COUNT ist größer als Null, wird COUNT verringert. Ist COUNT gleich Null oder das Tupel noch nicht vorhanden, wird es ausgegeben.</p>
 </section>
 <section id="kreuzprodukt">
-<h4><span class="section-number">4.2.6.5. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.2.4.5. </span>Kreuzprodukt<a class="headerlink" href="#kreuzprodukt" title="Permalink to this heading">#</a></h4>
 <p>Bei dem Kreuzprodukt von R und S (<strong>R x S</strong>) wird S wieder zuerst in den Hauptspeicher eingelesen, hierbei ist die Datenstruktur egal. Wird dann R eingelesen, konkatenieren wir mit jedem Tupel aus S und geben das Ergebnis aus. Die Rechenzeit pro Tupel ist sehr lang und die Ausgabe dementsprechend groß.</p>
 </section>
 <section id="natural-join">
-<h4><span class="section-number">4.2.6.6. </span>Natural Join<a class="headerlink" href="#natural-join" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.2.4.6. </span>Natural Join<a class="headerlink" href="#natural-join" title="Permalink to this heading">#</a></h4>
 <p>Beim Natural Join <strong>R(X,Y) ⋈ S(Y,Z)</strong> wird zuerst S in den Hauptspeicher eingelesen. Y ist hier unser Suchschlüssel - das Join Attribut. Dann wird R eingelesen und man sucht für jedes Tupel der Relation ein passendes Tupel aus S und gibt es aus. Die I/O-Kosten betragen B(S) + B®. Es wird angenommen, dass B(S) &lt;= M-1 bzw. &lt;= M ist.</p>
 <p>Equi-join und Theta-join funktionieren analog.</p>
 </section>
 </section>
 </section>
 <section id="nested-loop-join">
-<h2><span class="section-number">4.3. </span>Nested Loop Join<a class="headerlink" href="#nested-loop-join" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3. </span>Nested Loop Join<a class="headerlink" href="#nested-loop-join" title="Permalink to this heading">#</a></h2>
 <p>Zuvor haben wir uns mit Algorithmen und Operatoren beschäftigt, bei denen es ausgereicht hat, eine Relation nur einmal einzulesen, da diese als Ganzes in den Hauptspeicher passte. Nun schauen wir uns Algorithmen an, bei denen nicht mehr davon ausgegangen werden kann, dass der Hauptspeicher ausreichend groß ist.</p>
 <p>Der Nested-Loop-Join-Algorithmus ist ein operationsabhängiges Verfahren und ein 1.5-Pass Algorithmus. Die Idee ist, dass eine Relation nur einmal eingelesen wird und die andere Relation mehrfach. Dabei kann die Größe der beiden Relationen beliebig sein.</p>
 <p>Man könnte hier eine Tupel-basierte, naive Variante des Algorithmus durchführen. Dafür holt man sich jeweils ein Tupel aus der Relation S und ein Tupel aus der Relation R und prüft, ob man diese verjoinen kann. Falls ja, wird das Ergebnis ausgegeben.</p>
@@ -1205,7 +804,7 @@ Nimmt man <span class="math notranslate nohighlight">\(S-_{B}R\)</span> in der M
 </div>
 <p>Die I/O-Kosten sind T(S) + T(S) · T®, denn man muss jedes Tupel aus S herausfinden und dann für jedes dieser Tupel R-mal alle Tupel aus R lesen. Das lässt sich optimieren, indem man zum Beispiel einen Index für das Joinattribut in R hat oder die Tupel auf Blöcke verteilt.</p>
 <section id="block-basierter-nlj">
-<h3><span class="section-number">4.3.1. </span>Block-basierter NLJ<a class="headerlink" href="#block-basierter-nlj" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1. </span>Block-basierter NLJ<a class="headerlink" href="#block-basierter-nlj" title="Permalink to this heading">#</a></h3>
 <p>Beim Block-basierten Nested Loop Join werden die Tupel nach Blöcken organisiert, was besondern sinnvoll für die innere Schleife ist. Wir versuchen den Hauptspeicher so gut es geht zu nutzen, indem wir ein R-Tupel nicht nur mit einem, sondern mit vielen S-Tupeln verjoinen. Idealerweise ist die äußere Schleife für die kleinere Relation (hier S), damit weniger Vergleiche gemacht werden müssen. Dennoch ist dies schwieriger als im One-Pass, da B(S) größer als M ist. Aus dem Grund brauchen wir auch hier eine effiziente Datenstruktur für S im Hauptspeicher.</p>
 <p>Im folgenden Codebeispiel sehen wir, wie so ein Block-basierter Nested Loop Join aussieht. Wir holen uns einen chunk von Blöcken aus S und lesen die Blöcke in den Hauptspeicher. Dann organisieren wir die Tupel in effiziente Datenstrukturen, sodass wir die Join Attribute besser als Schlüssel darstellen können. In der nächsten Schleife holen wir dann jeweils einen Block aus R und lesen für jeden Block die Tupel aus. Es werden drei Schleifen benötigt. Die ersten beiden sind für das blockweise Vorgehen zuständig und die Dritte wird gebraucht, weil im Block selber die Tupel im Hauptspeicher noch einmal gelesen werden müssen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FOR</span> <span class="n">EACH</span> <span class="n">chunk</span> <span class="n">of</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">S</span> <span class="n">DO</span> <span class="n">BEGIN</span>
@@ -1222,25 +821,25 @@ Nimmt man <span class="math notranslate nohighlight">\(S-_{B}R\)</span> in der M
 </pre></div>
 </div>
 <p><strong>Block-basierter NLJ – Kosten</strong></p>
-<p>Sagen wir, wir haben eine Relation R mit 1000 Blöcken (<strong>B® = 1000</strong>), eine Relation S mit 500 Blöcken (<strong>B(S) = 500</strong>) und 101 Einheiten Platz im Hauptspeicher (<strong>M = 101</strong>). Damit können wir im Hauptspeicher jeweils 100 Blöcke abbilden und jeweils einen Block für R merken, vorausgesetzt es werden keine weiteren Einheiten benötigt. Nun muss die äußere Schleife <strong>fünf Mal</strong> durchlaufen werden (<strong>5 · 100 I/O-Operationen = 500</strong>). Dazu kommen jeweils <strong>1000 I/O-Operationen</strong> für R, womit wir auf insgesamt <strong>5.500 I/O-Operationen</strong> kommen.</p>
-<p>Wäre R jetzt in der äußeren Schleife, würde diese Relation zuerst gelesen werden und die Schleife müsste <strong>10 Mal</strong> durchlaufen werden (<strong>10 · 100 I/O-Operationen = 1000</strong>). Dazu würden wieder pro Schleifendurchlauf jeweils <strong>500 I/O-Operationen</strong> für S hinzukommen und ein Ergebnis von <strong>6000 I/O-Operationen</strong> liefern. Wie man sieht, ist es also sinnvoller wenn die kleinere Relation außen ist.</p>
-<p>In einem weiteren Beispiel haben wir <strong>B(S) = 100</strong> und <strong>B® = 1.000.000</strong>. Ist die Relation R außen, muss die Schleife <strong>10.000 Mal</strong> laufen und bei jedem Durchlauf kommen <strong>100 I/O-Operationen</strong> für S hinzu, sodass man am Ende <strong>2.000.000 I/O-Operationen</strong> hat. Ist S in diesem Szenario außen, muss die Schleife nur einmal durchlaufen werden und man hat am Ende <strong>1.000.100 I/O-Operationen</strong>. Also auch hier wieder deutlich, dass es sinnvoller ist, die kleinere Relation außen zu haben.</p>
+<p>Sagen wir, wir haben eine Relation R mit 1000 Blöcken (<strong>B® = 1000</strong>), eine Relation S mit 500 Blöcken (<strong>B(S) = 500</strong>) und 101 Einheiten Platz im Hauptspeicher (<strong>M = 101</strong>). Damit können wir im Hauptspeicher jeweils 100 Blöcke abbilden und jeweils einen Block für R merken, vorausgesetzt es werden keine weiteren Einheiten benötigt. Nun muss die äußere Schleife <strong>fünf Mal</strong> durchlaufen werden (<strong>5 · 100 I/O-Operationen = 500 I/O-Operationen</strong>). Dazu kommen jeweils <strong>1000 I/O-Operationen</strong> für R, womit wir auf insgesamt <strong>5.500 I/O-Operationen</strong> kommen.</p>
+<p>Wäre R jetzt in der äußeren Schleife, würde diese Relation zuerst gelesen werden und die Schleife müsste <strong>10 Mal</strong> durchlaufen werden (<strong>10 · 100 I/O-Operationen = 1000 I/O-Operationen</strong>). Dazu würden wieder pro Schleifendurchlauf jeweils <strong>500 I/O-Operationen</strong> für S hinzukommen und ein Ergebnis von <strong>6000 I/O-Operationen</strong> liefern. Wie man sieht, ist es also sinnvoller wenn die kleinere Relation außen ist.</p>
+<p>In einem weiteren Beispiel haben wir <strong>B(S) = 100</strong> und <strong>B® = 1.000.000</strong>. Ist die Relation R außen, muss die Schleife <strong>10.000 Mal</strong> laufen und bei jedem Durchlauf kommen <strong>100 I/O-Operationen</strong> für S hinzu, sodass man am Ende <strong>2.000.000 I/O-Operationen</strong> hat. Ist S in diesem Szenario aber außen, muss die Schleife nur einmal durchlaufen werden und man hat am Ende <strong>1.000.100 I/O-Operationen</strong>. Also auch hier wieder deutlich, dass es sinnvoller ist, die kleinere Relation außen zu haben.</p>
 <p>Im folgenden einmal eine allgemeinere Berechnung. Mit der äußeren Schleife werden so viele Blöcke gelesen, wie in den Hauptspeicher passen. Also wird hierfür die Anzahl der Blöcke von S durch den Platz im Hauptspeicher geteilt. Das wird multipliziert mit M-1 Blöcken von S, addiert mit der Anzahl der Blöcke von R, für die innere Schleife. Das Ergebnis ist nur eine Abschätzung.
 Die Formel sieht wie folgt aus:</p>
 <p><span class="math notranslate nohighlight">\(\frac{B(S)}{M-1}(M-1+B(R)) = \frac{B(S)(M-1)}{M-1} - \frac{B(S)}{M-1} + \frac{B(S)B(R)}{M-1} \approx\frac {B(S)B(R)}{M}\)</span></p>
 </section>
 <section id="zusammenfassung-bisheriger-algorithmen">
-<h3><span class="section-number">4.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this heading">#</a></h3>
 <p>Hier einmal eine Übersicht darüber, wie viel Hauptspeicher die verschiedenen Operationen in den verschiedenen Varianten benötigen und wie viel I/O dabei verbraucht wird.</p>
 <a class="reference internal image-reference" href="../_images/Zusammenfassung-Algorithmen.png"><img alt="Zusammenfassung-Algorithmen" src="../_images/Zusammenfassung-Algorithmen.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="sort-basierte-two-pass-algorithmen">
-<h2><span class="section-number">4.4. </span>Sort-basierte Two-Pass Algorithmen<a class="headerlink" href="#sort-basierte-two-pass-algorithmen" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.4. </span>Sort-basierte Two-Pass Algorithmen<a class="headerlink" href="#sort-basierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <p><strong>1-, 2-, Mehr-Phasen</strong></p>
 <p>Bisher haben wir uns mit One-Pass Algorithmen befasst, bei denen immer eine Relation in den Hauptspeicher passt. Nun befassen wir uns mit Two-Pass Algorithmen, bei denen mehrfach über eine Relation gelesen werden muss, weil diese nicht als ganzes in den Hauptspeicher passt. Es gibt eine, zwei oder auch mehrere Phasen, je nachdem wie groß die Liste ist, meist reichen aber zwei Phasen. Diese bestehen aus dem Einlesen der Daten, der Verarbeitung der Daten (z.B. eine Vorsortierung von Teillisten), dem Schreiben der Daten und dem Wiedereinlesen der Daten (z.B. Merging der Teillisten).</p>
 <section id="id1">
-<h3><span class="section-number">4.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Den ersten Algorithmus, den wir uns anschauen, ist die Duplikateliminierung. Hier ist das Vorgehen ähnlich wie bei TPMMS. In Phase 1 werden Teillisten erstellt, der Sortierschlüssel ist das gesamte Tupel. In der 2. Phase haben wir einen Block pro Teilliste und betrachten jeweils das erste Tupel. Hier suchen wir das kleinste Tupel und geben dieses aus. Alle anderen identischen Tupel werden verworfen.</p>
 <p>Schauen wir uns das anhand eines Beispiels an. Nehmen wir an, wir haben im Hauptspeicher Platz für drei Blöcke und einen Outputblock (M = 3 + 1). Es passen zwei Tupel in jeden Block und wir haben insgesamt 17 Tupel (2, 5, 2, 1, 2, 2, 4, 5, 4, 3, 4, 2, 1, 5, 2, 1, 3). In Phase 1 ergeben sich daraus drei sortierte Teillisten, denn wir müssen jeden Block vollständig füllen. Dabei können die Teillisten unterschiedliche Längen haben. In Phase 2 suchen wir uns dann immer das kleinste Tupel heraus und verschieben dieses in den Outputblock. Gleiche Tupel werden verworfen.</p>
 <p>Dieser Algorithmus lässt sich noch optimieren, indem wir schon in Phase 1 die Duplikate in den Teillisten erliminieren. Damit lassen sich mehr Tupel in eine Teilliste laden und man hat kleinere Teillisten.</p>
@@ -1254,23 +853,23 @@ Ist die Relation jedoch nicht geclustered, sind die Kosten für das Einlesen in 
 </div>
 </section>
 <section id="gruppierung-und-aggregation">
-<h3><span class="section-number">4.4.2. </span>Gruppierung und Aggregation<a class="headerlink" href="#gruppierung-und-aggregation" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>Gruppierung und Aggregation<a class="headerlink" href="#gruppierung-und-aggregation" title="Permalink to this heading">#</a></h3>
 <p>Die Gruppierung und Aggregation verläuft wieder sehr ähnlich. In Phase 1 lesen wir M Blöcke aus R ein und sortieren diese nach einem Gruppierungsattribut. Dann schreiben wir diese in sortierte Teillisten. In Phase 2 laden wir jeweils einen Block jeder Teilliste und suchen den kleinsten Schlüssel. Mit diesem Schlüssel aggregieren wir dann alle Tupel, ggf. müssen wir Blöcke nachladen. Am Ende geben wir ein Tupel mit den aggregierten Werten aus und suchen wieder den nächstkleineren Schlüssel.
 Die I/O-Kosten sind 3 · B® und damit genauso hoch wie bei der Duplikateliminierung.
 Auch hier lässt sich Phase 1 wieder optimieren, indem man die Aggregation schon auf die Teillisten anwendet. Diese “Pre-Aggregation” ist besonders wichtig bei verteilten DBMS.</p>
 </section>
 <section id="vereinigung-binar">
-<h3><span class="section-number">4.4.3. </span>Vereinigung (binär)<a class="headerlink" href="#vereinigung-binar" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.3. </span>Vereinigung (binär)<a class="headerlink" href="#vereinigung-binar" title="Permalink to this heading">#</a></h3>
 <p>Bei der Vereinigung werden zwei Relationen R und S eingelesen und in sortierte Teillisten geschrieben. Der Sortierschlüssel ist das gesamte Tupel. Dann lesen wir jeweils einen Block aus den Mengen sortierter Teillisten, suchen das kleinste Tupel, geben dieses aus und entfernen es auch aus allen anderen Teillisten. Zur Not müssen wir wieder Blöcke nachladen. Als nächstes holen wir uns wieder jeweils einen Block aus beiden Mengen sortierter Teillisten und suchen das kleinste Tupel. <br>
 Dieser Algorithmus funktioniert für Mengen und Multimengen, bei letzterem eignen sich One-Pass Algorithmen aber besser. Die I/O-Kosten betragen 3 · (B® + B(S)) da jede Relation dreimal gelesen wird. Damit liegt die maximale Größe bei B® + B(S) ≤ M².</p>
 </section>
 <section id="schnittmenge-und-differenz">
-<h3><span class="section-number">4.4.4. </span>Schnittmenge und Differenz<a class="headerlink" href="#schnittmenge-und-differenz" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.4. </span>Schnittmenge und Differenz<a class="headerlink" href="#schnittmenge-und-differenz" title="Permalink to this heading">#</a></h3>
 <p>Der Algorithmus für die Schnittmenge und die Differenz ist im Grunde derselbe wie bei der Vereinigung. Allerdings müssen wir hier für jede Relationen zählen, wie häufig ein Tupel vorkommt. Die Ausgabe hängt dann vom Operator ab.
 Bei der Schnittmenge von R und S in Mengensemantik ( <span class="math notranslate nohighlight">\(R\cap_{S}S\)</span> ) geben wir ein Tupel t aus, wenn es in R und S vorkommt. Bei der Schnittmenge in Multimengensemantik ( <span class="math notranslate nohighlight">\(R\cap_{B}S\)</span> ) wird ein Tupel mit dem niedrigsten COUNT-Wert COUNT-mal ausgegeben ( <em>min</em>(count(R,t), count(S,t) ). Bei der Differenz in Mengensemantik (<span class="math notranslate nohighlight">\(R-_{S}S\)</span> ) wird t nur dann ausgegeben, falls es in R vorkommt, aber nicht in S und bei der Multimengensemantik ( <span class="math notranslate nohighlight">\(R-_{B}S\)</span> ) wird ein Tupel maximal so oft ausgegeben, wie es in R, minus dem vorkommen in S, vorhanden ist. Im Anschluss sucht man wieder das nächstkleinere Tupel und gibt dieses wieder, abhängig vom Operator, aus. Die I/O-Kosten sind auch hier 3 · (B® + B(S)).</p>
 </section>
 <section id="einfacher-sort-basierter-join-algorithmus">
-<h3><span class="section-number">4.4.5. </span>Einfacher, Sort-basierter Join Algorithmus<a class="headerlink" href="#einfacher-sort-basierter-join-algorithmus" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.5. </span>Einfacher, Sort-basierter Join Algorithmus<a class="headerlink" href="#einfacher-sort-basierter-join-algorithmus" title="Permalink to this heading">#</a></h3>
 <p>Folgendes Problem begegnet uns jetzt: Bei einem Join möchten wir alle Tupel mit gleichem Joinattributwert gleichzeitig im Hauptspeicher haben. Die Idee hierbei ist, so viel Speicher wie möglich für das aktuelle Jointupel zu reservieren, indem der Speicherbedarf anderer Algorithmusteile reduziert wird.</p>
 <p>Wir haben die Relationen R und S und joinen diese auf Y ( R(X, Y) ⋈ S(Y, Z) ). In der ersten Phase sortieren wir die beiden Relationen mit TPMMS und geben das sortierte Ergebnis aus. In Phase 2 werden R und S dann gemerged. Man lädt jeweils einen Block aus jeder Relation und sucht das kleinste Y. Falls dies nicht im jeweils anderen Block vorkommt, werden alle Tupel mit diesem Y entfernt, andernfalls werden alle Tupel mit diesem Y identifiziert und man macht mit dem nächsten Block weiter. Am Ende gibt man alle Kombinationen aus.</p>
 <p><strong>Kosten</strong></p>
@@ -1284,19 +883,19 @@ Die Annahme hierbei ist, dass alle Teillisten und auch alle Tupel mit gemeinsame
 <p>Schauen wir uns wieder ein bekanntes Beispiel an. Wir haben 1000 Blöcke in R, 500 Blöcke in S und 101 Einheiten Platz im Hauptspeicher. In Phase 1 bekommen wir 10 Teillisten für R und 5 Teillisten für S. Damit haben wir dann in Phase 2 15 Blöcke im Hauptspeicher und noch 86 Blöcke frei. Zusammen ergeben sich daraus 3(B® + B(S)) = 4500 I/O-Operationen. Oft sind noch viele Speicherblöcke übrig, da B®+B(S) &lt;&lt; M².</p>
 </section>
 <section id="zusammenfassung-sortbasierte-two-pass-algorithmen">
-<h3><span class="section-number">4.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h3>
 <p>Hier einmal ein Überblick über den Hauptspeicherverbrauch der jeweiligen Operatoren und deren I/O-Kosten. In der letzten Zeile ist der sort-merge Algorithmus gemeint.</p>
 <a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="hash-basierte-two-pass-algorithmen">
-<h2><span class="section-number">4.5. </span>Hash-basierte Two-Pass Algorithmen<a class="headerlink" href="#hash-basierte-two-pass-algorithmen" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.5. </span>Hash-basierte Two-Pass Algorithmen<a class="headerlink" href="#hash-basierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <p>Wir schauen uns jetzt Hash-basierte Varianten von Two-Pass Algorithmen und damit weitere Möglichkeiten Tupel zusammenzubringen an.</p>
 <p>Auch bei Hash-basierten Two-Pass Algorithmen können wir wieder davon ausgehen, dass nicht der gesamte Input in den Hauptspeicher passt. Die Idee hierbei ist jetzt, alle Inputargumente zu hashen. Das bedeutet, alle Tupel, die man gemeinsam betrachten möchte, mit dem gleichen Hashwert auszustatten und sie in den selben Bucket zu stecken. Wenn man solche Gruppierungen von Tupeln hat, kann man für <em>unäre Operatoren</em> einen Bucket nach dem anderen abarbeiten. Für <em>binäre Operatoren</em> behandelt man Buckets, die aus jeder Relation zusammengehörige Tupel enthalten, paarweise. Dann muss man nicht alle Tupel betrachten, sondern nur die eines bestimmten Buckets. Anders als bei der Indexierung, die wir uns auch schon angeschaut haben und wo ein Bucket ein Block war, können wir davon ausgehen, dass bei diesem Verfahren in einen Bucket normalerweise mehr als ein Block passt.</p>
 <p>Nun stellt sich die Frage, warum hashed man überhaupt? Dies macht man, um den Speicherbedarf zu reduzieren, indem man bestimmte Tupel vorsortiert und dann systematisch nachlädt. Möchte man unterschiedlich hashen, kann man maximal M Buckets gleichzeitig im Hauptspeicher haben. Wenn wir aber sagen, M ist die Anzahl der Blöcke, dann bedeutet das, dass ich jeweils einen Block pro Bucket als Repräsentant des Buckets im Hauptspeicher habe.</p>
 <p>Damit wir später die One-Pass Regel pro Bucket einhalten können, müssen wir sicherstellen, dass ein ganzer Bucket in den Hauptspeicher passt.</p>
 <section id="partitionierung-mittels-hashing">
-<h3><span class="section-number">4.5.1. </span>Partitionierung mittels Hashing<a class="headerlink" href="#partitionierung-mittels-hashing" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.1. </span>Partitionierung mittels Hashing<a class="headerlink" href="#partitionierung-mittels-hashing" title="Permalink to this heading">#</a></h3>
 <p>Hashing ermöglicht Partinionierung. Das bedeutet, Tupel mit gleichen Eigenschaften kommen zusammen in eine Partition, einen Bucket, eine Gruppe oder ein Cluster.</p>
 <p>Wir haben M Speicherblöcke und wollen unsere Relation R auf M-1 Buckets aufteilen. Im Optimalfall hat jeder Bucket ungefähr die selbe Größe. Außerdem möchten wir ja, dass jeder Bucket durch einen Speicherblock repräsentiert wird. Ist ein Speicherblock voll, können wir diesen auf die Disk schreiben und wieder auffüllen. Der letzte Speicherblock dient hier nur dem Einlesen der Tupel. Wir können ein Tupel nicht direkt in einem Bucket hashen, da wir dafür erst den ganzen Block lesen müssen. Haben wir das getan, können wir das Tupel hashen.</p>
 <p>Die Idee der Partitionierung ist einfach. Für jedes Tupel aus R berechnen wir den Hashwert <em>h(t)</em> und bewegen es in den entsprechenden Bucket. Ist der Block, in dem sich dieser Bucket befindet, voll, scheiben wir den Block als <em>Overflowblock</em> auf die Disk. Am Ende schreiben wir auch alle anderen Blöcke auf die Disk. Dadurch können wir dann, wenn wir einen Bucket benötigen, diesen direkt laden. Jedoch müssen wir natürlich auch wissen, wo dieser Bucket zu finden ist.</p>
@@ -1321,7 +920,7 @@ Die Annahme hierbei ist, dass alle Teillisten und auch alle Tupel mit gemeinsame
 </div>
 </section>
 <section id="duplikateliminierung-delta-r">
-<h3><span class="section-number">4.5.2. </span>Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span><a class="headerlink" href="#duplikateliminierung-delta-r" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.2. </span>Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span><a class="headerlink" href="#duplikateliminierung-delta-r" title="Permalink to this heading">#</a></h3>
 <p>Es gibt Momente, in denen wir ein ganzes Tupel oder auch bestimmte Projektionen pro Tupel hashen wollen und sicher sein müssen, dass unterscheidbare Werte enthalten sind für beispielsweise Schlüsselattribute.
 Wenn wir ein Schlüsselattribut haben, gehen wir normalerweise davon aus, dass dieser Wert nur einmal auftaucht. Theoretisch kann es aber immer mal vorkommen, dass Duplikate zu finden sind und diese entfernt werden müssen.</p>
 <p>Die Idee bei der Duplikateliminierung ist, dass gleiche Werte im selben Bucket landen. Dann können wir jeden Bucket einzeln betrachten, die Duplikate eliminieren und ein Tupel pro Bucket ausgeben.</p>
@@ -1330,20 +929,20 @@ Wir können aber annehmen, dass alle Blöcke eines Buckets in den Hauptspeicher 
 <p>Die I/O-Kosten für die Duplikateliminierung betragen 3 · B®. Ist die Relation geclustered gespeichert, lesen wir erst mal jeden Block der Relation ein und hashen diese in einen Bucket. Sind wir noch nicht dazu gekommen, Duplikate zu entfernen, müssen wir den Block auf die Disk schreiben und den Bucket noch einmal lesen.</p>
 </section>
 <section id="gruppierung-und-aggregation-gamma-l-r">
-<h3><span class="section-number">4.5.3. </span>Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span><a class="headerlink" href="#gruppierung-und-aggregation-gamma-l-r" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.3. </span>Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span><a class="headerlink" href="#gruppierung-und-aggregation-gamma-l-r" title="Permalink to this heading">#</a></h3>
 <p>Die nächste Operation, die wir uns anschauen, ist die Gruppierung und Aggregation.
 Die Idee ist die selbe wie zuvor auch, jedoch hängt unsere Hashfunktion nun nur von den Gruppierungsattributen ab. Das Problem, dass hierbei auftreten kann, ist, dass wir nur sehr wenige DISTINCT Werte und damit auch nur sehr wenige, aber dafür sehr große, Buckets haben. In dem Fall müssen wir aufpassen, dass trotzdem noch ein Bucket in den Hauptspeicher passt, denn wir brauchen immernoch einen One-Pass Algorithmus pro Gruppe auf jedem Bucket.</p>
 <p>Der Hauptspeicherbedarf beträgt wieder B® ≤ M², wir brauchen aber vermutlich viel weniger, da wir nur ein Tupel pro Gruppe/Bucket im Hauptspeicher haben. Die I/O-Kosten betragen auch hier wieder 3 · B®.</p>
 </section>
 <section id="mengenoperationen">
-<h3><span class="section-number">4.5.4. </span>Mengenoperationen<a class="headerlink" href="#mengenoperationen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.4. </span>Mengenoperationen<a class="headerlink" href="#mengenoperationen" title="Permalink to this heading">#</a></h3>
 <p>Bei binären Operationen haben beide Inputs die gleiche Hashfunktion. Bei <em>Mengenvereinigungen</em> hashen wir R und S jeweils auf M-1 Buckets. Damit haben wir alle DISTINCT Werte und können die Bucketpaare, die zueinander passen, aus jeder Relation nehmen und vereinen. Auch hier können wir wieder einen One-Pass Algorithmus anwenden.
 Bei der <em>Multimengenvereinigung</em> müssen wir nicht hashen, wir können einfach jedes Tupel weiterreichen.</p>
 <p>Der Speicherbedarf beträgt min(B®, B(S)) ≤ (M−1)². Warum ist das so? Nun, wir möchten eine Relation im Hauptspeicher halten, während wir von der anderen die entsprechenden Buckets nachladen. Damit muss nur die kleinere Relation in den Hauptspeicher passen. Das muss auch für verschiedenen One-Pass Varianten gegeben sein.</p>
 <p>Die I/O-Kosten setzten sich wie folgt zusammen. Die erste Relation müssen wir einmal lesen und schreiben. Die zweite Relation müssen wir auch einmal lesen und dann die Buckets eventuell auf die Festplatte schreiben, sollten diese voll sein. Die Pointer der Buckets aus der zweiten Relation behalten wir im Hauptspeicher. Müssen wir dann aus der neuen Relation ein Bucket laden, müssen wir das auch für die zweite Relation tun. Das heißt, wir müssen wieder schreiben, lesen und wieder schreiben pro Relation. Damit kommen wir auf 3·(B® + B(S)) I/O-Kosten.</p>
 </section>
 <section id="hashjoin">
-<h3><span class="section-number">4.5.5. </span>Hashjoin<a class="headerlink" href="#hashjoin" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.5. </span>Hashjoin<a class="headerlink" href="#hashjoin" title="Permalink to this heading">#</a></h3>
 <p>Der Algorithmus des Hashjoin ist im Prinzip derselbe wie bei der Mengenvereinigung.
 Hier sind aber unsere Joinattribute die Hashschlüssel. Die Idee ist, dass Tupel mit gleichen Joinattributen im korrespondierenden Bucket landen. Dann kann man eine One-Pass Join Variante für jedes Bucket Paar durchführen.</p>
 <p>Schauen wir uns das anhand unseres altbekannten Beispiels an. Wir haben 1000 Blöcke in Relation R, 500 in S und 101 Einheiten Platz im Hauptspeicher. Es würden ca. 10 Blöcke der Relation R und ca. 5 Blöcke der Relation S in ein Bucket passen. Hier wählen wir den kleinsten Wert, also 5, und können dann einen One-Pass Algorithmus anwenden: Wir holen uns den ersten S-Bucket in den Hauptspeicher. Dann joinen wir Blöcke des passenden R-Buckets hinzu und holen uns den nächsten S-Bucket, usw.</p>
@@ -1351,18 +950,18 @@ Hier sind aber unsere Joinattribute die Hashschlüssel. Die Idee ist, dass Tupel
 <strong>Aber:</strong> Es geht besser. Und wie das geht schauen wir uns im nächsten Abschnitt an.</p>
 </section>
 <section id="i-o-einsparungen">
-<h3><span class="section-number">4.5.6. </span>I/O Einsparungen<a class="headerlink" href="#i-o-einsparungen" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.6. </span>I/O Einsparungen<a class="headerlink" href="#i-o-einsparungen" title="Permalink to this heading">#</a></h3>
 <p>Um I/O-Operationen einzusparen, können wir versuchen, nicht-verwendeten Speicher besser zu nutzen. Zum einen, könnten wir mehr als einen Speicherblock pro Bucket verwenden. Dadurch schreiben wir zwar effizienter, jedoch bleiben die I/O-Kosten gleich. Zum anderen können wir einen <em>Hybrid Hashjoin</em> durchführen und versuchen zu vermeiden, dass wir alle Tupel noch einmal zwischenspeichern und auf die Disk schreiben. Dafür können wir beim Hashing der ersten Relation manche der Buckets komplett im Hauptspeicher halten. Bei diesen Buckets können wir dann beim lesen der zweiten Relation sicher sein, dass diese fertig sind, wenn ein Tupel auf einen dieser Buckets fällt. Damit haben wir dann die Größe dieser Buckets an I/O-Kosten gespart.</p>
 <p>Wir behalten also für S <em>m</em> Buckets komplett im Speicher und für alle anderen nur einen Block als Repräsentant. Wenn wir dann R hashen, können wir alle Tupel, die in diesen ersten Buckets schon verjoinbar sind, sofort ausgeben. Alle anderen schreiben wir nur in einen Block und wenn dieser voll ist, schreiben wir den auf die Festplatte. In der zweiten Phase führen wir dann den eigentlichen Join durch.</p>
 </section>
 <section id="i-o-einsparungen-hybrid-hashjoin">
-<h3><span class="section-number">4.5.7. </span>I/O Einsparungen – Hybrid Hashjoin<a class="headerlink" href="#i-o-einsparungen-hybrid-hashjoin" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.7. </span>I/O Einsparungen – Hybrid Hashjoin<a class="headerlink" href="#i-o-einsparungen-hybrid-hashjoin" title="Permalink to this heading">#</a></h3>
 <p>Beim Hybrid Hashjoin ist es wichtig, wie wir unser <em>m</em> wählen, damit wir den Hauptspeicher entprechend nutzen können und immer noch einen Block pro Repräsentant im Hauptspeicher haben.</p>
 <p>Es müssen einige Voraussetzungen gelten, damit wir <em>m</em> wählen können. Angenommen wir brauchen insgesamt <em>k</em> Buckets für S (weil wir <em>k</em> unterschiedliche Joinattribute haben). Dann wollen wir <em>m</em> so auswählen, dass noch <em>k - m</em> Buckets abbildbar sind. Das heißt, wir brauchen <em>k - m</em> freie Blöcke im Hauptspeicher. Letztendlich muss also für die Wahl unseres <em>m</em>’s gelten, dass <em>m</em>-Mal die Anzahl der Blöcke von S durch die Gesamtverteilung pro Joinwert zusammen mit <em>k - m</em> übrigen Blöcken, in den Hauptspeicher passen ( <strong>( m · <span class="math notranslate nohighlight">\(\frac {B(S)}{k}\)</span> ) + 1 · (k – m) ≤ M</strong> ). Diese übrigen Blöcke schreiben wir dann auf die Disk.</p>
 <p>Wenn wir R hashen haben wir <em>m</em> vollständige Buckets für S im Hauptspeicher und je einen Block für die <em>k - m</em> Buckets von R, sowie deren korrespondierende S-Buckets. Falls ein Tupel aus R in einem der <em>m</em> Buckets gehashed wird, kann man sofort einen Joinpartner suchen und diese ggf. auch direkt ausgeben. Sollte ein Tupel in einem der <em>k - m</em> Buckets gehashed werden gehen wir vor wie zuvor und schreiben diesen auf die Festplatte. In Phase 2 des Joins muss dieser nur noch auf <em>k - m</em> Buckets angewendet werden.</p>
 </section>
 <section id="hybrid-hashjoin-analyse">
-<h3><span class="section-number">4.5.8. </span>Hybrid Hashjoin – Analyse<a class="headerlink" href="#hybrid-hashjoin-analyse" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.8. </span>Hybrid Hashjoin – Analyse<a class="headerlink" href="#hybrid-hashjoin-analyse" title="Permalink to this heading">#</a></h3>
 <p>Wie viel spart man nun tatsächlich mit dem Hybrid Join ein? Für jeden Block den wir im Hauptspeicher halten sparen wir 2 I/O-Operationen pro Relation und das bei <span class="math notranslate nohighlight">\(\frac{m}{k}\)</span> Buckets. Wir wollen <em>m</em> Buckets im Hauptspeicher halten und haben insgesamt <em>k</em> Buckets. Wir haben dann eine Einsparung von 2 (<span class="math notranslate nohighlight">\(\frac{m}{k}\)</span>) · (B® + B(S)).</p>
 <p>Da wir unsere Einsparung möglichst maximieren wollen müssen wir uns fragen, wie <em>m</em> und <em>k</em> zu wählen sind. Wir müssen uns also überlegen, wie viele Buckets wir erlauben und wie viele wir davon im Hauptspeicher halten können, während wir gleichzeitig darauf achten müssen, dass die Relation in den Hauptspeicher passt. Dafür gibt es einen Trick. Wir wählen <em>m = 1</em> und minimieren <em>k</em>. Das heißt, ein Bucket soll vollständig in den Hauptspeicher passen, dementsprechend dürfen es aber nicht zu viele Buckets sein. Um Repräsentanten zu haben, müssen <em>k - m</em> Blöcke verwendet werden, während wir den Rest für ein Bucket verwenden.</p>
 <p>Nun aber zu der Frage, wie man überhaupt die Gesamtanzahl der Buckets minimiert, also die Bucketgröße so wählt, dass nur ein Bucket in den Hauptspeicher passt. Bei einer Bucketgröße von <em>M</em> rechnen wir <em>k =</em> <span class="math notranslate nohighlight">\(\frac{B(S)}{M}\)</span>. Damit ist nur Platz für ein Bucket im Hauptspeicher (<em>m</em> = 1).
@@ -1377,7 +976,7 @@ Wir haben 1000 Blöcke in R, 500 Blöcke in S und 101 Einheiten Platz im Hauptsp
 <p>Wenn wir in Phase 2 dann alle geschriebenen Blöcke noch einmal lesen kommen wir auf 1250 Blöcke. Zusammen ergibt das 500 + 1000 + 2 · (417 + 833) = 4000 I/Os und damit haben wir hier weniger Operationen benötgt, als mit dem normalen Hash-join oder sort-merge join.</p>
 </section>
 <section id="zusammenfassung-hash-basierter-verfahren">
-<h3><span class="section-number">4.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this heading">#</a></h3>
 <p>Hier sehen wir eine Übersicht über die Operatoren und ihre I/O-Kosten, sowie deren Hauptspeicherbedarf bei Hash-basierten Verfahren. Wir können in dieser Übersicht auch gut das bekannte Muster, dass der Hauptspeicherbedarf immer quadratisch zur Größe der Relation bzw. bei binären Operationen quadratisch zur Größe der kleineren Relation ist, sehen.</p>
 <a class="reference internal image-reference" href="../_images/Zusammenfassung-Hashbasierte-Verfahren.png"><img alt="Zusammenfassung-Hashbasierte-Verfahren" src="../_images/Zusammenfassung-Hashbasierte-Verfahren.png" style="width: 500px;" /></a>
 <p><strong>Wdh.: Sort-basierte, two-pass Algorithmen</strong></p>
@@ -1388,10 +987,10 @@ Wir haben 1000 Blöcke in R, 500 Blöcke in S und 101 Einheiten Platz im Hauptsp
 </section>
 </section>
 <section id="index-basierte-algorithmen">
-<h2><span class="section-number">4.6. </span>Index-basierte Algorithmen<a class="headerlink" href="#index-basierte-algorithmen" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.6. </span>Index-basierte Algorithmen<a class="headerlink" href="#index-basierte-algorithmen" title="Permalink to this heading">#</a></h2>
 <p>Mit Index-basierten Verfahren haben wir die Möglichkeit unterschiedlich zu rechnen und zwar je nachdem ob wir eine clustered relation haben oder einen clustering index. Dies gilt insbesondere für Selektionen aber auch Joins und binäre Operationen. Ist unsere Relation geclustered gespeichert, haben wir Tupel auf möglichst wenig Blöcken auf der Disk. Diese Tupel sind in der Regel anhand ihres Primärschlüssels geclustered. Beim clustering index haben wir einen Index, der versucht, die Tupel so zu organisieren, dass Tupel mit gleichen Attributwerten möglichst zusammen sind, also auf möglichst wenig Blöcken. Das hat den Vorteil, dass man weniger Blöcke lesen und nicht zu jedem mehrmals springen muss. Eventuell kommt ein weiterer Block für das Layout hinzu. Oft liegt die Relation bereits geclustered vor, mit einem clustering index auf dem Primärschlüssel. Da nur anhand eines Attributs sortiert und gruppiert werden kann, kann man nur einen clustering index haben. Alle anderen Indizes müssen non-clustering indexes sein, denn diese speichern nur Pointer zu den Tupeln.</p>
 <section id="index-basierte-selektion">
-<h3><span class="section-number">4.6.1. </span>Index-basierte Selektion<a class="headerlink" href="#index-basierte-selektion" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.6.1. </span>Index-basierte Selektion<a class="headerlink" href="#index-basierte-selektion" title="Permalink to this heading">#</a></h3>
 <p>Mit dem Basisalgorithmus lesen wir die gesamte Relation ein und überprüfen die Bedingung. Ohne Index ist das die beste Methode. Liegt die Relation geclustered vor, betragen die I/O-Kosten B®, ansonsten T®.
 Haben wir jedoch einen Index, gehen wir davon aus, dass bei den Berechnungen die Werte gleich verteilt sind. Rechnen wir die Anzahl der distinct Werte geteilt durch die Anzahl der Blöcke, bekommen wir als Ergebnis die Anzahl der Blöcke die wir lesen müssen und damit unsere I/O-Kosten ( <span class="math notranslate nohighlight">\(\lceil\frac{B(R)}{V(R,a)}\rceil \)</span> ). Diese können unter Umstände höher sein. Für den Index selbst zum Beispiel oder vielleicht weil die Tupel nicht perfekt auf die Blöcke verteilt sind, die Blöcke nicht vollgepackt wurden oder weil fremde Tupel auf den Blöcken sind.</p>
 <p>Wichtig ist aufzurunden. Das machen wir insbesondere, wenn die Anzahl der distinct Werte der Anzahl der Tupel entspricht. Dann bekommen wir ein Ergebnis, dass kleiner als 1 ist und müssen aufrunden, um mindestens einen Block zu bekommen.</p>
@@ -1403,7 +1002,7 @@ Haben wir einen clustering index und 100 distinct Werte benötigen wir <span cla
 Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräuchten wir nur <strong>eine I/O-Operation</strong>.</p>
 </section>
 <section id="joining-mit-index">
-<h3><span class="section-number">4.6.2. </span>Joining mit Index<a class="headerlink" href="#joining-mit-index" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.6.2. </span>Joining mit Index<a class="headerlink" href="#joining-mit-index" title="Permalink to this heading">#</a></h3>
 <p>Wir haben folgenden Natural Join: R(X,Y) ⋈ S(Y,Z). Y ist das Joinattribut und wir können davon ausgehen, das S einen Index auf Y hat. Zunächst müssen wir jeden Block aus R lesen. Für jedes Tupel extrahieren wir dann den Y-Wert und verwenden den Index um das entsprechende S-Tupel zu finden.</p>
 <p>Auch hier gibt es wieder verschiedene Möglichkeiten die Kosten zu betrachten. Ist R geclustered, haben wir B® Kosten für das Lesen von R. Für jedes Tupel von R muss man durchschnittlich <span class="math notranslate nohighlight">\(\frac{T(S)}{V(S,Y)}\)</span> Tupel aus S lesen. Falls der Index nicht clustering ist, berechnet man die Kosten mit T® · <span class="math notranslate nohighlight">\(\frac{T(S)}{V(S,Y)}\)</span>. Ist der Index clustering rechnet man mit T® · <span class="math notranslate nohighlight">\(\frac{B(S)}{V(S,Y)}\)</span>, bzw. um es genauer zu nehmen, mit T® · max[ 1 , <span class="math notranslate nohighlight">\(\frac{B(S)}{V(S,Y)}\)</span>]. Das domniert die Kosten von B®, bzw. T®.</p>
 <p><strong>Joining mit Index – Beispiel</strong></p>
@@ -1432,7 +1031,7 @@ Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräu
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./04"
         },
         predefinedOutput: true
@@ -1440,50 +1039,162 @@ Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräu
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../03/indizes.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">3. </span>Indizes</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../03/indizes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Indizes</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../05/optimierung.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../05/optimierung.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Optimierung</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Prof. Dr. Ziawasch Abedjan<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physische-operatoren">4.1. Physische Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabellen-scannen">4.1.1. Tabellen Scannen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sortiertes-einlesen">4.1.2. Sortiertes Einlesen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berechnungsmodell">4.1.3. Berechnungsmodell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kostenparameter-statistiken">4.1.4. Kostenparameter / Statistiken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratoren">4.1.5. Iteratoren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-pass-algorithmen">4.2. One-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operatorklassen-fur-one-pass-verfahren">4.2.1. Operatorklassen für One-pass Verfahren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tupel-basierte-unare-operatoren">4.2.2. Tupel-basierte unäre Operatoren</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-unare-operatoren">4.2.3. Relationen-basierte unäre Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung">4.2.3.1. Duplikateliminierung</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung">4.2.3.2. Gruppierung</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationen-basierte-binare-operatoren">4.2.4. Relationen-basierte binäre Operatoren</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung">4.2.4.1. Vereinigung</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge">4.2.4.2. Schnittmenge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengen-differenz">4.2.4.3. Mengen-Differenz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multimengen-differenz">4.2.4.4. Multimengen-Differenz</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kreuzprodukt">4.2.4.5. Kreuzprodukt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-join">4.2.4.6. Natural Join</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loop-join">4.3. Nested Loop Join</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-basierter-nlj">4.3.1. Block-basierter NLJ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-bisheriger-algorithmen">4.3.2. Zusammenfassung bisheriger Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">4.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">4.4.2. Gruppierung und Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">4.4.3. Vereinigung (binär)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">4.4.4. Schnittmenge und Differenz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#einfacher-sort-basierter-join-algorithmus">4.4.5. Einfacher, Sort-basierter Join Algorithmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-sortbasierte-two-pass-algorithmen">4.4.6. Zusammenfassung – sortbasierte, two-pass Algorithmen</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-basierte-two-pass-algorithmen">4.5. Hash-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitionierung-mittels-hashing">4.5.1. Partitionierung mittels Hashing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplikateliminierung-delta-r">4.5.2. Duplikateliminierung <span class="math notranslate nohighlight">\(\delta(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation-gamma-l-r">4.5.3. Gruppierung und Aggregation <span class="math notranslate nohighlight">\(\gamma_{L}(R)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengenoperationen">4.5.4. Mengenoperationen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hashjoin">4.5.5. Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen">4.5.6. I/O Einsparungen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o-einsparungen-hybrid-hashjoin">4.5.7. I/O Einsparungen – Hybrid Hashjoin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-hashjoin-analyse">4.5.8. Hybrid Hashjoin – Analyse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung-hash-basierter-verfahren">4.5.9. Zusammenfassung Hash-basierter Verfahren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-algorithmen">4.6. Index-basierte Algorithmen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-basierte-selektion">4.6.1. Index-basierte Selektion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-mit-index">4.6.2. Joining mit Index</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Dr. Ziawasch Abedjan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
