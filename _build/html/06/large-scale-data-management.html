@@ -363,7 +363,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -379,6 +381,73 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-enabler-virtulization">6.1. Key enabler: Virtulization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">6.2. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lehrbuch">6.3. Lehrbuch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.4. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-picture-so-far-serial-single-threaded">6.5. The picture so far: Serial/Single Threaded</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thats-not-the-complete-picture">6.6. That’s not the complete picture…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.7. Prominent user of parallel data processing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.8. Basics of Parallel Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.9. Parallel Speedup – Amdahl‘s law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.10. Parallel Speedup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.11. Levels of Parallelism on Hardware</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.12. Modes of Query Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.13. Pipeline Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.14. Data Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.15. Basics of Parallel Query Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.16. Parallel Architectures – Shared Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.17. Parallel Architectures – Shared Disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.18. Parallel Architectures – Shared Nothing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.19. Data Partitioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.20. Data Partitioning Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.21. Data Parallelism: Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.22. Data Parallelism – Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.23. Parallel Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.24. Notations and Assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.25. Parallel Selection / Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.26. Parallel Grouping &amp; Aggregation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.27. Parallel Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.28. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.29. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.30. Asymmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.31. Parallel Equi-Joins (I)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.32. Parallel Equi-Joins: Three cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.33. Limits in Parallel Databases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.34. Where traditional databases are unsuitable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.35. Example Use Case: Web Index Creation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.36. An ongoing Re-Design…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.37. Storage Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.38. The Storage Model – Distributed File System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.39. Retrieving and Analyzing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.40. Skalierungsmuster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">6.41. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-map-reduce">6.42. What is Map/Reduce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grundbausteine">6.43. Grundbausteine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-workflow">6.44. MapReduce workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">6.45. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-illustrated-2">6.46. Map Reduce Illustrated (2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">6.47. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.48. Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">6.49. Parallel DBMS vs. Map/Reduce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">6.50. Relational Operators as Map/Reduce jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">6.51. Hadoop – A map/reduce Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">6.52. Hadoop Distributed File System (HDFS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-map-reduce-engine">6.53. Hadoop Map/Reduce Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.54. Hadoop Map/Reduce Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fehlertoleranz">6.55. Fehlertoleranz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-hadoop">6.56. When to use Hadoop?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">6.57. In der Praxis: Komplexe (optimierte) MapReduce Workflows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">6.58. Hadoop vs. Parallel DBMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">6.59. In der Praxis: Viele Bibliotheken</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">6.60. Outlook: What about updates/transactions?</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -391,38 +460,1323 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="large-scale-data-management">
 <h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Permalink to this heading">#</a></h1>
 <a class="reference internal image-reference" href="../_images/Large-scale-Data-Management.png"><img alt="Large-scale-Data-Management" src="../_images/Large-scale-Data-Management.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>20 PB processed every day at Google (2008)</p></li>
+<li><p>Trillions of rows, hundreds of columns/table</p></li>
+<li><p>Structured data, text, images, video</p>
+<ul>
+<li><p>15h of video uploaded to YouTube every minute</p></li>
+</ul>
+</li>
+<li><p>Data is partitioned, computation is distributed</p>
+<ul>
+<li><p>Reading 20PB would take 12 years at 50MB/s</p></li>
+</ul>
+</li>
+</ul>
+<section id="key-enabler-virtulization">
+<h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Virtualization.png"><img alt="Virtualization" src="../_images/Virtualization.png" style="width: 500px;" /></a>
+</section>
+<section id="overview">
+<h2><span class="section-number">6.2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Overview.png"><img alt="Overview" src="../_images/Overview.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Overview_2.png"><img alt="Overview_2" src="../_images/Overview_2.png" style="width: 500px;" /></a>
+</section>
+<section id="lehrbuch">
+<h2><span class="section-number">6.3. </span>Lehrbuch<a class="headerlink" href="#lehrbuch" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Lehrbuch.png"><img alt="Lehrbuch" src="../_images/Lehrbuch.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Lehrbuch_2.png"><img alt="Lehrbuch_2" src="../_images/Lehrbuch_2.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Web-scale-data-management-for-the-cloud.png"><img alt="Web-scale-data-management-for-the-cloud" src="../_images/Web-scale-data-management-for-the-cloud.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/cv_meme.png"><img alt="cv_meme" src="../_images/cv_meme.png" style="width: 500px;" /></a>
+</section>
+<section id="id1">
+<h2><span class="section-number">6.4. </span>Overview<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Parallel Data Processing: Introduction, Background, Operators</p></li>
+<li></li>
+</ul>
+<p>Map Reduce &amp; Hadoop</p>
 <a class="reference internal image-reference" href="../_images/Overview_3.png"><img alt="Overview_3" src="../_images/Overview_3.png" style="width: 500px;" /></a>
+</section>
+<section id="the-picture-so-far-serial-single-threaded">
+<h2><span class="section-number">6.5. </span>The picture so far: Serial/Single Threaded<a class="headerlink" href="#the-picture-so-far-serial-single-threaded" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>One single instance of the DBMS on a single system manages all the data</p></li>
+<li><p>Query execution run by a single thread</p>
+<ul>
+<li><p>No synchronization and communication necessary.</p></li>
+</ul>
+</li>
+<li><p>Parallelism only on I/O level possible through multiple disks</p></li>
+<li><p>Only one CPU core involved in processing</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/serial-single-threaded.png"><img alt="serial-single-threaded" src="../_images/serial-single-threaded.png" style="width: 500px;" /></a>
+</section>
+<section id="thats-not-the-complete-picture">
+<h2><span class="section-number">6.6. </span>That’s not the complete picture…<a class="headerlink" href="#thats-not-the-complete-picture" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Data volume</strong> keeps growing</p>
+<ul>
+<li><p>Data Warehouse sizes of about 1EB not uncommon</p></li>
+<li><p>Some businesses produce &gt;1PB of new data per day.</p>
+<ul>
+<li><p>1,000,000,000,000,000 Byte (1 quadrillion)</p></li>
+</ul>
+</li>
+<li><p>LHC experiment: 1PB/sec (but then filtered)</p></li>
+</ul>
+</li>
+<li><p>Some systems are required to support <strong>extreme throughput</strong> in transaction processing</p>
+<ul>
+<li><p>Financial institutions, online shops, social networks</p></li>
+</ul>
+</li>
+<li><p><strong>Analysis queries</strong> become more and more complex</p>
+<ul>
+<li><p>Discovery of statistical patterns is compute intensive.</p></li>
+<li><p>May require multiple passes over the data.</p></li>
+</ul>
+</li>
+<li><p>Performance of single computing cores or single machines is not increasing substantially enough to cope with this development</p>
+<ul>
+<li><p>Moore’s law for compute power is not holding up.</p></li>
+</ul>
+</li>
+<li><p>Solution: Parallel data processing</p></li>
+</ul>
+</section>
+<section id="prominent-user-of-parallel-data-processing">
+<h2><span class="section-number">6.7. </span>Prominent user of parallel data processing:<a class="headerlink" href="#prominent-user-of-parallel-data-processing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Big Tech (Google, Facebook)</p>
+<ul>
+<li><p>Estimated 450,000 low-cost commodity servers in 2006</p></li>
+<li><p>In 2005 Google indexed 8 billion web pages</p></li>
+<li><p>Over 200 GFS clusters at Google. 1 cluster: 1,000 – 5,000 machines.</p></li>
+<li><p>Pools of tens of thousands of machines retrieve data from GFS clusters that run as large as 5 peta-bytes of storage.</p></li>
+<li><p>Aggregate read/write throughput up to 40 gigabytes/second across the cluster.</p></li>
+<li><p>6,000 MapReduce applications</p></li>
+</ul>
+</li>
+<li><p>Manufacturing (Volkswagen)</p>
+<ul>
+<li><p>the average connected vehicle will generate 280 petabytes of data annually</p></li>
+<li><p>with four terabytes of data being generated in a day at the very least.</p></li>
+<li><p>The research also states that around 470 million connected vehicles will be deployed by 2025</p></li>
+</ul>
+</li>
+<li><p>Gene Sequencing</p></li>
+<li><p>Sensor data processing</p></li>
+</ul>
+<p>Amazon Aurora – On Prime Day, 5,326 database instances running the PostgreSQL-compatible and MySQL-compatible editions of Amazon Aurora processed 288 billion transactions, stored 1,849 terabytes of data, and transferred 749 terabytes of data.</p>
+<p>Amazon DynamoDB – DynamoDB powers multiple high-traffic Amazon properties and systems including Alexa, the Amazon sites, and all Amazon fulfillment centers. Over the course of Prime Day, these sources made trillions of calls to the DynamoDB API. DynamoDB maintained high availability while delivering single-digit millisecond responses and peaking at 105.2 million requests per second.</p>
+</section>
+<section id="basics-of-parallel-processing">
+<h2><span class="section-number">6.8. </span>Basics of Parallel Processing<a class="headerlink" href="#basics-of-parallel-processing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Parallel Speedup</p>
+<ul>
+<li><p>Ahmdal‘s Law</p></li>
+</ul>
+</li>
+<li><p>Levels of Parallelism</p>
+<ul>
+<li><p>Instruction-level, data-level, task-level</p></li>
+</ul>
+</li>
+<li><p>Modes of Query Parallelism</p>
+<ul>
+<li><p>Inter-Query</p>
+<ul>
+<li><p>Multi-user ability</p></li>
+</ul>
+</li>
+<li><p>Intra-Query</p>
+<ul>
+<li><p>Pipeline (Inter Operator) / Data (Intra Operator)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/basics-of-parallel-processing.png"><img alt="basics-of-parallel-processing" src="../_images/basics-of-parallel-processing.png" style="width: 500px;" /></a>
+</section>
+<section id="parallel-speedup-amdahls-law">
+<h2><span class="section-number">6.9. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Speedup: Sp = T1/Tp</p>
+<ul>
+<li><p>T1: Sequential runtime (1 processor)</p></li>
+<li><p>Tp: Parallel runtime (p processors)</p></li>
+</ul>
+</li>
+<li><p>Amdahl‘s law: Maximal speedup is determined by non-parallelizable part of program</p>
+<ul>
+<li><p>where f is parallelizable fraction of program</p></li>
+<li><p>Ideal speedup: S = p for f = 1 (linear speedup)</p></li>
+<li><p>Usually f &lt; 1 =&gt; S is bound by constant</p>
+<ul>
+<li><p>For f = 0,9 and 10 / 20 servers: <br>
+and</p></li>
+<li><p>For p ∞,  10</p></li>
+</ul>
+</li>
+<li><p>Fixed problems can only be parallelized to a certain degree</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parallel-speedup">
+<h2><span class="section-number">6.10. </span>Parallel Speedup<a class="headerlink" href="#parallel-speedup" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Parallel-Speedup.png"><img alt="Parallel-Speedup" src="../_images/Parallel-Speedup.png" style="width: 500px;" /></a>
+</section>
+<section id="levels-of-parallelism-on-hardware">
+<h2><span class="section-number">6.11. </span>Levels of Parallelism on Hardware<a class="headerlink" href="#levels-of-parallelism-on-hardware" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Instruction-level Parallelism (Prozessoranweisungen)</p>
+<ul>
+<li><p>Single instructions are automatically processed in parallel</p></li>
+<li><p>Example: Modern CPUs with multiple pipelines and instruction units.</p></li>
+</ul>
+</li>
+<li><p>Data Parallelism (Daten)</p>
+<ul>
+<li><p>Different data can be processed independently</p></li>
+<li><p>Each processor executes the same operations on its share of the input data.</p></li>
+<li><p>Example: Distributing loop iterations over multiple processors</p></li>
+<li><p>Example: GPU processing</p></li>
+</ul>
+</li>
+<li><p>Task Parallelism (Aufgaben)</p>
+<ul>
+<li><p>Different tasks are distributed among the processors/nodes</p></li>
+<li><p>Each processor executes a different thread/process.</p></li>
+<li><p>Example: Threaded programs</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="modes-of-query-parallelism">
+<h2><span class="section-number">6.12. </span>Modes of Query Parallelism<a class="headerlink" href="#modes-of-query-parallelism" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Inter-Query Parallelism (multiple concurrent queries)</p>
+<ul>
+<li><p>Necessary for efficient resource utilization: While one query waits, e.g., for I/O, another one executes</p></li>
+<li><p>Requires concurrency control (locking mechanisms) to guarantee transactional properties (the “I” in ACID)</p></li>
+<li><p>Important for highly transactional scenarios (OLTP)</p></li>
+</ul>
+</li>
+<li><p>Intra-Query Parallelism (parallel processing of a single query)</p>
+<ul>
+<li><p>I/O Parallelism: Concurrent reading from multiple disks</p>
+<ul>
+<li><p>Hidden: Hardware RAID</p></li>
+<li><p>Transparent: Spanned tablespaces / partitioning</p></li>
+</ul>
+</li>
+<li><p>Intra-Operator Parallelism: Multiple threads work on the same operator. Example: Parallel Sort</p></li>
+<li><p>Inter-Operator Parallelism: Multiple parts of the plan run in parallel (pipeline)</p></li>
+<li><p>Important for complex analytical tasks (OLAP)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pipeline-parallelism">
+<h2><span class="section-number">6.13. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Pipeline-Parallelism.png"><img alt="Pipeline-Parallelism" src="../_images/Pipeline-Parallelism.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>Pipeline parallelism</p>
+<ul>
+<li><p>aka inter-operator parallelism: parallelism is between the operators</p></li>
+</ul>
+</li>
+<li><p>In addition: Execute multiple pipelines simultaneously</p>
+<ul>
+<li><p>Limited in its applicability, only if multiple pipelines are present and not dependent on each other</p></li>
+</ul>
+</li>
+<li><p>Problem:</p>
+<ul>
+<li><p>High synchronization overhead</p></li>
+<li><p>Mostly limited to lower degree of parallelism (not too many pipelines per query)</p></li>
+<li><p>Only suited for shared-memory architectures</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-parallelism">
+<h2><span class="section-number">6.14. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Pipeline parallelism is not always applicable
+ data parallelism</p></li>
+<li><p>Divide data into several sub-sets</p>
+<ul>
+<li><p>Most operations do not need a complete view of the data</p>
+<ul>
+<li><p>E.g., selection looks only at a single tuple at a time</p></li>
+</ul>
+</li>
+<li><p>Subsets can be are processed independently and hence in parallel.</p></li>
+</ul>
+</li>
+<li><p>Maximum degree of parallelism as high as the number of possible subsets</p>
+<ul>
+<li><p>For selection: As high as the number of tuples</p></li>
+</ul>
+</li>
+<li><p>Some operations possibly need a view of larger portions of the data</p>
+<ul>
+<li><p>E.g., grouping/aggregation operation needs all tuples with the same grouping key</p></li>
+<li><p>Are they all in the same subset? Can we guarantee that?</p></li>
+<li><p>Different operators need different sets</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="basics-of-parallel-query-processing">
+<h2><span class="section-number">6.15. </span>Basics of Parallel Query Processing<a class="headerlink" href="#basics-of-parallel-query-processing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Levels of Resource Sharing</p>
+<ul>
+<li><p>Shared-Memory, Shared-Disk, Shared-Nothing</p></li>
+</ul>
+</li>
+<li><p>Data Partitioning</p>
+<ul>
+<li><p>Round-robin, Hash, Range</p></li>
+</ul>
+</li>
+<li><p>Parallel Operators and Costs</p>
+<ul>
+<li><p>Tuple-at-a-time (e.g. Selection)</p></li>
+<li><p>Sorting</p></li>
+<li><p>Projection, Grouping, Aggregation</p></li>
+<li><p>Join</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parallel-architectures-shared-memory">
+<h2><span class="section-number">6.16. </span>Parallel Architectures – Shared Memory<a class="headerlink" href="#parallel-architectures-shared-memory" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Several CPUs share a single memory and disk (array)</p></li>
+<li><p>Communication over a single common bus</p></li>
+<li><p>In practice: Some private memory per processor</p>
+<ul>
+<li><p>NUMA (non-uniform memory access)</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 500px;" /></a>
+</section>
+<section id="parallel-architectures-shared-disk">
+<h2><span class="section-number">6.17. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Several nodes with multiple CPUs, each node has its private memory</p></li>
+<li><p>Single attached disk (array): Often NAS, SAN, etc…</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 500px;" /></a>
+</section>
+<section id="parallel-architectures-shared-nothing">
+<h2><span class="section-number">6.18. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Each node has it own set of CPUs, memory and disks attached</p></li>
+<li><p>Most commonly use architecture for large-scale data management</p></li>
+<li><p>Data needs to be partitioned over the nodes</p></li>
+<li><p>Data is exchanged through direct node-to-node communication</p>
+<ul>
+<li><p>Messages with significant overhead</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/shared-nothing.png"><img alt="shared-nothing" src="../_images/shared-nothing.png" style="width: 500px;" /></a>
+</section>
+<section id="data-partitioning">
+<h2><span class="section-number">6.19. </span>Data Partitioning<a class="headerlink" href="#data-partitioning" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Partitioning the data means creating a set of possibly disjoint
+sub-sets</p>
+<ul>
+<li><p>Example: Sales data, every year gets its own partition</p></li>
+</ul>
+</li>
+<li><p>For shared-nothing, data must be partitioned across nodes</p>
+<ul>
+<li><p>If it were replicated, it would effectively become a shared-disk with the local disks acting like a cache (must be kept coherent during updates!)</p></li>
+</ul>
+</li>
+<li><p>Partitioning with certain characteristics is beneficial</p>
+<ul>
+<li><p>Some queries can be limited to operate on certain parts only</p>
+<ul>
+<li><p>If provable that all relevant data (passing the predicates) is in that partition</p></li>
+</ul>
+</li>
+<li><p>Database administration: Partition can be simply dropped as a whole when it is no longer needed (e.g., discard old sales)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-partitioning-strategies">
+<h2><span class="section-number">6.20. </span>Data Partitioning Strategies<a class="headerlink" href="#data-partitioning-strategies" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Round robin</p>
+<ul>
+<li><p>Each partition gets a tuple in a round</p></li>
+<li><p>All sets are guaranteed to consist of an equal amount of tuples</p></li>
+<li><p>No apparent relationship between tuples in one partition</p></li>
+</ul>
+</li>
+<li><p>Hash Partitioned</p>
+<ul>
+<li><p>Define a set of partitioning columns.</p></li>
+<li><p>Generate a hash value over those columns to decide the target set.</p></li>
+<li><p>All tuples with equal values in the partitioning columns are in the same partition.</p></li>
+</ul>
+</li>
+<li><p>Range Partitioned</p>
+<ul>
+<li><p>Define a set of partitioning columns</p></li>
+<li><p>Split the domain of those columns into ranges</p></li>
+<li><p>Range determines the target set. All tuples in one partition are in the same range.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-parallelism-example">
+<h2><span class="section-number">6.21. </span>Data Parallelism: Example<a class="headerlink" href="#data-parallelism-example" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Client sends a SQL query to one of the cluster nodes</p>
+<ul>
+<li><p>Node becomes the
+“coordinator”</p></li>
+</ul>
+</li>
+<li><p>Coordinator compiles query</p>
+<ul>
+<li><p>Parsing, checking, optimization</p></li>
+<li><p>Parallelization</p></li>
+</ul>
+</li>
+<li><p>Sends partial plans to the other cluster nodes</p>
+<ul>
+<li><p>Coordinator also executes the partial plan on his part of the data</p></li>
+</ul>
+</li>
+<li><p>Coordinator collects partial results and finalizes them</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 500px;" /></a>
+</section>
+<section id="id2">
+<h2><span class="section-number">6.22. </span>Data Parallelism – Example<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For shared-nothing &amp; shared-disk</p>
+<ul>
+<li><p>Multiple instances of a sub-plan are executed on different computers</p></li>
+<li><p>The instances operate on different splits or partitions of the data</p></li>
+<li><p>At some point, results from the sub-plans are collected</p></li>
+<li><p>For more complex queries, results are not collected but re-distributed, for further parallel processing</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 500px;" /></a>
+</section>
+<section id="parallel-operators">
+<h2><span class="section-number">6.23. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Ideally: Operate as much as possible on individual partitions of the data</p>
+<ul>
+<li><p>Ship operation to data</p></li>
+</ul>
+</li>
+<li><p>Easy for simple “per-tuple” operators</p>
+<ul>
+<li><p>Scan, index-scan, selection</p></li>
+</ul>
+</li>
+<li><p>Problem: Some operators need the whole picture (blocking operators)</p>
+<ul>
+<li><p>Sort and aggregations can only be preprocessed in parallel and need a final step on a single node.</p>
+<ul>
+<li><p>Unless they occur in a correlated subplan known to contain only tuples from one partition.</p></li>
+</ul>
+</li>
+<li><p>E.g., joins need matching tuples.</p>
+<ul>
+<li><p>Either organize the inputs accordingly,</p></li>
+<li><p>or join at the coordinator after collection of partial results (not parallel any more!)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="notations-and-assumptions">
+<h2><span class="section-number">6.24. </span>Notations and Assumptions<a class="headerlink" href="#notations-and-assumptions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>S	Relation S</p></li>
+<li><p>S[i,h]	Partition i of relation S according to partitioning scheme h</p></li>
+<li><p>B(S)	Number of blocks of relation S</p></li>
+<li><p>p	Number of nodes</p></li>
+<li><p>Assume a shared-nothing architecture</p>
+<ul>
+<li><p>Most commercial database vendors use shared-nothing approaches.</p></li>
+</ul>
+</li>
+<li><p>Network transfer is at least as expensive as disk access</p>
+<ul>
+<li><p>In some cost models network is still far more expensive.</p></li>
+<li><p>Today network bandwidth ≈ disk bandwidth</p></li>
+<li><p>But: Network is shared</p>
+<ul>
+<li><p>Switches and routers have a throughput limit</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Assume partitioning schemes (hash/range) produce partitions of roughly equal size.</p></li>
+<li><p>Assume S[i,h] &gt; M</p></li>
+</ul>
+</section>
+<section id="parallel-selection-projection">
+<h2><span class="section-number">6.25. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Selection and projection can be parallelized very efficiently</p>
+<ul>
+<li><p>“Embarrassingly parallel” problem</p></li>
+</ul>
+</li>
+<li><p>Each node performs the selection on its existing local partition.</p>
+<ul>
+<li><p>Selection needs no context</p></li>
+<li><p>Data can be partitioned in an arbitrary way</p></li>
+</ul>
+</li>
+<li><p>Partial results are unioned afterwards.</p></li>
+<li><p>Cost:	B(S)/p	+ transfer (depends on selectivity)</p></li>
+</ul>
+</section>
+<section id="parallel-grouping-aggregation">
+<h2><span class="section-number">6.26. </span>Parallel Grouping &amp; Aggregation<a class="headerlink" href="#parallel-grouping-aggregation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Two phases</p>
+<ol class="arabic simple">
+<li><p>Local grouping &amp; aggregation to each partition</p></li>
+<li><p>Merge results</p></li>
+</ol>
+</li>
+<li><p>Cost: 3 B(S)/p local algorithm + transfer of (small) results + (fast) merge</p></li>
+<li><p>Works only for associative aggregation functions</p>
+<ul>
+<li><p>MIN, MAX, SUM, COUNT</p></li>
+<li><p>AVG: Use SUM / COUNT</p></li>
+</ul>
+</li>
+<li><p>To avoid possibly expensive second phase:</p>
+<ul>
+<li><p>Use hashing function on group-columns to re-partition relation onto nodes</p></li>
+<li><p>Or: Parallelization of merge phase</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parallel-sorting">
+<h2><span class="section-number">6.27. </span>Parallel Sorting<a class="headerlink" href="#parallel-sorting" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Range partitioned sort: partition by range, then sort</p>
+<ul>
+<li><p>Range-partition the relation according to the sort column(s)</p></li>
+<li><p>Sort the single partitions locally (e.g., by TPMMS)</p></li>
+<li><p>Cost: B(S) partitioning + B(S) transfer + 3 B(S)/p local sorting</p></li>
+<li><p>Problem: Find a uniform range partitioning scheme</p>
+<ul>
+<li><p>Partitions of same/similar size</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Parallel external sort-merge: sort locally, then merge</p>
+<ul>
+<li><p>Reuse an existing data partitioning</p></li>
+<li><p>Partitions are sorted locally (e.g. by TPMMS)</p></li>
+<li><p>Sorted partitions need to be merged</p></li>
+<li><p>Pair-wise with cost: 3 B(S)/p local sorting + log2§*B(S)/2 transfer + log2§*B(S) local merge</p></li>
+<li><p>Or multi-way merge</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="symmetric-fragment-and-replicate-join">
+<h2><span class="section-number">6.28. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Joining two relations R and S requires looking at every tuple of the Cartesian product.</p></li>
+<li><p>Parallel databases need to combine every partition of R with every partition of S.</p></li>
+<li><p>Symmetric Fragment-and-Replicate (or Broadcast) Join:</p></li>
+<li><p>Given  nodes</p></li>
+<li><p>Fragment R into m and S into n partitions</p></li>
+<li><p>Replicate the fragments onto the nodes</p></li>
+<li><p>Each fragment of R is replicated n times</p></li>
+<li><p>Each fragment of S is replicated m times</p></li>
+<li><p>Each node locally joins exactly one fragment pair of R and S.</p></li>
+<li><p>Cost: 		fragmentation cost <br>
+transfer cost <br>
+???		local join cost</p></li>
+<li><p>Only parallel join type that works for all join predicates (Theta-Join).</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">6.29. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
+</section>
+<section id="asymmetric-fragment-and-replicate-join">
+<h2><span class="section-number">6.30. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We can do better, if relation S is much smaller than R.</p></li>
+<li><p>Idea: Reuse the existing partitioning of R and replicate the whole relation S to each node.</p></li>
+<li><p>Cost:	p * B(S)	transport <br>
+???		local join</p></li>
+<li><p>Asymmetric Fragment-and-replicate join is a special case of the Symmetric Algorithm with m=p and n=1.</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Asymmetric-Fragment-and-Replicate-Join.png"><img alt="Asymmetric-Fragment-and-Replicate-Join" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
+</section>
+<section id="parallel-equi-joins-i">
+<h2><span class="section-number">6.31. </span>Parallel Equi-Joins (I)<a class="headerlink" href="#parallel-equi-joins-i" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A special class of joins that are more suited for parallelization are natural- and equi-joins.</p></li>
+<li><p>Idea: Partition relations R and S using the same partition scheme over the join key.</p>
+<ul>
+<li><p>All tuples of R and S with the same join key end up at the same node.</p></li>
+<li><p>No further broadcast is needed, all joins can be performed locally.</p></li>
+</ul>
+</li>
+<li><p>Actual implementation depends on how the relations are partitioned:</p>
+<ul>
+<li><p>Co-Located Join</p></li>
+<li><p>Directed Join</p></li>
+<li><p>Re-Partitioning Join</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="parallel-equi-joins-three-cases">
+<h2><span class="section-number">6.32. </span>Parallel Equi-Joins: Three cases<a class="headerlink" href="#parallel-equi-joins-three-cases" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Both R and S are already partitioned over the join key with the same partitioning scheme</p>
+<ul class="simple">
+<li><p>„Co-Located Join“</p></li>
+<li><p>No re-partitioning is needed!</p></li>
+<li><p>Cost: 	???		Local join cost</p></li>
+</ul>
+</li>
+<li><p>Only one relation is partitioned over the join key:</p>
+<ul class="simple">
+<li><p>„Directed Join“</p></li>
+<li><p>Re-Partition the other relation with same partitioning scheme.</p></li>
+<li><p>Cost (assuming R is already partitioned):</p>
+<ul>
+<li><p>B(S) 		partitioning</p></li>
+<li><p>B(S)		transfer</p></li>
+<li><p>???		Local join cost</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>No relation is partitioned over the join key:</p>
+<ul class="simple">
+<li><p>„Repartition Join“</p></li>
+<li><p>Re-Partition both relations over the join key</p></li>
+<li><p>Cost:	B(S)+B® 	partitioning</p>
+<ul>
+<li><p>B(S)+B®	transfer</p></li>
+<li><p>???		Local join cost</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="limits-in-parallel-databases">
+<h2><span class="section-number">6.33. </span>Limits in Parallel Databases<a class="headerlink" href="#limits-in-parallel-databases" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Database clusters tend to scale until 64 or 128 nodes</p>
+<ul>
+<li><p>Afterwards the speedup curve flattens</p></li>
+<li><p>Communication overhead eats speedup</p></li>
+<li><p>Hard limit example: 1000 nodes for DB2 (2010)</p></li>
+</ul>
+</li>
+<li><p>Shared Disk: Does not scale infinitely; bus and synchronization become overhead</p>
+<ul>
+<li><p>For updates: Cache Coherency Problem</p></li>
+<li><p>For reads: I/O Bandwidth Limits</p></li>
+</ul>
+</li>
+<li><p>Shared Nothing: Cannot compensate loss of a node easily</p>
+<ul>
+<li><p>In large clusters, failures and outages are most common.</p></li>
+<li><p>Loss of a node means loss of data!</p></li>
+<li><p>Unless: Data is replicated. But: Replicated data must be kept consistent! Has a high overhead…</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="where-traditional-databases-are-unsuitable">
+<h2><span class="section-number">6.34. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Analysis over raw (unstructured) data</p>
+<ul>
+<li><p>Text processing</p></li>
+<li><p>In general: If relation schema does not fit</p></li>
+</ul>
+</li>
+<li><p>Where cost-effective scalability is required</p>
+<ul>
+<li><p>Use commodity hardware</p></li>
+<li><p>Adaptive cluster size (horizontal scaling)</p></li>
+<li><p>Incremental growth: add computers without expensive reorganization that halts the system</p></li>
+</ul>
+</li>
+<li><p>In unreliable (= large) infrastructures</p>
+<ul>
+<li><p>Must be able to deal with failures – hardware, software, network</p>
+<ul>
+<li><p>Failure is expected rather than the exception</p></li>
+</ul>
+</li>
+<li><p>Transparent to applications</p>
+<ul>
+<li><p>Too expensive to build reliability into each application</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example-use-case-web-index-creation">
+<h2><span class="section-number">6.35. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A Search Engine scenario:</p>
+<ul>
+<li><p>Have crawled the internet and stored the relevant documents</p></li>
+<li><p>Documents contain words 	(Doc-URL, [list of words])</p></li>
+<li><p>Documents contain links   	(Doc-URL, [Target-URLs])</p></li>
+</ul>
+</li>
+<li><p>Need to build a search index</p>
+<ul>
+<li><p>Invert the files 		(word, [list of URLs])</p></li>
+<li><p>Compute a ranking that requires an inverted graph:
+(Doc-URL, [URLs-pointing-to-it])</p></li>
+</ul>
+</li>
+<li><p>Obvious reasons against relational databases</p>
+<ul>
+<li><p>Relational schema is unsuitable/”unnatural”</p></li>
+<li><p>Importing the documents, converting them to the storage format is expensive</p></li>
+</ul>
+</li>
+<li><p>A mismatch between what databases were designed for and what is really needed:</p>
+<ul>
+<li><p>Databases come originally from transactional processing. They give hard guarantees about absolute consistencies in the case of concurrent updates.</p></li>
+<li><p>Analytics are added on top of that</p></li>
+<li><p>The documents are never updated, they are read only.</p></li>
+<li><p>Perfect transactional consistency is not always necessary</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="an-ongoing-re-design">
+<h2><span class="section-number">6.36. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Driven by companies like Google, Facebook, Yahoo, Apple, Microsoft</p></li>
+<li><p>Use heavily distributed system</p>
+<ul>
+<li><p>Google used 450,000 low-cost commodity servers in 2006
+in cluster of 1000 – 5000 nodes</p></li>
+</ul>
+</li>
+<li><p>Redesign infrastructure and architectures completely with the key goal to be</p>
+<ul>
+<li><p>Highly scalable</p></li>
+<li><p>Tolerant of failures</p></li>
+</ul>
+</li>
+<li><p>Stay generic and schema free in the data model</p></li>
+<li><p>Start with: Data Storage</p></li>
+<li><p>Next Step: Distributed Analysis</p></li>
+</ul>
+</section>
+<section id="storage-requirements">
+<h2><span class="section-number">6.37. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Extremely large files: Terabytes to Petabytes</p></li>
+<li><p>High availability: Data must be kept replicated</p></li>
+<li><p>High throughput</p>
+<ul>
+<li><p>Read/write operations must not go through other servers</p></li>
+</ul>
+</li>
+<li><p>No single point of failure</p>
+<ul>
+<li><p>Any master must be kept redundantly</p></li>
+</ul>
+</li>
+<li><p>Many different distributed file systems exist.</p>
+<ul>
+<li><p>Different goals: transparency, updateability, archiving, etc…</p></li>
+</ul>
+</li>
+<li><p>Google Filesystem (GFS)</p>
+<ul>
+<li><p>Widely used reference architecture for high-throughput and high-availability DFS</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-storage-model-distributed-file-system">
+<h2><span class="section-number">6.38. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The file system</p>
+<ul>
+<li><p>Distributed across many nodes (DataNodes)</p></li>
+<li><p>Provides a single namespace for the entire cluster</p></li>
+<li><p>Metadata is managed on a dedicated node (NameNode)</p></li>
+<li><p>Write-once-read-many access model</p></li>
+</ul>
+</li>
+<li><p>Files are split into blocks</p>
+<ul>
+<li><p>Typically 128 MB block size</p></li>
+<li><p>Each block is replicated on multiple data nodes</p></li>
+</ul>
+</li>
+<li><p>The client</p>
+<ul>
+<li><p>can determine the location of blocks</p></li>
+<li><p>can access data directly from the DataNode</p></li>
+<li><p>over the network</p></li>
+</ul>
+</li>
+<li><p>Problem: bandwidth to data</p>
+<ul>
+<li><p>Scanning the data from remote storage is expensive (50MB/s remote access vs. 150-200MB/s local access)</p></li>
+<li><p>Moving computation is more efficient than moving data</p></li>
+<li><p>Map/Reduce framework tries to perform computations close to the data</p></li>
+<li><p>Nodes have two purposes: data storage and computation</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
+</section>
+<section id="retrieving-and-analyzing-data">
+<h2><span class="section-number">6.39. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Data is stored as custom records in files</p>
+<ul>
+<li><p>Most generic data model that is possible</p></li>
+<li><p>Key/value model</p></li>
+</ul>
+</li>
+<li><p>Records are read and written with data model specific (de)serializers</p></li>
+<li><p>Analysis or transformation tasks must be written directly as a program</p>
+<ul>
+<li><p>Not possible to generate it from a higher level statement</p></li>
+<li><p>Like a query-plan that is automatically generated from SQL</p></li>
+</ul>
+</li>
+<li><p>Programs must be parallel, highly scalable, fault tolerant</p>
+<ul>
+<li><p>Extremely hard to program</p></li>
+<li><p>Need a programming model and framework that takes care of that</p></li>
+<li><p>The map/reduce model has been suggested and successfully adapted on a broad scale</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="skalierungsmuster">
+<h2><span class="section-number">6.40. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Phase 0: Daten verteilen (split)</p></li>
+<li><p>Phase 1: Berechnungen auf Teilmengen der Daten (map)</p></li>
+<li><p>Phase 2: Zusammenführung der Teilmengen (reduce)</p>
+<ul>
+<li><p>Gemeinsame Betrachtung zusammengehöriger Daten</p></li>
+</ul>
+</li>
+<li><p>Beispiel: <strong>Two-Phase-Multiway-Mergesort</strong> (TPMMS)</p>
+<ul>
+<li><p>Phase 1: Sortierung von Teilen der Daten</p></li>
+<li><p>Phase 2: Sortierter Teillisten zusammenführen</p></li>
+</ul>
+</li>
+<li><p>Beispiel: <strong>Datenanalyse</strong></p>
+<ul>
+<li><p>Phase 1: Gruppierung</p></li>
+<li><p>Phase 2: Aggregation</p></li>
+</ul>
+</li>
+<li><p>Beispiel: <strong>Index bauen</strong></p>
+<ul>
+<li><p>Phase 1: Teilmengen indizieren</p></li>
+<li><p>Phase 2: Indizes zusammenführen</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 500px;" /></a>
+</section>
+<section id="mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">
+<h2><span class="section-number">6.41. </span>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”<a class="headerlink" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png"><img alt="MapReduce-Simplified-data-processing-on-large-clusters" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" style="width: 500px;" /></a>
+</section>
+<section id="what-is-map-reduce">
+<h2><span class="section-number">6.42. </span>What is Map/Reduce?<a class="headerlink" href="#what-is-map-reduce" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Programming model</p>
+<ul>
+<li><p>Borrows concepts from functional programming</p></li>
+<li><p>Suited for parallel execution</p>
+<ul>
+<li><p>Automatic parallelization &amp; distribution of data and computational logic</p></li>
+</ul>
+</li>
+<li><p>Clean abstraction for programmers</p></li>
+</ul>
+</li>
+<li><p>Functional programming influences</p>
+<ul>
+<li><p>Treats computation as the evaluation of mathematical functions</p></li>
+<li><p>No changes of states (no side effects)</p></li>
+<li><p>Output value of a function depends only on its arguments</p></li>
+</ul>
+</li>
+<li><p>Map and Reduce are higher-order functions (2nd order)</p>
+<ul>
+<li><p>Take user-defined functions as argument</p></li>
+<li><p>Return a function as result</p></li>
+<li><p>User implements the two functions</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="grundbausteine">
+<h2><span class="section-number">6.43. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Datenmodel</p>
+<ul>
+<li><p>Schlüssel/Wert-Paare</p>
+<ul>
+<li><p>“key/value pairs”</p></li>
+<li><p>Z.B. (int, string), oder(string, [string]), …</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>MapReduce Programm</p>
+<ul>
+<li><p>Input: Liste an Schlüssel/Wert-Paare</p></li>
+<li><p>Output: Liste an Werten</p></li>
+</ul>
+</li>
+<li><p>Zwei Herausforderungen</p>
+<ul>
+<li><p>Entwurf der Funktionen</p></li>
+<li><p>Verteilte, fehlertolerante und effiziente Ausführung des Programms</p></li>
+</ul>
+</li>
+<li><p>Nutzer definieren zwei Funktionen</p>
+<ul>
+<li><p>Map:</p>
+<ul>
+<li><p>Oft nur ein Paar</p></li>
+</ul>
+</li>
+<li><p>Reduce:</p>
+<ul>
+<li><p>Meist nur ein Wert</p></li>
+<li><p>Meist auch  im Output, dadurch Verkettung von MapReduce-Schritten</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mapreduce-workflow">
+<h2><span class="section-number">6.44. </span>MapReduce workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/MapReduce-workflow.png"><img alt="MapReduce-workflow" src="../_images/MapReduce-workflow.png" style="width: 500px;" /></a>
+</section>
+<section id="aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">
+<h2><span class="section-number">6.45. </span>Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus<a class="headerlink" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="p">){</span>
+	  <span class="k">for</span> <span class="n">each</span> <span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
+	     <span class="n">emit</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>	 	 
+<span class="p">}</span>
+
+<span class="n">reduce</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">numbers</span><span class="p">){</span>
+	  <span class="nb">int</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	  <span class="k">for</span> <span class="n">each</span> <span class="p">(</span><span class="n">value</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">){</span>
+	    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
+	  <span class="p">}</span>
+	  <span class="n">emit</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="nb">sum</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" style="width: 500px;" /></a>
+</section>
+<section id="map-reduce-illustrated-2">
+<h2><span class="section-number">6.46. </span>Map Reduce Illustrated (2)<a class="headerlink" href="#map-reduce-illustrated-2" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/MapReduce-Illustrated-2.png"><img alt="MapReduce-Illustrated-2" src="../_images/MapReduce-Illustrated-2.png" style="width: 500px;" /></a>
+</section>
+<section id="aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">
+<h2><span class="section-number">6.47. </span>Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar<a class="headerlink" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>map(person, friendlist){
+	  for each (friend in friendlist)
+      if(friend &lt; person)
+	        emit(, friendlist);
+      else 
+         emit(, friendlist);
+}
+
+reduce(, friendlists){
+   emit(, friendlist[1] ∩ friendlist[2]);
+}
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>2016: 1,4 Milliarden Facebook-Nutzer, durchschnittlich 155 Freunde</p>
+<ul>
+<li><p>979.999.999.300.000.000 Paare</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Aufgabe-gemeinsame-Bekannte.png"><img alt="Aufgabe-gemeinsame-Bekannte" src="../_images/Aufgabe-gemeinsame-Bekannte.png" style="width: 500px;" /></a>
+</section>
+<section id="example">
+<h2><span class="section-number">6.48. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
+<p><strong>Friends lists:</strong> <br>
+A -&gt; B C D <br>
+B -&gt; A C D E <br>
+C -&gt; A B D E <br>
+D -&gt; A B C E <br>
+E -&gt; B C D <br></p>
+<p><strong>After mapping:</strong></p>
+<p>(A B) -&gt; B C D <br>
+(A C) -&gt; B C D <br>
+(A D) -&gt; B C D <br>
+<br>
+(A B) -&gt; A C D E <br>
+(B C) -&gt; A C D E <br>
+(B D) -&gt; A C D E <br>
+(B E) -&gt; A C D E <br>
+<br>
+(A C) -&gt; A B D E <br>
+(B C) -&gt; A B D E <br>
+(C D) -&gt; A B D E <br>
+(C E) -&gt; A B D E <br>
+<br>
+(A D) -&gt; A B C E <br>
+(B D) -&gt; A B C E <br>
+(C D) -&gt; A B C E <br>
+(D E) -&gt; A B C E <br>
+<br>
+(B E) -&gt; B C D <br>
+(C E) -&gt; B C D <br>
+(D E) -&gt; B C D <br></p>
+<p><strong>After shuffling:</strong> <br>
+(A B) -&gt; (A C D E) (B C D) <br>
+(A C) -&gt; (A B D E) (B C D) <br>
+(A D) -&gt; (A B C E) (B C D) <br>
+(B C) -&gt; (A B D E) (A C D E) <br>
+(B D) -&gt; (A B C E) (A C D E) <br>
+(B E) -&gt; (A C D E) (B C D) <br>
+(C D) -&gt; (A B C E) (A B D E) <br>
+(C E) -&gt; (A B D E) (B C D) <br>
+(D E) -&gt; (A B C E) (B C D) <br></p>
+<p><strong>After reducing:</strong> <br>
+(A B) -&gt; (C D) <br>
+(A C) -&gt; (B D) <br>
+(A D) -&gt; (B C) <br>
+(B C) -&gt; (A D E) <br>
+(B D) -&gt; (A C E) <br>
+(B E) -&gt; (C D) <br>
+(C D) -&gt; (A B E) <br>
+(C E) -&gt; (B D) <br>
+(D E) -&gt; (B C) <br></p>
+</section>
+<section id="parallel-dbms-vs-map-reduce">
+<h2><span class="section-number">6.49. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../_images/Parallel_DBMS_vs_Map_Reduce.png"><img alt="Parallel_DBMS_vs_Map_Reduce" src="../_images/Parallel_DBMS_vs_Map_Reduce.png" style="width: 500px;" /></a>
+</section>
+<section id="relational-operators-as-map-reduce-jobs">
+<h2><span class="section-number">6.50. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>SQL Query</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT year, SUM(price)
+FROM   sales
+WHERE  area_code = “US”
+GROUP BY year
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Map/Reduce job:</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>map(key, tuple) {
+	  int year = YEAR(tuple.date);
+	  if (tuple.area_code = “US”)
+	    emit(year, {‘price’ =&gt; tuple.price });
+	}
+
+	reduce(key, tuples) {
+	  double sum_price = 0;
+	  foreach (tuple in tuples) {
+	    sum_price += tuple.price;
+	  }
+	  emit(key, sum_price);
+	}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Sorting with SQL Query:</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> 
+<span class="n">FROM</span> <span class="n">sales</span> 
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="n">year</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Map/Reduce job:</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="n">emit</span><span class="p">(</span><span class="n">YEAR</span><span class="p">(</span><span class="nb">tuple</span><span class="o">.</span><span class="n">date</span><span class="p">)</span> <span class="n">div</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">reduce</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tuples</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="n">emit</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">sort</span><span class="p">(</span><span class="n">tuples</span><span class="p">));</span>
+	<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="hadoop-a-map-reduce-framework">
+<h2><span class="section-number">6.51. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Hadoop: Apache Top Level Project</p>
+<ul>
+<li><p>Open source</p></li>
+<li><p>Written in Java</p></li>
+</ul>
+</li>
+<li><p>Hadoop provides a stack of</p>
+<ul>
+<li><p>Distributed file system (HDFS) – modeled after the Google File System</p></li>
+<li><p>Map/Reduce engine</p></li>
+<li><p>Data processing languages (Pig Latin, Hive SQL)</p></li>
+<li><p>Plus very many packages</p></li>
+</ul>
+</li>
+<li><p>Runs on</p>
+<ul>
+<li><p>Linux, Mac OS/X, Windows, Solaris</p></li>
+<li><p>Commodity hardware</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/hadoop.png"><img alt="hadoop" src="../_images/hadoop.png" style="width: 500px;" /></a>
+</section>
+<section id="hadoop-distributed-file-system-hdfs">
+<h2><span class="section-number">6.52. </span>Hadoop Distributed File System (HDFS)<a class="headerlink" href="#hadoop-distributed-file-system-hdfs" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Master-Slave Architecture</p>
+<ul>
+<li><p>Based on GFS architecture</p></li>
+</ul>
+</li>
+<li><p>HDFS Master “NameNode”</p>
+<ul>
+<li><p>Manages all file system metadata</p></li>
+<li><p>Transactions are logged, merged</p></li>
+<li><p>at startup</p></li>
+<li><p>Controls read/write access to files</p></li>
+<li><p>Manages block replication</p></li>
+<li><p>Can be replicated to avoid single-point-of-failure</p></li>
+</ul>
+</li>
+<li><p>HDFS Slave “DataNode”</p>
+<ul>
+<li><p>Communicates with the NameNode periodically via heartbeats</p></li>
+<li><p>Serves read/write requests from clients</p></li>
+<li><p>Performs replication tasks upon instruction by NameNode</p>
+<ul>
+<li><p>Default replication factor: 3</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/HDFS.png"><img alt="HDFS" src="../_images/HDFS.png" style="width: 500px;" /></a>
+</section>
+<section id="hadoop-map-reduce-engine">
+<h2><span class="section-number">6.53. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Permalink to this heading">#</a></h2>
+<p>Jobs are executed like a Unix pipeline: <br></p>
+<ul class="simple">
+<li><p>cat * | grep | sort | uniq -c | cat    &gt; output <br></p></li>
+<li><p>Input | Map  | Sort &amp; Shuffle | Reduce | Output</p></li>
+</ul>
+<p>Workflow</p>
+<ol class="arabic simple">
+<li><p>Input phase: generates a number of FileSplits from input files (one per Map task)</p></li>
+<li><p>Map phase: executes a user function to transform input kv-pairs into a new set of kv-pairs</p></li>
+<li><p>Sort &amp; shuffle phase: sort and distribute the kv-pairs to output nodes</p></li>
+<li><p>Reduce phase: combines all kv-pairs with the same key into new kv-pairs</p></li>
+<li><p>Output phase writes the resulting pairs to files</p></li>
+</ol>
+<p>All phases are distributed with many tasks doing the work</p>
+<ul class="simple">
+<li><p>Framework handles scheduling of tasks on cluster</p></li>
+<li><p>Framework handles recovery when a node fails</p></li>
+<li><p>Master / Slave architecture</p></li>
+<li><p>Map/Reduce Master: JobTracker</p>
+<ul>
+<li><p>Accepts jobs submitted by clients</p></li>
+<li><p>Assigns map and reduce tasks to TaskTrackers</p></li>
+<li><p>Monitors execution status, re-executes tasks upon failure</p></li>
+</ul>
+</li>
+<li><p>Map/Reduce Slave: TaskTracker</p>
+<ul>
+<li><p>Runs map / reduce tasks upon instruction from the task tracker</p></li>
+<li><p>Manage storage, sorting and transmission of intermediate output</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">6.54. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Hadoop-Map_Reduce-engine.png"><img alt="Hadoop-Map_Reduce-engine" src="../_images/Hadoop-Map_Reduce-engine.png" style="width: 500px;" /></a>
+</section>
+<section id="fehlertoleranz">
+<h2><span class="section-number">6.55. </span>Fehlertoleranz<a class="headerlink" href="#fehlertoleranz" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Viele Daten  …  in langen Prozessen  …  auf vielen Maschinen</p></li>
+<li><p>Verteiltes Dateisystem (DFS / HDFS)</p>
+<ul>
+<li><p>Speichert verteilt und fehlertolerant durch Replikation</p></li>
+<li><p>Input ist redundant verfügbar</p></li>
+</ul>
+</li>
+<li><p>Speicherung von Zwischenergebnissen ins DFS</p>
+<ul>
+<li><p>Aufwändig, aber Fehlererholung im laufenden Prozess einfach und schnell</p></li>
+</ul>
+</li>
+<li><p>Abstürze</p>
+<ul>
+<li><p>Werden erkannt falls periodisches Signal ausfällt (heartbeat)</p></li>
+<li><p>Neustart des Mappers oder Reducers</p>
+<ul>
+<li><p>Auf anderer Maschine, mit Replikat des ursprünglichen Inputs</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="when-to-use-hadoop">
+<h2><span class="section-number">6.56. </span>When to use Hadoop?<a class="headerlink" href="#when-to-use-hadoop" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Good fit for batch processing applications that need to touch all your data:</p>
+<ul>
+<li><p>Data mining</p></li>
+<li><p>Model tuning</p></li>
+<li><p>Text processing</p></li>
+</ul>
+</li>
+<li><p>Bad fit for applications that need to find/edit one particular record</p>
+<ul>
+<li><p>High overhead</p></li>
+<li><p>High latency</p></li>
+</ul>
+</li>
+<li><p>Bad fit for applications that need to communicate between processes</p>
+<ul>
+<li><p>Hadoop is oriented around independent units of work</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="in-der-praxis-komplexe-optimierte-mapreduce-workflows">
+<h2><span class="section-number">6.57. </span>In der Praxis: Komplexe (optimierte) MapReduce Workflows<a class="headerlink" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neue (relationale) Operatoren</p>
+<ul>
+<li><p>Join, Cross, Union, …</p></li>
+</ul>
+</li>
+<li><p>Planoptimierung &amp; Re-optimierung</p></li>
+<li><p>Scheduling &amp; Lastbalancierung</p></li>
+<li><p>Cross-Plattform Ausführung</p></li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Komplexe-optimierte-MapReduce-workflows.png"><img alt="Komplexe-optimierte-MapReduce-workflows" src="../_images/Komplexe-optimierte-MapReduce-workflows.png" style="width: 500px;" /></a>
+</section>
+<section id="hadoop-vs-parallel-dbms">
+<h2><span class="section-number">6.58. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>2012</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Hadoop_vs_Parallel_DBMS.png"><img alt="Hadoop_vs_Parallel_DBMS" src="../_images/Hadoop_vs_Parallel_DBMS.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>2014</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Hadoop_vs_Parallel_DBMS_2.png"><img alt="Hadoop_vs_Parallel_DBMS_2" src="../_images/Hadoop_vs_Parallel_DBMS_2.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/Hadoop-vs-Parallel-DBMS.png"><img alt="Hadoop-vs-Parallel-DBMS" src="../_images/Hadoop-vs-Parallel-DBMS.png" style="width: 500px;" /></a>
+</section>
+<section id="in-der-praxis-viele-bibliotheken">
+<h2><span class="section-number">6.59. </span>In der Praxis: Viele Bibliotheken<a class="headerlink" href="#in-der-praxis-viele-bibliotheken" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Startpunkt: Hadoop</p>
+<ul>
+<li><p>Java, open-source</p></li>
+<li><p>Basis-Bibliotheken				Common, MapReduce</p></li>
+<li><p>Verteiltes Dateisystem			HDFS</p></li>
+<li><p>Scheduling, Monitoring			Yarn</p></li>
+</ul>
+</li>
+<li><p>Erweiterungen</p>
+<ul>
+<li><p>Service- und Cluster-Verwaltung		ZooKeeper</p></li>
+<li><p>Datenspeicher				HBase</p></li>
+<li><p>Datenbank und Anfragesprachen		Pig, Hive, Phoenix</p></li>
+<li><p>Bibliotheken für komplexe Verfahren		Mahout, Giraph, Solr</p></li>
+<li><p>Datenstromverarbeitung			Kafka, Flink, Spark</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
 <a class="reference internal image-reference" href="../_images/Viele-Bibliotheken.png"><img alt="Viele-Bibliotheken" src="../_images/Viele-Bibliotheken.png" style="width: 500px;" /></a>
+</section>
+<section id="outlook-what-about-updates-transactions">
+<h2><span class="section-number">6.60. </span>Outlook: What about updates/transactions?<a class="headerlink" href="#outlook-what-about-updates-transactions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>OLTP style applications that are beyond relational databases’ capabilities exist as well.</p></li>
+<li><p>Some applications still require fast and efficient lookup and retrieval of small amounts of data</p>
+<ul>
+<li><p>Web index access, mail accounts, warehouse updates for resellers</p></li>
+<li><p>Addressed by Key/Value pair based storage systems (e.g. Google BigTable and Megastore)</p></li>
+<li><p>Can access the data only through a key</p></li>
+<li><p>Can apply only an additional filter on columns and timestamps</p></li>
+</ul>
+</li>
+<li><p>Some applications still need updates and certain guarantees about them</p>
+<ul>
+<li><p>No hard transactions, especially no multi record transactions.</p></li>
+<li><p>Eventual consistency model</p></li>
+</ul>
+</li>
+<li><p>See next set of slides</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -474,6 +1828,79 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-enabler-virtulization">6.1. Key enabler: Virtulization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">6.2. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lehrbuch">6.3. Lehrbuch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.4. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-picture-so-far-serial-single-threaded">6.5. The picture so far: Serial/Single Threaded</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thats-not-the-complete-picture">6.6. That’s not the complete picture…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.7. Prominent user of parallel data processing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.8. Basics of Parallel Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.9. Parallel Speedup – Amdahl‘s law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.10. Parallel Speedup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.11. Levels of Parallelism on Hardware</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.12. Modes of Query Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.13. Pipeline Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.14. Data Parallelism</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.15. Basics of Parallel Query Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.16. Parallel Architectures – Shared Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.17. Parallel Architectures – Shared Disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.18. Parallel Architectures – Shared Nothing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.19. Data Partitioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.20. Data Partitioning Strategies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.21. Data Parallelism: Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.22. Data Parallelism – Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.23. Parallel Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.24. Notations and Assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.25. Parallel Selection / Projection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.26. Parallel Grouping &amp; Aggregation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.27. Parallel Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.28. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.29. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.30. Asymmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.31. Parallel Equi-Joins (I)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.32. Parallel Equi-Joins: Three cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.33. Limits in Parallel Databases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.34. Where traditional databases are unsuitable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.35. Example Use Case: Web Index Creation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.36. An ongoing Re-Design…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.37. Storage Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.38. The Storage Model – Distributed File System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.39. Retrieving and Analyzing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.40. Skalierungsmuster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">6.41. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-map-reduce">6.42. What is Map/Reduce?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grundbausteine">6.43. Grundbausteine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-workflow">6.44. MapReduce workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">6.45. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-illustrated-2">6.46. Map Reduce Illustrated (2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">6.47. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.48. Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">6.49. Parallel DBMS vs. Map/Reduce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">6.50. Relational Operators as Map/Reduce jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">6.51. Hadoop – A map/reduce Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">6.52. Hadoop Distributed File System (HDFS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-map-reduce-engine">6.53. Hadoop Map/Reduce Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.54. Hadoop Map/Reduce Engine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fehlertoleranz">6.55. Fehlertoleranz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-hadoop">6.56. When to use Hadoop?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">6.57. In der Praxis: Komplexe (optimierte) MapReduce Workflows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">6.58. Hadoop vs. Parallel DBMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">6.59. In der Praxis: Viele Bibliotheken</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">6.60. Outlook: What about updates/transactions?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
