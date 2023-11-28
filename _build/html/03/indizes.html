@@ -647,32 +647,24 @@ AND Präsident = ?
 <li><p>Index auf Präsident findet schnell Studio-Datensatz</p></li>
 <li><p>Entsprechende Filme folgen direkt <br></p></li>
 </ol>
-<p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex. Ist beispielsweise der Titel der Primärschlüssel, muss doppelt gespeichert werden, damit die Daten sortiert vorliegen. Da es aber so ist, dass alle Filme jedes Studios jeweils daneben liegen, braucht man einen Sekundärindex um auch den Primärschlüssel von <em>Filme</em> zu indizieren.</p>
+<p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex. Ist beispielsweise der Titel der Primärschlüssel, muss doppelt gespeichert werden, damit die Daten sortiert vorliegen. Da es aber so ist, dass alle Filme jedes Studios jeweils daneben liegen, braucht man einen Sekundärindex, um auch den Primärschlüssel von <em>Filme</em> zu indizieren.</p>
 </section>
 <section id="indirektion-fur-sekundarindizes">
 <h3><span class="section-number">3.2.3. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this heading">#</a></h3>
-<p>Bisherige Struktur verbraucht Platz: Datenwerte werden im Index mehrfach gespeichert.</p>
-<ul class="simple">
-<li><p>Spart Platz, falls</p>
-<ul>
-<li><p>Suchschlüssel größer sind als Bucketeintrag.</p></li>
-<li><p>Suchschlüssel im Durchschnitt mindestens zweimal auftauchen.</p></li>
-</ul>
-</li>
-<li><p>Weiterer Vorteil: Bestimmte Anfragen können direkt anhand der Buckets beantwortet werden.</p>
-<ul>
-<li><p>Mehrere Selektionsbedingungen, jeweils mit Sekundärindex: Schnittmenge der Pointer in Buckets</p></li>
-</ul>
-</li>
-<li><p>Filme(Titel, Jahr, Länge, inFarbe, Studioname, Produzent)</p></li>
-</ul>
+<p>Bisher haben wir uns clustered files angeschaut und Relationen, bei denen mehrere Attribute indiziert wurden. Dabei kann es leicht passieren, dass Dinge mehrfach indiziert und gespeichert werden. Hier kann die <em>Indirektion</em> Abhilfe schaffen.</p>
+<p>Für Nicht-Primärschlüssel kann ein Index sehr groß sein. Aus dem Grund kann man unbestimmte Buckets dazu nehmen, die dann als abstrakte Schlüssel für die entsprechenden Datenpunkte gelten. In der Abbildung unten sieht man, dass die <em>10</em> auf so ein Bucket zeigt, in welchem drei Schlüsselpaare sind, die wiederum auf die entsprechenden Werte zeigen.</p>
+<p>Dies spart Platz, falls die Suchschlüssel größer sind als der Bucketeintrag und im Durchschnitt mindestens zweimal auftauchen. Ein weiterer Vorteil ist, dass bestimmte Anfragen direkt anhand der Buckets beantwortet werden können.
+Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekundärindex, wie bei der Anfrage unten, die Schnittmenge der Pointer in den Buckets bilden. Hier haben wir jeweils einen Sekundärindex auf <em>StudioName</em> und <em>Jahr</em>. Während die Pointer der Indexeinträge für <em>StudioName</em> auf Buckets zeigen, können parallel die Pointer für <em>Jahr</em> auf dieselben zeigen, so dass man sofort weiß, welche Blöcke gelesen werden müssen.</p>
+<p>Filme(Titel, Jahr, Länge, inFarbe, Studioname, Produzent)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Titel</span> <span class="n">FROM</span> <span class="n">Filme</span>
 <span class="n">WHERE</span> <span class="n">StudioName</span> <span class="o">=</span> <span class="s1">&#39;Disney&#39;</span>
 <span class="n">AND</span> <span class="n">Jahr</span> <span class="o">=</span> <span class="mi">1995</span>
 </pre></div>
 </div>
+<br>
 <a class="reference internal image-reference" href="../_images/Indirektion-Sekundärindizes.png"><img alt="Indirektion-Sekunderindizes" src="../_images/Indirektion-Sekundärindizes.png" style="width: 500px;" /></a>
 <p><strong>Indirektion im Alltag</strong></p>
+<p>Hier ein weiteres Beispiel für die Indirektion. Sucht man hier ein Wort, stehen die Buckets, in dem Fall die Seitenzahlen, direkt dahinter. Diese Indirektion ist speziell, denn sie hat eine bestimmte Indexstruktur und zwar <em>Invertierte Indizes</em>. Das schauen wir uns im folgenden Absatz genauer an.</p>
 <a class="reference internal image-reference" href="../_images/Indirektion-Alltag.png"><img alt="Indirektion-Alltag" src="../_images/Indirektion-Alltag.png" style="width: 500px;" /></a>
 </section>
 <section id="invertierte-indizes">
