@@ -517,9 +517,10 @@ Wir nehmen an alle haben eine feste Länge: 30 Byte + 256 Byte + 1 Byte + 10 Byt
 </ul>
 <p>Im einfachsten Fall sind alle Datensätze aus der gleichen Relation und haben alle eine feste Länge.
 <br><br>
-Beispiel: Ein Datensatz besteht aus 316 Byte und ein Block aus 4096 Byte,wobei 12 Bytes für je einen Header benötigt werden. Durch Division ergeben sich 12 Datensätze und 292 verlorene Bytes.</p>
-<p><br><br>
-Dies gilt nur für Datensätze mit fester Länge, die nicht über mehrere Blöcke verteilt sind.</p>
+<strong>Beispiel:</strong> Ein Datensatz besteht aus 316 Byte und ein Block aus 4096 Byte, wobei 12 Bytes für je einen Header benötigt werden. Das Ergebnis sind 12 Datensätze und 292 verlorene Bytes.</p>
+<p>Datensätze pro Block = <span class="math notranslate nohighlight">\(\lfloor \frac {Datenblockgröße - Header}{Datensatzgröße}\rfloor \)</span> = <span class="math notranslate nohighlight">\(\lfloor \frac {4096 - 12}{316}\rfloor \)</span> = 12 Datensätze</p>
+<p>Verlorene Bytes = Datenblockgröße - (Datensätze pro Block ∙ Datensatzgröße + Header) = 4096 Bytes - (12 ∙ 316 Bytes + 12 Bytes) = 292 Bytes</p>
+<p>Dies gilt aber nur für Datensätze mit fester Länge, die nicht über mehrere Blöcke verteilt sind.</p>
 <a class="reference internal image-reference" href="../_images/Aufteilung_in_Blöcke.png"><img alt="Aufteilung_in_Blöcke" src="../_images/Aufteilung_in_Blöcke.png" style="width: 500px;" /></a>
 </section>
 </section>
@@ -546,7 +547,7 @@ Der Block auf der Festplatte ist unser Speicherort. Der genaue Speicherort im ga
 </section>
 <section id="logische-adressen">
 <h3><span class="section-number">2.6.2. </span>Logische Adressen<a class="headerlink" href="#logische-adressen" title="Permalink to this heading">#</a></h3>
-<p>Durch die Indirektion der logischen Adressen, ist die Umorganisation von Datenänderungen flexibler, da sie nur auf der Mappingtable stattfindet. Eine logische Adresse bleibt zudem gleich, unabhängig davon ob es sich um eine HDD oder SDD handelt. Eine Hybride Adressierung ist auch möglich, indem es eine physische Adresse für einen Block und eine logische Adresse für einen Datensatz in dem Block, z.B. ein Schlüsselwert, gibt.</p>
+<p>Durch die Indirektion der logischen Adressen, ist die Umorganisation von Datenänderungen flexibler, da sie nur auf der Mappingtable stattfindet. Eine logische Adresse bleibt zudem gleich, unabhängig davon ob es sich um eine HDD oder SSD handelt. Eine Hybride Adressierung ist auch möglich, indem es eine physische Adresse für einen Block und eine logische Adresse für einen Datensatz in dem Block, z.B. ein Schlüsselwert, gibt.</p>
 <a class="reference internal image-reference" href="../_images/Logische-Adressen.png"><img alt="Logische-Adressen" src="../_images/Logische-Adressen.png" style="width: 500px;" /></a>
 </section>
 <section id="hybride-adressierung">
