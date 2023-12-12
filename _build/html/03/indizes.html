@@ -654,18 +654,18 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 </section>
 <section id="indexierung-mittels-invertierter-dateien">
 <h3><span class="section-number">3.2.4. </span>Indexierung mittels invertierter Dateien<a class="headerlink" href="#indexierung-mittels-invertierter-dateien" title="Permalink to this heading">#</a></h3>
-<p>Invertierte Dateien oder auch invertierte Indizes speichern für jeden Term eine Liste mit Verweisen zu allen Vorkommen dieses Terms. Jeder Verweis ist im Prinzip eine Zahl, die jeder Datei zuvor zugeordnet wurde. Duplikate werden nur einmal aufgeführt.
-Boolesche Operationen wie AND, OR und NOT können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
-<p>In Abbildung 1 sehen wir einen Beispieltext. Jede Zeile steht für eine Datei. Die invertierte Datei sehen wir in Abbildung 2.</p>
-<p><strong>Abbildung 1</strong>
-<br></p>
+<p>Invertierte Dateien oder auch invertierte Indizes speichern für jeden Term eine Liste mit Verweisen zu allen Dokumenten oder Dateien, in denen dieser Term vorkommt. Verweise sind aus konzeptioneller Sicht eine ID, die dem jeweiligen Dokument oder der Datei zugeordnet ist.</p>
+<p>Bei der Suche nach Dokumenten, die mehrere Terme oder eine bestimmte Konstellation von Termen enthalten sollen, z.B” “Finde alle Dokumente, die zwar Informationen über Golf enthalten aber nicht über “,W” können die entsprechenden Dateilisten jedes Termes durch Mengenoperationen zusammengeführt werden. In diesem Beispiel müsste man alle I s a diei” ““W” verweenst von allen IDs auf di” “Go”f” verweist abziehen. Boolesche Operationen wie AND, OR und NOT können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
+<p>In Abbildung 1 sehen die von Dokumenten-für auf den enthaltenen Text. Jede Zeile steht für eine Daei/ ein Dokument. Die invertierte Datei sehen wir in Abbildun.</p>
+<p><strong>Abbildung 1</strong></p>
+<br>
 <a class="reference internal image-reference" href="../_images/Abbildung1.png"><img alt="Abbildung1" src="../_images/Abbildung1.png" style="width: 300px;" /></a>
 <br>
-<p><strong>Abbildung 2</strong>
-<br></p>
+<p><strong>Abbildung 2</strong></p>
+<br>
 <a class="reference internal image-reference" href="../_images/Abbildung2.png"><img alt="Abbildung2" src="../_images/Abbildung2.png" style="width: 300px;" /></a>
 <p><span class="math notranslate nohighlight">\(\tiny{Quelle:\ Nagy \ Istvan \ (2001): Indexierung \ mittels \ invertierter \ Dateien. https://www.cis.uni-muenchen.de/people/Schulz/SeminarSoSe2001IR/Nagy/node4.html\#bsp_text }\)</span></p>
-<p>Wir haben uns nun mit der Indirektion von Indizes befasst. Jetzt gehen wir über zu mehrstufigen Indizes und schauen uns B-Bäume an.</p>
+<p>Invertierte Indizes finden ins besondere in Dokumentendatenbanken Anwendung. Für die weiteren Inhalte der Vorlesung spielen sie keine Rolle. Das sollte als Beispiel für die weitere Anwendungen der Indirektion dienen.</p>
 </section>
 <section id="b-baume">
 <h3><span class="section-number">3.2.5. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h3>
