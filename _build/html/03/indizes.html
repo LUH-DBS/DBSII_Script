@@ -405,7 +405,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">3.2.1. Aufbau von Sekundärindizes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">3.2.2. Anwedungen</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">3.2.3. Indirektion für Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">3.2.4. Invertierte Indizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexierung-mittels-invertierter-dateien">3.2.4. Indexierung mittels invertierter Dateien</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">3.2.5. B-Bäume</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">3.2.5.1. Allgemein</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">3.2.5.2. Struktur</a></li>
@@ -652,90 +652,35 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 <p>Hier ein weiteres Beispiel für die Indirektion. Sucht man hier ein Wort, stehen die Buckets, in dem Fall die Seitenzahlen, direkt dahinter. Diese Indirektion ist speziell, denn sie hat eine bestimmte Indexstruktur und zwar <em>Invertierte Indizes</em>. Das schauen wir uns im folgenden Absatz genauer an.</p>
 <a class="reference internal image-reference" href="../_images/Indirektion-Alltag.png"><img alt="Indirektion-Alltag" src="../_images/Indirektion-Alltag.png" style="width: 500px;" /></a>
 </section>
-<section id="invertierte-indizes">
-<h3><span class="section-number">3.2.4. </span>Invertierte Indizes<a class="headerlink" href="#invertierte-indizes" title="Permalink to this heading">#</a></h3>
-<p>Motivation: Dokumenten-Retrieval</p>
-<ul class="simple">
-<li><p>Sichtweise Dokument als Relation</p>
-<ul>
-<li><p>Dok(hatKatze, hatHund, hatHaus, …)</p></li>
-<li><p>Tausende/Millionen Boolesche Attribute: True bedeutet das Dokument enthält das Wort.</p></li>
-<li><p>Idee 1: Sekundärindex auf jedes Attribut</p>
-<ul>
-<li><p>Aber: Nur die True-Werte werden indiziert</p></li>
-</ul>
-</li>
-<li><p>Idee 2: Alle Indizes in einen kombiniert, die „invertierte Liste“</p>
-<ul>
-<li><p>Verwendet Indirektion</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Pointer in den Buckets</p>
-<ul>
-<li><p>Auf ein Dokument</p></li>
-<li><p>Auf eine Stelle im Dokument</p></li>
-</ul>
-</li>
-<li><p>Erweiterung: Bucket speichert nicht nur Stelle sondern auch Metadaten</p>
-<ul>
-<li><p>Art des Vorkommens (Titel, Abstract, Text, Tabelle, …)</p></li>
-<li><p>Satz (fett, kursiv, …)</p></li>
-<li><p>…</p></li>
-</ul>
-</li>
-<li><p>Anfragen: AND, OR, NOT</p>
-<ul>
-<li><p>Durch Mengenoperationen auf den Pointermengen</p></li>
-</ul>
-</li>
-</ul>
-<p>Suche nach Dokumenten, die Hunde und Katzen vergleichen</p>
-<ul class="simple">
-<li><p>Dokument erwähnt „Hund“ im Titel</p></li>
-<li><p>Dokument erwähnt „Katze“ in einem Anker (Link auf anderes Dokument)</p></li>
-</ul>
-<p>Damit hätten wir uns mit der Indirektion von Indizes befasst. Nun gehen wir zur Verallgemeinerung von mehrstufigen Indizes über.</p>
-<img src="pictures/Invertierte-Indizes.png" alt="Invertierte.Indizes" width="500" style="background-color: white;"/>
-<br> <br>
-<img src="pictures/Invertierte-Indizes_2.png" alt="Invertierte.Indizes_2" width="500" style="background-color: white;"/></section>
+<section id="indexierung-mittels-invertierter-dateien">
+<h3><span class="section-number">3.2.4. </span>Indexierung mittels invertierter Dateien<a class="headerlink" href="#indexierung-mittels-invertierter-dateien" title="Permalink to this heading">#</a></h3>
+<p>Invertierte Dateien oder auch invertierte Indizes speichern für jeden Term eine Liste mit Verweisen zu allen Vorkommen dieses Terms. Jeder Verweis ist im Prinzip eine Zahl, die jeder Datei zuvor zugeordnet wurde. Duplikate werden nur einmal aufgeführt.
+Boolesche Operationen wie AND, OR und NOT können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
+<p>In Abbildung 1 sehen wir einen Beispieltext. Jede Zeile steht für eine Datei. Die invertierte Datei sehen wir in Abbildung 2.</p>
+<p><strong>Abbildung 1</strong>
+<br></p>
+<a class="reference internal image-reference" href="../_images/Abbildung1.png"><img alt="Abbildung1" src="../_images/Abbildung1.png" style="width: 300px;" /></a>
+<br>
+<p><strong>Abbildung 2</strong>
+<br></p>
+<a class="reference internal image-reference" href="../_images/Abbildung2.png"><img alt="Abbildung2" src="../_images/Abbildung2.png" style="width: 300px;" /></a>
+<p><span class="math notranslate nohighlight">\(\tiny{Quelle:\ Nagy \ Istvan \ (2001): Indexierung \ mittels \ invertierter \ Dateien. https://www.cis.uni-muenchen.de/people/Schulz/SeminarSoSe2001IR/Nagy/node4.html\#bsp_text }\)</span></p>
+<p>Wir haben uns nun mit der Indirektion von Indizes befasst. Jetzt gehen wir über zu mehrstufigen Indizes und schauen uns B-Bäume an.</p>
+</section>
 <section id="b-baume">
 <h3><span class="section-number">3.2.5. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h3>
 <section id="allgemein">
 <h4><span class="section-number">3.2.5.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this heading">#</a></h4>
-<p>Bisher haben wir zweistufige Indizes zur Beschleunigung des Zugriffs betrachtet. Jetzt schauen wir uns mehrstufige Indizes an. B-Bäume haben so viele Stufen wie nötig. Die Blöcke sind immer mindestens zur Hälfte gefüllt und Overflow blocks sind nicht notwendig.
-Eine weitere Eigenschaft von B-Bäumen ist, dass sie balanciert sind, d.h. man kommt zu jedem Blatt mit der selben Anzahl von Schritten.</p>
+<p>Bisher haben wir zweistufige Indizes zur Beschleunigung des Zugriffs betrachtet. Jetzt befassen wir uns mit mehrstufige Indizes.</p>
+<p>B-Bäume haben so viele Stufen wie nötig. Die Blöcke sind immer mindestens zur Hälfte gefüllt und Overflow blocks sind nicht notwendig.
+B-Bäume sind außerdem balanciert, d.h. jeder Weg von der Wurzel bis zum Blatt ist gleich lang.</p>
 <a class="reference internal image-reference" href="../_images/B-Bäume.png"><img alt="B-Bäume" src="../_images/B-Bäume.png" style="width: 500px;" /></a>
 </section>
 <section id="struktur">
 <h4><span class="section-number">3.2.5.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Index-Blöcke in einem Baum organisiert</p></li>
-<li><p>Balanciert</p>
-<ul>
-<li><p>Jeder Weg von Wurzel zu Blatt ist gleich lang.</p></li>
-</ul>
-</li>
-<li><p>Parameter n</p>
-<ul>
-<li><p>Jeder Block enthält bis zu n Suchschlüssel</p></li>
-<li><p>Jeder Block enthält bis zu n+1 Pointer</p></li>
-<li><p>Also wie Indexblock zuvor, aber ein zusätzlicher Pointer</p></li>
-</ul>
-</li>
-<li><p>Wahl von n</p>
-<ul>
-<li><p>n so groß wie möglich entsprechend der Blockgröße</p></li>
-<li><p>4096 Byte pro Block; 4 Byte pro Schlüssel; 8 Byte pro Pointer</p></li>
-<li><p>4n + 8(n+1) ≤ 4096 =&gt; n = 340</p></li>
-</ul>
-</li>
-</ul>
-<p><strong>Erinnerung: Datenstrukturen und Algorithmen: B-Bäume</strong></p>
-<ul class="simple">
-<li><p>„Maximale Ausgeglichenheit“</p></li>
-</ul>
+<p>Bei B-Bäumen handelt es sich um Index-Blöcke die in einem Baum organisiert sind. Dieser ist balanciert und hat einen Parameter <em>n</em>. Jeder Block enthält bis zu <em>n</em> Suchschlüssel und bis zu <em>n + 1</em> Pointer, also ein Pointer mehr als die Indexblöcke zuvor. <em>n</em> wird entsprechend der gegebenen Blockgröße so groß wie möglich gewählt. Bei beispielsweise 4096 Byte pro Block, 4 Byte pro Schlüssel und 8 Byte pro Pointer muss unser <em>n</em> = 340 sein:</p>
+<p>4 n + 8(n+1) ≤ 4096 =&gt; n = 340</p>
+<p>Bei einer Höhe von 3 lassen sich damit 340 ∙ 341 ∙ 341 = 39.535.540 Schlüssel indizieren.</p>
 </section>
 <section id="einfugen-in-b-baume-beispiel">
 <h4><span class="section-number">3.2.5.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this heading">#</a></h4>
@@ -743,77 +688,48 @@ Eine weitere Eigenschaft von B-Bäumen ist, dass sie balanciert sind, d.h. man k
 </section>
 <section id="hier-b-baum">
 <h4><span class="section-number">3.2.5.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Schlüssel in Blätter sind Schlüssel aus den Daten</p>
-<ul>
-<li><p>Sortiert über alle Blätter verteilt (von links nach rechts)</p></li>
-</ul>
-</li>
-<li><p>Wurzel: mindestens zwei verwendete Pointer.</p>
-<ul>
-<li><p>Alle Pointer zeigen auf einen B-Baum Block in Ebene darunter.</p></li>
-</ul>
-</li>
-<li><p>Blätter: Der letzte Pointer zeigt auf das nächste Blatt (rechts).</p>
-<ul>
-<li><p>Von den übrigen n Pointern werden mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> verwendet.</p></li>
-<li><p>Zeigen auf Datenblöcke</p></li>
-</ul>
-</li>
-<li><p>Innere Knoten: Pointer zeigen auf B-Baum Blöcke darunterliegender Ebenen</p>
-<ul>
-<li><p>Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> sind verwendet</p></li>
-<li><p>Falls j Pointer verwendet werden, gibt es j–1 Schlüssel in dem Block</p>
-<ul>
-<li><p>Keys K1, … , Kj-1</p></li>
-</ul>
-</li>
-<li><p>Erster Pointer zeigt auf Teilbaum mit Schlüsselwerten &lt; K1.</p></li>
-<li><p>Zweiter Pointer auf Teilbaum mit Schlüsselwerten ≥ K1 und &lt; K2 usw</p></li>
-</ul>
-</li>
-</ul>
+<p>Bei B+ Bäumen sind die Schlüssel in den Blättern die Schlüssel aus den Daten, sortiert über alle Blätter verteilt (von links nach rechts).
+Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mindestens zwei Pointer werden verwendet. Von den Blättern zeigt der letzte Pointer auf das nächste rechte Blatt, während die übrigen Pointern auf mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(n+1)}{2} \rfloor\)</span> Datenblöcke zeigen. Die Pointer der inneren Knoten zeigen auch auf die B-Baum Blöcke von darunterliegenden Ebenen. Dabei werden mindesten <span class="math notranslate nohighlight">\( \lceil \frac {(n+1)}{2} \rceil \)</span> verwendet.</p>
+<p>Falls <em>j</em> Pointer verwendet werden, gibt es <em>j-1</em> Schlüssel in einem Block. Der erste Pointer zeigt auf den Teilbaum mit den Schlüsselwerten &lt; K1 während der zweite Pointer auf den Teilbaum mit den Schlüsselwerten ≥ K1 und &lt; K2 zeigt, usw.</p>
 </section>
 <section id="rechenbeispiele">
 <h4><span class="section-number">3.2.5.5. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Permalink to this heading">#</a></h4>
-<p>n = 3</p>
-<ul class="simple">
-<li><p>Alle Knoten: Maximal 3 Suchschlüssel und 4 Pointer</p></li>
-<li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
-<li><p>Innere Knoten: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
-<li><p>Blätter: Mindestens 2 Suchschlüssel und 3 Pointer</p></li>
-</ul>
+<p>Schauen wir uns das an ein paar Beispielen genauer an. Ist unser <em>n</em> = 3 haben alle Knoten maximal 3 Suchschlüssel und 4 Pointer. Die Wurzel hat mindestens 1 Suchschlüssel und 2 Pointer, während die Blätter mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(3+1)}{2} \rfloor + 1 \)</span> = 3 Pointer (plus 1 weil der letzte Pointer auf das nächste Blatt zeigt) und 2 Suchschlüssel haben. Die inneren Knoten haben mindestens <span class="math notranslate nohighlight">\( \lceil \frac {(3+1)}{2} \rceil \)</span> = 2 Pointer und 1 Suchschüssel.</p>
+<a class="reference internal image-reference" href="../_images/Rechenbeispiele.png"><img alt="Rechenbeispiele" src="../_images/Rechenbeispiele.png" style="width: 500px;" /></a>
+<p>Analog für n = 4 und n = 5:</p>
 <p>n = 4</p>
 <ul class="simple">
 <li><p>Alle Knoten: Maximal 4 Suchschlüssel und 5 Pointer</p></li>
 <li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
-<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> Pointer = 3 Pointer</p>
+<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\( \lceil \frac {(n+1)}{2} \rceil \)</span> Pointer = 3 Pointer</p>
 <ul>
 <li><p>=&gt; Mindestens 2 Suchschlüssel</p></li>
 </ul>
 </li>
 <li><p>Blätter:</p>
 <ul>
-<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> weitere Pointer = 3 Pointer</p></li>
+<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(n+1)}{2} \rfloor\)</span> weitere Pointer = 3 Pointer</p></li>
 <li><p>=&gt; Mindestens 2 Suchschlüssel
-n = 5</p></li>
+<br></p></li>
 </ul>
 </li>
+</ul>
+<p>n = 5</p>
+<ul class="simple">
 <li><p>Alle Knoten: Maximal 5 Suchschlüssel und 6 Pointer</p></li>
 <li><p>Wurzel: Mindestens 1 Suchschlüssel und 2 Pointer</p></li>
-<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\(\lceil(n+1)/2\rceil\)</span> Pointer = 3 Pointer</p>
+<li><p>Innere Knoten: Mindestens <span class="math notranslate nohighlight">\( \lceil \frac {(n+1)}{2} \rceil \)</span> Pointer = 3 Pointer</p>
 <ul>
 <li><p>=&gt; Mindestens 2 Suchschlüssel</p></li>
 </ul>
 </li>
 <li><p>Blätter:</p>
 <ul>
-<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\(\lfloor(n+1)/2\rfloor\)</span> weitere Pointer = 4 Pointer</p></li>
+<li><p>1 Pointer zum nächsten Blatt + mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(n+1)}{2} \rfloor\)</span> weitere Pointer = 4 Pointer</p></li>
 <li><p>=&gt; Mindestens 3 Suchschlüssel</p></li>
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../_images/Rechenbeispiele.png"><img alt="Rechenbeispiele" src="../_images/Rechenbeispiele.png" style="width: 500px;" /></a>
 </section>
 <section id="alternative-definition">
 <h4><span class="section-number">3.2.5.6. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this heading">#</a></h4>
@@ -1681,7 +1597,7 @@ n = 5</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aufbau-von-sekundarindizes">3.2.1. Aufbau von Sekundärindizes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anwedungen">3.2.2. Anwedungen</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indirektion-fur-sekundarindizes">3.2.3. Indirektion für Sekundärindizes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invertierte-indizes">3.2.4. Invertierte Indizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexierung-mittels-invertierter-dateien">3.2.4. Indexierung mittels invertierter Dateien</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-baume">3.2.5. B-Bäume</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#allgemein">3.2.5.1. Allgemein</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur">3.2.5.2. Struktur</a></li>
