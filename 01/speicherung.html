@@ -552,18 +552,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spiegelung">
-     1.4.4. Spiegelung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#disk-scheduling">
-     1.4.5. Disk Scheduling
+     1.4.4. Disk Scheduling
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#first-come-first-service-vs-elevator-algorithmus">
-     1.4.6. First-Come-First-Service vs. Elevator Algorithmus
+    <a class="reference internal nav-link" href="#spiegelung">
+     1.4.5. Spiegelung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-come-first-serve-vs-elevator-algorithmus">
+     1.4.6. First-Come-First-Serve vs. Elevator Algorithmus
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -779,18 +779,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spiegelung">
-     1.4.4. Spiegelung
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#disk-scheduling">
-     1.4.5. Disk Scheduling
+     1.4.4. Disk Scheduling
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#first-come-first-service-vs-elevator-algorithmus">
-     1.4.6. First-Come-First-Service vs. Elevator Algorithmus
+    <a class="reference internal nav-link" href="#spiegelung">
+     1.4.5. Spiegelung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-come-first-serve-vs-elevator-algorithmus">
+     1.4.6. First-Come-First-Serve vs. Elevator Algorithmus
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1032,24 +1032,24 @@ Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der An
 <h3><span class="section-number">1.2.6. </span>Latenzzeit<a class="headerlink" href="#latenzzeit" title="Permalink to this headline">#</a></h3>
 <p>Die Latenzzeit setzt sich aus der Summe von vier Komponenten zusammen:</p>
 <ol class="arabic simple">
-<li><p>Kommunikationszeit zwischen Prozessor und Disk Controller:</p>
+<li><p><strong>Kommunikationszeit</strong> zwischen Prozessor und Disk Controller:</p>
 <ul class="simple">
 <li><p>Sie beträgt nur Bruchteile einer Millisekunde und kann daher bei Berechnungen hier vernachlässigt werden.</p></li>
 </ul>
 </li>
-<li><p>Seektime (Suchzeit), um den Kopf unter dem richtigen Zylinder zu positionieren:</p>
+<li><p><strong>Seektime</strong> (Suchzeit), um den Kopf unter dem richtigen Zylinder zu positionieren:</p>
 <ul class="simple">
 <li><p>Die Suchzeit ist zwischen 0 und 40 ms ( proportional zum zurückgelegten Weg).</p></li>
 <li><p>Sie setzt sich zusammen aus Startzeit (1 ms), Bewegungszeit (0 – 40 ms) und Stopzeit (1 ms).</p></li>
 </ul>
 </li>
-<li><p>Rotationslatenzzeit für die Drehung der Disk, bis sich der erste Sektor des Blocks unter S-/L-Kopf befindet:</p>
+<li><p><strong>Rotationslatenzzeit</strong> für die Drehung der Disk, bis sich der erste Sektor des Blocks unter S-/L-Kopf befindet:</p>
 <ul class="simple">
 <li><p>Durchschnittlich benötigt es eine halbe Umdrehung (4 ms) bis der erste Sektor des Blocks unter dem S-/L-Kopf liegt.</p></li>
 <li><p>Eine Optimierung durch Spur-Cache im Disk-Controller ist möglich.</p></li>
 </ul>
 </li>
-<li><p>Die Transferzeit für die Drehung der Disk, bis alle Sektoren und die Lücken des Blocks unter dem S-/L-Kopf durchlaufen sind:</p>
+<li><p>Die <strong>Transferzeit</strong> für die Drehung der Disk, bis alle Sektoren und die Lücken des Blocks unter dem S-/L-Kopf durchlaufen sind:</p>
 <ul class="simple">
 <li><p>Etwa ein 16 KB-Block in 0.25 ms durchlaufen.</p></li>
 </ul>
@@ -1094,7 +1094,7 @@ Die durchschnittliche Zeit können Sie selber erforschen und nachrechnen. (Dabei
 <section id="algorithmen-vs-dbms">
 <h3><span class="section-number">1.3.1. </span>Algorithmen vs. DBMS<a class="headerlink" href="#algorithmen-vs-dbms" title="Permalink to this headline">#</a></h3>
 <p>Zuvor war die Annahme bei Algorithmen (wie in der Vorlesung ‘Datenstrukturen und Algorithmen’), dass die gesamten Daten in den RAM passen (RAM-Berechnungsmodell) und sie auch bereits dort im Hauptspeicher liegen.</p>
-<p>Die Annahme bei der Implementierung von DBMS ist das I/O-Modell. Die gesamten Daten passen nicht mehr in Hauptspeicher.</p>
+<p>Die Annahme bei der Implementierung von DBMS ist das I/O-Modell. Die gesamten Daten passen nicht mehr in den Hauptspeicher.</p>
 <p>Die Externspeicher-Algorithmen funktionieren oft anders. Ein guter Externspeicher-Algorithmus muss nicht der beste Algorithmus laut RAM-Modell sein. Sein primäres Entwurfsziel ist es I/O zu vermeiden.</p>
 <p>Das Gleiche kann auch für Hauptspeicher-Algorithmen gelten. Diese nutzen den Cache aus und berücksichtigen die Cachegröße. Es wird versucht die Lokalität zu nutzen und alle fernerliegende Zugriffe zu vermeiden („maximiere“ Anzahl der Cache Hits).</p>
 </section>
@@ -1186,7 +1186,7 @@ Der Aufwand von Merge Sort lässt sich in ein paar Schritten berechnen. Die Eing
 Das Mergen zweier sortierter Listen L1, L2 kostet: O(|L1| + |L2|) = O(n). </br>
 Die Rekursionstiefe ist log2(n), da sich in jedem Rekursionsschritt die Listenlänge halbiert. Nach i Schritten sind noch n / 2^i Elemente in der Liste.
 </br>
-Ergo er ergibt sich ein Aufwand von O(n log n). Das trifft die untere Schranke für das vergleichsbasierte Sortieren.</p>
+Ergo ergibt sich ein Aufwand von O(n log n). Das trifft die untere Schranke für das vergleichsbasierte Sortieren.</p>
 </section>
 <section id="two-phase-multiway-merge-sort-tpmms">
 <h3><span class="section-number">1.3.6. </span>Two-Phase, Multiway Merge-Sort (TPMMS)<a class="headerlink" href="#two-phase-multiway-merge-sort-tpmms" title="Permalink to this headline">#</a></h3>
@@ -1312,7 +1312,7 @@ Im zweiten Teil der <strong>Phase 1</strong> kommt es zum <strong>Schreiben</str
 </section>
 <section id="mehrere-disks">
 <h3><span class="section-number">1.4.3. </span>Mehrere Disks<a class="headerlink" href="#mehrere-disks" title="Permalink to this headline">#</a></h3>
-<p>Bei der Nutzung von einer Disk gibt es das Problem, dass sich die S-/L-Köpfe einer Festplatte stets gemeinsam bewegen. Als Lösung des Problems kann man mehrere Festplatten (mit unabhängigen Köpfen) nutzen unter der Annahme, dass Disk-Controller, Hauptspeicher und Bus mit höheren Transferraten klarkommen. Das Resultat aus der Nutztung mehrerer Festplatten ist die Division aller Zugriffszeiten durch die Festplattenanzahl.</br>
+<p>Bei der Nutzung von einer Disk gibt es das Problem, dass sich die S-/L-Köpfe einer Festplatte stets gemeinsam bewegen. Als Lösung des Problems kann man mehrere Festplatten (mit unabhängigen Köpfen) nutzen unter der Annahme, dass Disk-Controller, Hauptspeicher und Bus mit höheren Transferraten klarkommen. Das Resultat aus der Nutzung mehrerer Festplatten ist die Division aller Zugriffszeiten durch die Festplattenanzahl.</br>
 Eine Megatron 737 hat im Gegensatz zur Megatron 747 nur 2 Platten (also 4 Plattenoberflächen). Im Vergleich dazu hat die Megatron 747 8 Platten (also 16 Plattenoberflächen). Dementsprechend soll nun eine Megatron 747 durch vier Megatron 737 ersetzt werden, um die Zugriffszeiten zu minimieren. R wird somit auf 4 Festplatten verteilt.
 </br></br>
 <strong>TPMMS - Phase 1</strong></br></p>
@@ -1322,31 +1322,31 @@ Eine Megatron 737 hat im Gegensatz zur Megatron 747 nur 2 Platten (also 4 Platte
 </br></br></p>
 <p><strong>TPMMS - Phase 2</strong>
 </br>
-In der zweiten Phase nützt die Verteilung auf 4 Disks zunächst nichts.Immer wenn ein Block einer Teilliste abgearbeitet ist, wird ein nächster Block dieser Teilliste in Hauptspeicher geladen. Erst wenn der nächste Block vollständig geladen ist, kann das Mergen fortgesetzt werden. </br>
+In der zweiten Phase nützt die Verteilung auf 4 Disks zunächst nichts. Immer wenn ein Block einer Teilliste abgearbeitet ist, wird ein nächster Block dieser Teilliste in den Hauptspeicher geladen. Erst wenn der nächste Block vollständig geladen ist, kann das Mergen fortgesetzt werden. </br>
 Der Trick beim Lesen ist es, dass das Mergen fortgesetzt werden kann bevor der Block vollständig in den Hauptspeicher geladen wurde. Das erste Element genügt schon. So können potenziell mehrere Blöcke parallel (jeweils einer pro Teilliste) geladen werden. Dabei kommt es zu einer Verbesserung, sofern diese auf unterschiedlichen Festplatten sind. Man sollte Vorsicht walten lassen, da es eine sehr delikate Implementierung ist. Damit befassen sich unter Anderem Datenbank- oder auch Systemingenieure. </br>
 Beim Schreiben des Outputs werden mehrere Output-Blöcke (hier: 4) verwendet. Einer wird gefüllt während die anderen drei geschrieben werden oder parallel, wenn auf unterschiedliche Festplatten geschrieben wird. </br>
 Die geschätzte Beschleunigung von Phase 2 beträgt einen Faktor von 2 bis 3.</p>
 </section>
-<section id="spiegelung">
-<h3><span class="section-number">1.4.4. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this headline">#</a></h3>
-<p>Die Idee der Spiegelung ist es, dass zwei oder mehr Festplatten identische Kopien halten. Dadurch entsteht mehr Sicherheit vor Datenverlust und man hat einen beschleunigter Lesezugriff. Bei n Festplatten kann es bis zu n mal so schnell sein. </br>
-Beim Lesen in der 2. Phase von TPMMS klappt der Trick wie bei mehreren Disks nicht immer. Es gibt keine Verbesserung, falls Blöcke verschiedener Teillisten auf der gleichen Festplatte liegen. Bei einer Spiegelung kann garantiert werden, dass immer so viele Blöcke unterschiedlicher Teillisten parallel gefüllt werden, wie Spiegelungen vorhanden sind.</br>
-Ein weiterer Vorteil, auch ohne Parallelität bei weniger als n Blöcke gleichzeitig: Es ist möglich die Festplatte auszuwählen, auf die zugegriffen wird. Man sollte die Festplatte wählen, deren Kopf am dichtesten an der relevanten Spur steht.
-</br>
-Ein paar weitere Anmerkungen zu Spiegelungen: Sie sind teuer und verursachen keine Beschleunigung des Schreibzugriffs, aber auch keine Verlangsamung.</p>
-</section>
 <section id="disk-scheduling">
-<h3><span class="section-number">1.4.5. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">1.4.4. </span>Disk Scheduling<a class="headerlink" href="#disk-scheduling" title="Permalink to this headline">#</a></h3>
 <p>Beim Disk Scheduling soll der Disk-Controller entscheiden, welche Zugriffsanweisungen zuerst ausgeführt werden. Das ist nützlich bei vielen kleinen Prozessen auf je wenigen Blöcken. Häufig somit der Fall bei <a class="reference external" href="https://www.oracle.com/de/database/what-is-oltp/">OLTP</a> (Online Transaction Processing). Dabei ist die Erhöhung des Durchsatzes das Ziel.
 </br>
 <strong>Elevator Algorithmus</strong>
 Die Idee des Algorithmus kommt von Fahrstühlen. Ein Fahrstuhl fährt in einem Gebäude hoch und runter und hält an Stockwerken an, wenn jemand ein- oder aussteigen will. Er dreht um, falls weiter oben/unten keiner mehr wartet.</br>
 Analog dazu streicht ein Diskkopf über die Oberfläche einwärts und auswärts und hält an Zylindern an, wenn es eine (oder mehrere) Zugriffsanweisung(en) gibt. Er dreht um, falls in der jeweiligen Richtung keine Anweisungen mehr ausstehen.</p>
 </section>
-<section id="first-come-first-service-vs-elevator-algorithmus">
-<h3><span class="section-number">1.4.6. </span>First-Come-First-Service vs. Elevator Algorithmus<a class="headerlink" href="#first-come-first-service-vs-elevator-algorithmus" title="Permalink to this headline">#</a></h3>
+<section id="spiegelung">
+<h3><span class="section-number">1.4.5. </span>Spiegelung<a class="headerlink" href="#spiegelung" title="Permalink to this headline">#</a></h3>
+<p>Die Idee der Spiegelung ist es, dass zwei oder mehr Festplatten identische Kopien halten. Dadurch entsteht mehr Sicherheit vor Datenverlust und man hat einen beschleunigten Lesezugriff. Bei n Festplatten kann es bis zu n mal so schnell sein. </br>
+Beim Lesen in der 2. Phase von TPMMS klappt der Trick wie bei mehreren Disks nicht immer. Es gibt keine Verbesserung, falls Blöcke verschiedener Teillisten auf der gleichen Festplatte liegen. Bei einer Spiegelung kann garantiert werden, dass immer so viele Blöcke unterschiedlicher Teillisten parallel gefüllt werden, wie Spiegelungen vorhanden sind.</br>
+Ein weiterer Vorteil, auch ohne Parallelität bei weniger als n Blöcke gleichzeitig: Es ist möglich die Festplatte auszuwählen, auf die zugegriffen wird. Man sollte die Festplatte wählen, deren Kopf am dichtesten an der relevanten Spur steht.
+</br>
+Ein paar weitere Anmerkungen zu Spiegelungen: Sie sind teuer und verursachen keine Beschleunigung des Schreibzugriffs, aber auch keine Verlangsamung.</p>
+</section>
+<section id="first-come-first-serve-vs-elevator-algorithmus">
+<h3><span class="section-number">1.4.6. </span>First-Come-First-Serve vs. Elevator Algorithmus<a class="headerlink" href="#first-come-first-serve-vs-elevator-algorithmus" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/FCFS-vs-Elevator-Algo.png"><img alt="FCFS-vs-Elevator-Algo" src="../_images/FCFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
-<p>Das kleine Beispiel zeigt den Vergleich zwischen FCFS und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei nur etwas schneller. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
+<p>Das kleine Beispiel zeigt den Vergleich zwischen First Come First Serve (kurz FCFS) und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei mit 57,52 nur etwas schneller als FCFS mit 71,52. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
 </section>
 <section id="elevator-algorithmus">
 <h3><span class="section-number">1.4.7. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this headline">#</a></h3>
