@@ -1,54 +1,43 @@
 
-
 <!DOCTYPE html>
 
-
-<html lang="en" >
-
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>6. Large Scale Data Management &#8212; Online-Skript Datenbanksysteme II</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -61,92 +50,60 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '06/large-scale-data-management';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="5. Optimierung" href="../05/optimierung.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-    
-    
       
-    
-    
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      <img src="../_static/DBIS_Kurzlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Online-Skript Datenbanksysteme II</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -156,316 +113,897 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01/speicherung.html">1. Speicherung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02/repraesentation.html">2. Repräsentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03/indizes.html">3. Indizes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04/anfrageausfuehrung.html">4. Anfrageausführung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05/optimierung.html">5. Optimierung</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Large Scale Data Management</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/speicherung.html">
+   1. Speicherung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/repraesentation.html">
+   2. Repräsentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03/indizes.html">
+   3. Indizes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/anfrageausfuehrung.html">
+   4. Anfrageausführung
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05/optimierung.html">
+   5. Optimierung
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. Large Scale Data Management
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+    <div id="rtd-footer-container"></div>
+</div>
 
 
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
+          
 
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
 
 
 
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/LUH-DBS/GDBS_Script/main/?urlpath=tree/06/large-scale-data-management.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="btn__text-container">Live Code</span>
+<span class="headerbtn__text-container">Live Code</span>
 </button>
-</li>
+
+      </li>
       
-  </ul>
+    </ul>
+  </div>
 </div>
-
-
-
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F06/large-scale-data-management.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/06/large-scale-data-management.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Large Scale Data Management</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-enabler-virtulization">6.1. Key enabler: Virtulization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-data-processing">6.2. Parallel Data Processing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">6.2.2. Was wir verschwiegen haben…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.2.3. Prominent user of parallel data processing:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.2.4. Basics of Parallel Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.5. Parallel Speedup – Amdahl‘s law</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.6. Parallel Speedup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.2.7. Levels of Parallelism on Hardware</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.2.8. Modes of Query Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.9. Pipeline Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.10. Data Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.11. Basics of Parallel Query Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.12. Parallel Architectures – Shared Memory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.13. Parallel Architectures – Shared Disk</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.14. Parallel Architectures – Shared Nothing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.15. Data Partitioning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.16. Data Partitioning Strategies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.17. Data Parallelism: Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.18. Data Parallelism – Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.19. Parallel Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.20. Notations and Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.21. Parallel Selection / Projection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.22. Parallel Grouping &amp; Aggregation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.23. Parallel Sorting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.25. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.26. Asymmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.27. Parallel Equi-Joins (I)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.28. Parallel Equi-Joins: Three cases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.29. Limits in Parallel Databases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.30. Where traditional databases are unsuitable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.31. Example Use Case: Web Index Creation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.32. An ongoing Re-Design…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.33. Storage Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.34. The Storage Model – Distributed File System</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.35. Retrieving and Analyzing Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.36. Skalierungsmuster</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-hadoop">6.3. Map Reduce &amp; Hadoop</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">6.3.1. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-map-reduce">6.3.2. What is Map/Reduce?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundbausteine">6.3.3. Grundbausteine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-workflow">6.3.4. MapReduce workflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">6.3.4.1. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-illustrated-2">6.3.5. Map Reduce Illustrated (2)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">6.3.5.1. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.3.5.2. Example</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">6.3.6. Parallel DBMS vs. Map/Reduce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">6.3.7. Relational Operators as Map/Reduce jobs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">6.3.8. Hadoop – A map/reduce Framework</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">6.3.9. Hadoop Distributed File System (HDFS)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-map-reduce-engine">6.3.10. Hadoop Map/Reduce Engine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3.11. Hadoop Map/Reduce Engine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fehlertoleranz">6.3.12. Fehlertoleranz</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-hadoop">6.3.13. When to use Hadoop?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">6.3.14. In der Praxis: Komplexe (optimierte) MapReduce Workflows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">6.3.15. Hadoop vs. Parallel DBMS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">6.3.16. In der Praxis: Viele Bibliotheken</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">6.4. Outlook: What about updates/transactions?</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/LUH-DBS/GDBS_Script/issues/new?title=Issue%20on%20page%20%2F06/large-scale-data-management.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/06/large-scale-data-management.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-enabler-virtulization">
+   6.1. Key enabler: Virtulization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallel-data-processing">
+   6.2. Parallel Data Processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">
+     6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">
+     6.2.2. Was wir verschwiegen haben…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">
+     6.2.3. Prominent user of parallel data processing:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics-of-parallel-processing">
+     6.2.4. Basics of Parallel Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">
+     6.2.5. Parallel Speedup – Amdahl‘s law
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-speedup">
+     6.2.6. Parallel Speedup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">
+     6.2.7. Levels of Parallelism on Hardware
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modes-of-query-parallelism">
+     6.2.8. Modes of Query Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipeline-parallelism">
+     6.2.9. Pipeline Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-parallelism">
+     6.2.10. Data Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics-of-parallel-query-processing">
+     6.2.11. Basics of Parallel Query Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-memory">
+     6.2.12. Parallel Architectures – Shared Memory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-disk">
+     6.2.13. Parallel Architectures – Shared Disk
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">
+     6.2.14. Parallel Architectures – Shared Nothing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-partitioning">
+     6.2.15. Data Partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-partitioning-strategies">
+     6.2.16. Data Partitioning Strategies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-parallelism-example">
+     6.2.17. Data Parallelism: Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     6.2.18. Data Parallelism – Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-operators">
+     6.2.19. Parallel Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notations-and-assumptions">
+     6.2.20. Notations and Assumptions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-selection-projection">
+     6.2.21. Parallel Selection / Projection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-grouping-aggregation">
+     6.2.22. Parallel Grouping &amp; Aggregation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-sorting">
+     6.2.23. Parallel Sorting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">
+     6.2.24. Symmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     6.2.25. Symmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">
+     6.2.26. Asymmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-equi-joins-i">
+     6.2.27. Parallel Equi-Joins (I)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">
+     6.2.28. Parallel Equi-Joins: Three cases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limits-in-parallel-databases">
+     6.2.29. Limits in Parallel Databases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">
+     6.2.30. Where traditional databases are unsuitable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-use-case-web-index-creation">
+     6.2.31. Example Use Case: Web Index Creation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-ongoing-re-design">
+     6.2.32. An ongoing Re-Design…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storage-requirements">
+     6.2.33. Storage Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">
+     6.2.34. The Storage Model – Distributed File System
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-and-analyzing-data">
+     6.2.35. Retrieving and Analyzing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalierungsmuster">
+     6.2.36. Skalierungsmuster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-reduce-hadoop">
+   6.3. Map Reduce &amp; Hadoop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">
+     6.3.1. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-map-reduce">
+     6.3.2. What is Map/Reduce?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundbausteine">
+     6.3.3. Grundbausteine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce-workflow">
+     6.3.4. MapReduce workflow
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">
+       6.3.4.1. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-reduce-illustrated-2">
+     6.3.5. Map Reduce Illustrated (2)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">
+       6.3.5.1. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example">
+       6.3.5.2. Example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">
+     6.3.6. Parallel DBMS vs. Map/Reduce
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">
+     6.3.7. Relational Operators as Map/Reduce jobs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">
+     6.3.8. Hadoop – A map/reduce Framework
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">
+     6.3.9. Hadoop Distributed File System (HDFS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-map-reduce-engine">
+     6.3.10. Hadoop Map/Reduce Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     6.3.11. Hadoop Map/Reduce Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fehlertoleranz">
+     6.3.12. Fehlertoleranz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-use-hadoop">
+     6.3.13. When to use Hadoop?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">
+     6.3.14. In der Praxis: Komplexe (optimierte) MapReduce Workflows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">
+     6.3.15. Hadoop vs. Parallel DBMS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">
+     6.3.16. In der Praxis: Viele Bibliotheken
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">
+   6.4. Outlook: What about updates/transactions?
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Large Scale Data Management</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-enabler-virtulization">
+   6.1. Key enabler: Virtulization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallel-data-processing">
+   6.2. Parallel Data Processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">
+     6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">
+     6.2.2. Was wir verschwiegen haben…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">
+     6.2.3. Prominent user of parallel data processing:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics-of-parallel-processing">
+     6.2.4. Basics of Parallel Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">
+     6.2.5. Parallel Speedup – Amdahl‘s law
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-speedup">
+     6.2.6. Parallel Speedup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">
+     6.2.7. Levels of Parallelism on Hardware
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modes-of-query-parallelism">
+     6.2.8. Modes of Query Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipeline-parallelism">
+     6.2.9. Pipeline Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-parallelism">
+     6.2.10. Data Parallelism
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basics-of-parallel-query-processing">
+     6.2.11. Basics of Parallel Query Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-memory">
+     6.2.12. Parallel Architectures – Shared Memory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-disk">
+     6.2.13. Parallel Architectures – Shared Disk
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">
+     6.2.14. Parallel Architectures – Shared Nothing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-partitioning">
+     6.2.15. Data Partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-partitioning-strategies">
+     6.2.16. Data Partitioning Strategies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-parallelism-example">
+     6.2.17. Data Parallelism: Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     6.2.18. Data Parallelism – Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-operators">
+     6.2.19. Parallel Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notations-and-assumptions">
+     6.2.20. Notations and Assumptions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-selection-projection">
+     6.2.21. Parallel Selection / Projection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-grouping-aggregation">
+     6.2.22. Parallel Grouping &amp; Aggregation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-sorting">
+     6.2.23. Parallel Sorting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">
+     6.2.24. Symmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     6.2.25. Symmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">
+     6.2.26. Asymmetric Fragment-and-Replicate Join
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-equi-joins-i">
+     6.2.27. Parallel Equi-Joins (I)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">
+     6.2.28. Parallel Equi-Joins: Three cases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limits-in-parallel-databases">
+     6.2.29. Limits in Parallel Databases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">
+     6.2.30. Where traditional databases are unsuitable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-use-case-web-index-creation">
+     6.2.31. Example Use Case: Web Index Creation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-ongoing-re-design">
+     6.2.32. An ongoing Re-Design…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storage-requirements">
+     6.2.33. Storage Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">
+     6.2.34. The Storage Model – Distributed File System
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieving-and-analyzing-data">
+     6.2.35. Retrieving and Analyzing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skalierungsmuster">
+     6.2.36. Skalierungsmuster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-reduce-hadoop">
+   6.3. Map Reduce &amp; Hadoop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">
+     6.3.1. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-map-reduce">
+     6.3.2. What is Map/Reduce?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grundbausteine">
+     6.3.3. Grundbausteine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce-workflow">
+     6.3.4. MapReduce workflow
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">
+       6.3.4.1. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-reduce-illustrated-2">
+     6.3.5. Map Reduce Illustrated (2)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">
+       6.3.5.1. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example">
+       6.3.5.2. Example
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">
+     6.3.6. Parallel DBMS vs. Map/Reduce
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">
+     6.3.7. Relational Operators as Map/Reduce jobs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">
+     6.3.8. Hadoop – A map/reduce Framework
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">
+     6.3.9. Hadoop Distributed File System (HDFS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-map-reduce-engine">
+     6.3.10. Hadoop Map/Reduce Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     6.3.11. Hadoop Map/Reduce Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fehlertoleranz">
+     6.3.12. Fehlertoleranz
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-use-hadoop">
+     6.3.13. When to use Hadoop?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">
+     6.3.14. In der Praxis: Komplexe (optimierte) MapReduce Workflows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">
+     6.3.15. Hadoop vs. Parallel DBMS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">
+     6.3.16. In der Praxis: Viele Bibliotheken
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">
+   6.4. Outlook: What about updates/transactions?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <section class="tex2jax_ignore mathjax_ignore" id="large-scale-data-management">
-<h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Permalink to this headline">#</a></h1>
 <p>In diesem Kapitel geht es insbesondere darum, die Verfahren und Datenbankoperationen, die wir bisher kennengelernt haben, hinsichtlich paralleler Verarbeitung zu betrachten und auch die Kostenelemente, die dann eine Rolle spielen.</p>
 <p>Beim Large Scale Data Management geht es um sehr große Datenmengen. Da reicht es dann nicht mehr, nur eine Datenbank zu haben, man muss nun auch über die Verteilung, Server und Nebenläufigkeiten nachdenken.</p>
 <a class="reference internal image-reference" href="../_images/Large-scale-Data-Management.png"><img alt="Large-scale-Data-Management" src="../_images/Large-scale-Data-Management.png" style="width: 500px;" /></a>
@@ -475,27 +1013,27 @@ document.write(`
 <p>Zur Verdeutlichung, über was für Datenmengen wir bei Big Data reden:</p>
 <p>Google ist ein klassisches Beispiel für ein Datenproduzierendes und -verwaltendes Unternehmen. Dort werden jeden Tag 20 PB an Daten verarbeitet. Das sind Billionen von Zeilen, Tausende/Millionen Spalten und Tabellen, aber auch strukturierte Daten wie Text, Bilder und Videos. Würde man versuchen, diese 20 PB mit 50 MB/s zu lesen, würde das 12 Jahre dauern. Aus diesem Grund werden die Daten partioniert und verteilt verarbeitet.</p>
 <section id="key-enabler-virtulization">
-<h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Permalink to this headline">#</a></h2>
 <p>Die beiden Varianten Operational und Analytic lassen sich mit der Virtualization managen. Hierbei versucht man entweder ein logisches System auf viele physische Systeme (Load Balancing) oder andersherum mehrere logische Systeme auf ein physisches System abzubilden (Multy-Tenancy).</p>
 <a class="reference internal image-reference" href="../_images/Virtualization.png"><img alt="Virtualization" src="../_images/Virtualization.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-data-processing">
-<h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="../_images/Overview_3.png"><img alt="Overview_3" src="../_images/Overview_3.png" style="width: 500px;" /></a>
 <section id="was-bisher-geschah-serielle-verarbeitung-single-threaded">
-<h3><span class="section-number">6.2.1. </span>Was bisher geschah: Serielle Verarbeitung/Single Threaded<a class="headerlink" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Was bisher geschah: Serielle Verarbeitung/Single Threaded<a class="headerlink" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded" title="Permalink to this headline">#</a></h3>
 <p>Bisher haben wir immer von einem Computer mit mehreren Festplatten gesprochen und damit auch ein wenig über parallele Plattenzugriffe. Diese hatten insbesondere auch immer nur einen Kern. Das heißt, bei jeder Operation wurden die Blöcke nacheinander durch nur einen Kern abgearbeitet. Außerdem spielten auch Synchronisation und Kommunikation keine Rolle, da Anfragen in nur einem Thread bearbeitet wurden. Dies wollen wir nun erweitern.</p>
 <a class="reference internal image-reference" href="../_images/serial-single-threaded.png"><img alt="serial-single-threaded" src="../_images/serial-single-threaded.png" style="width: 500px;" /></a>
 </section>
 <section id="was-wir-verschwiegen-haben">
-<h3><span class="section-number">6.2.2. </span>Was wir verschwiegen haben…<a class="headerlink" href="#was-wir-verschwiegen-haben" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>Was wir verschwiegen haben…<a class="headerlink" href="#was-wir-verschwiegen-haben" title="Permalink to this headline">#</a></h3>
 <p>Das Datenvolumen wächst stetig. Data Warehouses mit 1 EB sind nicht untypisch. Manche Organisationen produzieren täglich mehr als 1 PB an neuen Daten. Das entspricht 1.000.000.000.000.000 Byte (1 quadrillion).
 Manche Systeme, wie beispielsweise Finanzinstitute, Onlineshops und soziale Netzwerke, haben einen sehr hohen Durchsatz (throughput) von Transaktionen.
 Deshalb ist es wichtig zu überlegen, wie die Zugriffe über die Netzwerke verteilt werden.
 Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung ist teuer und über die Daten muss mehrfach iteriert werden. Da reicht eine Single-CPU- oder Single-Node-Architektur nicht mehr aus und auch Moore’s Law ist hier nicht mehr anwendbar. Die Lösung: <strong>Parallele Datenverarbeitung</strong>.</p>
 </section>
 <section id="prominent-user-of-parallel-data-processing">
-<h3><span class="section-number">6.2.3. </span>Prominent user of parallel data processing:<a class="headerlink" href="#prominent-user-of-parallel-data-processing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.3. </span>Prominent user of parallel data processing:<a class="headerlink" href="#prominent-user-of-parallel-data-processing" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Big Tech (Google, Facebook)</p>
 <ul>
@@ -521,7 +1059,7 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 <p>Amazon DynamoDB – DynamoDB powers multiple high-traffic Amazon properties and systems including Alexa, the Amazon sites, and all Amazon fulfillment centers. Over the course of Prime Day, these sources made trillions of calls to the DynamoDB API. DynamoDB maintained high availability while delivering single-digit millisecond responses and peaking at 105.2 million requests per second.</p>
 </section>
 <section id="basics-of-parallel-processing">
-<h3><span class="section-number">6.2.4. </span>Basics of Parallel Processing<a class="headerlink" href="#basics-of-parallel-processing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.4. </span>Basics of Parallel Processing<a class="headerlink" href="#basics-of-parallel-processing" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Parallel Speedup</p>
 <ul>
@@ -550,7 +1088,7 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 </ul>
 </section>
 <section id="parallel-speedup-amdahls-law">
-<h3><span class="section-number">6.2.5. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.5. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Speedup: Sp = T1/Tp</p>
 <ul>
@@ -575,11 +1113,11 @@ and</p></li>
 </ul>
 </section>
 <section id="parallel-speedup">
-<h3><span class="section-number">6.2.6. </span>Parallel Speedup<a class="headerlink" href="#parallel-speedup" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.6. </span>Parallel Speedup<a class="headerlink" href="#parallel-speedup" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Parallel-Speedup.png"><img alt="Parallel-Speedup" src="../_images/Parallel-Speedup.png" style="width: 500px;" /></a>
 </section>
 <section id="levels-of-parallelism-on-hardware">
-<h3><span class="section-number">6.2.7. </span>Levels of Parallelism on Hardware<a class="headerlink" href="#levels-of-parallelism-on-hardware" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.7. </span>Levels of Parallelism on Hardware<a class="headerlink" href="#levels-of-parallelism-on-hardware" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Instruction-level Parallelism (Prozessoranweisungen)</p>
 <ul>
@@ -605,7 +1143,7 @@ and</p></li>
 </ul>
 </section>
 <section id="modes-of-query-parallelism">
-<h3><span class="section-number">6.2.8. </span>Modes of Query Parallelism<a class="headerlink" href="#modes-of-query-parallelism" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.8. </span>Modes of Query Parallelism<a class="headerlink" href="#modes-of-query-parallelism" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Inter-Query Parallelism (multiple concurrent queries)</p>
 <ul>
@@ -630,7 +1168,7 @@ and</p></li>
 </ul>
 </section>
 <section id="pipeline-parallelism">
-<h3><span class="section-number">6.2.9. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.9. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Pipeline-Parallelism.png"><img alt="Pipeline-Parallelism" src="../_images/Pipeline-Parallelism.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><p>Pipeline parallelism</p>
@@ -653,7 +1191,7 @@ and</p></li>
 </ul>
 </section>
 <section id="data-parallelism">
-<h3><span class="section-number">6.2.10. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.10. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Pipeline parallelism is not always applicable
  data parallelism</p></li>
@@ -682,7 +1220,7 @@ and</p></li>
 </ul>
 </section>
 <section id="basics-of-parallel-query-processing">
-<h3><span class="section-number">6.2.11. </span>Basics of Parallel Query Processing<a class="headerlink" href="#basics-of-parallel-query-processing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.11. </span>Basics of Parallel Query Processing<a class="headerlink" href="#basics-of-parallel-query-processing" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Levels of Resource Sharing</p>
 <ul>
@@ -705,7 +1243,7 @@ and</p></li>
 </ul>
 </section>
 <section id="parallel-architectures-shared-memory">
-<h3><span class="section-number">6.2.12. </span>Parallel Architectures – Shared Memory<a class="headerlink" href="#parallel-architectures-shared-memory" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.12. </span>Parallel Architectures – Shared Memory<a class="headerlink" href="#parallel-architectures-shared-memory" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Several CPUs share a single memory and disk (array)</p></li>
 <li><p>Communication over a single common bus</p></li>
@@ -718,7 +1256,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-architectures-shared-disk">
-<h3><span class="section-number">6.2.13. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.13. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Several nodes with multiple CPUs, each node has its private memory</p></li>
 <li><p>Single attached disk (array): Often NAS, SAN, etc…</p></li>
@@ -726,7 +1264,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-architectures-shared-nothing">
-<h3><span class="section-number">6.2.14. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.14. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Each node has it own set of CPUs, memory and disks attached</p></li>
 <li><p>Most commonly use architecture for large-scale data management</p></li>
@@ -740,7 +1278,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-nothing.png"><img alt="shared-nothing" src="../_images/shared-nothing.png" style="width: 500px;" /></a>
 </section>
 <section id="data-partitioning">
-<h3><span class="section-number">6.2.15. </span>Data Partitioning<a class="headerlink" href="#data-partitioning" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.15. </span>Data Partitioning<a class="headerlink" href="#data-partitioning" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Partitioning the data means creating a set of possibly disjoint
 sub-sets</p>
@@ -766,7 +1304,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="data-partitioning-strategies">
-<h3><span class="section-number">6.2.16. </span>Data Partitioning Strategies<a class="headerlink" href="#data-partitioning-strategies" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.16. </span>Data Partitioning Strategies<a class="headerlink" href="#data-partitioning-strategies" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Round robin</p>
 <ul>
@@ -792,7 +1330,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="data-parallelism-example">
-<h3><span class="section-number">6.2.17. </span>Data Parallelism: Example<a class="headerlink" href="#data-parallelism-example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.17. </span>Data Parallelism: Example<a class="headerlink" href="#data-parallelism-example" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Client sends a SQL query to one of the cluster nodes</p>
 <ul>
@@ -816,7 +1354,7 @@ sub-sets</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 500px;" /></a>
 </section>
 <section id="id1">
-<h3><span class="section-number">6.2.18. </span>Data Parallelism – Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.18. </span>Data Parallelism – Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>For shared-nothing &amp; shared-disk</p>
 <ul>
@@ -830,7 +1368,7 @@ sub-sets</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-operators">
-<h3><span class="section-number">6.2.19. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.19. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Ideally: Operate as much as possible on individual partitions of the data</p>
 <ul>
@@ -860,7 +1398,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="notations-and-assumptions">
-<h3><span class="section-number">6.2.20. </span>Notations and Assumptions<a class="headerlink" href="#notations-and-assumptions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.20. </span>Notations and Assumptions<a class="headerlink" href="#notations-and-assumptions" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>S	Relation S</p></li>
 <li><p>S[i,h]	Partition i of relation S according to partitioning scheme h</p></li>
@@ -887,7 +1425,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-selection-projection">
-<h3><span class="section-number">6.2.21. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.21. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Selection and projection can be parallelized very efficiently</p>
 <ul>
@@ -905,7 +1443,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-grouping-aggregation">
-<h3><span class="section-number">6.2.22. </span>Parallel Grouping &amp; Aggregation<a class="headerlink" href="#parallel-grouping-aggregation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.22. </span>Parallel Grouping &amp; Aggregation<a class="headerlink" href="#parallel-grouping-aggregation" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Two phases</p>
 <ol class="arabic simple">
@@ -929,7 +1467,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-sorting">
-<h3><span class="section-number">6.2.23. </span>Parallel Sorting<a class="headerlink" href="#parallel-sorting" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.23. </span>Parallel Sorting<a class="headerlink" href="#parallel-sorting" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Range partitioned sort: partition by range, then sort</p>
 <ul>
@@ -955,7 +1493,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="symmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.24. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.24. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Joining two relations R and S requires looking at every tuple of the Cartesian product.</p></li>
 <li><p>Parallel databases need to combine every partition of R with every partition of S.</p></li>
@@ -973,11 +1511,11 @@ transfer cost <br>
 </ul>
 </section>
 <section id="id2">
-<h3><span class="section-number">6.2.25. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.25. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
 </section>
 <section id="asymmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.26. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.26. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>We can do better, if relation S is much smaller than R.</p></li>
 <li><p>Idea: Reuse the existing partitioning of R and replicate the whole relation S to each node.</p></li>
@@ -988,7 +1526,7 @@ transfer cost <br>
 <a class="reference internal image-reference" href="../_images/Asymmetric-Fragment-and-Replicate-Join.png"><img alt="Asymmetric-Fragment-and-Replicate-Join" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-equi-joins-i">
-<h3><span class="section-number">6.2.27. </span>Parallel Equi-Joins (I)<a class="headerlink" href="#parallel-equi-joins-i" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.27. </span>Parallel Equi-Joins (I)<a class="headerlink" href="#parallel-equi-joins-i" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>A special class of joins that are more suited for parallelization are natural- and equi-joins.</p></li>
 <li><p>Idea: Partition relations R and S using the same partition scheme over the join key.</p>
@@ -1007,7 +1545,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="parallel-equi-joins-three-cases">
-<h3><span class="section-number">6.2.28. </span>Parallel Equi-Joins: Three cases<a class="headerlink" href="#parallel-equi-joins-three-cases" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.28. </span>Parallel Equi-Joins: Three cases<a class="headerlink" href="#parallel-equi-joins-three-cases" title="Permalink to this headline">#</a></h3>
 <ol class="arabic simple">
 <li><p>Both R and S are already partitioned over the join key with the same partitioning scheme</p>
 <ul class="simple">
@@ -1044,7 +1582,7 @@ transfer cost <br>
 </ol>
 </section>
 <section id="limits-in-parallel-databases">
-<h3><span class="section-number">6.2.29. </span>Limits in Parallel Databases<a class="headerlink" href="#limits-in-parallel-databases" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.29. </span>Limits in Parallel Databases<a class="headerlink" href="#limits-in-parallel-databases" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Database clusters tend to scale until 64 or 128 nodes</p>
 <ul>
@@ -1069,7 +1607,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="where-traditional-databases-are-unsuitable">
-<h3><span class="section-number">6.2.30. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.30. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Analysis over raw (unstructured) data</p>
 <ul>
@@ -1101,7 +1639,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="example-use-case-web-index-creation">
-<h3><span class="section-number">6.2.31. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.31. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>A Search Engine scenario:</p>
 <ul>
@@ -1134,7 +1672,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="an-ongoing-re-design">
-<h3><span class="section-number">6.2.32. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.32. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Driven by companies like Google, Facebook, Yahoo, Apple, Microsoft</p></li>
 <li><p>Use heavily distributed system</p>
@@ -1155,7 +1693,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="storage-requirements">
-<h3><span class="section-number">6.2.33. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.33. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Extremely large files: Terabytes to Petabytes</p></li>
 <li><p>High availability: Data must be kept replicated</p></li>
@@ -1182,7 +1720,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="the-storage-model-distributed-file-system">
-<h3><span class="section-number">6.2.34. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.34. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>The file system</p>
 <ul>
@@ -1217,7 +1755,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 <a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
 </section>
 <section id="retrieving-and-analyzing-data">
-<h3><span class="section-number">6.2.35. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.35. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Data is stored as custom records in files</p>
 <ul>
@@ -1242,7 +1780,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="skalierungsmuster">
-<h3><span class="section-number">6.2.36. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.36. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Phase 0: Daten verteilen (split)</p></li>
 <li><p>Phase 1: Berechnungen auf Teilmengen der Daten (map)</p></li>
@@ -1274,13 +1812,13 @@ in cluster of 1000 – 5000 nodes</p></li>
 </section>
 </section>
 <section id="map-reduce-hadoop">
-<h2><span class="section-number">6.3. </span>Map Reduce &amp; Hadoop<a class="headerlink" href="#map-reduce-hadoop" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Map Reduce &amp; Hadoop<a class="headerlink" href="#map-reduce-hadoop" title="Permalink to this headline">#</a></h2>
 <section id="mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">
-<h3><span class="section-number">6.3.1. </span>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”<a class="headerlink" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”<a class="headerlink" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png"><img alt="MapReduce-Simplified-data-processing-on-large-clusters" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" style="width: 500px;" /></a>
 </section>
 <section id="what-is-map-reduce">
-<h3><span class="section-number">6.3.2. </span>What is Map/Reduce?<a class="headerlink" href="#what-is-map-reduce" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.2. </span>What is Map/Reduce?<a class="headerlink" href="#what-is-map-reduce" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Programming model</p>
 <ul>
@@ -1310,7 +1848,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="grundbausteine">
-<h3><span class="section-number">6.3.3. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.3. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Datenmodel</p>
 <ul>
@@ -1352,10 +1890,10 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="mapreduce-workflow">
-<h3><span class="section-number">6.3.4. </span>MapReduce workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.4. </span>MapReduce workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-workflow.png"><img alt="MapReduce-workflow" src="../_images/MapReduce-workflow.png" style="width: 500px;" /></a>
 <section id="aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">
-<h4><span class="section-number">6.3.4.1. </span>Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus<a class="headerlink" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.3.4.1. </span>Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus<a class="headerlink" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus" title="Permalink to this headline">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="p">){</span>
 	  <span class="k">for</span> <span class="n">each</span> <span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
 	     <span class="n">emit</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>	 	 
@@ -1375,10 +1913,10 @@ in cluster of 1000 – 5000 nodes</p></li>
 </section>
 </section>
 <section id="map-reduce-illustrated-2">
-<h3><span class="section-number">6.3.5. </span>Map Reduce Illustrated (2)<a class="headerlink" href="#map-reduce-illustrated-2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.5. </span>Map Reduce Illustrated (2)<a class="headerlink" href="#map-reduce-illustrated-2" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-Illustrated-2.png"><img alt="MapReduce-Illustrated-2" src="../_images/MapReduce-Illustrated-2.png" style="width: 500px;" /></a>
 <section id="aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">
-<h4><span class="section-number">6.3.5.1. </span>Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar<a class="headerlink" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.3.5.1. </span>Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar<a class="headerlink" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar" title="Permalink to this headline">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>map(person, friendlist){
 	  for each (friend in friendlist)
       if(friend &lt; person)
@@ -1402,7 +1940,7 @@ reduce(, friendlists){
 </ul>
 </section>
 <section id="example">
-<h4><span class="section-number">6.3.5.2. </span>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.3.5.2. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h4>
 <p><strong>Friends lists:</strong> <br>
 A -&gt; B C D <br>
 B -&gt; A C D E <br>
@@ -1455,11 +1993,11 @@ E -&gt; B C D <br></p>
 </section>
 </section>
 <section id="parallel-dbms-vs-map-reduce">
-<h3><span class="section-number">6.3.6. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.6. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Parallel_DBMS_vs_Map_Reduce.png"><img alt="Parallel_DBMS_vs_Map_Reduce" src="../_images/Parallel_DBMS_vs_Map_Reduce.png" style="width: 500px;" /></a>
 </section>
 <section id="relational-operators-as-map-reduce-jobs">
-<h3><span class="section-number">6.3.7. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.7. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>SQL Query</strong></p></li>
 </ul>
@@ -1509,7 +2047,7 @@ GROUP BY year
 </div>
 </section>
 <section id="hadoop-a-map-reduce-framework">
-<h3><span class="section-number">6.3.8. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.8. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Hadoop: Apache Top Level Project</p>
 <ul>
@@ -1535,7 +2073,7 @@ GROUP BY year
 <a class="reference internal image-reference" href="../_images/hadoop.png"><img alt="hadoop" src="../_images/hadoop.png" style="width: 500px;" /></a>
 </section>
 <section id="hadoop-distributed-file-system-hdfs">
-<h3><span class="section-number">6.3.9. </span>Hadoop Distributed File System (HDFS)<a class="headerlink" href="#hadoop-distributed-file-system-hdfs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.9. </span>Hadoop Distributed File System (HDFS)<a class="headerlink" href="#hadoop-distributed-file-system-hdfs" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Master-Slave Architecture</p>
 <ul>
@@ -1567,7 +2105,7 @@ GROUP BY year
 <a class="reference internal image-reference" href="../_images/HDFS.png"><img alt="HDFS" src="../_images/HDFS.png" style="width: 500px;" /></a>
 </section>
 <section id="hadoop-map-reduce-engine">
-<h3><span class="section-number">6.3.10. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.10. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Permalink to this headline">#</a></h3>
 <p>Jobs are executed like a Unix pipeline: <br></p>
 <ul class="simple">
 <li><p>cat * | grep | sort | uniq -c | cat    &gt; output <br></p></li>
@@ -1602,11 +2140,11 @@ GROUP BY year
 </ul>
 </section>
 <section id="id3">
-<h3><span class="section-number">6.3.11. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.11. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Hadoop-Map_Reduce-engine.png"><img alt="Hadoop-Map_Reduce-engine" src="../_images/Hadoop-Map_Reduce-engine.png" style="width: 500px;" /></a>
 </section>
 <section id="fehlertoleranz">
-<h3><span class="section-number">6.3.12. </span>Fehlertoleranz<a class="headerlink" href="#fehlertoleranz" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.12. </span>Fehlertoleranz<a class="headerlink" href="#fehlertoleranz" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Viele Daten  …  in langen Prozessen  …  auf vielen Maschinen</p></li>
 <li><p>Verteiltes Dateisystem (DFS / HDFS)</p>
@@ -1633,7 +2171,7 @@ GROUP BY year
 </ul>
 </section>
 <section id="when-to-use-hadoop">
-<h3><span class="section-number">6.3.13. </span>When to use Hadoop?<a class="headerlink" href="#when-to-use-hadoop" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.13. </span>When to use Hadoop?<a class="headerlink" href="#when-to-use-hadoop" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Good fit for batch processing applications that need to touch all your data:</p>
 <ul>
@@ -1656,7 +2194,7 @@ GROUP BY year
 </ul>
 </section>
 <section id="in-der-praxis-komplexe-optimierte-mapreduce-workflows">
-<h3><span class="section-number">6.3.14. </span>In der Praxis: Komplexe (optimierte) MapReduce Workflows<a class="headerlink" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.14. </span>In der Praxis: Komplexe (optimierte) MapReduce Workflows<a class="headerlink" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Neue (relationale) Operatoren</p>
 <ul>
@@ -1670,7 +2208,7 @@ GROUP BY year
 <a class="reference internal image-reference" href="../_images/Komplexe-optimierte-MapReduce-workflows.png"><img alt="Komplexe-optimierte-MapReduce-workflows" src="../_images/Komplexe-optimierte-MapReduce-workflows.png" style="width: 500px;" /></a>
 </section>
 <section id="hadoop-vs-parallel-dbms">
-<h3><span class="section-number">6.3.15. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.15. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>2012</p></li>
 </ul>
@@ -1682,7 +2220,7 @@ GROUP BY year
 <a class="reference internal image-reference" href="../_images/Hadoop-vs-Parallel-DBMS.png"><img alt="Hadoop-vs-Parallel-DBMS" src="../_images/Hadoop-vs-Parallel-DBMS.png" style="width: 500px;" /></a>
 </section>
 <section id="in-der-praxis-viele-bibliotheken">
-<h3><span class="section-number">6.3.16. </span>In der Praxis: Viele Bibliotheken<a class="headerlink" href="#in-der-praxis-viele-bibliotheken" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.16. </span>In der Praxis: Viele Bibliotheken<a class="headerlink" href="#in-der-praxis-viele-bibliotheken" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Startpunkt: Hadoop</p>
 <ul>
@@ -1707,7 +2245,7 @@ GROUP BY year
 </section>
 </section>
 <section id="outlook-what-about-updates-transactions">
-<h2><span class="section-number">6.4. </span>Outlook: What about updates/transactions?<a class="headerlink" href="#outlook-what-about-updates-transactions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.4. </span>Outlook: What about updates/transactions?<a class="headerlink" href="#outlook-what-about-updates-transactions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>OLTP style applications that are beyond relational databases’ capabilities exist as well.</p></li>
 <li><p>Some applications still require fast and efficient lookup and retrieval of small amounts of data</p>
@@ -1741,7 +2279,7 @@ GROUP BY year
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./06"
         },
         predefinedOutput: true
@@ -1749,162 +2287,43 @@ GROUP BY year
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../05/optimierung.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Optimierung</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../05/optimierung.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5. </span>Optimierung</p>
+        </div>
     </a>
-</div></div>
-  
 </div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-enabler-virtulization">6.1. Key enabler: Virtulization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-data-processing">6.2. Parallel Data Processing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">6.2.2. Was wir verschwiegen haben…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.2.3. Prominent user of parallel data processing:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.2.4. Basics of Parallel Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.5. Parallel Speedup – Amdahl‘s law</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.6. Parallel Speedup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.2.7. Levels of Parallelism on Hardware</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.2.8. Modes of Query Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.9. Pipeline Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.10. Data Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.11. Basics of Parallel Query Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.12. Parallel Architectures – Shared Memory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.13. Parallel Architectures – Shared Disk</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.14. Parallel Architectures – Shared Nothing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.15. Data Partitioning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.16. Data Partitioning Strategies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.17. Data Parallelism: Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.18. Data Parallelism – Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.19. Parallel Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.20. Notations and Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.21. Parallel Selection / Projection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.22. Parallel Grouping &amp; Aggregation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.23. Parallel Sorting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.25. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.26. Asymmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.27. Parallel Equi-Joins (I)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.28. Parallel Equi-Joins: Three cases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.29. Limits in Parallel Databases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.30. Where traditional databases are unsuitable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.31. Example Use Case: Web Index Creation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.32. An ongoing Re-Design…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.33. Storage Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.34. The Storage Model – Distributed File System</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.35. Retrieving and Analyzing Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.36. Skalierungsmuster</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-hadoop">6.3. Map Reduce &amp; Hadoop</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">6.3.1. “MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-map-reduce">6.3.2. What is Map/Reduce?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundbausteine">6.3.3. Grundbausteine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapreduce-workflow">6.3.4. MapReduce workflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">6.3.4.1. Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-illustrated-2">6.3.5. Map Reduce Illustrated (2)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">6.3.5.1. Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">6.3.5.2. Example</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-dbms-vs-map-reduce">6.3.6. Parallel DBMS vs. Map/Reduce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relational-operators-as-map-reduce-jobs">6.3.7. Relational Operators as Map/Reduce jobs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-a-map-reduce-framework">6.3.8. Hadoop – A map/reduce Framework</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-distributed-file-system-hdfs">6.3.9. Hadoop Distributed File System (HDFS)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-map-reduce-engine">6.3.10. Hadoop Map/Reduce Engine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3.11. Hadoop Map/Reduce Engine</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fehlertoleranz">6.3.12. Fehlertoleranz</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-hadoop">6.3.13. When to use Hadoop?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows">6.3.14. In der Praxis: Komplexe (optimierte) MapReduce Workflows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hadoop-vs-parallel-dbms">6.3.15. Hadoop vs. Parallel DBMS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-der-praxis-viele-bibliotheken">6.3.16. In der Praxis: Viele Bibliotheken</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlook-what-about-updates-transactions">6.4. Outlook: What about updates/transactions?</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Prof. Dr. Ziawasch Abedjan
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
+            </footer>
+        </div>
     </div>
-  </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Prof. Dr. Ziawasch Abedjan<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
