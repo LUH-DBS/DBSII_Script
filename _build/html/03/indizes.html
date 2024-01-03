@@ -826,61 +826,26 @@ Wir brauchen nun ein neues Schlüssel/Pointer-Paar. Da die 40 auch hier das erst
 <br></p>
 <a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_4.png"><img alt="Einfügen-in-B-Bäume-Beispiel_4" src="../_images/Einfügen-in-B-Bäume-Beispiel_4.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Einfügen</strong></p>
-<ul class="simple">
-<li><p>Sei h die Höhe des B-Baums</p>
-<ul>
-<li><p>Meist h = 3</p></li>
-</ul>
-</li>
-<li><p>Suche nach Blattknoten: h</p></li>
-<li><p>Falls keine Teilung nötig: Gesamtkosten h + 1</p>
-<ul>
-<li><p>h Blöcke lesen, 1 Index-Block schreiben</p></li>
-</ul>
-</li>
-<li><p>Falls Teilung nötig</p>
-<ul>
-<li><p>Worst-case: Bis zur Wurzel</p></li>
-<li><p>Selbst Caching nützt nichts, da Knoten geschrieben werden müssen</p></li>
-<li><p>Insgesamt: 3 h + 1</p>
-<ul>
-<li><p>Auf jeder Ebene Suche und Überlaufbehandlung</p></li>
-<li><ul>
-<li><p>neue Wurzel schreiben</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Die Kosten für das Einfügen in einen B-Baum sind abhängig von der Höhe <em>h</em> des Baumes. Im Rahmen der Vorlesung haben wir meist B-Bäume der Höhe 3.
+Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig, muss man nur <em>h</em> Blöcke lesen und 1 Index-Block schreiben. Damit liegen die Gesamtkosten bei <em>h + 1</em>. Falls doch eine Teilung notwendig ist, muss man im schlimmsten Fall bis nach oben zu der Wurzel. Da hilft auch Caching nicht, da die Knoten geschrieben werden müssen. Insgesamt kommt man auf <em>3 h + 1</em>, da man auf jeder Ebene suchen, teilen und gegebenenfalls Überlauf behandeln und zusätzlich eine neue Wurzel generieren muss.</p>
 </section>
 <section id="loschen-aus-b-baumen">
 <h4><span class="section-number">3.2.7.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Suche entsprechenden Knoten</p></li>
-<li><p>Lösche Schlüssel</p></li>
-<li><p>Falls immer noch minimale Menge an Schlüsseln im Knoten</p>
-<ul>
-<li><p>Nichts tun</p></li>
-</ul>
-</li>
-<li><p>Falls zu wenig Schlüssel im Knoten: Merge (Verschmelzen)</p>
-<ul>
-<li><p>Falls ein Geschwisterknoten (links oder rechts) mehr als die minimale Schlüsselmenge hat, „klaue“ einen Schlüssel.</p>
-<ul>
-<li><p>Gegebenenfalls (fast immer) Schlüsselwerte der Eltern anpassen</p></li>
-</ul>
-</li>
-<li><p>Falls nicht: Es existieren zwei Geschwister im Baum mit minimaler und sub-minimaler Schlüsselmenge</p>
-<ul>
-<li><p>=&gt; Diese Knoten können vereinigt werden.</p></li>
-<li><p>Schlüsselwerte der Eltern anpassen (gegebenenfalls rekursiv im Baum nach oben löschen)</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Beim löschen auf einem B-Baum wird der entsprechende Knoten gesucht und der Schlüssel dann gelöscht. Befindet sich dann immer noch die minimale Menge an Schlüsseln im Knoten ist alles gut und wir müssen nichts tun. Sind aber zu wenig Schlüssel im Knoten, müssen wir <em>mergen</em>, d.h. wir können uns aus den Geschwisterknoten links oder rechts die mehr als die minimale Schlüsselmenge haben, einen Schlüssel “klauen”. Dabei müssen auch (fast) immer die Elternknoten angepasst werden. Ist das mergen aber nicht möglich, da die Geschwisterknoten nur die minimale oder sub-minimale Schlüsselmenge besitzen, kann man diese aber vereinen. Auch hier müssen die Elternknoten dann angepasst oder ggf. rekursiv nach oben gelöscht werden.</p>
+<p>Schauen wir uns dazu ein Beispiel an. Es soll der Datensatz mit dem Schlüssel 7 gelöscht werden.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel.png"><img alt="Löschen-aus-B-Bäumen-Beispiel" src="../_images/Löschen-aus-B-Bäumen-Beispiel.png" style="width: 500px;" /></a>
+<p>Ohne die 7 sind zu wenig Schlüssel im Knoten, also nehmen wir uns aus dem linken Geschwisterknoten die 5 dazu und passen dann noch den Elternknoten an.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_2" src="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png" style="width: 500px;" /></a>
+<p>Jetzt soll die 11 entfernt werden.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_3" src="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png" style="width: 500px;" /></a>
+<p>Auch hier sind jetzt zu wenig Schlüssel im Knoten. In dem Fall können die Geschwisterknoten aber nichts mehr abgeben, also mergen wir mit dem linken Geschwisterknoten.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_4" src="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png" style="width: 500px;" /></a>
+<p>Den leeren Knoten können wir löschen und müssen dann noch den Elterknoten anpassen, da dieser zu klein ist. Die 5 wird da aber nicht mehr gebraucht, also kann diese auch entfernt werden.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png" style="width: 500px;" /></a>
+<p>Der zweite Pointer des jetzt leeren Knoten zeigt nun auf den rechten Knoten. Jetzt passt es aber nicht mehr mit der 13 in der Wurzel, deshalb müssen wir hier auch noch eine Anpassung vornehmen.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png" style="width: 500px;" /></a>
+<p>Wir ziehen die 13 aus der Wurzel runter und die 23 dafür hoch.</p>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Löschen</strong></p>
 <ul class="simple">
 <li><p>Suche und lokales Löschen: h + 1</p>
@@ -907,13 +872,6 @@ Wir brauchen nun ein neues Schlüssel/Pointer-Paar. Da die 40 auch hier das erst
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel.png"><img alt="Löschen-aus-B-Bäumen-Beispiel" src="../_images/Löschen-aus-B-Bäumen-Beispiel.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_2" src="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_3" src="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_4" src="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="effizienz-von-b-baumen">
