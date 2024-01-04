@@ -847,196 +847,46 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p>Wir ziehen die 13 aus der Wurzel runter und die 23 dafür hoch.</p>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Löschen</strong></p>
-<ul class="simple">
-<li><p>Suche und lokales Löschen: h + 1</p>
-<ul>
-<li><p>Schreibe Blattknoten</p></li>
-</ul>
-</li>
-<li><p>Bei merge mit Geschwisterknoten: h + 5</p>
-<ul>
-<li><p>Prüfe rechts und links</p></li>
-<li><p>Schreibe Block und veränderten Nachbarn</p></li>
-<li><p>Schreibe Elternknoten</p></li>
-</ul>
-</li>
-<li><p>Bei merge bis zur Wurzel: 3h - 2</p></li>
-</ul>
+<p>Bei der Suche und dem lokale Löschen kommen wir durch das Lesen des Baumes und das Schreiben des Blattknoten auf <em>h + 1</em>. Beim mergen mit Geschwisterknoten geht man den Baum durch bis nach unten, prüft die Knoten links und rechts und schreibt den Block und den veränderten Nachbarn sowie den Elternknoten. Die Gesamtkosten davon betragen <em>h * 5</em>. Merged man bis zur Wurzel kommt man auf <em>3h - 2</em>.</p>
 <p><strong>Löschen aus B-Bäumen?</strong></p>
-<ul class="simple">
-<li><p>Annahme: Tendenziell wachsen Datenmengen</p></li>
-<li><p>Folgerung: Nie Knoten des B-Baum löschen</p>
-<ul>
-<li><p>Knoten, die durch Löschen zu klein werden, werden früher oder später wieder gefüllt.</p></li>
-<li><p>Grabstein auf Datenblock genügt, B-Baum muss nicht geändert werden</p></li>
-</ul>
-</li>
-</ul>
+<p>Tendenziell kann man davon ausgehen, dass Datenmengen wachsen. Deshalb geht es selten darum, Knoten eines B-Baums zu löschen, da man davon ausgehen kann, dass die Knoten irgendwann wieder gefüllt werden. Damit die Invarianten noch funktionieren, kann man zur Not Grabsteine hinterlegen.</p>
 </section>
 </section>
 <section id="effizienz-von-b-baumen">
 <h3><span class="section-number">3.2.8. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Permalink to this heading">#</a></h3>
-<p>Suche, Einfügen und Löschen sollen möglichst wenig I/O-Operationen benötigen.</p>
-<ul class="simple">
-<li><p>Je größer n gewählt wird, desto seltener müssen Blöcke verschmolzen oder getrennt werden.</p>
-<ul>
-<li><p>Meist auf Blattknoten beschränkt</p></li>
-</ul>
-</li>
-<li><p>Suche (best case)</p>
-<ul>
-<li><p>Anzahl I/Os entspricht der Höhe des Baums</p></li>
-<li><ul>
-<li><p>1 I/O auf den Daten für Lesen</p></li>
-</ul>
-</li>
-<li><p>oder + 3 I/O auf den Daten für Einfügen oder Löschen</p></li>
-</ul>
-</li>
-<li><p>Typische Höhe eines B-Baums: 3</p>
-<ul>
-<li><p>340 Schlüssel-Pointer-Paare pro Block</p></li>
-<li><p>Annahme: Füllstand durchschnittlich 255</p></li>
-<li><p>=&gt; 255 innere Knoten = &gt; 255² = 65025 Blätter = 255³ Pointer</p></li>
-<li><p>Insgesamt über 16 Mio. Datensätze</p></li>
-<li><p>Maximal: 340³ = 39 Mio. Datensätze</p></li>
-</ul>
-</li>
-<li><p>Zugriff mit 2 I/Os: Nur Wurzel im Hauptspeicher</p></li>
-<li><p>Zugriff mit 1 I/O: Wurzel und 255 innere Knoten im Hauptspeicher</p></li>
-</ul>
+<p>Für das Suchen, Einfügen und Löschen sollen möglichst wenig I/O-Operationen benötigt werden. Abhängig davon wie groß <em>n</em> gewählt wird, müssen seltener Blöcke verschmolzen oder getrennt werden. Im besten Fall entsprechen die I/Os bei der Suche der Höhe des Baums + 1 I/O für das Lesen der Daten oder + 3 für das Einfügen und Löschen der Daten.</p>
+<p>Gehen wir von <em>h = 3</em> aus und 340 Schlüssel-Pointer-Paaren pro Block. Bei einem Füllstand von durchschnittlich 255 haben wir 255 innere Knoten und 255² = 65025 Blätter = 255³ Pointer. Das sind insgesamt 16 Mio. Datensätze von maximal 340³ = 39 Mio. Datensätzen.</p>
+<p>Greifen wir nur mit 2 I/O-Operationen auf den Baum zu, befindet sich nur die Wurzel im Hauptspeicher. Befinden sich zusätzlich auch noch 255 innere Knoten im Hauptspeicher, brauchen wir 1 I/O-Operation.</p>
 <section id="bulk-loading">
 <h4><span class="section-number">3.2.8.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Einfügevarianten</p>
-<ul>
-<li><p>Einfügen von Daten in Relation, die bereits mit existierendem B-Baum indiziert ist.</p></li>
-<li><p>Erstellung eines neuen B-Baums auf existierenden Daten</p>
-<ul>
-<li><p>Sukzessives Einfügen jedes Datensatzes ist ineffizient.</p></li>
-<li><p>Immer wieder über die Wurzel suchen</p></li>
-<li><p>Viel I/O für Indexblöcke, die nicht im Hauptspeicher sind.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Besser: Vorsortierung</p>
-<ul>
-<li><p>Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke</p></li>
-<li><p>Schritt 2: Sortierung der Paare nach Suchschlüssel</p></li>
-<li><p>Schritt 3: Füge nun sukzessive die Paare ein</p></li>
-</ul>
-</li>
-</ul>
+<p>Anders als beim klassichen Einfügen in einen B-Baum kann man, wenn man die Liste bereits kennt, bulk-loading anwenden und den Datensatz sofort indexieren. Dabei wird der Datensatz vorsortiert. Man erzeugt Schlüssel-Pointer Paare für alle Blöcke, sortiert diese Paare nach Suchschlüssel und fügt sie sukzessiv ein.</p>
+<p>Schauen wir uns dazu ein Beispiel an.</p>
 <p><strong>Beispiel</strong></p>
-<ul class="simple">
-<li><p>n = 3</p></li>
-<li><p>Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47</p></li>
-<li><p>Erzeuge halbgefüllte Blattknoten</p></li>
-</ul>
+<p>Wir haben <em>n = 3</em> und folgende schon sortierte Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47. Es sollen halbgefüllte Blattknoten erzeugt werden. Wir fügen also ein:</p>
 <a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel.png"><img alt="bulk-loading-Beispiel" src="../_images/bulk-loading-Beispiel.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Erzeuge Wurzel für erste beiden Blattknoten</p></li>
-</ul>
+<p>Jetzt erzeugen wir den Elternknoten für die ersten beiden Blattknoten. Dafür nehmen wir die erste Zahl des zweiten Knotens.</p>
 <a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_2.png"><img alt="bulk-loading-Beispiel_2" src="../_images/bulk-loading-Beispiel_2.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Füge nächstes Blatt ein</p></li>
-</ul>
+<p>Wir fügen nun das nächste Blatt hinzu und nehmen die 11 in den inneren Knoten auf.</p>
 <a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_3.png"><img alt="bulk-loading-Beispiel_3" src="../_images/bulk-loading-Beispiel_3.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Füge nächstes Blatt ein</p></li>
-</ul>
+<p>Jetzt könnte man natürlich auch noch das vierte Blatt hinzu nehmen und die 17 unserem inneren Knoten beifügen. Dies machen wir aber nicht, da es am Ende nicht mehr mit der Wurzel passen würde. Stattdessen bilden wir unseren rechten inneren Knoten analog und nehmen hier den Blattknoten mit der 17 hinzu.</p>
 <a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_4.png"><img alt="bulk-loading-Beispiel_4" src="../_images/bulk-loading-Beispiel_4.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Füge nächstes Blatt ein</p></li>
-</ul>
-<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_5.png"><img alt="bulk-loading-Beispiel_5" src="../_images/bulk-loading-Beispiel_5.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Füge nächstes Blatt ein</p></li>
-</ul>
-<a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_6.png"><img alt="bulk-loading-Beispiel_6" src="../_images/bulk-loading-Beispiel_6.png" style="width: 500px;" /></a>
-<ul class="simple">
-<li><p>Füge letztes Blatt ein</p></li>
-</ul>
+<p>Jetzt brauchen wir noch die Wurzel. Wir wählen die 17, da dies am besten passt.</p>
 <a class="reference internal image-reference" href="../_images/bulk-loading-Beispiel_7.png"><img alt="bulk-loading-Beispiel_7" src="../_images/bulk-loading-Beispiel_7.png" style="width: 500px;" /></a>
+<p>Diese Einfügevariante ist besonders effizient, da man nur auf die Indexblöcke im Cache zugreift und besonders günstig, da nur einmal alle Knoten aufgeschrieben werden.</p>
+<p>Dies geht aber noch besser, wenn man einen höheren Füllstand in den Blättern erlaubt. Das schauen wir uns im folgenden genauer an.</p>
 <p><strong>Bulk-Loading mit hohem Füllstand</strong></p>
-<ul class="simple">
-<li><p>Schritt 1: Erzeuge Schlüssel-Pointer Paare für alle Blöcke</p></li>
-<li><p>Schritt 2: Sortierung der Paare nach Suchschlüssel</p></li>
-<li><p>Schritt 3: Erzeuge volle B-Baum Blätter</p></li>
-<li><p>Schritt 4: Konstruiere innere Knoten aufgrund der Blätter</p></li>
-<li><p>Ergebnis: Perfekter Füllstand</p></li>
-<li><p>Anwendungen:</p>
-<ul>
-<li><p>Read-only Relationen</p></li>
-<li><p>Append-only Relationen</p></li>
-</ul>
-</li>
-</ul>
+<p>Erlaubt man einen hohen Füllstand beim bulk-loading, bleibt das Vorgehen zunächst das Gleiche, jedoch werden dann <strong>volle</strong> B-Baum Blätter erzeugt. Dadurch erzielt man einen perfekten Füllstand. Der Nachteil: Will man dann etwas einfügen wird es kompliziert. Deshalb handelt es sich dabei meist um Read-only oder Append-only Relationen.</p>
 </section>
 </section>
 <section id="b-baum-varianten-b-baum-ohne">
 <h3><span class="section-number">3.2.9. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Bisher: B+ Baum</p>
-<ul>
-<li><p>Pointer auf Datensätze nur in Blattknoten</p></li>
-</ul>
-</li>
-<li><p>B-Baum</p>
-<ul>
-<li><p>Pointer auf Datensätze in allen Knoten</p></li>
-</ul>
-</li>
-<li><p>Vorteil: Durchschnittlich schnellere Suche als in B±Bäumen</p></li>
-<li><p>Nachteil: Blätter und innere Knoten haben unterschiedliche Struktur</p>
-<ul>
-<li><p>Verwaltung schwieriger</p></li>
-</ul>
-</li>
-<li><p>Nachteil: Weniger bushy; Platz wird für Pointer auf Datensätze „verschwendet“</p>
-<ul>
-<li><p>Dadurch größere Höhe</p></li>
-</ul>
-</li>
-<li><p>Nachteil: Löschen ist komplizierter</p>
-<ul>
-<li><p>Löschung kann auch in inneren Knoten geschehen.</p></li>
-<li><p>Schlüssel von einem Blatt muss gegebenenfalls nach oben wandern.</p></li>
-</ul>
-</li>
-</ul>
+<p>Es existieren unterschiedliche Varianten von B-Bäumen. Bisher besprochen haben wir zum einen B±Bäume, in denen die Pointer auf die Datensätze nur in den Blattknoten vorkommen. Und zum anderen B-Bäume, bei denen die Pointer auf den Datensätzen in allen Knoten vorhanden sind. Der Vorteil dabei ist, dass die Suche durchschnittlich schneller ist, da man nicht jedes Mal bis ganz nach unten in dem Baum gehen muss. Allerdings ist die Verwaltung und Implementierung schwieriger, da die Blätter und innere Knoten eine unterschiedliche Struktur haben. Außerdem sind sie weniger “buschig”, weil Platz für Pointer “verschwendet” wird. Das führt dazu, dass sie potenziell höher sind. Auch das Löschen ist komplizierter, da man auch in inneren Knoten löschen kann und ein Schlüssel von einem Blatt gegebenenfalls nach oben wandern muss.</p>
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten.png"><img alt="B-Baum-Varianten" src="../_images/B-Baum-Varianten.png" style="width: 500px;" /></a>
-<p><em><em>B</em>-Bäume</em>*</p>
-<ul class="simple">
-<li><p>B*-Baum</p>
-<ul>
-<li><p>Bei Überlauf werden nicht gleich zwei halb-leere Knoten erzeugt.</p></li>
-<li><p>Stattdessen Neuverteilung über beide Nachbar-Blätter</p></li>
-<li><p>Falls nicht möglich, erzeuge 3 neue Blätter aus 2 alten Blättern</p></li>
-<li><p>Dadurch bessere Speicherausnutzung: Mindestens 66%</p></li>
-</ul>
-</li>
-</ul>
+<p><strong><span class="math notranslate nohighlight">\({B}^\ast\)</span>-Bäume</strong></p>
+<p>Eine Verbesserung der B+ Bäume sind die B*-Bäume. Bei einem Überlauf werder nicht gleich zwei halbleere Knoten erzeugt. Stattdessen gibt es eine Neuverteilung über beide Nachbar-Blätter. Falls das nicht möglich ist werden drei neue Blätter aus zwei alten erzeugt. Dadurch wird der Speicher mit mindestens 66% viel besser genutzt.</p>
 <p><strong>Präfix-B±Baum</strong></p>
-<ul class="simple">
-<li><p>Präfix-B±Baum</p>
-<ul>
-<li><p>Falls Suchschlüssel ein String ist =&gt; Hoher Speicherbedarf</p></li>
-<li><p>Besser: Speichere nur „Trennwert“</p></li>
-<li><p>Was trennt „Korn“ von „Licht“?</p></li>
-<li><p>Am besten: Kleinster Trennwert</p>
-<ul>
-<li><p>„L“</p></li>
-<li><p>Präfix von „Licht“</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Präfix-B±Bäume sind eine weitere B-Baum Variante. Mit diesen kann man schnell herausfinden, wo bestimmte Wörter vorkommen, indem man mit dem Anfangsbuchstaben anfängt und dem Pfad entsprechend weiter folgt. Sollte der Suchschlüssel aber ein String sein hat man einen sehr hohen Speicherbedarf. Deshalb ist es besser wenn man nur “Trennwerte” speichert. Am besten den kleinesten Trennwert, beispielsweise “L” als Präfix von “Licht”.</p>
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten_2.png"><img alt="B-Baum-Varianten_2" src="../_images/B-Baum-Varianten_2.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Bücher.png"><img alt="Bücher" src="../_images/Bücher.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Bücher_2.png"><img alt="Bücher_2" src="../_images/Bücher_2.png" style="width: 500px;" /></a>
 <p><strong>B±Bäume für BLOBs (und CLOBs)</strong></p>
 <ul class="simple">
 <li><p>Idee: Suchschlüssel repräsentiert Offsets im BLOB anstatt Suchschlüssel</p>
