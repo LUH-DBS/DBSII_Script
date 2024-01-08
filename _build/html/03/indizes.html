@@ -936,12 +936,12 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p>Falls kein Platz ist und j = i müssen wir auch unser i erhöhen, was dazu führt, dass sich das Bucketarray verdoppelt. Die Datenblöcke bleiben dabei unverändert. Zwei neue Pointer zeigen zunächst auf den gleichen alten Block, dann müssen wir den relevanten Block splitten. Haben wir das gemacht, können wir so vorgehen wie zuvor, denn jetzt ist wieder j &lt; i.</p>
 <p>Schauen wir uns dazu ein paar Beispiele an.</p>
 <p>Wir möchten den Datensatz mit dem Hashwert 1010 einfügen. Wir haben i = 1 und j = 1. 1010 beginnt mit einer 1, das bedeutet, dass der Datensatz in den zweiten Bucket gehört. Dieser ist jedoch voll, also müssen wir den splitten. Infolgedessen müssen wir unser i und unser j um 1 erhöhen und haben jetzt 4 Buckets. Für den ersten Block ist immer noch nur das Erste Bit relevant, bei den beiden anderen Blöcken mussten wir aber unser j erhöhen, also sind da jetzt die ersten <strong>beiden</strong> Bits relevant.</p>
-<img src="pictures/Einfügen-erweiterbare-Hashtabellen.png" alt="Einfügen-erweiterbare-Hashtabellen" width="500" style="background-color: white;"/>
+<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen.png"><img alt="Einfügen-erweiterbare-Hashtabellen" src="../_images/Einfügen-erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
 <br> 
 <p>Nun möchten wir die Datensätze mit den Hashwerten 0000 und 0111 einfügen. Da Platz ist können wir 0000 einfach in den ersten Block schreiben. 0111 würde auch in den ersten Block gehören, dieser ist jetzt aber voll, deshalb müssen wir wieder splitten. Unser i bleibt gleich, aber unser j müssen wir um 1 erhöhen. Damit sind in den ersten beiden Blöcken nun die ersten <strong>beiden</strong> Bits relevant. 0111 schreiben wir somit in den neuen Block auf den jetzt der Bucket 01 zeigt.</p>
-<img src="pictures/Einfügen-erweiterbare-Hashtabellen_2.png" alt="Einfügen-erweiterbare-Hashtabellen_2" width="500" style="background-color: white;"/>
+<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_2.png"><img alt="Einfügen-erweiterbare-Hashtabellen_2" src="../_images/Einfügen-erweiterbare-Hashtabellen_2.png" style="width: 500px;" /></a>
 <br> 
-<p>In dem letzten Beispiel wollen wir den Datensatz mit dem Hashwert 1000 einfügen. Der Wert gehört in den dritten Block, dieser ist aber voll, also splitten wir wieder. Da i = j ist müssen wir beides wieder um 1 erhöhen. Damit haben wir jetzt 8 Buckets und in den beiden neuen Blöcken sind jetzt die ersten <strong>drei</strong> Bits relevant. Somit können wir jetzt 1000 in den dritten Block schreiben.</p>
+<p>Als letztes Beispiel wollen wir den Datensatz mit dem Hashwert 1000 einfügen. Der Wert gehört in den dritten Block, dieser ist aber voll, also splitten wir wieder. Da i = j ist müssen wir beides wieder um 1 erhöhen. Damit haben wir jetzt 8 Buckets und in den beiden neuen Blöcken sind jetzt die ersten <strong>drei</strong> Bits relevant. Somit passt 1000 jetzt in den dritten Block.</p>
 <a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_3.png"><img alt="Einfügen-erweiterbare-Hashtabellen_3" src="../_images/Einfügen-erweiterbare-Hashtabellen_3.png" style="width: 500px;" /></a>
 </section>
 <section id="analyse-erweiterbarer-hashtabellen">
@@ -952,67 +952,22 @@ Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch di
 </section>
 <section id="lineare-hashtabellen">
 <h3><span class="section-number">3.2.12. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Permalink to this heading">#</a></h3>
-<p>Zweite Variante dynamischer Hashtabellen.</p>
-<p>Ziel: Anzahl Buckets wachse nur langsam.</p>
-<ul class="simple">
-<li><p>Anzahl n der Buckets so gewählt, dass Datenblocks zu ca. 85% gefüllt sind.</p></li>
-<li><p>Overflow Blocks sind zugelassen.</p>
-<ul>
-<li><p>Durchschnittliche Anzahl Overflow Blocks pro Block: &lt;&lt;1</p></li>
-</ul>
-</li>
-<li><p>log2n Bits zur Identifizierung der Buckets</p>
-<ul>
-<li><p>Wähle die jeweils letzten Bits des Hashwerts</p></li>
-</ul>
-</li>
-</ul>
+<p>Die zweite Variante dynamischer Hashtabellen sind die <em>linearen Hashtabellen</em>. Das Ziel dieser ist es, dass die Anzahl an Buckets nur langsam wächst. Dies erreicht man, indem <em>n</em>, die Anzahl der Buckets, so gewählt wird, dass die Datenblöcke nur zu ca. 85% gefüllt sind. Overflowblocks sind weiterhin zugelassen, aber die durchschnittliche Anzahl pro Block soll weniger als eins betragen. Zur Identifizierung der Buckets benötigen wir log<span class="math notranslate nohighlight">\(_{2}\)</span>(n) und wählen jeweils die letzten Bits des Hashwerts.</p>
 <a class="reference internal image-reference" href="../_images/Lineare-Hashtabellen.png"><img alt="Lineare-Hashtabellen" src="../_images/Lineare-Hashtabellen.png" style="width: 500px;" /></a>
 <section id="lineare-hashtabellen-einfugen">
 <h4><span class="section-number">3.2.12.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Berechne h(K)</p></li>
-<li><p>Betrachte letzte i Bits; interpretiere als Integer m</p></li>
-<li><p>Falls m &lt; n: Füge Datensatz in Bucket m ein.</p></li>
-<li><p>Falls m ≥ n:</p>
-<ul>
-<li><p>=&gt; Bucket m existiert noch nicht</p></li>
-</ul>
-</li>
-<li><p>Füge Datensatz in Bucket m–2i-1 ein.</p>
-<ul>
-<li><p>D.h. erstes Bit des Schlüssels wird zu 0 (vorher 1).</p></li>
-</ul>
-</li>
-<li><p>Falls kein Platz: Erzeuge Overflow Block</p></li>
-<li><p>Berechne r/n</p>
-<ul>
-<li><p>Falls zu hoch (z.B. ≥ 1,7): Erzeuge einen neuen Bucket (n++)</p></li>
-<li><p>Neuer Bucket hat nichts mit betroffenem Bucket zu tun.</p></li>
-</ul>
-</li>
-<li><p>Falls nun n &gt; 2i: i++</p>
-<ul>
-<li><p>D.h. alle Bitsequenzen erhalten eine 0 am Anfang</p></li>
-<li><p>Physisch ändert sich nichts</p></li>
-</ul>
-</li>
-</ul>
-<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einfügen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br> <br>
-<a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br> <br> <br>
-<a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a></p>
+<p>Bei dem Einfügen in lineare Hashtabellen müssen wir als erstes wieder h(K) berechnen. Dann schauen wir uns die <strong>letzten</strong> i Bits an und interpretieren diese als Integer <em>m</em>. Falls m &lt; n fügen wir den Datensatz in den Bucket m ein. Falls m ≥ n existiert der Bucket m noch nicht. Dann müssen wir den Datensatz in den Bucket m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> einfügen, d.h. das erste Bit des Schlüssels wird zu 0 (vorher 1). Ist kein Platz mehr, müssen wir einen Overflowblock erzeugen. Dafür berechnen wir <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span>. Ist das Ergebnis zu hoch, beispielsweise ≥ 1,7, erzeugen wir einen neuen Bucket (n++), welcher aber nichts mit dem betroffenen Bucket zu tun hat. Falls nun n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> müssen wir auch unser i um eins erhöhen, das bedeutet, alle Bitsequenzen erhalten eine 0 am Anfang. Physisch ändert sich aber nichts.</p>
+<p>Dazu schauen wir uns ein paar Beispiele an. Im ersten Beispiel möchten wir 0101 einfügen. Wir haben i = 1, n = 2 und r = 3. Das letzte Bit von 0101 interpretieren wir als m und da m &lt; n gilt können wir 0101 in den zweiten Block schreiben. Da wir jetzt einen Datensatz mehr haben, müssen wir unser r um eins erhöhen (r++). Nun ist aber <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7. Aus dem Grund müssen wir auch n um eins erhöhen. Da jetzt n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> gilt, müssen wir auch i um eins erhöhen. Das alles führt dazu, dass nun die letzten <strong>beiden</strong> Bits relevant sind und wir einen Bucket mehr benötigen. Wir splitten den Bucket 00, da 1010 dort jetzt nicht mehr hingehört. Die 1111 im zweiten Block darf dort bleiben, da die letzten beiden Bits 3 ergeben und damit m ≥ n erfüllen. Nach dieser Regel gehört 1111 in den (m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> )-ten Block, also in den Block 01.</p>
+<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einfügen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br></p>
+<p>Jetzt möchten wir 0001 einfügen. Der Datensatz gehört in den Bucket 01. Hier ist aber kein Platz mehr, also erzeugen wir einen Overflowblock. Das können wir machen, da  <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7 gilt. i bleibt unverändert, da n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> nicht verletzt wird.</p>
+<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br></p>
+<p>Nun soll 0111 eingefügt werden. Es gilt wieder m ≥ n, sodass der Wert in den (m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> )-ten Bucket gehört. Da wir jetzt einen Datensatz mehr haben, erhöht sich unser r, sodass  <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7 nicht mehr erfüllt ist. Das bedeutet, wir erhöhen n, erzeugen einen neuen Bucket und müssen wieder splitten. Die Einträge aus dem Overflowblock passen jetzt in den Bucket 11 und der Overflowblock kann gelöscht werden.</p>
+<a class="reference internal image-reference" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a>
 </section>
 <section id="hashing-vs-b-baum">
 <h4><span class="section-number">3.2.12.2. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Hashing effizient zur Feststellung der Existenz eines Wertes</p>
-<ul>
-<li><p>Overflow blocks nötig bei doppelten Schlüsseln</p></li>
-</ul>
-</li>
-<li><p>B-Baum effizient für Bereichsanfragen und hält Daten sortiert vor</p></li>
-<li><p>Indexerzeugung in SQL:</p></li>
-</ul>
+<p>Hashing ist effizient, wenn man die Existenz eines Wertes feststellen möchte. Bei doppelten Schlüsseln sind Overflowblocks nötig. B-Bäume hingegen halten die Daten sortiert und sind effizienter, wenn es um Bereichsanfragen geht.</p>
+<p>In SQL sieht die Indexerzeugung wie folgt aus:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="p">[</span> <span class="n">UNIQUE</span> <span class="p">]</span> <span class="n">INDEX</span> <span class="n">indexname</span>
 <span class="n">ON</span> <span class="n">table</span> <span class="p">(</span> <span class="n">column</span> <span class="p">[</span> <span class="n">ASC</span> <span class="o">|</span> <span class="n">DESC</span> <span class="p">]</span>
 <span class="p">[</span> <span class="p">,</span> <span class="n">column</span> <span class="p">[</span> <span class="n">ASC</span> <span class="o">|</span> <span class="n">DESC</span> <span class="p">]</span> <span class="o">...</span> <span class="p">]</span> <span class="p">)</span>
@@ -1020,13 +975,9 @@ Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch di
 <span class="p">[</span><span class="n">PCTFREE</span> <span class="n">integer</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- UNIQUE erlaubt NULL Werte
-- PCTFREE bestimmt Füllgrad
-- Keine Angabe über Art des Index
-- Keine Angabe über Parameter
-- Manchmal Hersteller-spezifische Syntax für Parameter
-</pre></div>
-</div>
+<p>Mit CREATE erstellt man einen UNIQUE Index, also einen Index der NULL Werte erlaubt und gibt diesem einen Namen. Für die Übersichtlichkeit enthält der Indexname im Optimalfall auch den Tabellennamen. Des Weiteren kann man angeben, ob eine bestimmte Tabellenspalte sortiert werden soll oder nicht, ob die Daten geclustered werden, also zusammenliegend vorkommen sollen und welchen Füllgrad (PCTFREE) ein Block haben soll. Im Standard SQL ist es allerdings nicht möglich, Angaben zu der Art des Index oder den Parametern zu machen.</p>
+<p>Wir haben nun Hashfunktionen kennengelernt und gelernt, dass bei Hashtabellen das Wachstum nicht außer Acht gelassen werden darf. Die beiden Varianten <em>erweiterbare</em> und <em>lineare</em> Hashtabellen sind gute Lösungen, um die Probleme von statischen Hashtabellen zu umgehen. Des Weiteren haben wir in dem Kapitel auch noch einige andere Möglichkeiten der Indexierung kennengelernt, wie unter anderem die Indirektion mit Sekundärindizes, der Indexierung mittels invertierter Indizes und natürlich B-Bäumen.
+Im nächsten Kapitel befassen wir uns mit der Anfrageausführung.</p>
 </section>
 </section>
 </section>
