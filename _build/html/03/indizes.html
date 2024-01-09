@@ -767,7 +767,7 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 <section id="b-baume-auf-nicht-primarschlusseln">
 <h4><span class="section-number">3.2.5.11. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this heading">#</a></h4>
 <p>Haben wir B-Bäume auf nicht-Primärschlüsseln, ändert sich die Bedeutung der Pointer auf den inneren Ebenen, da es jetzt vorkommen kann, dass wir Duplikate in unseren Blättern haben.</p>
-<p>Gegeben sind wieder die Schlüssel K <span class="math notranslate nohighlight">\(_{1}\)</span> bis K <span class="math notranslate nohighlight">\(_{j}\)</span>. K <span class="math notranslate nohighlight">\(_{i}\)</span> ist hierbei der kleinste <em>neue</em> Schlüsselwert, der vom (j+1)-ten Pointer erreichbar ist. Das bedeutet, es gibt keinen Schlüssel K <span class="math notranslate nohighlight">\(_{i}\)</span> im linken Teilbaum, aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (j+1)-ten Pointer. Das Problem ist: Es gibt nicht immer einen solchen Schlüssel.</p>
+<p>Gegeben sind wieder die Schlüssel <span class="math notranslate nohighlight">\(K_{1}\)</span> bis <span class="math notranslate nohighlight">\(K_{j}\)</span>. <span class="math notranslate nohighlight">\(K_{i}\)</span> sei der kleinste <em>neue</em> Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist. Das bedeutet, es gibt keinen Schlüssel <span class="math notranslate nohighlight">\(K_{i}\)</span> im linken Teilbaum, aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer. Das Problem ist: Es gibt nicht immer einen solchen Schlüssel. Manchmal taucht ein Wert schon in voher indizierten Blöcken auf. In dem Fall merkt man sich dies mit einem Nullpointer, wie man im Beispiel unten sehen kann. Da die 13 von dem Block mit dem Schlüssel 7 noch erreicht werden kann, wäre der kleinste neue Schlüssel hier die 17. Diese befindet sich aber schon in der Wurzel, also würden wir den nächsthöheren Wert, also die 23 nehmen. Diese taucht aber auch in zwei weiteren Blöcken auf, sodass wir hier einen Nullpointer verwenden müssen.</p>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png" style="width: 500px;" /></a>
 </section>
@@ -789,19 +789,21 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 </section>
 <section id="bereichsanfragen-range-queries">
 <h4><span class="section-number">3.2.6.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this heading">#</a></h4>
-<p>Anfragen mit Ungleichheit in WHERE-Klausel</p>
+<p>Anfrage mit Ungleichheit in der WHERE-Klausel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">40</span>
 </pre></div>
 </div>
+<p>Die Anfrage liest aus der Relation die Blöcke, die größer als 40 sind, ab dem vorletzten Block.</p>
+<p>Mit B-Bäumen lassen sich Ungleichheiten, also die Anfrage über bestimmte Bereiche von Werten, effizient behandeln.</p>
+<p>Suchen wir zum Beispiel in dem Bereich [a,b], suchen wir zunächst einen Blattknoten der a enthält. Die Suche führen wir solange weiter, bis wir bei b ankommen. Dann können wir unsere Suche abschließen. Haben wir keinen B-Baum, muss die Suche eventuell intensiviert und die Liste vorher sortiert werden.</p>
+<p>Bei offenen Bereichen, wie [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p>
+<p>Im Folgenden ein Beispiel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">25</span>
 </pre></div>
 </div>
-<p>Mit B-Bäumen lassen sich Ungleichheiten, also die Anfrage über bestimmte Bereiche von Werten, effizient behandeln.</p>
-<p>Suchen wir zum Beispiel in dem Bereich [a,b], suchen wir zunächst einen Blattknoten der a enthält. Die Suche führen wir solange weiter, bis wir bei b ankommen. Dann können wir unsere Suche abschließen. Haben wir keinen B-Baum, muss die Suche eventuell intensiviert und die Liste vorher sortiert werden.</p>
-<p>Bei offenen Bereichen, wie [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p>
-<p>Im Folgenden ein Beispiel: Wir suchen alle Schlüssel zwischen 10 und 25. Zunächst suchen wir die 10 und gehen links runter in den Block mit der 7 und der 11. Von da schauen wir uns die Blöcke rechts an, bis wir den Block mit der 23 und der 29 erreichen. Da die 29 größer als 25 ist, ist unsere Suche hier beendet.</p>
+<p>Wir suchen alle Schlüssel zwischen 10 und 25. Zunächst suchen wir die 10 und gehen links runter in den Block mit der 7 und der 11. Von da schauen wir uns die Blöcke rechts an, bis wir den Block mit der 23 und der 29 erreichen. Da die 29 größer als 25 ist, ist unsere Suche hier beendet.</p>
 <a class="reference internal image-reference" href="../_images/Bereichsanfragen.png"><img alt="Bereichsanfragen" src="../_images/Bereichsanfragen.png" style="width: 500px;" /></a>
 <p>Schauen wir uns nun an, wie man B-Baume updated.</p>
 </section>
@@ -847,7 +849,7 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p>Wir ziehen die 13 aus der Wurzel runter und die 23 dafür hoch.</p>
 <a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Löschen</strong></p>
-<p>Bei der Suche und dem lokale Löschen kommen wir durch das Lesen des Baumes und das Schreiben des Blattknoten auf <em>h + 1</em>. Beim mergen mit Geschwisterknoten geht man den Baum durch bis nach unten, prüft die Knoten links und rechts und schreibt den Block und den veränderten Nachbarn sowie den Elternknoten. Die Gesamtkosten davon betragen <em>h * 5</em>. Merged man bis zur Wurzel kommt man auf <em>3h - 2</em>.</p>
+<p>Bei der Suche und dem lokalen Löschen kommen wir durch das Lesen des Baumes und das Schreiben des Blattknoten auf <em>h + 1</em>. Beim mergen mit Geschwisterknoten geht man den Baum durch bis nach unten, prüft die Knoten links und rechts und schreibt den Block und den veränderten Nachbarn sowie den Elternknoten. Die Gesamtkosten davon betragen <em>h + 5</em>. Merged man hoch bis zur Wurzel, liegen die Kosten ungefähr im Bereich <em>3h</em>. In der Vorlesung wird z.B. auch von <em>3h - 2</em> gesprochen.</p>
 <p><strong>Löschen aus B-Bäumen?</strong></p>
 <p>Tendenziell kann man davon ausgehen, dass Datenmengen wachsen. Deshalb geht es selten darum, Knoten eines B-Baums zu löschen, da man davon ausgehen kann, dass die Knoten irgendwann wieder gefüllt werden. Damit die Invarianten noch funktionieren, kann man zur Not Grabsteine hinterlegen.</p>
 </section>
