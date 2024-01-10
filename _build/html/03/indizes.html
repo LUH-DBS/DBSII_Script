@@ -535,7 +535,7 @@ Mit einem dichtbesetzten Index ist das möglich. Gleiches gilt für einen Semi-J
 </section>
 <section id="indizes-fur-nicht-eindeutige-suchschlussel">
 <h3><span class="section-number">3.1.5. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this heading">#</a></h3>
-<p>Bisher haben wir angenommen, das unser Suchschlüssel auch ein Schlüssel ist bzw. nur maximal einmal in unserer Relation vorkommt. Jetzt betrachten wir die Indexwahl, wenn der Suchschlüssel nicht-eindeutig ist. Wir nehmen weiterhin an, dass die Relation nach unserem Suchschlüssel sortiert ist.
+<p>Bisher haben wir angenommen, dass unser Suchschlüssel auch ein Schlüssel ist bzw. nur maximal einmal in unserer Relation vorkommt. Jetzt betrachten wir die Indexwahl, wenn der Suchschlüssel nicht eindeutig ist. Wir nehmen weiterhin an, dass die Relation nach unserem Suchschlüssel sortiert ist.
 <br><br>
 <strong>Idee 1: Dichtbesetzter Index</strong>
 <br>
@@ -573,6 +573,8 @@ Die Anfragebearbeitung ist so einfacher:</p>
 </ul>
 <p>Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr folgt.</p>
 <a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" style="width: 500px;" /></a>
+<br>
+<p>Nun schauen wir uns an, wie sich Einfüg-, Update- und Löschoperationen auf unsere Daten auswirken.</p>
 </section>
 <section id="anderungsoperationen">
 <h3><span class="section-number">3.1.6. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this heading">#</a></h3>
@@ -597,19 +599,22 @@ Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Bloc
 <p><strong>Beispiel 4: Dünnbesetzter Index</strong></p>
 <p>Eine weitere Möglichkeit die 15 einzufügen ist mit einem Overflow Block. Der Block 1 ist weiterhin voll. Der Datensatz 20 wird in einen Overflow Block verschoben und der Datensatz 15 wird eingefügt. Der Index bleibt in diesem Fall gleich.</p>
 <a class="reference internal image-reference" href="../_images/Änderungsoperationen_4.png"><img alt="Änderungsoperationen_4" src="../_images/Änderungsoperationen_4.png" style="width: 500px;" /></a>
+<br>
+<p>In dem vorangegangenen Abschnitt haben wir uns mit Indizes auf sequentiellen Daten beschäftigt, jetzt schauen wir uns Sekundärindizes auf nichtsequentiellen Daten an.</p>
 </section>
 </section>
 <section id="sekundarindizes-auf-nichtsequenziellen-dateien">
 <h2><span class="section-number">3.2. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Permalink to this heading">#</a></h2>
-<p>Zuvor haben wir uns mit Primärindizes, also sortierten Daten, beschäftigt. Oft ist es aber sinnvoll, mehrere Indizes pro Relation zu haben. Damit kommen wir zu nichtsequentiellen Dateien, also unsortierten Daten. Im folgenden Beispiel haben wir die Relation <em>Schauspieler</em>, in welcher der Name der Primärschlüssel ist. Suchen wir nun das Geburtsdatum, müssen wir von Block zu Block springen, können aber keine Annahme über nachfolgende Blöcke treffen.</p>
+<p>Zuvor haben wir uns mit Primärindizes, also sortierten Daten, beschäftigt. Oft ist es aber sinnvoll, mehrere Indizes pro Relation zu haben. Damit kommen wir zu nichtsequentiellen Dateien, also unsortierten Daten. Im folgenden Beispiel haben wir die Relation <em>Schauspieler</em>, in welcher der <em>Name</em> der Primärschlüssel ist. Suchen wir nun das Geburtsdatum, müssen wir von Block zu Block springen, können aber keine Annahme über nachfolgende Blöcke treffen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span>
 <span class="n">FROM</span> <span class="n">Schauspieler</span>
 <span class="n">WHERE</span> <span class="n">Geburtstag</span> <span class="o">=</span> <span class="n">DATE</span> <span class="s1">&#39;1952-01-01&#39;</span>
 </pre></div>
 </div>
-<p>Nutzen wir nun einen Sekundärindex auf Geburtstag, beschleunigen wir die Anfragebearbeitung. Dieser Index kann nur im Nachhinein erstellt werde, da die Daten bereits vorliegen, anders als beim Primärindex, bei dem man im Optimalfall die Tupel während des Einfügens schon sortieren kann.</p>
+<p>Nutzen wir nun einen Sekundärindex auf <em>Geburtstag</em>, beschleunigen wir die Anfragebearbeitung. Dieser Index kann nur im Nachhinein erstellt werde, da die Daten bereits vorliegen, anders als beim Primärindex, bei dem man im Optimalfall die Tupel während des Einfügens schon sortieren kann.</p>
 <p><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">INDEX</span> <span class="pre">GEB_IDX</span> <span class="pre">ON</span> <span class="pre">Schauspieler(Geburtstag)</span></code></p>
 <p>Sekundärindizes bestimmen nicht die Platzierung der Datensätze, sondern geben nur den Speicherort an. Deshalb sind dünnbesetzte Indizes sinnlos, da wir beispielsweise nicht wissen, ob die gleichen Geburtstage innerhalb des gleichen Blocks liegen oder auf viele verschiedene Blöcke verteilt sind.</p>
+<p>Schauen wir uns an, wie Sekundärindizes aufgebaut sind.</p>
 <section id="aufbau-von-sekundarindizes">
 <h3><span class="section-number">3.2.1. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
 <p>Wie zuvor erwähnt sind Sekundärindizes dichtbesetzt. Die Schlüssel sind dabei schon sortiert und es können Duplikate vorkommen. Ein Index der zweiten Stufe wäre wiederum dünnbesetzt. Die Suche hat in der Regel hohe I/O-Kosten. Suchen wir beispielsweise die <em>20</em> in der Abbildung unten, müssen fünf Blöcke gelesen werden. Das lässt sich auch leider nicht ändern, da die Daten nach einem anderen Schlüssel sortiert sind.</p>
@@ -667,7 +672,8 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 <p><strong>Abbildung 2</strong></p>
 <a class="reference internal image-reference" href="../_images/Abbildung2.png"><img alt="Abbildung2" src="../_images/Abbildung2.png" style="width: 300px;" /></a>
 <p><span class="math notranslate nohighlight">\(\tiny{Quelle:\ Nagy \ Istvan \ (2001): Indexierung \ mittels \ invertierter \ Dateien. https://www.cis.uni-muenchen.de/people/Schulz/SeminarSoSe2001IR/Nagy/node4.html\#bsp_text }\)</span></p>
-<p>Invertierte Indizes findn ins besondere in Dokumentendatenbanken Anwendung. Für die weiteren Inhalte der Vorlesung spielen sie keine Rolle. Das sollte als Beispiel für die weitere Anwendungen der Indirektion dienen.</p>
+<p>Invertierte Indizes finden insbesondere in Dokumentendatenbanken Anwendung. Für die weiteren Inhalte der Vorlesung spielen sie aber keine Rolle. Das sollte als Beispiel für die weitere Anwendungen der Indirektion dienen.</p>
+<p>Als nächstes befassen wir uns mit der Indexstruktur B-Bäume.</p>
 </section>
 </section>
 <section id="b-baume">
@@ -772,9 +778,11 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 <section id="b-baume-auf-nicht-primarschlusseln">
 <h3><span class="section-number">3.3.10. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this heading">#</a></h3>
 <p>Haben wir B-Bäume auf nicht-Primärschlüsseln, ändert sich die Bedeutung der Pointer auf den inneren Ebenen, da es jetzt vorkommen kann, dass wir Duplikate in unseren Blättern haben.</p>
-<p>Gegeben sind wieder die Schlüssel <span class="math notranslate nohighlight">\(K_{1}\)</span> bis <span class="math notranslate nohighlight">\(K_{j}\)</span>. <span class="math notranslate nohighlight">\(K_{i}\)</span> sei der kleinste <em>neue</em> Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist. Das bedeutet, es gibt keinen Schlüssel <span class="math notranslate nohighlight">\(K_{i}\)</span> im linken Teilbaum, aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer. Das Problem ist: Es gibt nicht immer einen solchen Schlüssel. Manchmal taucht ein Wert schon in voher indizierten Blöcken auf. In dem Fall merkt man sich dies mit einem Nullpointer, wie man im Beispiel unten sehen kann. Da die erste 13 von dem Block mit dem Schlüssel 7 noch erreicht werden kann, wäre der kleinste neue Schlüssel hier die 17. Diese befindet sich aber schon in der Wurzel, also würden wir den nächsthöheren Wert, also die 23 nehmen. Diese taucht aber auch in zwei weiteren Blöcken auf, sodass wir hier einen Nullpointer verwenden müssen.</p>
+<p>Gegeben sind wieder die Schlüssel <span class="math notranslate nohighlight">\(K_{1}\)</span> bis <span class="math notranslate nohighlight">\(K_{j}\)</span>. <span class="math notranslate nohighlight">\(K_{i}\)</span> sei der kleinste <em>neue</em> Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist. Das bedeutet, es gibt keinen Schlüssel <span class="math notranslate nohighlight">\(K_{i}\)</span> im linken Teilbaum, aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer. Das Problem ist: Es gibt nicht immer einen solchen Schlüssel. Manchmal taucht ein Wert schon in voher indizierten Blöcken auf. In dem Fall merkt man sich dies mit einem Nullpointer (⊥), wie man im Beispiel unten sehen kann. Da die erste 13 von dem Block mit dem Schlüssel 7 noch erreicht werden kann, wäre der kleinste neue Schlüssel hier die 17. Diese befindet sich aber schon in der Wurzel, also würden wir den nächsthöheren Wert, also die 23 nehmen. Diese taucht aber auch in zwei weiteren Blöcken auf, sodass wir hier einen Nullpointer verwenden müssen.</p>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png" style="width: 500px;" /></a>
 <a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png" style="width: 500px;" /></a>
+<br>
+<p>Als nächstes werden wir sehen, wie die Suche und das Einfügen und Löschen in B-Bäumen funktioniert.</p>
 </section>
 <section id="b-baume-suche">
 <h3><span class="section-number">3.3.11. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Permalink to this heading">#</a></h3>
@@ -801,7 +809,7 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 <p>Die Anfrage liest aus der Relation die Blöcke, die größer als 40 sind, ab dem vorletzten Block.</p>
 <p>Mit B-Bäumen lassen sich Ungleichheiten, also die Anfrage über bestimmte Bereiche von Werten, effizient behandeln.</p>
 <p>Suchen wir zum Beispiel in dem Bereich [a,b], suchen wir zunächst einen Blattknoten der a enthält. Die Suche führen wir solange weiter, bis wir bei b ankommen. Dann können wir unsere Suche abschließen. Haben wir keinen B-Baum, muss die Suche eventuell intensiviert und die Liste vorher sortiert werden.</p>
-<p>Bei offenen Bereichen, wie [-∞ , b] bzw. [a, ∞] ist Suche ähnlich.</p>
+<p>Bei offenen Bereichen, wie [-∞ , b] bzw. [a, ∞] ist die Suche ähnlich.</p>
 <p>Im Folgenden ein Beispiel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="n">AND</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">25</span>
@@ -882,20 +890,22 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p>Dies geht aber noch besser, wenn man einen höheren Füllstand in den Blättern erlaubt. Das schauen wir uns im Folgenden genauer an.</p>
 <p><strong>Bulk-Loading mit hohem Füllstand</strong></p>
 <p>Erlaubt man einen hohen Füllstand beim bulk-loading, bleibt das Vorgehen zunächst das Gleiche, jedoch werden dann <strong>volle</strong> B-Baum Blätter erzeugt. Dadurch erzielt man einen perfekten Füllstand. Der Nachteil: Will man dann etwas einfügen wird es kompliziert. Deshalb handelt es sich dabei meist um Read-only oder Append-only Relationen.</p>
+<p>Es gibt aber nicht nur unterschiedliche Varianten beim Einfügen in B-Bäume, sondern auch unterschiedliche Varianten von B-Bäumen. Um welche es sich dabei handelt, sehen wir im nächsten Abschnitt.</p>
 </section>
 </section>
 <section id="b-baum-varianten-b-baum-ohne">
 <h3><span class="section-number">3.3.14. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this heading">#</a></h3>
-<p>Es existieren unterschiedliche Varianten von B-Bäumen. Bisher besprochen haben wir zum einen B±Bäume, in denen die Pointer auf die Datensätze nur in den Blattknoten vorkommen und zum anderen B-Bäume, bei denen die Pointer auf den Datensätzen in allen Knoten vorhanden sind. Der Vorteil von B-Bäumen ist, dass die Suche durchschnittlich schneller ist, da man nicht jedes Mal bis ganz nach unten in dem Baum gehen muss. Allerdings ist die Verwaltung und Implementierung schwieriger, da die Blätter und innere Knoten eine unterschiedliche Struktur haben. Außerdem sind sie weniger “buschig”, weil Platz für Pointer “verschwendet” wird. Das führt dazu, dass sie potenziell höher sind. Auch das Löschen ist komplizierter, da man auch in inneren Knoten löschen kann und ein Schlüssel von einem Blatt gegebenenfalls nach oben wandern muss.</p>
+<p>Es existieren unterschiedliche Varianten von B-Bäumen. Bisher besprochen haben wir zum einen <span class="math notranslate nohighlight">\(B^{+}\)</span>-Bäume, in denen die Pointer auf die Datensätze nur in den Blattknoten vorkommen und zum anderen B-Bäume, bei denen die Pointer auf den Datensätzen in allen Knoten vorhanden sind. Der Vorteil von B-Bäumen ist, dass die Suche durchschnittlich schneller ist, da man nicht jedes Mal bis ganz nach unten in dem Baum gehen muss. Allerdings ist die Verwaltung und Implementierung schwieriger, da die Blätter und innere Knoten eine unterschiedliche Struktur haben. Außerdem sind sie weniger “buschig”, weil Platz für Pointer “verschwendet” wird. Das führt dazu, dass sie potenziell höher sind. Auch das Löschen ist komplizierter, da man auch in inneren Knoten löschen kann und ein Schlüssel von einem Blatt gegebenenfalls nach oben wandern muss.</p>
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten.png"><img alt="B-Baum-Varianten" src="../_images/B-Baum-Varianten.png" style="width: 500px;" /></a>
-<p><strong><span class="math notranslate nohighlight">\({B}^\ast-Bäume\)</span></strong></p>
+<p><strong><span class="math notranslate nohighlight">\({B}^\ast\)</span>-Bäume</strong></p>
 <p>Eine Verbesserung der B+ Bäume sind die B*-Bäume. Bei einem Überlauf werder nicht gleich zwei halbleere Knoten erzeugt. Stattdessen gibt es eine Neuverteilung über beide Nachbar-Blätter. Falls das nicht möglich ist werden drei neue Blätter aus zwei alten erzeugt. Dadurch wird der Speicher mit mindestens 66% viel besser genutzt.</p>
-<p><strong>Präfix-B±Baum</strong></p>
-<p>Präfix-B±Bäume sind eine weitere B-Baum Variante. Mit diesen kann man schnell herausfinden, wo bestimmte Wörter vorkommen, indem man mit dem Anfangsbuchstaben anfängt und dem Pfad entsprechend weiter folgt. Sollte der Suchschlüssel aber ein String sein hat man einen sehr hohen Speicherbedarf. Deshalb ist es besser wenn man nur “Trennwerte” speichert. Am besten den kleinesten Trennwert, beispielsweise “L” als Präfix von “Licht”.</p>
+<p><strong>Präfix-<span class="math notranslate nohighlight">\(B^{+}\)</span>-Baum</strong></p>
+<p>Präfix-<span class="math notranslate nohighlight">\(B^{+}\)</span>-Bäume sind eine weitere B-Baum Variante. Mit diesen kann man schnell herausfinden, wo bestimmte Wörter vorkommen, indem man mit dem Anfangsbuchstaben anfängt und dem Pfad entsprechend weiter folgt. Sollte der Suchschlüssel aber ein String sein hat man einen sehr hohen Speicherbedarf. Deshalb ist es besser wenn man nur “Trennwerte” speichert. Am besten den kleinesten Trennwert, beispielsweise “L” als Präfix von “Licht”.</p>
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten_2.png"><img alt="B-Baum-Varianten_2" src="../_images/B-Baum-Varianten_2.png" style="width: 500px;" /></a>
-<p><strong>B±Bäume für BLOBs (und CLOBs)</strong></p>
+<p><strong><span class="math notranslate nohighlight">\(B^{+}\)</span>-Bäume für BLOBs (und CLOBs)</strong></p>
 <p>Des Weiteren gibt es auch noch B±Bäume für BLOBs, also für Datensätze, die sich über mehrere Blöcke erstrecken. Hierbei werden Suchschlüssel durch Offsets repräsentiert. Blätter zeigen auf Datenseiten eines BLOBs oder Bytes.</p>
 <a class="reference internal image-reference" href="../_images/B-Bäume_für_BLOBs.png"><img alt="B-Bäume_für_BLOBs" src="../_images/B-Bäume_für_BLOBs.png" style="width: 500px;" /></a>
+<br>
 <p>Wir haben jetzt B-Bäume abgeschlossen und schauen uns als weitere typische Indexstruktur Hashbasierte Indizes an.</p>
 </section>
 </section>
@@ -910,6 +920,8 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p>Wir können davon ausgehen, dass ein Bucket ein Block ist. Nun haben wir keine Pointer mehr auf unbestimmte Buckets oder Listen sondern Blöcke die Datensätze mit dem gleichen Schlüssel enthalten. Overflowblocks können immer noch vorkommen. Wird ein Hashwert beispielsweise immer wieder berechnet, sodass der Wert jedes Mal wieder in den gleichen Blöck gehört, dann kann man diesen durch Overflowblocks immer wieder erweitern. Im schlimmsten Fall wird dieser eine Block dann als Liste degeneriert.</p>
 <p>In der Beispielabbildung sehen wir wie so eine Hashtabelle aussehen kann. Hier hat sie 4 Hashblöcke mit den Adressen 0 - 3 (0 bis B-1) und die Möglichkeit Pointer für Overflowblocks hinzuzufügen.</p>
 <a class="reference internal image-reference" href="../_images/Hashtabelle-auf-Festplatten.png"><img alt="Hashtabelle-auf-Festplatten" src="../_images/Hashtabelle-auf-Festplatten.png" style="width: 500px;" /></a>
+<br>
+<p>Schauen wir uns nun an, wie man etwas in Hashtabellen einfügt und löscht.</p>
 <p><strong>Einfügen in Hashtabellen</strong></p>
 <p>Möchten wir einen Wert in eine Hashtabelle einfügen, müssen wir zunächst den Hashwert berechnen. Falls Platz ist, fügen wir den Datensatz in den entsprechenden Block oder Overflowblock ein. Falls nicht, müssen wir einen neuen Overflowblock erzeugen und dort den Datensatz einfügen.</p>
 <p>Wir möchten jetzt beispielhaft H in die Beispieltabelle einfügen. Sagen wir, die Hashfunktion ergibt 2 (h(H) = 2). Dann können wir problemlos H in den Block 2 unter dem B einfügen. Möchten wir jetzt G einfügen und bekommen dafür h(G) = 1, müssen wir einen Overflowblock dranhängen, in welchen dann das G passt.</p>
@@ -953,7 +965,8 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <section id="analyse-erweiterbarer-hashtabellen">
 <h4><span class="section-number">3.4.2.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this heading">#</a></h4>
 <p>Ein Vorteil von erweiterbaren Hashtabellen ist, dass wir keine Overflowblocks mehr haben. Bei der Suche müssen wir also nie mehr als einen Datenblock betrachten. Außerdem benötigen wir nur 1 I/O, wenn unser Bucketarray in den Hauptspeicher passt.
-Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch die Verdopplungen und das splitten hat man viel Arbeit. Außerdem wächst das Bucketarray schnell (exponentiell) und passt irgendwann vielleicht nicht mehr in den Hauptspeicher. Zudem kann es bei wenigen Datensätzen pro Block zu Platzverschwendung kommen. Gibt es beispielsweise einen Block, der Daten anhäuft und dessen j immer größer wird, führt das dazu, dass auch unser Bucketarray, also unser i, immer größer wird, während die anderen Blöcke unverändert bleiben und das nur wegen diesem einen Block. Das führt schnell zu Platzverschwendung.</p>
+Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch die Verdopplungen und das splitten hat man viel Arbeit. Außerdem wächst das Bucketarray schnell (exponentiell) und passt irgendwann vielleicht nicht mehr in den Hauptspeicher. Zudem kann es bei wenigen Datensätzen pro Block zu Platzverschwendung kommen. Gibt es beispielsweise einen Block, der Daten anhäuft und dessen j immer größer wird, führt das dazu, dass auch unser Bucketarray, also unser i, immer größer wird, während die anderen Blöcke unverändert bleiben und das nur wegen diesem einen Block. Das führt sehr schnell zu Platzverschwendung.</p>
+<p>Kommen wir zu der zweiten Variante dynamischer Hashtabellen.</p>
 </section>
 </section>
 <section id="lineare-hashtabellen">
@@ -969,6 +982,7 @@ Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch di
 <p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br></p>
 <p>Nun soll 0111 eingefügt werden. Es gilt wieder m ≥ n, sodass der Wert in den (m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> )-ten Bucket gehört. Da wir jetzt einen Datensatz mehr haben, erhöht sich unser r, sodass  <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7 nicht mehr erfüllt ist. Das bedeutet, wir erhöhen n, erzeugen einen neuen Bucket und müssen wieder splitten. Die Einträge aus dem Overflowblock passen jetzt in den Bucket 11 und der Overflowblock kann gelöscht werden.</p>
 <a class="reference internal image-reference" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a>
+<p>Jetzt stellt sich die Frage, wann sollte man sich für Hashtabellen entscheiden und wann für B-Bäume?</p>
 </section>
 </section>
 <section id="hashing-vs-b-baum">
@@ -983,7 +997,7 @@ Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch di
 </pre></div>
 </div>
 <p>Mit CREATE erstellt man einen UNIQUE Index, also einen Index der NULL Werte erlaubt und gibt diesem einen Namen. Für die Übersichtlichkeit enthält der Indexname im Optimalfall auch den Tabellennamen. Des Weiteren kann man angeben, ob eine bestimmte Tabellenspalte sortiert werden soll oder nicht, ob die Daten geclustered werden, also zusammenliegend vorkommen sollen und welchen Füllgrad (PCTFREE) ein Block haben soll. Im Standard SQL ist es allerdings nicht möglich, Angaben zu der Art des Index oder den Parametern zu machen.</p>
-<p>Wir haben nun Hashfunktionen kennengelernt und gelernt, dass bei Hashtabellen das Wachstum nicht außer Acht gelassen werden darf. Die beiden Varianten <em>erweiterbare</em> und <em>lineare</em> Hashtabellen sind gute Lösungen, um die Probleme von statischen Hashtabellen zu umgehen. Des Weiteren haben wir in dem Kapitel auch noch einige andere Möglichkeiten der Indexierung kennengelernt, wie unter anderem die Indirektion mit Sekundärindizes, der Indexierung mittels invertierter Indizes und natürlich B-Bäumen.
+<p>Wir haben nun Hashfunktionen kennengelernt und gelernt, dass bei Hashtabellen das Wachstum nicht außer Acht gelassen werden darf. Die beiden Varianten <em>erweiterbare</em> und <em>lineare</em> Hashtabellen sind gute Lösungen, um die Probleme von statischen Hashtabellen zu umgehen. Des Weiteren haben wir in dem Kapitel auch noch einige andere Möglichkeiten der Indexierung kennengelernt, wie unter anderem die Indirektion mit Sekundärindizes, der Indexierung mittels invertierter Indizes und natürlich B-Bäume.
 Im nächsten Kapitel befassen wir uns mit der Anfrageausführung.</p>
 </section>
 </section>
