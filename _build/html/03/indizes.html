@@ -806,7 +806,7 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">40</span>
 </pre></div>
 </div>
-<p>Die Anfrage liest aus der Relation die Blöcke, die größer als 40 sind, ab dem vorletzten Block.</p>
+<p>Die Anfrage liest aus der Relation R alle Blöcke, die größer als 40 sind, ab dem vorletzten Block.</p>
 <p>Mit B-Bäumen lassen sich Ungleichheiten, also die Anfrage über bestimmte Bereiche von Werten, effizient behandeln.</p>
 <p>Suchen wir zum Beispiel in dem Bereich [a,b], suchen wir zunächst einen Blattknoten der a enthält. Die Suche führen wir solange weiter, bis wir bei b ankommen. Dann können wir unsere Suche abschließen. Haben wir keinen B-Baum, muss die Suche eventuell intensiviert und die Liste vorher sortiert werden.</p>
 <p>Bei offenen Bereichen, wie [-∞ , b] bzw. [a, ∞] ist die Suche ähnlich.</p>
