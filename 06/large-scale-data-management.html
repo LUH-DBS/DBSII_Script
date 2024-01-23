@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06/large-scale-data-management';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -390,40 +392,39 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-data-processing">6.2. Parallel Data Processing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">6.2.2. Was wir verschwiegen haben…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.2.3. Prominent user of parallel data processing:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.2.4. Basics of Parallel Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.5. Parallel Speedup – Amdahl‘s law</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.6. Parallel Speedup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.2.7. Levels of Parallelism on Hardware</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.2.8. Modes of Query Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.9. Pipeline Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.10. Data Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.11. Basics of Parallel Query Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.12. Parallel Architectures – Shared Memory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.13. Parallel Architectures – Shared Disk</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.14. Parallel Architectures – Shared Nothing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.15. Data Partitioning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.16. Data Partitioning Strategies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.17. Data Parallelism: Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.18. Data Parallelism – Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.19. Parallel Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.20. Notations and Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.21. Parallel Selection / Projection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.22. Parallel Grouping &amp; Aggregation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.23. Parallel Sorting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.25. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.26. Asymmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.27. Parallel Equi-Joins (I)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.28. Parallel Equi-Joins: Three cases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.29. Limits in Parallel Databases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.30. Where traditional databases are unsuitable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.31. Example Use Case: Web Index Creation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.32. An ongoing Re-Design…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.33. Storage Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.34. The Storage Model – Distributed File System</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.35. Retrieving and Analyzing Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.36. Skalierungsmuster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundlagen-der-parallelen-datenverarbeitung-parellel-processing">6.2.3. Grundlagen der Parallelen Datenverarbeitung (Parellel Processing)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.4. Parallel Speedup – Amdahl‘s law</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.5. Parallel Speedup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisierungsstufen-auf-der-hardware">6.2.6. Parallelisierungsstufen auf der Hardware</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianten-der-anfrage-parallelisierung">6.2.7. Varianten der Anfrage-Parallelisierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.8. Pipeline Parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.9. Data Parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.10. Basics of Parallel Query Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.11. Parallel Architectures – Shared Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.12. Parallel Architectures – Shared Disk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.13. Parallel Architectures – Shared Nothing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.14. Data Partitioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.15. Data Partitioning Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.16. Data Parallelism: Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.17. Data Parallelism – Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.18. Parallel Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.19. Notations and Assumptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.20. Parallel Selection / Projection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.21. Parallel Grouping &amp; Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.22. Parallel Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.23. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.25. Asymmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.26. Parallel Equi-Joins (I)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.27. Parallel Equi-Joins: Three cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.28. Limits in Parallel Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.29. Where traditional databases are unsuitable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.30. Example Use Case: Web Index Creation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.31. An ongoing Re-Design…</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.32. Storage Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.33. The Storage Model – Distributed File System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.34. Retrieving and Analyzing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.35. Skalierungsmuster</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-hadoop">6.3. Map Reduce &amp; Hadoop</a><ul class="nav section-nav flex-column">
@@ -494,143 +495,31 @@ Manche Systeme, wie beispielsweise Finanzinstitute, Onlineshops und soziale Netz
 Deshalb ist es wichtig zu überlegen, wie die Zugriffe über die Netzwerke verteilt werden.
 Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung ist teuer und über die Daten muss mehrfach iteriert werden. Da reicht eine Single-CPU- oder Single-Node-Architektur nicht mehr aus und auch Moore’s Law ist hier nicht mehr anwendbar. Die Lösung: <strong>Parallele Datenverarbeitung</strong>.</p>
 </section>
-<section id="prominent-user-of-parallel-data-processing">
-<h3><span class="section-number">6.2.3. </span>Prominent user of parallel data processing:<a class="headerlink" href="#prominent-user-of-parallel-data-processing" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Big Tech (Google, Facebook)</p>
-<ul>
-<li><p>Estimated 450,000 low-cost commodity servers in 2006</p></li>
-<li><p>In 2005 Google indexed 8 billion web pages</p></li>
-<li><p>Over 200 GFS clusters at Google. 1 cluster: 1,000 – 5,000 machines.</p></li>
-<li><p>Pools of tens of thousands of machines retrieve data from GFS clusters that run as large as 5 peta-bytes of storage.</p></li>
-<li><p>Aggregate read/write throughput up to 40 gigabytes/second across the cluster.</p></li>
-<li><p>6,000 MapReduce applications</p></li>
-</ul>
-</li>
-<li><p>Manufacturing (Volkswagen)</p>
-<ul>
-<li><p>the average connected vehicle will generate 280 petabytes of data annually</p></li>
-<li><p>with four terabytes of data being generated in a day at the very least.</p></li>
-<li><p>The research also states that around 470 million connected vehicles will be deployed by 2025</p></li>
-</ul>
-</li>
-<li><p>Gene Sequencing</p></li>
-<li><p>Sensor data processing</p></li>
-</ul>
-<p>Amazon Aurora – On Prime Day, 5,326 database instances running the PostgreSQL-compatible and MySQL-compatible editions of Amazon Aurora processed 288 billion transactions, stored 1,849 terabytes of data, and transferred 749 terabytes of data.</p>
-<p>Amazon DynamoDB – DynamoDB powers multiple high-traffic Amazon properties and systems including Alexa, the Amazon sites, and all Amazon fulfillment centers. Over the course of Prime Day, these sources made trillions of calls to the DynamoDB API. DynamoDB maintained high availability while delivering single-digit millisecond responses and peaking at 105.2 million requests per second.</p>
-</section>
-<section id="basics-of-parallel-processing">
-<h3><span class="section-number">6.2.4. </span>Basics of Parallel Processing<a class="headerlink" href="#basics-of-parallel-processing" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Parallel Speedup</p>
-<ul>
-<li><p>Ahmdal‘s Law</p></li>
-</ul>
-</li>
-<li><p>Levels of Parallelism</p>
-<ul>
-<li><p>Instruction-level, data-level, task-level</p></li>
-</ul>
-</li>
-<li><p>Modes of Query Parallelism</p>
-<ul>
-<li><p>Inter-Query</p>
-<ul>
-<li><p>Multi-user ability</p></li>
-</ul>
-</li>
-<li><p>Intra-Query</p>
-<ul>
-<li><p>Pipeline (Inter Operator) / Data (Intra Operator)</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<section id="grundlagen-der-parallelen-datenverarbeitung-parellel-processing">
+<h3><span class="section-number">6.2.3. </span>Grundlagen der Parallelen Datenverarbeitung (Parellel Processing)<a class="headerlink" href="#grundlagen-der-parallelen-datenverarbeitung-parellel-processing" title="Permalink to this heading">#</a></h3>
+<p>Bei der parallelen Datenverarbeitung kommt Amdahl’s law zum Einsatz, welches die Grenzen bei der parallelen Beschleunigung definiert. Es gibt außerdem verschiedenen Stufen der Parallelisierung, mit denen auf unterschiedlichen Ebenen parallelisiert werden kann. Des Weiteren existieren noch verschiedenen Varianten der Anfrage-Parallelisierung. Dadurch können mehrere Anfragen parallel verarbeitet werden (Inter-Query) oder nur eine Anfrage (Intra-Query).</p>
 </section>
 <section id="parallel-speedup-amdahls-law">
-<h3><span class="section-number">6.2.5. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Speedup: Sp = T1/Tp</p>
-<ul>
-<li><p>T1: Sequential runtime (1 processor)</p></li>
-<li><p>Tp: Parallel runtime (p processors)</p></li>
-</ul>
-</li>
-<li><p>Amdahl‘s law: Maximal speedup is determined by non-parallelizable part of program</p>
-<ul>
-<li><p>where f is parallelizable fraction of program</p></li>
-<li><p>Ideal speedup: S = p for f = 1 (linear speedup)</p></li>
-<li><p>Usually f &lt; 1 =&gt; S is bound by constant</p>
-<ul>
-<li><p>For f = 0,9 and 10 / 20 servers: <br>
-and</p></li>
-<li><p>For p ∞,  10</p></li>
-</ul>
-</li>
-<li><p>Fixed problems can only be parallelized to a certain degree</p></li>
-</ul>
-</li>
-</ul>
+<h3><span class="section-number">6.2.4. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this heading">#</a></h3>
+<p>Die Frage die sich bei Amdahl’s law stellt ist, wie viel wir an Geschwindigkeit überhaupt dazugewinnen können. Berechnen lässt sich das zum einen mit der sequentiellen Laufzeit <span class="math notranslate nohighlight">\(T_1\)</span> (1 Prozessor) und zum anderen mit der parallelen Laufzeit <span class="math notranslate nohighlight">\(T_p\)</span> (<em>p</em> Prozessoren): <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{T_1}{T_p}\)</span> . Die maximale Beschleunigung ist durch den nicht-parallelisierbaren Anteil des Programms begrenzt. Wie hoch diese ist, lässt sich folgendermaßen berechnen: <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> . <br>
+<em>f</em> entspricht prozentual dem parallelisierbaren Anteil. Die ideale Beschleunigung wäre <em>S = p</em> für <em>f = 1</em>. Oft ist <em>f</em> &lt; 1 während <em>S</em> durch eine Konstante begrenzt wird. Beispiel: <em>f = 0,9</em> und 10/20 Server. <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{10}} \approx \)</span> 5,3 und <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{20}} \approx \)</span> 6,9 . Lassen wir hier unsere Prozessoren gegen unendlich laufen, ist unser <span class="math notranslate nohighlight">\(S_p\)</span> = 10. Das bedeutet, wir können weitere Server hinzufügen, aber es bleibt bei der 10-fachen Geschwindigkeit.</p>
 </section>
 <section id="parallel-speedup">
-<h3><span class="section-number">6.2.6. </span>Parallel Speedup<a class="headerlink" href="#parallel-speedup" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.5. </span>Parallel Speedup<a class="headerlink" href="#parallel-speedup" title="Permalink to this heading">#</a></h3>
+<p>Hier sehen wir, wie sich die parallele Beschleunigung nach Amdahl’s law je nach Prozessorzahl verhält.</p>
 <a class="reference internal image-reference" href="../_images/Parallel-Speedup.png"><img alt="Parallel-Speedup" src="../_images/Parallel-Speedup.png" style="width: 500px;" /></a>
 </section>
-<section id="levels-of-parallelism-on-hardware">
-<h3><span class="section-number">6.2.7. </span>Levels of Parallelism on Hardware<a class="headerlink" href="#levels-of-parallelism-on-hardware" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Instruction-level Parallelism (Prozessoranweisungen)</p>
-<ul>
-<li><p>Single instructions are automatically processed in parallel</p></li>
-<li><p>Example: Modern CPUs with multiple pipelines and instruction units.</p></li>
-</ul>
-</li>
-<li><p>Data Parallelism (Daten)</p>
-<ul>
-<li><p>Different data can be processed independently</p></li>
-<li><p>Each processor executes the same operations on its share of the input data.</p></li>
-<li><p>Example: Distributing loop iterations over multiple processors</p></li>
-<li><p>Example: GPU processing</p></li>
-</ul>
-</li>
-<li><p>Task Parallelism (Aufgaben)</p>
-<ul>
-<li><p>Different tasks are distributed among the processors/nodes</p></li>
-<li><p>Each processor executes a different thread/process.</p></li>
-<li><p>Example: Threaded programs</p></li>
-</ul>
-</li>
-</ul>
+<section id="parallelisierungsstufen-auf-der-hardware">
+<h3><span class="section-number">6.2.6. </span>Parallelisierungsstufen auf der Hardware<a class="headerlink" href="#parallelisierungsstufen-auf-der-hardware" title="Permalink to this heading">#</a></h3>
+<p>Es gibt unterschiedliche Stufen der Parallelisierung auf der Hardware. Zum einen gibt es <em>Instruction-level parallelism</em> (Prozessoranweisungen). Dabei werden Prozessorbefehle durch die CPU-Architektur automatisch parallelisiert. Zum anderen gibt es <em>Data parallelism</em> (Daten). Jeder Prozessor verarbeitet die gleichen Befehle auf seiner eigenen Partition der Daten. Dadurch können unterschiedliche Daten parallel verarbeitet werden, beispielsweise durch verteilte Schleifeniterationen auf mehreren Prozessoren oder GPU processing. Auf der letzten Stufe der Parallelisierung haben wir <em>Task parallelism</em> (Aufgaben). Hierbei erhält jeder Prozessor/Knoten eine andere Aufgabe.</p>
 </section>
-<section id="modes-of-query-parallelism">
-<h3><span class="section-number">6.2.8. </span>Modes of Query Parallelism<a class="headerlink" href="#modes-of-query-parallelism" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Inter-Query Parallelism (multiple concurrent queries)</p>
-<ul>
-<li><p>Necessary for efficient resource utilization: While one query waits, e.g., for I/O, another one executes</p></li>
-<li><p>Requires concurrency control (locking mechanisms) to guarantee transactional properties (the “I” in ACID)</p></li>
-<li><p>Important for highly transactional scenarios (OLTP)</p></li>
-</ul>
-</li>
-<li><p>Intra-Query Parallelism (parallel processing of a single query)</p>
-<ul>
-<li><p>I/O Parallelism: Concurrent reading from multiple disks</p>
-<ul>
-<li><p>Hidden: Hardware RAID</p></li>
-<li><p>Transparent: Spanned tablespaces / partitioning</p></li>
-</ul>
-</li>
-<li><p>Intra-Operator Parallelism: Multiple threads work on the same operator. Example: Parallel Sort</p></li>
-<li><p>Inter-Operator Parallelism: Multiple parts of the plan run in parallel (pipeline)</p></li>
-<li><p>Important for complex analytical tasks (OLAP)</p></li>
-</ul>
-</li>
-</ul>
+<section id="varianten-der-anfrage-parallelisierung">
+<h3><span class="section-number">6.2.7. </span>Varianten der Anfrage-Parallelisierung<a class="headerlink" href="#varianten-der-anfrage-parallelisierung" title="Permalink to this heading">#</a></h3>
+<p>Es existieren unterschiedliche Varianten der Anfrage-Parallelisierung. Die erste Variante ist <em>Inter-Query parallelism</em> (mehrere nebenläufige Anfragen). Dies ist wichtig für eine effiziente Ressourcennutzung. Wartet eine Anfrage z.B. auf I/O, kann in der Zeit eine andere Anfrage ausgeführt werden. Dies erfordert <em>concurrency control</em>, also das Sperren, um Transaktionseigenschaften zu garantieren. Das ist auch wichtig für OLTP. Die zweite Variante ist <em>Intra-Query parallelism</em> (parallele Verarbeitung einer einzelnen Anfrage). Dieser unterteilt sich nochmal in <em>I/O parallelism, Intra-Operator parallelism</em> und <em>Inter-Operator parallelism</em>. Beim <em>I/O parallelism</em> werden nebenläufig mehrere Platten gelesen. Dabei wird mit spanned tablespaces und Partitionierung gearbeitet und eventuell auch mit Hardware RAIDs (versteckt). Beim <em>Intra-Operator parallelism</em> arbeiten mehrere Threads für den selben Operator, wie beispielsweise beim parallel sort, während beim <em>Inter-Operator parallelism</em> mehrere Teile eines Anfrageplans parallel laufen (pipeline). Letzteres ist wichtig für komplexe analytische Aufgaben (OLAP).</p>
+<p>Schauen wir uns als nächstes an, wie Inter-Operator parallelism genauer funktioniert.</p>
 </section>
 <section id="pipeline-parallelism">
-<h3><span class="section-number">6.2.9. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.8. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Pipeline-Parallelism.png"><img alt="Pipeline-Parallelism" src="../_images/Pipeline-Parallelism.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><p>Pipeline parallelism</p>
@@ -653,7 +542,7 @@ and</p></li>
 </ul>
 </section>
 <section id="data-parallelism">
-<h3><span class="section-number">6.2.10. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.9. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Pipeline parallelism is not always applicable
  data parallelism</p></li>
@@ -682,7 +571,7 @@ and</p></li>
 </ul>
 </section>
 <section id="basics-of-parallel-query-processing">
-<h3><span class="section-number">6.2.11. </span>Basics of Parallel Query Processing<a class="headerlink" href="#basics-of-parallel-query-processing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.10. </span>Basics of Parallel Query Processing<a class="headerlink" href="#basics-of-parallel-query-processing" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Levels of Resource Sharing</p>
 <ul>
@@ -705,7 +594,7 @@ and</p></li>
 </ul>
 </section>
 <section id="parallel-architectures-shared-memory">
-<h3><span class="section-number">6.2.12. </span>Parallel Architectures – Shared Memory<a class="headerlink" href="#parallel-architectures-shared-memory" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.11. </span>Parallel Architectures – Shared Memory<a class="headerlink" href="#parallel-architectures-shared-memory" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Several CPUs share a single memory and disk (array)</p></li>
 <li><p>Communication over a single common bus</p></li>
@@ -718,7 +607,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-architectures-shared-disk">
-<h3><span class="section-number">6.2.13. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.12. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Several nodes with multiple CPUs, each node has its private memory</p></li>
 <li><p>Single attached disk (array): Often NAS, SAN, etc…</p></li>
@@ -726,7 +615,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-architectures-shared-nothing">
-<h3><span class="section-number">6.2.14. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.13. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Each node has it own set of CPUs, memory and disks attached</p></li>
 <li><p>Most commonly use architecture for large-scale data management</p></li>
@@ -740,7 +629,7 @@ and</p></li>
 <a class="reference internal image-reference" href="../_images/shared-nothing.png"><img alt="shared-nothing" src="../_images/shared-nothing.png" style="width: 500px;" /></a>
 </section>
 <section id="data-partitioning">
-<h3><span class="section-number">6.2.15. </span>Data Partitioning<a class="headerlink" href="#data-partitioning" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.14. </span>Data Partitioning<a class="headerlink" href="#data-partitioning" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Partitioning the data means creating a set of possibly disjoint
 sub-sets</p>
@@ -766,7 +655,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="data-partitioning-strategies">
-<h3><span class="section-number">6.2.16. </span>Data Partitioning Strategies<a class="headerlink" href="#data-partitioning-strategies" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.15. </span>Data Partitioning Strategies<a class="headerlink" href="#data-partitioning-strategies" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Round robin</p>
 <ul>
@@ -792,7 +681,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="data-parallelism-example">
-<h3><span class="section-number">6.2.17. </span>Data Parallelism: Example<a class="headerlink" href="#data-parallelism-example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.16. </span>Data Parallelism: Example<a class="headerlink" href="#data-parallelism-example" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Client sends a SQL query to one of the cluster nodes</p>
 <ul>
@@ -816,7 +705,7 @@ sub-sets</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 500px;" /></a>
 </section>
 <section id="id1">
-<h3><span class="section-number">6.2.18. </span>Data Parallelism – Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.17. </span>Data Parallelism – Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>For shared-nothing &amp; shared-disk</p>
 <ul>
@@ -830,7 +719,7 @@ sub-sets</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-operators">
-<h3><span class="section-number">6.2.19. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.18. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Ideally: Operate as much as possible on individual partitions of the data</p>
 <ul>
@@ -860,7 +749,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="notations-and-assumptions">
-<h3><span class="section-number">6.2.20. </span>Notations and Assumptions<a class="headerlink" href="#notations-and-assumptions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.19. </span>Notations and Assumptions<a class="headerlink" href="#notations-and-assumptions" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>S	Relation S</p></li>
 <li><p>S[i,h]	Partition i of relation S according to partitioning scheme h</p></li>
@@ -887,7 +776,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-selection-projection">
-<h3><span class="section-number">6.2.21. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.20. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Selection and projection can be parallelized very efficiently</p>
 <ul>
@@ -905,7 +794,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-grouping-aggregation">
-<h3><span class="section-number">6.2.22. </span>Parallel Grouping &amp; Aggregation<a class="headerlink" href="#parallel-grouping-aggregation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.21. </span>Parallel Grouping &amp; Aggregation<a class="headerlink" href="#parallel-grouping-aggregation" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Two phases</p>
 <ol class="arabic simple">
@@ -929,7 +818,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="parallel-sorting">
-<h3><span class="section-number">6.2.23. </span>Parallel Sorting<a class="headerlink" href="#parallel-sorting" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.22. </span>Parallel Sorting<a class="headerlink" href="#parallel-sorting" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Range partitioned sort: partition by range, then sort</p>
 <ul>
@@ -955,7 +844,7 @@ sub-sets</p>
 </ul>
 </section>
 <section id="symmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.24. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.23. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Joining two relations R and S requires looking at every tuple of the Cartesian product.</p></li>
 <li><p>Parallel databases need to combine every partition of R with every partition of S.</p></li>
@@ -973,11 +862,11 @@ transfer cost <br>
 </ul>
 </section>
 <section id="id2">
-<h3><span class="section-number">6.2.25. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.24. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
 </section>
 <section id="asymmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.26. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.25. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>We can do better, if relation S is much smaller than R.</p></li>
 <li><p>Idea: Reuse the existing partitioning of R and replicate the whole relation S to each node.</p></li>
@@ -988,7 +877,7 @@ transfer cost <br>
 <a class="reference internal image-reference" href="../_images/Asymmetric-Fragment-and-Replicate-Join.png"><img alt="Asymmetric-Fragment-and-Replicate-Join" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
 </section>
 <section id="parallel-equi-joins-i">
-<h3><span class="section-number">6.2.27. </span>Parallel Equi-Joins (I)<a class="headerlink" href="#parallel-equi-joins-i" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.26. </span>Parallel Equi-Joins (I)<a class="headerlink" href="#parallel-equi-joins-i" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>A special class of joins that are more suited for parallelization are natural- and equi-joins.</p></li>
 <li><p>Idea: Partition relations R and S using the same partition scheme over the join key.</p>
@@ -1007,7 +896,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="parallel-equi-joins-three-cases">
-<h3><span class="section-number">6.2.28. </span>Parallel Equi-Joins: Three cases<a class="headerlink" href="#parallel-equi-joins-three-cases" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.27. </span>Parallel Equi-Joins: Three cases<a class="headerlink" href="#parallel-equi-joins-three-cases" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Both R and S are already partitioned over the join key with the same partitioning scheme</p>
 <ul class="simple">
@@ -1044,7 +933,7 @@ transfer cost <br>
 </ol>
 </section>
 <section id="limits-in-parallel-databases">
-<h3><span class="section-number">6.2.29. </span>Limits in Parallel Databases<a class="headerlink" href="#limits-in-parallel-databases" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.28. </span>Limits in Parallel Databases<a class="headerlink" href="#limits-in-parallel-databases" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Database clusters tend to scale until 64 or 128 nodes</p>
 <ul>
@@ -1069,7 +958,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="where-traditional-databases-are-unsuitable">
-<h3><span class="section-number">6.2.30. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.29. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Analysis over raw (unstructured) data</p>
 <ul>
@@ -1101,7 +990,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="example-use-case-web-index-creation">
-<h3><span class="section-number">6.2.31. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.30. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>A Search Engine scenario:</p>
 <ul>
@@ -1134,7 +1023,7 @@ transfer cost <br>
 </ul>
 </section>
 <section id="an-ongoing-re-design">
-<h3><span class="section-number">6.2.32. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.31. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Driven by companies like Google, Facebook, Yahoo, Apple, Microsoft</p></li>
 <li><p>Use heavily distributed system</p>
@@ -1155,7 +1044,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="storage-requirements">
-<h3><span class="section-number">6.2.33. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.32. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Extremely large files: Terabytes to Petabytes</p></li>
 <li><p>High availability: Data must be kept replicated</p></li>
@@ -1182,7 +1071,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="the-storage-model-distributed-file-system">
-<h3><span class="section-number">6.2.34. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.33. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The file system</p>
 <ul>
@@ -1217,7 +1106,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 <a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
 </section>
 <section id="retrieving-and-analyzing-data">
-<h3><span class="section-number">6.2.35. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.34. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Data is stored as custom records in files</p>
 <ul>
@@ -1242,7 +1131,7 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </section>
 <section id="skalierungsmuster">
-<h3><span class="section-number">6.2.36. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.35. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Phase 0: Daten verteilen (split)</p></li>
 <li><p>Phase 1: Berechnungen auf Teilmengen der Daten (map)</p></li>
@@ -1791,40 +1680,39 @@ GROUP BY year
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-data-processing">6.2. Parallel Data Processing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded">6.2.1. Was bisher geschah: Serielle Verarbeitung/Single Threaded</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-wir-verschwiegen-haben">6.2.2. Was wir verschwiegen haben…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prominent-user-of-parallel-data-processing">6.2.3. Prominent user of parallel data processing:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-processing">6.2.4. Basics of Parallel Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.5. Parallel Speedup – Amdahl‘s law</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.6. Parallel Speedup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#levels-of-parallelism-on-hardware">6.2.7. Levels of Parallelism on Hardware</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-of-query-parallelism">6.2.8. Modes of Query Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.9. Pipeline Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.10. Data Parallelism</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.11. Basics of Parallel Query Processing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.12. Parallel Architectures – Shared Memory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.13. Parallel Architectures – Shared Disk</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.14. Parallel Architectures – Shared Nothing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.15. Data Partitioning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.16. Data Partitioning Strategies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.17. Data Parallelism: Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.18. Data Parallelism – Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.19. Parallel Operators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.20. Notations and Assumptions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.21. Parallel Selection / Projection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.22. Parallel Grouping &amp; Aggregation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.23. Parallel Sorting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.25. Symmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.26. Asymmetric Fragment-and-Replicate Join</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.27. Parallel Equi-Joins (I)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.28. Parallel Equi-Joins: Three cases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.29. Limits in Parallel Databases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.30. Where traditional databases are unsuitable</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.31. Example Use Case: Web Index Creation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.32. An ongoing Re-Design…</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.33. Storage Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.34. The Storage Model – Distributed File System</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.35. Retrieving and Analyzing Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.36. Skalierungsmuster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grundlagen-der-parallelen-datenverarbeitung-parellel-processing">6.2.3. Grundlagen der Parallelen Datenverarbeitung (Parellel Processing)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup-amdahls-law">6.2.4. Parallel Speedup – Amdahl‘s law</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-speedup">6.2.5. Parallel Speedup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisierungsstufen-auf-der-hardware">6.2.6. Parallelisierungsstufen auf der Hardware</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianten-der-anfrage-parallelisierung">6.2.7. Varianten der Anfrage-Parallelisierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-parallelism">6.2.8. Pipeline Parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">6.2.9. Data Parallelism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-parallel-query-processing">6.2.10. Basics of Parallel Query Processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-memory">6.2.11. Parallel Architectures – Shared Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-disk">6.2.12. Parallel Architectures – Shared Disk</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-architectures-shared-nothing">6.2.13. Parallel Architectures – Shared Nothing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning">6.2.14. Data Partitioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partitioning-strategies">6.2.15. Data Partitioning Strategies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism-example">6.2.16. Data Parallelism: Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.17. Data Parallelism – Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-operators">6.2.18. Parallel Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notations-and-assumptions">6.2.19. Notations and Assumptions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-selection-projection">6.2.20. Parallel Selection / Projection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-grouping-aggregation">6.2.21. Parallel Grouping &amp; Aggregation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-sorting">6.2.22. Parallel Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-fragment-and-replicate-join">6.2.23. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2.24. Symmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asymmetric-fragment-and-replicate-join">6.2.25. Asymmetric Fragment-and-Replicate Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-i">6.2.26. Parallel Equi-Joins (I)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-equi-joins-three-cases">6.2.27. Parallel Equi-Joins: Three cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limits-in-parallel-databases">6.2.28. Limits in Parallel Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">6.2.29. Where traditional databases are unsuitable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-case-web-index-creation">6.2.30. Example Use Case: Web Index Creation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ongoing-re-design">6.2.31. An ongoing Re-Design…</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-requirements">6.2.32. Storage Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-storage-model-distributed-file-system">6.2.33. The Storage Model – Distributed File System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-analyzing-data">6.2.34. Retrieving and Analyzing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalierungsmuster">6.2.35. Skalierungsmuster</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-reduce-hadoop">6.3. Map Reduce &amp; Hadoop</a><ul class="nav section-nav flex-column">
