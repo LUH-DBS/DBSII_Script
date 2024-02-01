@@ -1266,33 +1266,6 @@ Um dieses Problem zu umgehen, versucht das Map/Reduce-Framework, Berechnungen m�
 <h3><span class="section-number">6.2.33. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this headline">#</a></h3>
 <p>Skalierungsmuster spielen eine entscheidende Rolle bei der Verarbeitung großer Datenmengen. Dieser Prozess kann in verschiedene Phasen unterteilt werden.</p>
 <a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 300px;" /></a>
-<ul class="simple">
-<li><p>Phase 0: Daten verteilen (split)</p></li>
-<li><p>Phase 1: Berechnungen auf Teilmengen der Daten (map)</p></li>
-<li><p>Phase 2: Zusammenführung der Teilmengen (reduce)</p>
-<ul>
-<li><p>Gemeinsame Betrachtung zusammengehöriger Daten</p></li>
-</ul>
-</li>
-<li><p>Beispiel: <strong>Two-Phase-Multiway-Mergesort</strong> (TPMMS)</p>
-<ul>
-<li><p>Phase 1: Sortierung von Teilen der Daten</p></li>
-<li><p>Phase 2: Sortierter Teillisten zusammenführen</p></li>
-</ul>
-</li>
-<li><p>Beispiel: <strong>Datenanalyse</strong></p>
-<ul>
-<li><p>Phase 1: Gruppierung</p></li>
-<li><p>Phase 2: Aggregation</p></li>
-</ul>
-</li>
-<li><p>Beispiel: <strong>Index bauen</strong></p>
-<ul>
-<li><p>Phase 1: Teilmengen indizieren</p></li>
-<li><p>Phase 2: Indizes zusammenführen</p></li>
-</ul>
-</li>
-</ul>
 <p>In der <strong>Phase 0</strong> erfolgt die Verteilung der Daten, auch als <strong>Split</strong> bezeichnet. Hier werden die Daten in Teilmengen aufgeteilt, um die Verarbeitung zu erleichtern.
 In der darauffolgenden <strong>Phase 1</strong> werden Berechnungen auf diesen Teilmengen durchgeführt, was als <strong>Map</strong> bezeichnet wird. Jede Teilmenge wird individuell analysiert oder bearbeitet.
 In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bekannt als <strong>Reduce</strong>. Hier werden die Ergebnisse der vorherigen Phase in einer gemeinsamen Betrachtung zusammengeführt.</p>
