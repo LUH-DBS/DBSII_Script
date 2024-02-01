@@ -510,23 +510,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">
-     6.2.27. Where traditional databases are unsuitable
+    <a class="reference internal nav-link" href="#wann-passen-traditionelle-datenbanken-nicht-gut">
+     6.2.27. Wann passen traditionelle Datenbanken nicht gut?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-use-case-web-index-creation">
-     6.2.28. Example Use Case: Web Index Creation
+    <a class="reference internal nav-link" href="#webindex-fur-eine-suchmaschine-beispiel">
+     6.2.28. Webindex für eine Suchmaschine - Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-ongoing-re-design">
-     6.2.29. An ongoing Re-Design…
+    <a class="reference internal nav-link" href="#fortlaufende-neuentwicklung">
+     6.2.29. Fortlaufende Neuentwicklung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#storage-requirements">
-     6.2.30. Storage Requirements
+    <a class="reference internal nav-link" href="#anforderungen-an-die-speicherung">
+     6.2.30. Anforderungen an die Speicherung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -557,8 +557,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-map-reduce">
-     6.3.2. What is Map/Reduce?
+    <a class="reference internal nav-link" href="#was-ist-map-reduce">
+     6.3.2. Was ist Map/Reduce?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -568,7 +568,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mapreduce-workflow">
-     6.3.4. MapReduce workflow
+     6.3.4. MapReduce Workflow
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -817,23 +817,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#where-traditional-databases-are-unsuitable">
-     6.2.27. Where traditional databases are unsuitable
+    <a class="reference internal nav-link" href="#wann-passen-traditionelle-datenbanken-nicht-gut">
+     6.2.27. Wann passen traditionelle Datenbanken nicht gut?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-use-case-web-index-creation">
-     6.2.28. Example Use Case: Web Index Creation
+    <a class="reference internal nav-link" href="#webindex-fur-eine-suchmaschine-beispiel">
+     6.2.28. Webindex für eine Suchmaschine - Beispiel
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-ongoing-re-design">
-     6.2.29. An ongoing Re-Design…
+    <a class="reference internal nav-link" href="#fortlaufende-neuentwicklung">
+     6.2.29. Fortlaufende Neuentwicklung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#storage-requirements">
-     6.2.30. Storage Requirements
+    <a class="reference internal nav-link" href="#anforderungen-an-die-speicherung">
+     6.2.30. Anforderungen an die Speicherung
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -864,8 +864,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-map-reduce">
-     6.3.2. What is Map/Reduce?
+    <a class="reference internal nav-link" href="#was-ist-map-reduce">
+     6.3.2. Was ist Map/Reduce?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -875,7 +875,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mapreduce-workflow">
-     6.3.4. MapReduce workflow
+     6.3.4. MapReduce Workflow
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -991,11 +991,11 @@ title="Print to PDF"
 </section>
 <section id="parallel-data-processing">
 <h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this headline">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Overview_3.png"><img alt="Overview_3" src="../_images/Overview_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Overview_3.png"><img alt="Overview_3" src="../_images/Overview_3.png" style="width: 300px;" /></a>
 <section id="was-bisher-geschah-serielle-verarbeitung-single-threaded">
 <h3><span class="section-number">6.2.1. </span>Was bisher geschah: Serielle Verarbeitung/Single Threaded<a class="headerlink" href="#was-bisher-geschah-serielle-verarbeitung-single-threaded" title="Permalink to this headline">#</a></h3>
 <p>Bisher haben wir immer von einem Computer mit mehreren Festplatten gesprochen und damit auch ein wenig über parallele Plattenzugriffe. Diese hatten insbesondere auch immer nur einen Kern. Das heißt, bei jeder Operation wurden die Blöcke nacheinander durch nur einen Kern abgearbeitet. Außerdem spielten auch Synchronisation und Kommunikation keine Rolle, da Anfragen in nur einem Thread bearbeitet wurden. Dies wollen wir nun erweitern.</p>
-<a class="reference internal image-reference" href="../_images/serial-single-threaded.png"><img alt="serial-single-threaded" src="../_images/serial-single-threaded.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/serial-single-threaded.png"><img alt="serial-single-threaded" src="../_images/serial-single-threaded.png" style="width: 300px;" /></a>
 </section>
 <section id="was-wir-verschwiegen-haben">
 <h3><span class="section-number">6.2.2. </span>Was wir verschwiegen haben…<a class="headerlink" href="#was-wir-verschwiegen-haben" title="Permalink to this headline">#</a></h3>
@@ -1076,13 +1076,13 @@ Eine Selektion verarbeitet beispielsweise nur ein Tupel auf einmal. Andere Opera
 <section id="parallele-architekturen-shared-memory">
 <h3><span class="section-number">6.2.11. </span>Parallele Architekturen – Shared Memory<a class="headerlink" href="#parallele-architekturen-shared-memory" title="Permalink to this headline">#</a></h3>
 <p>Unter den Parallelen Architekturen ist Shared Memory die einfachste Architektur. Mehrere CPUs teilen sich einen einzigen Speicher und eigene Disks (Array). Die Kommunikation wird über einen einzigen gemeinsamen Bus betrieben. In der Realität hat jeder Prozessor nocht zusätzlich einen eigenen privaten Speicher (NUMA: non-uniform memory access).</p>
-<a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 350px;" /></a>
 <p>Man hat ein Interface auf den Speicher (M = Memory). Alle Prozessoren § können darüber auf den ganzen Speicher zugreifen. Entweder greifen sie auf diesselbe oder eben auch auf unterschiedliche Disks zu.</p>
 </section>
 <section id="parallel-architectures-shared-disk">
 <h3><span class="section-number">6.2.12. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this headline">#</a></h3>
 <p>Bei der parallelen Architektur Shared Disks existieren mehrere Knoten mit mehreren CPUs. Jeder Knoten besitzt eigene private Hauptspeicheradressen oder Hauptspeicheradressbereiche. Die Knoten greifen alle auf die gleichen Disks zu und nutzen die gleiche Datenbank. Diese Architektur wird oft bei NAS, SAN oder anderen Systemen verwendet.</p>
-<a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 350px;" /></a>
 </section>
 <section id="parallel-architectures-shared-nothing">
 <h3><span class="section-number">6.2.13. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this headline">#</a></h3>
@@ -1107,12 +1107,12 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 </section>
 <section id="data-parallelism-beispiel">
 <h3><span class="section-number">6.2.16. </span>Data Parallelism: Beispiel<a class="headerlink" href="#data-parallelism-beispiel" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 400px;" /></a>
 <p>Ein Client schickt eine SQL-Anfrage an einen Cluster-Knoten. Dieser Cluster-Knoten wird dann der Coordinator. Der Coordinater kompiliert die Anfrage. Er parst, überprüft und optimiert also die Anfrage. Zudem überlegt er sich wie die Anfrage parallelisiert werden kann. Die Teilpläne werden an andere Knoten geschickt und der Coordinator führt den eignen Teilplan auch aus. Am Ende sammelt der Coordinator alle Teilergebnisse und finalisiert diese für die Ausgabe.</p>
 </section>
 <section id="id1">
 <h3><span class="section-number">6.2.17. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
 <p>Data Parallelism ist eine Strategie, die in shared-nothing und shared-disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
 </section>
 <section id="parallel-operators">
@@ -1155,7 +1155,7 @@ Dies kann durch einen log2§-stufigen Merge-Prozess erfolgen, wobei p die Anzahl
 </section>
 <section id="symmetric-fragment-and-replicate-join">
 <h3><span class="section-number">6.2.23. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 400px;" /></a>
 <p>Der Symmetric Fragment-and-Replicate Join ist eine spezielle Methode, um das Joinen von Relationen R und S effizienter zu gestalten. Im herkömmlichen Fall müsste jedes Tupel des kartesischen Produkts betrachtet werden, was in parallelen DBMS dazu führen würde, dass jede Partition von R mit jeder Partition von S kombiniert werden müsste.</p>
 <p>Bei der Symmetric Fragment-and-Replicate Methode wird R in m Partitionen und S in n Partitionen fragmentiert. Diese Partitionen werden dann repliziert, wobei jede Partition von R n-mal und jede Partition von S m-mal repliziert wird. Auf einem System mit m * n = p Knoten kann dann jeder Knoten lokal genau ein Partitionspaar von R und S verbinden.</p>
 <p>Die Gesamtkosten dieses Algorithmus setzen sich aus den Fragmentierungskosten, den Transferkosten und den lokalen Join-Kosten zusammen. Die Fragmentierungskosten beinhalten die Größe von R und S (<span class="math notranslate nohighlight">\(B(R) + B(S)\)</span>), während die Transferkosten die Kosten für das Übertragen der replizierten Partitionen darstellen mit <span class="math notranslate nohighlight">\(\frac{B(R)}{m} * n + \frac{B(S)}{n} * m\)</span>. Der lokale Join wird auf jedem Knoten durchgeführt. Die Kosten variieren je nach Wahl des Joins.
@@ -1213,181 +1213,59 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 <li><p><strong>Shared Nothing-Architektur:</strong> Obwohl Shared Nothing-Systeme eine bessere Skalierbarkeit bieten, können sie den Verlust von Knoten nicht leicht kompensieren. In großen Clustern sind Ausfälle häufig, was bedeutet, dass der Verlust von Knoten auch einen Verlust von Daten mit sich bringen kann, es sei denn, die Daten sind repliziert. Die Replikation von Daten bringt jedoch einen Mehraufwand mit sich, da die Konsistenz der replizierten Daten aufrechterhalten werden muss.</p></li>
 </ol>
 </section>
-<section id="where-traditional-databases-are-unsuitable">
-<h3><span class="section-number">6.2.27. </span>Where traditional databases are unsuitable<a class="headerlink" href="#where-traditional-databases-are-unsuitable" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Analysis over raw (unstructured) data</p>
-<ul>
-<li><p>Text processing</p></li>
-<li><p>In general: If relation schema does not fit</p></li>
-</ul>
-</li>
-<li><p>Where cost-effective scalability is required</p>
-<ul>
-<li><p>Use commodity hardware</p></li>
-<li><p>Adaptive cluster size (horizontal scaling)</p></li>
-<li><p>Incremental growth: add computers without expensive reorganization that halts the system</p></li>
-</ul>
-</li>
-<li><p>In unreliable (= large) infrastructures</p>
-<ul>
-<li><p>Must be able to deal with failures – hardware, software, network</p>
-<ul>
-<li><p>Failure is expected rather than the exception</p></li>
-</ul>
-</li>
-<li><p>Transparent to applications</p>
-<ul>
-<li><p>Too expensive to build reliability into each application</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<section id="wann-passen-traditionelle-datenbanken-nicht-gut">
+<h3><span class="section-number">6.2.27. </span>Wann passen traditionelle Datenbanken nicht gut?<a class="headerlink" href="#wann-passen-traditionelle-datenbanken-nicht-gut" title="Permalink to this headline">#</a></h3>
+<p>Traditionelle Datenbanken stoßen an ihre Grenzen in verschiedenen Szenarien. Zum Einen sind sie weniger geeignet für die Analyse unstrukturierter Daten, insbesondere im Fall von Textdaten oder bei Dokumenten. Wenn kein relationales Schema vorhanden ist, erweisen sich traditionelle Datenbanken ebenfalls als ungeeignet.</p>
+<p>Ein weiterer Aspekt ist die Kosteneffektivität. Wenn lediglich einfache Hardware vorhanden ist oder veränderbare Cluster mit horizontaler Skalierung (horizontal scaling) benötigt werden, können traditionelle Datenbanken an Effizienz verlieren. Wenn beispielsweise ab und zu ein Server hinzugefügt oder entfernt wird, bedeutet das jedes Mal für die Datenbank eine Umorganisation. Das inkrementelle Wachstum, also das Hinzufügen von Knoten ohne zusätzlichen Aufwand, ist oft eine Herausforderung für herkömmliche Datenbankmodelle.</p>
 </section>
-<section id="example-use-case-web-index-creation">
-<h3><span class="section-number">6.2.28. </span>Example Use Case: Web Index Creation<a class="headerlink" href="#example-use-case-web-index-creation" title="Permalink to this headline">#</a></h3>
+<section id="webindex-fur-eine-suchmaschine-beispiel">
+<h3><span class="section-number">6.2.28. </span>Webindex für eine Suchmaschine - Beispiel<a class="headerlink" href="#webindex-fur-eine-suchmaschine-beispiel" title="Permalink to this headline">#</a></h3>
+<p>Bei der Entwicklung eines Webindex für eine Suchmaschine treten spezifische Anforderungen auf. Die Suchmaschine durchsucht das Internet, speichert Dokumente mit Worten und Links ab. Das Speichern der Daten kann man sich wie folgt vorstellen:</p>
 <ul class="simple">
-<li><p>A Search Engine scenario:</p>
-<ul>
-<li><p>Have crawled the internet and stored the relevant documents</p></li>
-<li><p>Documents contain words 	(Doc-URL, [list of words])</p></li>
-<li><p>Documents contain links   	(Doc-URL, [Target-URLs])</p></li>
+<li><p>Dokumente beinhalten Wörter: <code class="docutils literal notranslate"><span class="pre">(Doc-URL,</span> <span class="pre">[list</span> <span class="pre">of</span> <span class="pre">words])</span></code></p></li>
+<li><p>Dokumente beinhalten Links: <code class="docutils literal notranslate"><span class="pre">(Doc-URL,</span> <span class="pre">[Target-URLs])</span></code></p></li>
 </ul>
-</li>
-<li><p>Need to build a search index</p>
-<ul>
-<li><p>Invert the files 		(word, [list of URLs])</p></li>
-<li><p>Compute a ranking that requires an inverted graph:
-(Doc-URL, [URLs-pointing-to-it])</p></li>
+<p>Um einen effizienten Index zu erstellen, werden die Dateien invertiert, was eine Zuordnung von Wörtern zu URLs ermöglicht.</p>
+<ul class="simple">
+<li><p>Invertiere die Dateien: <code class="docutils literal notranslate"><span class="pre">(word,</span> <span class="pre">[list</span> <span class="pre">of</span> <span class="pre">URLs])</span></code></p></li>
 </ul>
-</li>
-<li><p>Obvious reasons against relational databases</p>
-<ul>
-<li><p>Relational schema is unsuitable/”unnatural”</p></li>
-<li><p>Importing the documents, converting them to the storage format is expensive</p></li>
+<p>Angenommen man möchte mit einer Anfrage nach der ‘Universität Hannover’ suchen. Eine Suchmaschine soll alle möglichen Websiten finden in denen ‘Universität Hannover’ vorkommt und es noch nach Relevanz sortieren. Um es nach der Relevanz sortieren zu können, muss ein Ranking erstellt werden. Dieses wird durch Berechnung eines invertierten Graphen erstellt. Es sind im Prinzip verschiedene Websiten, die auf andere Seiten mit der URL verweisen. Dadurch kann man z.B. die Relevanz von Dokumenten etc. einschätzen.
+Ein bekanntes Beispiel ist das Page Rank von Google, das nach Larry Page, dem Co-Founder von Google, benannt worden ist.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(Doc-URL,</span> <span class="pre">[URLs-pointing-to-it])</span></code></p></li>
 </ul>
-</li>
-<li><p>A mismatch between what databases were designed for and what is really needed:</p>
-<ul>
-<li><p>Databases come originally from transactional processing. They give hard guarantees about absolute consistencies in the case of concurrent updates.</p></li>
-<li><p>Analytics are added on top of that</p></li>
-<li><p>The documents are never updated, they are read only.</p></li>
-<li><p>Perfect transactional consistency is not always necessary</p></li>
-</ul>
-</li>
-</ul>
+<p>Traditionelle relationale Datenbankmanagementsysteme (RDBMS) sind jedoch für diese Aufgabe weniger geeignet. Das relationale Schema passt nicht optimal, und der Import sowie die Konvertierung der Dokumente erweisen sich als kostspielig.</p>
+<p>RDBMS sind primär für Transaktionsverarbeitung konzipiert und bieten Garantien hinsichtlich absoluter Konsistenz, was für die Analyse von Webdokumenten, die eher read-only sind, nicht unbedingt erforderlich ist. Daher sind alternative Ansätze besser geeignet, um den spezifischen Anforderungen eines Webindex gerecht zu werden.</p>
 </section>
-<section id="an-ongoing-re-design">
-<h3><span class="section-number">6.2.29. </span>An ongoing Re-Design…<a class="headerlink" href="#an-ongoing-re-design" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Driven by companies like Google, Facebook, Yahoo, Apple, Microsoft</p></li>
-<li><p>Use heavily distributed system</p>
-<ul>
-<li><p>Google used 450,000 low-cost commodity servers in 2006
-in cluster of 1000 – 5000 nodes</p></li>
-</ul>
-</li>
-<li><p>Redesign infrastructure and architectures completely with the key goal to be</p>
-<ul>
-<li><p>Highly scalable</p></li>
-<li><p>Tolerant of failures</p></li>
-</ul>
-</li>
-<li><p>Stay generic and schema free in the data model</p></li>
-<li><p>Start with: Data Storage</p></li>
-<li><p>Next Step: Distributed Analysis</p></li>
-</ul>
+<section id="fortlaufende-neuentwicklung">
+<h3><span class="section-number">6.2.29. </span>Fortlaufende Neuentwicklung<a class="headerlink" href="#fortlaufende-neuentwicklung" title="Permalink to this headline">#</a></h3>
+<p>Die kontinuierliche Weiterentwicklung von Technologien hat dazu geführt, dass führende FAANG-Unternehmen zunehmend auf stark verteilte Systeme setzen. Ein bemerkenswertes Beispiel ist Google, das bereits im Jahr 2006 auf 450.000 kostengünstige Commodity-Server setzte, die in Clustern mit 1000 bis 5000 Knoten organisiert waren. Der Fokus bei der Neugestaltung solcher Systeme liegt auf Hochskalierbarkeit und Ausfalltoleranz. Auch hier werden die Daten wieder häufig repliziert und vielen verschiedenen Servern gespeichert, um die Ausfalltoleranz zu gewährleisten.</p>
+<p>Ein entscheidendes Merkmal ist ein generisches und schemafreies Datenmodell, das die Flexibilität erhöht. Der Einstieg erfolgt oft mit einem Datenablagesystem als Ausgangspunkt. Der nächste Schritt in dieser Entwicklung ist eine verteilte Analyse.
+Dieser Ansatz ermöglicht es den Unternehmen, sich an die sich ständig verändernden Anforderungen anzupassen.</p>
 </section>
-<section id="storage-requirements">
-<h3><span class="section-number">6.2.30. </span>Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Extremely large files: Terabytes to Petabytes</p></li>
-<li><p>High availability: Data must be kept replicated</p></li>
-<li><p>High throughput</p>
-<ul>
-<li><p>Read/write operations must not go through other servers</p></li>
-</ul>
-</li>
-<li><p>No single point of failure</p>
-<ul>
-<li><p>Any master must be kept redundantly</p></li>
-</ul>
-</li>
-<li><p>Many different distributed file systems exist.</p>
-<ul>
-<li><p>Different goals: transparency, updateability, archiving, etc…</p></li>
-</ul>
-</li>
-<li><p>Google Filesystem (GFS)</p>
-<ul>
-<li><p>Widely used reference architecture for high-throughput and high-availability DFS</p></li>
-</ul>
-</li>
-</ul>
+<section id="anforderungen-an-die-speicherung">
+<h3><span class="section-number">6.2.30. </span>Anforderungen an die Speicherung<a class="headerlink" href="#anforderungen-an-die-speicherung" title="Permalink to this headline">#</a></h3>
+<p>Die Anforderungen an die Speicherung von Daten in modernen Umgebungen sind vielfältig und anspruchsvoll. Insbesondere bei sehr großen Dateien im Bereich von Terabytes bis Petabytes ist eine robuste Speicherlösung entscheidend. Neben der Skalierbarkeit sind hohe Verfügbarkeit und Replikation entscheidend, um Ausfälle zu vermeiden.</p>
+<p>Ein weiterer kritischer Punkt ist der hohe Durchsatz, wobei Lese- und Schreiboperationen nicht durch andere Server gehen sollen. Idealerweise wird versucht alles lokal zu berechnen.
+Um einzelne Ausfallpunkte (Single Point of Failure) zu vermeiden, müssen Koordinatoren redundant sein. In diesem Kontext hat das Google Filesystem (GFS) als Referenzpunkt gedient, indem es eine Architektur mit hohem Durchsatz und hoher Verfügbarkeit bereitstellt.</p>
 </section>
 <section id="the-storage-model-distributed-file-system">
 <h3><span class="section-number">6.2.31. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>The file system</p>
-<ul>
-<li><p>Distributed across many nodes (DataNodes)</p></li>
-<li><p>Provides a single namespace for the entire cluster</p></li>
-<li><p>Metadata is managed on a dedicated node (NameNode)</p></li>
-<li><p>Write-once-read-many access model</p></li>
-</ul>
-</li>
-<li><p>Files are split into blocks</p>
-<ul>
-<li><p>Typically 128 MB block size</p></li>
-<li><p>Each block is replicated on multiple data nodes</p></li>
-</ul>
-</li>
-<li><p>The client</p>
-<ul>
-<li><p>can determine the location of blocks</p></li>
-<li><p>can access data directly from the DataNode</p></li>
-<li><p>over the network</p></li>
-</ul>
-</li>
-<li><p>Problem: bandwidth to data</p>
-<ul>
-<li><p>Scanning the data from remote storage is expensive (50MB/s remote access vs. 150-200MB/s local access)</p></li>
-<li><p>Moving computation is more efficient than moving data</p></li>
-<li><p>Map/Reduce framework tries to perform computations close to the data</p></li>
-<li><p>Nodes have two purposes: data storage and computation</p></li>
-</ul>
-</li>
-</ul>
 <a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
+<p>Das Storage-Modell eines verteilten Dateisystems basiert auf mehreren Schlüsselkomponenten. Das Dateisystem selbst ist auf mehrere Knoten, auch DataNodes genannt, verteilt und verfügt über einen gemeinsamen Namensraum für den gesamten Cluster. Die Verwaltung der Metadaten erfolgt auf einem speziellen Knoten, dem NameNode. Das Zugriffsmodell ist als “Write-once-read-many” konzipiert.</p>
+<p>Die Dateien werden in Blöcke von 128 MB aufgeteilt, wobei jeder Block auf mehreren DataNodes repliziert wird. Der Client kann den Standort eines Blocks identifizieren und direkt über das Netzwerk die Daten von einem DataNode anfordern.</p>
+<p>Eine Herausforderung besteht jedoch in der begrenzten Bandbreite zum Zugriff auf die Daten. Das Abrufen von Daten aus einem entfernten Speicher ist teurer als lokale Zugriffe (50 MB/s remote access vs. 150-200 MB/s local access).
+Um dieses Problem zu umgehen, versucht das Map/Reduce-Framework, Berechnungen möglichst nah an den Daten auszuführen. Die Berechnung zu bewegen ist billiger als die Daten zu bewegen. In diesem Konzept sind die Knoten sowohl für die Speicherung als auch für die Berechnungen verantwortlich.</p>
 </section>
 <section id="retrieving-and-analyzing-data">
 <h3><span class="section-number">6.2.32. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Data is stored as custom records in files</p>
-<ul>
-<li><p>Most generic data model that is possible</p></li>
-<li><p>Key/value model</p></li>
-</ul>
-</li>
-<li><p>Records are read and written with data model specific (de)serializers</p></li>
-<li><p>Analysis or transformation tasks must be written directly as a program</p>
-<ul>
-<li><p>Not possible to generate it from a higher level statement</p></li>
-<li><p>Like a query-plan that is automatically generated from SQL</p></li>
-</ul>
-</li>
-<li><p>Programs must be parallel, highly scalable, fault tolerant</p>
-<ul>
-<li><p>Extremely hard to program</p></li>
-<li><p>Need a programming model and framework that takes care of that</p></li>
-<li><p>The map/reduce model has been suggested and successfully adapted on a broad scale</p></li>
-</ul>
-</li>
-</ul>
+<p>Die Suche und Analyse von Daten in modernen Systemen erfordert eine spezielle Herangehensweise. Die Daten liegen oft in maßgeschneiderten Einheiten (Records) innerhalb von Dateien vor, was ein sehr generisches Datenmodell darstellt. Ein häufig verwendetes Modell ist das “Key/Value-Modell”.</p>
+<p>Um Analyse- und Transformationsaufgaben durchzuführen, wurden zuvor einfache SQL-Anfragen genutzt. Nun werden direkt ganze Programme geschrieben. Diese Programme müssen jedoch parallel, fehlertolerant und hochskalierbar sein, was die Programmierung erschwert. Hier kommt das Map/Reduce-Programmiermodell ins Spiel, das speziell für diese Anforderungen entwickelt wurde. Es ermöglicht die effiziente Verarbeitung von großen Datenmengen, indem es Programme in kleine, parallel ausführbare Aufgaben aufteilt.</p>
 </section>
 <section id="skalierungsmuster">
 <h3><span class="section-number">6.2.33. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this headline">#</a></h3>
+<p>Skalierungsmuster spielen eine entscheidende Rolle bei der Verarbeitung großer Datenmengen. Dieser Prozess kann in verschiedene Phasen unterteilt werden.</p>
+<a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 300px;" /></a>
 <ul class="simple">
 <li><p>Phase 0: Daten verteilen (split)</p></li>
 <li><p>Phase 1: Berechnungen auf Teilmengen der Daten (map)</p></li>
@@ -1415,7 +1293,11 @@ in cluster of 1000 – 5000 nodes</p></li>
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 300px;" /></a>
+<p>In der <strong>Phase 0</strong> erfolgt die Verteilung der Daten, auch als <strong>Split</strong> bezeichnet. Hier werden die Daten in Teilmengen aufgeteilt, um die Verarbeitung zu erleichtern.
+In der darauffolgenden <strong>Phase 1</strong> werden Berechnungen auf diesen Teilmengen durchgeführt, was als <strong>Map</strong> bezeichnet wird. Jede Teilmenge wird individuell analysiert oder bearbeitet.
+In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bekannt als <strong>Reduce</strong>. Hier werden die Ergebnisse der vorherigen Phase in einer gemeinsamen Betrachtung zusammengeführt.</p>
+<p>Ein Beispiel für dieses Muster ist der Two-Phase-Multiway-Mergesort (TPMMS), bei dem in Phase 1 Teile der Daten sortiert werden und in Phase 2 die sortierten Teillisten zusammengeführt werden.</p>
+<p>Dieses Skalierungsmuster findet auch Anwendung in verschiedenen Anwendungsfällen wie Datenanalyse oder dem Bau von Indizes. Bei der Datenanalyse werden in Phase 1 Gruppierungen durchgeführt, gefolgt von der Aggregation in Phase 2. Beim Bau von Indizes werden in Phase 1 Teilmengen indiziert und in Phase 2 die Indizes zusammengeführt.</p>
 </section>
 </section>
 <section id="map-reduce-hadoop">
@@ -1423,90 +1305,39 @@ in cluster of 1000 – 5000 nodes</p></li>
 <section id="mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets">
 <h3><span class="section-number">6.3.1. </span>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”<a class="headerlink" href="#mapreduce-is-a-programming-model-and-an-associated-implementation-for-processing-and-generating-large-data-sets" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png"><img alt="MapReduce-Simplified-data-processing-on-large-clusters" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" style="width: 500px;" /></a>
+<p>Das zugrunde liegende Paper zu MapReduce ist von Jeffrey Dean und Sanjay Ghemawat. Es stammt aus dem Jahr 2006.</p>
 </section>
-<section id="what-is-map-reduce">
-<h3><span class="section-number">6.3.2. </span>What is Map/Reduce?<a class="headerlink" href="#what-is-map-reduce" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Programming model</p>
-<ul>
-<li><p>Borrows concepts from functional programming</p></li>
-<li><p>Suited for parallel execution</p>
-<ul>
-<li><p>Automatic parallelization &amp; distribution of data and computational logic</p></li>
-</ul>
-</li>
-<li><p>Clean abstraction for programmers</p></li>
-</ul>
-</li>
-<li><p>Functional programming influences</p>
-<ul>
-<li><p>Treats computation as the evaluation of mathematical functions</p></li>
-<li><p>No changes of states (no side effects)</p></li>
-<li><p>Output value of a function depends only on its arguments</p></li>
-</ul>
-</li>
-<li><p>Map and Reduce are higher-order functions (2nd order)</p>
-<ul>
-<li><p>Take user-defined functions as argument</p></li>
-<li><p>Return a function as result</p></li>
-<li><p>User implements the two functions</p></li>
-</ul>
-</li>
-</ul>
+<section id="was-ist-map-reduce">
+<h3><span class="section-number">6.3.2. </span>Was ist Map/Reduce?<a class="headerlink" href="#was-ist-map-reduce" title="Permalink to this headline">#</a></h3>
+<p>Map/Reduce ist ein Programmiermodell, das auf Konzepten der funktionalen Programmierung basiert und sich besonders gut für parallele Verarbeitung eignet. Es ermöglicht automatische Parallelisierung und Verteilung von Daten und Berechnungslogik. Diese saubere Abstraktion erleichtert die Programmierung für Entwickler und Entwicklerinnen.</p>
+<p>In der funktionalen Programmierung erfolgt die Berechnung durch die Evaluierung mathematischer Funktionen. Ein zentrales Prinzip dabei ist die Vermeidung von Zustandsänderungen, also keine Seiteneffekte. Das Ergebnis einer Funktion hängt ausschließlich von den Eingangsparametern ab.</p>
+<p>Map und Reduce sind sogenannte Higher-Order-Funktionen zweiter Ordnung, die benutzerdefinierte Funktionen als Parameter nutzen und selbst eine Funktion als Ergebnis liefern. Programmierende müssen lediglich zwei Funktionen implementieren: die Map-Funktion, die auf jeden Datensatz angewendet wird, und die Reduce-Funktion, die die aggregierten Ergebnisse zusammenführt.</p>
 </section>
 <section id="grundbausteine">
 <h3><span class="section-number">6.3.3. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p>Datenmodel</p>
-<ul>
-<li><p>Schlüssel/Wert-Paare</p>
-<ul>
-<li><p>“key/value pairs”</p></li>
-<li><p>Z.B. (int, string), oder(string, [string]), …</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>MapReduce Programm</p>
-<ul>
-<li><p>Input: Liste an Schlüssel/Wert-Paare</p></li>
-<li><p>Output: Liste an Werten</p></li>
-</ul>
-</li>
-<li><p>Zwei Herausforderungen</p>
-<ul>
-<li><p>Entwurf der Funktionen</p></li>
-<li><p>Verteilte, fehlertolerante und effiziente Ausführung des Programms</p></li>
-</ul>
-</li>
-<li><p>Nutzer definieren zwei Funktionen</p>
-<ul>
-<li><p>Map:</p>
-<ul>
-<li><p>Oft nur ein Paar</p></li>
-</ul>
-</li>
-<li><p>Reduce:</p>
-<ul>
-<li><p>Meist nur ein Wert</p></li>
-<li><p>Meist auch  im Output, dadurch Verkettung von MapReduce-Schritten</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Die Grundbausteine von Map/Reduce umfassen ein einfaches Datenmodell in Form von Schlüssel/Wert-Paaren <span class="math notranslate nohighlight">\((K \times V)\)</span>, auch als “key/value pairs” bekannt. Diese Paare können verschiedene Formen annehmen, wie zum Beispiel (int, string) oder (string, [string]).</p>
+<p>Nutzer definieren zwei wesentliche Funktionen im Map/Reduce-Programm. Die Map-Funktion <span class="math notranslate nohighlight">\((k', v') \rightarrow list(k_{1}, v_{1})\)</span> wird auf jedes Schlüssel/Wert-Paar angewendet und gibt oft nur ein neues Paar <span class="math notranslate nohighlight">\((k_{1}, v_{1})\)</span> aus.</p>
+<p>Die Reduce-Funktion <span class="math notranslate nohighlight">\((k_{1}, list(v1)) \rightarrow list(v_{2})\)</span> agiert meist auf ein einzelnes Wertpaar <span class="math notranslate nohighlight">\((v_{2}\)</span>, oft auch mit Rückgabe des ursprünglichen Schlüssels <span class="math notranslate nohighlight">\(k_{1}\)</span>. Dadurch ist eine Verkettung von Map/Reduce-Schritten möglich.</p>
+<p>Ein MapReduce-Programm nimmt eine Liste von Schlüssel/Wert-Paaren als Eingabe und gibt eine Liste von Werten als Ausgabe aus. Die Ausgabe erfolgt erst am Ende nachdem sowohl die Map- als auch die Reduce-Funktion ausgeführt wurde.
+Dabei stehen Nutzern und Nutzerinnen zwei Herausforderungen bevor: das Entwerfen geeigneter Map- und Reduce-Funktionen sowie die Gewährleistung einer verteilten, fehlertoleranten und effizienten Ausführung des Programms.</p>
 </section>
 <section id="mapreduce-workflow">
-<h3><span class="section-number">6.3.4. </span>MapReduce workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">6.3.4. </span>MapReduce Workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-workflow.png"><img alt="MapReduce-workflow" src="../_images/MapReduce-workflow.png" style="width: 500px;" /></a>
+<p>Der MapReduce Workflow beinhaltet einige Schritte. Zunächst werden aus dem Input Datafile ein Key und Value gelesen und der Mapper-Funktion übergeben. Das Ergebnis daraus in Form von einem Key und Value wird an eine Key-Sorter-Funktion übergeben. Diese Funktion gibt einen Key mit einer Liste an Werten an eine Reducer-Funktion weiter. Das Resultat aus der Reducer-Funktion in Form von einem key und value wird in eine Output Datafile geschrieben. Den ganzen Workflow kann man mehrmals wiederholen und aneinander ketten, wenn dies je nach Situation verlangt wird.</p>
 <section id="aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus">
 <h4><span class="section-number">6.3.4.1. </span>Aufgabe: Bestimme für jedes Wort dessen Häufigkeit im Korpus<a class="headerlink" href="#aufgabe-bestimme-fur-jedes-wort-dessen-haufigkeit-im-korpus" title="Permalink to this headline">#</a></h4>
+<a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" style="width: 500px;" /></a>
+<p>Um die Aufgabe zu lösen und für jedes Wort die Häufigkeit im Korpus zu bestimmen, müssen zwei Funktionen geschrieben werden: Eine Map- und eine Reduce-Funktion.</p>
+<p>Zunächst wird eine Map-Funktion geschrieben, die jedes Wort zusammen mit einer 1 zurückgibt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="p">){</span>
 	  <span class="k">for</span> <span class="n">each</span> <span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="p">)</span>
 	     <span class="n">emit</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>	 	 
 <span class="p">}</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">numbers</span><span class="p">){</span>
+</pre></div>
+</div>
+<p>Als nächstes wird eine Reduce-Funktion programmiert. Diese Funktion bekommt einen Key, in dem Fall word, und eine Liste an Values, hier ist es numbers, übergeben. Zu jedem Wort zählt die Reduce-Funktion die Summe an Einsen in der numbers-Liste. Am Schluss gibt die Funktion das Wort zusammen mit der Häufigkeit des Wortes aus.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reduce</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">numbers</span><span class="p">){</span>
 	  <span class="nb">int</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 	  <span class="k">for</span> <span class="n">each</span> <span class="p">(</span><span class="n">value</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">){</span>
 	    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
@@ -1516,11 +1347,11 @@ in cluster of 1000 – 5000 nodes</p></li>
 
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" style="width: 500px;" /></a>
 </section>
 </section>
 <section id="map-reduce-illustrated-2">
 <h3><span class="section-number">6.3.5. </span>Map Reduce Illustrated (2)<a class="headerlink" href="#map-reduce-illustrated-2" title="Permalink to this headline">#</a></h3>
+<p>36min</p>
 <a class="reference internal image-reference" href="../_images/MapReduce-Illustrated-2.png"><img alt="MapReduce-Illustrated-2" src="../_images/MapReduce-Illustrated-2.png" style="width: 500px;" /></a>
 <section id="aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar">
 <h4><span class="section-number">6.3.5.1. </span>Aufgabe: Bestimme Liste gemeinsamer Bekannte für jedes Personenpaar<a class="headerlink" href="#aufgabe-bestimme-liste-gemeinsamer-bekannte-fur-jedes-personenpaar" title="Permalink to this headline">#</a></h4>
