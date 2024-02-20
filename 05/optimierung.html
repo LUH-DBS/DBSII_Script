@@ -596,13 +596,13 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 <ul class="simple">
 <li><p>Selektion σ</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(σ_{c1 AND c2}(R) = σ_{c1}(σ_{c2}(R))\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(σ_{c1 OR c2}(R) = σ_{c1}(R) ∪ σ_{c2}(R)\)</span></p>
+<li><p><span class="math notranslate nohighlight">\(σ_{c_1 AND c_2}(R) = σ_{c_1}(σ_{c_2}(R))\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(σ_{c_1 OR c_2}(R) = σ_{c_1}(R) ∪ σ_{c_2}(R)\)</span></p>
 <ul>
 <li><p>nicht bei Multimengen</p></li>
 </ul>
 </li>
-<li><p><span class="math notranslate nohighlight">\( σ_{c1}(σ_{c2}(R)) = σ_{c2}(σ_{c1}(R))\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( σ_{c_1}(σ_{c_2}(R)) = σ_{c_2}(σ_{c_1}(R))\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\( σ_{c}(R Φ S) ≡ (σ_{c}(R)) Φ (σ_{c}(S))\)</span></p>
 <ul>
 <li><p>Φ ∈ {∪, ∩, -, ⨝}</p></li>
@@ -767,15 +767,14 @@ Man erhält 20 Byte pro Tupel. Insgesamt also 50 Tupel pro block und B(<span cla
 </section>
 <section id="kostenschatzung-selektion">
 <h3><span class="section-number">5.5.7. </span>Kostenschätzung - Selektion<a class="headerlink" href="#kostenschatzung-selektion" title="Permalink to this heading">#</a></h3>
-<p>Im Gegensatz zur Projektion bleibt zwar die Tupelgröße, aber die Anzahl der Tupel sinkt bei der Selektion. </br>
-<span class="math notranslate nohighlight">\(Q=\sigma_{A=c}(R)\)</span> </br>
-Die Formel zur Selektion zeigt einen Vergleich zwischen dem Attribut A und der Konstante c. Basierend auf Annahmen kann man die Anzahl der Ausgabetupel berechnen. Die erste Annahme ist, dass die Werte gleich verteilt sind. Die zweite, dass c einer dieser Werte ist. Zur Berechnung nutzt man die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{ T(R)} {V(R,A)}\)</span>. <span class="math notranslate nohighlight">\(V(R,A)\)</span> ist die Anzahl der distinct Werte in Spalte A. D.h. der Selektivitäsfaktor ist <span class="math notranslate nohighlight">\( \frac{1} {V(R,A)}\)</span>. Bessere Abschätzungen sind mittels Histogrammen möglich.<br />
+<p>Im Gegensatz zur Projektion bleibt zwar die Tupelgröße, aber die Anzahl der Tupel sinkt bei der Selektion. </br></p>
+<p><span class="math notranslate nohighlight">\(Q=\sigma_{A=c}(R)\)</span> </br></p>
+<p>Die Formel zur Selektion zeigt einen Vergleich zwischen dem Attribut A und der Konstante c. Basierend auf Annahmen kann man die Anzahl der Ausgabetupel berechnen. Die erste Annahme ist, dass die Werte gleich verteilt sind. Die zweite, dass c einer dieser Werte ist. Zur Berechnung nutzt man die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{ T(R)} {V(R,A)}\)</span>. <span class="math notranslate nohighlight">\(V(R,A)\)</span> ist die Anzahl der distinct Werte in Spalte A. D.h. der Selektivitäsfaktor ist <span class="math notranslate nohighlight">\( \frac{1} {V(R,A)}\)</span>. Bessere Abschätzungen sind mittels Histogrammen möglich.</p>
+<p><span class="math notranslate nohighlight">\(Q=\sigma_{A&lt;c}(R)\)</span></br></p>
+<p>Der Vergleich der Selektion A &lt; c macht eine Bereichsabfrage. Es gibt Möglichkeiten dies genau abzuschätzen. Einfachheitshalber nutzen wir hier eine erste Abschätzung: <span class="math notranslate nohighlight">\(T(Q) = T(R) / 2\)</span>. Typischer ist die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{T(R)} {3}\)</span>.
 <br></p>
-<p><span class="math notranslate nohighlight">\(Q=\sigma_{A&lt;c}(R)\)</span></br>
-Der Vergleich der Selektion A &lt; c macht eine Bereichsabfrage. Es gibt Möglichkeiten dies genau abzuschätzen. Einfachheitshalber nutzen wir hier eine erste Abschätzung: <span class="math notranslate nohighlight">\(T(Q) = T(R) / 2\)</span>. Typischer ist die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{T(R)} {3}\)</span>.
-<br></p>
-<p><span class="math notranslate nohighlight">\(Q=\sigma_{A \neq c}(R)\)</span></br>
-Man möchte in der Selektion nicht die Attribute haben, die der Konstante c entsprechen. Eine erste einfache Abschätzung wäre es davon auszugehen, dass man (fast) alles zurückbekommt: <span class="math notranslate nohighlight">\(T(Q) = T(R)\)</span>. Etwas genauer ist stattdessen die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{T(R) \cdot (V(R,A) - 1)} {V(R,A)}\)</span>. Sie ist sehr ähnlich zu der ersten Formel vom Vergleich (<span class="math notranslate nohighlight">\(Q=\sigma_{A=c}(R)\)</span>). Der Unterschied besteht darin, dass sie nicht alle Tupel zurückgibt, die gleich der Konstante sind, sondern genau das Gegenteil: Alle Tupel, die ungleich der Konstante sind.
+<p><span class="math notranslate nohighlight">\(Q=\sigma_{A \neq c}(R)\)</span></br></p>
+<p>Man möchte in der Selektion nicht die Attribute haben, die der Konstante c entsprechen. Eine erste einfache Abschätzung wäre es davon auszugehen, dass man (fast) alles zurückbekommt: <span class="math notranslate nohighlight">\(T(Q) = T(R)\)</span>. Etwas genauer ist stattdessen die Formel <span class="math notranslate nohighlight">\(T(Q) = \frac{T(R) \cdot (V(R,A) - 1)} {V(R,A)}\)</span>. Sie ist sehr ähnlich zu der ersten Formel vom Vergleich (<span class="math notranslate nohighlight">\(Q=\sigma_{A=c}(R)\)</span>). Der Unterschied besteht darin, dass sie nicht alle Tupel zurückgibt, die gleich der Konstante sind, sondern genau das Gegenteil: Alle Tupel, die ungleich der Konstante sind.
 </br></p>
 <p>Hat man Konjunktionen bei mehreren Selektionsbedingungen, multipliziert man die Selektivitätsfaktoren. Die Annahme dafür ist die Unabhängigkeit der Bedingungen.</p>
 </section>
@@ -906,7 +905,7 @@ Die Ergebniskardinalität von <span class="math notranslate nohighlight">\(R \Jo
 <h3><span class="section-number">5.5.15. </span>Kostenschätzung - Mehrfacher Join<a class="headerlink" href="#kostenschatzung-mehrfacher-join" title="Permalink to this heading">#</a></h3>
 <p>Im allgemeinen Fall <span class="math notranslate nohighlight">\( S = R_{1} \Join R_{2} \Join ... \Join R_{n} \)</span> wird in diesem Fall über das selbe Attribut A gejoint. Notiert wird es mit <span class="math notranslate nohighlight">\(V(R_{i}, A) = v_{i}\)</span>. Das Attribut A erscheint in k Relationen. Es gilt <span class="math notranslate nohighlight">\(v_{1} \leq v_{2} \leq ... \leq v_{k}\)</span> mit <span class="math notranslate nohighlight">\( k \leq n \)</span>. Die Frage ist nun wie die Kardinalität des Ergebnisses berechnet wird.</br>
 Dazu eine kleine Gedankenhilfe:
-Gegeben ist ein Tupel aus jeder der k Relationen. Gesucht wird die Wahrscheinlichkeit, dass alle im A-Wert übereinstimmen. Es gibt wieder das Containment of Value Sets: Jeder A-Wert von Tupeln aus <span class="math notranslate nohighlight">\(R_{1}\)</span> taucht in den anderen Relationen auf. Ein Tupel aus <span class="math notranslate nohighlight">\(R_{i}\)</span> hat eine Wahrscheinlichkeit von <span class="math notranslate nohighlight">\(1/v_{i}\)</span> mit einem gegebenen Tupel aus <span class="math notranslate nohighlight">\(R_{1}\)</span> übereinzustimmen. Zusammen ergibt sich <span class="math notranslate nohighlight">\(1 / v_{2} \cdot v_{3} \cdot … \cdot v_{k}\)</span>. Die Wahrscheinlichkeiten der einzelnen Tupel der verschiedenen Relationen müssen nur multipliziert werden. </br>
+Gegeben ist ein Tupel aus jeder der k Relationen. Gesucht wird die Wahrscheinlichkeit, dass alle im A-Wert übereinstimmen. Es gibt wieder das Containment of Value Sets: Jeder A-Wert von Tupeln aus <span class="math notranslate nohighlight">\(R_{1}\)</span> taucht in den anderen Relationen auf. Ein Tupel aus <span class="math notranslate nohighlight">\(R_{i}\)</span> hat eine Wahrscheinlichkeit von <span class="math notranslate nohighlight">\(\frac{1}{v_{i}}\)</span> mit einem gegebenen Tupel aus <span class="math notranslate nohighlight">\(R_{1}\)</span> übereinzustimmen. Zusammen ergibt sich <span class="math notranslate nohighlight">\(\frac{1}{ v_{2} \cdot v_{3} \cdot … \cdot v_{k}}\)</span>. Die Wahrscheinlichkeiten der einzelnen Tupel der verschiedenen Relationen müssen nur multipliziert werden. </br>
 Für das Gesamtvorgehen ist der Ausgangspunkt also das Produkt aller Kardinalitäten zu bilden. Betrachtet man die Selektivität muss für jedes Attribut, das mehr als einmal auftaucht, durch das Produkt aller <span class="math notranslate nohighlight">\(v_{i}\)</span> bis auf das kleinste (<span class="math notranslate nohighlight">\(v_{1}\)</span> dividiert werden.</p>
 <p><strong>Beispiel</strong></br></p>
 <ul class="simple">
