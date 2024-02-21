@@ -400,7 +400,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pipeline-parallelism">
+    <a class="reference internal nav-link" href="#id2">
      6.2.5. Pipeline Parallelism
     </a>
    </li>
@@ -445,7 +445,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id3">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -677,7 +677,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pipeline-parallelism">
+    <a class="reference internal nav-link" href="#id2">
      6.2.5. Pipeline Parallelism
     </a>
    </li>
@@ -722,7 +722,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id3">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -961,9 +961,21 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 <section id="varianten-der-anfrage-parallelisierung">
 <h3><span class="section-number">6.2.4. </span>Varianten der Anfrage-Parallelisierung<a class="headerlink" href="#varianten-der-anfrage-parallelisierung" title="Permalink to this headline">#</a></h3>
 <p>Es existieren unterschiedliche Varianten der Anfrage-Parallelisierung. Die erste Variante ist <em>Inter-Query parallelism</em> (mehrere nebenläufige Anfragen). Dies ist wichtig für eine effiziente Ressourcennutzung. Wartet eine Anfrage z.B. auf I/O, kann in der Zeit eine andere Anfrage ausgeführt werden. Dies erfordert <em>concurrency control</em>, also das Sperren, um Transaktionseigenschaften zu garantieren. Das ist auch wichtig für OLTP. Die zweite Variante ist <em>Intra-Query parallelism</em> (parallele Verarbeitung einer einzelnen Anfrage). Dieser unterteilt sich nochmal in <em>I/O parallelism, Intra-Operator parallelism</em> und <em>Inter-Operator parallelism</em>. Beim <em>I/O parallelism</em> werden nebenläufig mehrere Platten gelesen. Dabei wird mit spanned tablespaces und Partitionierung gearbeitet und eventuell auch mit Hardware RAIDs (versteckt). Beim <em>Intra-Operator parallelism</em> arbeiten mehrere Threads für den selben Operator, wie beispielsweise beim Parallel Sort, während beim <em>Inter-Operator parallelism</em> mehrere Teile eines Anfrageplans parallel laufen (pipeline). Letzteres ist wichtig für komplexe analytische Aufgaben (OLAP).</p>
+<figure class="align-default" id="pipeline-parallelism">
+<img alt="../_images/Pipeline-Parallelism.png" src="../_images/Pipeline-Parallelism.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#pipeline-parallelism" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id1">
+<img alt="image of Pipeline Parallelism" src="../_images/Pipeline-Parallelism.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="pipeline-parallelism">
-<h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this headline">#</a></h3>
+<section id="id2">
+<h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>Pipeline Parallelism besteht aus drei verschiedenen Schritten und erlaubt, dass mehrere Teile eines Anfrageplans gleichzeitig laufen können.</p>
 <img src="pictures/Pipeline-Parallelism.png" alt="Pipeline-Parallelism" width="500" style="background-color: white;"/>
 <figcaption style="text-align: center;">Figure 1: Pipeline Parallelism</figcaption>
@@ -1038,8 +1050,8 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 400px;" /></a>
 <p>Ein Client schickt eine SQL-Anfrage an einen Cluster-Knoten. Dieser Cluster-Knoten wird dann der Coordinator. Der Coordinater kompiliert die Anfrage. Er parst, überprüft und optimiert also die Anfrage. Zudem überlegt er sich wie die Anfrage parallelisiert werden kann. Die Teilpläne werden an andere Knoten geschickt und der Coordinator führt den eignen Teilplan auch aus. Am Ende sammelt der Coordinator alle Teilergebnisse und finalisiert diese für die Ausgabe.</p>
 </section>
-<section id="id1">
-<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
 <p>Data Parallelism ist eine Strategie, die in shared-nothing und shared-disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
 </section>
