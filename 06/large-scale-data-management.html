@@ -445,7 +445,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -722,7 +722,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -965,13 +965,12 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 <section id="pipeline-parallelism">
 <h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this headline">#</a></h3>
 <p>Pipeline Parallelism besteht aus drei verschiedenen Schritten und erlaubt, dass mehrere Teile eines Anfrageplans gleichzeitig laufen können.</p>
-<div class="highlight-figure} notranslate"><div class="highlight"><pre><span></span>:name: Pipeline Parallelism
-:alt: image of Pipeline Parallelism
-:align: center
-
-Pipeline Parallelism
-</pre></div>
-</div>
+<figure class="align-default" id="id1">
+<img alt="../_images/Pipeline-Parallelism.png" src="../_images/Pipeline-Parallelism.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Im ersten Schritt können zwei Threads (T2 und T3) je einen Base Table scannen und für die Joins einen Hash Table bauen. </br>
 Dann scannt ein Thread den ersten Table. Der Thread prüft die Hashtabellen auf Kollisionen und versucht eine alternative Stelle zu finden (Probing). Bei Hash Tabellen kann es zu Kollisionen kommen, wenn zwei verschiedene Schlüssel auf denselben Hashwert abgebildet werden. Der zweite Thread fängt an die Sublisten zu sortieren (Sort) und fügt die ersten Listen zusammen. </br>
 Am Ende ist nur noch ein Thread vorhanden. Dieser gibt das Ergebnis zurück (Return) und arbeitet wieder wie zuvor weiter.</p>
@@ -1043,8 +1042,8 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 400px;" /></a>
 <p>Ein Client schickt eine SQL-Anfrage an einen Cluster-Knoten. Dieser Cluster-Knoten wird dann der Coordinator. Der Coordinater kompiliert die Anfrage. Er parst, überprüft und optimiert also die Anfrage. Zudem überlegt er sich wie die Anfrage parallelisiert werden kann. Die Teilpläne werden an andere Knoten geschickt und der Coordinator führt den eignen Teilplan auch aus. Am Ende sammelt der Coordinator alle Teilergebnisse und finalisiert diese für die Ausgabe.</p>
 </section>
-<section id="id1">
-<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<section id="id2">
+<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
 <p>Data Parallelism ist eine Strategie, die in shared-nothing und shared-disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
 </section>
