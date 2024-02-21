@@ -48,6 +48,7 @@ parse:
     - replacements
     - smartquotes
     - tasklist
+    - colon_fence
 
 launch_buttons:
  thebe                            : true
