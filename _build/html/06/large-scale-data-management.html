@@ -445,7 +445,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -722,7 +722,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      6.2.14. Data Parallelism: Beispiel
     </a>
    </li>
@@ -918,8 +918,12 @@ title="Print to PDF"
 <h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Permalink to this headline">#</a></h1>
 <p>In diesem Kapitel geht es insbesondere darum, die Verfahren und Datenbankoperationen, die wir bisher kennengelernt haben, hinsichtlich paralleler Verarbeitung zu betrachten und auch die Kostenelemente, die dann eine Rolle spielen.</p>
 <p>Beim Large Scale Data Management geht es um sehr große Datenmengen. Da reicht es dann nicht mehr, nur eine Datenbank zu haben, man muss nun auch über die Verteilung, Server und Nebenläufigkeiten nachdenken.</p>
-<a class="reference internal image-reference" href="../_images/Large-scale-Data-Management.png"><img alt="Large-scale-Data-Management" src="../_images/Large-scale-Data-Management.png" style="width: 500px;" /></a>
-<br>
+<figure class="align-default" id="id1">
+<img alt="../_images/Large-scale-Data-Management.png" src="../_images/Large-scale-Data-Management.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Large Scale Data Management</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Zur Wiederholung einmal die Frage: Was ist Big Data? Big Data wird anhand von Dimensionen spezifiziert- die sogenannten V’s: <strong>Volume</strong> (Menge von Daten), <strong>Velocity</strong> (Schnelligkeit der Datenverarbeitung), <strong>Variety</strong> (Heterogenität der Daten), <strong>Verocity</strong> (Daten, bei denen die Korrektheit ungewiss ist) und <strong>Value</strong> (die Wertigkeit der Daten).</p>
 <p>Nun gibt es Big Data in zwei Varianten - <strong>Operational</strong> und <strong>Analytic</strong>. In der ersten Variante geht es um operationelle Sachen, also dem Transaktionsmanagement. In der zweiten Variante geht es darum, Daten zu analysieren, Insights aus Daten herzustellen und neue Erkenntnisse zu gewinnen.</p>
 <p>Zur Verdeutlichung, über was für Datenmengen wir bei Big Data reden:</p>
@@ -927,15 +931,30 @@ title="Print to PDF"
 <section id="key-enabler-virtulization">
 <h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Permalink to this headline">#</a></h2>
 <p>Die beiden Varianten Operational und Analytic lassen sich mit der Virtualization managen. Hierbei versucht man entweder ein logisches System auf viele physische Systeme (Load Balancing) oder andersherum mehrere logische Systeme auf ein physisches System abzubilden (Multy-Tenancy).</p>
-<a class="reference internal image-reference" href="../_images/Virtualization.png"><img alt="Virtualization" src="../_images/Virtualization.png" style="width: 500px;" /></a>
+<figure class="align-default" id="virtualization">
+<img alt="../_images/Virtualization.png" src="../_images/Virtualization.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Virtualization</span><a class="headerlink" href="#virtualization" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="parallel-data-processing">
 <h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this headline">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Overview_3.png"><img alt="Overview_3" src="../_images/Overview_3.png" style="width: 300px;" /></a>
+<figure class="align-default" id="overview-3">
+<img alt="../_images/Overview_3.png" src="../_images/Overview_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Overview</span><a class="headerlink" href="#overview-3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Was bisher geschah: Serielle Verarbeitung/Single Threaded</strong>
 </br></p>
 <p>Bisher haben wir immer von einem Computer mit mehreren Festplatten gesprochen und damit auch ein wenig über parallele Plattenzugriffe. Diese hatten insbesondere auch immer nur einen Kern. Das heißt, bei jeder Operation wurden die Blöcke nacheinander durch nur einen Kern abgearbeitet. Außerdem spielten auch Synchronisation und Kommunikation keine Rolle, da Anfragen in nur einem Thread bearbeitet wurden. Dies wollen wir nun erweitern.</p>
-<a class="reference internal image-reference" href="../_images/serial-single-threaded.png"><img alt="serial-single-threaded" src="../_images/serial-single-threaded.png" style="width: 300px;" /></a>
+<figure class="align-default" id="serial-single-threaded">
+<img alt="../_images/serial-single-threaded.png" src="../_images/serial-single-threaded.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Serial Single Threaded</span><a class="headerlink" href="#serial-single-threaded" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </br>
 **Was wir verschwiegen haben...**</br>
 </br>
@@ -952,7 +971,12 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 <p>Die Frage die sich bei Amdahl’s law stellt ist, wie viel wir an Geschwindigkeit überhaupt dazugewinnen können. Berechnen lässt sich das zum einen mit der sequentiellen Laufzeit <span class="math notranslate nohighlight">\(T_1\)</span> (1 Prozessor) und zum anderen mit der parallelen Laufzeit <span class="math notranslate nohighlight">\(T_p\)</span> (<em>p</em> Prozessoren): <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{T_1}{T_p}\)</span> . Die maximale Beschleunigung ist durch den nicht-parallelisierbaren Anteil des Programms begrenzt. Wie hoch diese ist, lässt sich folgendermaßen berechnen: <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> . <br>
 <em>f</em> entspricht prozentual dem parallelisierbaren Anteil. Die ideale Beschleunigung wäre <em>S = p</em> für <em>f = 1</em>. Oft ist <em>f</em> &lt; 1 während <em>S</em> durch eine Konstante begrenzt wird. Beispiel: <em>f = 0,9</em> und 10/20 Server. <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{10}} \approx \)</span> 5,3 und <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{20}} \approx \)</span> 6,9 . Lassen wir hier unsere Prozessoren gegen unendlich laufen, ist unser <span class="math notranslate nohighlight">\(S_p\)</span> = 10. Das bedeutet, wir können weitere Server hinzufügen, aber es bleibt bei der 10-fachen Geschwindigkeit.</p>
 <p>Hier sehen wir, wie sich die parallele Beschleunigung nach Amdahl’s law je nach Prozessorzahl verhält.</p>
-<a class="reference internal image-reference" href="../_images/Parallel-Speedup.png"><img alt="Parallel-Speedup" src="../_images/Parallel-Speedup.png" style="width: 500px;" /></a>
+<figure class="align-default" id="parallel-speedup">
+<img alt="../_images/Parallel-Speedup.png" src="../_images/Parallel-Speedup.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Parallel Speedup</span><a class="headerlink" href="#parallel-speedup" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="parallelisierungsstufen-auf-der-hardware">
 <h3><span class="section-number">6.2.3. </span>Parallelisierungsstufen auf der Hardware<a class="headerlink" href="#parallelisierungsstufen-auf-der-hardware" title="Permalink to this headline">#</a></h3>
@@ -965,10 +989,10 @@ Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung i
 <section id="pipeline-parallelism">
 <h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this headline">#</a></h3>
 <p>Pipeline Parallelism besteht aus drei verschiedenen Schritten und erlaubt, dass mehrere Teile eines Anfrageplans gleichzeitig laufen können.</p>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id2">
 <img alt="../_images/Pipeline-Parallelism.png" src="../_images/Pipeline-Parallelism.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.6 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Im ersten Schritt können zwei Threads (T2 und T3) je einen Base Table scannen und für die Joins einen Hash Table bauen. </br>
@@ -1042,8 +1066,8 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 400px;" /></a>
 <p>Ein Client schickt eine SQL-Anfrage an einen Cluster-Knoten. Dieser Cluster-Knoten wird dann der Coordinator. Der Coordinater kompiliert die Anfrage. Er parst, überprüft und optimiert also die Anfrage. Zudem überlegt er sich wie die Anfrage parallelisiert werden kann. Die Teilpläne werden an andere Knoten geschickt und der Coordinator führt den eignen Teilplan auch aus. Am Ende sammelt der Coordinator alle Teilergebnisse und finalisiert diese für die Ausgabe.</p>
 </section>
-<section id="id2">
-<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
 <p>Data Parallelism ist eine Strategie, die in shared-nothing und shared-disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
 </section>
