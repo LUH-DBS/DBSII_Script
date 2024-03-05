@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. Indizes &#8212; Online-Skript Datenbanksysteme II</title>
   
@@ -19,48 +18,45 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '03/indizes';</script>
@@ -77,7 +73,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -112,11 +116,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +138,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -143,12 +152,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Online-Skript Datenbanksysteme II - Home"/>
+    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Online-Skript Datenbanksysteme II - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -349,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -467,18 +489,18 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="indizes">
-<h1><span class="section-number">3. </span>Indizes<a class="headerlink" href="#indizes" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Indizes<a class="headerlink" href="#indizes" title="Link to this heading">#</a></h1>
 <p>Im vorherigen Kapitel wurde schon erwähnt, dass der Zugriff auf Daten durch Indizes beschleunigt werden kann. Nach einem <strong>naiven</strong> Ansatz, wo die Datensätze beliebig verteilt sind, muss jeder Block untersucht werden, wenn wir die Anfrage <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">R</span></code> ausführen. Eine Verbesserung davon wäre, die Tupel einer Relation zusammenhängend zu speichern. Wenn wir die Anfrage <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">R</span> <span class="pre">WHERE</span> <span class="pre">a=10</span></code> ausführen wollen, müssen jedoch alle Datensätze betrachtet werden.
 <br><br>
 Noch besser im Gegensatz dazu ist die Benutzung von <strong>Indizes</strong>. Es werden Eigenschaften von Datensätzen, wie z.B „Suchschlüssel“ (nicht zu verwechseln mit Primärschlüssel, Sekundärschlüssel, Sortierschlüssel) festgelegt. Der Suchschlüssel ist der Wert, nach welchem gesucht werden soll. Das Ziel ist unter anderem, I/O-Kosten zu minimieren und möglichst wenige Datensätze zu betrachten. Durch richtiges Verwenden von Indizes kommt es zu einem schnelleren Output der entsprechenden Tupel.</p>
-<a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/Überblick-meme.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Überblick-meme.png"><img alt="Überblick-meme" src="../_images/%C3%9Cberblick-meme.png" style="width: 500px;" /></a>
 <section id="indizes-auf-sequenziellen-dateien">
-<h2><span class="section-number">3.1. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Link to this heading">#</a></h2>
 <section id="einfachste-form-eines-index">
-<h3><span class="section-number">3.1.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Link to this heading">#</a></h3>
 <p>Je nachdem wie die Tupel organisiert sind, gibt es verschiedene Varianten Indizes anzulegen. Die einfachste Form davon ist, wenn eine nach unserem Suchschlüssel sortierte Datei gegeben ist. Dazu gibt es eine Indexdatei, welche  Schlüssel-Pointer Paare enthält. Jeder Schlüsselwert K ist mit einem Pointer verbunden, welcher auf den Datensatz zeigt, der den Schlüsselwert K enthält. Davon gibt es zwei Varianten, einmal den dichtbestzten und einmal den dünnbesetzten Index. Im dichtbesetzten Index gibt es für jeden Datensatz einen Eintrag im Index. Im dünnbesetzten Index, werden nur einige Datensätze im Index repräsentiert, z.B ein Eintrag pro Block.</p>
 <p><strong>Sequenzielle Dateien: Index Beispiel</strong>
 <br>
@@ -486,7 +508,7 @@ In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweil
 <a class="reference internal image-reference" href="../_images/Sequentielle-Dateien.png"><img alt="Sequentielle-Dateien" src="../_images/Sequentielle-Dateien.png" style="width: 500px;" /></a>
 </section>
 <section id="dichtbesetzte-indizes">
-<h3><span class="section-number">3.1.2. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Dichtbesetzte Indizes<a class="headerlink" href="#dichtbesetzte-indizes" title="Link to this heading">#</a></h3>
 <p>Ein dichtbesetzter Index bildet sich aus einer Blocksequenz mit Schlüssel-Pointer Paaren. Jeder Schlüssel der Daten ist durch ein Paar repräsentiert. Die Datenmenge ist aber wesentlich kleiner, da im Index nur auf bestimmte Attribute gezeigt wird. Daher passt der Index womöglich in den Hauptspeicher und braucht nur einen I/O pro Zugriff. Die Sortierung der Paare entspricht der Sortierung der Daten.</p>
 <p><strong>Anfragebearbeitung mit dichtbesetzten Indizes</strong></p>
 <p>Es ist ein Suchschlüssel K gegeben. Die Indexdatei wird nach K durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sie sich schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um K zu finden.</p>
@@ -495,13 +517,13 @@ Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet (log2(10.000) �
 <a class="reference internal image-reference" href="../_images/Dichtbesetzte-Indizes.png"><img alt="Dichtbesetzte-Indizes" src="../_images/Dichtbesetzte-Indizes.png" style="width: 500px;" /></a>
 </section>
 <section id="dunnbesetzte-indizes">
-<h3><span class="section-number">3.1.3. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Link to this heading">#</a></h3>
 <p>Da wir eine sortierte Liste gegeben haben, kann auch ein dünnbesetzter Index eingesetzt werden. Hierbei ist der Schlüsselwert der kleinste Wert des referenzierten Blocks und es gibt nur einen Pointer pro Block. Der Vorteil ist weniger Speicherbedarf, jedoch erhöht sich der Suchaufwand.
 <br><br>
 <strong>Beispiel</strong>:
 Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Demnach sind für einen dünnbesetzten Index 1.000 Blocks = 4MB notwendig, welches erheblich weniger als 400MB ist.</p>
 <section id="anfragebearbeitung-mit-dunnbesetzten-indizes">
-<h4><span class="section-number">3.1.3.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.1.3.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Suche im Index größten Schlüssel, der gleich/kleiner als Suchschlüssel ist (leicht modifizierte binäre Suche)</p></li>
 <li><p>Hole assoziierten Datenblock</p></li>
@@ -512,12 +534,12 @@ Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die
 Mit ausschließlich einem dünnbesetzten Index kann nicht überprüft werden, ob ein bestimmter Wert vorhanden ist oder nicht. <br>
 <strong>Beispiel:</strong> <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">'TRUE'</span> <span class="pre">FROM</span> <span class="pre">R</span> <span class="pre">WHERE</span> <span class="pre">a=10</span></code>. <br>
 Mit einem dichtbesetzten Index ist das möglich. Gleiches gilt für einen Semi-Join.</p>
-<a class="reference internal image-reference" href="../_images/Dünnbesetzte-Indizes.png"><img alt="Dünnbesetzte-Indizes" src="../_images/Dünnbesetzte-Indizes.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Dünnbesetzte-Indizes.png"><img alt="Dünnbesetzte-Indizes" src="../_images/D%C3%BCnnbesetzte-Indizes.png" style="width: 500px;" /></a>
 <p><a class="reference internal" href="../_images/Mehrstufiger-Index-meme1.png"><img alt="Mehrstufiger-Index-meme1" src="../_images/Mehrstufiger-Index-meme1.png" style="width: 500px;" /></a> <a class="reference internal" href="../_images/Mehrstufiger-Index-meme2.png"><img alt="Mehrstufiger-Index-meme2" src="../_images/Mehrstufiger-Index-meme2.png" style="width: 500px;" /></a></p>
 </section>
 </section>
 <section id="mehrstufiger-index">
-<h3><span class="section-number">3.1.4. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.4. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Link to this heading">#</a></h3>
 <p>Auch ein Index kann unangenehm groß sein, z.B GB groß oder sogar größer als die Datensätze selbst. Das nimmt viel Speicher ein und kostet viel I/O, auch bei binärer Suche. In diesem Fall lohnt es sich die Indexdatei auch zu indexieren. Der zweite Index macht nur als dünnbesetzten Index Sinn. Theoretisch sind auch dritte, vierte, … Ebenen möglich, in diesen Fällen ist ein B-Baum besser geeignet (dazu später).</p>
 <p><strong>Mehrstufiger Index Beispiel</strong></p>
 <p>Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4MB und für den Index zweiter Stufe = 40KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.</p>
@@ -534,7 +556,7 @@ Mit einem dichtbesetzten Index ist das möglich. Gleiches gilt für einen Semi-J
 <a class="reference internal image-reference" href="../_images/Mehrstufiger-Index.png"><img alt="Mehrstufiger-Index" src="../_images/Mehrstufiger-Index.png" style="width: 500px;" /></a>
 </section>
 <section id="indizes-fur-nicht-eindeutige-suchschlussel">
-<h3><span class="section-number">3.1.5. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.5. </span>Indizes für Nicht-eindeutige Suchschlüssel<a class="headerlink" href="#indizes-fur-nicht-eindeutige-suchschlussel" title="Link to this heading">#</a></h3>
 <p>Bisher haben wir angenommen, dass unser Suchschlüssel auch ein Schlüssel ist bzw. nur maximal einmal in unserer Relation vorkommt. Jetzt betrachten wir die Indexwahl, wenn der Suchschlüssel nicht eindeutig ist. Wir nehmen weiterhin an, dass die Relation nach unserem Suchschlüssel sortiert ist.
 <br><br>
 <strong>Idee 1: Dichtbesetzter Index</strong>
@@ -548,7 +570,7 @@ Es gibt ein Paar im Index für jeden Datensatz. Die Anfragebearbeitung verläuft
 <p><strong>Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K</strong>
 <br>
 Der Index zeigt auf den ersten Datensatz mit K. Alle weiteren Datensätze mit K folgen direkt. Wichtig zu beachten ist hier, dass die Blöcke Pointer auf den jeweils nächsten Block haben.</p>
-<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel" src="../_images/Indizes-Nicht_eindeutige-Suchschl%C3%BCssel.png" style="width: 500px;" /></a>
 <p><strong>Idee 3: Dünnbesetzter Index wie gehabt</strong>
 <br>
 Der Datenwert wird jeweils am Blockanfang des Datensatzes indexiert.
@@ -560,7 +582,7 @@ Die Anfragebearbeitung ist wie folgt:</p>
 <br><br></p></li>
 </ul>
 <p>Beispiel: Wir suchen K = 20. Zuerst muss im “10er-Block” gesucht werden ,da womöglich auch in diesem Block eine 20 ist. Eine Rückwärtssuche ist nötig</p>
-<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_2.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_2" src="../_images/Indizes-Nicht_eindeutige-Suchschl%C3%BCssel_2.png" style="width: 500px;" /></a>
 <p><strong>Idee 4: Dünnbesetzter Index, aber…</strong>
 <br>
 …der im Index gespeicherte Datenwert ist der kleinste neue Wert im entsprechenden Datenblock.
@@ -572,39 +594,39 @@ Die Anfragebearbeitung ist so einfacher:</p>
 <br><br></p></li>
 </ul>
 <p>Im Beispiel unten zeigt das ⊥ ,dass nach der „30“ kein neuer kleinster Wert mehr folgt.</p>
-<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png"><img alt="Indizes-Nicht_eindeutige-Suchschlüssel_3" src="../_images/Indizes-Nicht_eindeutige-Suchschl%C3%BCssel_3.png" style="width: 500px;" /></a>
 <br>
 <p>Nun schauen wir uns an, wie sich Einfüg-, Update- und Löschoperationen auf unsere Daten auswirken.</p>
 </section>
 <section id="anderungsoperationen">
-<h3><span class="section-number">3.1.6. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.6. </span>Änderungsoperationen<a class="headerlink" href="#anderungsoperationen" title="Link to this heading">#</a></h3>
 <p>Daten ändern sich durch Insert-, Update-, und Deleteoperationen. Unsere bisherige Annahme ist, dass die Daten die Blöcke perfekt füllen und sich nicht ändern. Wenn jedoch Änderungen im Datenblock passieren, verändern sich die Indizes wie folgt:</p>
 <p>Overflow Blocks werden in dünnbesetzten Indizes beispielsweise nicht repräsentiert. Neue Blöcke in der Sequenz hingegen benötigen einen neuen Indexeintrag. Diese Indexänderung birgt dieselben Probleme wie einen Datenänderung: Eine neuplatzierung der Blöcke und Indizes mit höheren Stufen.
 Werden Tupel verschoben, muss der Index nur angepasst werden.</p>
 <p>Generell können Indizes wie normale data files behandelt werden und es können dieselben Strategien angewendet werden.</p>
 <p><strong>Änderungsoperationen Beispiele</strong></p>
-<a class="reference internal image-reference" href="../_images/Änderungsoperationen_0.png"><img alt="Änderungsoperationen_0" src="../_images/Änderungsoperationen_0.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_0.png"><img alt="Änderungsoperationen_0" src="../_images/%C3%84nderungsoperationen_0.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 1: Dichtbesetzter Index</strong>
 <br>
 Der Datensatz mit K = 30 wird gelöscht. Wir nehmen an der Block kann/soll <strong>nicht</strong> reorganisiert werden und an der gelöschten Stell wird ein Grabstein gesetzt. Der Datensatz 40 wird nicht verschoben und der Index wird reorganisiert werden, wenn er sich im Hauptspeicher befindet.</p>
-<a class="reference internal image-reference" href="../_images/Änderungsoperationen.png"><img alt="Änderungsoperationen" src="../_images/Änderungsoperationen.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen.png"><img alt="Änderungsoperationen" src="../_images/%C3%84nderungsoperationen.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 2: Dünnbesetzter Index</strong>
 <br>
 Der Datensatz mit K = 30 wird gelöscht.  Wir nehmen an der Block kann/soll reorganisiert werden. Der Datensatz 40 wird nach dem Löschen der 30 verschoben und der Index wird aktualisiert. Wenn nun auch Datensatz mit K=40 gelöscht werden soll entsteht ein leerer Block und die 50 und 70 schieben sich nach oben.</p>
-<a class="reference internal image-reference" href="../_images/Änderungsoperationen_2.png"><img alt="Änderungsoperationen_2" src="../_images/Änderungsoperationen_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_2.png"><img alt="Änderungsoperationen_2" src="../_images/%C3%84nderungsoperationen_2.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 3: Dünnbesetzter Index</strong><br />
 <br>
 Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Block 1 ist voll. Demnach wird der Datensatz 20 in den nächsten Block verschoben und der Block wird reorganisiert. Der Datensatz 15 wird eingefügt und der Index wird aktualisiert.</p>
-<a class="reference internal image-reference" href="../_images/Änderungsoperationen_3.png"><img alt="Änderungsoperationen_3" src="../_images/Änderungsoperationen_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_3.png"><img alt="Änderungsoperationen_3" src="../_images/%C3%84nderungsoperationen_3.png" style="width: 500px;" /></a>
 <p><strong>Beispiel 4: Dünnbesetzter Index</strong></p>
 <p>Eine weitere Möglichkeit die 15 einzufügen ist mit einem Overflow Block. Der Block 1 ist weiterhin voll. Der Datensatz 20 wird in einen Overflow Block verschoben und der Datensatz 15 wird eingefügt. Der Index bleibt in diesem Fall gleich.</p>
-<a class="reference internal image-reference" href="../_images/Änderungsoperationen_4.png"><img alt="Änderungsoperationen_4" src="../_images/Änderungsoperationen_4.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Änderungsoperationen_4.png"><img alt="Änderungsoperationen_4" src="../_images/%C3%84nderungsoperationen_4.png" style="width: 500px;" /></a>
 <br>
 <p>In dem vorangegangenen Abschnitt haben wir uns mit Indizes auf sequentiellen Daten beschäftigt, jetzt schauen wir uns Sekundärindizes auf nichtsequentiellen Daten an.</p>
 </section>
 </section>
 <section id="sekundarindizes-auf-nichtsequenziellen-dateien">
-<h2><span class="section-number">3.2. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Sekundärindizes auf nichtsequenziellen Dateien<a class="headerlink" href="#sekundarindizes-auf-nichtsequenziellen-dateien" title="Link to this heading">#</a></h2>
 <p>Zuvor haben wir uns mit Primärindizes, also sortierten Daten, beschäftigt. Oft ist es aber sinnvoll, mehrere Indizes pro Relation zu haben. Damit kommen wir zu nichtsequentiellen Dateien, also unsortierten Daten. Im folgenden Beispiel haben wir die Relation <em>Schauspieler</em>, in welcher der <em>Name</em> der Primärschlüssel ist. Suchen wir nun das Geburtsdatum, müssen wir von Block zu Block springen, können aber keine Annahme über nachfolgende Blöcke treffen.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Adresse</span>
 <span class="n">FROM</span> <span class="n">Schauspieler</span>
@@ -616,12 +638,12 @@ Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Bloc
 <p>Sekundärindizes bestimmen nicht die Platzierung der Datensätze, sondern geben nur den Speicherort an. Deshalb sind dünnbesetzte Indizes sinnlos, da wir beispielsweise nicht wissen, ob die gleichen Geburtstage innerhalb des gleichen Blocks liegen oder auf viele verschiedene Blöcke verteilt sind.</p>
 <p>Schauen wir uns an, wie Sekundärindizes aufgebaut sind.</p>
 <section id="aufbau-von-sekundarindizes">
-<h3><span class="section-number">3.2.1. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Link to this heading">#</a></h3>
 <p>Wie zuvor erwähnt sind Sekundärindizes dichtbesetzt. Die Schlüssel sind dabei schon sortiert und es können Duplikate vorkommen. Ein Index der zweiten Stufe wäre wiederum dünnbesetzt. Die Suche hat in der Regel hohe I/O-Kosten. Suchen wir beispielsweise die <em>20</em> in der Abbildung unten, müssen fünf Blöcke gelesen werden. Das lässt sich auch leider nicht ändern, da die Daten nach einem anderen Schlüssel sortiert sind.</p>
-<a class="reference internal image-reference" href="../_images/Aufbau-Sekundärindizes.png"><img alt="Aufbau-Sekundärindizes" src="../_images/Aufbau-Sekundärindizes.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Aufbau-Sekundärindizes.png"><img alt="Aufbau-Sekundärindizes" src="../_images/Aufbau-Sekund%C3%A4rindizes.png" style="width: 500px;" /></a>
 </section>
 <section id="anwendungen">
-<h3><span class="section-number">3.2.2. </span>Anwendungen<a class="headerlink" href="#anwendungen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Anwendungen<a class="headerlink" href="#anwendungen" title="Link to this heading">#</a></h3>
 <p>Es gibt Anfragen, die sich auf mehrere Attribute beziehen. Dann braucht man mehrere Indizes. Liegen die Daten nicht sortiert vor, nutzt man Sekundärindizes. Diese verbrauchen zwar mehr Speicher, aber wenigstens weiß man dann, wo was liegt. Weiß man, dass Fremdschlüsselbeziehungen existieren, kann man Informationen von zwei Relationen zusammen in sogennanten <em>Clustered files</em> speichern. Das ist besonders effizient, wenn es in einer Anfrage viele Join Operationen gibt.</p>
 <p><strong>Anwendung: Clustered file</strong></p>
 <ul class="simple">
@@ -644,7 +666,7 @@ AND Präsident = ?
 <p>Anfragen direkt nach Filmen benötigen ebenfalls einen Sekundärindex. Ist beispielsweise der Titel der Primärschlüssel, muss doppelt gespeichert werden, damit die Daten sortiert vorliegen. Da es aber so ist, dass alle Filme jedes Studios jeweils daneben liegen, braucht man einen Sekundärindex, um auch den Primärschlüssel von <em>Filme</em> zu indizieren.</p>
 </section>
 <section id="indirektion-fur-sekundarindizes">
-<h3><span class="section-number">3.2.3. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Indirektion für Sekundärindizes<a class="headerlink" href="#indirektion-fur-sekundarindizes" title="Link to this heading">#</a></h3>
 <p>Bisher haben wir uns clustered files angeschaut und Relationen, bei denen mehrere Attribute indiziert wurden. Dabei kann es leicht passieren, dass Dinge mehrfach indiziert und gespeichert werden. Hier kann die <em>Indirektion</em> Abhilfe schaffen.</p>
 <p>Für Nicht-Primärschlüssel kann ein Index sehr groß sein. Aus dem Grund kann man unbestimmte Buckets dazu nehmen, die dann als abstrakte Schlüssel für die entsprechenden Datenpunkte gelten. In der Abbildung unten sieht man, dass die <em>10</em> auf genau so ein Bucket zeigt, in welchem drei Schlüsselpaare sind, die wiederum auf die entsprechenden Werte zeigen.</p>
 <p>Dies spart Platz, falls die Suchschlüssel größer sind als der Bucketeintrag und im Durchschnitt mindestens zweimal auftauchen. Ein weiterer Vorteil ist, dass bestimmte Anfragen direkt anhand der Buckets beantwortet werden können.
@@ -656,13 +678,13 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 </pre></div>
 </div>
 <br>
-<a class="reference internal image-reference" href="../_images/Indirektion-Sekundärindizes.png"><img alt="Indirektion-Sekunderindizes" src="../_images/Indirektion-Sekundärindizes.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Indirektion-Sekundärindizes.png"><img alt="Indirektion-Sekunderindizes" src="../_images/Indirektion-Sekund%C3%A4rindizes.png" style="width: 500px;" /></a>
 <p><strong>Indirektion im Alltag</strong></p>
 <p>Hier ein weiteres Beispiel für die Indirektion. Sucht man hier ein Wort, stehen die Buckets, in dem Fall die Seitenzahlen, direkt dahinter. Diese Indirektion ist speziell, denn sie hat eine bestimmte Indexstruktur und zwar <em>Invertierte Indizes</em>. Das schauen wir uns im folgenden Absatz genauer an.</p>
 <a class="reference internal image-reference" href="../_images/Indirektion-Alltag.png"><img alt="Indirektion-Alltag" src="../_images/Indirektion-Alltag.png" style="width: 500px;" /></a>
 </section>
 <section id="indexierung-mittels-invertierter-dateien">
-<h3><span class="section-number">3.2.4. </span>Indexierung mittels invertierter Dateien<a class="headerlink" href="#indexierung-mittels-invertierter-dateien" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.4. </span>Indexierung mittels invertierter Dateien<a class="headerlink" href="#indexierung-mittels-invertierter-dateien" title="Link to this heading">#</a></h3>
 <p>Invertierte Dateien oder auch invertierte Indizes speichern für jeden Term eine Liste mit Verweisen zu allen Vorkommen dieses Terms. Vorkommen sind in dem Sinne Dokumente oder Dateien. Verweise sind aus konzeptioneller Sicht eine ID, die dem jeweiligen Dokument oder der Datei zugeordnet ist.</p>
 <p>Bei der Suche nach Dokumenten, die mehrere Terme oder eine bestimmte Konstellation von Termen enthalten sollen, z.B. “Finde alle Dokumente, die zwar Informationen über Golf enthalten aber nicht über VW” können die entsprechenden Dateilisten jedes Termes durch Mengenoperationen zusammengeführt werden. In diesem Beispiel müsste man alle IDs auf die “VW” verweist von allen IDs auf die “Golf” verweist abziehen. Boolesche Operationen wie AND, OR und NOT können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
 <p>In Abbildung 1 sehen wir eine Abbildung von Dokumenten-IDs auf den enthaltenen Text. Jede Zeile steht für eine Datei/ ein Dokument. Die invertierte Datei sehen wir in Abbildung 2.</p>
@@ -677,31 +699,31 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 </section>
 </section>
 <section id="b-baume">
-<h2><span class="section-number">3.3. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>B-Bäume<a class="headerlink" href="#b-baume" title="Link to this heading">#</a></h2>
 <section id="allgemein">
-<h3><span class="section-number">3.3.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Allgemein<a class="headerlink" href="#allgemein" title="Link to this heading">#</a></h3>
 <p>Bisher haben wir zweistufige Indizes zur Beschleunigung des Zugriffs betrachtet. Jetzt befassen wir uns mit mehrstufige Indizes.</p>
 <p>B-Bäume haben so viele Stufen wie nötig. Die Blöcke sind immer mindestens zur Hälfte gefüllt und Overflowblocks sind nicht notwendig.
 B-Bäume sind außerdem balanciert, d.h. jeder Weg von der Wurzel bis zum Blatt ist gleich lang.</p>
-<a class="reference internal image-reference" href="../_images/B-Bäume.png"><img alt="B-Bäume" src="../_images/B-Bäume.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/B-Bäume.png"><img alt="B-Bäume" src="../_images/B-B%C3%A4ume.png" style="width: 500px;" /></a>
 </section>
 <section id="struktur">
-<h3><span class="section-number">3.3.2. </span>Struktur<a class="headerlink" href="#struktur" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.2. </span>Struktur<a class="headerlink" href="#struktur" title="Link to this heading">#</a></h3>
 <p>Bei B-Bäumen handelt es sich um Indexblöcke die in einem Baum organisiert sind. Dieser ist balanciert und hat einen Parameter <em>n</em>. Jeder Block enthält bis zu <em>n</em> Suchschlüssel und bis zu <em>n + 1</em> Pointer, also ein Pointer mehr als die Indexblöcke zuvor. <em>n</em> wird entsprechend der gegebenen Blockgröße so groß wie möglich gewählt. Bei beispielsweise 4096 Byte pro Block, 4 Byte pro Schlüssel und 8 Byte pro Pointer muss unser <em>n</em> = 340 sein:</p>
 <p>4 n + 8(n+1) ≤ 4096 =&gt; n = 340</p>
 <p>Bei einer Höhe von 3 lassen sich damit 340 ∙ 341 ∙ 341 = 39.535.540 Schlüssel indizieren.</p>
 </section>
 <section id="einfugen-in-b-baume-beispiel">
-<h3><span class="section-number">3.3.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume.png"><img alt="Einfügen-in-B-Bäume" src="../_images/Einfügen-in-B-Bäume.png" style="width: 500px;" /></a>
+<h3><span class="section-number">3.3.3. </span>Einfügen in B-Bäume – Beispiel<a class="headerlink" href="#einfugen-in-b-baume-beispiel" title="Link to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume.png"><img alt="Einfügen-in-B-Bäume" src="../_images/Einf%C3%BCgen-in-B-B%C3%A4ume.png" style="width: 500px;" /></a>
 </section>
 <section id="hier-b-baum">
-<h3><span class="section-number">3.3.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.4. </span>Hier B+ Baum**<a class="headerlink" href="#hier-b-baum" title="Link to this heading">#</a></h3>
 <p>Bei B+ Bäumen sind die Schlüssel in den Blättern die Schlüssel aus den Daten, sortiert über alle Blätter verteilt (von links nach rechts).
 Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mindestens zwei Pointer werden verwendet. Von den Blättern zeigt der letzte Pointer auf das nächste rechte Blatt, während die übrigen Pointern auf mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(n+1)}{2} \rfloor\)</span> Datenblöcke zeigen. Die Pointer der inneren Knoten zeigen auch auf die B-Baum Blöcke von darunterliegenden Ebenen. Dabei werden mindestens <span class="math notranslate nohighlight">\( \lceil \frac {(n+1)}{2} \rceil \)</span> verwendet.</p>
 <p>Falls <em>j</em> Pointer verwendet werden, gibt es <em>j-1</em> Schlüssel in einem Block. Der erste Pointer zeigt auf den Teilbaum mit den Schlüsselwerten &lt; K1 während der zweite Pointer auf den Teilbaum mit den Schlüsselwerten ≥ K1 und &lt; K2 zeigt, usw.</p>
 <section id="rechenbeispiele">
-<h4><span class="section-number">3.3.4.1. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.4.1. </span>Rechenbeispiele<a class="headerlink" href="#rechenbeispiele" title="Link to this heading">#</a></h4>
 <p>Schauen wir uns das an ein paar Beispielen genauer an. Ist unser <em>n</em> = 3 haben alle Knoten maximal 3 Suchschlüssel und 4 Pointer. Die Wurzel hat mindestens 1 Suchschlüssel und 2 Pointer, während die Blätter mindestens <span class="math notranslate nohighlight">\( \lfloor \frac {(3+1)}{2} \rfloor + 1 \)</span> = 3 Pointer (plus 1 weil der letzte Pointer auf das nächste Blatt zeigt) und 2 Suchschlüssel haben. Die inneren Knoten haben mindestens <span class="math notranslate nohighlight">\( \lceil \frac {(3+1)}{2} \rceil \)</span> = 2 Pointer und 1 Suchschüssel.</p>
 <a class="reference internal image-reference" href="../_images/Rechenbeispiele.png"><img alt="Rechenbeispiele" src="../_images/Rechenbeispiele.png" style="width: 500px;" /></a>
 <p>Analog für n = 4 und n = 5:</p>
@@ -741,11 +763,11 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 </section>
 </section>
 <section id="alternative-definition">
-<h3><span class="section-number">3.3.5. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.5. </span>Alternative Definition<a class="headerlink" href="#alternative-definition" title="Link to this heading">#</a></h3>
 <p>In der Vorlesung verwenden wir den Parameter <em>n</em>. In Lehrbüchern wird alternativ aber auch der Parameter <em>k</em> verwendet. Anders als bei der Variante mit <em>n</em> hat ein Block mindestens <em>k</em> und höchstens <em>2k</em> Suchschlüssel. <em>x + 1</em> Pointer pro Block bleiben aber. Genauso wie die Tatsache, dass ein innerer Block immer einen Pointer mehr hat als Suchschlüssel und ein Blatt genauso viele Pointer wie Suchschlüssel.</p>
 </section>
 <section id="beispiele-blattknoten">
-<h3><span class="section-number">3.3.6. </span>Beispiele Blattknoten<a class="headerlink" href="#beispiele-blattknoten" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.6. </span>Beispiele Blattknoten<a class="headerlink" href="#beispiele-blattknoten" title="Link to this heading">#</a></h3>
 <p>Hier werden wir ein paar Beispiele für Blattknoten mit <em>n = 3</em> sehen. Das bedeutet, es gibt maximal 3 Schlüssel und 4 Pointer.</p>
 <p><strong>Volles Blatt</strong></p>
 <p>Hier sehen wir ein volles Blatt. Wir haben die 3 Suchschlüssel 57, 81 und 95 sowie 4 Pointer. Der erste Pointer zeigt zu dem Block mit dem Suchschlüssel 57. Der zweite zu dem Block mit dem Suchschlüssel 81 und der dritte zum Block mit dem Suchschlüssel 95. Der letzte Pointer zeigt auf das nächste Blatt.</p>
@@ -755,7 +777,7 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 <a class="reference internal image-reference" href="../_images/Beispiel-Blattknoten_2.png"><img alt="Beispiel-Blattknoten_2" src="../_images/Beispiel-Blattknoten_2.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiele-innerer-knoten">
-<h3><span class="section-number">3.3.7. </span>Beispiele innerer Knoten<a class="headerlink" href="#beispiele-innerer-knoten" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.7. </span>Beispiele innerer Knoten<a class="headerlink" href="#beispiele-innerer-knoten" title="Link to this heading">#</a></h3>
 <p>Schauen wir uns das gleiche auch für innere Knoten an.</p>
 <p><strong>Voller innerer Knoten</strong></p>
 <p>Hier haben wir einen vollen inneren Knoten mit 3 Suchschlüsseln und 4 Pointern. Der erste Pointer zeigt auf die Schlüssel die kleiner sind als 57, der zweite Pointer auf die Schlüssel die größer oder gleich 57 sind <strong>und</strong> kleiner als 81. Der dritte Pointer zeigt auf die Schlüssel die größer oder gleich 81 <strong>und</strong> kleiner 95 sind und der letzte Pointer zeigt auf Suchschlüssel größer oder gleich 95.</p>
@@ -765,42 +787,42 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 <a class="reference internal image-reference" href="../_images/Beispiel-Innerer-Knoten_2.png"><img alt="Beispiel-Innerer-Knoten_2" src="../_images/Beispiel-Innerer-Knoten_2.png" style="width: 500px;" /></a>
 </section>
 <section id="beispiel-b-baum">
-<h3><span class="section-number">3.3.8. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.8. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Link to this heading">#</a></h3>
 <p>In dem folgenden Beispiel handelt es sich um einen dichtbesetzten B-Baum mit <em>n = 3</em>, 2 Pointern und einem Suchschlüssel. Dichtbesetzt, das heißt, dass in den Blättern jeder Schlüssel genau einmal sortiert auftaucht.</p>
 <p>Schauen wir uns ein paar Knoten genauer an. Mit 13 in der Wurzel gehen alle Zahlen die kleiner sind, auf die linke Seite und alle die größer oder gleich 13 sind auf die rechte. Im darunterliegenden linken Knoten haben wir den Schlüssel 7. Alle Elemente kleiner als 7 gehen in das linke Blatt, alle größer oder gleich 7 in das rechte. Jedes Blatt hat Pointer, die auf Datenblöcke zeigen und einen Pointer, der auf das nächste Blatt zeigt.</p>
 <a class="reference internal image-reference" href="../_images/Beispiel-B-Baum.png"><img alt="Beispiel-B-Baum" src="../_images/Beispiel-B-Baum.png" style="width: 500px;" /></a>
 </section>
 <section id="anwendungen-von-b-baumen">
-<h3><span class="section-number">3.3.9. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.9. </span>Anwendungen von B-Bäumen<a class="headerlink" href="#anwendungen-von-b-baumen" title="Link to this heading">#</a></h3>
 <p>B-Bäume können verschiedene Index-Rollen übernehmen. Ist der Suchschlüssel gleichzeitig auch der Primärschlüssel, können wir dichtbesetzte Indizes verwenden. Hierbei spielt es keine Rolle, ob die data files sortiert sind oder nicht. Bei dünnbesetzten Indizes hingegen sind die date files immer sortiert. Sollte das aber mal doch nicht der Fall sein, müssen wir Indirektion verwenden.
 Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data files nach dem Suchschlüssel sortiert sein. Außerdem müssen die Pointer immer auf den jeweils ersten Wert zeigen. Dies schauen wir uns im folgenden Abschnitt genauer an.</p>
 </section>
 <section id="b-baume-auf-nicht-primarschlusseln">
-<h3><span class="section-number">3.3.10. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.10. </span>B-Bäume auf nicht-Primärschlüsseln<a class="headerlink" href="#b-baume-auf-nicht-primarschlusseln" title="Link to this heading">#</a></h3>
 <p>Haben wir B-Bäume auf nicht-Primärschlüsseln, ändert sich die Bedeutung der Pointer auf den inneren Ebenen, da es jetzt vorkommen kann, dass wir Duplikate in unseren Blättern haben.</p>
 <p>Gegeben sind wieder die Schlüssel <span class="math notranslate nohighlight">\(K_{1}\)</span> bis <span class="math notranslate nohighlight">\(K_{j}\)</span>. <span class="math notranslate nohighlight">\(K_{i}\)</span> sei der kleinste <em>neue</em> Schlüsselwert, der vom (i+1)-ten Pointer erreichbar ist. Das bedeutet, es gibt keinen Schlüssel <span class="math notranslate nohighlight">\(K_{i}\)</span> im linken Teilbaum, aber mindestens ein Vorkommen des Schlüsselwertes im Teilbaum vom (i+1)-ten Pointer. Das Problem ist: Es gibt nicht immer einen solchen Schlüssel. Manchmal taucht ein Wert schon in voher indizierten Blöcken auf. In dem Fall merkt man sich dies mit einem Nullpointer (⊥), wie man im Beispiel unten sehen kann. Da die erste 13 von dem Block mit dem Schlüssel 7 noch erreicht werden kann, wäre der kleinste neue Schlüssel hier die 17. Diese befindet sich aber schon in der Wurzel, also würden wir den nächsthöheren Wert, die 23, nehmen. Diese taucht aber auch in zwei weiteren Blöcken auf, sodass wir hier einen Nullpointer verwenden müssen.</p>
-<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln" src="../_images/B-B%C3%A4ume-auf-nicht-Prim%C3%A4rschl%C3%BCsseln.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/B-Bäume-auf-nicht-Primärschlüsseln_2.png"><img alt="B-Bäume-auf-nicht-Primärschlüsseln_2" src="../_images/B-B%C3%A4ume-auf-nicht-Prim%C3%A4rschl%C3%BCsseln_2.png" style="width: 500px;" /></a>
 <br>
 <p>Als nächstes werden wir sehen, wie die Suche und das Einfügen und Löschen in B-Bäumen funktioniert.</p>
 </section>
 <section id="b-baume-suche">
-<h3><span class="section-number">3.3.11. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.11. </span>B-Bäume Suche<a class="headerlink" href="#b-baume-suche" title="Link to this heading">#</a></h3>
 <section id="id1">
-<h4><span class="section-number">3.3.11.1. </span>Allgemein<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.11.1. </span>Allgemein<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>Wir nehmen wieder an, dass unser Suchschlüssel ein Primärschlüssel ist. Jeder Schlüssel ist dann dementsprechend nur einmal in einem Blatt vorhanden, es kommen also keine Duplikaten vor.</p>
 <p>Gesucht ist wieder ein Schlüssel <em>K</em>. Wir fangen bei einem Blattknoten an und schauen, ob der Schlüssel dort vorkommt oder nicht. Falls nicht, suchen wir nach einem Paar von Schlüsseln, zwischen denen unser Schlüssel vorkommen könnte und geben den Pointer weiter.</p>
 <p>Im Folgenden schauen wir uns zwei Beispiele dazu an.</p>
 </section>
 <section id="beispiel-suche-im-b-baum">
-<h4><span class="section-number">3.3.11.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.11.2. </span>Beispiel Suche im B-Baum<a class="headerlink" href="#beispiel-suche-im-b-baum" title="Link to this heading">#</a></h4>
 <p>Suchen wir beispielsweise nach dem Datensatz 40, gehen wir erstmal in den Wurzelknoten. 13 ist hier der einzige Wert. Da 40 größer ist, springen wir zu dem rechten inneren Knoten und können dann mit binärer Suche vergleichen, wo wir weitersuchen müssen. Folgen wir dann dem Pointer zwischen 31 und 43 und suchen in dem Blattknoten, finden wir den Datensatz nicht und sind fertig.</p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum.png"><img alt="Beispiel-Suche-im-B-Baum" src="../_images/Beispiel-Suche-im-B-Baum.png" style="width: 500px;" /></a>
 <p>Hier das gleiche Prinzip. 13 ist kleiner als 37, also springen wir auch hier zum rechten inneren Knoten. Wir können wieder dem Pointer zwischen 31 und 43 folgen und finden dann die 37.</p>
 <a class="reference internal image-reference" href="../_images/Beispiel-Suche-im-B-Baum_2.png"><img alt="Beispiel-Suche-im-B-Baum_2" src="../_images/Beispiel-Suche-im-B-Baum_2.png" style="width: 500px;" /></a>
 </section>
 <section id="bereichsanfragen-range-queries">
-<h4><span class="section-number">3.3.11.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.11.3. </span>Bereichsanfragen (range queries)<a class="headerlink" href="#bereichsanfragen-range-queries" title="Link to this heading">#</a></h4>
 <p>Anfrage mit Ungleichheit in der WHERE-Klausel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">R</span>
 <span class="n">WHERE</span> <span class="n">R</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">40</span>
@@ -821,45 +843,45 @@ Sollte der Suchschlüssel nicht der Primärschlüssel sein, müssen die data fil
 </section>
 </section>
 <section id="b-baume-updates">
-<h3><span class="section-number">3.3.12. </span>B-Bäume Updates<a class="headerlink" href="#b-baume-updates" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.12. </span>B-Bäume Updates<a class="headerlink" href="#b-baume-updates" title="Link to this heading">#</a></h3>
 <section id="einfugen-in-b-baume">
-<h4><span class="section-number">3.3.12.1. </span>Einfügen in B-Bäume<a class="headerlink" href="#einfugen-in-b-baume" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.12.1. </span>Einfügen in B-Bäume<a class="headerlink" href="#einfugen-in-b-baume" title="Link to this heading">#</a></h4>
 <p>Möchte man etwas in einen B-Baum einfügen, geht man rekursiv vor. Zunächst suchen wir das entsprechende Blatt. Falls dort Platz ist, fügen wir den Schlüssel und den Pointer ein. Falls nicht, kommt es zum <em>Überlauf</em>. Dabei wird das Blatt in zwei Teile gespalten und die Schlüssel gleichmäßig auf diese verteilt. Durch diesen “split” ist es erforderlich, dass Schlüssel/Pointer-Paare im Elternknoten eingefügt, also rekursiv nach oben geschoben, werden. Sollte die Wurzel voll sein, muss auch diese gesplittet und eine neue mit nur einem Schlüssel erzeugt werden.</p>
 <p>Im folgenden Beispiel soll die 40 eingefügt werden. Wir sehen, dass das entsprechende Blatt voll ist, also muss dieses gesplittet werden.
 <br></p>
-<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel.png"><img alt="Einfügen-in-B-Bäume-Beispiel" src="../_images/Einfügen-in-B-Bäume-Beispiel.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel.png"><img alt="Einfügen-in-B-Bäume-Beispiel" src="../_images/Einf%C3%BCgen-in-B-B%C3%A4ume-Beispiel.png" style="width: 500px;" /></a>
 <br>
 Nun müssen wir uns fragen, welcher Schlüssel nach oben wandert. Wir nehmen idealerweise das erste Element in einem neuen Block, hier die 40. Diese wandert dann nach oben, sodass wir den Elternknoten auch noch splitten müssen.
 <br>
-<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_2.png"><img alt="Einfügen-in-B-Bäume-Beispiel_2" src="../_images/Einfügen-in-B-Bäume-Beispiel_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_2.png"><img alt="Einfügen-in-B-Bäume-Beispiel_2" src="../_images/Einf%C3%BCgen-in-B-B%C3%A4ume-Beispiel_2.png" style="width: 500px;" /></a>
 <br>
 Wir brauchen nun ein neues Schlüssel/Pointer-Paar. Da die 40 auch hier das erste Element im neuen Block ist, würde es sich anbieten diese in die Wurzel zu ziehen. 
-<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_3.png"><img alt="Einfügen-in-B-Bäume-Beispiel_3" src="../_images/Einfügen-in-B-Bäume-Beispiel_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_3.png"><img alt="Einfügen-in-B-Bäume-Beispiel_3" src="../_images/Einf%C3%BCgen-in-B-B%C3%A4ume-Beispiel_3.png" style="width: 500px;" /></a>
 <br>
 <p>Dadurch müssten wir aber zu viel umstrukturieren, deshalb können wir auch die 31 aus dem linken Block nehmen.
 <br></p>
-<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_4.png"><img alt="Einfügen-in-B-Bäume-Beispiel_4" src="../_images/Einfügen-in-B-Bäume-Beispiel_4.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-B-Bäume-Beispiel_4.png"><img alt="Einfügen-in-B-Bäume-Beispiel_4" src="../_images/Einf%C3%BCgen-in-B-B%C3%A4ume-Beispiel_4.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Einfügen</strong></p>
 <p>Die Kosten für das Einfügen in einen B-Baum sind abhängig von der Höhe <em>h</em> des Baumes. Im Rahmen der Vorlesung haben wir meist B-Bäume der Höhe 3.
 Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig, muss man nur <em>h</em> Blöcke lesen und 1 Index-Block schreiben. Damit liegen die Gesamtkosten bei <em>h + 1</em>. Falls doch eine Teilung notwendig ist, muss man im schlimmsten Fall bis nach oben zu der Wurzel. Da hilft auch Caching nicht, da die Knoten geschrieben werden müssen. Insgesamt kommt man auf <em>3 h + 1</em>, da man auf jeder Ebene suchen, teilen und gegebenenfalls Überlauf behandeln und zusätzlich eine neue Wurzel generieren muss.</p>
 </section>
 <section id="loschen-aus-b-baumen">
-<h4><span class="section-number">3.3.12.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.12.2. </span>Löschen aus B-Bäumen<a class="headerlink" href="#loschen-aus-b-baumen" title="Link to this heading">#</a></h4>
 <p>Beim Löschen aus einem B-Baum wird der entsprechende Knoten gesucht und der Schlüssel dann gelöscht. Befindet sich dann immer noch die minimale Menge an Schlüsseln im Knoten ist alles gut und wir müssen nichts weiter tun. Sind aber zu wenig Schlüssel im Knoten, müssen wir <em>mergen</em>, d.h. wir können uns aus den Geschwisterknoten links oder rechts die mehr als die minimale Schlüsselmenge haben, einen Schlüssel “klauen”. Dabei müssen auch (fast) immer die Elternknoten angepasst werden. Ist das mergen nicht möglich, da die Geschwisterknoten nur die minimale oder sub-minimale Schlüsselmenge besitzen, kann man diese aber vereinen. Auch hier müssen die Elternknoten dann angepasst oder ggf. rekursiv nach oben gelöscht werden.</p>
 <p>Schauen wir uns dazu ein Beispiel an. Es soll der Datensatz mit dem Schlüssel 7 gelöscht werden.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel.png"><img alt="Löschen-aus-B-Bäumen-Beispiel" src="../_images/Löschen-aus-B-Bäumen-Beispiel.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel.png"><img alt="Löschen-aus-B-Bäumen-Beispiel" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel.png" style="width: 500px;" /></a>
 <p>Ohne die 7 sind zu wenig Schlüssel im Knoten, also nehmen wir uns aus dem linken Geschwisterknoten die 5 dazu und passen dann noch den Elternknoten an.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_2" src="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_2.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_2" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_2.png" style="width: 500px;" /></a>
 <p>Jetzt soll die 11 entfernt werden.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_3" src="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_3.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_3" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_3.png" style="width: 500px;" /></a>
 <p>Auch hier sind jetzt zu wenig Schlüssel im Knoten. In dem Fall können die Geschwisterknoten aber nichts mehr abgeben, also mergen wir mit dem linken Geschwisterknoten.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_4" src="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_4.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_4" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_4.png" style="width: 500px;" /></a>
 <p>Den leeren Knoten können wir löschen und müssen dann noch den Elterknoten anpassen, da dieser zu klein ist. Die 5 wird da aber nicht mehr gebraucht, also kann diese auch entfernt werden.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_5.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_5" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_5.png" style="width: 500px;" /></a>
 <p>Der zweite Pointer des jetzt leeren Knoten zeigt nun auf den rechten Knoten. Jetzt passt es aber nicht mehr mit der 13 in der Wurzel, deshalb müssen wir hier auch noch eine Anpassung vornehmen.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_6.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_6" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_6.png" style="width: 500px;" /></a>
 <p>Wir ziehen die 13 aus der Wurzel runter und die 23 dafür hoch.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-B-Bäumen-Beispiel_7.png"><img alt="Löschen-aus-B-Bäumen-Beispiel_7" src="../_images/L%C3%B6schen-aus-B-B%C3%A4umen-Beispiel_7.png" style="width: 500px;" /></a>
 <p><strong>Kosten für Löschen</strong></p>
 <p>Bei der Suche und dem lokalen Löschen kommen wir durch das Lesen des Baumes und das Schreiben des Blattknoten auf <em>h + 1</em>. Beim mergen mit Geschwisterknoten geht man den Baum durch bis nach unten, prüft die Knoten links und rechts und schreibt den Block und den veränderten Nachbarn sowie den Elternknoten. Die Gesamtkosten davon betragen <em>h + 5</em>. Merged man hoch bis zur Wurzel, liegen die Kosten ungefähr im Bereich <em>3h</em>. In der Vorlesung wird z.B. auch von <em>3h - 2</em> gesprochen.</p>
 <p><strong>Löschen aus B-Bäumen?</strong></p>
@@ -867,12 +889,12 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 </section>
 </section>
 <section id="effizienz-von-b-baumen">
-<h3><span class="section-number">3.3.13. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.13. </span>Effizienz von B-Bäumen<a class="headerlink" href="#effizienz-von-b-baumen" title="Link to this heading">#</a></h3>
 <p>Für das Suchen, Einfügen und Löschen sollen möglichst wenig I/O-Operationen benötigt werden. Abhängig davon wie groß <em>n</em> gewählt wird, müssen seltener Blöcke verschmolzen oder getrennt werden. Im besten Fall entsprechen die I/Os bei der Suche der Höhe des Baums + 1 I/O für das Lesen der Daten oder + 3 für das Einfügen und Löschen der Daten.</p>
 <p>Gehen wir von <em>h = 3</em> aus und 340 Schlüssel-Pointer-Paaren pro Block. Bei einem Füllstand von durchschnittlich 255 haben wir 255 innere Knoten und 255² = 65025 Blätter = 255³ Pointer. Das sind insgesamt 16 Mio. Datensätze von maximal 340³ = 39 Mio. Datensätzen.</p>
 <p>Greifen wir nur mit 2 I/O-Operationen auf den Baum zu, befindet sich nur die Wurzel im Hauptspeicher. Befinden sich zusätzlich auch noch 255 innere Knoten im Hauptspeicher, brauchen wir 1 I/O-Operation.</p>
 <section id="bulk-loading">
-<h4><span class="section-number">3.3.13.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.3.13.1. </span>Bulk-loading<a class="headerlink" href="#bulk-loading" title="Link to this heading">#</a></h4>
 <p>Anders als beim klassichen Einfügen in einen B-Baum kann man, wenn man die Liste bereits kennt, bulk-loading anwenden und den Datensatz sofort indexieren. Dabei wird der Datensatz vorsortiert. Man erzeugt Schlüssel-Pointer Paare für alle Blöcke, sortiert diese Paare nach Suchschlüssel und fügt sie sukzessiv ein.</p>
 <p>Schauen wir uns dazu ein Beispiel an.</p>
 <p><strong>Beispiel</strong></p>
@@ -894,7 +916,7 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 </section>
 </section>
 <section id="b-baum-varianten-b-baum-ohne">
-<h3><span class="section-number">3.3.14. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.14. </span>B-Baum Varianten: B-Baum (ohne „+“)<a class="headerlink" href="#b-baum-varianten-b-baum-ohne" title="Link to this heading">#</a></h3>
 <p>Es existieren unterschiedliche Varianten von B-Bäumen. Bisher besprochen haben wir zum einen <span class="math notranslate nohighlight">\(B^{+}\)</span>-Bäume, in denen die Pointer auf die Datensätze nur in den Blattknoten vorkommen und zum anderen B-Bäume, bei denen die Pointer auf den Datensätzen in allen Knoten vorhanden sind. Der Vorteil von B-Bäumen ist, dass die Suche durchschnittlich schneller ist, da man nicht jedes Mal bis ganz nach unten in dem Baum gehen muss. Allerdings ist die Verwaltung und Implementierung schwieriger, da die Blätter und innere Knoten eine unterschiedliche Struktur haben. Außerdem sind sie weniger “buschig”, weil Platz für Pointer “verschwendet” wird. Das führt dazu, dass sie potenziell höher sind. Auch das Löschen ist komplizierter, da man auch in inneren Knoten löschen kann und ein Schlüssel von einem Blatt gegebenenfalls nach oben wandern muss.</p>
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten.png"><img alt="B-Baum-Varianten" src="../_images/B-Baum-Varianten.png" style="width: 500px;" /></a>
 <p><strong><span class="math notranslate nohighlight">\({B}^\ast\)</span>-Bäume</strong></p>
@@ -904,16 +926,16 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <a class="reference internal image-reference" href="../_images/B-Baum-Varianten_2.png"><img alt="B-Baum-Varianten_2" src="../_images/B-Baum-Varianten_2.png" style="width: 500px;" /></a>
 <p><strong><span class="math notranslate nohighlight">\(B^{+}\)</span>-Bäume für BLOBs (und CLOBs)</strong></p>
 <p>Des Weiteren gibt es auch noch B±Bäume für BLOBs, also für Datensätze, die sich über mehrere Blöcke erstrecken. Hierbei werden Suchschlüssel durch Offsets repräsentiert. Blätter zeigen auf Datenseiten eines BLOBs oder Bytes.</p>
-<a class="reference internal image-reference" href="../_images/B-Bäume_für_BLOBs.png"><img alt="B-Bäume_für_BLOBs" src="../_images/B-Bäume_für_BLOBs.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/B-Bäume_für_BLOBs.png"><img alt="B-Bäume_für_BLOBs" src="../_images/B-B%C3%A4ume_f%C3%BCr_BLOBs.png" style="width: 500px;" /></a>
 <br>
 <p>Wir haben jetzt B-Bäume abgeschlossen und schauen uns als weitere typische Indexstruktur Hashbasierte Indizes an.</p>
 </section>
 </section>
 <section id="hashtabellen">
-<h2><span class="section-number">3.4. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Hashtabellen<a class="headerlink" href="#hashtabellen" title="Link to this heading">#</a></h2>
 <p>Zuvor haben wir uns mit B-Baum Indizes befasst, mit denen man in logarithmischer Zeit einen Block erreicht. Hashbasierte Funktionen arbeiten in konstanter Zeit. Sie sagen uns sofort, wo der Datensatz ist, ohne das mehr gemacht werden muss.</p>
 <section id="allgemeine-hash-tabellen">
-<h3><span class="section-number">3.4.1. </span>Allgemeine Hash-Tabellen<a class="headerlink" href="#allgemeine-hash-tabellen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Allgemeine Hash-Tabellen<a class="headerlink" href="#allgemeine-hash-tabellen" title="Link to this heading">#</a></h3>
 <p><strong>Hashtabellen – Grundprinzip</strong></p>
 <p>Hashtabellen haben eine Hashfunktion die als Input einen Suchschlüssel <em>K</em> (Hash-Schlüssel) bekommt und dann eine Bitsequenz oder einen Integer zwischen 0 und B-1 ausgibt. <em>B</em> ist hier die Anzahl Buckets die wir mappen können. Oft wird mit Modulo gerechnet, hat man aber Strings, muss erst jedem Buchstaben ein Integer zugewiesen und dann summiert werden. Am Ende haben wir dann ein Array von Buckets (Bucketarray) und wissen dann, wo welcher Wert liegt.</p>
 <p><strong>Hashtabellen auf Festplatten</strong></p>
@@ -925,68 +947,68 @@ Die Suche nach einem Blattknoten kostet <em>h</em>. Ist keine Teilung notwendig,
 <p><strong>Einfügen in Hashtabellen</strong></p>
 <p>Möchten wir einen Wert in eine Hashtabelle einfügen, müssen wir zunächst den Hashwert berechnen. Falls Platz ist, fügen wir den Datensatz in den entsprechenden Block oder Overflowblock ein. Falls nicht, müssen wir einen neuen Overflowblock erzeugen und dort den Datensatz einfügen.</p>
 <p>Wir möchten jetzt beispielhaft H in die Beispieltabelle einfügen. Sagen wir, die Hashfunktion ergibt 2 (h(H) = 2). Dann können wir problemlos H in den Block 2 unter dem B einfügen. Möchten wir jetzt G einfügen und bekommen dafür h(G) = 1, müssen wir einen Overflowblock dranhängen, in welchen dann das G passt.</p>
-<a class="reference internal image-reference" href="../_images/Einfügen-in-Hashtabelle.png"><img alt="Einfügen-in-Hashtabelle" src="../_images/Einfügen-in-Hashtabelle.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-in-Hashtabelle.png"><img alt="Einfügen-in-Hashtabelle" src="../_images/Einf%C3%BCgen-in-Hashtabelle.png" style="width: 500px;" /></a>
 <p><strong>Löschen in Hashtabellen</strong></p>
 <p>Möchten wir einen Wert aus der Hashtabelle löschen, müssen wir diesen zuerst finden. Dabei schauen wir uns die entsprechenden Blöcke und auch alle Overflowblöcke an und löschen dann den Datensatz. Gegebenenfalls müssen wir Overflowblöcke reorganisieren oder auch löschen. Möchten wir in der Abbildung unten beispielsweise das C löschen, kann das G dann den Platz einnehmen und der Overflowblock kann gelöscht werden.</p>
-<a class="reference internal image-reference" href="../_images/Löschen-aus-Hashtabelle.png"><img alt="Löschen-aus-Hashtabelle" src="../_images/Löschen-aus-Hashtabelle.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Löschen-aus-Hashtabelle.png"><img alt="Löschen-aus-Hashtabelle" src="../_images/L%C3%B6schen-aus-Hashtabelle.png" style="width: 500px;" /></a>
 <section id="vorschau-consistent-hashing">
-<h4><span class="section-number">3.4.1.1. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.4.1.1. </span>Vorschau: Consistent Hashing<a class="headerlink" href="#vorschau-consistent-hashing" title="Link to this heading">#</a></h4>
 <p>Es kann passieren, dass beispielsweise ein Server offline geht, also ein Bucket unbrauchbar wird und alle darin enthaltenen Werte neu gehashed werden müssen. Da jetzt zu wenig Blöcke vorhanden sind, müssen alle Werte aus allen Blöcken neu gehashed werden. Das führt dazu, dass alle Werte neuverteilt werden, wie man in der Abbildung zu inconsistent hashing sehen kann. Consistent hashing sorgt jetzt dafür, dass die Werte, die schon gehashed und nicht gelöscht wurden, an Ort und Stelle bleiben, sodass man weniger overhead hat.</p>
 <a class="reference internal image-reference" href="../_images/consistent-hashing.png"><img alt="consistent-hashing" src="../_images/consistent-hashing.png" style="width: 500px;" /></a>
 <p>Dieses Phänomen ist hier nur oberflächlich angeschnitten worden, um zu zeigen, dass das durchaus auftreten kann, wenn man mit Hashtabellen arbeitet.</p>
 </section>
 <section id="effizienz-statischer-hashtabellen">
-<h4><span class="section-number">3.4.1.2. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.4.1.2. </span>Effizienz statischer Hashtabellen<a class="headerlink" href="#effizienz-statischer-hashtabellen" title="Link to this heading">#</a></h4>
 <p>Idealerweise gibt es pro Bucket nur einen Block. Angenommen, die Hashtabelle ist im Hauptspeicher. Die Zugriffszeit beim lesen beträgt in dem Fall 1 I/O. Beim einfügen und löschen kommt man auf 2 I/O, da einmal gelesen und geschrieben werden muss. Damit sind Hashtabellen viel besser als dicht- oder dünnbesetzte Indizes und auch besser als B-Bäume. Allerding kann man mit Hashtabellen Bereichsanfragen nicht mehr so leicht umsetzen. Ein weiteres Problem von statischen Hashtabellen ist, dass B einmalig festgelegt wird. Dadurch kann es lange Listen von Overflowblöcken geben. Die Lösung hierzu sind <em>dynamische Hashtabellen</em>. Diese können wachsen und B wird nicht einfach festgelegt sondern berechnet sich ungefähr aus <span class="math notranslate nohighlight">\(\frac{Anzahl\ Datensätze}{Datensätze\ pro\ Block}\)</span>. Damit erhalten wir ca. einen Block pro Bucket.</p>
 <p>Im Folgenden schauen wir uns zwei Varianten von dynamischen Hashtabellen an.</p>
 </section>
 </section>
 <section id="erweiterbare-hashtabellen">
-<h3><span class="section-number">3.4.2. </span>Erweiterbare Hashtabellen<a class="headerlink" href="#erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>Erweiterbare Hashtabellen<a class="headerlink" href="#erweiterbare-hashtabellen" title="Link to this heading">#</a></h3>
 <p>Die erste Lösung für das Problem statischer Hashtabellen und damit die erste Variante dynamischer Hashtabellen sind die <em>erweiterbaren Hashtabellen</em>.</p>
 <p>Zuvor haben wir gesehen, dass Hashfunktionen direkt zum Blockheader zeigen. Jetzt gibt es vorher noch eine Indirektion, d.h. ein Bucket besteht nun aus einem Pointerarray anstatt einem Datenblock. Die Größe dieses Pointerarrays kann sich bei Bedarf verdoppeln. Außerdem können bestimmte Buckets sich nun einen Datenblock teilen, wenn es passt.</p>
 <p>Wir können davon ausgehen <em>k</em> Bits zu haben. <em>k</em> wird immer so gewählt, dass die Hashfunktion größer ist als die Anzahl an Blöcken. Unser Bucketarray verwendet erstmal nur die ersten i Bits. Je mehr Daten wir hinzufügen desto mehr erhöht sich unser i. Insgesamt können wir dann <span class="math notranslate nohighlight">\(2^i\)</span> Buckets adressieren.</p>
 <a class="reference internal image-reference" href="../_images/Erweiterbare-Hashtabellen.png"><img alt="Erweiterbare-Hashtabellen" src="../_images/Erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
 <section id="einfugen-in-erweiterbare-hashtabellen">
-<h4><span class="section-number">3.4.2.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.4.2.1. </span>Einfügen in erweiterbare Hashtabellen<a class="headerlink" href="#einfugen-in-erweiterbare-hashtabellen" title="Link to this heading">#</a></h4>
 <p>Das Vorgehen ist dem Einfügen in normale Hashtabellen ähnlich. Zunächst berechnen wir h(K) und wählen die ersten i Bits. Dann suchen wir den Eintrag im Bucketarray und laden den entsprechenden Block. Falls Platz ist fügen wir den neuen Datensatz ein.</p>
 <p>Falls kein Platz ist und j &lt; i kann man den Block splitten. Die Datensätze werden dann gemäß dem (j+1)-ten Bit verteilt: Ist dies 0, bleibt der Wert im ersten Block, ist es 1, verschieben wir den Wert in den neuen Block. Wir wissen jetzt auch, dass nun j+1 Bits relevant sind, also ein Bit mehr als zuvor und setzen dies als neue Bitanzahl für die beiden neuen Blöcke fest. Zum Schluss müssen wir dann noch die Pointer im Bucketarray aktualisieren. Wenn wir Pech haben, landen alle Datensätze immer im gleichen Block und unser j erhöht sich immer weiter.</p>
 <p>Falls kein Platz ist und j = i müssen wir auch unser i erhöhen, was dazu führt, dass sich das Bucketarray verdoppelt. Die Datenblöcke bleiben dabei unverändert. Zwei neue Pointer zeigen zunächst auf den gleichen alten Block, dann müssen wir den relevanten Block splitten. Haben wir das gemacht, können wir so vorgehen wie zuvor, denn jetzt ist wieder j &lt; i.</p>
 <p>Schauen wir uns dazu ein paar Beispiele an.</p>
 <p>Wir möchten den Datensatz mit dem Hashwert 1010 einfügen. Wir haben i = 1 und j = 1. 1010 beginnt mit einer 1, das bedeutet, dass der Datensatz in den zweiten Bucket gehört. Dieser ist jedoch voll, also müssen wir den splitten. Infolgedessen müssen wir unser i und unser j um 1 erhöhen und haben jetzt 4 Buckets. Für den ersten Block ist immer noch nur das Erste Bit relevant, bei den beiden anderen Blöcken mussten wir aber unser j erhöhen, also sind da jetzt die ersten <strong>beiden</strong> Bits relevant.</p>
-<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen.png"><img alt="Einfügen-erweiterbare-Hashtabellen" src="../_images/Einfügen-erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen.png"><img alt="Einfügen-erweiterbare-Hashtabellen" src="../_images/Einf%C3%BCgen-erweiterbare-Hashtabellen.png" style="width: 500px;" /></a>
 <br> 
 <p>Nun möchten wir die Datensätze mit den Hashwerten 0000 und 0111 einfügen. Da Platz ist können wir 0000 einfach in den ersten Block schreiben. 0111 würde auch in den ersten Block gehören, dieser ist jetzt aber voll, deshalb müssen wir wieder splitten. Unser i bleibt gleich, aber unser j müssen wir um 1 erhöhen. Damit sind in den ersten beiden Blöcken nun die ersten <strong>beiden</strong> Bits relevant. 0111 schreiben wir somit in den neuen Block auf den jetzt der Bucket 01 zeigt.</p>
-<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_2.png"><img alt="Einfügen-erweiterbare-Hashtabellen_2" src="../_images/Einfügen-erweiterbare-Hashtabellen_2.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_2.png"><img alt="Einfügen-erweiterbare-Hashtabellen_2" src="../_images/Einf%C3%BCgen-erweiterbare-Hashtabellen_2.png" style="width: 500px;" /></a>
 <br> 
 <p>Als letztes Beispiel wollen wir den Datensatz mit dem Hashwert 1000 einfügen. Der Wert gehört in den dritten Block, dieser ist aber voll, also splitten wir wieder. Da i = j ist müssen wir beides wieder um 1 erhöhen. Damit haben wir jetzt 8 Buckets und in den beiden neuen Blöcken sind jetzt die ersten <strong>drei</strong> Bits relevant. Somit passt 1000 jetzt in den dritten Block.</p>
-<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_3.png"><img alt="Einfügen-erweiterbare-Hashtabellen_3" src="../_images/Einfügen-erweiterbare-Hashtabellen_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-erweiterbare-Hashtabellen_3.png"><img alt="Einfügen-erweiterbare-Hashtabellen_3" src="../_images/Einf%C3%BCgen-erweiterbare-Hashtabellen_3.png" style="width: 500px;" /></a>
 </section>
 <section id="analyse-erweiterbarer-hashtabellen">
-<h4><span class="section-number">3.4.2.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.4.2.2. </span>Analyse erweiterbarer Hashtabellen<a class="headerlink" href="#analyse-erweiterbarer-hashtabellen" title="Link to this heading">#</a></h4>
 <p>Ein Vorteil von erweiterbaren Hashtabellen ist, dass wir keine Overflowblocks mehr haben. Bei der Suche müssen wir also nie mehr als einen Datenblock betrachten. Außerdem benötigen wir nur 1 I/O, wenn unser Bucketarray in den Hauptspeicher passt.
 Der Nachteil ist allerdings, dass das Einfügen sehr lange dauern kann. Durch die Verdopplungen und das splitten hat man viel Arbeit. Außerdem wächst das Bucketarray schnell (exponentiell) und passt irgendwann vielleicht nicht mehr in den Hauptspeicher. Zudem kann es bei wenigen Datensätzen pro Block zu Platzverschwendung kommen. Gibt es beispielsweise einen Block, der Daten anhäuft und dessen j immer größer wird, führt das dazu, dass auch unser Bucketarray, also unser i, immer größer wird, während die anderen Blöcke unverändert bleiben und das nur wegen diesem einen Block. Das führt sehr schnell zu Platzverschwendung.</p>
 <p>Kommen wir zu der zweiten Variante dynamischer Hashtabellen.</p>
 </section>
 </section>
 <section id="lineare-hashtabellen">
-<h3><span class="section-number">3.4.3. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.4.3. </span>Lineare Hashtabellen<a class="headerlink" href="#lineare-hashtabellen" title="Link to this heading">#</a></h3>
 <p>Die zweite Variante dynamischer Hashtabellen sind die <em>linearen Hashtabellen</em>. Das Ziel dieser ist es, dass die Anzahl an Buckets nur langsam wächst. Dies erreicht man, indem <em>n</em>, die Anzahl der Buckets, so gewählt wird, dass die Datenblöcke nur zu ca. 85% gefüllt sind. Overflowblocks sind weiterhin zugelassen, aber die durchschnittliche Anzahl pro Block soll weniger als eins betragen. Zur Identifizierung der Buckets benötigen wir log<span class="math notranslate nohighlight">\(_{2}\)</span>(n) und wählen jeweils die letzten Bits des Hashwerts.</p>
 <a class="reference internal image-reference" href="../_images/Lineare-Hashtabellen.png"><img alt="Lineare-Hashtabellen" src="../_images/Lineare-Hashtabellen.png" style="width: 500px;" /></a>
 <section id="lineare-hashtabellen-einfugen">
-<h4><span class="section-number">3.4.3.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">3.4.3.1. </span>Lineare Hashtabellen – Einfügen<a class="headerlink" href="#lineare-hashtabellen-einfugen" title="Link to this heading">#</a></h4>
 <p>Bei dem Einfügen in lineare Hashtabellen müssen wir als erstes wieder h(K) berechnen. Dann schauen wir uns die <strong>letzten</strong> i Bits an und interpretieren diese als Integer <em>m</em>. Falls m &lt; n fügen wir den Datensatz in den Bucket m ein. Falls m ≥ n existiert der Bucket m noch nicht. Dann müssen wir den Datensatz in den Bucket m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> einfügen, d.h. das erste Bit des Schlüssels wird zu 0 (vorher 1). Ist kein Platz mehr, müssen wir einen Overflowblock erzeugen. Dafür berechnen wir <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span>. Ist das Ergebnis zu hoch, beispielsweise ≥ 1,7, erzeugen wir einen neuen Bucket (n++), welcher aber nichts mit dem betroffenen Bucket zu tun hat. Falls nun n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> müssen wir auch unser i um eins erhöhen, das bedeutet, alle Bitsequenzen erhalten eine 0 am Anfang. Physisch ändert sich aber nichts.</p>
 <p>Dazu schauen wir uns ein paar Beispiele an. Im ersten Beispiel möchten wir 0101 einfügen. Wir haben i = 1, n = 2 und r = 3. Das letzte Bit von 0101 interpretieren wir als m und da m &lt; n gilt können wir 0101 in den zweiten Block schreiben. Da wir jetzt einen Datensatz mehr haben, müssen wir unser r um eins erhöhen (r++). Nun ist aber <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7. Aus dem Grund müssen wir auch n um eins erhöhen. Da jetzt n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> gilt, müssen wir auch i um eins erhöhen. Das alles führt dazu, dass nun die letzten <strong>beiden</strong> Bits relevant sind und wir einen Bucket mehr benötigen. Wir splitten den Bucket 00, da 1010 dort jetzt nicht mehr hingehört. Die 1111 im zweiten Block darf dort bleiben, da die letzten beiden Bits 3 ergeben und damit m ≥ n erfüllen. Nach dieser Regel gehört 1111 in den (m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> )-ten Block, also in den Block 01.</p>
-<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einfügen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br></p>
+<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen.png"><img alt="Einfügen-Lineare-Hashtabellen" src="../_images/Einf%C3%BCgen-Lineare-Hashtabellen.png" style="width: 500px;" /></a> <br></p>
 <p>Jetzt möchten wir 0001 einfügen. Der Datensatz gehört in den Bucket 01. Hier ist aber kein Platz mehr, also erzeugen wir einen Overflowblock. Das können wir machen, da  <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7 gilt. i bleibt unverändert, da n &gt; 2<span class="math notranslate nohighlight">\(^{i}\)</span> nicht verletzt wird.</p>
-<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einfügen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br></p>
+<p><a class="reference internal" href="../_images/Einfügen-Lineare-Hashtabellen_2.png"><img alt="Einfügen-Lineare-Hashtabellen_2" src="../_images/Einf%C3%BCgen-Lineare-Hashtabellen_2.png" style="width: 500px;" /></a> <br></p>
 <p>Nun soll 0111 eingefügt werden. Es gilt wieder m ≥ n, sodass der Wert in den (m – 2<span class="math notranslate nohighlight">\(^{i-1}\)</span> )-ten Bucket gehört. Da wir jetzt einen Datensatz mehr haben, erhöht sich unser r, sodass  <span class="math notranslate nohighlight">\(\frac{r}{n}\)</span> &gt; 1,7 nicht mehr erfüllt ist. Das bedeutet, wir erhöhen n, erzeugen einen neuen Bucket und müssen wieder splitten. Die Einträge aus dem Overflowblock passen jetzt in den Bucket 11 und der Overflowblock kann gelöscht werden.</p>
-<a class="reference internal image-reference" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einfügen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Einfügen-Lineare-Hashtabellen_3.png"><img alt="Einfügen-Lineare-Hashtabellen_3" src="../_images/Einf%C3%BCgen-Lineare-Hashtabellen_3.png" style="width: 500px;" /></a>
 <p>Jetzt stellt sich die Frage, wann sollte man sich für Hashtabellen entscheiden und wann für B-Bäume?</p>
 </section>
 </section>
 <section id="hashing-vs-b-baum">
-<h3><span class="section-number">3.4.4. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.4.4. </span>Hashing vs. B-Baum<a class="headerlink" href="#hashing-vs-b-baum" title="Link to this heading">#</a></h3>
 <p>Hashing ist effizient, wenn man die Existenz eines Wertes feststellen möchte. Bei doppelten Schlüsseln sind Overflowblocks nötig. B-Bäume hingegen halten die Daten sortiert und sind effizienter, wenn es um Bereichsanfragen geht.</p>
 <p>In SQL sieht die Indexerzeugung wie folgt aus:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="p">[</span> <span class="n">UNIQUE</span> <span class="p">]</span> <span class="n">INDEX</span> <span class="n">indexname</span>
@@ -1028,11 +1050,10 @@ Im nächsten Kapitel befassen wir uns mit der Anfrageausführung.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../02/repraesentation.html"
@@ -1052,10 +1073,7 @@ Im nächsten Kapitel befassen wir uns mit der Anfrageausführung.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1063,6 +1081,7 @@ Im nächsten Kapitel befassen wir uns mit der Anfrageausführung.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1160,9 +1179,10 @@ By Prof. Dr. Ziawasch Abedjan
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1186,8 +1206,8 @@ By Prof. Dr. Ziawasch Abedjan
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
