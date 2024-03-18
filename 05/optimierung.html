@@ -564,7 +564,7 @@ Anhand des logischen Plans wird ein ausführbares Programm mit physischen Operat
 <figure class="align-default" id="id3">
 <img alt="../_images/Ablauf-Anfragebearbeitung_2.png" src="../_images/Ablauf-Anfragebearbeitung_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Ablauf der Anfragebearbeitung</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Ablauf der Anfragebearbeitung - Parsen</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -653,7 +653,7 @@ Am Ende sollen es äquivalente Ausdrücke sein. Zwei Ausdrücke der relationalen
 <figure class="align-default" id="id5">
 <img alt="../_images/Ablauf-Anfragebearbeitung_4.png" src="../_images/Ablauf-Anfragebearbeitung_4.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Ablauf der Anfragebearbeitung</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Ablauf der Anfragebearbeitung - Logischer Anfrageplan</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="zwei-schritte">
@@ -673,7 +673,7 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 </section>
 <section id="beispiel-anfragebearbeitung">
 <h3><span class="section-number">5.4.2. </span>Beispiel - Anfragebearbeitung<a class="headerlink" href="#beispiel-anfragebearbeitung" title="Permalink to this heading">#</a></h3>
-<p>In diesem Beispiel ist ein Ausdruck der relationalen Algebra in einem Parsebaum dargestellt. Die zugehörige SQL-Anfrage wäre</p>
+<p>In diesem Beispiel ist ein Ausdruck der relationalen Algebra in einem Parsebaum dargestellt <em>(siehe Fig. 5.5)</em> . Die zugehörige SQL-Anfrage wäre</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">Nachname</span>
 <span class="n">FROM</span> <span class="n">mitarbeiter</span> <span class="n">m</span><span class="p">,</span> <span class="n">projekte</span> <span class="n">p</span>
 <span class="n">WHERE</span> <span class="n">p</span><span class="o">.</span><span class="n">Budget</span> <span class="o">&lt;</span> <span class="mi">40000</span>
@@ -684,21 +684,21 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 <figure class="align-default" id="anfragebearbeitung-beispiel-1">
 <img alt="../_images/Anfragebearbeitung-Beispiel-1.png" src="../_images/Anfragebearbeitung-Beispiel-1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Anfragebearbeitung Beispiel 1</span><a class="headerlink" href="#anfragebearbeitung-beispiel-1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">Beispiel Parsebaum zur SQL-Anfrage - Schritt 1</span><a class="headerlink" href="#anfragebearbeitung-beispiel-1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Als nächstes sollte man versuchen die andere Selektion weiter nach unten zu pushen (Push-Down). Ziel ist es mit möglichst wenigen Tupeln in jedem Teilschritt zu arbeiten. Die gegebene Selektion kann direkt vor die Projekt-Relation geschoben werden.</p>
 <figure class="align-default" id="anfragebearbeitung-beispiel-2">
 <img alt="../_images/Anfragebearbeitung-Beispiel-2.png" src="../_images/Anfragebearbeitung-Beispiel-2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Anfragebearbeitung Beispiel 2</span><a class="headerlink" href="#anfragebearbeitung-beispiel-2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Schrittt 2</span><a class="headerlink" href="#anfragebearbeitung-beispiel-2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In einem weiterem Schritt können die benötigten Attribute aus den Ausgangsrelationen direkt rausprojiziert werden.</p>
 <figure class="align-default" id="anfragebearbeitung-beispiel-3">
 <img alt="../_images/Anfragebearbeitung-Beispiel-3.png" src="../_images/Anfragebearbeitung-Beispiel-3.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Anfragebearbeitung Beispiel 3</span><a class="headerlink" href="#anfragebearbeitung-beispiel-3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Schritt 3</span><a class="headerlink" href="#anfragebearbeitung-beispiel-3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -773,7 +773,7 @@ Der Baum wird im zweitem Schritt gemäß der Transformationsregeln umgeformt. Ma
 </section>
 <section id="kostenmodell-wiederholung">
 <h3><span class="section-number">5.5.3. </span>Kostenmodell (Wiederholung)<a class="headerlink" href="#kostenmodell-wiederholung" title="Permalink to this heading">#</a></h3>
-<p>Gegeben ist ein algebraischer Ausdruck z.B. ein Anfrageplan. Das Kostenmodell schätzt die Ausführungskosten für diesen Ausdruck. Im Kostenmodell werden Punkte wie die Indexinformationen, die Ballungs-Informationen (Clustering on disk), die DB-Kardinalitäten und die Attributverteilungen berücksichtigt.</p>
+<p>Gegeben ist ein algebraischer Ausdruck z.B. ein Anfrageplan. Das Kostenmodell <em>(siehe Fig. 5.9)</em> schätzt die Ausführungskosten für diesen Ausdruck. Im Kostenmodell werden Punkte wie die Indexinformationen, die Ballungs-Informationen (Clustering on disk), die DB-Kardinalitäten und die Attributverteilungen berücksichtigt.</p>
 <figure class="align-default" id="id6">
 <img alt="../_images/Kostenmodell.png" src="../_images/Kostenmodell.png" />
 <figcaption>
@@ -837,7 +837,7 @@ Man möchte in der Selektion nicht die Attribute haben, die der Konstante c ents
 </section>
 <section id="selektivitat-schatzen">
 <h3><span class="section-number">5.5.8. </span>Selektivität schätzen<a class="headerlink" href="#selektivitat-schatzen" title="Permalink to this heading">#</a></h3>
-<p>Das folgende Bild ist aus dem Werk für das System R von Selinger et al. aus dem Jahre 1979. Man sieht die Möglichkeiten zur Einschätzung der Selektivität. Beim Schätzen wird fast immer eine Gleichverteilung angenommen.</p>
+<p>In Abbildung 5.11 ist ein Auszug aus dem Werk für das System R von Selinger et al. aus dem Jahre 1979 zu sehen. Man sieht die Möglichkeiten zur Einschätzung der Selektivität. Beim Schätzen wird fast immer eine Gleichverteilung angenommen.</p>
 <figure class="align-default" id="system-r">
 <img alt="../_images/Selektivität-schätzen.png" src="../_images/Selektivität-schätzen.png" />
 <figcaption>
@@ -861,6 +861,7 @@ Man möchte in der Selektion nicht die Attribute haben, die der Konstante c ents
 </figcaption>
 </figure>
 <p>Wenige Werte kommen sehr häufig vor, die vielen anderen Werte kommen hingegen sehr selten vor. Anhand der Verteilung könnte man nun probieren die Kardinalitätsabschätzung anzupassen. Dennoch sollte es eher gelassen werden. Die durchschnittliche Antwortkardinalität bleibt weiter <span class="math notranslate nohighlight">\(\frac{T(R)}{V(R,A)}\)</span>. Durch die Annahme, dass Konstanten in Selektionsbedingungen gleichverteilt gewählt werden, kann es bei der Zipf-Verteilung der Konstanten zu einer Unterschätzung kommen.</p>
+<p>Abbildung 5.14 zeigt das Prinzip von Zipf’s law. Außerdem ist es unabhängig von der jeweils gewählten Sprache.</p>
 <figure class="align-default" id="zipfs-law">
 <img alt="../_images/Zipfs-law.png" src="../_images/Zipfs-law.png" />
 <figcaption>
@@ -868,7 +869,6 @@ Man möchte in der Selektion nicht die Attribute haben, die der Konstante c ents
 </figcaption>
 </figure>
 <p>A plot of the rank versus frequency for the first 10 million words in 30 Wikipedias (dumps from October 2015) in a <a class="reference external" href="https://en.wikipedia.org/wiki/Log%E2%80%93log_plot">log-log</a> scale.</p>
-<p>Das Beispiel zeigt das Prinzip von Zipf’s law. Außerdem ist es unabhängig von der jeweils gewählten Sprache.</p>
 </section>
 <section id="id7">
 <h3><span class="section-number">5.5.10. </span>Kostenschätzung - Selektion<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
@@ -1250,16 +1250,22 @@ How can I maximize my damage (dps)?</p>
 </section>
 <section id="beispiel-knapsack-mit-dp">
 <h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
-<p>Die Lösung des Problems wird durch einen Rückwärtslauf ermittelt. Durch eine Tabelle werden nach und nach Items ausgewählt. Die Kapazität wird fortlaufend notiert und berechnet. Das Resultat ist der maximale Nutzen.</p>
+<p>Die Lösung des Problems wird durch einen Rückwärtslauf ermittelt. Durch eine Tabelle <em>(siehe Fig. 5.20)</em> werden nach und nach Items ausgewählt. Die Kapazität wird fortlaufend notiert und berechnet. Das Resultat ist der maximale Nutzen.</p>
 <a class="reference internal image-reference" href="../_images/Knapsack-mit-DP.png"><img alt="Knapsack-mit-DP" src="../_images/Knapsack-mit-DP.png" style="width: 500px;" /></a>
+<figure class="align-default" id="knapsack-mit-dp">
+<img alt="../_images/Knapsack-mit-DP.png" src="../_images/Knapsack-mit-DP.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.20 </span><span class="caption-text">Knapsack Tabelle</span><a class="headerlink" href="#knapsack-mit-dp" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="dp-traveling-salesman-problem">
 <h3><span class="section-number">5.7.9. </span>DP: Traveling Salesman Problem<a class="headerlink" href="#dp-traveling-salesman-problem" title="Permalink to this heading">#</a></h3>
-<p>Ein ähnliches Verfahren wird beim Traveling Salesman Problem verwendet. Beim Traveling Salesman Problem sollen alle Städte besucht werden, ohne einen Pfad mehrmals zu betreten. Gesucht ist der kürzeste Pfad, der es ermöglicht.</p>
+<p>Ein ähnliches Verfahren wird beim Traveling Salesman Problem verwendet <em>(siehe Fig. 5.21)</em> . Beim Traveling Salesman Problem sollen alle Städte besucht werden, ohne einen Pfad mehrmals zu betreten. Gesucht ist der kürzeste Pfad, der es ermöglicht.</p>
 <figure class="align-default" id="traveling-salesman-problem">
 <img alt="../_images/DP-Traveling-Salesman-Problem.png" src="../_images/DP-Traveling-Salesman-Problem.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.20 </span><span class="caption-text">Traveling-Salesman-Problem</span><a class="headerlink" href="#traveling-salesman-problem" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.21 </span><span class="caption-text">Traveling-Salesman-Problem</span><a class="headerlink" href="#traveling-salesman-problem" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1306,7 +1312,7 @@ Betrachtet werden nur links-tiefe (left-deep) Bäume. Es wird nie die parallele 
 <figure class="align-default" id="id14">
 <img alt="../_images/Anfrageplanung.png" src="../_images/Anfrageplanung.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.21 </span><span class="caption-text">Unterschiedliche Bäume bei der Anfrageplanung</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.22 </span><span class="caption-text">Unterschiedliche Bäume bei der Anfrageplanung</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1322,7 +1328,7 @@ Bei n Relationen gibt es <span class="math notranslate nohighlight">\(n!\)</span
 <figure class="align-default" id="selinger">
 <img alt="../_images/Selinger.png" src="../_images/Selinger.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.22 </span><span class="caption-text">Patricia Selinger</span><a class="headerlink" href="#selinger" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.23 </span><span class="caption-text">Patricia Selinger</span><a class="headerlink" href="#selinger" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Das Verfahren von Selinger ist auch bekannt unter dem Namen: “Selinger-style query optimization”. Selinger ist eine Pionierin im Bereich von Datenbanksystemen. Ein klassischer Artikel zur Anfrageoptimierung ist [SAC+79]. Ursprünglich wurde das Verfahren bei IBM im System-R eingesetzt und ist heutzutage weit verbreitet.
@@ -1333,7 +1339,7 @@ Zusätzlich sind auch interesting orders (interessante Sortierungen) und interes
 <figure class="align-default" id="accesspathselection-ibm">
 <img alt="../_images/AccessPathSelection-IBM.png" src="../_images/AccessPathSelection-IBM.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.23 </span><span class="caption-text">Paper der IBM Research Division zu “Access Path Selection in a Relational Database Management System.”</span><a class="headerlink" href="#accesspathselection-ibm" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.24 </span><span class="caption-text">Paper der IBM Research Division zu “Access Path Selection in a Relational Database Management System.”</span><a class="headerlink" href="#accesspathselection-ibm" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1352,7 +1358,7 @@ Die <strong>Bottom-up Anfrageplangenerierung</strong> berechnet die optimalen Pl
 <figure class="align-default" id="id16">
 <img alt="../_images/Dynamische-Programmierung.png" src="../_images/Dynamische-Programmierung.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.24 </span><span class="caption-text">Dynamische Programmierung</span><a class="headerlink" href="#id16" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.25 </span><span class="caption-text">Dynamische Programmierung</span><a class="headerlink" href="#id16" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1370,32 +1376,32 @@ Für <span class="math notranslate nohighlight">\(N=3\)</span> wird jedes Tripel
 <figure class="align-default" id="id17">
 <img alt="../_images/DP-Beispiel.png" src="../_images/DP-Beispiel.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.25 </span><span class="caption-text">Dynamische Programmierung - Beispiel</span><a class="headerlink" href="#id17" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.26 </span><span class="caption-text">Dynamische Programmierung - Beispiel</span><a class="headerlink" href="#id17" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Im Beispiel <em>(siehe Fig. 5.25)</em> wird eine Anfrage über die vier Relationen <span class="math notranslate nohighlight">\(R, S, T, U\)</span> gestellt.
-Es gibt vier Join-Bedingungen. In der Tabelle werden Kardinalität, Kosten und der optimale Plan festgehalten. Im ersten Schritt ist der optimale Plan ein Scan der jeweiligen Relation.</p>
+<p>Im Beispiel <em>(siehe Fig. 5.26)</em> wird eine Anfrage über die vier Relationen <span class="math notranslate nohighlight">\(R, S, T, U\)</span> gestellt.
+Es gibt vier Join-Bedingungen. In der Tabelle werden Kardinalität, Kosten und der optimale Plan festgehalten. Im ersten Schritt <em>(siehe Fig. 5.27)</em> ist der optimale Plan ein Scan der jeweiligen Relation.</p>
 <figure class="align-default" id="id18">
 <img alt="../_images/DP-Beispiel_2.png" src="../_images/DP-Beispiel_2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.26 </span><span class="caption-text">DP Schritt 1</span><a class="headerlink" href="#id18" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id19">
-<img alt="../_images/DP-Beispiel_3.png" src="../_images/DP-Beispiel_3.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 5.27 </span><span class="caption-text">DP Schritt 2 und 3</span><a class="headerlink" href="#id19" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.27 </span><span class="caption-text">DP Schritt 1</span><a class="headerlink" href="#id18" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Zwischen den Relationen, die kein Joinattribut haben, muss ein Kreuzprodukt gebildet werden. Das wäre der Fall bei <span class="math notranslate nohighlight">\(S, T\)</span> und <span class="math notranslate nohighlight">\(T, R\)</span>. Die Kreuzprodukte werden im weiteren Verlauf nicht weiter berücksichtigt. Alle anderen Kombinationen an Relationen werden über die jeweiligen Joinattriubte miteinander gejoint. </br>
 Um Joins mit drei Relationen zu bilden, müssen die Joins zwischen zwei Relationen mit den günstigsten Kardinalitäten ausgewählt werden. Für die Kombination {<span class="math notranslate nohighlight">\({R, S, T}\)</span>} würden {<span class="math notranslate nohighlight">\({R, S}\)</span>}, {<span class="math notranslate nohighlight">\({R, T}\)</span>} und {<span class="math notranslate nohighlight">\({S, T}\)</span>} in Frage kommen. Da aber {<span class="math notranslate nohighlight">\({R, T}\)</span>} eine sehr hohe Kardnalität hat und auch vorher bereits aussortiert wurde, wählt man die anderen beiden: {<span class="math notranslate nohighlight">\({R, S}\)</span>} und {<span class="math notranslate nohighlight">\({S, T}\)</span>}. Die Kosten sind dann die Kardinalität der günstigeren Relationen. In dem Fall {<span class="math notranslate nohighlight">\({S, T}\)</span>} mit 2000.</p>
+<figure class="align-default" id="id19">
+<img alt="../_images/DP-Beispiel_3.png" src="../_images/DP-Beispiel_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.28 </span><span class="caption-text">DP Schritt 2 und 3</span><a class="headerlink" href="#id19" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Zum Schluss <em>(siehe Fig. 5.29)</em> berechnet man die Summe aus Kardinalität und Kosten. Somit ist der Joinplan mit Kosten von 3000 der optimale Plan.</p>
 <figure class="align-default" id="id20">
 <img alt="../_images/DP-Beispiel_4.png" src="../_images/DP-Beispiel_4.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.28 </span><span class="caption-text">DP Letzter Schritt</span><a class="headerlink" href="#id20" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.29 </span><span class="caption-text">DP Letzter Schritt</span><a class="headerlink" href="#id20" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Zum Schluss berechnet man die Summe aus Kardinalität und Kosten. Somit ist der Joinplan mit Kosten von 3000 der optimale Plan.</p>
 </section>
 <section id="dp-interesting-orders-interessante-sortierung">
 <h3><span class="section-number">5.7.20. </span>DP - interesting orders (Interessante Sortierung)<a class="headerlink" href="#dp-interesting-orders-interessante-sortierung" title="Permalink to this heading">#</a></h3>
