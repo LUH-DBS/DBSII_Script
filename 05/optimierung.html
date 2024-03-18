@@ -1251,7 +1251,6 @@ How can I maximize my damage (dps)?</p>
 <section id="beispiel-knapsack-mit-dp">
 <h3><span class="section-number">5.7.8. </span>Beispiel: Knapsack mit DP<a class="headerlink" href="#beispiel-knapsack-mit-dp" title="Permalink to this heading">#</a></h3>
 <p>Die Lösung des Problems wird durch einen Rückwärtslauf ermittelt. Durch eine Tabelle <em>(siehe Fig. 5.20)</em> werden nach und nach Items ausgewählt. Die Kapazität wird fortlaufend notiert und berechnet. Das Resultat ist der maximale Nutzen.</p>
-<a class="reference internal image-reference" href="../_images/Knapsack-mit-DP.png"><img alt="Knapsack-mit-DP" src="../_images/Knapsack-mit-DP.png" style="width: 500px;" /></a>
 <figure class="align-default" id="knapsack-mit-dp">
 <img alt="../_images/Knapsack-mit-DP.png" src="../_images/Knapsack-mit-DP.png" />
 <figcaption>
@@ -1276,7 +1275,7 @@ Mittels DP wird <span class="math notranslate nohighlight">\(cost(i)\)</span> be
 Sei <span class="math notranslate nohighlight">\(C(S, i)\)</span> die Minimalkosten für ein Pfad von a nach i, der jeden Knoten in <span class="math notranslate nohighlight">\(S\)</span> genau
 einmal besucht. Gestartet wird mit allen Teilmengen <span class="math notranslate nohighlight">\(S\)</span> der Größe 2. Für diese werden <span class="math notranslate nohighlight">\(C(S, i)\)</span> berechnet. Im nächsten Schritt werden Stufenweise die Teilmengen der Größe 3, 4 u.s.w. betrachtet.</p>
 <a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 200px;" /></a>
-<br> 
+<p><br> <br></p>
 <ol class="arabic simple">
 <li><p>Für <span class="math notranslate nohighlight">\(|S| = 2\)</span> gilt: <span class="math notranslate nohighlight">\(S ={a, i}\)</span> und <span class="math notranslate nohighlight">\(C(S, i) = dist(a, i)\)</span>.</p></li>
 <li><p>Für <span class="math notranslate nohighlight">\(|S| &gt; 2\)</span> gilt:  <span class="math notranslate nohighlight">\(C(S, i) = min{ C(S-\{i\}, j) + dist(j, i)}\)</span>, wenn <span class="math notranslate nohighlight">\(j \neq i\)</span> und <span class="math notranslate nohighlight">\(j \neq a\)</span>.</p></li>
