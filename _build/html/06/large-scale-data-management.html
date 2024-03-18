@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>6. Large Scale Data Management &#8212; Online-Skript Datenbanksysteme II</title>
   
@@ -18,45 +19,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06/large-scale-data-management';</script>
@@ -72,15 +76,7 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -115,14 +111,11 @@
 </form></div>
   </div>
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -137,11 +130,9 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../intro.html">
-  
   
   
   
@@ -151,23 +142,12 @@
       
     
     
-    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Online-Skript Datenbanksysteme II - Home"/>
-    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Online-Skript Datenbanksysteme II - Home"/>`);</script>
+    <img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/DBIS_Kurzlogo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -368,22 +348,20 @@
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -476,16 +454,16 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="large-scale-data-management">
-<h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Large Scale Data Management<a class="headerlink" href="#large-scale-data-management" title="Permalink to this heading">#</a></h1>
 <p>In diesem Kapitel geht es insbesondere darum, die Verfahren und Datenbankoperationen, die wir bisher kennengelernt haben, hinsichtlich paralleler Verarbeitung zu betrachten und auch die Kostenelemente, die dann eine Rolle spielen.</p>
 <p>Beim Large Scale Data Management geht es um sehr große Datenmengen. Da reicht es dann nicht mehr, nur eine Datenbank zu haben, man muss nun auch über die Verteilung, Server und Nebenläufigkeiten nachdenken.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/Large-scale-Data-Management.png" src="../_images/Large-scale-Data-Management.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Large Scale Data Management</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Large Scale Data Management</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Zur Wiederholung einmal die Frage: Was ist Big Data? Big Data wird anhand von Dimensionen spezifiziert- die sogenannten V’s: <strong>Volume</strong> (Menge von Daten), <strong>Velocity</strong> (Schnelligkeit der Datenverarbeitung), <strong>Variety</strong> (Heterogenität der Daten), <strong>Verocity</strong> (Daten, bei denen die Korrektheit ungewiss ist) und <strong>Value</strong> (die Wertigkeit der Daten).</p>
@@ -493,24 +471,24 @@ document.write(`
 <p>Zur Verdeutlichung, über was für Datenmengen wir bei Big Data reden:</p>
 <p>Google ist ein klassisches Beispiel für ein Datenproduzierendes und -verwaltendes Unternehmen. Dort werden jeden Tag 20 PB an Daten verarbeitet. Das sind Billionen von Zeilen, Tausende/Millionen Spalten und Tabellen, aber auch strukturierte Daten wie Text, Bilder und Videos. Würde man versuchen, diese 20 PB mit 50 MB/s zu lesen, würde das 12 Jahre dauern. Aus diesem Grund werden die Daten partioniert und verteilt verarbeitet.</p>
 <section id="key-enabler-virtulization">
-<h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Key enabler: Virtulization<a class="headerlink" href="#key-enabler-virtulization" title="Permalink to this heading">#</a></h2>
 <p>Die beiden Varianten Operational und Analytic lassen sich mit der Virtualization managen. Hierbei versucht man entweder ein logisches System auf viele physische Systeme (Load Balancing) oder andersherum mehrere logische Systeme auf ein physisches System abzubilden (Multy-Tenancy).</p>
 <figure class="align-default" id="virtualization">
 <img alt="../_images/Virtualization.png" src="../_images/Virtualization.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Virtualization</span><a class="headerlink" href="#virtualization" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Virtualization</span><a class="headerlink" href="#virtualization" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="parallel-data-processing">
-<h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Parallel Data Processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this heading">#</a></h2>
 <p><strong>Was bisher geschah: Serielle Verarbeitung/Single Threaded</strong>
 </br></p>
 <p>Bisher haben wir immer von einem Computer mit mehreren Festplatten gesprochen und damit auch ein wenig über parallele Plattenzugriffe. Diese hatten insbesondere auch immer nur einen Kern. Das heißt, bei jeder Operation wurden die Blöcke nacheinander durch nur einen Kern abgearbeitet. Außerdem spielten auch Synchronisation und Kommunikation keine Rolle, da Anfragen in nur einem Thread bearbeitet wurden. Dies wollen wir nun erweitern.</p>
 <figure class="align-default" id="serial-single-threaded">
 <img alt="../_images/serial-single-threaded.png" src="../_images/serial-single-threaded.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Serial Single Threaded</span><a class="headerlink" href="#serial-single-threaded" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Serial Single Threaded</span><a class="headerlink" href="#serial-single-threaded" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Was wir verschwiegen haben…</strong>
@@ -520,36 +498,36 @@ Manche Systeme, wie beispielsweise Finanzinstitute, Onlineshops und soziale Netz
 Deshalb ist es wichtig zu überlegen, wie die Zugriffe über die Netzwerke verteilt werden.
 Auch Analyseanfragen werden immer komplexer. Eine statistische Mustererkennung ist teuer und über die Daten muss mehrfach iteriert werden. Da reicht eine Single-CPU- oder Single-Node-Architektur nicht mehr aus und auch Moore’s Law ist hier nicht mehr anwendbar. Die Lösung: <strong>Parallele Datenverarbeitung</strong>.</p>
 <section id="grundlagen-der-parallelen-datenverarbeitung-parellel-processing">
-<h3><span class="section-number">6.2.1. </span>Grundlagen der Parallelen Datenverarbeitung (Parellel Processing)<a class="headerlink" href="#grundlagen-der-parallelen-datenverarbeitung-parellel-processing" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Grundlagen der Parallelen Datenverarbeitung (Parellel Processing)<a class="headerlink" href="#grundlagen-der-parallelen-datenverarbeitung-parellel-processing" title="Permalink to this heading">#</a></h3>
 <p>Bei der parallelen Datenverarbeitung kommt <strong>Amdahl’s Law</strong> zum Einsatz, welches die Grenzen bei der parallelen Beschleunigung definiert. Es gibt außerdem verschiedenen Stufen der Parallelisierung, mit denen auf unterschiedlichen Ebenen parallelisiert werden kann. Des Weiteren existieren noch verschiedene <strong>Varianten der Anfrage-Parallelisierung</strong>. Dadurch können mehrere Anfragen parallel verarbeitet werden (<strong>Inter-Query</strong>) oder nur eine Anfrage (<strong>Intra-Query</strong>).</p>
 </section>
 <section id="parallel-speedup-amdahls-law">
-<h3><span class="section-number">6.2.2. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>Parallel Speedup – Amdahl‘s law<a class="headerlink" href="#parallel-speedup-amdahls-law" title="Permalink to this heading">#</a></h3>
 <p>Die Frage die sich bei Amdahl’s law stellt ist, wie viel wir an Geschwindigkeit überhaupt dazugewinnen können. Berechnen lässt sich das zum einen mit der sequentiellen Laufzeit <span class="math notranslate nohighlight">\(T_1\)</span> (1 Prozessor) und zum anderen mit der parallelen Laufzeit <span class="math notranslate nohighlight">\(T_p\)</span> (<em>p</em> Prozessoren): <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{T_1}{T_p}\)</span> . Die maximale Beschleunigung ist durch den nicht-parallelisierbaren Anteil des Programms begrenzt. Wie hoch diese ist, lässt sich folgendermaßen berechnen: <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> . <br>
 Die Variable <em>f</em> entspricht prozentual dem parallelisierbaren Anteil. Die ideale Beschleunigung wäre <em>S = p</em> für <em>f = 1</em>. Oft ist <em>f</em> &lt; 1 während <em>S</em> durch eine Konstante begrenzt wird. Beispiel: <em>f = 0,9</em> und 10/20 Server. <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - f) + \frac{f}{p}}\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{10}} \approx \)</span> 5,3 und <span class="math notranslate nohighlight">\(S_p\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{(1 - 0,9) + \frac{0,9}{20}} \approx \)</span> 6,9 . Lassen wir hier unsere Prozessoren gegen unendlich laufen, ist unser <span class="math notranslate nohighlight">\(S_p\)</span> = 10. Das bedeutet, wir können weitere Server hinzufügen, aber es bleibt bei der 10-fachen Geschwindigkeit.</p>
 <p>Hier sehen wir, wie sich die parallele Beschleunigung nach Amdahl’s law je nach Prozessorzahl verhält.</p>
 <figure class="align-default" id="parallel-speedup">
 <img alt="../_images/Parallel-Speedup.png" src="../_images/Parallel-Speedup.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Parallel Speedup</span><a class="headerlink" href="#parallel-speedup" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Parallel Speedup</span><a class="headerlink" href="#parallel-speedup" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="parallelisierungsstufen-auf-der-hardware">
-<h3><span class="section-number">6.2.3. </span>Parallelisierungsstufen auf der Hardware<a class="headerlink" href="#parallelisierungsstufen-auf-der-hardware" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.3. </span>Parallelisierungsstufen auf der Hardware<a class="headerlink" href="#parallelisierungsstufen-auf-der-hardware" title="Permalink to this heading">#</a></h3>
 <p>Es gibt unterschiedliche Stufen der Parallelisierung auf der Hardware. Zum einen gibt es <strong>Instruction-level parallelism</strong> (Prozessoranweisungen). Dabei werden Prozessorbefehle durch die CPU-Architektur automatisch parallelisiert. Zum Anderen gibt es <strong>Data parallelism</strong> (Daten). Jeder Prozessor verarbeitet die gleichen Befehle auf seiner eigenen Partition der Daten. Dadurch können unterschiedliche Daten parallel verarbeitet werden, beispielsweise durch verteilte Schleifeniterationen auf mehreren Prozessoren oder GPU processing. Auf der letzten Stufe der Parallelisierung haben wir <strong>Task parallelism</strong> (Aufgaben). Hierbei erhält jeder Prozessor/Knoten eine andere Aufgabe.</p>
 </section>
 <section id="varianten-der-anfrage-parallelisierung">
-<h3><span class="section-number">6.2.4. </span>Varianten der Anfrage-Parallelisierung<a class="headerlink" href="#varianten-der-anfrage-parallelisierung" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.4. </span>Varianten der Anfrage-Parallelisierung<a class="headerlink" href="#varianten-der-anfrage-parallelisierung" title="Permalink to this heading">#</a></h3>
 <p>Es existieren unterschiedliche Varianten der Anfrage-Parallelisierung. Die erste Variante ist <strong>Inter-Query Parallelism</strong> (mehrere nebenläufige Anfragen). Dies ist wichtig für eine effiziente Ressourcennutzung. Wartet eine Anfrage z.B. auf I/O, kann in der Zeit eine andere Anfrage ausgeführt werden. Dies erfordert <strong>Concurrency Control</strong>, also das Sperren, um Transaktionseigenschaften zu garantieren. Das ist auch wichtig für OLTP. Die zweite Variante ist <strong>Intra-Query Parallelism</strong> (parallele Verarbeitung einer einzelnen Anfrage). Dieser unterteilt sich nochmal in <strong>I/O Parallelism</strong>, <strong>Intra-Operator Parallelism</strong> und <strong>Inter-Operator Parallelism</strong>. Beim <strong>I/O parallelism</strong> werden nebenläufig mehrere Platten gelesen. Dabei wird mit ‘Spanned Tablespaces’, Partitionierung und eventuell auch mit Hardware RAIDs (versteckt) gearbeitet. Beim <strong>Intra-Operator Parallelism</strong> arbeiten mehrere Threads für den selben Operator, wie beispielsweise beim Parallel Sort, während beim <strong>Inter-Operator Parallelism</strong> mehrere Teile eines Anfrageplans parallel laufen (Pipeline). Letzteres ist wichtig für komplexe analytische Aufgaben (OLAP).</p>
 </section>
 <section id="pipeline-parallelism">
-<h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.5. </span>Pipeline Parallelism<a class="headerlink" href="#pipeline-parallelism" title="Permalink to this heading">#</a></h3>
 <p>Pipeline Parallelism besteht aus drei verschiedenen Schritten und erlaubt, dass mehrere Teile eines Anfrageplans gleichzeitig laufen können.</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/Pipeline-Parallelism.png" src="../_images/Pipeline-Parallelism.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Pipeline Parallelism</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Im <strong>ersten Schritt</strong> können zwei Threads (T2 und T3) je einen Base Table scannen und für die Joins einen Hash Table bauen. </br>
@@ -564,7 +542,7 @@ Häufig kann auch nur wenig parallelisiert werden, sodass der <strong>Parallelis
 Das Verfahren ist eher nur für Shared-Memory-Architekturen geeignet. Dabei spielen die I/O-Kosten eine untergeordnete Rolle.</p>
 </section>
 <section id="data-parallelism">
-<h3><span class="section-number">6.2.6. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.6. </span>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Permalink to this heading">#</a></h3>
 <p>Pipeline Parallelism ist nicht immer anwendbar. Die Alternative bietet <strong>Data Parallelism</strong>. Die Daten werden in Teilmengen partitioniert. Sie werden also auf verschiedenen Rechnern oder Disks gespeichert. Die Idee hierbei ist, dass es Operationen gibt, die im selben Kontext nicht alles sehen müssen. Mit anderen Worten: Die Operationen werden geteilt auf Rechnern oder auch auf Prozessoren ausgeführt. Die entstehenden Ergebnisse auf den verschiedenen Rechnern/Prozessoren müssen dann nur noch zusammengefügt werden. Dadurch können Teilmengen unanhängig und parallel verarbeitet werden.</p>
 <p>Ein kleines <strong>Beispiel bei einer Selektion</strong>: </br>
 Man teilt einen Stapel Klausuren auf 5 Stapel auf. Gesucht werden alle 1er Kandidaten. Nun stellt man an jeden Stapel eine Person, die diesen Stapel Klausur für Klausur durchsucht und die Klausuren mit einer 1 herausnimmt. Das Ergebnis ist trotz mehrerer Teilstapel am Ende korrekt. Die Klausuren müssen nur noch zusammengelegt werden.
@@ -573,7 +551,7 @@ An diesem Beispiel kann man nun sehen, dass die Selektion jedes Tupels unabhäng
 <p>Andere Operationen brauchen eine umfassendere Sicht auf die Daten. Dazu zählen z.B. die Gruppierung oder die Aggregation. In dem Beispiel bräuchten die Personen einen Blick in die anderen Stapel, um die jeweilige Operation auszuführen. Es reicht nicht mehr nur seinen eigenen Stapel zu betrachten. Sie benötigen also unterschiedliche Mengen, um korrekt zu funktionieren.</p>
 </section>
 <section id="grundlagen-der-parallelen-anfragebearbeitung-parallel-query-processing">
-<h3><span class="section-number">6.2.7. </span>Grundlagen der Parallelen Anfragebearbeitung (Parallel Query Processing)<a class="headerlink" href="#grundlagen-der-parallelen-anfragebearbeitung-parallel-query-processing" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.7. </span>Grundlagen der Parallelen Anfragebearbeitung (Parallel Query Processing)<a class="headerlink" href="#grundlagen-der-parallelen-anfragebearbeitung-parallel-query-processing" title="Permalink to this heading">#</a></h3>
 <p>Nun werden die Grundlagen der Parallelen Anfragebearbeitung genauer thematisiert. Hier sei zunächst ein kleiner Überblick über die Parallelen Architekturen, die Datenpartitionierungsstrategien und über die Kosten gegeben.</p>
 <p>Bei der parallelen Anfragebearbeitung kommt es darauf an, welche gemeinsamen Ressourcen man zur Verfügung hat. Es gibt drei Stufen von gemeinsam genutzten Ressourcen (<strong>Ressource Sharing</strong>). Diese werden auch <strong>Parallele Architekturen</strong> genannt.</p>
 <ol class="arabic simple">
@@ -587,55 +565,55 @@ An diesem Beispiel kann man nun sehen, dass die Selektion jedes Tupels unabhäng
 Eine Selektion verarbeitet beispielsweise nur ein Tupel auf einmal. Andere Operatoren benötigen zusätzlich eine Sortierung, Projektion, Gruppierung, Aggregation oder auch einen Join. </br></p>
 </section>
 <section id="parallele-architekturen-shared-memory">
-<h3><span class="section-number">6.2.8. </span>Parallele Architekturen – Shared Memory<a class="headerlink" href="#parallele-architekturen-shared-memory" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.8. </span>Parallele Architekturen – Shared Memory<a class="headerlink" href="#parallele-architekturen-shared-memory" title="Permalink to this heading">#</a></h3>
 <p>Unter den Parallelen Architekturen ist <strong>Shared Memory</strong> die einfachste Architektur. Mehrere CPUs teilen sich einen einzigen Speicher und eigene Disks (Array). Die Kommunikation wird über einen einzigen gemeinsamen Bus betrieben. In der Realität hat jeder Prozessor nocht zusätzlich einen eigenen privaten Speicher (NUMA: non-uniform memory access).</p>
-<p>Man hat ein Interface auf den Speicher (M = Memory). Alle Prozessoren (P) können darüber auf den ganzen Speicher zugreifen. Entweder greifen sie auf diesselbe oder eben auch auf unterschiedliche Disks zu.</p>
+<p>Man hat ein Interface auf den Speicher (M = Memory). Alle Prozessoren § können darüber auf den ganzen Speicher zugreifen. Entweder greifen sie auf diesselbe oder eben auch auf unterschiedliche Disks zu.</p>
 <a class="reference internal image-reference" href="../_images/shared-memory.png"><img alt="shared-memory" src="../_images/shared-memory.png" style="width: 350px;" /></a>
 </section>
 <section id="parallel-architectures-shared-disk">
-<h3><span class="section-number">6.2.9. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.9. </span>Parallel Architectures – Shared Disk<a class="headerlink" href="#parallel-architectures-shared-disk" title="Permalink to this heading">#</a></h3>
 <p>Bei der parallelen Architektur <strong>Shared Disks</strong> existieren mehrere Knoten mit mehreren CPUs. Jeder Knoten besitzt eigene private Hauptspeicheradressen oder Hauptspeicheradressbereiche. Die Knoten greifen alle auf die gleichen Disks zu und nutzen die gleiche Datenbank. Diese Architektur wird oft bei NAS, SAN oder anderen Systemen verwendet.</p>
 <a class="reference internal image-reference" href="../_images/shared-disk.png"><img alt="shared-disk" src="../_images/shared-disk.png" style="width: 350px;" /></a>
 </section>
 <section id="parallel-architectures-shared-nothing">
-<h3><span class="section-number">6.2.10. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.10. </span>Parallel Architectures – Shared Nothing<a class="headerlink" href="#parallel-architectures-shared-nothing" title="Permalink to this heading">#</a></h3>
 <p>Shared Nothing ist die meist genutzte Architektur für skalierbare Datenverarbeitung (<strong>Large-Scale Data Management</strong>). Bei der <strong>Shared Nothing</strong> Architektur hat jeder Knoten seinen eigenen Satz an CPUs, Speicher und Disks. Im Prinzip ist jeder Knoten somit ein eigener Server.
 Um die Vorteile der Architektur im vollem Umfang nutzen zu können, müssen die Daten über die Knoten partitioniert werden. Hierbei gibt es unterschiedliche Partitionierungsvarianten, die im Anschluss noch weiter thematisiert werden. Für die Partitionierung werden die Daten direkt über eine Knoten-zu-Knoten Kommunikation ausgetauscht. Die Nachrichten haben dabei einen signifikanten Overhead.
 Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen sich nämlich immernoch das Netzwerk. Der Name Shared Nothing ist also etwas irreführend.</p>
 <a class="reference internal image-reference" href="../_images/shared-nothing.png"><img alt="shared-nothing" src="../_images/shared-nothing.png" style="width: 500px;" /></a>
 </section>
 <section id="partitionierung">
-<h3><span class="section-number">6.2.11. </span>Partitionierung<a class="headerlink" href="#partitionierung" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.11. </span>Partitionierung<a class="headerlink" href="#partitionierung" title="Permalink to this heading">#</a></h3>
 <p><strong>Partitionierung</strong> bedeutet möglichst disjunkte Teilmenge zu generieren. Je nach Fall können die Daten unterschiedlich partitioniert werden. Bei Verkaufsdaten kann zum Beispiel jedes Jahr seine eigene Partition erhalten.</p>
 <p>Für eine Shared Nothing Architektur müssen die Daten auf mehreren Knoten verteilt werden. Würde man die Daten einfach replizieren, kann man aus der Sicht der Anfragebearbeitung auch von einer <strong>Shared-Disk</strong> sprechen. Es ist so als würde man alle Daten auf einer Disk speichern. Die lokalen Disks verhalten sich dann wie Caches. Außerdem muss bei der Replikation die Konsistenz sichergestellt werden.</p>
 <p>Manche Datenbankanfragen können auf bestimmte Bereiche eingegrenzt werden, sofern man sicherstellen kann, dass alle relevanten Daten in der entsprechenden Partition zu finden sind. Die Partitionierung gewinnt durch solche Eigenschaften an Vorteil.</p>
 <p>In der Datenbankadministration entsteht durch Partitionierung ein weiterer Vorteil. Nicht mehr benötigte Partitionen wie alte Verkäufe usw. können einfach verworfen werden.</p>
 </section>
 <section id="partitionierungsstrategien">
-<h3><span class="section-number">6.2.12. </span>Partitionierungsstrategien<a class="headerlink" href="#partitionierungsstrategien" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.12. </span>Partitionierungsstrategien<a class="headerlink" href="#partitionierungsstrategien" title="Permalink to this heading">#</a></h3>
 <p>Bei der Durchführung der Partitionierung können verschiedene Strategien gewählt werden. Jede bietet andere Vorteile.</p>
 <p>Bei <strong>Round Robin</strong> erhält jede Partition ein Tupel pro Runde. Dadurch haben alle Teilmengen garantiert eine möglichst gleiche Anzahl von Tupeln. Zwischen den einzelnen Tupeln in einer Partition herrscht widerrum keine explizite Beziehung.</p>
 <p>Bei <strong>Hash Partitioning</strong> wird eine Menge von Partitionsspalten definiert. Für jede Spalte wird ein Hashwert generiert. Dieser Hashwert wird verwendet, um zu entscheiden, welche Partition als Ziel für die Tupel gewählt wird. Der Hashwert wird für jede Zeile berechnet, basierend auf den Werten der Partitionsspalten. Das Tupel wird dann der Partition zugeordnet, die dem berechneten Hashwert entspricht.</p>
 <p><strong>Range Partitioned</strong> bedeutet, dass eine Menge von Partitionsspalten definiert wird. Die Domäne der Spalten wird in Bereiche aufgeteilt. Die Tupel werden den Partitionen basierend auf den Bereichswerten zugeordnet. Alle Tupel aus einer Partition stammen somit aus dem gleichen Bereich.</p>
 </section>
 <section id="data-parallelism-beispiel">
-<h3><span class="section-number">6.2.13. </span>Data Parallelism: Beispiel<a class="headerlink" href="#data-parallelism-beispiel" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.13. </span>Data Parallelism: Beispiel<a class="headerlink" href="#data-parallelism-beispiel" title="Permalink to this heading">#</a></h3>
 <p>Ein Client schickt eine SQL-Anfrage an einen Cluster-Knoten. Dieser Cluster-Knoten wird dann der Coordinator. Der Coordinater kompiliert die Anfrage. Er parst, überprüft und optimiert also die Anfrage. Zudem überlegt er sich wie die Anfrage parallelisiert werden kann. Die Teilpläne werden an andere Knoten geschickt und der Coordinator führt den eignen Teilplan auch aus. Am Ende sammelt der Coordinator alle Teilergebnisse und finalisiert diese für die Ausgabe.</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example.png"><img alt="Data-Parallelism-example" src="../_images/Data-Parallelism-example.png" style="width: 400px;" /></a>
 </section>
 <section id="id3">
-<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p><strong>Data Parallelism</strong> ist eine Strategie, die in Shared-Nothing und Shared-Disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
 <a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
 </section>
 <section id="parallel-operators">
-<h3><span class="section-number">6.2.15. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.15. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this heading">#</a></h3>
 <p>Bei der Verarbeitung von Daten in parallelen Systemen strebt man idealerweise an, dass parallele Operatoren auf unterschiedlichen Partitionen der Daten laufen. Dies bedeutet, dass Operationen direkt zu den Daten geschickt werden können. Dies ist besonders einfach für grundlegende “tuple-at-a-time” Operatoren wie Scans, Index-Scans und Selektionen.</p>
 <p>Allerdings gibt es Herausforderungen bei sogenannten <strong>“Blocking Operatoren”</strong>, die alle Daten sehen müssen. Beispielsweise können Sortier- und Aggregationsoperatoren nur parallel vorverarbeitet werden. Der finale Schritt einer Sortierung und Aggregation wird auf einem einzelnen Knoten durchgeführt, es sei denn, es handelt sich um Teilpläne, die dies nicht erfordern.</p>
 <p>Ein Beispiel hierfür sind Joins, die passende Tupel benötigen. Dies kann durch die Organisation der Eingabedaten oder durch die Ausführung des Joins am Koordinator nach Zusammenführung der Teilergebnisse erreicht werden. Letzteres führt jedoch zu einer nicht mehr parallelen Verarbeitung.</p>
 </section>
 <section id="notationen-und-annahmen">
-<h3><span class="section-number">6.2.16. </span>Notationen und Annahmen<a class="headerlink" href="#notationen-und-annahmen" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.16. </span>Notationen und Annahmen<a class="headerlink" href="#notationen-und-annahmen" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>S	Relation S</p></li>
 <li><p>S[i,h] Partition i der Relation S basierend auf Partitionierungsschema h</p></li>
@@ -648,26 +626,26 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 <p>Die letzte Annahme, dass S[i,h] &gt; M, bedeutet, dass die Größe der Daten auf einem bestimmten Knoten i größer ist als der verfügbare Hauptspeicher (M).</p>
 </section>
 <section id="parallel-selection-projection">
-<h3><span class="section-number">6.2.17. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.17. </span>Parallel Selection / Projection<a class="headerlink" href="#parallel-selection-projection" title="Permalink to this heading">#</a></h3>
 <p>Die parallele Durchführung von Selektion und Projektion erweist sich als äußerst effizient und einfach. Daher werden diese Operationen auch als <strong>“Embarrassingly Parallel”</strong> bezeichnet. Jeder Knoten kann die Operation unabhängig auf seiner eigenen existierenden Datenpartition ausführen. Besonders vorteilhaft ist, dass die Selektion keinen Kontext benötigt, und die Daten willkürlich partitioniert vorliegen können.</p>
 <p>In diesem Szenario werden die Teilergebnisse am Ende einfach zusammengeführt. Die Kosten für diese Parallelität werden durch die Formel <span class="math notranslate nohighlight">\(B(S)/p + Transfer\)</span> bestimmt, wobei B(S) die Datenmenge für die Operation ist und p die Anzahl der beteiligten Knoten darstellt. Die Daten liegen verteilt auf den Blöcken vor. Diese müssen nur parallel gelesen werden, also durch <span class="math notranslate nohighlight">\(p\)</span> geteilt werden. Hinzu kommen die Transferkosten. Diese basieren auf der Selektivität, also wie viele Tupel weitergegeben werden müssen.
 Insgesamt ermöglicht die parallele Ausführung von Selektion und Projektion eine effiziente Verarbeitung großer Datenmengen in verteilten Umgebungen.</p>
 </section>
 <section id="parallele-gruppierung-aggregation">
-<h3><span class="section-number">6.2.18. </span>Parallele Gruppierung &amp; Aggregation<a class="headerlink" href="#parallele-gruppierung-aggregation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.18. </span>Parallele Gruppierung &amp; Aggregation<a class="headerlink" href="#parallele-gruppierung-aggregation" title="Permalink to this heading">#</a></h3>
 <p>Die <strong>parallele Gruppierung und Aggregation</strong> in verteilten Systemen erfolgt in zwei Phasen, um eine effiziente Verarbeitung zu gewährleisten. In der ersten Phase wird eine lokale Gruppierung und Aggregation auf jeder Partition durchgeführt. Anschließend erfolgt in der zweiten Phase ein Zusammenführen der Ergebnisse.</p>
 <p>Die <strong>Kosten</strong> dieses Prozesses setzen sich zusammen aus den lokalen Algorithmuskosten (3 B(S)/p), dem Transfer der (kleinen) Ergebnisse zwischen den Partitionen und der schnellen Zusammenführung, die schon fast vernachlässigbar ist. Also insgesamt ist die Formel: <span class="math notranslate nohighlight">\(3 B(S)/p lokaler Algorithmus + Transfer (kleiner) Ergebnisse + (schnelle) Zusammenfuehrung\)</span></p>
 <p>Dieser Ansatz funktioniert besonders gut für assoziative Aggregationsoperationen wie MIN, MAX, SUM und COUNT, sowie für AVG, das sich als SUM / COUNT berechnen lässt.</p>
 <p>Um eine kostspielige zweite Phase zu vermeiden, kann Hashing verwendet werden, um die Gruppierungsspalten zu partitionieren. Alternativ ist auch eine Parallelisierung der Merge-Phase möglich. Beide Ansätze tragen dazu bei, die Gesamtkosten der parallelen Gruppierung und Aggregation zu minimieren und eine effiziente Verarbeitung großer Datenmengen in verteilten Umgebungen zu ermöglichen.</p>
 </section>
 <section id="parallele-sortierung">
-<h3><span class="section-number">6.2.19. </span>Parallele Sortierung<a class="headerlink" href="#parallele-sortierung" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.19. </span>Parallele Sortierung<a class="headerlink" href="#parallele-sortierung" title="Permalink to this heading">#</a></h3>
 <p>Die parallele Sortierung in verteilten Systemen kann durch verschiedene Ansätze realisiert werden. Beispielsweise wird bei der “<strong>Range partitioned sort</strong>” Methode die Relation anhand der Sortierattribute in unterschiedliche Bereiche partitioniert. Diese Partitionen werden dann lokal sortiert, beispielsweise mit dem Two-Phase Multiway Merge Sort (TPMMS). Die Gesamtkosten dieses Ansatzes setzen sich aus den Kosten für die Partitionierung, den Transfer der Partitionen und der lokalen Sortierung (3 B(S)/p) zusammen. Eine Herausforderung besteht jedoch darin, eine Partitionierung mit gleichgroßen Bereichen zu finden. Die komplette Formel sieht dann wie folgt aus: <span class="math notranslate nohighlight">\(B(S) Partitionierung + B(S) Transfer + 3 B(S)/p lokale Sortierung\)</span></p>
 <p>Eine alternative Methode ist der “<strong>Parallel external sort-merge</strong>”. Hier wird die existierende Partitionierung genutzt, und jede Partition wird lokal sortiert. Für die Sortierung kann auch wieder der Two-Phase Multiway Merge Sort (TPMMS) genutzt werden. Die sortierten Partitionen müssen dann gemergt werden, wobei die Kosten für den Pair-wise Merge aus den lokalen Sortierungen, dem Transfer der Daten und dem lokalen Merge resultieren.
-Dies kann durch einen log2(p)-stufigen Merge-Prozess erfolgen, wobei p die Anzahl der beteiligten Knoten ist. Die Gesamtkosten für den Merge können durch Multi-way Merge-Verfahren weiter optimiert werden. Zusammen ergibt sich für die Kosten des Pair-wise Merge die folgende Formel: <span class="math notranslate nohighlight">\(3 B(S)/p lokale Sortierung + log2(p)*B(S)/2 Transfer + log2(p)*B(S) lokaler Merge\)</span></p>
+Dies kann durch einen log2§-stufigen Merge-Prozess erfolgen, wobei p die Anzahl der beteiligten Knoten ist. Die Gesamtkosten für den Merge können durch Multi-way Merge-Verfahren weiter optimiert werden. Zusammen ergibt sich für die Kosten des Pair-wise Merge die folgende Formel: <span class="math notranslate nohighlight">\(3 B(S)/p lokale Sortierung + log2(p)*B(S)/2 Transfer + log2(p)*B(S) lokaler Merge\)</span></p>
 </section>
 <section id="symmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.20. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.20. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
 <p>Der <strong>Symmetric Fragment-and-Replicate Join</strong> ist eine spezielle Methode, um das Joinen von Relationen R und S effizienter zu gestalten. Im herkömmlichen Fall müsste jedes Tupel des kartesischen Produkts betrachtet werden, was in parallelen DBMS dazu führen würde, dass jede Partition von R mit jeder Partition von S kombiniert werden müsste.</p>
 <p>Bei der Symmetric Fragment-and-Replicate Methode wird R in m Partitionen und S in n Partitionen fragmentiert. Diese Partitionen werden dann repliziert, wobei jede Partition von R n-mal und jede Partition von S m-mal repliziert wird. Auf einem System mit m * n = p Knoten kann dann jeder Knoten lokal genau ein Partitionspaar von R und S verbinden.</p>
 <a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 400px;" /></a>
@@ -681,7 +659,7 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 <p>Der Parallel-Join-Algorithmus bietet den Vorteil, dass er für alle Join-Varianten, einschließlich Theta-Joins, funktioniert.</p>
 </section>
 <section id="asymmetric-fragment-and-replicate-join">
-<h3><span class="section-number">6.2.21. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.21. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this heading">#</a></h3>
 <p>Der <strong>Asymmetric Fragment-and-Replicate Join</strong> ist eine Optimierungsmöglichkeit, insbesondere wenn die Relation S deutlich kleiner als die Relation R ist. Die grundlegende Idee besteht darin, die existierende Partitionierung von R zu nutzen und die Relation S auf jedem Knoten zu replizieren.</p>
 <a class="reference internal image-reference" href="../_images/Asymmetric-Fragment-and-Replicate-Join.png"><img alt="Asymmetric-Fragment-and-Replicate-Join" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" style="width: 200px;" /></a>
 <p>Die Kosten dieses Ansatzes setzen sich hauptsächlich aus den Transferkosten zusammen, da S auf jedem Knoten repliziert wird. Die Formel <span class="math notranslate nohighlight">\(p * B(S)\)</span> beschreibt die Transferkosten, wobei p die Anzahl der beteiligten Knoten und <span class="math notranslate nohighlight">\(B(S)\)</span> die Größe von S ist. Die Kosten sind somit insgesamt:</p>
@@ -692,7 +670,7 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 <p>Es ist wichtig zu beachten, dass der Asymmetric Fragment-and-Replicate Join als ein <strong>Spezialfall</strong> des Symmetric Fragment-and-Replicate Algorithmus betrachtet werden kann, bei dem m (Anzahl der Partitionen von R) gleich p ist und n (Anzahl der Partitionen von S) gleich 1 ist. Dieser Ansatz ist besonders effizient, wenn die Größe von S im Vergleich zu R vernachlässigbar ist und ermöglicht eine optimierte Verarbeitung von Join-Operationen.</p>
 </section>
 <section id="parallele-equi-joins">
-<h3><span class="section-number">6.2.22. </span>Parallele Equi-Joins<a class="headerlink" href="#parallele-equi-joins" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.22. </span>Parallele Equi-Joins<a class="headerlink" href="#parallele-equi-joins" title="Permalink to this heading">#</a></h3>
 <p><strong>Parallele Equi-Joins</strong>, insbesondere Natural Joins und Equi-Joins, lassen sich effizient parallelisieren. Die grundlegende Idee besteht darin, die Relationen R und S mit derselben Partitionierungsstrategie, anhand des Join-Schlüssels, zu partitionieren.</p>
 <p>Durch diese Vorgehensweise landen alle Tupel aus R und S mit dem gleichen Joinattribut auf den gleichen Knoten. Dadurch sind keine weiteren Broadcasts oder Replikationen notwendig sind. Die Joins können somit lokal auf den jeweiligen Knoten ausgeführt werden.</p>
 <p>Es gibt drei Varianten von parallelen Equi-Joins, die auf der existierenden Partitionierung aufbauen. Die Strategien bieten verschiedene Möglichkeiten, um Join-Operationen effizient in verteilten Systemen durchzuführen, wobei die Auswahl zwischen den Varianten von der vorhandenen Partitionierung und den spezifischen Anforderungen abhängt.</p>
@@ -720,7 +698,7 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 </ul>
 </section>
 <section id="grenzen-der-parallelen-datenbanken">
-<h3><span class="section-number">6.2.23. </span>Grenzen der Parallelen Datenbanken<a class="headerlink" href="#grenzen-der-parallelen-datenbanken" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.23. </span>Grenzen der Parallelen Datenbanken<a class="headerlink" href="#grenzen-der-parallelen-datenbanken" title="Permalink to this heading">#</a></h3>
 <p>Parallele Datenbanken weisen gewisse Grenzen auf, die ihre Skalierbarkeit beeinträchtigen:</p>
 <ol class="arabic simple">
 <li><p><strong>Begrenzte Skalierung von Datenbank-Clustern:</strong> Die Skalierbarkeit von Datenbank-Clustern zeigt oft eine abflachende Beschleunigungskurve jenseits von etwa 128 Knoten. Dies liegt daran, dass der Kommunikationsmehraufwand mit zunehmender Knotenzahl die Beschleunigung reduziert. Ein Beispiel hierfür ist das harte Limit von 1000 Knoten für DB2 im Jahr 2010.</p></li>
@@ -729,12 +707,12 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 </ol>
 </section>
 <section id="wann-passen-traditionelle-datenbanken-nicht-gut">
-<h3><span class="section-number">6.2.24. </span>Wann passen traditionelle Datenbanken nicht gut?<a class="headerlink" href="#wann-passen-traditionelle-datenbanken-nicht-gut" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.24. </span>Wann passen traditionelle Datenbanken nicht gut?<a class="headerlink" href="#wann-passen-traditionelle-datenbanken-nicht-gut" title="Permalink to this heading">#</a></h3>
 <p>Traditionelle Datenbanken stoßen an ihre Grenzen in verschiedenen Szenarien. Zum Einen sind sie weniger geeignet für die <strong>Analyse unstrukturierter Daten</strong>, insbesondere im Fall von Textdaten oder bei Dokumenten. Wenn kein relationales Schema vorhanden ist, erweisen sich traditionelle Datenbanken ebenfalls als ungeeignet.</p>
 <p>Ein weiterer Aspekt ist die <strong>Kosteneffektivität</strong>. Wenn lediglich einfache Hardware vorhanden ist oder veränderbare Cluster mit horizontaler Skalierung (horizontal scaling) benötigt werden, können traditionelle Datenbanken an Effizienz verlieren. Wenn beispielsweise ab und zu ein Server hinzugefügt oder entfernt wird, bedeutet das jedes Mal für die Datenbank eine Umorganisation. Das inkrementelle Wachstum, also das Hinzufügen von Knoten ohne zusätzlichen Aufwand, ist oft eine Herausforderung für herkömmliche Datenbankmodelle.</p>
 </section>
 <section id="webindex-fur-eine-suchmaschine-beispiel">
-<h3><span class="section-number">6.2.25. </span>Webindex für eine Suchmaschine - Beispiel<a class="headerlink" href="#webindex-fur-eine-suchmaschine-beispiel" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.25. </span>Webindex für eine Suchmaschine - Beispiel<a class="headerlink" href="#webindex-fur-eine-suchmaschine-beispiel" title="Permalink to this heading">#</a></h3>
 <p>Bei der Entwicklung eines Webindex für eine Suchmaschine treten spezifische Anforderungen auf. Die Suchmaschine durchsucht das Internet, speichert Dokumente mit Worten und Links ab. Das Speichern der Daten kann man sich wie folgt vorstellen:</p>
 <ul class="simple">
 <li><p>Dokumente beinhalten Wörter: <code class="docutils literal notranslate"><span class="pre">(Doc-URL,</span> <span class="pre">[list</span> <span class="pre">of</span> <span class="pre">words])</span></code></p></li>
@@ -753,19 +731,19 @@ Ein bekanntes Beispiel ist das Page Rank von Google, das nach Larry Page, dem Co
 <p>RDBMS sind primär für Transaktionsverarbeitung konzipiert und bieten Garantien hinsichtlich absoluter Konsistenz, was für die Analyse von Webdokumenten, die eher read-only sind, nicht unbedingt erforderlich ist. Daher sind alternative Ansätze besser geeignet, um den spezifischen Anforderungen eines Webindex gerecht zu werden.</p>
 </section>
 <section id="fortlaufende-neuentwicklung">
-<h3><span class="section-number">6.2.26. </span>Fortlaufende Neuentwicklung<a class="headerlink" href="#fortlaufende-neuentwicklung" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.26. </span>Fortlaufende Neuentwicklung<a class="headerlink" href="#fortlaufende-neuentwicklung" title="Permalink to this heading">#</a></h3>
 <p>Die kontinuierliche Weiterentwicklung von Technologien hat dazu geführt, dass führende FAANG-Unternehmen zunehmend auf stark <strong>verteilte Systeme</strong> setzen. Ein bemerkenswertes Beispiel ist Google, das bereits im Jahr 2006 auf 450.000 kostengünstige Commodity-Server setzte, die in Clustern mit 1000 bis 5000 Knoten organisiert waren. Der Fokus bei der Neugestaltung solcher Systeme liegt auf Hochskalierbarkeit und Ausfalltoleranz. Auch hier werden die Daten wieder häufig repliziert und vielen verschiedenen Servern gespeichert, um die <strong>Ausfalltoleranz</strong> zu gewährleisten.</p>
 <p>Ein entscheidendes Merkmal ist ein generisches und schemafreies Datenmodell, das die Flexibilität erhöht. Der Einstieg erfolgt oft mit einem Datenablagesystem als Ausgangspunkt. Der nächste Schritt in dieser Entwicklung ist eine verteilte Analyse.
 Dieser Ansatz ermöglicht es den Unternehmen, sich an die sich ständig verändernden Anforderungen anzupassen.</p>
 </section>
 <section id="anforderungen-an-die-speicherung">
-<h3><span class="section-number">6.2.27. </span>Anforderungen an die Speicherung<a class="headerlink" href="#anforderungen-an-die-speicherung" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.27. </span>Anforderungen an die Speicherung<a class="headerlink" href="#anforderungen-an-die-speicherung" title="Permalink to this heading">#</a></h3>
 <p>Die Anforderungen an die Speicherung von Daten in modernen Umgebungen sind vielfältig und anspruchsvoll. Insbesondere bei sehr großen Dateien im Bereich von Terabytes bis Petabytes ist eine robuste Speicherlösung entscheidend. Neben der <strong>Skalierbarkeit</strong> sind hohe <strong>Verfügbarkeit</strong> und <strong>Replikation</strong> entscheidend, um Ausfälle zu vermeiden.</p>
 <p>Ein weiterer kritischer Punkt ist der hohe <strong>Durchsatz</strong>, wobei Lese- und Schreiboperationen nicht durch andere Server gehen sollen. Idealerweise wird versucht alles lokal zu berechnen.
 Um einzelne Ausfallpunkte (<strong>Single Point of Failure</strong>) zu vermeiden, müssen Koordinatoren redundant sein. In diesem Kontext hat das Google Filesystem (GFS) als Referenzpunkt gedient, indem es eine Architektur mit hohem Durchsatz und hoher Verfügbarkeit bereitstellt.</p>
 </section>
 <section id="the-storage-model-distributed-file-system">
-<h3><span class="section-number">6.2.28. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.28. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this heading">#</a></h3>
 <p>Das <strong>Storage-Modell</strong> eines verteilten Dateisystems basiert auf mehreren Schlüsselkomponenten. Das Dateisystem selbst ist auf mehrere Knoten, auch DataNodes genannt, verteilt und verfügt über einen gemeinsamen Namensraum für den gesamten Cluster. Die Verwaltung der Metadaten erfolgt auf einem speziellen Knoten, dem NameNode. Das Zugriffsmodell ist als <strong>“write-once-read-many”</strong> konzipiert.</p>
 <a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
 <p>Die Dateien werden in Blöcke von 128 MB aufgeteilt, wobei jeder Block auf mehreren DataNodes repliziert wird. Der Client kann den Standort eines Blocks identifizieren und direkt über das Netzwerk die Daten von einem DataNode anfordern.</p>
@@ -773,12 +751,12 @@ Um einzelne Ausfallpunkte (<strong>Single Point of Failure</strong>) zu vermeide
 Um dieses Problem zu umgehen, versucht das Map/Reduce-Framework, Berechnungen möglichst nah an den Daten auszuführen. Die Berechnung zu bewegen ist billiger als die Daten zu bewegen. In diesem Konzept sind die Knoten sowohl für die Speicherung als auch für die Berechnungen verantwortlich.</p>
 </section>
 <section id="retrieving-and-analyzing-data">
-<h3><span class="section-number">6.2.29. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.29. </span>Retrieving and Analyzing Data<a class="headerlink" href="#retrieving-and-analyzing-data" title="Permalink to this heading">#</a></h3>
 <p>Die Suche und Analyse von Daten in modernen Systemen erfordert eine spezielle Herangehensweise. Die Daten liegen oft in maßgeschneiderten Einheiten (Records) innerhalb von Dateien vor, was ein sehr generisches Datenmodell darstellt. Ein häufig verwendetes Modell ist das <strong>“Key/Value-Modell”</strong>.</p>
 <p>Um Analyse- und Transformationsaufgaben durchzuführen, wurden zuvor einfache SQL-Anfragen genutzt. Nun werden direkt ganze Programme geschrieben. Diese Programme müssen jedoch parallel, fehlertolerant und hochskalierbar sein, was die Programmierung erschwert. Hier kommt das <strong>Map/Reduce-Programmiermodell</strong> ins Spiel, das speziell für diese Anforderungen entwickelt wurde. Es ermöglicht die effiziente Verarbeitung von großen Datenmengen, indem es Programme in kleine, parallel ausführbare Aufgaben aufteilt.</p>
 </section>
 <section id="skalierungsmuster">
-<h3><span class="section-number">6.2.30. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.30. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this heading">#</a></h3>
 <p><strong>Skalierungsmuster</strong> spielen eine entscheidende Rolle bei der Verarbeitung großer Datenmengen. Dieser Prozess kann in verschiedene Phasen unterteilt werden.</p>
 <a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 300px;" /></a>
 <p>In der <strong>Phase 0</strong> erfolgt die Verteilung der Daten, auch als <strong>Split</strong> bezeichnet. Hier werden die Daten in Teilmengen aufgeteilt, um die Verarbeitung zu erleichtern.
@@ -789,20 +767,20 @@ In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bek
 </section>
 </section>
 <section id="map-reduce-hadoop">
-<h2><span class="section-number">6.3. </span>Map Reduce &amp; Hadoop<a class="headerlink" href="#map-reduce-hadoop" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Map Reduce &amp; Hadoop<a class="headerlink" href="#map-reduce-hadoop" title="Permalink to this heading">#</a></h2>
 <blockquote>
 <div><p>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</p>
 </div></blockquote>
 <p>Das zugrunde liegende <a class="reference external" href="https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf">Paper</a> zu Map Reduce ist von Jeffrey Dean und Sanjay Ghemawat im Jahr 2006 verfasst worden.</p>
 <a class="reference internal image-reference" href="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png"><img alt="MapReduce-Simplified-data-processing-on-large-clusters" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" style="width: 500px;" /></a>
 <section id="was-ist-map-reduce">
-<h3><span class="section-number">6.3.1. </span>Was ist Map/Reduce?<a class="headerlink" href="#was-ist-map-reduce" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>Was ist Map/Reduce?<a class="headerlink" href="#was-ist-map-reduce" title="Permalink to this heading">#</a></h3>
 <p><strong>Map/Reduce</strong> ist ein Programmiermodell, das auf Konzepten der funktionalen Programmierung basiert und sich besonders gut für parallele Verarbeitung eignet. Es ermöglicht automatische Parallelisierung und Verteilung von Daten und Berechnungslogik. Diese saubere Abstraktion erleichtert die Programmierung für Entwickler und Entwicklerinnen.</p>
 <p>In der <strong>funktionalen Programmierung</strong> erfolgt die Berechnung durch die Evaluierung mathematischer Funktionen. Ein zentrales Prinzip dabei ist die Vermeidung von Zustandsänderungen, also keine Seiteneffekte. Das Ergebnis einer Funktion hängt ausschließlich von den Eingangsparametern ab.</p>
 <p><strong>Map</strong> und <strong>Reduce</strong> sind sogenannte <strong>Higher-Order-Funktionen</strong> zweiter Ordnung, die benutzerdefinierte Funktionen als Parameter nutzen und selbst eine Funktion als Ergebnis liefern. Programmierende müssen lediglich zwei Funktionen implementieren: die Map-Funktion, die auf jeden Datensatz angewendet wird, und die Reduce-Funktion, die die aggregierten Ergebnisse zusammenführt.</p>
 </section>
 <section id="grundbausteine">
-<h3><span class="section-number">6.3.2. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.2. </span>Grundbausteine<a class="headerlink" href="#grundbausteine" title="Permalink to this heading">#</a></h3>
 <p>Die Grundbausteine von Map/Reduce umfassen ein einfaches Datenmodell in Form von Schlüssel/Wert-Paaren <span class="math notranslate nohighlight">\((K \times V)\)</span>, auch als <strong>“key/value pairs”</strong> bekannt. Diese Paare können verschiedene Formen annehmen, wie zum Beispiel (int, string) oder (string, [string]).</p>
 <p>Nutzer definieren zwei wesentliche Funktionen im Map/Reduce-Programm. Die <strong>Map-Funktion</strong> <span class="math notranslate nohighlight">\((k', v') \rightarrow list(k_{1}, v_{1})\)</span> wird auf jedes Schlüssel/Wert-Paar angewendet und gibt oft nur ein neues Paar <span class="math notranslate nohighlight">\((k_{1}, v_{1})\)</span> aus.</p>
 <p>Die <strong>Reduce-Funktion</strong> <span class="math notranslate nohighlight">\((k_{1}, list(v1)) \rightarrow list(v_{2})\)</span> agiert meist auf ein einzelnes Wertpaar <span class="math notranslate nohighlight">\((v_{2}\)</span>, oft auch mit Rückgabe des ursprünglichen Schlüssels <span class="math notranslate nohighlight">\(k_{1}\)</span>. Dadurch ist eine Verkettung von Map/Reduce-Schritten möglich.</p>
@@ -810,13 +788,13 @@ In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bek
 Dabei stehen Nutzern und Nutzerinnen zwei Herausforderungen bevor: das Entwerfen geeigneter Map- und Reduce-Funktionen sowie die Gewährleistung einer verteilten, fehlertoleranten und effizienten Ausführung des Programms.</p>
 </section>
 <section id="mapreduce-workflow">
-<h3><span class="section-number">6.3.3. </span>MapReduce Workflow<a class="headerlink" href="#mapreduce-workflow" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.3. </span>MapReduce Workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this heading">#</a></h3>
 <p>Der <strong>MapReduce Workflow</strong> beinhaltet einige Schritte. Zunächst werden aus dem Input Datafile ein Key und Value gelesen und der Mapper-Funktion übergeben. Das Ergebnis daraus in Form von einem Key und Value wird an eine Key-Sorter-Funktion übergeben. Diese Funktion gibt einen Key mit einer Liste an Werten an eine Reducer-Funktion weiter. Das Resultat aus der Reducer-Funktion in Form von einem key und value wird in eine Output Datafile geschrieben. Den ganzen Workflow kann man mehrmals wiederholen und aneinander ketten, wenn dies je nach Situation verlangt wird.</p>
 <a class="reference internal image-reference" href="../_images/MapReduce-workflow.png"><img alt="MapReduce-workflow" src="../_images/MapReduce-workflow.png" style="width: 500px;" /></a>
 <section id="beispiel-1">
-<h4><span class="section-number">6.3.3.1. </span>Beispiel 1<a class="headerlink" href="#beispiel-1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.3.3.1. </span>Beispiel 1<a class="headerlink" href="#beispiel-1" title="Permalink to this heading">#</a></h4>
 <p><strong>Bestimme für jedes Wort dessen Häufigkeit im Korpus.</strong></p>
-<a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-H%C3%A4ufigkeit-bestimmen.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" style="width: 500px;" /></a>
 <p>Um die Aufgabe zu lösen und für jedes Wort die Häufigkeit im Korpus zu bestimmen, müssen zwei Funktionen geschrieben werden: Eine Map- und eine Reduce-Funktion.</p>
 <p>Zunächst wird eine <strong>Map-Funktion</strong> geschrieben, die jedes Wort zusammen mit einer 1 zurückgibt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="p">){</span>
@@ -838,11 +816,11 @@ Dabei stehen Nutzern und Nutzerinnen zwei Herausforderungen bevor: das Entwerfen
 </section>
 </section>
 <section id="beispiel-2">
-<h3><span class="section-number">6.3.4. </span>Beispiel 2<a class="headerlink" href="#beispiel-2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.4. </span>Beispiel 2<a class="headerlink" href="#beispiel-2" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/MapReduce-Illustrated-2.png"><img alt="MapReduce-Illustrated-2" src="../_images/MapReduce-Illustrated-2.png" style="width: 500px;" /></a>
 <p>Von den oberen zwei Sätzen sollen die Häufigkeiten der einzelnen Wörter gezählt werden. Die <strong>Mapper-Funktionen</strong> geben jedes Wort zusammen mit einer 1 zurück. Jede <strong>Reduce-Funktion</strong> bekommt nun die gleichen Wörter, sodass diese die Wörter zusammenzählen kann. Als Ergebnis wird das Wort und dessen Häufigkeit zurückgegeben.</p>
 <section id="beispiel-3">
-<h4><span class="section-number">6.3.4.1. </span>Beispiel 3<a class="headerlink" href="#beispiel-3" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">6.3.4.1. </span>Beispiel 3<a class="headerlink" href="#beispiel-3" title="Permalink to this heading">#</a></h4>
 <p><strong>Bestimme die Liste gemeinsamer Bekannte für jedes Personenpaar.</strong></p>
 <p>Im Jahr 2016 hatte Facebook insgesamt 1,4 Milliarden Nutzer und Nutzerinnen. Durchschnittlich hat jeder Nutzer bzw. jede Nutzerin 155 Freunde und Freundinnen. Daraus ergeben sich insgesamt 979.999.999.300.000.000 Paare. Um nun eine Liste gemeinsamer Bekannte für jedes Personenpaar zu erstellen, muss eine Map- und eine Reduce-Funktion geschrieben werden.</p>
 <p>Die <strong>Map-Funktion</strong> bekommt eine Person und deren Freundesliste übergeben. Für jeden Freund oder Freundin in der Freundesliste wird ein sortiertes Paar zurückgegeben. Dadurch ist die selbe Person mit dem gleichem Freund oder der gleichen Freundin immer in der selben Anordnung. Zudem wird mit dem Paar noch die Freundesliste mit zurückgegeben.</p>
@@ -913,19 +891,19 @@ E -&gt; B C D <br></p>
 </section>
 </section>
 <section id="parallel-dbms-vs-map-reduce">
-<h3><span class="section-number">6.3.5. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.5. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Permalink to this heading">#</a></h3>
 <p>Prinzipiell ist bei den aufgelisteten Punkten alles möglich zu programmieren. Zum Beispiel kann auch für Map/Reduce ein Schema Support programmiert werden. Es entstehen dann Mischformen zwischen Parallelen DBMS und Map/Reduce, die die Vor- und Nachteile gegenseitig aushebeln.</p>
 <a class="reference internal image-reference" href="../_images/Parallel_DBMS_vs_Map_Reduce.png"><img alt="Parallel_DBMS_vs_Map_Reduce" src="../_images/Parallel_DBMS_vs_Map_Reduce.png" style="width: 500px;" /></a>
 </section>
 <section id="relational-operators-as-map-reduce-jobs">
-<h3><span class="section-number">6.3.6. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.6. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Permalink to this heading">#</a></h3>
 <p><strong>Gruppierung</strong></p>
 <p>Das Beispiel zeigt wie man eine SQL-Anfrage auf Map/Reduce abbilden könnte.
 Die <strong>SQL-Anfrage</strong> möchte für jedes Jahr die Summe der Preise in den United States (US) erfahren.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">sales</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">area_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">“</span><span class="n">US</span><span class="err">”</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SELECT year, SUM(price)
+FROM sales
+WHERE area_code = “US”
+GROUP BY year
 </pre></div>
 </div>
 <p><strong>Map</strong> findet zunächst das Jahr des Tupels heraus. Dann fügt er jedes Mal bei einem ‘US’-Tupel das Jahr mit dem Preis aus dem Tupel zusammen.</p>
@@ -967,20 +945,20 @@ Die <strong>SQL-Anfrage</strong> möchte für jedes Jahr die Summe der Preise in
 </div>
 </section>
 <section id="hadoop-a-map-reduce-framework">
-<h3><span class="section-number">6.3.7. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.7. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/hadoop.png"><img alt="hadoop" src="../_images/hadoop.png" style="width: 500px;" /></a>
 <p><strong>Hadoop</strong> ist ein Map/Reduce-Framework und zählt zu den Apache Top-Level-Projekten. Die Open-Source-Lösung ist in Java geschrieben. Der Hadoop-Stack bietet verschiedene Komponenten, darunter ein verteiltes Dateisystem (HDFS). Vergleichbar ist es mit dem Google File System. Außerdem bietet es eine Map/Reduce-Engine, Datenverarbeitungssprachen wie Pig Latin und Hive SQL sowie weitere Pakete.</p>
 <p>Hadoop kann auf Betriebssystemen wie Linux, Mac OS/X, Windows und Solaris ausgeführt werden. Es ist darauf ausgelegt, auf kostengünstiger Hardware, sogenannter Commodity-Hardware, zu laufen.</p>
 </section>
 <section id="hadoop-distributed-file-system-hdfs">
-<h3><span class="section-number">6.3.8. </span>Hadoop Distributed File System (HDFS)<a class="headerlink" href="#hadoop-distributed-file-system-hdfs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.8. </span>Hadoop Distributed File System (HDFS)<a class="headerlink" href="#hadoop-distributed-file-system-hdfs" title="Permalink to this heading">#</a></h3>
 <p>Das <strong>Hadoop Distributed File System</strong> (HDFS) folgt einer Koordinator-Arbeiter-Architektur und wurde auf Grundlagen des Google File Systems (GFS) entwickelt.</p>
 <p>Der <strong>HDFS-Koordinator</strong>, auch als <strong>“NameNode”</strong> bekannt, ist verantwortlich für die Verwaltung aller Metadaten des Dateisystems. Er loggt und merged Transaktionen beim Systemstart, kontrolliert den Lese- und Schreibzugriff auf Dateien, verwaltet die Replikation von Datenblöcken und kann selbst repliziert werden.</p>
 <p>Die <strong>HDFS-Arbeiter</strong>, auch <strong>“DataNode”</strong> genannt, kommunizieren periodisch mit dem NameNode über Herzschläge (heartbeats). Der DataNode fragt periodisch nach, ob dieser eine Aufgabe hat und wenn ja, erledigt er sie. DataNodes bedienen auch Lese- und Schreibanfragen von Clients, führen Replikationsaufgaben aus, die vom NameNode kommen, und haben einen Standard-Replikationsfaktor von 3.</p>
 <a class="reference internal image-reference" href="../_images/HDFS.png"><img alt="HDFS" src="../_images/HDFS.png" style="width: 350px;" /></a>
 </section>
 <section id="hadoop-map-reduce-engine">
-<h3><span class="section-number">6.3.9. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.9. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Permalink to this heading">#</a></h3>
 <p>Die Hadoop Map/Reduce Engine ermöglicht die Ausführung von Jobs wie in Unix-Pipelines. Ähnlich dem Befehl <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">*</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">-c</span> <span class="pre">|</span> <span class="pre">cat</span> <span class="pre">&gt;</span> <span class="pre">output</span></code> werden in Map/Reduce Jobs in verschiedene Phasen unterteilt: <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">|</span> <span class="pre">Map</span> <span class="pre">|</span> <span class="pre">Sort</span> <span class="pre">&amp;</span> <span class="pre">Shuffle</span> <span class="pre">|</span> <span class="pre">Reduce</span> <span class="pre">und</span> <span class="pre">Output</span></code></p>
 <p><strong>Ablauf</strong></p>
 <ol class="arabic simple">
@@ -997,20 +975,20 @@ Die <strong>SQL-Anfrage</strong> möchte für jedes Jahr die Summe der Preise in
 <p>Die TaskTracker, als Worker-Komponente, ist für die Ausführung von Map- und Reduce-Tasks verantwortlich. Zusätzlich verwaltet sie die Ablage, Sortierung und Ausgabe von Zwischenergebnissen.</p>
 </section>
 <section id="fehlertoleranz">
-<h3><span class="section-number">6.3.10. </span>Fehlertoleranz<a class="headerlink" href="#fehlertoleranz" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.10. </span>Fehlertoleranz<a class="headerlink" href="#fehlertoleranz" title="Permalink to this heading">#</a></h3>
 <p>In Umgebungen mit vielen Daten, die in langen Prozessen auf zahlreichen Maschinen verarbeitet werden, ist Verteilung unerlässlich. Ausfälle sind in einem solchen Szenario unvermeidlich und eher die Regel als die Ausnahme.</p>
 <p>Um damit umzugehen, setzt Hadoop auf ein <strong>verteiltes Dateisystem (DFS / HDFS)</strong>, das Daten verteilt und durch Replikation fehlertolerant speichert. Dies ermöglicht eine redundante Verfügbarkeit der Eingabedaten.</p>
 <p>Die Speicherung von Zwischenergebnissen im DFS mag zwar aufwändig sein, jedoch erleichtert dies die Fehlererholung während des laufenden Prozesses. Die Daten können einfach und schnell wiederhergestellt werden.</p>
 <p>Im Falle von Abstürzen werden diese erkannt, indem das periodische Signal <strong>(Heartbeat)</strong> ausbleibt. Mapper oder Reducer können dann auf einer anderen Maschine neu gestartet werden, wobei auf Replikate des ursprünglichen Inputs zurückgegriffen wird.</p>
 </section>
 <section id="wann-sollte-man-hadoop-nutzen">
-<h3><span class="section-number">6.3.11. </span>Wann sollte man Hadoop nutzen?<a class="headerlink" href="#wann-sollte-man-hadoop-nutzen" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.11. </span>Wann sollte man Hadoop nutzen?<a class="headerlink" href="#wann-sollte-man-hadoop-nutzen" title="Permalink to this heading">#</a></h3>
 <p>Hadoop eignet sich besonders gut für Anwendungen, die <strong>große Mengen von Daten</strong> verarbeiten müssen. Dazu zählen zum Beispiel Data Mining, Model Tuning und Textverarbeitung.</p>
 <p>Allerdings ist Hadoop weniger geeignet für Punktanfragen, da dies mit einem hohen Overhead und einer hohen Latenz verbunden ist.
 Die Architektur von Hadoop basiert auf der Verarbeitung unabhängig ausführbarer Aufgaben (Tasks), was die Kommunikation zwischen Prozessen erschwert. Daher sind Anwendungen, die eine starke Kommunikation zwischen Prozessen erfordern, besser mit anderen Ansätzen zu lösen.</p>
 </section>
 <section id="in-der-praxis-komplexe-optimierte-mapreduce-workflows">
-<h3><span class="section-number">6.3.12. </span>In der Praxis: Komplexe (optimierte) MapReduce Workflows<a class="headerlink" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.12. </span>In der Praxis: Komplexe (optimierte) MapReduce Workflows<a class="headerlink" href="#in-der-praxis-komplexe-optimierte-mapreduce-workflows" title="Permalink to this heading">#</a></h3>
 <p>In der praktischen Anwendung von MapReduce treten komplexe und optimierte Workflows auf, die über einfache Map- und Reduce-Schritte hinausgehen. Map/Reduce-Funktionen werden aneinander gekettet. Neue relationale Operatoren wie Join, Cross, Union etc. werden nun auch genutzt.</p>
 <p>Die Effizienz solcher Workflows wird durch <strong>Planoptimierung</strong> und <strong>Re-optimierung</strong> gesteigert.
 <strong>Scheduling</strong> und <strong>Lastbalancierung</strong> sind auch entscheidend, um die Ressourcen im Cluster effektiv zu nutzen und sicherzustellen, dass die Aufgaben gleichmäßig verteilt werden.
@@ -1018,7 +996,7 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
 <a class="reference internal image-reference" href="../_images/Komplexe-optimierte-MapReduce-workflows.png"><img alt="Komplexe-optimierte-MapReduce-workflows" src="../_images/Komplexe-optimierte-MapReduce-workflows.png" style="width: 500px;" /></a>
 </section>
 <section id="hadoop-vs-parallel-dbms">
-<h3><span class="section-number">6.3.13. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.13. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Permalink to this heading">#</a></h3>
 <p>Turing Award Gewinner <strong>Michael Stonebreaker</strong> war in den Anfangsjahren ein großer Kritiker von Hadoop. Sein berühmtes <a class="reference external" href="https://cacm.acm.org/blogs/blog-cacm/149074-possible-hadoop-trajectories/fulltext">Paper aus dem Jahr 2012</a> kritisiert die Nutzung von Hadoop für Pilotprojekte, die dann in der Praxis Leistungsprobleme feststellen werden und am Ende wieder zu echten parallelen DBMS wechseln müssen.</p>
 <a class="reference internal image-reference" href="../_images/Hadoop-vs-Parallel-DBMS.png"><img alt="Hadoop-vs-Parallel-DBMS" src="../_images/Hadoop-vs-Parallel-DBMS.png" style="width: 300px;" /></a>
 <a class="reference internal image-reference" href="../_images/Hadoop_vs_Parallel_DBMS.png"><img alt="Hadoop_vs_Parallel_DBMS" src="../_images/Hadoop_vs_Parallel_DBMS.png" style="width: 500px;" /></a>
@@ -1027,7 +1005,7 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
 <p>In der Tat haben sich viele Hadoop System im Laufe der Zeit sich Datenbanksystemen angenähert und Funktionen übernommen. 2014 ist vom Map/Reduce System wenig übrig geblieben mit Ausnahme des Filesystems.</p>
 </section>
 <section id="in-der-praxis-viele-bibliotheken">
-<h3><span class="section-number">6.3.14. </span>In der Praxis: Viele Bibliotheken<a class="headerlink" href="#in-der-praxis-viele-bibliotheken" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.3.14. </span>In der Praxis: Viele Bibliotheken<a class="headerlink" href="#in-der-praxis-viele-bibliotheken" title="Permalink to this heading">#</a></h3>
 <p>In der praktischen Anwendung von MapReduce gibt es viele Bibliotheken, die von Hadoop ausgehen und den Funktionsumfang erweitern.</p>
 <p>Hadoop bildet den Ausgangspunkt und ist in Java geschrieben. Es stellt Basis-Bibliotheken für ein verteiltes Dateisystem sowie Scheduling und Monitoring bereit.</p>
 <p>Zu den Erweiterungen gehören Bibliotheken für Service- und Cluster-Verwaltung, Datenspeicher, Datenbanken und Anfragesprachen. Darüber hinaus existieren spezialisierte Bibliotheken für komplexe Verfahren, Datenstromverarbeitung und vieles mehr.</p>
@@ -1072,10 +1050,11 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../05/optimierung.html"
@@ -1086,7 +1065,10 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
         <p class="prev-next-title"><span class="section-number">5. </span>Optimierung</p>
       </div>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1094,7 +1076,6 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1180,10 +1161,9 @@ By Prof. Dr. Ziawasch Abedjan
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1207,8 +1187,8 @@ By Prof. Dr. Ziawasch Abedjan
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
