@@ -1063,7 +1063,7 @@ Die einzigen genauen Punkte sind die Schnittpunkte der beiden Verteilungen. An d
 <figure class="align-default" id="id10">
 <img alt="../_images/Verteilungen-Körpergewicht.png" src="../_images/Verteilungen-Körpergewicht.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.16 </span><span class="caption-text">Histogramm Körpergewichtsverteilung</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.16 </span><span class="caption-text">Histogramm zur Körpergewichtsverteilung</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1073,7 +1073,7 @@ Die einzigen genauen Punkte sind die Schnittpunkte der beiden Verteilungen. An d
 <figure class="align-default" id="id11">
 <img alt="../_images/Equi-Width-Histogramme.png" src="../_images/Equi-Width-Histogramme.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.17 </span><span class="caption-text">Equi-Width-Histogramme</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.17 </span><span class="caption-text">Equi-Width-Histogramm</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1083,7 +1083,7 @@ Die einzigen genauen Punkte sind die Schnittpunkte der beiden Verteilungen. An d
 <figure class="align-default" id="id12">
 <img alt="../_images/Equi-Height-Histogramme.png" src="../_images/Equi-Height-Histogramme.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.18 </span><span class="caption-text">Equi-Height-Histogramme</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.18 </span><span class="caption-text">Equi-Height-Histogramm</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1270,6 +1270,7 @@ Mittels DP wird <span class="math notranslate nohighlight">\(cost(i)\)</span> be
 Sei <span class="math notranslate nohighlight">\(C(S, i)\)</span> die Minimalkosten für ein Pfad von a nach i, der jeden Knoten in <span class="math notranslate nohighlight">\(S\)</span> genau
 einmal besucht. Gestartet wird mit allen Teilmengen <span class="math notranslate nohighlight">\(S\)</span> der Größe 2. Für diese werden <span class="math notranslate nohighlight">\(C(S, i)\)</span> berechnet. Im nächsten Schritt werden Stufenweise die Teilmengen der Größe 3, 4 u.s.w. betrachtet.</p>
 <a class="reference internal image-reference" href="../_images/Dynamic-Programming.png"><img alt="Dynamic-Programming" src="../_images/Dynamic-Programming.png" style="width: 200px;" /></a>
+<br> 
 <ol class="arabic simple">
 <li><p>Für <span class="math notranslate nohighlight">\(|S| = 2\)</span> gilt: <span class="math notranslate nohighlight">\(S ={a, i}\)</span> und <span class="math notranslate nohighlight">\(C(S, i) = dist(a, i)\)</span>.</p></li>
 <li><p>Für <span class="math notranslate nohighlight">\(|S| &gt; 2\)</span> gilt:  <span class="math notranslate nohighlight">\(C(S, i) = min{ C(S-\{i\}, j) + dist(j, i)}\)</span>, wenn <span class="math notranslate nohighlight">\(j \neq i\)</span> und <span class="math notranslate nohighlight">\(j \neq a\)</span>.</p></li>
@@ -1292,7 +1293,7 @@ einmal besucht. Gestartet wird mit allen Teilmengen <span class="math notranslat
 </section>
 <section id="dynamische-programmierung">
 <h3><span class="section-number">5.7.11. </span>Dynamische Programmierung<a class="headerlink" href="#dynamische-programmierung" title="Permalink to this heading">#</a></h3>
-<p>Die Dynamische Programmierung ist ein Optimaler Algorithmus. Schwierigkeiten dabei sind die Annahmen. Zum Einem muss das Prinzip der Optimalität gelten. Ein optimaler Teilplan führt immer zu einem optimalen Gesamtplan. Zum Anderen muss das Problem geschickt in Teilprobleme aufgeteilt werden. Der Aufwand kann zwar immernoch exponentiell sein, aber es können sich Operationen und Verdopplungen gespart werden.
+<p>Die Dynamische Programmierung ist ein Optimaler Algorithmus. Schwierigkeiten dabei sind die Annahmen. Zum Einen muss das Prinzip der Optimalität gelten. Ein optimaler Teilplan führt immer zu einem optimalen Gesamtplan. Zum Anderen muss das Problem geschickt in Teilprobleme aufgeteilt werden. Der Aufwand kann zwar immernoch exponentiell sein, aber es können sich Operationen und Verdopplungen gespart werden.
 Klassische Anwendungen für die Dynamische Programmierung sind das Knapsack Problem, das Traveling Salesman Problem, die Maschinenbelegung und das Transportproblem.</p>
 </section>
 <section id="anwendung-fur-left-deep-baume">
@@ -1366,27 +1367,41 @@ Für <span class="math notranslate nohighlight">\(N=3\)</span> wird jedes Tripel
 </section>
 <section id="dp-beispiel">
 <h3><span class="section-number">5.7.19. </span>DP – Beispiel<a class="headerlink" href="#dp-beispiel" title="Permalink to this heading">#</a></h3>
-<a class="reference internal image-reference" href="../_images/DP-Beispiel.png"><img alt="DP-Beispiel" src="../_images/DP-Beispiel.png" style="width: 200px;" /></a>
 <figure class="align-default" id="id17">
 <img alt="../_images/DP-Beispiel.png" src="../_images/DP-Beispiel.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5.25 </span><span class="caption-text">Dynamische Programmierung Beispiel</span><a class="headerlink" href="#id17" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.25 </span><span class="caption-text">Dynamische Programmierung - Beispiel</span><a class="headerlink" href="#id17" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Im Beispiel wird eine Anfrage über die vier Relationen <span class="math notranslate nohighlight">\(R, S, T, U\)</span> gestellt.
+<p>Im Beispiel <em>(siehe Fig. 5.25)</em> wird eine Anfrage über die vier Relationen <span class="math notranslate nohighlight">\(R, S, T, U\)</span> gestellt.
 Es gibt vier Join-Bedingungen. In der Tabelle werden Kardinalität, Kosten und der optimale Plan festgehalten. Im ersten Schritt ist der optimale Plan ein Scan der jeweiligen Relation.</p>
-<a class="reference internal image-reference" href="../_images/DP-Beispiel_2.png"><img alt="DP-Beispiel_2" src="../_images/DP-Beispiel_2.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/DP-Beispiel_3.png"><img alt="DP-Beispiel_3" src="../_images/DP-Beispiel_3.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id18">
+<img alt="../_images/DP-Beispiel_2.png" src="../_images/DP-Beispiel_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.26 </span><span class="caption-text">DP Schritt 1</span><a class="headerlink" href="#id18" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id19">
+<img alt="../_images/DP-Beispiel_3.png" src="../_images/DP-Beispiel_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.27 </span><span class="caption-text">DP Schritt 2 und 3</span><a class="headerlink" href="#id19" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Zwischen den Relationen, die kein Joinattribut haben, muss ein Kreuzprodukt gebildet werden. Das wäre der Fall bei <span class="math notranslate nohighlight">\(S, T\)</span> und <span class="math notranslate nohighlight">\(T, R\)</span>. Die Kreuzprodukte werden im weiteren Verlauf nicht weiter berücksichtigt. Alle anderen Kombinationen an Relationen werden über die jeweiligen Joinattriubte miteinander gejoint. </br>
 Um Joins mit drei Relationen zu bilden, müssen die Joins zwischen zwei Relationen mit den günstigsten Kardinalitäten ausgewählt werden. Für die Kombination {<span class="math notranslate nohighlight">\({R, S, T}\)</span>} würden {<span class="math notranslate nohighlight">\({R, S}\)</span>}, {<span class="math notranslate nohighlight">\({R, T}\)</span>} und {<span class="math notranslate nohighlight">\({S, T}\)</span>} in Frage kommen. Da aber {<span class="math notranslate nohighlight">\({R, T}\)</span>} eine sehr hohe Kardnalität hat und auch vorher bereits aussortiert wurde, wählt man die anderen beiden: {<span class="math notranslate nohighlight">\({R, S}\)</span>} und {<span class="math notranslate nohighlight">\({S, T}\)</span>}. Die Kosten sind dann die Kardinalität der günstigeren Relationen. In dem Fall {<span class="math notranslate nohighlight">\({S, T}\)</span>} mit 2000.</p>
-<a class="reference internal image-reference" href="../_images/DP-Beispiel_4.png"><img alt="DP-Beispiel_4" src="../_images/DP-Beispiel_4.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id20">
+<img alt="../_images/DP-Beispiel_4.png" src="../_images/DP-Beispiel_4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.28 </span><span class="caption-text">DP Letzter Schritt</span><a class="headerlink" href="#id20" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Zum Schluss berechnet man die Summe aus Kardinalität und Kosten. Somit ist der Joinplan mit Kosten von 3000 der optimale Plan.</p>
 </section>
 <section id="dp-interesting-orders-interessante-sortierung">
 <h3><span class="section-number">5.7.20. </span>DP - interesting orders (Interessante Sortierung)<a class="headerlink" href="#dp-interesting-orders-interessante-sortierung" title="Permalink to this heading">#</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan.</p>
+<p>Prinzip der Optimalität: Wenn sich zwei Pläne nur in einem Teilplan unterscheiden, so ist der Plan mit dem besseren Teilplan immer vorzuziehen.</p>
 </div>
 <p>Ein Gegenbeispiel zu dem Prinzip der Optimalität ist das Beispiel mit dem Plan <span class="math notranslate nohighlight">\(R(A,B) \Join S(A,C) \Join T(A,D)\)</span>. Der beste lokale Plan für <span class="math notranslate nohighlight">\(R \Join S\)</span> ist ein Hash-Join. Aber für den globalen Plan wäre zunächst ein Sort-merge Join über R und S
 und dann ein Sort-merge Join mit T besser geeignet. </br>
