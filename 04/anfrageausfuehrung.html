@@ -422,7 +422,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">4.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.4.1. Duplikateliminierung</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">4.4.2. Gruppierung und Aggregation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">4.4.3. Vereinigung (binär)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">4.4.4. Schnittmenge und Differenz</a></li>
@@ -682,7 +682,12 @@ Class join {
 <strong>Aber:</strong> Einen Zwichenspeicher braucht man nur manchmal, in den anderen Fällen muss man die Operationen blocken (Blocking).</p>
 <p><strong>Iterator Beispiel - Pipelining</strong></p>
 <p>Hier noch einmal das selbe Beispiel wie zuvor. Diesmal pipelinen wir.</p>
-<a class="reference internal image-reference" href="../_images/Iterator-Beispiele_2.png"><img alt="Iterator-Beispiele_2" src="../_images/Iterator-Beispiele_2.png" style="width: 500px;" /></a>
+<figure class="align-default" id="iterator-beispiele-2">
+<img alt="../_images/Iterator-Beispiele_2.png" src="../_images/Iterator-Beispiele_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Iterator Beispiel zum Pipelining</span><a class="headerlink" href="#iterator-beispiele-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
 while (t &lt;&gt; NotFound)
     t = p.GetNext()
@@ -756,7 +761,12 @@ Dies ist der Fall bei Gruppierungen, Duplikateliminierungen und Sortierungen.</p
 <section id="tupel-basierte-unare-operatoren">
 <h3><span class="section-number">4.2.2. </span>Tupel-basierte unäre Operatoren<a class="headerlink" href="#tupel-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
 <p>Für Selektionen und Projektionen verwendet man Tupel-basierte unäre Operatoren, denn diese sind unabhängig von der Hauptspeichergröße. Die Speicherkosten betragen nur eine Einheit, da man immer nur ein Tupel auf einmal liest. Die I/O-Kosten hängen wie beim <em>Table-scan</em> oder <em>Index-scan</em> davon ab, ob <span class="math notranslate nohighlight">\(R\)</span> geclustered ist oder nicht. Ist <span class="math notranslate nohighlight">\(R\)</span> geclustered, betragen die Kosten <span class="math notranslate nohighlight">\(B\)</span>, ist <span class="math notranslate nohighlight">\(R\)</span> nicht geclustered betragen die Kosten <span class="math notranslate nohighlight">\(T\)</span>. Falls es einen Suchschlüssel im Index gibt, sind die Kosten noch geringer.</p>
-<a class="reference internal image-reference" href="../_images/Tupel-basierte-unäre-Operatoren.png"><img alt="Tupel-basierte-unäre-Operatoren" src="../_images/Tupel-basierte-unäre-Operatoren.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id1">
+<img alt="../_images/Tupel-basierte-unäre-Operatoren.png" src="../_images/Tupel-basierte-unäre-Operatoren.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Tupel-basierte unäre Operation</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="relationen-basierte-unare-operatoren">
 <h3><span class="section-number">4.2.3. </span>Relationen-basierte unäre Operatoren<a class="headerlink" href="#relationen-basierte-unare-operatoren" title="Permalink to this heading">#</a></h3>
@@ -772,7 +782,12 @@ Bei der Wahl von <span class="math notranslate nohighlight">\(M\)</span>, also w
 <li><p>Wahl von <span class="math notranslate nohighlight">\(M\)</span>: <span class="math notranslate nohighlight">\(B(\delta(R)) = \frac {V(R, [A1, … ,An])} {Tupel-pro-Block}\)</span> ≤ <span class="math notranslate nohighlight">\(M\)</span></p></li>
 </ul>
 <br>
-<a class="reference internal image-reference" href="../_images/Duplikateliminierung.png"><img alt="Duplikateliminierung" src="../_images/Duplikateliminierung.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id2">
+<img alt="../_images/Duplikateliminierung.png" src="../_images/Duplikateliminierung.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Duplikateliminierung</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <br>
 </section>
 <section id="gruppierung">
@@ -867,8 +882,8 @@ Die Formel sieht wie folgt aus:</p>
 <h2><span class="section-number">4.4. </span>Sort-basierte Two-Pass Algorithmen<a class="headerlink" href="#sort-basierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h2>
 <p><strong>1-, 2-, Mehr-Phasen</strong></p>
 <p>Bisher haben wir uns mit One-Pass Algorithmen befasst, bei denen immer eine Relation in den Hauptspeicher passt. Nun befassen wir uns mit Two-Pass Algorithmen, bei denen mehrfach über eine Relation gelesen werden muss, weil diese nicht als ganzes in den Hauptspeicher passt. Es gibt eine, zwei oder auch mehrere Phasen, je nachdem wie groß die Liste ist, meist reichen aber zwei Phasen. Diese bestehen aus dem Einlesen der Daten, der Verarbeitung der Daten (z.B. eine Vorsortierung von Teillisten), dem Schreiben der Daten und dem Wiedereinlesen der Daten (z.B. Merging der Teillisten).</p>
-<section id="id1">
-<h3><span class="section-number">4.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id3">
+<h3><span class="section-number">4.4.1. </span>Duplikateliminierung<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Den ersten Algorithmus, den wir uns anschauen, ist die Duplikateliminierung. Hier ist das Vorgehen ähnlich wie bei TPMMS. In Phase 1 werden Teillisten erstellt, der Sortierschlüssel ist das gesamte Tupel. In der 2. Phase haben wir einen Block pro Teilliste und betrachten jeweils das erste Tupel. Hier suchen wir das kleinste Tupel und geben dieses aus. Alle anderen identischen Tupel werden verworfen.</p>
 <p>Schauen wir uns das anhand eines Beispiels an. Nehmen wir an, wir haben im Hauptspeicher Platz für drei Blöcke und einen Outputblock <span class="math notranslate nohighlight">\((M = 3 + 1)\)</span>. Es passen zwei Tupel in jeden Block und wir haben insgesamt 17 Tupel (2, 5, 2, 1, 2, 2, 4, 5, 4, 3, 4, 2, 1, 5, 2, 1, 3). In Phase 1 ergeben sich daraus drei sortierte Teillisten, denn wir müssen jeden Block vollständig füllen. Dabei können die Teillisten unterschiedliche Längen haben. In Phase 2 suchen wir uns dann immer das kleinste Tupel heraus und verschieben dieses in den Outputblock. Gleiche Tupel werden verworfen.</p>
 <p>Dieser Algorithmus lässt sich noch optimieren, indem wir schon in Phase 1 die Duplikate in den Teillisten erliminieren. Damit lassen sich mehr Tupel in eine Teilliste laden und man hat kleinere Teillisten.</p>
@@ -974,7 +989,7 @@ Bei der <em>Multimengenvereinigung</em> müssen wir nicht hashen, wir können ei
 <h3><span class="section-number">4.5.5. </span>Hashjoin<a class="headerlink" href="#hashjoin" title="Permalink to this heading">#</a></h3>
 <p>Der Algorithmus des Hashjoin ist im Prinzip derselbe wie bei der Mengenvereinigung.
 Hier sind aber unsere Joinattribute die Hashschlüssel. Die Idee ist, dass Tupel mit gleichen Joinattributen im korrespondierenden Bucket landen. Dann kann man eine One-Pass Join Variante für jedes Bucket Paar durchführen.</p>
-<p>Schauen wir uns das anhand unseres altbekannten Beispiels an. Wir haben 1000 Blöcke in Relation <span class="math notranslate nohighlight">\(R\)</span>, 500 in <span class="math notranslate nohighlight">\(S\)</span> und 101 Einheiten Platz im Hauptspeicher. Es würden ca. 10 Blöcke der Relation <span class="math notranslate nohighlight">\(R\)</span> und ca. 5 Blöcke der Relation <span class="math notranslate nohighlight">\(S\)</span> in ein Bucket passen. Hier wählen wir den kleinsten Wert, also 5, und können dann einen One-Pass Algorithmus anwenden: Wir holen uns den ersten <span class="math notranslate nohighlight">\(S\)</span>-Bucket in den Hauptspeicher. Dann joinen wir Blöcke des passenden <span class="math notranslate nohighlight">\(R\)</span>-Buckets hinzu und holen uns den nächsten <span class="math notranslate nohighlight">\(S\)</span>-Bucket, usw.</p>
+<p>Schauen wir uns das anhand eines Beispiels an. Wir haben 1000 Blöcke in Relation <span class="math notranslate nohighlight">\(R\)</span>, 500 in <span class="math notranslate nohighlight">\(S\)</span> und 101 Einheiten Platz im Hauptspeicher. Es würden ca. 10 Blöcke der Relation <span class="math notranslate nohighlight">\(R\)</span> und ca. 5 Blöcke der Relation <span class="math notranslate nohighlight">\(S\)</span> in ein Bucket passen. Hier wählen wir den kleinsten Wert, also 5, und können dann einen One-Pass Algorithmus anwenden: Wir holen uns den ersten <span class="math notranslate nohighlight">\(S\)</span>-Bucket in den Hauptspeicher. Dann joinen wir Blöcke des passenden <span class="math notranslate nohighlight">\(R\)</span>-Buckets hinzu und holen uns den nächsten <span class="math notranslate nohighlight">\(S\)</span>-Bucket, usw.</p>
 <p>Für das Hashing benötigen wir 1500 I/O-Operationen und jeweils weitere 1500 um die Buckets zu schreiben und zu lesen. Insgesamt kommen wir auf <span class="math notranslate nohighlight">\(3(B(R) + B(S))\)</span> = 4500 I/O-Operationen. Genauso viele, wie bei der sort-basierten Methode.
 <strong>Aber:</strong> Es geht besser. Und wie das geht schauen wir uns im nächsten Abschnitt an.</p>
 </section>
@@ -1148,7 +1163,7 @@ Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräu
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-basierte-two-pass-algorithmen">4.4. Sort-basierte Two-Pass Algorithmen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.1. Duplikateliminierung</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.4.1. Duplikateliminierung</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gruppierung-und-aggregation">4.4.2. Gruppierung und Aggregation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vereinigung-binar">4.4.3. Vereinigung (binär)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schnittmenge-und-differenz">4.4.4. Schnittmenge und Differenz</a></li>
