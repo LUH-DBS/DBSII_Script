@@ -874,8 +874,13 @@ Die Formel sieht wie folgt aus:</p>
 </section>
 <section id="zusammenfassung-bisheriger-algorithmen">
 <h3><span class="section-number">4.3.2. </span>Zusammenfassung bisheriger Algorithmen<a class="headerlink" href="#zusammenfassung-bisheriger-algorithmen" title="Permalink to this heading">#</a></h3>
-<p>Hier einmal eine Übersicht darüber, wie viel Hauptspeicher die verschiedenen Operationen in den verschiedenen Varianten benötigen und wie viel I/O dabei verbraucht wird.</p>
-<a class="reference internal image-reference" href="../_images/Zusammenfassung-Algorithmen.png"><img alt="Zusammenfassung-Algorithmen" src="../_images/Zusammenfassung-Algorithmen.png" style="width: 500px;" /></a>
+<p>In Abbildung 4.10 sehen wir eine Übersicht darüber, wie viel Hauptspeicher die verschiedenen Operationen in den verschiedenen Varianten benötigen und wie viel I/O dabei verbraucht wird.</p>
+<figure class="align-default" id="zusammenfassung-algorithmen">
+<img alt="../_images/Zusammenfassung-Algorithmen.png" src="../_images/Zusammenfassung-Algorithmen.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Übersicht über die bisherigen Algorithmen</span><a class="headerlink" href="#zusammenfassung-algorithmen" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 <section id="sort-basierte-two-pass-algorithmen">
@@ -928,8 +933,13 @@ Die Annahme hierbei ist, dass alle Teillisten und auch alle Tupel mit gemeinsame
 </section>
 <section id="zusammenfassung-sortbasierte-two-pass-algorithmen">
 <h3><span class="section-number">4.4.6. </span>Zusammenfassung – sortbasierte, two-pass Algorithmen<a class="headerlink" href="#zusammenfassung-sortbasierte-two-pass-algorithmen" title="Permalink to this heading">#</a></h3>
-<p>Hier einmal ein Überblick über den Hauptspeicherverbrauch der jeweiligen Operatoren und deren I/O-Kosten.</p>
-<a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
+<p>In der Folgenden Abbildung 4.11 einmal ein Überblick über den Hauptspeicherverbrauch der jeweiligen Operatoren und deren I/O-Kosten.</p>
+<figure class="align-default" id="zusammenfassung-sort-basierte-algorithmen-2">
+<img alt="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Überblick über die sortbasierten, two-pass Algorithmen</span><a class="headerlink" href="#zusammenfassung-sort-basierte-algorithmen-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 <section id="hash-basierte-two-pass-algorithmen">
@@ -1022,10 +1032,20 @@ Wir haben 1000 Blöcke in <span class="math notranslate nohighlight">\(R\)</span
 <section id="zusammenfassung-hash-basierter-verfahren">
 <h3><span class="section-number">4.5.9. </span>Zusammenfassung Hash-basierter Verfahren<a class="headerlink" href="#zusammenfassung-hash-basierter-verfahren" title="Permalink to this heading">#</a></h3>
 <p>Hier sehen wir eine Übersicht über die Operatoren und ihre I/O-Kosten, sowie deren Hauptspeicherbedarf bei Hash-basierten Verfahren. Wir können in dieser Übersicht auch gut das bekannte Muster, dass der Hauptspeicherbedarf immer quadratisch zur Größe der Relation bzw. bei binären Operationen quadratisch zur Größe der kleineren Relation ist, sehen.</p>
-<a class="reference internal image-reference" href="../_images/Zusammenfassung-Hashbasierte-Verfahren.png"><img alt="Zusammenfassung-Hashbasierte-Verfahren" src="../_images/Zusammenfassung-Hashbasierte-Verfahren.png" style="width: 500px;" /></a>
+<figure class="align-default" id="zusammenfassung-hashbasierte-verfahren">
+<img alt="../_images/Zusammenfassung-Hashbasierte-Verfahren.png" src="../_images/Zusammenfassung-Hashbasierte-Verfahren.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.12 </span><span class="caption-text">Überblick über die Hashbasierten Verfahren</span><a class="headerlink" href="#zusammenfassung-hashbasierte-verfahren" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Wdh.: Sort-basierte, two-pass Algorithmen</strong></p>
 <p>Zum Vergleich haben wir hier noch einmal eine Übersicht über die verschiedenen Operatoren der Sort-basierten Two-Pass Algorithmen, sowie auch hier deren Hauptspeicherbedarf und I/O-Kosten. Man kann insbesondere sehen, dass der sort-merge join die gleiche Laufzeit wie der Hash-join hat und beide damit dem Hybrid Hashjoin unterlegen sind.</p>
-<a class="reference internal image-reference" href="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png"><img alt="Zusammenfassung-sort-basierte-Algorithmen_2" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id4">
+<img alt="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" src="../_images/Zusammenfassung-sort-basierte-Algorithmen_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.13 </span><span class="caption-text">Überblick über die sortbasierten, two-pass Algorithmen</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Vergleich Hash-basierte und Sort-basierte Algorithmen</strong></p>
 <p>Der Speicherbedarf sowie die I/O-Kosten sind bei beiden Algorithmen ähnlich. Hash-basierte Algorithmen sind in der Regel aber platzsparender als Sort-basierte, da der Speicherbedarf nur vom kleineren der beiden Inputs abhängt. Die I/O-Kosten hängen beim Hash-basierten Verfahren von der Anzahl der Buckets und der Verteilung der Daten ab. Hat man Buckets die groß genug sind und gleichmäßig verteilte Daten, so kann dieser Algorithmus effizient sein. Sort-basierte Algorithmen produzieren oft einen sortierten Output, sodass sortierte Teillisten hintereinander auf die Disk geschrieben werden können. Das spart bei einer I/O-Operation Seektime. Haben wir viel Platz im Hauptspeicher, können auch mehrere Blöcke einer Liste auf einmal gelesen werden. Gleiches gilt auch bei Hash-basierten Verfahren, falls die Anzahl der Buckets nicht die im Hauptspeicher verfügbare Anzahl an Einheiten überschreitet.</p>
 </section>
@@ -1054,7 +1074,12 @@ Um uns einmal den Extremfall anzuschauen: Hätten wir 20000 distinct Werte bräu
 <p>Dies klappt besser, falls <span class="math notranslate nohighlight">\(R\)</span> sehr klein ist. Dann werden viele Blöcke von <span class="math notranslate nohighlight">\(S\)</span> gar nicht erst besucht und man muss nicht so viel lesen. Das ist ein Vorteil gegenüber Hash- und Sort-basierten Methoden, da dort immer alles betrachtet wird.</p>
 <p><strong>Joining mit sortiertem Index</strong></p>
 <p>Eine weitere Variante des Joins ist das joinen mit einem sortierten, dichtbesetzten Index. Damit müssten wir, wenn wir beispielsweise einen sort-merge join verwenden, vorher nur eine Relation sortieren. Haben beide Relationen einen sortierten Index auf <span class="math notranslate nohighlight">\(Y\)</span>, müssen wir nur noch die Merge-Phase ausführen und können einen „Zig-Zag-Join“ verwenden. Dabei würden Tupel aus <span class="math notranslate nohighlight">\(R\)</span> ohne Joinpartner in <span class="math notranslate nohighlight">\(S\)</span> nie gelesen werden und umgekehrt.</p>
-<a class="reference internal image-reference" href="../_images/Joining-mit-sortiertem-Index.png"><img alt="Joining-mit-sortiertem-Index" src="../_images/Joining-mit-sortiertem-Index.png" style="width: 500px;" /></a>
+<figure class="align-default" id="joining-mit-sortiertem-index-png">
+<img alt="../_images/Joining-mit-sortiertem-Index.png" src="../_images/Joining-mit-sortiertem-Index.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.14 </span><span class="caption-text">Zig-Zag-Join</span><a class="headerlink" href="#joining-mit-sortiertem-index-png" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Joining mit Indizes – Beispiel</strong></p>
 <p>Wir verwenden wieder die Werte aus dem vorherigen Beispiel und haben <span class="math notranslate nohighlight">\(B(R) = 1000\)</span>, <span class="math notranslate nohighlight">\(B(S) = 500\)</span>, <span class="math notranslate nohighlight">\(T(R) = 10000\)</span>, <span class="math notranslate nohighlight">\(T(S) = 5000\)</span> und <span class="math notranslate nohighlight">\(M = 100\)</span>. <span class="math notranslate nohighlight">\(R\)</span> und <span class="math notranslate nohighlight">\(S\)</span> sind beide geclustered, aber nur <span class="math notranslate nohighlight">\(S\)</span> hat einen sortierten Index auf <span class="math notranslate nohighlight">\(Y\)</span>. Das bedeutet, wir müssen zuerst <span class="math notranslate nohighlight">\(R\)</span> vorsortieren. Da 10 Tupel in jeden Block passen, können wir <span class="math notranslate nohighlight">\(R\)</span> in 10 Teillisten sortieren. Dafür benötigen wir 2000 I/O-Operationen. Nun nehmen wir aus jeder Teilliste einen Block und noch einen Block aus <span class="math notranslate nohighlight">\(S\)</span>. Dafür müssen wir <span class="math notranslate nohighlight">\(R\)</span> und <span class="math notranslate nohighlight">\(S\)</span> noch einmal komplett lesen und brauchen dafür 1500 I/O-Operationen. Insgesamt kommen wir auf 3500 I/O-Operationen. Immer noch weniger als zuvor, jedoch wird hier ein sortierter Index vorausgesetzt.</p>
 <p>Hat <span class="math notranslate nohighlight">\(R\)</span> nun auch einen Index, ist das Sortieren der Relationen unnötig, da wir den Zig-Zag-Join anwenden können. Im schlimmsten Fall müssen wir aber trotzdem <span class="math notranslate nohighlight">\(R\)</span> und <span class="math notranslate nohighlight">\(S\)</span> komplett lesen und brauchen dann wieder 1500 I/O-Operationen. Bei wenigen Joinpartnern benötigen wir dann aber viel weniger I/O-Operationen.</p>
