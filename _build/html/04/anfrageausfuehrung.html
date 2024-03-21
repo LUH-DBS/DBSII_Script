@@ -460,16 +460,25 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="anfrageausfuhrung">
 <h1><span class="section-number">4. </span>Anfrageausführung<a class="headerlink" href="#anfrageausfuhrung" title="Permalink to this heading">#</a></h1>
-<p><strong>Zoom in die interne Ebene: Die 5-Schichten Architektur</strong></p>
-<a class="reference internal image-reference" href="../_images/5-Schichten-Architektur2.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur2.png" style="width: 500px;" /></a>
+<p><strong>Zoom in die interne Ebene</strong></p>
+<figure class="align-default" id="schichten-architektur">
+<img alt="../_images/5-Schichten-Architektur2.png" src="../_images/5-Schichten-Architektur2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">5-Schichten Architektur</span><a class="headerlink" href="#schichten-architektur" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <br>
 <p>In den vorherigen Kapiteln haben wir die Anfragesprache bereits kennengelernt. Wir wissen jetzt, wie man Anfragen formulieren kann, wie Daten auf der Festplatte gespeichert werden und wie man den Zugriff auf die Daten mit Indizes beschleunigt.</p>
 <p>Jetzt ist die Frage: Wie kommt man von der Anfrage bis zur Ausführung?
 <br><br>
 Zunächst haben wir eine SQL-Anfrage. Diese wird geparsed und daraus entsteht ein Parsebaum der prüft, ob diese Anfrage korrekt ist. Der Parsebaum wird dann in einen logischen Anfrageplan umgewandelt, der durch die Abschätzung der Kardinalitäten zeigt, wie eine logische Ausführung aussehen würde. Man versucht so die Operationen und ihre Reihenfolge auf logischer Ebene zu optimieren. Dann werden physische Pläne entworfen und man schaut, welche konkreten Implementierungen für einen bestimmten Operator Sinn machen würden. Für jeden Operator gibt es verschiedene Implementierungen, den Join Operator kann man beispielsweise als Loop Join oder auch Hash Join implementieren. Im nächsten Schritt werden die Pläne noch einmal begutachtet und die Kosten ein weiteres Mal geschätzt, damit der beste Plan ausgewählt werden kann. Führt man diesen dann aus, gibt es ein Anfrageergebnis zurück. Da man die Kardinalitäten nur abschätzt, hat man nicht die genauen Zahlen. Bei der Ausführung der Anfrage sieht man dann, wie lange diese tatsächlich braucht, ob sie vielleicht länger gebraucht hat, als erwartet, oder ob die Ausgabemenge sogar viel größer ist als geschätzt.
 <br><br></p>
-<p><strong>Ablauf der Anfragebearbeitung</strong></p>
-<a class="reference internal image-reference" href="../_images/Ablauf-Anfragenbearbeitung.png"><img alt="Ablauf-Anfragenbearbeitung" src="../_images/Ablauf-Anfragenbearbeitung.png" style="width: 500px;" /></a>
+<figure class="align-default" id="ablauf-anfragenbearbeitung">
+<img alt="../_images/Ablauf-Anfragenbearbeitung.png" src="../_images/Ablauf-Anfragenbearbeitung.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Ablauf der Anfragenbearbeitung - die Ausführung</span><a class="headerlink" href="#ablauf-anfragenbearbeitung" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><br><br>
 Mit diesem Kapitel befinden wir uns in der Anfrageausführung und schauen uns konkret an, wie Operatoren umgesetzt werden.</p>
 <section id="physische-operatoren">
@@ -518,8 +527,13 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <p>Mit der GetNext-Funktion holt man das nächste Tupel. Wendet man die Funktion auf den obersten Iterator an, ruft dieser wiederrum <strong>GetNext()</strong> für die Iteratoren darunter auf und geht dabei so tief wie nötig. Ist kein Tupel mehr vorhanden, bekommt man ein <em>NotFound</em> zurück.</p>
 <p><strong>Close()</strong> beendet und schließt den Iterator und ruft <strong>Close()</strong> auch für die anderen Iteratoren auf.</p>
 <p><strong>Pull-basierte Anfrageauswertung</strong></p>
-<p>In dem folgenden Beispiel lässt sich gut erkennen, wie <strong>Open()</strong> und <strong>GetNext()</strong> funktionieren. Wird hier in dem obersten Iterator <strong>Open()</strong> aufgerufen, wird auch in allen darunterliegenden Iteratoren <strong>Open()</strong> aufgerufen. R1-R4 symbolisieren die Scan Operationen. Mit <strong>GetNext()</strong> geht man die Iteratoren durch, bis ganz nach unten und holt dann das Ergebnis nach oben.</p>
-<a class="reference internal image-reference" href="../_images/Pull-basierte-Anfragenauswertung.png"><img alt="Pull-basierte-Anfragenauswertung" src="../_images/Pull-basierte-Anfragenauswertung.png" style="width: 500px;" /></a>
+<p>In der Abbildung 4.3 lässt sich gut erkennen, wie <strong>Open()</strong> und <strong>GetNext()</strong> funktionieren. Wird in dem obersten Iterator <strong>Open()</strong> aufgerufen, wird auch in allen darunterliegenden Iteratoren <strong>Open()</strong> aufgerufen. R1-R4 symbolisieren die Scan Operationen. Mit <strong>GetNext()</strong> geht man die Iteratoren durch, bis ganz nach unten und holt dann das Ergebnis nach oben.</p>
+<figure class="align-default" id="pull-basierte-anfragenauswertung">
+<img alt="../_images/Pull-basierte-Anfragenauswertung.png" src="../_images/Pull-basierte-Anfragenauswertung.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Iterator Beispiel</span><a class="headerlink" href="#pull-basierte-anfragenauswertung" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Iterator Beispiel - Table-scan</strong></p>
 <p>Im folgenden sehen wir einen Table scan:</p>
 <p>Wir können einen Parameter <span class="math notranslate nohighlight">\(b\)</span> auf den ersten Block aus <span class="math notranslate nohighlight">\(R\)</span> setzen oder auf das erste Tupel.</p>
@@ -577,8 +591,13 @@ Die Open-Funktion initialisiert Datenstrukturen und öffnet einen Iterator für 
 <p>In der Open-Funktion werden die beiden Relationen <span class="math notranslate nohighlight">\(R\)</span> und <span class="math notranslate nohighlight">\(S\)</span> geöffnet, angefangen mit <span class="math notranslate nohighlight">\(R\)</span>. Außerdem wird die Variable CurRel mit der aktuellen Relation initialisiert.</p>
 <p>Die <strong>GetNext()</strong> Funktion führen wir dann auf das nächste Argument der Relation aus. Wird kein <em>NotFound</em> ausgegeben, geben wir das Tupel aus, andernfalls öffnen wir <span class="math notranslate nohighlight">\(S\)</span> und initialisieren CurRel mit <span class="math notranslate nohighlight">\(S\)</span>. Danach führen wir S.GetNext() aus.</p>
 <p><strong>Iterator Beispiel - Blocking</strong></p>
-<p>In diesem Iterator Beispiel sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe einer Selektion und einer Projektion alle Namen der Filmstars, die 1960 geboren wurden, herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint, um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
-<a class="reference internal image-reference" href="../_images/Iterator-Beispiel.png"><img alt="Iterator-Beispiel" src="../_images/Iterator-Beispiel.png" style="width: 500px;" /></a>
+<p>In diesem Iterator Beispiel <em>(siehe Fig. 4.4)</em> sieht man unten die beiden Relationen <em>StarsIn</em> und <em>MovieStar</em>. Aus der Relation <em>MovieStar</em> werden mithilfe einer Selektion und einer Projektion alle Namen der Filmstars, die 1960 geboren wurden, herausprojiziert. <em>StarsIn</em> und <em>MovieStar</em> werden dann gejoint, um die Titel der Filme zu bekommen, in denen nur Schauspieler gespielt haben, die 1960 geboren wurden.</p>
+<figure class="align-default" id="iterator-beispiel">
+<img alt="../_images/Iterator-Beispiel.png" src="../_images/Iterator-Beispiel.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Iterator Beispiel zum Blocking</span><a class="headerlink" href="#iterator-beispiel" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Hier der Code zu diesem Beispiel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>p = projection.Open();
 while (t &lt;&gt; NotFound)
@@ -642,10 +661,20 @@ Class join {
 <p>Mit der Zeile j = join.Open() wird dann Open() in der join Klasse aufgerufen. Hier wird für jedes Tupel, dass mit der äußeren while-Schleife aus der linken Tabelle genommen wird, mit der inneren while-Schleife ein Tupel aus der rechten Tabelle gelesen.</p>
 <p>Auch hier blockiert die Open()-Funktion und lädt die ganzen Tupel in den Hauptspeicher, sodass wir uns mit GetNext() wieder einfach nur daran bedienen müssen.</p>
 <p><strong>Pipelining vs. Pipeline-Breaker</strong></p>
-<p>Wir sehen hier die Relationen <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(S\)</span> und <span class="math notranslate nohighlight">\(T\)</span>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können (obere Abb.). Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker (untere Abb.).</p>
-<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker_2.png"><img alt="Pipelining-vs-Pipelin-Breaker_2" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" style="width: 500px;" /></a>
+<p>Wir sehen hier die Relationen <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(S\)</span> und <span class="math notranslate nohighlight">\(T\)</span>. Die schwarzen Punkte sind die Tupel, die sich nach oben bewegen. Es gibt die Möglichkeit, Operatoren zu pipelinen. Das bedeutet, dass wir mit GetNext() jedes Tupel direkt aus der untersten Schicht holen können <em>(siehe Fig. 4.5)</em>. Wenn aber irgendwo ein GetNext() in einem Open() enthalten ist, gibt es einen Blocker, in dem zunächst alle Tupel gesammelt werden. Dann spricht man von einem Pipeline-Breaker <em>(siehe Fig. 4.6)</em>.</p>
+<figure class="align-default" id="pipelining-vs-pipelin-breaker-2">
+<img alt="../_images/Pipelining-vs-Pipelin-Breaker_2.png" src="../_images/Pipelining-vs-Pipelin-Breaker_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Pipelining ohne Blocker</span><a class="headerlink" href="#pipelining-vs-pipelin-breaker-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <br>
-<a class="reference internal image-reference" href="../_images/Pipelining-vs-Pipelin-Breaker.png"><img alt="Pipelining-vs-Pipelin-Breaker" src="../_images/Pipelining-vs-Pipelin-Breaker.png" style="width: 500px;" /></a>
+<figure class="align-default" id="pipelining-vs-pipelin-breaker">
+<img alt="../_images/Pipelining-vs-Pipelin-Breaker.png" src="../_images/Pipelining-vs-Pipelin-Breaker.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Pipelining mit Pipeline-Breaker</span><a class="headerlink" href="#pipelining-vs-pipelin-breaker" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <br>
 <p><strong>Pipelining versus Blocking</strong></p>
 <p>Pipelining ist im allgemeinen sehr vorteilhaft. Es müssen keine Zwischenergebnisse gespeichert werden und Operationen können auf Threads und CPUs verteilt werden. Wenn aber die gesamte Relation gelesen werden muss, braucht man Pipeline-Breaker. Das ist beispielsweise beim Sortieren der Fall. Hierbei muss die gesamte Relation gelesen werden, andernfalls kann next() nicht ausgeführt werden. Man unterbricht also die Verarbeitung der Daten in der Pipeline, um diese zu sortieren. Ist eine Relation sortiert oder gehashed kann next() diese auch gruppieren und aggregieren.</p>
