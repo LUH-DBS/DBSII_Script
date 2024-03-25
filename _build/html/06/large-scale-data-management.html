@@ -1072,7 +1072,12 @@ Es werden somit doch Daten zwischen den Knoten ausgetauscht. Die Knoten teilen s
 <section id="id3">
 <h3><span class="section-number">6.2.14. </span>Data Parallelism: Beispiel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p><strong>Data Parallelism</strong> ist eine Strategie, die in Shared-Nothing und Shared-Disk Architekturen genutzt wird. Dabei führen multiple Instanzen eines Verarbeitungsplans gleichzeitig auf verschiedenen Knoten des Systems Operationen auf unterschiedlichen Datenpartitionen durch. Die Ergebnisse werden anschließend zusammengeführt. Bei komplexen Anfragen können die Ergebnisse auch für weitere parallele Verarbeitungsschritte neu verteilt werden. Dies ermöglicht eine effiziente und beschleunigte Verarbeitung großer Datensätze in verteilten Systemen.</p>
-<a class="reference internal image-reference" href="../_images/Data-Parallelism-example_2.png"><img alt="Data-Parallelism-example_2" src="../_images/Data-Parallelism-example_2.png" style="width: 400px;" /></a>
+<figure class="align-default" id="data-parallelism-example-2">
+<img alt="../_images/Data-Parallelism-example_2.png" src="../_images/Data-Parallelism-example_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.10 </span><span class="caption-text">Data Parallelism Example 2</span><a class="headerlink" href="#data-parallelism-example-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="parallel-operators">
 <h3><span class="section-number">6.2.15. </span>Parallel Operators<a class="headerlink" href="#parallel-operators" title="Permalink to this headline">#</a></h3>
@@ -1116,7 +1121,12 @@ Dies kann durch einen log2§-stufigen Merge-Prozess erfolgen, wobei p die Anzahl
 <h3><span class="section-number">6.2.20. </span>Symmetric Fragment-and-Replicate Join<a class="headerlink" href="#symmetric-fragment-and-replicate-join" title="Permalink to this headline">#</a></h3>
 <p>Der <strong>Symmetric Fragment-and-Replicate Join</strong> ist eine spezielle Methode, um das Joinen von Relationen R und S effizienter zu gestalten. Im herkömmlichen Fall müsste jedes Tupel des kartesischen Produkts betrachtet werden, was in parallelen DBMS dazu führen würde, dass jede Partition von R mit jeder Partition von S kombiniert werden müsste.</p>
 <p>Bei der Symmetric Fragment-and-Replicate Methode wird R in m Partitionen und S in n Partitionen fragmentiert. Diese Partitionen werden dann repliziert, wobei jede Partition von R n-mal und jede Partition von S m-mal repliziert wird. Auf einem System mit m * n = p Knoten kann dann jeder Knoten lokal genau ein Partitionspaar von R und S verbinden.</p>
-<a class="reference internal image-reference" href="../_images/Symmetric-Fragment-and-Replicate-Join.png"><img alt="Symmetric-Fragment-and-Replicate-Join" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" style="width: 400px;" /></a>
+<figure class="align-default" id="id4">
+<img alt="../_images/Symmetric-Fragment-and-Replicate-Join.png" src="../_images/Symmetric-Fragment-and-Replicate-Join.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.11 </span><span class="caption-text">Symmetric Fragment and Replicate Join</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Die <strong>Gesamtkosten</strong> dieses Algorithmus setzen sich aus den Fragmentierungskosten, den Transferkosten und den lokalen Join-Kosten zusammen. Die Fragmentierungskosten beinhalten die Größe von R und S (<span class="math notranslate nohighlight">\(B(R) + B(S)\)</span>), während die Transferkosten die Kosten für das Übertragen der replizierten Partitionen darstellen mit <span class="math notranslate nohighlight">\(\frac{B(R)}{m} * n + \frac{B(S)}{n} * m\)</span>. Der lokale Join wird auf jedem Knoten durchgeführt. Die Kosten variieren je nach Wahl des Joins.
 Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 <ul class="simple">
@@ -1129,7 +1139,12 @@ Hier seien die Kosten nochmal zusammengefasst dargestellt:</p>
 <section id="asymmetric-fragment-and-replicate-join">
 <h3><span class="section-number">6.2.21. </span>Asymmetric Fragment-and-Replicate Join<a class="headerlink" href="#asymmetric-fragment-and-replicate-join" title="Permalink to this headline">#</a></h3>
 <p>Der <strong>Asymmetric Fragment-and-Replicate Join</strong> ist eine Optimierungsmöglichkeit, insbesondere wenn die Relation S deutlich kleiner als die Relation R ist. Die grundlegende Idee besteht darin, die existierende Partitionierung von R zu nutzen und die Relation S auf jedem Knoten zu replizieren.</p>
-<a class="reference internal image-reference" href="../_images/Asymmetric-Fragment-and-Replicate-Join.png"><img alt="Asymmetric-Fragment-and-Replicate-Join" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" style="width: 200px;" /></a>
+<figure class="align-default" id="id5">
+<img alt="../_images/Asymmetric-Fragment-and-Replicate-Join.png" src="../_images/Asymmetric-Fragment-and-Replicate-Join.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.12 </span><span class="caption-text">Asymmetric Fragment and Replicate Join</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Die Kosten dieses Ansatzes setzen sich hauptsächlich aus den Transferkosten zusammen, da S auf jedem Knoten repliziert wird. Die Formel <span class="math notranslate nohighlight">\(p * B(S)\)</span> beschreibt die Transferkosten, wobei p die Anzahl der beteiligten Knoten und <span class="math notranslate nohighlight">\(B(S)\)</span> die Größe von S ist. Die Kosten sind somit insgesamt:</p>
 <ul class="simple">
 <li><p>Transferkosten: <span class="math notranslate nohighlight">\(p*B(S)\)</span></p></li>
@@ -1213,7 +1228,12 @@ Um einzelne Ausfallpunkte (<strong>Single Point of Failure</strong>) zu vermeide
 <section id="the-storage-model-distributed-file-system">
 <h3><span class="section-number">6.2.28. </span>The Storage Model – Distributed File System<a class="headerlink" href="#the-storage-model-distributed-file-system" title="Permalink to this headline">#</a></h3>
 <p>Das <strong>Storage-Modell</strong> eines verteilten Dateisystems basiert auf mehreren Schlüsselkomponenten. Das Dateisystem selbst ist auf mehrere Knoten, auch DataNodes genannt, verteilt und verfügt über einen gemeinsamen Namensraum für den gesamten Cluster. Die Verwaltung der Metadaten erfolgt auf einem speziellen Knoten, dem NameNode. Das Zugriffsmodell ist als <strong>“write-once-read-many”</strong> konzipiert.</p>
-<a class="reference internal image-reference" href="../_images/The-Storage-Model.png"><img alt="The-Storage-Model" src="../_images/The-Storage-Model.png" style="width: 500px;" /></a>
+<figure class="align-default" id="the-storage-model">
+<img alt="../_images/The-Storage-Model.png" src="../_images/The-Storage-Model.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.13 </span><span class="caption-text">The Storage Model</span><a class="headerlink" href="#the-storage-model" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Die Dateien werden in Blöcke von 128 MB aufgeteilt, wobei jeder Block auf mehreren DataNodes repliziert wird. Der Client kann den Standort eines Blocks identifizieren und direkt über das Netzwerk die Daten von einem DataNode anfordern.</p>
 <p>Eine Herausforderung besteht jedoch in der begrenzten Bandbreite zum Zugriff auf die Daten. Das Abrufen von Daten aus einem entfernten Speicher ist teurer als lokale Zugriffe (50 MB/s remote access vs. 150-200 MB/s local access).
 Um dieses Problem zu umgehen, versucht das Map/Reduce-Framework, Berechnungen möglichst nah an den Daten auszuführen. Die Berechnung zu bewegen ist billiger als die Daten zu bewegen. In diesem Konzept sind die Knoten sowohl für die Speicherung als auch für die Berechnungen verantwortlich.</p>
@@ -1226,7 +1246,12 @@ Um dieses Problem zu umgehen, versucht das Map/Reduce-Framework, Berechnungen m�
 <section id="skalierungsmuster">
 <h3><span class="section-number">6.2.30. </span>Skalierungsmuster<a class="headerlink" href="#skalierungsmuster" title="Permalink to this headline">#</a></h3>
 <p><strong>Skalierungsmuster</strong> spielen eine entscheidende Rolle bei der Verarbeitung großer Datenmengen. Dieser Prozess kann in verschiedene Phasen unterteilt werden.</p>
-<a class="reference internal image-reference" href="../_images/Skalierungsmuster.png"><img alt="Skalierungsmuster" src="../_images/Skalierungsmuster.png" style="width: 300px;" /></a>
+<figure class="align-default" id="id6">
+<img alt="../_images/Skalierungsmuster.png" src="../_images/Skalierungsmuster.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.14 </span><span class="caption-text">Skalierungsmuster</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In der <strong>Phase 0</strong> erfolgt die Verteilung der Daten, auch als <strong>Split</strong> bezeichnet. Hier werden die Daten in Teilmengen aufgeteilt, um die Verarbeitung zu erleichtern.
 In der darauffolgenden <strong>Phase 1</strong> werden Berechnungen auf diesen Teilmengen durchgeführt, was als <strong>Map</strong> bezeichnet wird. Jede Teilmenge wird individuell analysiert oder bearbeitet.
 In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bekannt als <strong>Reduce</strong>. Hier werden die Ergebnisse der vorherigen Phase in einer gemeinsamen Betrachtung zusammengeführt.</p>
@@ -1240,7 +1265,12 @@ In der <strong>Phase 2</strong> erfolgt die Zusammenführung der Teilmengen, bek
 <div><p>“MapReduce is a programming model and an associated implementation for processing and generating large data sets.”</p>
 </div></blockquote>
 <p>Das zugrunde liegende <a class="reference external" href="https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf">Paper</a> zu Map Reduce ist von Jeffrey Dean und Sanjay Ghemawat im Jahr 2006 verfasst worden.</p>
-<a class="reference internal image-reference" href="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png"><img alt="MapReduce-Simplified-data-processing-on-large-clusters" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" style="width: 500px;" /></a>
+<figure class="align-default" id="mapreduce-simplified-data-processing-on-large-clusters">
+<img alt="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" src="../_images/MapReduce-Simplified-data-processing-on-large-clusters.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.15 </span><span class="caption-text">MapReduce simplified data processing on large clusters</span><a class="headerlink" href="#mapreduce-simplified-data-processing-on-large-clusters" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="was-ist-map-reduce">
 <h3><span class="section-number">6.3.1. </span>Was ist Map/Reduce?<a class="headerlink" href="#was-ist-map-reduce" title="Permalink to this headline">#</a></h3>
 <p><strong>Map/Reduce</strong> ist ein Programmiermodell, das auf Konzepten der funktionalen Programmierung basiert und sich besonders gut für parallele Verarbeitung eignet. Es ermöglicht automatische Parallelisierung und Verteilung von Daten und Berechnungslogik. Diese saubere Abstraktion erleichtert die Programmierung für Entwickler und Entwicklerinnen.</p>
@@ -1258,11 +1288,21 @@ Dabei stehen Nutzern und Nutzerinnen zwei Herausforderungen bevor: das Entwerfen
 <section id="mapreduce-workflow">
 <h3><span class="section-number">6.3.3. </span>MapReduce Workflow<a class="headerlink" href="#mapreduce-workflow" title="Permalink to this headline">#</a></h3>
 <p>Der <strong>MapReduce Workflow</strong> beinhaltet einige Schritte. Zunächst werden aus dem Input Datafile ein Key und Value gelesen und der Mapper-Funktion übergeben. Das Ergebnis daraus in Form von einem Key und Value wird an eine Key-Sorter-Funktion übergeben. Diese Funktion gibt einen Key mit einer Liste an Werten an eine Reducer-Funktion weiter. Das Resultat aus der Reducer-Funktion in Form von einem key und value wird in eine Output Datafile geschrieben. Den ganzen Workflow kann man mehrmals wiederholen und aneinander ketten, wenn dies je nach Situation verlangt wird.</p>
-<a class="reference internal image-reference" href="../_images/MapReduce-workflow.png"><img alt="MapReduce-workflow" src="../_images/MapReduce-workflow.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id7">
+<img alt="../_images/MapReduce-workflow.png" src="../_images/MapReduce-workflow.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.16 </span><span class="caption-text">MapReduce Workflow</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="beispiel-1">
 <h4><span class="section-number">6.3.3.1. </span>Beispiel 1<a class="headerlink" href="#beispiel-1" title="Permalink to this headline">#</a></h4>
 <p><strong>Bestimme für jedes Wort dessen Häufigkeit im Korpus.</strong></p>
-<a class="reference internal image-reference" href="../_images/Aufgabe-Häufigkeit-bestimmen.png"><img alt="Aufgabe-Häufigkeit-bestimmen" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" style="width: 500px;" /></a>
+<figure class="align-default" id="aufgabe-haufigkeit-bestimmen">
+<img alt="../_images/Aufgabe-Häufigkeit-bestimmen.png" src="../_images/Aufgabe-Häufigkeit-bestimmen.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.17 </span><span class="caption-text">Aufgabe: Häufigkeit bestimmen</span><a class="headerlink" href="#aufgabe-haufigkeit-bestimmen" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Um die Aufgabe zu lösen und für jedes Wort die Häufigkeit im Korpus zu bestimmen, müssen zwei Funktionen geschrieben werden: Eine Map- und eine Reduce-Funktion.</p>
 <p>Zunächst wird eine <strong>Map-Funktion</strong> geschrieben, die jedes Wort zusammen mit einer 1 zurückgibt.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">line</span><span class="p">){</span>
@@ -1285,7 +1325,12 @@ Dabei stehen Nutzern und Nutzerinnen zwei Herausforderungen bevor: das Entwerfen
 </section>
 <section id="beispiel-2">
 <h3><span class="section-number">6.3.4. </span>Beispiel 2<a class="headerlink" href="#beispiel-2" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/MapReduce-Illustrated-2.png"><img alt="MapReduce-Illustrated-2" src="../_images/MapReduce-Illustrated-2.png" style="width: 500px;" /></a>
+<figure class="align-default" id="mapreduce-illustrated-2">
+<img alt="../_images/MapReduce-Illustrated-2.png" src="../_images/MapReduce-Illustrated-2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.18 </span><span class="caption-text">MapReduce Illustrated 2</span><a class="headerlink" href="#mapreduce-illustrated-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Von den oberen zwei Sätzen sollen die Häufigkeiten der einzelnen Wörter gezählt werden. Die <strong>Mapper-Funktionen</strong> geben jedes Wort zusammen mit einer 1 zurück. Jede <strong>Reduce-Funktion</strong> bekommt nun die gleichen Wörter, sodass diese die Wörter zusammenzählen kann. Als Ergebnis wird das Wort und dessen Häufigkeit zurückgegeben.</p>
 <section id="beispiel-3">
 <h4><span class="section-number">6.3.4.1. </span>Beispiel 3<a class="headerlink" href="#beispiel-3" title="Permalink to this headline">#</a></h4>
@@ -1361,7 +1406,12 @@ E -&gt; B C D <br></p>
 <section id="parallel-dbms-vs-map-reduce">
 <h3><span class="section-number">6.3.5. </span>Parallel DBMS vs. Map/Reduce<a class="headerlink" href="#parallel-dbms-vs-map-reduce" title="Permalink to this headline">#</a></h3>
 <p>Prinzipiell ist bei den aufgelisteten Punkten alles möglich zu programmieren. Zum Beispiel kann auch für Map/Reduce ein Schema Support programmiert werden. Es entstehen dann Mischformen zwischen Parallelen DBMS und Map/Reduce, die die Vor- und Nachteile gegenseitig aushebeln.</p>
-<a class="reference internal image-reference" href="../_images/Parallel_DBMS_vs_Map_Reduce.png"><img alt="Parallel_DBMS_vs_Map_Reduce" src="../_images/Parallel_DBMS_vs_Map_Reduce.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id8">
+<img alt="../_images/Parallel_DBMS_vs_Map_Reduce.png" src="../_images/Parallel_DBMS_vs_Map_Reduce.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.19 </span><span class="caption-text">Parallel DBMS vs Map Reduce</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="relational-operators-as-map-reduce-jobs">
 <h3><span class="section-number">6.3.6. </span>Relational Operators as Map/Reduce jobs<a class="headerlink" href="#relational-operators-as-map-reduce-jobs" title="Permalink to this headline">#</a></h3>
@@ -1414,7 +1464,12 @@ GROUP BY year
 </section>
 <section id="hadoop-a-map-reduce-framework">
 <h3><span class="section-number">6.3.7. </span>Hadoop – A map/reduce Framework<a class="headerlink" href="#hadoop-a-map-reduce-framework" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/hadoop.png"><img alt="hadoop" src="../_images/hadoop.png" style="width: 500px;" /></a>
+<figure class="align-default" id="hadoop">
+<img alt="../_images/hadoop.png" src="../_images/hadoop.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.20 </span><span class="caption-text">Hadoop</span><a class="headerlink" href="#hadoop" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Hadoop</strong> ist ein Map/Reduce-Framework und zählt zu den Apache Top-Level-Projekten. Die Open-Source-Lösung ist in Java geschrieben. Der Hadoop-Stack bietet verschiedene Komponenten, darunter ein verteiltes Dateisystem (HDFS). Vergleichbar ist es mit dem Google File System. Außerdem bietet es eine Map/Reduce-Engine, Datenverarbeitungssprachen wie Pig Latin und Hive SQL sowie weitere Pakete.</p>
 <p>Hadoop kann auf Betriebssystemen wie Linux, Mac OS/X, Windows und Solaris ausgeführt werden. Es ist darauf ausgelegt, auf kostengünstiger Hardware, sogenannter Commodity-Hardware, zu laufen.</p>
 </section>
@@ -1423,7 +1478,12 @@ GROUP BY year
 <p>Das <strong>Hadoop Distributed File System</strong> (HDFS) folgt einer Koordinator-Arbeiter-Architektur und wurde auf Grundlagen des Google File Systems (GFS) entwickelt.</p>
 <p>Der <strong>HDFS-Koordinator</strong>, auch als <strong>“NameNode”</strong> bekannt, ist verantwortlich für die Verwaltung aller Metadaten des Dateisystems. Er loggt und merged Transaktionen beim Systemstart, kontrolliert den Lese- und Schreibzugriff auf Dateien, verwaltet die Replikation von Datenblöcken und kann selbst repliziert werden.</p>
 <p>Die <strong>HDFS-Arbeiter</strong>, auch <strong>“DataNode”</strong> genannt, kommunizieren periodisch mit dem NameNode über Herzschläge (heartbeats). Der DataNode fragt periodisch nach, ob dieser eine Aufgabe hat und wenn ja, erledigt er sie. DataNodes bedienen auch Lese- und Schreibanfragen von Clients, führen Replikationsaufgaben aus, die vom NameNode kommen, und haben einen Standard-Replikationsfaktor von 3.</p>
-<a class="reference internal image-reference" href="../_images/HDFS.png"><img alt="HDFS" src="../_images/HDFS.png" style="width: 350px;" /></a>
+<figure class="align-default" id="hdfs">
+<img alt="../_images/HDFS.png" src="../_images/HDFS.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.21 </span><span class="caption-text">HDFS</span><a class="headerlink" href="#hdfs" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="hadoop-map-reduce-engine">
 <h3><span class="section-number">6.3.9. </span>Hadoop Map/Reduce Engine<a class="headerlink" href="#hadoop-map-reduce-engine" title="Permalink to this headline">#</a></h3>
@@ -1437,7 +1497,12 @@ GROUP BY year
 <li><p><strong>Output Phase</strong>: Sie schreibt am Ende die Ergebnispaare in das HDFS.</p></li>
 </ol>
 <p>Alle Phasen sind verteilt und bestehen aus vielen Tasks. Das Map/Reduce-Framework übernimmt das Scheduling der Tasks auf dem Cluster und kümmert sich um die Wiederherstellung im Falle eines Knotenausfalls. Man kann den Knoten einfach neustarten ohne einen Datenverlust zu risikieren.</p>
-<a class="reference internal image-reference" href="../_images/Hadoop-Map_Reduce-engine.png"><img alt="Hadoop-Map_Reduce-engine" src="../_images/Hadoop-Map_Reduce-engine.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id9">
+<img alt="../_images/Hadoop-Map_Reduce-engine.png" src="../_images/Hadoop-Map_Reduce-engine.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.22 </span><span class="caption-text">Hadoop Map Reduce Engine</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Die Coordinator/Worker-Architektur des Map/Reduce-Frameworks in Hadoop besteht aus einem Map/Reduce Coordinator, bekannt als JobTracker, und den Map/Reduce Workern, auch als TaskTracker bezeichnet.</p>
 <p>Der JobTracker übernimmt die Koordination von Jobs, die von Clients eingereicht werden. Er weist sowohl Map- als auch Reduce-Tasks den TaskTrackers zu. Zudem überwacht er den Ausführungsstatus und führt fehlgeschlagene Tasks erneut aus.</p>
 <p>Die TaskTracker, als Worker-Komponente, ist für die Ausführung von Map- und Reduce-Tasks verantwortlich. Zusätzlich verwaltet sie die Ablage, Sortierung und Ausgabe von Zwischenergebnissen.</p>
@@ -1461,15 +1526,35 @@ Die Architektur von Hadoop basiert auf der Verarbeitung unabhängig ausführbare
 <p>Die Effizienz solcher Workflows wird durch <strong>Planoptimierung</strong> und <strong>Re-optimierung</strong> gesteigert.
 <strong>Scheduling</strong> und <strong>Lastbalancierung</strong> sind auch entscheidend, um die Ressourcen im Cluster effektiv zu nutzen und sicherzustellen, dass die Aufgaben gleichmäßig verteilt werden.
 Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wichtigkeit, insbesondere wenn verschiedene Technologien oder Plattformen innerhalb desselben Workflows integriert werden müssen.</p>
-<a class="reference internal image-reference" href="../_images/Komplexe-optimierte-MapReduce-workflows.png"><img alt="Komplexe-optimierte-MapReduce-workflows" src="../_images/Komplexe-optimierte-MapReduce-workflows.png" style="width: 500px;" /></a>
+<figure class="align-default" id="komplexe-optimierte-mapreduce-workflows">
+<img alt="../_images/Komplexe-optimierte-MapReduce-workflows.png" src="../_images/Komplexe-optimierte-MapReduce-workflows.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.23 </span><span class="caption-text">Komplexe optimierte MapReduce Workflows</span><a class="headerlink" href="#komplexe-optimierte-mapreduce-workflows" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="hadoop-vs-parallel-dbms">
 <h3><span class="section-number">6.3.13. </span>Hadoop vs. Parallel DBMS<a class="headerlink" href="#hadoop-vs-parallel-dbms" title="Permalink to this headline">#</a></h3>
 <p>Turing Award Gewinner <strong>Michael Stonebreaker</strong> war in den Anfangsjahren ein großer Kritiker von Hadoop. Sein berühmtes <a class="reference external" href="https://cacm.acm.org/blogs/blog-cacm/149074-possible-hadoop-trajectories/fulltext">Paper aus dem Jahr 2012</a> kritisiert die Nutzung von Hadoop für Pilotprojekte, die dann in der Praxis Leistungsprobleme feststellen werden und am Ende wieder zu echten parallelen DBMS wechseln müssen.</p>
-<a class="reference internal image-reference" href="../_images/Hadoop-vs-Parallel-DBMS.png"><img alt="Hadoop-vs-Parallel-DBMS" src="../_images/Hadoop-vs-Parallel-DBMS.png" style="width: 300px;" /></a>
-<a class="reference internal image-reference" href="../_images/Hadoop_vs_Parallel_DBMS.png"><img alt="Hadoop_vs_Parallel_DBMS" src="../_images/Hadoop_vs_Parallel_DBMS.png" style="width: 500px;" /></a>
+<figure class="align-default" id="michael-stonebreaker">
+<img alt="../_images/Hadoop-vs-Parallel-DBMS.png" src="../_images/Hadoop-vs-Parallel-DBMS.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.24 </span><span class="caption-text">Michael Stonebreaker</span><a class="headerlink" href="#michael-stonebreaker" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="steps">
+<img alt="../_images/Hadoop_vs_Parallel_DBMS.png" src="../_images/Hadoop_vs_Parallel_DBMS.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.25 </span><span class="caption-text">Steps</span><a class="headerlink" href="#steps" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Im Jahr 2014 hat Michael Stonebreaker mit einem weiterem <a class="reference external" href="https://cacm.acm.org/blogs/blog-cacm/177467-hadoop-at-a-crossroads/fulltext">Paper</a> Hadoop noch stärker kritisiert mit der Aussage, dass Google Hadoop erst veröffentlicht hat, nachdem sie ein neues System verwendet haben.</p>
-<a class="reference internal image-reference" href="../_images/Hadoop_vs_Parallel_DBMS_2.png"><img alt="Hadoop_vs_Parallel_DBMS_2" src="../_images/Hadoop_vs_Parallel_DBMS_2.png" style="width: 500px;" /></a>
+<figure class="align-default" id="kritik">
+<img alt="../_images/Hadoop_vs_Parallel_DBMS_2.png" src="../_images/Hadoop_vs_Parallel_DBMS_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.26 </span><span class="caption-text">Kritik</span><a class="headerlink" href="#kritik" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>In der Tat haben sich viele Hadoop System im Laufe der Zeit sich Datenbanksystemen angenähert und Funktionen übernommen. 2014 ist vom Map/Reduce System wenig übrig geblieben mit Ausnahme des Filesystems.</p>
 </section>
 <section id="in-der-praxis-viele-bibliotheken">
@@ -1488,7 +1573,12 @@ Außerdem ist die <strong>Cross-Plattform-Ausführung</strong> noch von hoher Wi
 <li><p>Mahout, Giraph, Solr (Bibliotheken für maschinelles Lernen, Graphenverarbeitung, Suche)</p></li>
 <li><p>Kafka, Flink, Spark (Bibliotheken für Datenstromverarbeitung und parallele Datenverarbeitung)</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/Viele-Bibliotheken.png"><img alt="Viele-Bibliotheken" src="../_images/Viele-Bibliotheken.png" style="width: 400px;" /></a>
+<figure class="align-default" id="viele-bibliotheken">
+<img alt="../_images/Viele-Bibliotheken.png" src="../_images/Viele-Bibliotheken.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.27 </span><span class="caption-text">Viele weitere Bibliotheken</span><a class="headerlink" href="#viele-bibliotheken" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 </section>
