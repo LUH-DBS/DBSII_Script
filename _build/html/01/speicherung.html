@@ -468,7 +468,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id5">
      1.2.8. Beispiel – Megatron 747 Disk
     </a>
    </li>
@@ -695,7 +695,7 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id5">
      1.2.8. Beispiel – Megatron 747 Disk
     </a>
    </li>
@@ -819,13 +819,21 @@ title="Print to PDF"
 <h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this headline">#</a></h1>
 <p>Bei der Wahl und dem Design eines Algorithmus ist die Speicherung ein großer Faktor. Das Zusammenspiel aus Größe, Kosten und Zugriffszeiten muss berücksichtigt werden, um teure Operationen und Zugriffe zu minimieren. Deshalb befassen wir uns im ersten Kapitel mit der Speicherung sowie unter anderem mit Speicherstrukturen und -hierarchien, um Algorithmen bestmöglich zu designen und effizient einzusetzen.</p>
 <p><strong>Zoom in die interne Ebene: Die 5-Schichten Architektur</strong></p>
-<a class="reference internal image-reference" href="../_images/5-Schichten-Architektur.png"><img alt="5-Schichten-Architektur" src="../_images/5-Schichten-Architektur.png" style="width: 500px;" /></a>
-<br>
+<figure class="align-default" id="schichten-architektur">
+<img alt="../_images/5-Schichten-Architektur.png" src="../_images/5-Schichten-Architektur.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">5-Schichten-Architektur</span><a class="headerlink" href="#schichten-architektur" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Auf der Datenmodellebene können Relationen definiert und die relationale Algebra verwendet werden. Darunter befindet sich die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie sie verteilt sind. Die nächsten zwei Ebenen beschäftigen sich mit den Speicherstrukturen. Also wo die Daten physisch abgelegt sind und über welche Puffer bzw. Schnittstellen darauf zugegriffen werden kann. Unterhalb dieser Ebenen befindet sich noch eine weitere Schnittstelle zum Betriebssystem. Es gibt zwei Varianten, wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zu arbeiten, bei der anderen Variante versucht man es zu umgehen.</p>
 <section id="speicherhierarchie">
 <h2><span class="section-number">1.1. </span>Speicherhierarchie<a class="headerlink" href="#speicherhierarchie" title="Permalink to this headline">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Speicherhierachie.png"><img alt="Speicherhierachie" src="../_images/Speicherhierachie.png" style="width: 300px;" /></a>
-<br> 
+<figure class="align-default" id="speicherhierachie">
+<img alt="../_images/Speicherhierachie.png" src="../_images/Speicherhierachie.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Speicherhierachie</span><a class="headerlink" href="#speicherhierachie" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Speichermedium</p></th>
@@ -888,30 +896,53 @@ Es gibt zwei Operationen auf Festplatten. Zum Einem Disk-read. Darunter versteht
 <section id="festplatten-puffer">
 <h3><span class="section-number">1.1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this headline">#</a></h3>
 <p>Ein Bufferpool-Manager puffert Teile von Dateien. In diesem Beispiel mit einer  Blockgröße von 4 KB. Dabei werden immer 4KB in den Pool geladen. Dieser Block kann dann geschrieben oder auch verworfen werden.</p>
-<a class="reference internal image-reference" href="../_images/Festplatten-Puffer.png"><img alt="Festplatten-Puffer" src="../_images/Festplatten-Puffer.png" style="width: 500px;" /></a>
-<br>
+<figure class="align-default" id="id1">
+<img alt="../_images/Festplatten-Puffer.png" src="../_images/Festplatten-Puffer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Festplatten-Puffer</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Das DBMS verwaltet die Positionen der Blöcke innerhalb der Datei selbst! Dafür ist nicht mehr das Betriebssystem zuständig. <br>
-Die Dauer für das Schreiben oder Lesen eines Blocks beträgt 10 bis 30 ms. In dieser kurzen Zeitspanne können viele Millionen Prozessoranweisungen ausgeführt werden. Somit dominiert das Lesen und Schreiben, also die I/O-Zeit, die Gesamtkosten. Die Blöcke sollten daher am besten im Hauptspeicher liegen. Das ist nicht immer möglich, da der Hauptspeicher meist zu klein ist.
-<br><br>
-Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hier aber immer ungefähr im gleichen Skalierungsraum und sollen dabei helfen ein Gefühl für die Zugriffszeiten zu vermitteln.</p>
+Die Dauer für das Schreiben oder Lesen eines Blocks beträgt 10 bis 30 ms. In dieser kurzen Zeitspanne können viele Millionen Prozessoranweisungen ausgeführt werden. Somit dominiert das Lesen und Schreiben, also die I/O-Zeit, die Gesamtkosten. Die Blöcke sollten daher am besten im Hauptspeicher liegen. Das ist nicht immer möglich, da der Hauptspeicher meist zu klein ist.</p>
+<p>Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hier aber immer ungefähr im gleichen Skalierungsraum und sollen dabei helfen ein Gefühl für die Zugriffszeiten zu vermitteln.</p>
 </section>
 <section id="tertiarspeicher-magnetbander">
 <h3><span class="section-number">1.1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this headline">#</a></h3>
 <p>Tertiärspeicher kann viele Terabyte (10^12 Bytes) Verkaufsdaten, sowie viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten speichern. Für diesen Einsatzbereich wären Festplatten ungeeignet. Sie sind zu teuer aufgrund von Wartung und Strom. <br>
 Im Vergleich zum Sekundärspeicher sind zwar die I/O-Zeiten wesentlich höher, aber dafür steigt auch die Kapazität. Ein weiterer Vorteil sind die geringeren Kosten pro Byte gegenüber den Festplatten. <br>
 Auf Tertiärspeicher gibt es keinen wahlfreien, sondern zufälligen Zugriff (random access). Die Zugriffszeiten hängen dabei stark von der Position des jeweiligen Datensatzes (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes) ab.</p>
-<a class="reference internal image-reference" href="../_images/Magnetband.png"><img alt="Magnetband" src="../_images/Magnetband.png" style="width: 300px;" /></a>
+<figure class="align-default" id="magnetband">
+<img alt="../_images/Magnetband.png" src="../_images/Magnetband.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.4 </span><span class="caption-text">Magnetband</span><a class="headerlink" href="#magnetband" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="tertiarspeicher">
 <h3><span class="section-number">1.1.5. </span>Tertiärspeicher<a class="headerlink" href="#tertiarspeicher" title="Permalink to this headline">#</a></h3>
 <p>Ad-hoc können Daten auf Magnetbändern/Magnetbandspulen und Kasseten gespeichert werden. Die Speichermedien werden oft von Menschenhand in die jeweiligen Regale gelegt und geordnet. Daher der Tertiärspeicher in dem Fall gut beschriftet werden. Durch Magnetbandroboter (Silo) kann dieser Prozess ersetzt bzw. optimiert werden. Der Roboter bedient anstelle des Menschen die Magnetbänder (Kassetten). Der Einsatz von Robotern beschleunigt das Verfahren um das zehnfache. <br>
 Die Idee ist ähnlich zu CDs, DVDs und Juke-Boxes. Ein Roboterarm extrahiert das jeweilige Medium (CD oder DVD). Der Tertiärspeicher hat wieder eine hohe Lebensdauer von ca. 30 Jahren. Somit ist es wahrscheinlicher, dass kein Lesegerät mehr existiert, als dass der Tertiärspeicher nicht mehr funktioniert.</p>
-<a class="reference internal image-reference" href="../_images/Tertiärspeicher.png"><img alt="Tertiärspeicher" src="../_images/Tertiärspeicher.png" style="width: 300px;" /></a>
+<figure class="align-default" id="id2">
+<img alt="../_images/Tertiärspeicher.png" src="../_images/Tertiärspeicher.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.5 </span><span class="caption-text">Tertiärspeicher</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="moores-law-gordon-moore-1965">
 <h3><span class="section-number">1.1.6. </span>Moore’s Law (Gordon Moore, 1965)<a class="headerlink" href="#moores-law-gordon-moore-1965" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/moores-law_1.png"><img alt="moores-law_1" src="../_images/moores-law_1.png" style="width: 400px;" /></a>
-<a class="reference internal image-reference" href="../_images/moores-law_2.png"><img alt="moores-law_2" src="../_images/moores-law_2.png" style="width: 300px;" /></a>
+<figure class="align-default" id="moores-law-1">
+<img alt="../_images/moores-law_1.png" src="../_images/moores-law_1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Moores Law</span><a class="headerlink" href="#moores-law-1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="moores-law-2">
+<img alt="../_images/moores-law_2.png" src="../_images/moores-law_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Gordon Moore</span><a class="headerlink" href="#moores-law-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Moore’s Law beschreibt das exponentielle Wachstum vieler Parameter. Alle 18 Monate findet eine Verdoppelung statt. Zum Beispiel können sich folgende Parameter verdoppeln oder halbieren:</p>
 <ul class="simple">
 <li><p>Prozessorgeschwindigkeit (# instr. per sec.)</p></li>
@@ -921,20 +952,45 @@ Die Idee ist ähnlich zu CDs, DVDs und Juke-Boxes. Ein Roboterarm extrahiert das
 <li><p>Kapazität der größten Disks</p></li>
 </ul>
 <p>Dahingegen kommt es aber zu einer sehr langsamen Verbesserung bei der Zugriffsgeschwindigkeit im Hauptspeicher und der Rotationsgeschwindigkeit von Festplatten, da es physikalisch deutlich schwerer und teurer ist zu realisieren. Als Folge daraus wächst der Latenz-Anteil. Die Bewegung von Daten innerhalb der Speicherhierarchie erscheint immer langsamer (im Vergleich zur Prozessorgeschwindigkeit).</p>
-<a class="reference internal image-reference" href="../_images/moores-law_3.png"><img alt="moores-law_3" src="../_images/moores-law_3.png" style="width: 500px;" /></a>
+<figure class="align-default" id="moores-law-3">
+<img alt="../_images/moores-law_3.png" src="../_images/moores-law_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.8 </span><span class="caption-text">Anzahl Transistoren im Laufe der Zeit</span><a class="headerlink" href="#moores-law-3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Das Diagramm zeigt die Anzahl der Transistoren als Funktion der Zeit.</p>
-<a class="reference internal image-reference" href="../_images/moores-law_4.png"><img alt="moores-law_4" src="../_images/moores-law_4.png" style="width: 500px;" /></a>
+<figure class="align-default" id="moores-law-4">
+<img alt="../_images/moores-law_4.png" src="../_images/moores-law_4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.9 </span><span class="caption-text">1 Gigabyte vor einiger Zeit</span><a class="headerlink" href="#moores-law-4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Siehe auch: <a class="reference external" href="http://www.computerhistory.org/timeline/memory-storage/">http://www.computerhistory.org/timeline/memory-storage/</a></p>
 </section>
 <section id="plattenkapazitat">
 <h3><span class="section-number">1.1.7. </span>Plattenkapazität<a class="headerlink" href="#plattenkapazitat" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/Plattenkapazität.png"><img alt="Plattenkapazität" src="../_images/Plattenkapazität.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id3">
+<img alt="../_images/Plattenkapazität.png" src="../_images/Plattenkapazität.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.10 </span><span class="caption-text">Plattenkapazität</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><a class="reference external" href="http://en.wikipedia.org/wiki/Hard_disk_drive">http://en.wikipedia.org/wiki/Hard_disk_drive</a></p>
 <p>Wie man aus diesem Diagramm entnehmen kann, wächst die Plattenkapazität exponentiell. <br>
 Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der Trend zur maximal anhaltenden Bandbreite gezeigt.</p>
-<a class="reference internal image-reference" href="../_images/Access_times.png"><img alt="Access_times" src="../_images/Access_times.png" style="width: 500px;" /></a>
+<figure class="align-default" id="access-times">
+<img alt="../_images/Access_times.png" src="../_images/Access_times.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.11 </span><span class="caption-text">Access Times</span><a class="headerlink" href="#access-times" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Auch die Suchzeiten halbieren sich immer seltener. Daraus ergibt sich der folgende Trend:</p>
-<a class="reference internal image-reference" href="../_images/Seek_times.png"><img alt="Seek_times" src="../_images/Seek_times.png" style="width: 500px;" /></a>
+<figure class="align-default" id="seek-times">
+<img alt="../_images/Seek_times.png" src="../_images/Seek_times.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.12 </span><span class="caption-text">Seek Times</span><a class="headerlink" href="#seek-times" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p><a class="reference external" href="http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm">http://www.storagenewsletter.com/news/disk/hdd-technology-trends-ibm</a></p>
 </section>
 <section id="hdds">
@@ -944,7 +1000,12 @@ Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der
 <section id="ssds">
 <h3><span class="section-number">1.1.9. </span>SSDs<a class="headerlink" href="#ssds" title="Permalink to this headline">#</a></h3>
 <p>Die persistente Speicherung von SSDs basiert auf Halbleitern. Es gibt keine mechanische Bewegung oder Rotation wie bei einer HDD-Festplatte. Außerdem bieten SSDs einen hohen Grad an Parallelität.</p>
-<a class="reference internal image-reference" href="../_images/SSDs.png"><img alt="SSDs" src="../_images/SSDs.png" style="width: 500px;" /></a>
+<figure class="align-default" id="id4">
+<img alt="../_images/SSDs.png" src="../_images/SSDs.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.13 </span><span class="caption-text">SSDs</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="hdds-vs-ssds">
 <h3><span class="section-number">1.1.10. </span>HDDs vs. SSDs<a class="headerlink" href="#hdds-vs-ssds" title="Permalink to this headline">#</a></h3>
@@ -980,18 +1041,43 @@ Die Zugriffszeiten hingegen gleichen sich langsam an. Im folgendem Bild wird der
 </section>
 <section id="festplatten">
 <h2><span class="section-number">1.2. </span>Festplatten<a class="headerlink" href="#festplatten" title="Permalink to this headline">#</a></h2>
-<a class="reference internal image-reference" href="../_images/Festplatten_Vergleich_Früher_Heute.png"><img alt="Festplatten_Vergleich_Früher_Heute" src="../_images/Festplatten_Vergleich_Früher_Heute.png" style="width: 400px;" /></a>
+<figure class="align-default" id="festplatten-vergleich-fruher-heute">
+<img alt="../_images/Festplatten_Vergleich_Früher_Heute.png" src="../_images/Festplatten_Vergleich_Früher_Heute.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.14 </span><span class="caption-text">Festplatten im Vergleich: Früher und Heute</span><a class="headerlink" href="#festplatten-vergleich-fruher-heute" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="aufbau">
 <h3><span class="section-number">1.2.1. </span>Aufbau<a class="headerlink" href="#aufbau" title="Permalink to this headline">#</a></h3>
 <p>Eine Festplatte besteht aus mehreren (5-10) gleichförmig rotierenden Platten (z.B. 3.5” Durchmesser). Für jede Plattenoberfläche (10-20) gibt es einen Schreib-/Lesekopf, der sich gleichmäßig bewegt. Die magnetische Plattenoberfläche ist in Spuren unterteilt.
 Spuren sind als Sektoren fester Größe formatiert, wobei sich die Anzahl der Sektoren pro Spur unterscheiden kann. Übereinander angeordnete Spuren bilden einen Zylinder. Die Platten sind übereinander angeordnet, um Zugriffseffizienz zu ermöglichen. Der Kopf kann parallel auch an anderen Stellen lesen und schreiben.</p>
-<a class="reference internal image-reference" href="../_images/Aufbau_1.png"><img alt="Aufbau_1" src="../_images/Aufbau_1.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Aufbau_2.png"><img alt="Aufbau_2" src="../_images/Aufbau_2.png" style="width: 500px;" /></a>
+<figure class="align-default" id="aufbau-1">
+<img alt="../_images/Aufbau_1.png" src="../_images/Aufbau_1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.15 </span><span class="caption-text">Aufbau 1</span><a class="headerlink" href="#aufbau-1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="aufbau-2">
+<img alt="../_images/Aufbau_2.png" src="../_images/Aufbau_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.16 </span><span class="caption-text">Aufbau 2</span><a class="headerlink" href="#aufbau-2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Die Sektoren (1-8 KB) sind die kleinste physische Leseeinheit. Die Größe eines Sektors wird vom jeweiligen Hersteller festgelegt. Auf den äußeren Spuren befinden sich mehr Sektoren als auf den inneren.
 Zwischen den Sektoren existieren Lücken. Sie sind nicht magnetisiert und dienen zum Auffinden der Sektoranfänge. Diese Lücken nehmen etwa 10% der gesamten Spur ein. </br>
 Aus den Sektoren lesen wir Blöcke. Blöcke sind die logische Übertragungseinheit. Es ist also die Einheit, die wir auf einmal in den Hauptspeicher laden. Ein Block kann auch aus mehreren Sektoren bestehen.</p>
-<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg"><img alt="Aufbau_3" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="../_images/Aufbau_4.png"><img alt="Aufbau_4" src="../_images/Aufbau_4.png" style="width: 500px;" /></a>
+<figure class="align-default" id="aufbau-3">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" src="https://upload.wikimedia.org/wikipedia/commons/7/75/Hard_disk_head.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.17 </span><span class="caption-text">Aufbau 3</span><a class="headerlink" href="#aufbau-3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="aufbau-4">
+<img alt="../_images/Aufbau_4.png" src="../_images/Aufbau_4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.18 </span><span class="caption-text">Aufbau 4</span><a class="headerlink" href="#aufbau-4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Hier in dieser Grafik hat jede Spur die gleiche Anzahl an Sektoren. Normalerweise haben die inneren weniger und die äußeren Spuren mehr Sektoren. Eine Ausnahme wäre es, wenn die Sektoren unterschiedlich groß sind.</p>
 </section>
 <section id="zone-bit-recording">
@@ -999,14 +1085,24 @@ Aus den Sektoren lesen wir Blöcke. Blöcke sind die logische Übertragungseinhe
 <p>Mehrere Spuren übereinander betrachtet bilden einen Zylinder. Die äußeren Zylinder haben einen größeren Radius und damit eine größere Fläche. Bei gleichen Radien führt dies zu einer (nicht notwendigen) geringeren Bitdichte.
 Die Lösung sind Zonen mit unterschiedlichen Sektoreinteilungen.
 Für die folgenden Berechnungen wird dieser Fall vernachlässigt.</p>
-<a class="reference internal image-reference" href="../_images/ZoneBitRecording.png"><img alt="ZoneBitRecording" src="../_images/ZoneBitRecording.png" style="width: 500px;" /></a>
+<figure class="align-default" id="zonebitrecording">
+<img alt="../_images/ZoneBitRecording.png" src="../_images/ZoneBitRecording.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.19 </span><span class="caption-text">Zone Bit Recording</span><a class="headerlink" href="#zonebitrecording" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="disk-controller">
 <h3><span class="section-number">1.2.3. </span>Disk Controller<a class="headerlink" href="#disk-controller" title="Permalink to this headline">#</a></h3>
 <p>Ein Disk Controller steuert eine oder mehrere Disks und die Bewegung der Schreib-/Lese-Köpfe.
 Außerdem wählt er die Plattenoberfläche aus, auf die zugegriffen werden soll und den Sektor innerhalb der Spur, die sich gerade unter dem Schreib-/Lese-Kopf befindet. Auf diese Weise kontrolliert er den Start und das Ende eines Sektors.
 Der Disk Controller überträgt noch Bits zwischen Disk und Hauptspeicher und umgekehrt.</p>
-<a class="reference internal image-reference" href="../_images/DiskController.png"><img alt="DiskController" src="../_images/DiskController.png" style="width: 500px;" /></a>
+<figure class="align-default" id="diskcontroller">
+<img alt="../_images/DiskController.png" src="../_images/DiskController.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.20 </span><span class="caption-text">Disk Controller</span><a class="headerlink" href="#diskcontroller" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="beispiel-megatron-747-disk">
 <h3><span class="section-number">1.2.4. </span>Beispiel - Megatron 747 disk<a class="headerlink" href="#beispiel-megatron-747-disk" title="Permalink to this headline">#</a></h3>
@@ -1068,8 +1164,8 @@ Hierbei sprechen wir von der Latenzzeit. Sie beschreibt die Zeit zwischen der An
 </ol>
 <p>Die Zeit für solch eine Operation ergibt sich aus t_read + t_write. Mit ein wenig Glück ist der Kopf noch in der Nähe, wodurch t_write billiger wird.</p>
 </section>
-<section id="id1">
-<h3><span class="section-number">1.2.8. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<section id="id5">
+<h3><span class="section-number">1.2.8. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?
 Diese Frage soll nun am Beispiel der Megatron 747 Disk beantwortet werden. </br></p>
 <p>Die Umdrehungsgeschwindigkeit beträgt 7200 U · min-1. Somit dauert eine Umdrehung 8,33 ms. </br></p>
@@ -1268,7 +1364,12 @@ Die Nachteile der Blockvergrößerung:
 </ul>
 </li>
 </ul>
-<a class="reference internal image-reference" href="../_images/TPMMS-Grenzen-Visualisierung.png"><img alt="TPMMS-Grenzen-Visualisierung" src="../_images/TPMMS-Grenzen-Visualisierung.png" style="width: 500px;" /></a>
+<figure class="align-default" id="tpmms-grenzen-visualisierung">
+<img alt="../_images/TPMMS-Grenzen-Visualisierung.png" src="../_images/TPMMS-Grenzen-Visualisierung.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.21 </span><span class="caption-text">TPMMS Grenzen Visualisierung</span><a class="headerlink" href="#tpmms-grenzen-visualisierung" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Falls die Eingaberelation noch größer ist, wird eine dritte Phase hinzugefügt. TPMMS wird genutzt, um sortierte Listen der Größe M^2/RB zu erzeugen. In der dritten Phase wird maximal M/B - 1 solcher Listen zu einer sortierten Liste zusammengemerged. Insgesamt sind M^3/RB^2 Tupel sortierbar. Bezogen auf unser Beispiel, gibt es nun eine maximale Eingabegröße von 27 Billionen Tupeln (ca. 4.3 Petabytes). Global betrachtet ist die zweite Phase die zusätzliche Phase.</p>
 </section>
 </section>
@@ -1345,7 +1446,12 @@ Ein paar weitere Anmerkungen zu Spiegelungen: Sie sind teuer und verursachen kei
 </section>
 <section id="first-come-first-serve-vs-elevator-algorithmus">
 <h3><span class="section-number">1.4.6. </span>First-Come-First-Serve vs. Elevator Algorithmus<a class="headerlink" href="#first-come-first-serve-vs-elevator-algorithmus" title="Permalink to this headline">#</a></h3>
-<a class="reference internal image-reference" href="../_images/FCFS-vs-Elevator-Algo.png"><img alt="FCFS-vs-Elevator-Algo" src="../_images/FCFS-vs-Elevator-Algo.png" style="width: 500px;" /></a>
+<figure class="align-default" id="fcfs-vs-elevator-algo">
+<img alt="../_images/FCFS-vs-Elevator-Algo.png" src="../_images/FCFS-vs-Elevator-Algo.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.22 </span><span class="caption-text">FCFS vs. Elevator-Algorithmus</span><a class="headerlink" href="#fcfs-vs-elevator-algo" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Das kleine Beispiel zeigt den Vergleich zwischen First Come First Serve (kurz FCFS) und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei mit 57,52 nur etwas schneller als FCFS mit 71,52. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
 </section>
 <section id="elevator-algorithmus">
