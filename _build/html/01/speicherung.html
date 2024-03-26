@@ -1278,11 +1278,11 @@ Der verfügbare Hauptspeicherpuffer beträgt <span class="math notranslate nohig
 <p>Die <strong>Rekursion</strong> bei Merge Sort beginnt mit dem beliebigen Aufteilen einer Liste mit mehr als einem Element in zwei gleich lange Listen L1 und L2.
 Die Teillisten L1 und L2 werden rekursiv <strong>sortiert</strong>. Danach werden beide Teillisten zu einer sortierten Liste <strong>gemerged</strong>. </br>
 </br>
-Der <strong>Aufwand</strong> von Merge Sort lässt sich in ein paar Schritten berechnen. Die Eingabegröße ist |R| = n. </br>
-Das Mergen zweier sortierter Listen L1, L2 kostet: O(|L1| + |L2|) = O(n). </br>
-Die Rekursionstiefe ist log2(n), da sich in jedem Rekursionsschritt die Listenlänge halbiert. Nach i Schritten sind noch n / 2^i Elemente in der Liste.
+Der <strong>Aufwand</strong> von Merge Sort lässt sich in ein paar Schritten berechnen. Die Eingabegröße ist <span class="math notranslate nohighlight">\(|R| = n\)</span>. </br>
+Das Mergen zweier sortierter Listen L1, L2 kostet: <span class="math notranslate nohighlight">\(O(|L1| + |L2|) = O(n)\)</span>. </br>
+Die Rekursionstiefe ist <span class="math notranslate nohighlight">\(log2(n)\)</span>, da sich in jedem Rekursionsschritt die Listenlänge halbiert. Nach i Schritten sind noch <span class="math notranslate nohighlight">\(n / 2^i\)</span> Elemente in der Liste.
 </br>
-Ergo ergibt sich ein Aufwand von O(n log n). Das trifft die untere Schranke für das vergleichsbasierte Sortieren.</p>
+Ergo ergibt sich ein Aufwand von <span class="math notranslate nohighlight">\(O(n log(n))\)</span>. Das trifft die untere Schranke für das vergleichsbasierte Sortieren.</p>
 </section>
 <section id="two-phase-multiway-merge-sort-tpmms">
 <h3><span class="section-number">1.3.6. </span>Two-Phase, Multiway Merge-Sort (TPMMS)<a class="headerlink" href="#two-phase-multiway-merge-sort-tpmms" title="Permalink to this headline">#</a></h3>
