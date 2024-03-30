@@ -434,7 +434,6 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="reprasentation">
 <h1><span class="section-number">2. </span>Repräsentation<a class="headerlink" href="#reprasentation" title="Permalink to this heading">#</a></h1>
 <p>Bis hierhin haben wir nur auf einer sehr abstrakten Ebene besprochen, was für Daten wo liegen und wie diese Datenblöcke gelesen werden können. Womit wir uns noch nicht befasst haben, ist wo bestimmte Tupel und Blöcke liegen. Nach unserer intuitiven Vorstellung hoffen wir, dass alle Tupel einer Relation hintereinander im Speicher zu finden sind, das ist aber oftmals nicht der Fall. Nun muss ein Weg gefunden werden diese Tupel und Blöcke zu lesen, ohne bei jeder Anfrage die gesamte Festplatte lesen zu müssen.</p>
-<p><strong>Architektur</strong></p>
 <figure class="align-default" id="schichten-architektur">
 <img alt="../_images/5-Schichten-Architektur1.png" src="../_images/5-Schichten-Architektur1.png" />
 <figcaption>
@@ -511,7 +510,7 @@ Wir nehmen an alle haben eine feste Länge: 30 Byte + 256 Byte + 1 Byte + 10 Byt
 </section>
 <section id="versatz-zur-effizienz">
 <h3><span class="section-number">2.4.2. </span>Versatz zur Effizienz<a class="headerlink" href="#versatz-zur-effizienz" title="Permalink to this heading">#</a></h3>
-<p>In der Realität gibt es je nach System noch zusätzliche Anforderungen, wie z.B das Felder am besten bei Hauptspeicheradressen beginnen, die ein Vielfaches von 4 (bzw. 8) sind. Manchmal ist das sogar Pflicht. Dementsprechend müssen die Felder versetzt werden. Für die Festplatte ist das eigentlich egal, aber der eingelesene Datensatz landet auf einem Speicherplatz mit entsprechender Adresse: Vielfaches von 4 oder Vielfaches von 2n. Entsprechend versetzt sind die anderen Felder auch. Im unteren Beispielbild sehen wir zuerst das Feld ohne Versatz und dann mit einem Versatz von zwei.</p>
+<p>In der Realität gibt es je nach System noch zusätzliche Anforderungen, wie z.B das Felder am besten bei Hauptspeicheradressen beginnen, die ein Vielfaches von 4 (bzw. 8) sind. Manchmal ist das sogar Pflicht. Dementsprechend müssen die Felder versetzt werden. Für die Festplatte ist das eigentlich egal, aber der eingelesene Datensatz landet auf einem Speicherplatz mit entsprechender Adresse: Vielfaches von 4 oder Vielfaches von <span class="math notranslate nohighlight">\(2n\)</span>. Entsprechend versetzt sind die anderen Felder auch. In Abbildung 2.4 sehen wir zuerst das Feld ohne Versatz und dann mit einem Versatz von zwei.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/Versatz-zur-Effizienz.png" src="../_images/Versatz-zur-Effizienz.png" />
 <figcaption>
@@ -522,7 +521,7 @@ Wir nehmen an alle haben eine feste Länge: 30 Byte + 256 Byte + 1 Byte + 10 Byt
 </section>
 <section id="speicherung-der-metadaten">
 <h2><span class="section-number">2.5. </span>Speicherung der Metadaten<a class="headerlink" href="#speicherung-der-metadaten" title="Permalink to this heading">#</a></h2>
-<p>Die Metadaten eines Datensatzes, sind z.B. das Schema bzw. der Pointer auf ein Schema, die Länge des Datensatzes oder der Timestamp der letzten Änderung bzw. des letzten Lesens. Diese werden als Header vor dem Datensatz gespeichert. In dem Bild unten reichen 12 Bytes an Speicher für die Metadaten.</p>
+<p>Die Metadaten eines Datensatzes, sind z.B. das Schema bzw. der Pointer auf ein Schema, die Länge des Datensatzes oder der Timestamp der letzten Änderung bzw. des letzten Lesens. Diese werden als Header vor dem Datensatz gespeichert. In Abbildung 2.5 reichen 12 Bytes an Speicher für die Metadaten.</p>
 <figure class="align-default" id="speicherung-metadaten">
 <img alt="../_images/Speicherung_Metadaten.png" src="../_images/Speicherung_Metadaten.png" />
 <figcaption>
@@ -610,7 +609,7 @@ Es sind 2 Datensätze (4,7,9) und (a,b,c) gegeben. In Columnar Storages würden 
 <h3><span class="section-number">2.7.1. </span>Finden von Feldern variabler Länge<a class="headerlink" href="#finden-von-feldern-variabler-lange" title="Permalink to this heading">#</a></h3>
 <p>Datensätze müssen Informationen speichern, damit jedes Feld im Datensatz aufzufinden ist, wie z.B ein Header. Um das Löschen und Hinzufügen von Tupeln zu vereinfachen, ist die Idee Felder fester Länge an den Anfang des Datensatzes abzulegen und folgend alle Tupel variabler Längen. Dadurch müssen die Tupel fester Länge nicht umorganierst werden, wenn Tupel variabler Länge verändert werden. Eine weitere Idee ist, dass der Header die Länge des Datensatzes speichert, somit weiß man wann der aktuelle Datensatz aufhört und ein anderer beginnt. Zusätzlich können Pointer (offsets) zu den Anfängen aller Felder variabler Länge gespeichert werden.
 <br><br>
-In der Abbildung unten, ist so ein Beispielblock dargestellt. Zuerst kommt der Header, welcher die Länge des Datensatzes speichert, danach ein Pointer der zu dem Attribut Adresse zeigt, welches eine variable Länge hat. Falls Adresse NULL ist, dann wird ein Null-Pointer gespeichert.</p>
+In Abbildung 2.9 ist so ein Beispielblock dargestellt. Zuerst kommt der Header, welcher die Länge des Datensatzes speichert, danach ein Pointer der zu dem Attribut Adresse zeigt, welches eine variable Länge hat. Falls Adresse NULL ist, dann wird ein Null-Pointer gespeichert.</p>
 <figure class="align-default" id="finden-von-fehlern">
 <img alt="../_images/Finden-von-Fehlern.png" src="../_images/Finden-von-Fehlern.png" />
 <figcaption>
