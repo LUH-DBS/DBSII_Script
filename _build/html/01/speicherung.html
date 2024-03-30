@@ -451,7 +451,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="speicherung">
 <h1><span class="section-number">1. </span>Speicherung<a class="headerlink" href="#speicherung" title="Permalink to this heading">#</a></h1>
 <p>Bei der Wahl und dem Design eines Algorithmus ist die Speicherung ein großer Faktor. Das Zusammenspiel aus Größe, Kosten und Zugriffszeiten muss berücksichtigt werden, um teure Operationen und Zugriffe zu minimieren. Deshalb befassen wir uns im ersten Kapitel mit der Speicherung sowie unter anderem mit Speicherstrukturen und -hierarchien, um Algorithmen bestmöglich zu designen und effizient einzusetzen.</p>
-<p><strong>Zoom in die interne Ebene: Die 5-Schichten Architektur</strong></p>
+<p><strong>Zoom in die interne Ebene</strong></p>
 <figure class="align-default" id="schichten-architektur">
 <img alt="../_images/5-Schichten-Architektur.png" src="../_images/5-Schichten-Architektur.png" />
 <figcaption>
@@ -461,6 +461,11 @@ document.write(`
 <p>Auf der Datenmodellebene können Relationen definiert und die relationale Algebra verwendet werden. Darunter befindet sich die logische Ebene. Auf dieser Ebene kann betrachtet werden, wo die Daten liegen bzw. wie sie verteilt sind. Die nächsten zwei Ebenen beschäftigen sich mit den Speicherstrukturen. Also wo die Daten physisch abgelegt sind und über welche Puffer bzw. Schnittstellen darauf zugegriffen werden kann. Unterhalb dieser Ebenen befindet sich noch eine weitere Schnittstelle zum Betriebssystem. Es gibt zwei Varianten, wie man mit einem Betriebssystem umgeht. Bei der einen Variante versucht man mit dem System zu arbeiten, bei der anderen Variante versucht man es zu umgehen.</p>
 <section id="speicherhierarchie">
 <h2><span class="section-number">1.1. </span>Speicherhierarchie<a class="headerlink" href="#speicherhierarchie" title="Permalink to this heading">#</a></h2>
+<p>Die Pyramide zur Speicherhierachie <em>(siehe Fig. 1.2)</em> soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten. <br>
+In Anbetracht der <strong>Kosten</strong> sind Archivspeicher sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen. <br>
+Bei den <strong>Zugriffszeiten</strong> wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. <br>
+In Bezug auf die Kapazität, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung. <br><br>
+~ Zahlen aus dem Foliensatz von Viktor Leis 2019</p>
 <figure class="align-default" id="speicherhierachie">
 <img alt="../_images/Speicherhierachie.png" src="../_images/Speicherhierachie.png" />
 <figcaption>
@@ -503,15 +508,10 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>Die Pyramide zur Speicherhierachie soll veranschaulichen, wie sich die Kosten, Zugriffszeiten und Kapazitäten der unterschiedlichen Speichermedien verhalten. <br>
-In Anbetracht der <strong>Kosten</strong> sind Archivspeicher sehr günstig verglichen mit Registern, die die teuerste Speicherform in dieser Pyramide darstellen. <br>
-Bei den <strong>Zugriffszeiten</strong> wiederrum ist der Archivspeicher am langsamsten und braucht Sekunden, wenn nicht Minuten. Wohingegen Register sehr schnelle Zugriffszeiten unter 1ns ermöglichen. <br>
-In Bezug auf die Kapazität, bietet der Archivspeicher am meisten Speicherplatz. Ein Register hat mit 10kB beispielsweise deutlich weniger zur Verfügung. <br><br>
-~ Zahlen aus dem Foliensatz von Viktor Leis 2019</p>
 <section id="virtueller-speicher">
 <h3><span class="section-number">1.1.1. </span>Virtueller Speicher<a class="headerlink" href="#virtueller-speicher" title="Permalink to this heading">#</a></h3>
 <p>Jede Anwendung verwaltet einen virtuellen Adressraum. Dieser kann größer als der tatsächlich verfügbare Hauptspeicher sein.
-Mit einem 32-bit Adressraum sind 2^32 unterschiedliche Adressen darstellbar.
+Mit einem 32-bit Adressraum sind <span class="math notranslate nohighlight">\(2^{32}\)</span> unterschiedliche Adressen darstellbar.
 Jedes Byte hat dabei eine eigene Adresse. Dadurch lässt sich maximal eine Hauptspeichergröße von 4GB addressieren.<br />
 Heutzutage ist der 64-bit Adressraum der Standard. Damit lassen sich maximal 16 Exabyte addressieren. Dies ist deutlich mehr als ein gewöhlicher Computer/Laptop mit 1 oder 2 TB Speicher. Eine 64-bit Addressierung bietet somit noch deutlich mehr Potenzial. <br>
 Meistens ist aber deutlich weniger Hauptspeicher als Speicher auf der Festplatte vorhanden. Zur Abhilfe werden die Daten auf eine Disk ausgelagert.
@@ -528,20 +528,20 @@ Es gibt zwei Operationen auf Festplatten. Zum Einem <strong>Disk-read</strong>. 
 </section>
 <section id="festplatten-puffer">
 <h3><span class="section-number">1.1.3. </span>Festplatten - Puffer<a class="headerlink" href="#festplatten-puffer" title="Permalink to this heading">#</a></h3>
-<p>Ein Bufferpool-Manager puffert Teile von Dateien. In diesem Beispiel mit einer  Blockgröße von 4 KB. Dabei werden immer 4KB in den Pool geladen. Dieser Block kann dann geschrieben oder auch verworfen werden.</p>
+<p>Ein Bufferpool-Manager puffert Teile von Dateien. In Abbildung 1.3 sehen wir einen Bufferpool-Manager mit einer Blockgröße von 4 KB. Dabei werden immer 4 KB in den Pool geladen. Dieser Block kann dann geschrieben oder auch verworfen werden.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/Festplatten-Puffer.png" src="../_images/Festplatten-Puffer.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Festplatten-Puffer</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Das DBMS verwaltet die Positionen der Blöcke innerhalb der Datei selbst! Dafür ist nicht mehr das Betriebssystem zuständig. <br>
+<p>Das DBMS verwaltet die Positionen der Blöcke innerhalb der Datei selbst. Dafür ist nicht mehr das Betriebssystem zuständig. <br>
 Die Dauer für das Schreiben oder Lesen eines Blocks beträgt 10 bis 30 ms. In dieser kurzen Zeitspanne können viele Millionen Prozessoranweisungen ausgeführt werden. Somit dominiert das Lesen und Schreiben, also die <strong>I/O-Zeit</strong>, die Gesamtkosten. Die Blöcke sollten daher am besten im Hauptspeicher liegen. Das ist nicht immer möglich, da der Hauptspeicher meist zu klein ist.</p>
 <p>Die zuvor genannten Zahlen können je nach Betriebssystem variieren. Sie sind hier aber immer ungefähr im gleichen Skalierungsraum und sollen dabei helfen ein Gefühl für die Zugriffszeiten zu vermitteln.</p>
 </section>
 <section id="tertiarspeicher-magnetbander">
 <h3><span class="section-number">1.1.4. </span>Tertiärspeicher: Magnetbänder<a class="headerlink" href="#tertiarspeicher-magnetbander" title="Permalink to this heading">#</a></h3>
-<p>Tertiärspeicher kann <strong>viele Terabyte</strong> (10^12 Bytes) Verkaufsdaten, sowie viele Petabyte (10^15 Bytes) Satellitenbeobachtungsdaten speichern. Für diesen Einsatzbereich wären Festplatten ungeeignet. Sie sind zu teuer aufgrund von Wartung und Strom. <br>
+<p>Tertiärspeicher kann <strong>viele Terabyte</strong> (<span class="math notranslate nohighlight">\(10^{12}\)</span> Bytes) Verkaufsdaten, sowie viele Petabyte (<span class="math notranslate nohighlight">\(10^{15}\)</span> Bytes) Satellitenbeobachtungsdaten speichern. Für diesen Einsatzbereich wären Festplatten ungeeignet. Sie sind zu teuer aufgrund von Wartung und Strom. <br>
 Im Vergleich zum Sekundärspeicher sind zwar die <strong>I/O-Zeiten wesentlich höher</strong>, aber dafür steigt auch die Kapazität. Ein weiterer Vorteil sind die geringeren Kosten pro Byte gegenüber den Festplatten. <br>
 Auf Tertiärspeicher gibt es keinen wahlfreien, sondern zufälligen Zugriff (<strong>random access</strong>). Die Zugriffszeiten hängen dabei stark von der Position des jeweiligen Datensatzes (in Bezug auf die aktuelle Position des Schreib-/Lesekopfes) ab.</p>
 <figure class="align-default" id="magnetband">
@@ -743,11 +743,11 @@ Der Disk Controller überträgt noch Bits zwischen Disk und Hauptspeicher und um
 <p>Sie hat 8 Platten mit 16 Plattenoberflächen. Der Durchmesser beträgt 3,5 Zoll.
 Sie hat <span class="math notranslate nohighlight">\(2^{16} = 65.536\)</span> Spuren pro Oberfläche, durchschnittlich <span class="math notranslate nohighlight">\(2^8 = 256\)</span> Sektoren pro Spur und <span class="math notranslate nohighlight">\(2^{12} = 4.096\)</span> Byte pro Sektor.</p>
 <p>Die <strong>Gesamtkapazität</strong> ergibt sich durch multiplizieren von #Plattenoberflächen, Spuren pro Oberfläche, Sektoren pro Spur und Byte pro Sektor: <span class="math notranslate nohighlight">\(16 x 65.536 x 256 x 4.096 = 2^{40} Byte = 1 TB\)</span>. Insgesamt hat die Megatron 747 Disk eine Gesamtkapazität von einem Terrabyte.</p>
-<p>Die Blöcke können eine Größe von <span class="math notranslate nohighlight">\(2^{14} Byte (= 16 KB)\)</span> haben. Dann passen 4 Sektoren in einen Block <span class="math notranslate nohighlight">\((2^{14} / 2^{12})\)</span> und es gibt im Durchschnitt 64 Blöcke pro Spur <span class="math notranslate nohighlight">\((2^8 / 2^2)\)</span>.</p>
+<p>Die Blöcke können eine Größe von <span class="math notranslate nohighlight">\(2^{14} Byte (= 16 KB)\)</span> haben. Dann passen 4 Sektoren in einen Block <span class="math notranslate nohighlight">\((\frac{2^{14}}{2^{12}})\)</span> und es gibt im Durchschnitt 64 Blöcke pro Spur <span class="math notranslate nohighlight">\((\frac{2^{8}}{2^{2}})\)</span>.</p>
 <p>Die Bitdichte für die äußerste Spur wird wie folgt berechnet:</p>
 <ul class="simple">
-<li><p>Bits pro Spur: <span class="math notranslate nohighlight">\(28 Sektoren x 2^{12} Byte = 2^{20} = 1024 KB = 8 MBit\)</span></p></li>
-<li><p>Die Spurlänge (äußerste Spur) beträgt <span class="math notranslate nohighlight">\(3,5“ · p ≈ 11“\)</span></p></li>
+<li><p>Bits pro Spur: <span class="math notranslate nohighlight">\(28 \ Sektoren · 2^{12} \ Byte = 2^{20} = 1024 \ KB = 8 \ MBit\)</span></p></li>
+<li><p>Die Spurlänge (äußerste Spur) beträgt <span class="math notranslate nohighlight">\(3,5^“ · p ≈ 11^“\)</span></p></li>
 <li><p>mit ca. 10% Lücken hat man eine Spurlänge von 9,9“, die 8 MBits hält</p></li>
 </ul>
 <p>Somit sind 840.000 Bits pro Zoll vorhanden.</p>
@@ -801,18 +801,18 @@ Hierbei sprechen wir von der <strong>Latenzzeit</strong>. Sie beschreibt die Zei
 <h3><span class="section-number">1.2.8. </span>Beispiel – Megatron 747 Disk<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>Wie lange dauert es, einen Block (16 KB = 16 384 Byte) zu lesen?
 Diese Frage soll nun am Beispiel der Megatron 747 Disk beantwortet werden. </br></p>
-<p>Die Umdrehungsgeschwindigkeit beträgt <span class="math notranslate nohighlight">\(7200 U · min-1\)</span>. Somit dauert eine Umdrehung 8,33 ms. </br></p>
+<p>Die Umdrehungsgeschwindigkeit beträgt <span class="math notranslate nohighlight">\(7200 \ U · min-1\)</span>. Somit dauert eine Umdrehung 8,33 ms. </br></p>
 <p>Zunächst wird die Seektime berechnet: </br>
 Die Start- und Stopzeit beträgt zusammen eine Millisekunde. </br>
 Pro 4000 Zylinder wird 1ms benötigt:
 - Minimal werden 0 Zylinder übersprungen und man bleibt an der Stelle an der man ist. Dafür werden 0ms benötigt.
 - Wenn man eine Spur (Track) überspringt, kostet das 1,00025ms (≈1ms).
-- Maximal werden 65.536 Zylinder übersprungen und das kostet <span class="math notranslate nohighlight">\(65536/4000 + 1 = 17,38ms\)</span>.
+- Maximal werden 65.536 Zylinder übersprungen und das kostet <span class="math notranslate nohighlight">\(\frac{65536}{4000} + 1 = 17,38ms\)</span>.
 </br></p>
 <p>Als nächstes wird die minimale Zeit berechnet, um einen Block zu lesen: </br>
 Dafür muss der S-/L-Kopf über der richtigen Spur stehen und die Platte schon richtig rotiert worden sein. Ein Block (16KB) ist über 4 Sektoren und 3 Lücken verteilt. Diese müssen gelesen werden. Insgesamt gibt es durchschnittlich 256 Lücken und 256 Sektoren pro Spur (wurde in vorherigem Unterkapitel so definiert). Die Lücken bedecken 36° (10%) einer Spur. Die Sektoren bedecken 324° des Kreises (360°). </br>
-Das Verhältnis wird berechnet mit <span class="math notranslate nohighlight">\(324° x 4 / 256 + 36° x 3 / 256 = 5,48°\)</span>. Es sind also 5,48° des Kreises durch einen Block bedeckt.
-5,48° im Verhältnis zur Gesamtrotation (360°) und einer Umdrehung ergeben dann eine Lesezeit von <span class="math notranslate nohighlight">\((5,48° / 360°) · 8,33 ms = 0,13 ms\)</span>.</p>
+Das Verhältnis wird berechnet mit <span class="math notranslate nohighlight">\(\frac{324° · 4}{ 256} + \frac {36° · 3} {256} = 5,48°\)</span>. Es sind also 5,48° des Kreises durch einen Block bedeckt.
+5,48° im Verhältnis zur Gesamtrotation (360°) und einer Umdrehung ergeben dann eine Lesezeit von <span class="math notranslate nohighlight">\((\frac{5,48°} {360°}) · 8,33 ms = 0,13 ms\)</span>.</p>
 <p>Die maximale Zeit zum Lesen eines Blocks wird in der Präsenzübung vertieft. (Kleiner Spoiler: Sie beträgt 25,84 ms).
 Die durchschnittliche Zeit können Sie selber erforschen und nachrechnen. (Dabei sollten sie auf ungefähr 10,76 ms kommen).</p>
 </section>
@@ -846,7 +846,7 @@ Die zusätzlichen Informationen (wie der Index zum Beispiel) in Variante B nehme
 <p>Es sei eine Relation R mit 10 Millionen Tupeln und verschiedenen Attributen gegeben. Ein Attribut davon ist der Sortierschlüssel, der nicht unbedingt eindeutig ist. Es ist kein Primärschlüssel. In duiesem Beispiel treffen wir die vereinfachende Annahme, dass der Sortierschlüssel eindeutig ist.</p>
 <p>Gespeichert werden die Daten auf Diskblöcken der Größe <span class="math notranslate nohighlight">\(16.384 = 2^{14}\)</span> Byte mit der Annahme, dass 100 Tupel in einen Block passen. Damit wäre die Tupelgröße ca. 160 Byte. R belegt dann 100.000 Blöcke (1,64 Mrd. Bytes) auf der Festplatte.</p>
 <p>Es wird eine Megatron 747 Festplatte verwendet.
-Der verfügbare Hauptspeicherpuffer beträgt <span class="math notranslate nohighlight">\(100 MB (= 100 · 2^{20})\)</span>. Somit passen <span class="math notranslate nohighlight">\((100 * 2^{20}) / (2^{14}) = 6400\)</span> Blöcke von R passen in den Hauptspeicher.</p>
+Der verfügbare Hauptspeicherpuffer beträgt <span class="math notranslate nohighlight">\(100 MB (= 100 · 2^{20})\)</span>. Somit passen <span class="math notranslate nohighlight">\(\frac{100 · 2^{20}}{2^{14}} = 6400\)</span> Blöcke von R passen in den Hauptspeicher.</p>
 <p>Ziel der Sortierung ist es die Anzahl der Lese- und Schreiboperationen zu minimieren und wenig “Durchläufe” durch die Daten zu haben.</p>
 </section>
 <section id="merge-sort">
@@ -938,11 +938,11 @@ Der <strong>Ablauf</strong> der ersten Phase hat drei Schritte:</p>
 <p>Ein <strong>Beispiel</strong> dazu: Seien 6,400 Blöcke im Hauptspeicher; also insgesamt 100,000 Blöcke. Es sind 16 Füllungen des Hauptspeichers erforderlich. Die letzte Füllung ist kleiner. </br>
 Ein Aufwand von 200,000 I/O-Operationen ergibt sich, da 100,000 Blöcke gelesen und 100,000 Blöcke geschreiben werden.</p>
 <p>Für eine I/O-Operation wird durchschnittlich eine Zeit von 11 ms benötigt.
-Insgesamt ergben sich <span class="math notranslate nohighlight">\(11 ms * 200,000 = 2,200 s = 37 min\)</span>. Die Prozessorzeit für das Sortieren ist dabei vernachlässigbar.</p>
+Insgesamt ergben sich <span class="math notranslate nohighlight">\(11 ms · 200,000 = 2,200 s = 37 min\)</span>. Die Prozessorzeit für das Sortieren ist dabei vernachlässigbar.</p>
 </section>
 <section id="tpmms-phase-2">
 <h3><span class="section-number">1.3.8. </span>TPMMS - Phase 2<a class="headerlink" href="#tpmms-phase-2" title="Permalink to this heading">#</a></h3>
-<p>Die naive Idee von Phase 2 ist das paarweise Mergen von k sortierten Teillisten. Man muss <span class="math notranslate nohighlight">\(2 * log2(k)\)</span> jeden Block (jedes Tupels) Lesen und Schreiben.</p>
+<p>Die naive Idee von Phase 2 ist das paarweise Mergen von k sortierten Teillisten. Man muss <span class="math notranslate nohighlight">\(2 · log2(k)\)</span> jeden Block (jedes Tupels) Lesen und Schreiben.</p>
 <p>Im <strong>Beispiel</strong>: Ein Durchlauf für 16 sortierte Teillisten, einer für 8, einer für 4 und ein letzter für 2 sortierte Teillisten. Insgesamt ist jeder Block an 8 I/O-Operationen beteiligt. Es wird deutlich mehr Zeit benötigt. Eine bessere Idee wäre es nur den ersten Block jeder Teilliste zu lesen:</p>
 <ol class="arabic simple">
 <li><p>Suche den kleinsten Schlüssel unter den ersten Tupeln aller Blöcke (Lineare Suche (lin.), Priority Queue (log.)).</p></li>
@@ -962,15 +962,18 @@ Insgesamt ergben sich <span class="math notranslate nohighlight">\(11 ms * 200,0
 </ul>
 <p>Das <strong>neue Beispiel</strong> mit erhöhter Blockgröße:</p>
 <ul class="simple">
-<li><p>Blockgröße: 512 KB (16 * 32)</p></li>
+<li><p>Blockgröße: 512 KB (16 · 32)</p></li>
 <li><p>∅ Latenzzeit: 20 ms (davon 8 ms für Transfer)</p></li>
 </ul>
 <p>Es werden nur noch 12.500 I/O-Operationen für die Sortierung benötigt. Die Gesamtzeit beträgt 4,16 Minuten. Es ergibt sich eine 17-fache Beschleunigung!</p>
 </br>
-Die **Nachteile** der Blockvergrößerung:
-    - Blocks sollten sich nicht über mehrere Spuren erstrecken.
-    - Kleine Relationen nutzen nur Bruchteile eines Blocks, was zu Speicherverschwendung führt.
-    - Viele Datenstrukturen für Externspeicher bevorzugen die Aufteilung von Daten auf viele kleine Blöcke.</section>
+<p>Die <strong>Nachteile</strong> der Blockvergrößerung:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Blocks sollten sich nicht über mehrere Spuren erstrecken.
+- Kleine Relationen nutzen nur Bruchteile eines Blocks, was zu Speicherverschwendung führt.
+- Viele Datenstrukturen für Externspeicher bevorzugen die Aufteilung von Daten auf viele kleine Blöcke.
+</pre></div>
+</div>
+</section>
 <section id="tpmms-grenzen">
 <h3><span class="section-number">1.3.10. </span>TPMMS – Grenzen<a class="headerlink" href="#tpmms-grenzen" title="Permalink to this heading">#</a></h3>
 <p>Vorweg ein paar Stichpunkte zur <strong>Notation</strong>:</p>
@@ -982,9 +985,9 @@ Die **Nachteile** der Blockvergrößerung:
 </ul>
 <p><strong>Grenzen</strong>:</p>
 <ul class="simple">
-<li><p>Man kann somit sagen, dass <span class="math notranslate nohighlight">\(M / B\)</span> Blöcke in den Hauptspeicher passen.</p></li>
+<li><p>Man kann somit sagen, dass <span class="math notranslate nohighlight">\(\frac {M}{B}\)</span> Blöcke in den Hauptspeicher passen.</p></li>
 <li><p>In Phase 2 wird außerdem Platz für einen Outputblock benötigt.</p></li>
-<li><p>Phase 1 kann also genau <span class="math notranslate nohighlight">\((M / B) - 1\)</span> sortierte Teillisten erzeugen. Ebenso oft kann der Hauptspeicher mit Tupeln gefüllt und sortiert werden (in Phase 1). Jede Füllung enthält <span class="math notranslate nohighlight">\(M / R Tupel\)</span>.</p></li>
+<li><p>Phase 1 kann also genau <span class="math notranslate nohighlight">\(\frac{M}{B}- 1\)</span> sortierte Teillisten erzeugen. Ebenso oft kann der Hauptspeicher mit Tupeln gefüllt und sortiert werden (in Phase 1). Jede Füllung enthält <span class="math notranslate nohighlight">\(\frac {M}{R}\)</span> Tupel.</p></li>
 <li><p>Maximal können <span class="math notranslate nohighlight">\((\frac{M}{R}) \cdot ((\frac{M}{B}) - 1)\)</span> Tupel sortiert werden. </br>
 </br></p></li>
 <li><p>In dem Beispiel:</p>
@@ -1002,7 +1005,7 @@ Die **Nachteile** der Blockvergrößerung:
 <p><span class="caption-number">Fig. 1.21 </span><span class="caption-text">TPMMS Grenzen Visualisierung</span><a class="headerlink" href="#tpmms-grenzen-visualisierung" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Falls die Eingaberelation noch größer ist, wird eine dritte Phase hinzugefügt. TPMMS wird genutzt, um sortierte Listen der Größe <span class="math notranslate nohighlight">\(M^2/RB\)</span> zu erzeugen. In der dritten Phase wird maximal <span class="math notranslate nohighlight">\(M/B - 1\)</span> solcher Listen zu einer sortierten Liste zusammengemerged. Insgesamt sind <span class="math notranslate nohighlight">\(M^3/RB^2\)</span> Tupel sortierbar. Bezogen auf unser Beispiel, gibt es nun eine maximale Eingabegröße von 27 Billionen Tupeln (ca. 4.3 Petabytes). Global betrachtet ist die zweite Phase die zusätzliche Phase.</p>
+<p>Falls die Eingaberelation noch größer ist, wird eine dritte Phase hinzugefügt. TPMMS wird genutzt, um sortierte Listen der Größe <span class="math notranslate nohighlight">\(\frac {M^2}{RB}\)</span> zu erzeugen. In der dritten Phase wird maximal <span class="math notranslate nohighlight">\(\frac {M}{B} - 1\)</span> solcher Listen zu einer sortierten Liste zusammengemerged. Insgesamt sind <span class="math notranslate nohighlight">\(\frac{M^3}{RB^2}\)</span> Tupel sortierbar. Bezogen auf unser Beispiel, gibt es nun eine maximale Eingabegröße von 27 Billionen Tupeln (ca. 4.3 Petabytes). Global betrachtet ist die zweite Phase die zusätzliche Phase.</p>
 </section>
 </section>
 <section id="zugriffsbeschleunigung">
@@ -1021,7 +1024,7 @@ Dafür gibt es verschiedene Verbesserungsideen:</p>
 <p>Die Seektime macht ca. 50% der durchschnittlichen Blockzugriffszeit aus.
 Beim Megatron 747 beträgt die Seektime zwischen 0 und 40 ms.
 Die Idee dabei ist es die Daten, die zusammen gelesen werden, auf dem gleichen Zylinder zu platzieren. Zum Beispiel die Tupel einer Relation. Falls ein Zylinder nicht ausreicht, werden mehrere nebeneinander liegende Zylinder genutzt. Beim Lesen einer Relation fällt im besten Fall nur einmal die Seektime und Rotationslatenz an. Es wird nun die minimale Zugriffszeit der Disk erreicht: Die Zugriffszeit wird nur noch durch die Transferzeit bestimmt. </br>
-Ein Zylinder der Megatron 747 fasst 16 x 64 = 1024 Blöcke. Dennoch sind dann 16 Umdrehungen erforderlich (+ 15x seek über je eine Spur).</p>
+Ein Zylinder der Megatron 747 fasst 16 · 64 = 1024 Blöcke. Dennoch sind dann 16 Umdrehungen erforderlich (+ 15x seek über je eine Spur).</p>
 </section>
 <section id="zylinderorganisation-beispiel">
 <h3><span class="section-number">1.4.2. </span>Zylinderorganisation - Beispiel<a class="headerlink" href="#zylinderorganisation-beispiel" title="Permalink to this heading">#</a></h3>
@@ -1078,13 +1081,13 @@ Ein paar weitere Anmerkungen zu Spiegelungen: Sie sind teuer und verursachen kei
 </section>
 <section id="first-come-first-serve-vs-elevator-algorithmus">
 <h3><span class="section-number">1.4.6. </span>First-Come-First-Serve vs. Elevator Algorithmus<a class="headerlink" href="#first-come-first-serve-vs-elevator-algorithmus" title="Permalink to this heading">#</a></h3>
+<p>Das Beispiel in Abbildung 1.22 zeigt den Vergleich zwischen First Come First Serve (kurz FCFS) und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei mit 57,52 nur etwas schneller als FCFS mit 71,52. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
 <figure class="align-default" id="fcfs-vs-elevator-algo">
 <img alt="../_images/FCFS-vs-Elevator-Algo.png" src="../_images/FCFS-vs-Elevator-Algo.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 1.22 </span><span class="caption-text">FCFS vs. Elevator-Algorithmus</span><a class="headerlink" href="#fcfs-vs-elevator-algo" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Das kleine Beispiel zeigt den Vergleich zwischen First Come First Serve (kurz FCFS) und dem Elevator Algorithmus. Der Elevator-Algorithmus ist hierbei mit 57,52 nur etwas schneller als FCFS mit 71,52. In größeren Beispielen ist der Unterschied ausgeprägter.</p>
 </section>
 <section id="elevator-algorithmus">
 <h3><span class="section-number">1.4.7. </span>Elevator Algorithmus<a class="headerlink" href="#elevator-algorithmus" title="Permalink to this heading">#</a></h3>
