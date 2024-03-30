@@ -619,7 +619,7 @@ In Abbildung 2.9 ist so ein Beispielblock dargestellt. Zuerst kommt der Header, 
 </section>
 <section id="datensatze-variabler-lange">
 <h3><span class="section-number">2.7.2. </span>Datensätze variabler Länge<a class="headerlink" href="#datensatze-variabler-lange" title="Permalink to this heading">#</a></h3>
-<p>Es kann sein, dass unbekannt ist, welche und wie viele Felder der Datensatz haben wird. Z.B bei der Informationsintegration, wo es noch unbekannt ist welche Felder von Quellen hinzukommen. Die Idee ist sich die Felder zu merken, welche vorhanden sind oder nicht. Das sind sogenannte Taggedfields(getaggte Felder), es werden die Informationen Feldname (Attributname), Feldtyp, Feldlänge und Feldwert gespeichert. Das Speichern dieses Overheads ist ebenfalls nützlich bei dünn besetzten Datensätze, wo es tausende Attribute gibt, aber nur wenige haben Werte.</p>
+<p>Es kann sein, dass unbekannt ist, welche und wie viele Felder der Datensatz haben wird. Z.B bei der Informationsintegration, wo es noch unbekannt ist welche Felder von Quellen hinzukommen. Die Idee ist sich die Felder zu merken, welche vorhanden sind oder nicht. Das sind sogenannte Taggedfields (getaggte Felder), es werden die Informationen Feldname (Attributname), Feldtyp, Feldlänge und Feldwert gespeichert. Das Speichern dieses Overheads ist ebenfalls nützlich bei dünn besetzten Datensätze, wo es tausende Attribute gibt, aber nur wenige haben Werte.</p>
 <figure class="align-default" id="id5">
 <img alt="../_images/Datensätze-variabler-Länge.png" src="../_images/Datensätze-variabler-Länge.png" />
 <figcaption>
@@ -686,12 +686,12 @@ Wenn wir einen neuen Datensatz in unseren Speicher einfügen wollen und keine Or
 <br><br>
 Wenn in dem eigentlichen Block kein Platz mehr ist, um einen weiteren Datensatz einzufügen gibt es zwei Varianten:</p>
 <ul class="simple">
-<li><p>Variante 1: Es wird ein Block in der Nähe gesucht, meist ist das der vorherige oder nächste Block. Dann wird der erste oder letze Datensatz zu dem jeweils neuen Block bewegt und eine Weiterleitungsadresse wird im alten Block hinterlegt(„Nachsendeauftrag“). Gegebenenfalls müssen die Datensätze in beiden Blöcken noch hin und her bewegt werden. Zuletzt wir der neue Datensatz an der richtigen Stelle im neu gesuchten Block eingefügt.
+<li><p>Variante 1: Es wird ein Block in der Nähe gesucht, meist ist das der vorherige oder nächste Block. Dann wird der erste oder letze Datensatz zu dem jeweils neuen Block bewegt und eine Weiterleitungsadresse wird im alten Block hinterlegt („Nachsendeauftrag“). Gegebenenfalls müssen die Datensätze in beiden Blöcken noch hin und her bewegt werden. Zuletzt wir der neue Datensatz an der richtigen Stelle im neu gesuchten Block eingefügt.
 <br><br></p></li>
 <li><p>Variante 2:  Es wird ein designierter Overflow Block erzeugt, dessen Adresse im Header des ursprünglichen Blocks gespeichert wird. Der neue Datensatz wird dann in den neu erzeugten Overflow Block eingefügt. Ein Overflow Block kann selbst wiederum einen Overflow Block haben.</p></li>
 </ul>
 <p><strong>Löschen</strong></p>
-<p>Der zu löschende Datensatz wird gelöscht. Danach werden die Datensätze im Block verschoben, um den enstandenen freien Platz zu konsolidieren. Eine andere Möglichkeit ist, dass im Header eine Liste mit freien Plätzen verwaltet wird oder eine verkette Liste der freien Plätze. Je nach dem ob es zu dem Block noch Overflow Blöcke gibt, müssen diese reorganisiert werden. An der gelöschten Stelle befindet sich häufig ein sogenannter Grabstein(tombstones). Auch nachdem Löschen kann es noch einen Pointer auf den zu löschenden Datensatz geben. Es gibt drei Varianten einen Grabstein zu hinterlassen:</p>
+<p>Der zu löschende Datensatz wird gelöscht. Danach werden die Datensätze im Block verschoben, um den enstandenen freien Platz zu konsolidieren. Eine andere Möglichkeit ist, dass im Header eine Liste mit freien Plätzen verwaltet wird oder eine verkette Liste der freien Plätze. Je nach dem ob es zu dem Block noch Overflow Blöcke gibt, müssen diese reorganisiert werden. An der gelöschten Stelle befindet sich häufig ein sogenannter Grabstein (tombstones). Auch nachdem Löschen kann es noch einen Pointer auf den zu löschenden Datensatz geben. Es gibt drei Varianten einen Grabstein zu hinterlassen:</p>
 <ul class="simple">
 <li><p>Null-Pointer im Header</p></li>
 <li><p>Null-Pointer in der Mappingtable</p></li>
