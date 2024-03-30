@@ -484,10 +484,10 @@ Noch besser im Gegensatz dazu ist die Benutzung von <strong>Indizes</strong>. Es
 <h2><span class="section-number">3.1. </span>Indizes auf sequenziellen Dateien<a class="headerlink" href="#indizes-auf-sequenziellen-dateien" title="Permalink to this heading">#</a></h2>
 <section id="einfachste-form-eines-index">
 <h3><span class="section-number">3.1.1. </span>Einfachste Form eines Index<a class="headerlink" href="#einfachste-form-eines-index" title="Permalink to this heading">#</a></h3>
-<p>Je nachdem wie die Tupel organisiert sind, gibt es verschiedene Varianten Indizes anzulegen. Die einfachste Form davon ist, wenn eine nach unserem Suchschlüssel sortierte Datei gegeben ist. Dazu gibt es eine Indexdatei, welche  Schlüssel-Pointer Paare enthält. Jeder Schlüsselwert K ist mit einem Pointer verbunden, welcher auf den Datensatz zeigt, der den Schlüsselwert K enthält. Davon gibt es zwei Varianten, einmal den dichtbestzten und einmal den dünnbesetzten Index. Im dichtbesetzten Index gibt es für jeden Datensatz einen Eintrag im Index. Im dünnbesetzten Index, werden nur einige Datensätze im Index repräsentiert, z.B ein Eintrag pro Block.</p>
+<p>Je nachdem wie die Tupel organisiert sind, gibt es verschiedene Varianten Indizes anzulegen. Die einfachste Form davon ist, wenn eine nach unserem Suchschlüssel sortierte Datei gegeben ist. Dazu gibt es eine Indexdatei, welche  Schlüssel-Pointer Paare enthält. Jeder Schlüsselwert <span class="math notranslate nohighlight">\(K\)</span> ist mit einem Pointer verbunden, welcher auf den Datensatz zeigt, der den Schlüsselwert <span class="math notranslate nohighlight">\(K\)</span> enthält. Davon gibt es zwei Varianten, einmal den dichtbestzten und einmal den dünnbesetzten Index. Im dichtbesetzten Index gibt es für jeden Datensatz einen Eintrag im Index. Im dünnbesetzten Index, werden nur einige Datensätze im Index repräsentiert, z.B ein Eintrag pro Block.</p>
 <p><strong>Sequenzielle Dateien: Index Beispiel</strong>
 <br>
-In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweils zwei Tupel pro Block gespeichert und es werden insgesamt 5 Blöcke, für unsere 10 Tupel benötigt. In unserem Beispiel ist der Schlüssel eine Zahl. Häufig ist der Suchschlüssel auch der Primärschlüssel. Das Schlüsselfeld steht einfachheitshalber an erster Stelle. Um beispielsweise den Wert 70 zu finden, müssen 4 Blöcke gelesen werden. Im Folgenden sehen wir, wie das mit Indizes verbessert werden kann.</p>
+In der Abbildung 3.2 sind sequenzielle Daten dargestellt. Es werden jeweils zwei Tupel pro Block gespeichert und es werden insgesamt 5 Blöcke, für unsere 10 Tupel benötigt. In unserem Beispiel ist der Schlüssel eine Zahl. Häufig ist der Suchschlüssel auch der Primärschlüssel. Das Schlüsselfeld steht einfachheitshalber an erster Stelle. Um beispielsweise den Wert 70 zu finden, müssen 4 Blöcke gelesen werden. Im Folgenden sehen wir, wie das mit Indizes verbessert werden kann.</p>
 <figure class="align-default" id="sequentielle-dateien">
 <img alt="../_images/Sequentielle-Dateien.png" src="../_images/Sequentielle-Dateien.png" />
 <figcaption>
@@ -500,7 +500,7 @@ In der folgenden Abbildung sind sequenzielle Daten dargestellt. Es werden jeweil
 <p>Ein dichtbesetzter Index bildet sich aus einer Blocksequenz mit Schlüssel-Pointer Paaren. Jeder Schlüssel der Daten ist durch ein Paar repräsentiert. Die Datenmenge ist aber wesentlich kleiner, da im Index nur auf bestimmte Attribute gezeigt wird. Daher passt der Index womöglich in den Hauptspeicher und braucht nur einen I/O pro Zugriff. Die Sortierung der Paare entspricht der Sortierung der Daten.</p>
 <p><strong>Anfragebearbeitung mit dichtbesetzten Indizes</strong></p>
 <p>Es ist ein Suchschlüssel <span class="math notranslate nohighlight">\(K\)</span> gegeben. Die Indexdatei wird nach <span class="math notranslate nohighlight">\(K\)</span> durchsucht und es wird dem zugehörigen Pointer gefolgt. Der Block wird dann aus der Datendatei geladen. Wenn die Indexdatei nur wenige Blöcke hat, befindet sie sich schon im Hauptspeicher. Andernfalls wird die binäre Suche angewendet um <span class="math notranslate nohighlight">\(K\)</span> zu finden.</p>
-<p><strong>Beispiel</strong>: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert <span class="math notranslate nohighlight">\(4096 Byte = 10 Tupel\)</span>. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB (vielleicht OK im Hauptspeicher).
+<p><strong>Beispiel</strong>: Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Für einen dichtbesetzten Index sind 10.000 Blöcke notwendig, das sind 40 MB (vielleicht OK im Hauptspeicher).
 Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet <span class="math notranslate nohighlight">\((log2(10.000) ≈ 13)\)</span>. Es reicht wenn die wichtigsten Blöcke im Hauptspeicher sind.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/Dichtbesetzte-Indizes.png" src="../_images/Dichtbesetzte-Indizes.png" />
@@ -513,7 +513,7 @@ Bei der binären Suche werden 13-14 Blocks pro Suche betrachtet <span class="mat
 <h3><span class="section-number">3.1.3. </span>Dünnbesetzte Indizes<a class="headerlink" href="#dunnbesetzte-indizes" title="Permalink to this heading">#</a></h3>
 <p>Da wir eine sortierte Liste gegeben haben, kann auch ein dünnbesetzter Index eingesetzt werden. Hierbei ist der Schlüsselwert der kleinste Wert des referenzierten Blocks und es gibt nur einen Pointer pro Block. Der Vorteil ist weniger Speicherbedarf, jedoch erhöht sich der Suchaufwand.</p>
 <p><strong>Beispiel</strong>:
-Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Demnach sind für einen dünnbesetzten Index 1.000 Blocks = 4MB notwendig, welches erheblich weniger als 400MB ist.</p>
+Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Demnach sind für einen dünnbesetzten Index 1.000 Blocks = 4 MB notwendig, welches erheblich weniger als 400MB ist.</p>
 <section id="anfragebearbeitung-mit-dunnbesetzten-indizes">
 <h4><span class="section-number">3.1.3.1. </span>Anfragebearbeitung mit dünnbesetzten Indizes<a class="headerlink" href="#anfragebearbeitung-mit-dunnbesetzten-indizes" title="Permalink to this heading">#</a></h4>
 <ol class="arabic simple">
@@ -550,7 +550,7 @@ Mit einem dichtbesetzten Index ist das möglich. Gleiches gilt für einen Semi-J
 <h3><span class="section-number">3.1.4. </span>Mehrstufiger Index<a class="headerlink" href="#mehrstufiger-index" title="Permalink to this heading">#</a></h3>
 <p>Auch ein Index kann unangenehm groß sein, z.B GB groß oder sogar größer als die Datensätze selbst. Das nimmt viel Speicher ein und kostet viel I/O, auch bei binärer Suche. In diesem Fall lohnt es sich die Indexdatei auch zu indexieren. Der zweite Index macht nur als dünnbesetzten Index Sinn. Theoretisch sind auch dritte, vierte, … Ebenen möglich, in diesen Fällen ist ein B-Baum besser geeignet (dazu später).</p>
 <p><strong>Mehrstufiger Index Beispiel</strong></p>
-<p>Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4MB und für den Index zweiter Stufe = 40KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.</p>
+<p>Wir haben 1.000.000 Tupel gegeben. Ein Block speichert 4096 Byte = 10 Tupel. Die Gesamtgröße beträgt demnach 400 MB. Zusätzlich belegt ein Schlüsselfeld je 30 Byte und ein Pointer 8 Byte, d.h. wir haben 100 Paare pro Block. Nun gibt es 100.000 Datenblöcke und 100 Indexpaare pro Block. Für den Index erster Stufe sind 1.000 Blöcke = 4 MB und für den Index zweiter Stufe = 40 KB nötig. Der Index kann daher mit Sicherheit im Hauptspeicher verbleiben.</p>
 <p><strong>Vorgehen zur Anfragebearbeitung</strong></p>
 <ol class="arabic simple">
 <li><p>Suche im Index zweiter Stufe den größten Schlüssel, der kleiner/gleich als Suchschlüssel ist.</p></li>
@@ -576,9 +576,9 @@ Mit einem dichtbesetzten Index ist das möglich. Gleiches gilt für einen Semi-J
 <br>
 Es gibt ein Paar im Index für jeden Datensatz. Die Anfragebearbeitung verläuft wie folgt:</p>
 <ul class="simple">
-<li><p>Suche erstes Paar mit <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
+<li><p>Suche erstes Paar mit <span class="math notranslate nohighlight">\(K\)</span></p></li>
 <li><p>Wähle alle weiteren mit <span class="math notranslate nohighlight">\(K\)</span> (direkt dahinter)</p></li>
-<li><p>Hole entsprechende Datensätze.</p></li>
+<li><p>Hole entsprechende Datensätze</p></li>
 </ul>
 <p><strong>Idee 2: Nur ein Indexpaar pro eindeutigem Schlüsselwert K</strong>
 <br>
@@ -615,7 +615,7 @@ Die Anfragebearbeitung ist so einfacher:</p>
 <li><p>Hole Datenblock und gegebenenfalls folgende Datenblöcke.
 <br><br></p></li>
 </ul>
-<p>Im <strong>Beispiel</strong> unten zeigt das <strong>⊥</strong> ,dass nach der „30“ kein neuer kleinster Wert mehr folgt.</p>
+<p>In Abbildung 3.10 zeigt das <strong>⊥</strong> ,dass nach der „30“ kein neuer kleinster Wert mehr folgt.</p>
 <figure class="align-default" id="indizes-nicht-eindeutige-suchschlussel-3">
 <img alt="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" src="../_images/Indizes-Nicht_eindeutige-Suchschlüssel_3.png" />
 <figcaption>
@@ -638,7 +638,7 @@ Werden Tupel verschoben, muss der Index nur angepasst werden.</p>
 </figure>
 <p><strong>Beispiel 1: Dichtbesetzter Index</strong>
 <br>
-Der Datensatz mit <span class="math notranslate nohighlight">\(K = 30\)</span> wird gelöscht. Wir nehmen an der Block kann/soll <strong>nicht</strong> reorganisiert werden und an der gelöschten Stell wird ein Grabstein gesetzt. Der Datensatz 40 wird nicht verschoben und der Index wird reorganisiert werden, wenn er sich im Hauptspeicher befindet.</p>
+Der Datensatz mit <span class="math notranslate nohighlight">\(K = 30\)</span> aus der Abbildung 3.11 wird gelöscht. Wir nehmen an der Block kann/soll <strong>nicht</strong> reorganisiert werden und an der gelöschten Stell wird ein Grabstein gesetzt. Der Datensatz 40 wird nicht verschoben und der Index wird reorganisiert werden, wenn er sich im Hauptspeicher befindet.</p>
 <figure class="align-default" id="anderungsoperationen-1">
 <img alt="../_images/Änderungsoperationen.png" src="../_images/Änderungsoperationen.png" />
 <figcaption>
@@ -655,7 +655,6 @@ Der Datensatz mit <span class="math notranslate nohighlight">\(K = 30\)</span> w
 </figcaption>
 </figure>
 <p><strong>Beispiel 3: Dünnbesetzter Index</strong><br />
-<br>
 Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Block 1 ist voll. Demnach wird der Datensatz 20 in den nächsten Block verschoben und der Block wird reorganisiert. Der Datensatz 15 wird eingefügt und der Index wird aktualisiert.</p>
 <figure class="align-default" id="anderungsoperationen-3">
 <img alt="../_images/Änderungsoperationen_3.png" src="../_images/Änderungsoperationen_3.png" />
@@ -687,7 +686,7 @@ Einfügen eines Datensatzes 15: Die 15 müsste zwischen die 10 und 20, aber Bloc
 <p>Sekundärindizes bestimmen nicht die Platzierung der Datensätze, sondern geben nur den Speicherort an. Deshalb sind dünnbesetzte Indizes sinnlos, da wir beispielsweise nicht wissen, ob die gleichen Geburtstage innerhalb des gleichen Blocks liegen oder auf viele verschiedene Blöcke verteilt sind.</p>
 <section id="aufbau-von-sekundarindizes">
 <h3><span class="section-number">3.2.1. </span>Aufbau von Sekundärindizes<a class="headerlink" href="#aufbau-von-sekundarindizes" title="Permalink to this heading">#</a></h3>
-<p>Wie zuvor erwähnt sind Sekundärindizes dichtbesetzt. Die Schlüssel sind dabei schon sortiert und es können Duplikate vorkommen. Ein Index der zweiten Stufe wäre wiederum dünnbesetzt. Die <strong>Suche</strong> hat in der Regel <strong>hohe I/O-Kosten</strong>. Suchen wir beispielsweise die <em>20</em> in der Abbildung unten, müssen fünf Blöcke gelesen werden. Das lässt sich auch leider nicht ändern, da die Daten nach einem anderen Schlüssel sortiert sind.</p>
+<p>Wie zuvor erwähnt sind Sekundärindizes dichtbesetzt. Die Schlüssel sind dabei schon sortiert und es können Duplikate vorkommen. Ein Index der zweiten Stufe wäre wiederum dünnbesetzt. Die <strong>Suche</strong> hat in der Regel <strong>hohe I/O-Kosten</strong>. Suchen wir beispielsweise die <em>20</em> in Abbildung 3.16, müssen fünf Blöcke gelesen werden. Das lässt sich auch leider nicht ändern, da die Daten nach einem anderen Schlüssel sortiert sind.</p>
 <figure class="align-default" id="aufbau-sekundarindizes">
 <img alt="../_images/Aufbau-Sekundärindizes.png" src="../_images/Aufbau-Sekundärindizes.png" />
 <figcaption>
@@ -743,7 +742,7 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 </figcaption>
 </figure>
 <p><strong>Indirektion im Alltag</strong></p>
-<p>Hier ein weiteres <strong>Beispiel</strong> für die Indirektion. Sucht man hier ein Wort, stehen die Buckets, in dem Fall die Seitenzahlen, direkt dahinter. Diese Indirektion ist speziell, denn sie hat eine bestimmte Indexstruktur und zwar <em>Invertierte Indizes</em>. Das schauen wir uns im folgenden Absatz genauer an.</p>
+<p>Hier ein weiteres <strong>Beispiel</strong> für die Indirektion. Sucht man in einem Index wie in Abbildung 3.19 ein Wort, stehen die Buckets, in dem Fall die Seitenzahlen, direkt dahinter. Diese Indirektion ist speziell, denn sie hat eine bestimmte Indexstruktur und zwar <em>Invertierte Indizes</em>. Das schauen wir uns im folgenden Absatz genauer an.</p>
 <figure class="align-default" id="indirektion-alltag">
 <img alt="../_images/Indirektion-Alltag.png" src="../_images/Indirektion-Alltag.png" />
 <figcaption>
@@ -754,7 +753,7 @@ Außerdem können wir bei mehreren Selektionsbedigungen mit jeweils einem Sekund
 <section id="indexierung-mittels-invertierter-dateien">
 <h3><span class="section-number">3.2.4. </span>Indexierung mittels invertierter Dateien<a class="headerlink" href="#indexierung-mittels-invertierter-dateien" title="Permalink to this heading">#</a></h3>
 <p>Invertierte Dateien oder auch invertierte Indizes speichern für jeden Term eine Liste mit Verweisen zu allen Vorkommen dieses Terms. Vorkommen sind in dem Sinne Dokumente oder Dateien. Verweise sind aus konzeptioneller Sicht eine ID, die dem jeweiligen Dokument oder der Datei zugeordnet ist.</p>
-<p>Bei der Suche nach Dokumenten, die mehrere Terme oder eine bestimmte Konstellation von Termen enthalten sollen, z.B. “Finde alle Dokumente, die zwar Informationen über Golf enthalten aber nicht über VW” können die entsprechenden Dateilisten jedes Termes durch Mengenoperationen zusammengeführt werden. In diesem Beispiel müsste man alle IDs auf die “VW” verweist von allen IDs auf die “Golf” verweist abziehen. Boolesche Operationen wie AND, OR und NOT können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
+<p>Bei der Suche nach Dokumenten, die mehrere Terme oder eine bestimmte Konstellation von Termen enthalten sollen, z.B. “Finde alle Dokumente, die zwar Informationen über Golf enthalten aber nicht über VW” können die entsprechenden Dateilisten jedes Termes durch Mengenoperationen zusammengeführt werden. In diesem Beispiel müsste man alle IDs auf die “VW” verweist von allen IDs auf die “Golf” verweist abziehen. Boolesche Operationen wie <strong>AND, OR</strong> und <strong>NOT</strong> können hier in linearer Zeit durchgeführt werden, da die Einträge aufsteigend sortiert aufgelistet sind und ermöglichen komplexe Suchanfragen.</p>
 <p>In Abbildung 1 sehen wir eine Abbildung von Dokumenten-IDs auf den enthaltenen Text. Jede Zeile steht für eine Datei/ ein Dokument. Die invertierte Datei sehen wir in Abbildung 2.</p>
 <figure class="align-default" id="abbildung1">
 <img alt="../_images/Abbildung1.png" src="../_images/Abbildung1.png" />
@@ -812,7 +811,7 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 <figure class="align-default" id="id5">
 <img alt="../_images/Rechenbeispiele.png" src="../_images/Rechenbeispiele.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 3.24 </span><span class="caption-text">Rechenbeispiele</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.24 </span><span class="caption-text">Rechenbeispiel</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Analog für <span class="math notranslate nohighlight">\(n = 4\)</span> und <span class="math notranslate nohighlight">\(n = 5\)</span>:</p>
@@ -859,7 +858,7 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 <h3><span class="section-number">3.3.6. </span>Beispiele Blattknoten<a class="headerlink" href="#beispiele-blattknoten" title="Permalink to this heading">#</a></h3>
 <p>Hier werden wir ein paar Beispiele für Blattknoten mit <span class="math notranslate nohighlight">\(n = 3\)</span> sehen. Das bedeutet, es gibt maximal 3 Schlüssel und 4 Pointer.</p>
 <p><strong>Volles Blatt</strong></p>
-<p>Hier sehen wir ein volles Blatt. Wir haben die 3 Suchschlüssel 57, 81 und 95 sowie 4 Pointer. Der erste Pointer zeigt zu dem Block mit dem Suchschlüssel 57. Der zweite zu dem Block mit dem Suchschlüssel 81 und der dritte zum Block mit dem Suchschlüssel 95. Der letzte Pointer zeigt auf das nächste Blatt.</p>
+<p>In Abbildung 3.25 sehen wir ein volles Blatt. Wir haben die 3 Suchschlüssel 57, 81 und 95 sowie 4 Pointer. Der erste Pointer zeigt zu dem Block mit dem Suchschlüssel 57. Der zweite zu dem Block mit dem Suchschlüssel 81 und der dritte zum Block mit dem Suchschlüssel 95. Der letzte Pointer zeigt auf das nächste Blatt.</p>
 <figure class="align-default" id="beispiel-blattknoten">
 <img alt="../_images/Beispiel-Blattknoten.png" src="../_images/Beispiel-Blattknoten.png" />
 <figcaption>
@@ -879,7 +878,7 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 <h3><span class="section-number">3.3.7. </span>Beispiele innerer Knoten<a class="headerlink" href="#beispiele-innerer-knoten" title="Permalink to this heading">#</a></h3>
 <p>Schauen wir uns das gleiche auch für innere Knoten an.</p>
 <p><strong>Voller innerer Knoten</strong></p>
-<p>Hier haben wir einen vollen inneren Knoten mit 3 Suchschlüsseln und 4 Pointern. Der erste Pointer zeigt auf die Schlüssel die kleiner sind als 57, der zweite Pointer auf die Schlüssel die größer oder gleich 57 sind <strong>und</strong> kleiner als 81. Der dritte Pointer zeigt auf die Schlüssel die größer oder gleich 81 <strong>und</strong> kleiner 95 sind und der letzte Pointer zeigt auf Suchschlüssel größer oder gleich 95.</p>
+<p>Abbildung 3.27 zeigt einen vollen inneren Knoten mit 3 Suchschlüsseln und 4 Pointern. Der erste Pointer zeigt auf die Schlüssel die kleiner sind als 57, der zweite Pointer auf die Schlüssel die größer oder gleich 57 sind <strong>und</strong> kleiner als 81. Der dritte Pointer zeigt auf die Schlüssel die größer oder gleich 81 <strong>und</strong> kleiner 95 sind und der letzte Pointer zeigt auf Suchschlüssel größer oder gleich 95.</p>
 <figure class="align-default" id="beispiel-innerer-knoten">
 <img alt="../_images/Beispiel-Innerer-Knoten.png" src="../_images/Beispiel-Innerer-Knoten.png" />
 <figcaption>
@@ -897,7 +896,7 @@ Die Pointer der Wurzel zeigen auf einen B-Baum Block in der Ebene darunter. Mind
 </section>
 <section id="beispiel-b-baum">
 <h3><span class="section-number">3.3.8. </span>Beispiel B-Baum<a class="headerlink" href="#beispiel-b-baum" title="Permalink to this heading">#</a></h3>
-<p>In dem folgenden Beispiel handelt es sich um einen dichtbesetzten B-Baum mit <span class="math notranslate nohighlight">\(n = 3\)</span>, 2 Pointern und einem Suchschlüssel. Dichtbesetzt, das heißt, dass in den Blättern jeder Schlüssel genau einmal sortiert auftaucht.</p>
+<p>In dem folgenden Beispiel <em>(siehe Fig. 3.29)</em> handelt es sich um einen dichtbesetzten B-Baum mit <span class="math notranslate nohighlight">\(n = 3\)</span>, 2 Pointern und einem Suchschlüssel. Dichtbesetzt, das heißt, dass in den Blättern jeder Schlüssel genau einmal sortiert auftaucht.</p>
 <p>Schauen wir uns ein paar Knoten genauer an. Mit 13 in der Wurzel gehen alle Zahlen die kleiner sind, auf die linke Seite und alle die größer oder gleich 13 sind auf die rechte. Im darunterliegenden linken Knoten haben wir den Schlüssel 7. Alle Elemente kleiner als 7 gehen in das linke Blatt, alle größer oder gleich 7 in das rechte. Jedes Blatt hat Pointer, die auf Datenblöcke zeigen und einen Pointer, der auf das nächste Blatt zeigt.</p>
 <figure class="align-default" id="id6">
 <img alt="../_images/Beispiel-B-Baum.png" src="../_images/Beispiel-B-Baum.png" />
@@ -1082,7 +1081,7 @@ Die Suche nach einem Blattknoten kostet <span class="math notranslate nohighligh
 <h4><span class="section-number">3.3.13.1. </span>Bulk-Loading<a class="headerlink" href="#bulk-loading" title="Permalink to this heading">#</a></h4>
 <p>Anders als beim klassichen Einfügen in einen B-Baum kann man, wenn man die Liste bereits kennt, Bulk-Loading anwenden und den Datensatz sofort indexieren. Dabei wird der Datensatz vorsortiert. Man erzeugt Schlüssel-Pointer Paare für alle Blöcke, sortiert diese Paare nach Suchschlüssel und fügt sie sukzessiv ein.</p>
 <p><strong>Beispiel</strong></p>
-<p>Wir haben <em>n = 3</em> und folgende schon sortierte Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47. Es sollen halbgefüllte Blattknoten erzeugt werden. Wir fügen also ein:</p>
+<p>Wir haben <span class="math notranslate nohighlight">\(n = 3\)</span> und folgende schon sortierte Daten: 2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47. Es sollen halbgefüllte Blattknoten erzeugt werden. Wir fügen also ein:</p>
 <figure class="align-default" id="bulk-loading-beispiel">
 <img alt="../_images/bulk-loading-Beispiel.png" src="../_images/bulk-loading-Beispiel.png" />
 <figcaption>
@@ -1164,7 +1163,7 @@ Die Suche nach einem Blattknoten kostet <span class="math notranslate nohighligh
 <p>Hashtabellen haben eine Hashfunktion die als Input einen Suchschlüssel <span class="math notranslate nohighlight">\(K\)</span> (Hash-Schlüssel) bekommt und dann eine Bitsequenz oder einen Integer zwischen 0 und <span class="math notranslate nohighlight">\(B-1\)</span> ausgibt. <span class="math notranslate nohighlight">\(B\)</span> ist hier die Anzahl Buckets die wir mappen können. Oft wird mit Modulo gerechnet, hat man aber Strings, muss erst jedem Buchstaben ein Integer zugewiesen und dann summiert werden. Am Ende haben wir dann ein Array von Buckets (Bucketarray) und wissen dann, wo welcher Wert liegt.</p>
 <p><strong>Hashtabellen auf Festplatten</strong></p>
 <p>Wir können davon ausgehen, dass ein Bucket ein Block ist. Nun haben wir keine Pointer mehr auf unbestimmte Buckets oder Listen sondern Blöcke die Datensätze mit dem gleichen Schlüssel enthalten. Overflowblocks können immer noch vorkommen. Wird ein Hashwert beispielsweise immer wieder berechnet, sodass der Wert jedes Mal wieder in den gleichen Blöck gehört, dann kann man diesen durch Overflowblocks immer wieder erweitern. Im schlimmsten Fall wird dieser eine Block dann als Liste degeneriert.</p>
-<p>In der Beispielabbildung sehen wir wie so eine Hashtabelle aussehen kann. Hier hat sie 4 Hashblöcke mit den Adressen 0 - 3 (0 bis <span class="math notranslate nohighlight">\(B-1\)</span>) und die Möglichkeit Pointer für Overflowblocks hinzuzufügen.</p>
+<p>In der Beispielabbildung <em>(Fig. 3.54)</em> sehen wir wie so eine Hashtabelle aussehen kann. Hier hat sie 4 Hashblöcke mit den Adressen 0 - 3 (0 bis <span class="math notranslate nohighlight">\(B-1\)</span>) und die Möglichkeit Pointer für Overflowblocks hinzuzufügen.</p>
 <figure class="align-default" id="hashtabelle-auf-festplatten">
 <img alt="../_images/Hashtabelle-auf-Festplatten.png" src="../_images/Hashtabelle-auf-Festplatten.png" />
 <figcaption>
@@ -1173,7 +1172,7 @@ Die Suche nach einem Blattknoten kostet <span class="math notranslate nohighligh
 </figure>
 <p><strong>Einfügen in Hashtabellen</strong></p>
 <p>Möchten wir einen Wert in eine Hashtabelle einfügen, müssen wir zunächst den Hashwert berechnen. Falls Platz ist, fügen wir den Datensatz in den entsprechenden Block oder Overflowblock ein. Falls nicht, müssen wir einen neuen Overflowblock erzeugen und dort den Datensatz einfügen.</p>
-<p>Wir möchten jetzt beispielhaft <em>H</em> in die Beispieltabelle einfügen. Sagen wir, die Hashfunktion ergibt 2 <span class="math notranslate nohighlight">\((h(H) = 2)\)</span>. Dann können wir problemlos <em>H</em> in den Block 2 unter dem <em>B</em> einfügen. Möchten wir jetzt <em>H</em> einfügen und bekommen dafür <span class="math notranslate nohighlight">\(h(G) = 1\)</span>, müssen wir einen Overflowblock dranhängen, in welchen dann das <em>G</em> passt.</p>
+<p>Wir möchten nun beispielhaft <em>H</em> in die Tabelle in Abbildung 3.55 einfügen. Sagen wir, die Hashfunktion ergibt 2 <span class="math notranslate nohighlight">\((h(H) = 2)\)</span>. Dann können wir problemlos <em>H</em> in den Block 2 unter dem <em>B</em> einfügen. Möchten wir jetzt <em>H</em> einfügen und bekommen dafür <span class="math notranslate nohighlight">\(h(G) = 1\)</span>, müssen wir einen Overflowblock dranhängen, in welchen dann das <em>G</em> passt.</p>
 <figure class="align-default" id="einfugen-in-hashtabelle">
 <img alt="../_images/Einfügen-in-Hashtabelle.png" src="../_images/Einfügen-in-Hashtabelle.png" />
 <figcaption>
